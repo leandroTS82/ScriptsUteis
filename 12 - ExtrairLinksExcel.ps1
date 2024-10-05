@@ -11,56 +11,57 @@ $excelFile = "Cronograma-Inbound-agger_Old_copia.xlsx"  # Nome do arquivo Excel
 # Definir o caminho completo para o arquivo Excel
 $excelPath = "$basePath/$excelFile"
 
-# Definir a aba e a coluna específica
+# Definir a aba a ser lida
 $sheetName = "ARTIGOS"  # Nome da aba com os dados
-$columnName = "Link texto"  # Nome da coluna que contém os links
 
-# Gerar o nome do arquivo JSON dinamicamente baseado na aba e na coluna
-$jsonFileName = "${sheetName}_${columnName}_links.json"
+# Gerar o nome do arquivo JSON dinamicamente baseado na aba
+$jsonFileName = "${sheetName}_dados.json"
 $outputJsonPath = "$outputDir/$jsonFileName"
 
 # Ler o conteúdo do arquivo Excel
 $excelData = Import-Excel -Path $excelPath -WorksheetName $sheetName
 
-# Verificar se a coluna existe no arquivo Excel
-if (-not ($excelData | Get-Member -Name $columnName)) {
-    Write-Host "A coluna '$columnName' não foi encontrada na aba '$sheetName'. Verifique o nome da coluna."
+# Verificar se a aba possui dados
+if ($excelData.Count -eq 0) {
+    Write-Host "A aba '$sheetName' não contém dados."
     exit
 }
 
-# Função para verificar se a célula contém um hiperlink e retornar o link ou texto
-function Get-LinkOrText {
+# Criar uma lista para armazenar os dados das células
+$allCellData = @()
+
+# Função para obter o link de uma célula se ela for um hyperlink
+function Get-Hyperlink {
     param ($cell)
 
-    # Se a célula for um hyperlink da fórmula Excel, retorná-lo
-    if ($cell -is [string] -and $cell.Contains("HYPERLINK")) {
-        # Extraindo o URL do HYPERLINK fórmula, assumindo que está no formato =HYPERLINK("url", "texto")
-        $matches = [regex]::Match($cell, '"(.*?)"')
-        if ($matches.Success) {
-            return $matches.Groups[1].Value
-        }
-    }
-
-    # Se a célula tiver um hyperlink real (não fórmula), retornar o hyperlink
+    # Se a célula for um objeto com um campo Hyperlink, retornar o link, senão, retornar o valor
     if ($cell.PSObject.Properties["Hyperlink"] -ne $null) {
-        $hyperlink = $cell.PSObject.Properties["Hyperlink"].Value
-        if ($hyperlink -ne $null) {
-            return $hyperlink
+        return $cell.PSObject.Properties["Hyperlink"].Value
+    } else {
+        return $cell
+    }
+}
+
+# Percorrer cada linha e coletar todas as propriedades
+foreach ($row in $excelData) {
+    $rowData = @{}  # Criar um dicionário para armazenar os dados da linha
+
+    # Coletar todas as propriedades e seus valores
+    foreach ($property in $row.PSObject.Properties) {
+        if ($property.Name -eq "Link texto") {
+            # Se for a coluna "Link texto", obter o link real
+            $rowData[$property.Name] = Get-Hyperlink $property.Value
+        } else {
+            $rowData[$property.Name] = $property.Value
         }
     }
 
-    # Caso não seja um hyperlink, retornar o texto da célula
-    return $cell
+    # Adicionar o dicionário da linha à lista de dados
+    $allCellData += $rowData
 }
 
-# Obter os links ou textos da coluna especificada
-$links = $excelData | ForEach-Object {
-    $cell = $_.$columnName
-    Get-LinkOrText $cell
-}
-
-# Criar um objeto JSON a partir dos links ou textos
-$jsonOutput = $links | ConvertTo-Json -Depth 1
+# Criar um objeto JSON a partir de todos os dados coletados
+$jsonOutput = $allCellData | ConvertTo-Json -Depth 4  # Profundidade maior para garantir que todos os níveis sejam incluídos
 
 # Verificar se a pasta de destino existe, se não, criá-la
 if (-not (Test-Path -Path $outputDir)) {
