@@ -9,20 +9,20 @@ from datetime import datetime
 #    pip install openpyxl
 # 3. Altere o caminho do arquivo Excel (excel_file_path) para o local onde seu arquivo está armazenado.
 # 4. Execute o script. O arquivo JSON será gerado no diretório especificado.
-# 5. comando para executar python '.\13 - extrair_links.py' ou python3 '.\13 - extrair_links.py'
+# 5. Comando para executar: python '.\13 - extrair_links.py' ou python3 '.\13 - extrair_links.py'
 
 # Caminho do arquivo Excel
 excel_file_path = r"C:\dev\scripts\ScriptsUteis\ArquivoExcel\Cronograma-Inbound-agger_Old_copia.xlsx"
 
 # Carregar o arquivo Excel
 workbook = openpyxl.load_workbook(excel_file_path)
-sheet = workbook["ARTIGOS"]
+sheet = workbook["INFOCAP Atualização post"]
 
 # Inicializar a lista para armazenar os dados
 data = []
 
 # Definir as colunas que você deseja extrair (por exemplo, ["C","I"])
-columns_to_extract = ["C", "I"]  # Defina aqui as colunas desejadas
+columns_to_extract = ["B","C","D"]  # Defina aqui as colunas desejadas
 
 # Função para converter datetime para string
 def convert_datetime(cell_value):
@@ -57,3 +57,19 @@ with open(json_file_path, "w", encoding="utf-8") as json_file:
     json.dump(data, json_file, ensure_ascii=False, indent=4)
 
 print(f"Arquivo JSON gerado com sucesso em {json_file_path}!")
+
+# Nova variável com o texto a ser procurado
+search_text = "https://butterflygrowth.sharepoint.com/:w:/r/sites/Agger_"
+
+# Inicializar lista para armazenar os resultados encontrados
+filtered_data = [item for item in data if any(search_text in str(value) for value in item.values())]
+
+# Caminho e nome do novo arquivo JSON para os resultados filtrados
+filtered_json_file_name = f"filtered_{sheet.title}.json"
+filtered_json_file_path = os.path.join(output_directory, filtered_json_file_name)
+
+# Gravar os resultados filtrados em um novo arquivo JSON
+with open(filtered_json_file_path, "w", encoding="utf-8") as filtered_json_file:
+    json.dump(filtered_data, filtered_json_file, ensure_ascii=False, indent=4)
+
+print(f"Arquivo JSON filtrado gerado com sucesso em {filtered_json_file_path}!")
