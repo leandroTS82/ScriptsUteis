@@ -12,17 +12,17 @@ from datetime import datetime
 # 5. Comando para executar: python '.\13 - extrair_links.py' ou python3 '.\13 - extrair_links.py'
 
 # Caminho do arquivo Excel
-excel_file_path = r"C:\dev\scripts\ScriptsUteis\ArquivoExcel\Cronograma-Inbound-agger_Old_copia.xlsx"
+excel_file_path = r"C:\dev\scripts\ScriptsUteis\ArquivoExcel\Cronograma-Inbound-agger.xlsx"
 
 # Carregar o arquivo Excel
 workbook = openpyxl.load_workbook(excel_file_path)
-sheet = workbook["INFOCAP Atualização post"]
+sheet = workbook["ARTIGOS"]
 
 # Inicializar a lista para armazenar os dados
 data = []
 
-# Definir as colunas que você deseja extrair (por exemplo, ["C","I"])
-columns_to_extract = ["B","C","D"]  # Defina aqui as colunas desejadas
+# Definir as colunas que você deseja extrair (por exemplo, ["C","I","J"])
+columns_to_extract = ["C", "I", "J"]  # Defina aqui as colunas desejadas
 
 # Função para converter datetime para string
 def convert_datetime(cell_value):
@@ -31,8 +31,8 @@ def convert_datetime(cell_value):
     return cell_value
 
 # Iterar sobre as linhas da planilha, começando da segunda linha
-for row in sheet.iter_rows(min_row=2):  # Ignorar a primeira linha (cabeçalho)
-    row_data = {}
+for row_index, row in enumerate(sheet.iter_rows(min_row=2), start=2):  # Ignorar a primeira linha (cabeçalho)
+    row_data = {'row': row_index}  # Adiciona o número da linha ao dicionário
     for col in columns_to_extract:
         col_index = openpyxl.utils.column_index_from_string(col) - 1  # Converter letra para índice
         cell = row[col_index]
@@ -59,13 +59,13 @@ with open(json_file_path, "w", encoding="utf-8") as json_file:
 print(f"Arquivo JSON gerado com sucesso em {json_file_path}!")
 
 # Nova variável com o texto a ser procurado
-search_text = "https://butterflygrowth.sharepoint.com/:w:/r/sites/Agger_"
+search_text = "https://butterflygrowth.sharepoint.com"
 
 # Inicializar lista para armazenar os resultados encontrados
 filtered_data = [item for item in data if any(search_text in str(value) for value in item.values())]
 
 # Caminho e nome do novo arquivo JSON para os resultados filtrados
-filtered_json_file_name = f"filtered_{sheet.title}.json"
+filtered_json_file_name = f"{sheet.title}_filtered.json"
 filtered_json_file_path = os.path.join(output_directory, filtered_json_file_name)
 
 # Gravar os resultados filtrados em um novo arquivo JSON
