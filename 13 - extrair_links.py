@@ -26,11 +26,11 @@ sheet = workbook["INFOCAP Atualização post"]
 # Inicializar a lista para armazenar os dados
 data = []
 
-# Variável de controle para extrair todas as colunas ou somente as definidas
-extract_AllColumns = False  # Defina como True para extrair todas as colunas
 # Definir as colunas que você deseja extrair (por exemplo, ["B", "C"])
 columns_to_extract = ["B", "C"]  # Defina aqui as colunas desejadas, se necessário
 
+# Variável de controle para extrair todas as colunas ou somente as definidas
+extract_AllColumns = False  # Defina como True para extrair todas as colunas
 
 # Verificar quais colunas possuem ao menos uma célula com conteúdo
 valid_columns = []
@@ -60,17 +60,24 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=2), start=2):  # Ignorar
     row_data = {'linha': row_index}  # Adiciona o número da linha ao dicionário
     columns_to_process = valid_columns if extract_AllColumns else columns_to_extract
 
+    # Verifica se todas as colunas especificadas em columns_to_extract são nulas
+    all_columns_null = True
+
     for col in columns_to_process:
         col_index = openpyxl.utils.column_index_from_string(col) - 1  # Converter letra para índice
         cell = row[col_index]
 
         if cell.hyperlink:  # Verifica se a célula contém um hiperlink
             row_data[col] = cell.hyperlink.target  # Obtém o link real
+            all_columns_null = False  # Pelo menos uma célula não é nula
         else:
-            row_data[col] = convert_datetime(cell.value) if cell.value is not None else None  # Define como null se vazio
+            cell_value = convert_datetime(cell.value) if cell.value is not None else None
+            row_data[col] = cell_value
+            if cell_value is not None:
+                all_columns_null = False  # Pelo menos uma célula não é nula
 
-    # Verifica se a linha tem algum conteúdo antes de adicionar ao JSON
-    if any(value is not None for value in row_data.values()):
+    # Se não estiver extraindo todas as colunas, só adicionar a linha se houver pelo menos uma célula não nula
+    if not all_columns_null:
         data.append(row_data)
 
 # Caminho do diretório para salvar o JSON
