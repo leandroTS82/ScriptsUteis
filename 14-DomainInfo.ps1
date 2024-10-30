@@ -1,5 +1,5 @@
 # Define o domínio como uma variável de entrada
-$domain = "butterflygrowth.com.br"
+$domain = "butterflygrowth.blue"
 
 # Função para obter informações de DNS MX do domínio
 function Get-MXRecords($domain) {
@@ -78,10 +78,24 @@ function Get-SOARecord($domain) {
     }
 }
 
-# Função para gerar o JSON com as informações coletadas
-function Generate-Json($domain, $mxRecords, $txtRecords, $aRecord, $aaaaRecord, $cnameRecord, $nsRecords, $soaRecord) {
-    $data = @{
+# Função para realizar o nslookup e obter aliases e endereços IP
+function Get-NSLookup($domain) {
+    try {
+        $nslookupResult = Resolve-DnsName -Name $domain
+        $nslookupInfo = @{
+            Aliases  = $nslookupResult.Aliases
+            IPAddresses = $nslookupResult.IPAddress
+        }
+        return $nslookupInfo
+    } catch {
+        Write-Output "Erro ao realizar o nslookup para o domínio: $domain"
+        return $null
+    }
+}
 
+# Função para gerar o JSON com as informações coletadas
+function Generate-Json($domain, $mxRecords, $txtRecords, $aRecord, $aaaaRecord, $cnameRecord, $nsRecords, $soaRecord, $nslookupInfo) {
+    $data = @{
         "Domain"      = $domain
         "MXRecords"   = $mxRecords
         "ARecord"     = $aRecord
@@ -90,6 +104,7 @@ function Generate-Json($domain, $mxRecords, $txtRecords, $aRecord, $aaaaRecord, 
         "CNAMERecord" = $cnameRecord
         "NSRecords"   = $nsRecords
         "SOARecord"   = $soaRecord
+        "NSLookup"    = $nslookupInfo
     }
 
     return $data | ConvertTo-Json -Depth 3
@@ -111,9 +126,10 @@ $aaaaRecord  = Get-AAAARecord $domain
 $cnameRecord = Get-CNAMERecord $domain
 $nsRecords   = Get-NSRecords $domain
 $soaRecord   = Get-SOARecord $domain
+$nslookupInfo = Get-NSLookup $domain
 
 # Gera o conteúdo JSON com as informações do domínio e registros DNS
-$jsonContent = Generate-Json -domain $domain -mxRecords $mxRecords -txtRecords $txtRecords -aRecord $aRecord -aaaaRecord $aaaaRecord -cnameRecord $cnameRecord -nsRecords $nsRecords -soaRecord $soaRecord
+$jsonContent = Generate-Json -domain $domain -mxRecords $mxRecords -txtRecords $txtRecords -aRecord $aRecord -aaaaRecord $aaaaRecord -cnameRecord $cnameRecord -nsRecords $nsRecords -soaRecord $soaRecord -nslookupInfo $nslookupInfo
 
 # Salva o JSON em um arquivo na pasta 'json'
 $jsonFilePath = Join-Path $jsonFolderPath "domain_info_$domain.json"
