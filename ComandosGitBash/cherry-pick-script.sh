@@ -1,7 +1,31 @@
 #!/bin/bash
 
-#cherry-pick-script.sh
-# ./cherry-pick-script.sh C:\Dev\web-portal <hash>
+#===================================================================================
+# Script: cherry-pick-script.sh
+# 
+# Descrição:
+#   Script para automatizar e tornar mais seguro o processo de cherry-pick no Git.
+#   Realiza várias verificações de segurança e oferece confirmações antes de 
+#   executar o cherry-pick, além de lidar com commits de merge e conflitos.
+#
+# Uso:
+#   ./cherry-pick-script.sh <caminho_do_projeto> <hash_do_commit>
+#
+# Exemplo de execução:
+#   ./cherry-pick-script.sh /caminho/do/projeto abc123def456
+#
+# Funcionalidades:
+#   - Verifica se o diretório e o repositório Git são válidos
+#   - Mostra detalhes do commit antes do cherry-pick
+#   - Identifica se é um commit de merge
+#   - Verifica branches que contém o commit
+#   - Oferece opções para lidar com conflitos
+#   - Valida se o cherry-pick foi bem sucedido
+#
+# Autor: [Seu Nome]
+# Data: [Data de Criação]
+# Versão: 1.0
+#===================================================================================
 
 # Recebe o caminho do projeto e o hash como variáveis
 project_path=$1
