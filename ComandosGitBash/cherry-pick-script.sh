@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #===================================================================================
 # Script: cherry-pick-script.sh
 # 
@@ -24,7 +23,7 @@
 #
 # Autor: [Seu Nome]
 # Data: [Data de Criação]
-# Versão: 1.0
+# Versão: 1.1
 #===================================================================================
 
 # Recebe o caminho do projeto e o hash como variáveis
@@ -90,20 +89,21 @@ do_cherry_pick() {
     # Verifica o status do cherry-pick
     if [ $? -eq 0 ]; then
         echo "Cherry-pick realizado com sucesso!"
-        echo "Verificando se o commit está presente na branch atual..."
-        echo "Branches que contém o commit $hash:"
-        git branch --contains $hash
+        
+        # Pega o hash do novo commit criado pelo cherry-pick
+        new_hash=$(git rev-parse HEAD)
         
         # Pega o nome da branch atual
         current_branch=$(git rev-parse --abbrev-ref HEAD)
         
-        # Verifica se o hash está na branch atual
-        if git branch --contains $hash | grep -q "$current_branch"; then
-            echo "✅ Commit foi aplicado com sucesso na branch atual ($current_branch)"
+        echo "Verificando se o novo commit está presente na branch atual..."
+        if git branch --contains $new_hash | grep -q "$current_branch"; then
+            echo "✅ Cherry-pick foi aplicado com sucesso na branch atual ($current_branch)"
+            echo "Hash original: $hash"
+            echo "Novo hash: $new_hash"
             return 0
         else
-            echo "⚠️ AVISO: O commit não aparece na branch atual ($current_branch)"
-            echo "Isso pode indicar um problema na operação de cherry-pick"
+            echo "⚠️ AVISO: Houve um problema com o cherry-pick"
             read -p "Deseja continuar mesmo assim? (s/n): " resposta
             if [[ $resposta != "s" ]]; then
                 echo "Operação cancelada"
@@ -142,7 +142,6 @@ do_cherry_pick() {
 
 # Verifica se é um commit de merge
 is_merge=$(git cat-file -p $hash | grep -c "^parent ")
-
 if [ $is_merge -gt 1 ]; then
     echo "ATENÇÃO: Este é um commit de merge!"
     echo "Detalhes do merge:"
