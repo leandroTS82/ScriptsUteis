@@ -56,7 +56,7 @@ if [ ! -d "$OUTPUT_PATH" ]; then
 fi
 
 # Define nome do arquivo de saída
-OUTPUT_FILE="$OUTPUT_PATH/commits_${BRANCH}_ultimos_${MESES}_meses.csv"
+OUTPUT_FILE="$OUTPUT_PATH/commits_$(echo $BRANCH | tr '/' '-')_ultimos_${MESES}_meses.csv"
 
 # Entra no diretório do projeto
 cd "$PROJECT_PATH" || exit 1
