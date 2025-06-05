@@ -17,13 +17,13 @@
 #   - Verifica se o diretório e o repositório Git são válidos
 #   - Mostra detalhes do commit antes do cherry-pick
 #   - Identifica se é um commit de merge
-#   - Verifica branches que contém o commit
+#   - Verifica branches locais e remotas que contêm o commit
 #   - Oferece opções para lidar com conflitos
 #   - Valida se o cherry-pick foi bem sucedido
 #
 # Autor: [Seu Nome]
 # Data: [Data de Criação]
-# Versão: 1.1
+# Versão: 1.2
 #===================================================================================
 
 # Recebe o caminho do projeto e o hash como variáveis
@@ -53,8 +53,12 @@ fi
 
 echo "Trabalhando no projeto: $project_path"
 
+# Atualiza a lista de branches remotas
+echo "Atualizando informações das branches remotas..."
+git fetch --all
+
 # Mostra o commit
-echo "Exibindo detalhes do commit..."
+echo -e "\nExibindo detalhes do commit..."
 git show $hash
 
 # Pede confirmação para continuar
@@ -64,12 +68,32 @@ if [[ $resposta != "s" ]]; then
     exit 0
 fi
 
-# Mostra as branches que contêm o commit
-echo "Verificando branches que contêm o commit..."
-git branch --contains $hash
+# Função para verificar branches que contêm o commit
+check_branches() {
+    local hash=$1
+    
+    echo -e "\n=== Branches Locais que contêm o commit ==="
+    git branch --contains $hash
+    
+    echo -e "\n=== Branches Remotas que contêm o commit ==="
+    git branch -r --contains $hash
+    
+    # Verifica se o commit está em alguma branch importante
+    if git branch --contains $hash | grep -q "main\|master\|develop"; then
+        echo -e "\n⚠️  ATENÇÃO: Este commit está presente em branches principais!"
+    fi
+    
+    if git branch -r --contains $hash | grep -q "origin/main\|origin/master\|origin/develop"; then
+        echo -e "\n⚠️  ATENÇÃO: Este commit está presente em branches principais remotas!"
+    fi
+}
+
+# Verifica as branches que contêm o commit
+echo -e "\nVerificando branches que contêm o commit..."
+check_branches $hash
 
 # Pede confirmação novamente
-read -p "Deseja continuar? (s/n): " resposta
+read -p "Deseja continuar com o cherry-pick? (s/n): " resposta
 if [[ $resposta != "s" ]]; then
     echo "Operação cancelada"
     exit 0
@@ -79,6 +103,10 @@ fi
 do_cherry_pick() {
     local hash=$1
     local is_merge=$2
+    
+    # Faz backup do estado atual
+    echo "Criando backup do estado atual..."
+    git stash save "Backup antes do cherry-pick de $hash" >/dev/null 2>&1
     
     if [ $is_merge -gt 1 ]; then
         git cherry-pick -m 1 $hash
@@ -101,11 +129,16 @@ do_cherry_pick() {
             echo "✅ Cherry-pick foi aplicado com sucesso na branch atual ($current_branch)"
             echo "Hash original: $hash"
             echo "Novo hash: $new_hash"
+            
+            # Remove o stash se tudo deu certo
+            git stash drop >/dev/null 2>&1
             return 0
         else
             echo "⚠️ AVISO: Houve um problema com o cherry-pick"
             read -p "Deseja continuar mesmo assim? (s/n): " resposta
             if [[ $resposta != "s" ]]; then
+                git cherry-pick --abort
+                git stash pop >/dev/null 2>&1
                 echo "Operação cancelada"
                 exit 1
             fi
@@ -114,7 +147,7 @@ do_cherry_pick() {
         echo "CONFLITO detectado durante o cherry-pick!"
         echo "Opções:"
         echo "1. Resolver conflitos manualmente"
-        echo "2. Abortar cherry-pick"
+        echo "2. Abortar cherry-pick e restaurar backup"
         read -p "Escolha uma opção (1/2): " opcao
         
         case $opcao in
@@ -128,12 +161,14 @@ do_cherry_pick() {
                 ;;
             2)
                 git cherry-pick --abort
-                echo "Cherry-pick abortado"
+                git stash pop >/dev/null 2>&1
+                echo "Cherry-pick abortado e backup restaurado"
                 exit 1
                 ;;
             *)
                 echo "Opção inválida"
                 git cherry-pick --abort
+                git stash pop >/dev/null 2>&1
                 exit 1
                 ;;
         esac
