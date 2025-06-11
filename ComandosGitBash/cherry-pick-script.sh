@@ -299,8 +299,12 @@ if [[ $resposta != "s" ]]; then
 fi
 
 # Verifica as branches que contêm o commit
-echo -e "\n🔍 Verificando branches que contêm o commit..."
-check_branches $hash
+# Pergunta se quer verificar as branches
+read -p "Deseja verificar em quais branches o commit está presente? (s/n): " check_branches_resp
+if [[ $check_branches_resp == "s" ]]; then
+    echo -e "\n🔍 Verificando branches que contêm o commit..."
+    check_branches $hash
+fi
 
 # Pede confirmação novamente
 read -p "Deseja continuar com o cherry-pick? (s/n): " resposta
