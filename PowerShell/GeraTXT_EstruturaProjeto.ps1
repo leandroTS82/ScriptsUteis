@@ -1,115 +1,114 @@
-# Defina o caminho raiz do projeto
+# Caminho raiz do projeto
 $projectPath = "C:\dev\SPFXButterfly"
-# Pastas que quer listar na estrutura exemplo: @("Data", "Models", "Services", "Views")
+$solutionName = "CantinaV12"
+
+# Pastas principais para listar (relativas ao projeto)
 $foldersToList = @("src")
 
-# Caminho do arquivo de saída
-$outputFile =  "./estrutura_simplificada.txt"
+# Arquivo de saída
+$outputFile = "./estrutura_simplificada.txt"
 
-# Descrições por pasta (pode adicionar mais conforme necessário)
+# Itens a ignorar
+$exceptions = @("node_modules", "bin", "obj", ".git", ".vs", "dist", "temp", ".DS_Store")
+# Extensões de arquivos que devem ser ignoradas (sem distinguir maiúsculas/minúsculas)
+$excludedExtensions = @(".exe", ".zip")
+
+# Descrições com base em caminhos relativos a partir do root (ex: "src\Services\Externals")
 $folderDescriptions = @{
-    "webparts" = "Local onde os componentes de webparts são criadas"
-    "Models"     = "(Modelos de dados)"
-    "Services"   = @"
-├── Externals        (Serviços externos: Firebase, WhatsApp, CSV, XLSX)
-└── Internals        (Serviços internos: Pedidos, Produtos, Configurações)
-"@
-    "ViewModels" = "(ViewModels - atualmente vazio)"
-    "Views"      = "(Páginas de interface do usuário)"
-    "Resources"  = "(Estilos, Cores)"
+    "src\webparts"           = "Local onde os componentes de webparts são criados"
+    "src\Models"             = "Modelos de dados utilizados no sistema"
+    "src\ViewModels"         = "Camada de ViewModels, atualmente vazia"
+    "src\Views"              = "Interfaces do usuário"
+    "src\Resources"          = "Estilos, cores e recursos visuais"
+    "src\Services\Externals" = "Serviços externos: Firebase, WhatsApp, CSV, XLSX"
+    "src\Services\Internals" = "Serviços internos: Pedidos, Produtos, Configurações"
 }
 
-# Apaga o arquivo anterior se existir
+# Remove arquivo antigo se existir
 if (Test-Path $outputFile) {
     Remove-Item $outputFile
 }
-# Cabeçalho do arquivo
-Add-Content $outputFile "CantinaV1"
+
+# Cabeçalho
+Add-Content $outputFile $solutionName
 Add-Content $outputFile "│"
 
-# Função para listar subpastas e arquivos com indentação
+function Is-Excluded {
+    param([string]$name)
+    return $exceptions -contains $name
+}
+
 function List-FolderContent {
     param(
         [string]$path,
-        [int]$indentLevel
+        [int]$indentLevel,
+        [string]$relativePath
     )
 
     $indent = "│   " * $indentLevel
 
-    # Listar pastas
-    $dirs = Get-ChildItem -Path $path -Directory | Sort-Object Name
-    foreach ($dir in $dirs) {
-        Add-Content $outputFile "$indent├── $($dir.Name)"
-        List-FolderContent -path $dir.FullName -indentLevel ($indentLevel + 1)
+    # Pastas
+    $dirs = Get-ChildItem -Path $path -Directory | Where-Object { -not (Is-Excluded $_.Name) } | Sort-Object Name
+    $lastDir = $dirs.Count - 1
+
+    for ($i = 0; $i -lt $dirs.Count; $i++) {
+        $dir = $dirs[$i]
+        $prefix = if ($i -eq $lastDir) { "└──" } else { "├──" }
+
+        $fullRelative = Join-Path $relativePath $dir.Name
+        $desc = $folderDescriptions[$fullRelative]
+        $line = "$indent$prefix $($dir.Name)"
+        if ($desc) { $line += "        ($desc)" }
+
+        Add-Content $outputFile $line
+
+        List-FolderContent -path $dir.FullName -indentLevel ($indentLevel + 1) -relativePath $fullRelative
     }
 
-    # Listar arquivos
-    $files = Get-ChildItem -Path $path -File | Sort-Object Name
-    $fileCount = $files.Count
-    for ($i = 0; $i -lt $fileCount; $i++) {
-        $prefix = if ($i -eq $fileCount - 1) { "└──" } else { "├──" }
+    # Arquivos
+    $files = Get-ChildItem -Path $path -File | Where-Object {
+    -not (Is-Excluded $_.Name) -and (-not ($excludedExtensions -contains $_.Extension.ToLower()))
+} | Sort-Object Name
+    $lastFile = $files.Count - 1
+
+    for ($i = 0; $i -lt $files.Count; $i++) {
+        $prefix = if ($i -eq $lastFile) { "└──" } else { "├──" }
         Add-Content $outputFile "$indent$prefix $($files[$i].Name)"
     }
 }
 
-
-
-# Processar pastas principais
+# Loop nas pastas principais
 foreach ($folder in $foldersToList) {
     $fullPath = Join-Path $projectPath $folder
 
     if (-Not (Test-Path $fullPath)) {
-        Add-Content $outputFile "├── $folder (folder not found)"
+        Add-Content $outputFile "├── $folder (pasta não encontrada)"
         Add-Content $outputFile "│"
         continue
     }
 
-    if ($folder -eq "Services") {
-        Add-Content $outputFile "├── $folder"
-        $indentServices = "│   "
+    $desc = $folderDescriptions[$folder]
+    $line = "├── $folder"
+    if ($desc) { $line += "           $desc" }
+    Add-Content $outputFile $line
 
-        # Externals
-        Add-Content $outputFile "$indentServices├── Externals        (Serviços externos: Firebase, WhatsApp, CSV, XLSX, txt etc)"
-        $externalsPath = Join-Path $fullPath "Externals"
-        if (Test-Path $externalsPath) {
-            List-FolderContent -path $externalsPath -indentLevel 2
-        }
-
-        # Internals
-        Add-Content $outputFile "$indentServices└── Internals        (Serviços internos: Pedidos, Produtos, Configurações etc)"
-        $internalsPath = Join-Path $fullPath "Internals"
-        if (Test-Path $internalsPath) {
-            List-FolderContent -path $internalsPath -indentLevel 2
-        }
-
-        Add-Content $outputFile "│"
-    }
-    else {
-        $desc = $folderDescriptions[$folder]
-        if ($desc) {
-            Add-Content $outputFile "├── $folder           $desc"
-        }
-        else {
-            Add-Content $outputFile "├── $folder"
-        }
-
-        List-FolderContent -path $fullPath -indentLevel 1
-        Add-Content $outputFile "│"
-    }
+    List-FolderContent -path $fullPath -indentLevel 1 -relativePath $folder
+    Add-Content $outputFile "│"
 }
 
-# Listar arquivos raiz (extensões ajustáveis aqui)
+# Arquivos da raiz do projeto
 $rootFiles = Get-ChildItem -Path $projectPath -File | Where-Object {
-    $_.Extension -match "(\.xaml|\.cs|\.json|\.config|\.xml)"
+    $_.Extension -match "(\.xaml|\.cs|\.json|\.config|\.xml)" -and
+    (-not (Is-Excluded $_.Name)) -and
+    (-not ($excludedExtensions -contains $_.Extension.ToLower()))
 } | Sort-Object Name
 
 if ($rootFiles.Count -gt 0) {
     $fileNames = $rootFiles | ForEach-Object { $_.Name }
     $fileList = $fileNames -join ", "
-    Add-Content $outputFile "└── Root Files          ($fileList)"
-}
-else {
-    Add-Content $outputFile "└── Root Files"
+    Add-Content $outputFile "└── Arquivos da raiz    ($fileList)"
+} else {
+    Add-Content $outputFile "└── Arquivos da raiz"
 }
 
-Write-Output "Estrutura simplificada gerada no arquivo $outputFile"
+Write-Output "Estrutura simplificada gerada com sucesso: $outputFile"
