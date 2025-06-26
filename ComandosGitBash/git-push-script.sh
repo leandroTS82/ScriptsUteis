@@ -3,8 +3,8 @@
 # Script: git-push-script.sh
 # 
 # Descrição:
-#   Script para automatizar o processo de push no Git com verificações de segurança
-#   e validações antes do push.
+#   Script para automatizar o processo de push no Git com verificações de segurança,
+#   validações e merge automático com a branch produtiva.
 #
 # Uso:
 #   ./git-push-script.sh <caminho_do_projeto>
@@ -14,119 +14,122 @@
 #
 # Funcionalidades:
 #   - Verifica se o diretório e o repositório Git são válidos
-#   - Mostra o status atual das alterações
-#   - Verifica se há conflitos
-#   - Oferece opção de pull antes do push
-#   - Validação de credenciais
+#   - Realiza pull automático da branch produtiva
+#   - Realiza merge automático com a branch produtiva
+#   - Push automático se não houver conflitos
+#   - Feedback amigável em caso de erros
 #
-# Versão: 1.0
+# Versão: 1.1
 #===================================================================================
+
+# Define a branch produtiva
+productive_branch="main"
 
 # Recebe o caminho do projeto como variável
 project_path=$1
 
-# Função para exibir mensagens de erro
+# Função para exibir mensagens de erro de forma amigável
 error_exit() {
-    echo "❌ Erro: $1"
+    echo "❌ Ops! Algo deu errado..."
+    echo "🔍 Detalhes: $1"
+    echo "💡 Sugestão: Verifique o erro acima e tente novamente"
     exit 1
 }
 
 # Função para verificar se o Git está instalado
 check_git_version() {
     if ! command -v git >/dev/null 2>&1; then
-        error_exit "Git não está instalado"
+        error_exit "Parece que o Git não está instalado no seu sistema"
     fi
 }
 
 # Verifica se foi fornecido o caminho do projeto
 if [ -z "$project_path" ]; then
-    error_exit "Uso: $0 <caminho_do_projeto>"
+    error_exit "Por favor, informe o caminho do projeto"
 fi
 
 # Verifica se o diretório existe
 if [ ! -d "$project_path" ]; then
-    error_exit "Diretório $project_path não existe"
+    error_exit "Não encontrei o diretório: $project_path"
 fi
 
 # Verifica se Git está instalado
 check_git_version
 
 # Entra no diretório do projeto
-cd "$project_path" || error_exit "Não foi possível acessar o diretório"
+cd "$project_path" || error_exit "Não consegui acessar o diretório do projeto"
 
 # Verifica se é um repositório git
 if [ ! -d ".git" ]; then
-    error_exit "$project_path não é um repositório git"
+    error_exit "Este diretório não parece ser um repositório Git"
 fi
 
 echo "🚀 Trabalhando no projeto: $project_path"
 
-# Obtém o nome da branch atual
+# Guarda a branch atual
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 echo "📂 Branch atual: $current_branch"
 
 # Verifica status do repositório
-echo -e "\n📋 Status atual do repositório:"
-git status
-
-# Verifica se há alterações para commit
+echo -e "\n📋 Verificando status do repositório..."
 if [ -n "$(git status --porcelain)" ]; then
-    echo -e "\n⚠️ Existem alterações não commitadas!"
-    read -p "Deseja fazer commit dessas alterações? (s/n): " commit_resp
-    
-    if [[ $commit_resp == "s" ]]; then
-        # Adiciona todas as alterações
-        git add .
-        
-        # Solicita mensagem do commit
-        read -p "Digite a mensagem do commit: " commit_message
-        
-        # Realiza o commit
-        if ! git commit -m "$commit_message"; then
-            error_exit "Erro ao realizar commit"
-        fi
-        
-        echo "✅ Commit realizado com sucesso!"
-    else
-        error_exit "Operação cancelada - Commit as alterações primeiro"
+    error_exit "Existem alterações não commitadas. Por favor, faça commit ou stash das alterações primeiro"
+fi
+
+echo "🔄 Iniciando processo de atualização..."
+
+# Tenta mudar para a branch produtiva
+echo "📍 Mudando para branch $productive_branch..."
+if ! git checkout $productive_branch; then
+    error_exit "Não foi possível mudar para a branch $productive_branch"
+fi
+
+# Atualiza a branch produtiva
+echo "⬇️ Atualizando branch $productive_branch..."
+if ! git pull origin $productive_branch; then
+    error_exit "Erro ao atualizar a branch $productive_branch"
+fi
+
+# Volta para a branch original
+echo "📍 Voltando para branch $current_branch..."
+if ! git checkout $current_branch; then
+    error_exit "Não foi possível voltar para a branch $current_branch"
+fi
+
+# Atualiza a branch atual
+echo "⬇️ Atualizando branch $current_branch..."
+if ! git pull origin $current_branch; then
+    error_exit "Erro ao atualizar a branch $current_branch"
+fi
+
+# Tenta realizar o merge
+echo "🔄 Realizando merge com $productive_branch..."
+if ! git merge $productive_branch --no-commit; then
+    echo "❌ Conflitos detectados durante o merge!"
+    echo "🔧 Por favor:"
+    echo "1. Resolva os conflitos manualmente"
+    echo "2. Faça commit das alterações"
+    echo "3. Execute o script novamente"
+    git merge --abort
+    exit 1
+fi
+
+# Verifica se há alterações após o merge
+if [ -n "$(git diff --cached)" ]; then
+    # Finaliza o merge com commit
+    if ! git commit -m "Merge com $productive_branch"; then
+        error_exit "Erro ao finalizar o merge"
     fi
-fi
-
-# Verifica se há commits para push
-local_commits=$(git log "origin/$current_branch..$current_branch" --oneline)
-if [ -z "$local_commits" ]; then
-    echo "ℹ️ Não há commits locais para push"
-    exit 0
-fi
-
-# Mostra commits que serão enviados
-echo -e "\n📦 Commits que serão enviados:"
-echo "$local_commits"
-
-# Oferece opção de pull antes do push
-read -p "Deseja fazer pull antes do push? (s/n): " pull_resp
-if [[ $pull_resp == "s" ]]; then
-    echo "🔄 Realizando pull..."
-    if ! git pull origin "$current_branch"; then
-        error_exit "Erro durante o pull"
-    fi
-fi
-
-# Confirmação final
-read -p "Deseja realizar o push? (s/n): " push_resp
-if [[ $push_resp != "s" ]]; then
-    echo "⛔ Operação cancelada"
-    exit 0
 fi
 
 # Realiza o push
-echo "🔄 Realizando push..."
-if ! git push origin "$current_branch"; then
-    error_exit "Erro durante o push"
+echo "⬆️ Realizando push das alterações..."
+if ! git push origin $current_branch; then
+    error_exit "Erro ao realizar push para origin/$current_branch"
 fi
 
-echo "✨ Push realizado com sucesso!"
-
-# Mostra status final
-echo -e "\n📋 Status final:"
-git status
+echo "✨ Processo concluído com sucesso!"
+echo "📋 Resumo:"
+echo "- Branch atual: $current_branch"
+echo "- Merge realizado com: $productive_branch"
+echo "- Push realizado para: origin/$current_branch"
