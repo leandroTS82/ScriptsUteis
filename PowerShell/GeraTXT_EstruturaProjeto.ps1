@@ -8,12 +8,16 @@ $foldersToList = @("src")
 # Arquivo de saída
 $outputFile = "./estrutura_simplificada.txt"
 
+# Ativar ou desativar exibição de arquivos
+$showFiles = $false  # defina como $false para mostrar apenas pastas
+
 # Itens a ignorar
 $exceptions = @("node_modules", "bin", "obj", ".git", ".vs", "dist", "temp", ".DS_Store")
+
 # Extensões de arquivos que devem ser ignoradas (sem distinguir maiúsculas/minúsculas)
 $excludedExtensions = @(".exe", ".zip")
 
-# Descrições com base em caminhos relativos a partir do root (ex: "src\Services\Externals")
+# Descrições com base em caminhos relativos a partir do root
 $folderDescriptions = @{
     "src\webparts"           = "Local onde os componentes de webparts são criados"
     "src\Models"             = "Modelos de dados utilizados no sistema"
@@ -66,14 +70,17 @@ function List-FolderContent {
     }
 
     # Arquivos
-    $files = Get-ChildItem -Path $path -File | Where-Object {
-    -not (Is-Excluded $_.Name) -and (-not ($excludedExtensions -contains $_.Extension.ToLower()))
-} | Sort-Object Name
-    $lastFile = $files.Count - 1
+    if ($showFiles) {
+        $files = Get-ChildItem -Path $path -File | Where-Object {
+            -not (Is-Excluded $_.Name) -and (-not ($excludedExtensions -contains $_.Extension.ToLower()))
+        } | Sort-Object Name
 
-    for ($i = 0; $i -lt $files.Count; $i++) {
-        $prefix = if ($i -eq $lastFile) { "└──" } else { "├──" }
-        Add-Content $outputFile "$indent$prefix $($files[$i].Name)"
+        $lastFile = $files.Count - 1
+
+        for ($i = 0; $i -lt $files.Count; $i++) {
+            $prefix = if ($i -eq $lastFile) { "└──" } else { "├──" }
+            Add-Content $outputFile "$indent$prefix $($files[$i].Name)"
+        }
     }
 }
 
@@ -97,18 +104,23 @@ foreach ($folder in $foldersToList) {
 }
 
 # Arquivos da raiz do projeto
-$rootFiles = Get-ChildItem -Path $projectPath -File | Where-Object {
-    $_.Extension -match "(\.xaml|\.cs|\.json|\.config|\.xml)" -and
-    (-not (Is-Excluded $_.Name)) -and
-    (-not ($excludedExtensions -contains $_.Extension.ToLower()))
-} | Sort-Object Name
+if ($showFiles) {
+    $rootFiles = Get-ChildItem -Path $projectPath -File | Where-Object {
+        $_.Extension -match "(\.xaml|\.cs|\.json|\.config|\.xml)" -and
+        (-not (Is-Excluded $_.Name)) -and
+        (-not ($excludedExtensions -contains $_.Extension.ToLower()))
+    } | Sort-Object Name
 
-if ($rootFiles.Count -gt 0) {
-    $fileNames = $rootFiles | ForEach-Object { $_.Name }
-    $fileList = $fileNames -join ", "
-    Add-Content $outputFile "└── Arquivos da raiz    ($fileList)"
-} else {
-    Add-Content $outputFile "└── Arquivos da raiz"
+    if ($rootFiles.Count -gt 0) {
+        $fileNames = $rootFiles | ForEach-Object { $_.Name }
+        $fileList = $fileNames -join ", "
+        Add-Content $outputFile "└── Arquivos da raiz    ($fileList)"
+    } else {
+        Add-Content $outputFile "└── Arquivos da raiz"
+    }
+}
+else {
+    Add-Content $outputFile "└── Arquivos da raiz (ocultos)"
 }
 
 Write-Output "Estrutura simplificada gerada com sucesso: $outputFile"
