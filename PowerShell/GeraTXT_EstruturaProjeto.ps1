@@ -9,7 +9,7 @@ $foldersToList = @("src")
 $outputFile = "./estrutura_simplificada.txt"
 
 # Ativar ou desativar exibição de arquivos
-$showFiles = $false  # defina como $false para mostrar apenas pastas
+$showFiles = $true  # defina como $false para mostrar apenas pastas
 
 # Itens a ignorar
 $exceptions = @("node_modules", "bin", "obj", ".git", ".vs", "dist", "temp", ".DS_Store")
