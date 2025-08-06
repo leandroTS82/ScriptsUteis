@@ -1,18 +1,35 @@
 # Caminho raiz do projeto
-$projectPath = "C:\dev\SPFXButterfly"
-$solutionName = "CantinaV12"
+$projectPath = "C://Dev/AllSetra/allsetra-admin-portal-backend"
+$solutionName = "allsetra-admin-portal-backend-infrastructure"
 
 # Pastas principais para listar (relativas ao projeto)
-$foldersToList = @("src")
+$foldersToList = @("infrastructure")
 
 # Arquivo de saída
-$outputFile = "./estrutura_simplificada.txt"
+$outputFile = "./allsetra-admin-portal-backend-infrastructure.txt"
 
 # Ativar ou desativar exibição de arquivos
 $showFiles = $true  # defina como $false para mostrar apenas pastas
 
 # Itens a ignorar
-$exceptions = @("node_modules", "bin", "obj", ".git", ".vs", "dist", "temp", ".DS_Store")
+$exceptions = @("node_modules", 
+"bin",
+".idea",
+".github", 
+"Properties",
+"obj", 
+".git", 
+".vs", 
+"dist", 
+"AllsetraPlatform.BE.Api.csproj", 
+"AllsetraPlatform.BE.Api.csproj.user",
+"AllsetraPlatform.BE.Api.http",
+"appsettings.Development.json",
+"AllsetraPlatform.BE.Data.csproj",
+"AllsetraPlatform.BE.Infrastructure.csproj",
+"AllsetraPlatform.BE.Services.csproj",
+"AllsetraPlatform.BE.Domain.csproj"
+)
 
 # Extensões de arquivos que devem ser ignoradas (sem distinguir maiúsculas/minúsculas)
 $excludedExtensions = @(".exe", ".zip")
@@ -35,7 +52,7 @@ if (Test-Path $outputFile) {
 
 # Cabeçalho
 Add-Content $outputFile $solutionName
-Add-Content $outputFile "│"
+Add-Content $outputFile "|"
 
 function Is-Excluded {
     param([string]$name)
@@ -49,7 +66,7 @@ function List-FolderContent {
         [string]$relativePath
     )
 
-    $indent = "│   " * $indentLevel
+    $indent = "|   " * $indentLevel
 
     # Pastas
     $dirs = Get-ChildItem -Path $path -Directory | Where-Object { -not (Is-Excluded $_.Name) } | Sort-Object Name
@@ -57,7 +74,7 @@ function List-FolderContent {
 
     for ($i = 0; $i -lt $dirs.Count; $i++) {
         $dir = $dirs[$i]
-        $prefix = if ($i -eq $lastDir) { "└──" } else { "├──" }
+        $prefix = if ($i -eq $lastDir) { "|--" } else { "|--" }
 
         $fullRelative = Join-Path $relativePath $dir.Name
         $desc = $folderDescriptions[$fullRelative]
@@ -78,7 +95,7 @@ function List-FolderContent {
         $lastFile = $files.Count - 1
 
         for ($i = 0; $i -lt $files.Count; $i++) {
-            $prefix = if ($i -eq $lastFile) { "└──" } else { "├──" }
+            $prefix = if ($i -eq $lastFile) { "|--" } else { "|--" }
             Add-Content $outputFile "$indent$prefix $($files[$i].Name)"
         }
     }
@@ -89,18 +106,18 @@ foreach ($folder in $foldersToList) {
     $fullPath = Join-Path $projectPath $folder
 
     if (-Not (Test-Path $fullPath)) {
-        Add-Content $outputFile "├── $folder (pasta não encontrada)"
-        Add-Content $outputFile "│"
+        Add-Content $outputFile "|-- $folder (pasta não encontrada)"
+        Add-Content $outputFile "|"
         continue
     }
 
     $desc = $folderDescriptions[$folder]
-    $line = "├── $folder"
+    $line = "|-- $folder"
     if ($desc) { $line += "           $desc" }
     Add-Content $outputFile $line
 
     List-FolderContent -path $fullPath -indentLevel 1 -relativePath $folder
-    Add-Content $outputFile "│"
+    Add-Content $outputFile "|"
 }
 
 # Arquivos da raiz do projeto
@@ -114,13 +131,13 @@ if ($showFiles) {
     if ($rootFiles.Count -gt 0) {
         $fileNames = $rootFiles | ForEach-Object { $_.Name }
         $fileList = $fileNames -join ", "
-        Add-Content $outputFile "└── Arquivos da raiz    ($fileList)"
+        Add-Content $outputFile "|-- Arquivos da raiz    ($fileList)"
     } else {
-        Add-Content $outputFile "└── Arquivos da raiz"
+        Add-Content $outputFile "|-- Arquivos da raiz"
     }
 }
 else {
-    Add-Content $outputFile "└── Arquivos da raiz (ocultos)"
+    Add-Content $outputFile "|-- Arquivos da raiz (ocultos)"
 }
 
 Write-Output "Estrutura simplificada gerada com sucesso: $outputFile"
