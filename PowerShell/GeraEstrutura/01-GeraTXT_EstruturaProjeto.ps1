@@ -1,48 +1,57 @@
 # Caminho raiz do projeto
-$projectPath = "C://Dev/AllSetra/allsetra-admin-portal-backend"
-$solutionName = "allsetra-admin-portal-backend-infrastructure"
+$projectPath = "C://Dev/AllSetra"
+$solutionName = "allsetra-platform-backend"
 
 # Pastas principais para listar (relativas ao projeto)
-$foldersToList = @("infrastructure")
+$foldersToList = @("allsetra-admin-portal-backend")
 
 # Arquivo de saída
-$outputFile = "./allsetra-admin-portal-backend-infrastructure.txt"
+$outputFile = "./files/Estrutura de pastas - allsetra-platform-backend.txt"
 
 # Ativar ou desativar exibição de arquivos
 $showFiles = $true  # defina como $false para mostrar apenas pastas
 
 # Itens a ignorar
-$exceptions = @("node_modules", 
-"bin",
-".idea",
-".github", 
-"Properties",
-"obj", 
-".git", 
-".vs", 
-"dist", 
-"AllsetraPlatform.BE.Api.csproj", 
-"AllsetraPlatform.BE.Api.csproj.user",
-"AllsetraPlatform.BE.Api.http",
-"appsettings.Development.json",
-"AllsetraPlatform.BE.Data.csproj",
-"AllsetraPlatform.BE.Infrastructure.csproj",
-"AllsetraPlatform.BE.Services.csproj",
-"AllsetraPlatform.BE.Domain.csproj"
+$exceptions = @(
+    "node_modules", 
+    "bin",
+    "certificates",
+    ".idea",
+    ".github", 
+    "Properties",
+    "obj", 
+    ".git", 
+    ".vs", 
+    "dist"
 )
 
 # Extensões de arquivos que devem ser ignoradas (sem distinguir maiúsculas/minúsculas)
-$excludedExtensions = @(".exe", ".zip")
+$excludedExtensions = @(
+    ".exe", 
+    ".gitignore",
+    ".zip",
+    ".user",
+    ".suo",
+    ".dll",
+    ".pdb",
+    ".log",
+    ".md",
+    ".txt",
+    "--",
+    ".json",
+    ".config",
+    ".xml",
+    ".xaml",
+    ".cs",
+    ".pl",
+    ".ps1",
+    ".xlsx",
+    ".csproj"
+    )
 
 # Descrições com base em caminhos relativos a partir do root
 $folderDescriptions = @{
-    "src\webparts"           = "Local onde os componentes de webparts são criados"
-    "src\Models"             = "Modelos de dados utilizados no sistema"
-    "src\ViewModels"         = "Camada de ViewModels, atualmente vazia"
-    "src\Views"              = "Interfaces do usuário"
-    "src\Resources"          = "Estilos, cores e recursos visuais"
-    "src\Services\Externals" = "Serviços externos: Firebase, WhatsApp, CSV, XLSX"
-    "src\Services\Internals" = "Serviços internos: Pedidos, Produtos, Configurações"
+    "src\Models" = "Modelos de dados utilizados no sistema"
 }
 
 # Remove arquivo antigo se existir
@@ -132,7 +141,8 @@ if ($showFiles) {
         $fileNames = $rootFiles | ForEach-Object { $_.Name }
         $fileList = $fileNames -join ", "
         Add-Content $outputFile "|-- Arquivos da raiz    ($fileList)"
-    } else {
+    }
+    else {
         Add-Content $outputFile "|-- Arquivos da raiz"
     }
 }
