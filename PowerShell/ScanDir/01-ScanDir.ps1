@@ -24,7 +24,8 @@ $exceptions = @(
     "Class1.cs",
     "certificates",
     "Resources",
-    "Usings.cs"
+    "Usings.cs",
+    "data"
 )
 
 # Extensoes a ignorar
@@ -39,6 +40,12 @@ $exceptionsExtensions = @(
 # Mostrar arquivos na arvore (true = lista arquivos; false = so diretorios)
 $showFiles = $true
 
+# Pastas a incluir (nome exato, sem considerar maiúsculas/minúsculas)
+$onlyFolders = @()  # Ex: @("Pasta1","Pasta2")
+
+# Extensões a incluir (com ponto e minúsculas)
+$onlyExtensions = @() # Ex: @(".docx",".txt")
+
 # --------- Helpers ---------
 function Should-ExcludePath {
     param([string]$path, [string[]]$terms)
@@ -46,6 +53,29 @@ function Should-ExcludePath {
         if ($path -like "*$t*") { return $true }
     }
     return $false
+}
+
+function Should-IncludePath {
+    param([string]$path, [string[]]$folders, [string[]]$exts)
+
+    if (($folders.Count -eq 0) -and ($exts.Count -eq 0)) { return $true }
+
+    $pathLower = $path.ToLower()
+    $pathMatch = $false
+    $extMatch  = $false
+
+    foreach ($f in $folders) {
+        $folderLower = $f.ToLower()
+        if ($pathLower -match "[\\/]$folderLower([\\/]|$)") { 
+            $pathMatch = $true
+            break 
+        }
+    }
+
+    $extension = [System.IO.Path]::GetExtension($path).ToLower()
+    if ($exts -contains $extension) { $extMatch = $true }
+
+    return ($pathMatch -or $extMatch)
 }
 
 function List-FolderContent {
@@ -56,22 +86,45 @@ function List-FolderContent {
 
     $indent = ("|   " * $indentLevel)
 
-    # Pastas (filtra as excluídas)
+    # Pastas (respeita exclusões, mas percorre todas)
     $dirs = Get-ChildItem -Path $path -Directory -ErrorAction SilentlyContinue |
             Where-Object { -not (Should-ExcludePath -path $_.FullName -terms $exceptions) } |
             Sort-Object Name
 
     foreach ($dir in $dirs) {
-        Add-Content -Path $outputFile -Value "$indent|-- $($dir.Name)"
+        $shouldShow = $false
+
+        if ($onlyFolders.Count -gt 0) {
+            # Se houver pastas na lista, mostra se a própria pasta ou algo dentro dela bate
+            $shouldShow = (Should-IncludePath -path $dir.FullName -folders $onlyFolders -exts $onlyExtensions) -or
+                          (Get-ChildItem -Path $dir.FullName -Recurse -File -ErrorAction SilentlyContinue |
+                           Where-Object { Should-IncludePath -path $_.FullName -folders $onlyFolders -exts $onlyExtensions } |
+                           Select-Object -First 1)
+        }
+        elseif ($onlyExtensions.Count -gt 0) {
+            # Só mostra se houver arquivo com extensão desejada dentro
+            $shouldShow = (Get-ChildItem -Path $dir.FullName -Recurse -File -ErrorAction SilentlyContinue |
+                           Where-Object { Should-IncludePath -path $_.FullName -folders $onlyFolders -exts $onlyExtensions } |
+                           Select-Object -First 1)
+        }
+        else {
+            # Sem filtros → mostra tudo (respeitando exclusões)
+            $shouldShow = $true
+        }
+
+        if ($shouldShow) {
+            Add-Content -Path $outputFile -Value "$indent|-- $($dir.Name)"
+        }
+
         List-FolderContent -path $dir.FullName -indentLevel ($indentLevel + 1)
     }
 
     if ($showFiles) {
-        # Arquivos (filtra nome/caminho e extensoes)
         $files = Get-ChildItem -Path $path -File -ErrorAction SilentlyContinue |
                  Where-Object {
                     -not (Should-ExcludePath -path $_.FullName -terms $exceptions) -and
-                    (-not ($exceptionsExtensions -contains $_.Extension.ToLower()))
+                    (-not ($exceptionsExtensions -contains $_.Extension.ToLower())) -and
+                    (Should-IncludePath -path $_.FullName -folders $onlyFolders -exts $onlyExtensions)
                  } |
                  Sort-Object Name
 
@@ -99,14 +152,11 @@ function ScanProject {
         [array]$exceptionsExtensions
     )
 
-    # Garante pasta de saída
     $outDir = Split-Path -Path $outputFile -Parent
     if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory | Out-Null }
 
-    # (Re)cria arquivo
     Set-Content -Path $outputFile -Value "" -Encoding UTF8
 
-    # Cabecalho + descricao
     Add-Content -Path $outputFile -Value "Estrutura de pastas de: $rootDirectory"
     Add-Content -Path $outputFile -Value "Gerado em: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
     Add-Content -Path $outputFile -Value ""
@@ -115,29 +165,26 @@ function ScanProject {
     Add-Content -Path $outputFile -Value "|"
     Add-Content -Path $outputFile -Value "|-- $(Split-Path $rootDirectory -Leaf)"
 
-    # 1) arvore de pastas
     List-FolderContent -path $rootDirectory -indentLevel 1
+
     Add-Content -Path $outputFile -Value "|"
     Add-Content -Path $outputFile -Value ("=" * 80)
     Add-Content -Path $outputFile -Value "`r`nCONTEUDO DOS ARQUIVOS (filtrados):`r`n"
 
-    # 2) Conteudo dos arquivos
     Get-ChildItem -Path $rootDirectory -Recurse -File -ErrorAction SilentlyContinue |
     ForEach-Object {
         $filePath = $_.FullName
 
-        # Pular o proprio arquivo de saída
         if ([IO.Path]::GetFullPath($filePath) -eq [IO.Path]::GetFullPath($outputFile)) { return }
 
-        # Aplicar filtros
         if (Should-ExcludePath -path $filePath -terms $exceptions) { return }
         if ($exceptionsExtensions -contains $_.Extension.ToLower()) { return }
+        if (-not (Should-IncludePath -path $filePath -folders $onlyFolders -exts $onlyExtensions)) { return }
 
         $relativePath = Get-RelativePathSafe -root $rootDirectory -full $filePath
 
         try {
             $fileContent = Get-Content -Path $filePath -ErrorAction Stop
-
             Add-Content -Path $outputFile -Value "Arquivo: $relativePath"
             Add-Content -Path $outputFile -Value "-----------------------------"
             Add-Content -Path $outputFile -Value $fileContent
