@@ -1,12 +1,12 @@
 $rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
 $outputFile    = ".\files\Conteudo_allsetra-platform-backend.txt"
 
-# Descriçao do conteudo do arquivo de saída
+# Descricao do conteudo do arquivo de saída
 $outputDescription = @"
 Este arquivo contem:
-1. Estrutura completa de diretorios e arquivos do projeto (filtrados pelas regras de exclusao).
-2. Conteudo de todos os arquivos permitidos, apos aplicar filtros de pastas e extensoes.
-Utilize-o para analise de codigo, auditoria ou documentaçao do projeto.
+1. Estrutura completa de diretorios e arquivos do projeto.
+2. Conteudo de todos os arquivos permitidos.
+Utilize-o para analise de codigo, auditoria ou documentacao do projeto.
 "@
 
 # Itens (pastas/arquivos) a ignorar por nome OU parte do caminho
@@ -106,7 +106,7 @@ function ScanProject {
     # (Re)cria arquivo
     Set-Content -Path $outputFile -Value "" -Encoding UTF8
 
-    # Cabeçalho + descriçao
+    # Cabecalho + descricao
     Add-Content -Path $outputFile -Value "Estrutura de pastas de: $rootDirectory"
     Add-Content -Path $outputFile -Value "Gerado em: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
     Add-Content -Path $outputFile -Value ""
