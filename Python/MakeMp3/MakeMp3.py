@@ -25,6 +25,8 @@ Funcionalidades principais:
 - Mensagens de introdução/anúncio por seção.
 - Suporte a seção especial “Instrucoesadicionais”.
 - Configuração opcional para personalizar nomes de arquivos.
+- Suporte a velocidade por linha via chave `"VoiceSpeed"`.
+    exemplo: { "lang": "en", "text": "This is a fast line.", "VoiceSpeed": 4 }
 
 ---------------------------------------------------------------
 ⚙️ Requisitos
@@ -42,7 +44,7 @@ Funcionalidades principais:
     audios/<timestamp>/
         ├── separados/  (arquivos por tempo/seção)
         ├── juntos/     (arquivo consolidado)
-        └── frases/     (quando modo_saida = "frases")
+        └── frases/     (quando output_mode = "frases")
 
 ---------------------------------------------------------------
 📄 Exemplo de JSON (textos.json)
@@ -71,7 +73,7 @@ Funcionalidades principais:
 ▶️ Como executar
 ---------------------------------------------------------------
 1. Crie um arquivo textos.json no mesmo diretório do script.
-2. Ajuste as configurações iniciais no script (modo_saida, default_velocidades).
+2. Ajuste as configurações iniciais no script (output_mode, default_voiceSpeed).
 3. Execute:
     python MakeMp3.py
 4. Os arquivos serão gerados em:
@@ -108,20 +110,20 @@ from datetime import datetime
 # Configurações padrão
 # =========================================================
 
-modo_saida = "juntos"  # "separado", "juntos", "ambos", "frases"
+output_mode = "juntos"  # "separado", "juntos", "ambos", "frases"
 
-default_velocidades = {
+default_voiceSpeed = {
     "pt": 3, "en": 1, "es": 2, "fr": 2
 }
 
-default_config_estudo = {
+default_config = {
     "repeat_each": { "pt": 1, "en": 1, "es": 1, "fr": 1 },
     "pausa_entre_idiomas": 800,
     "usar_labels": False,
     "introducao": "Olá, vamos iniciar nosso estudo do inglês?",
     "anunciar_tempo": True,
-    "pausa_repeticao": 400,  # pausa extra após cada repetição
-    "nome_arquivos": None    # prefixo para arquivos; se None, usa padrão
+    "pausa_repeticao": 400,
+    "nome_arquivos": None
 }
 
 labels = {
@@ -137,7 +139,7 @@ section_labels = {
 # Funções auxiliares
 # =========================================================
 
-def ajustar_velocidade(audio, nivel: int) -> AudioSegment:
+def setVoiceSpeed(audio, nivel: int) -> AudioSegment:
     if nivel <= 1:
         return audio
     elif nivel == 2:
@@ -146,16 +148,16 @@ def ajustar_velocidade(audio, nivel: int) -> AudioSegment:
         fator = 1.0 + (nivel - 2) * 0.25
         return audio.speedup(playback_speed=fator)
 
-def gerar_tts(text: str, lang: str, velocidade: int, temp_file: str) -> AudioSegment | None:
+def build_tts(text: str, lang: str, velocidade: int, temp_file: str) -> AudioSegment | None:
     if not text.strip():
         return None
     use_slow = velocidade == 1
     tts = gTTS(text=text, lang=lang, slow=use_slow)
     tts.save(temp_file)
     audio = AudioSegment.from_mp3(temp_file)
-    return ajustar_velocidade(audio, velocidade)
+    return setVoiceSpeed(audio, velocidade)
 
-def gerar_label(lang: str, output_dir: str, tempo: str, idx: str) -> AudioSegment | None:
+def build_label(lang: str, output_dir: str, tempo: str, idx: str) -> AudioSegment | None:
     label_text = labels.get(lang)
     if not label_text:
         return None
@@ -163,23 +165,29 @@ def gerar_label(lang: str, output_dir: str, tempo: str, idx: str) -> AudioSegmen
     gTTS(text=label_text, lang=lang, slow=False).save(temp_file)
     return AudioSegment.from_mp3(temp_file)
 
-def gerar_anuncio(text: str, output_dir: str, nome: str) -> AudioSegment:
+def generate_intro(text: str, output_dir: str, nome: str) -> AudioSegment:
     temp_file = os.path.join(output_dir, f"tmp_anuncio_{nome}.mp3")
     gTTS(text=text, lang="pt", slow=False).save(temp_file)
     return AudioSegment.from_mp3(temp_file)
 
-def limpar_temporarios(output_dir: str):
+def tempClear(output_dir: str):
     for f in os.listdir(output_dir):
         if f.startswith("tmp_") and f.endswith(".mp3"):
-            try: os.remove(os.path.join(output_dir, f))
-            except: pass
+            try:
+                os.remove(os.path.join(output_dir, f))
+            except:
+                pass
 
-def detectar_lang(item) -> str:
+def check_lang(item) -> str:
     if isinstance(item, dict) and "lang" in item:
         return item["lang"]
     elif isinstance(item, list) and len(item) > 0 and "lang" in item[0]:
         return item[0]["lang"]
     return "pt"
+
+# =========================================================
+# Processamento principal de blocos
+# =========================================================
 
 def processar_bloco(frases, tempo: str, base_dir: str, config_estudo: dict, velocidades: dict) -> list:
     partes = []
@@ -187,7 +195,7 @@ def processar_bloco(frases, tempo: str, base_dir: str, config_estudo: dict, velo
     for idx, item in enumerate(frases, start=1):
         bloco = []
 
-        # Pausa simples (quando NÃO há lang/text)
+        # Pausa simples
         if isinstance(item, dict) and "pause" in item and "lang" not in item:
             bloco.append(AudioSegment.silent(duration=item["pause"]))
 
@@ -202,15 +210,20 @@ def processar_bloco(frases, tempo: str, base_dir: str, config_estudo: dict, velo
                     text = trecho.get("text", "").strip()
                     if not text:
                         continue
-                    velocidade = velocidades.get(lang, 2)
+
+                    # 🆕 Suporte a VoiceSpeed
+                    velocidade = trecho.get("VoiceSpeed", velocidades.get(lang, 2))
+
                     temp_file = os.path.join(base_dir, f"tmp_{tempo}_{idx}_{sub_idx}.mp3")
 
                     if config_estudo.get("usar_labels", False):
-                        label_audio = gerar_label(lang, base_dir, tempo, f"{idx}_{sub_idx}")
-                        if label_audio: subpartes.append(label_audio)
+                        label_audio = build_label(lang, base_dir, tempo, f"{idx}_{sub_idx}")
+                        if label_audio:
+                            subpartes.append(label_audio)
 
-                    audio = gerar_tts(text, lang, velocidade, temp_file)
-                    if not audio: continue
+                    audio = build_tts(text, lang, velocidade, temp_file)
+                    if not audio:
+                        continue
 
                     rep = trecho.get("repeat", config_estudo.get("repeat_each", {}).get(lang, 1))
                     for r in range(rep):
@@ -229,15 +242,20 @@ def processar_bloco(frases, tempo: str, base_dir: str, config_estudo: dict, velo
             text = item.get("text", "").strip()
             if not text:
                 continue
-            velocidade = velocidades.get(lang, 2)
+
+            # 🆕 Suporte a VoiceSpeed
+            velocidade = item.get("VoiceSpeed", velocidades.get(lang, 2))
+
             temp_file = os.path.join(base_dir, f"tmp_{tempo}_{idx}.mp3")
 
             if config_estudo.get("usar_labels", False):
-                label_audio = gerar_label(lang, base_dir, tempo, idx)
-                if label_audio: bloco.append(label_audio)
+                label_audio = build_label(lang, base_dir, tempo, idx)
+                if label_audio:
+                    bloco.append(label_audio)
 
-            audio = gerar_tts(text, lang, velocidade, temp_file)
-            if not audio: continue
+            audio = build_tts(text, lang, velocidade, temp_file)
+            if not audio:
+                continue
 
             rep = item.get("repeat", config_estudo.get("repeat_each", {}).get(lang, 1))
             for r in range(rep):
@@ -269,32 +287,38 @@ except Exception as e:
     print(f"Erro ao carregar JSON: {e}")
     exit(1)
 
-config_estudo = default_config_estudo.copy()
-velocidades = default_velocidades.copy()
+config_estudo = default_config.copy()
+velocidades = default_voiceSpeed.copy()
 
-if "velocidades" in conteudo: velocidades.update(conteudo["velocidades"])
-if "repeat_each" in conteudo: config_estudo["repeat_each"].update(conteudo["repeat_each"])
-if "introducao" in conteudo: config_estudo["introducao"] = conteudo["introducao"]
-if "nome_arquivos" in conteudo: config_estudo["nome_arquivos"] = conteudo["nome_arquivos"]
+if "velocidades" in conteudo:
+    velocidades.update(conteudo["velocidades"])
+if "repeat_each" in conteudo:
+    config_estudo["repeat_each"].update(conteudo["repeat_each"])
+if "introducao" in conteudo:
+    config_estudo["introducao"] = conteudo["introducao"]
+if "nome_arquivos" in conteudo:
+    config_estudo["nome_arquivos"] = conteudo["nome_arquivos"]
 
-# Criar pastas de saída
+# Criar pastas
 timestamp = datetime.now().strftime("%Y%m%d%H%M")
-# base_dir = os.path.join("audios", timestamp)
 base_dir = os.path.join("audios")
 separados_dir = os.path.join(base_dir, "separados")
 juntos_dir = os.path.join(base_dir, "juntos")
 frases_dir = os.path.join(base_dir, "frases")
 
-if modo_saida in ("separado", "ambos"): os.makedirs(separados_dir, exist_ok=True)
-if modo_saida in ("juntos", "ambos"): os.makedirs(juntos_dir, exist_ok=True)
-if modo_saida == "frases": os.makedirs(frases_dir, exist_ok=True)
+if output_mode in ("separado", "ambos"):
+    os.makedirs(separados_dir, exist_ok=True)
+if output_mode in ("juntos", "ambos"):
+    os.makedirs(juntos_dir, exist_ok=True)
+if output_mode == "frases":
+    os.makedirs(frases_dir, exist_ok=True)
 
 todos_tempos = []
 
-# Introdução global
+# Introdução
 introducao_audio = None
 if config_estudo.get("introducao"):
-    introducao_audio = gerar_anuncio(config_estudo["introducao"], base_dir, "intro")
+    introducao_audio = generate_intro(config_estudo["introducao"], base_dir, "intro")
 
 # Seções
 secoes = []
@@ -313,7 +337,7 @@ for tempo, frases in secoes:
 
     if config_estudo.get("anunciar_tempo", False):
         nome_amigavel = section_labels.get(tempo, tempo)
-        anuncio_audio = gerar_anuncio(f"Iniciando: {nome_amigavel}", base_dir, tempo)
+        anuncio_audio = generate_intro(f"Iniciando: {nome_amigavel}", base_dir, tempo)
         partes.append(anuncio_audio)
 
     partes.extend(processar_bloco(frases, tempo, base_dir, config_estudo, velocidades))
@@ -321,19 +345,19 @@ for tempo, frases in secoes:
     if partes:
         combinado = sum(partes)
 
-        if modo_saida in ("separado", "ambos"):
+        if output_mode in ("separado", "ambos"):
             prefixo = config_estudo.get("nome_arquivos") or tempo
             final_file = os.path.join(separados_dir, f"{prefixo}_{tempo}.mp3")
             combinado.export(final_file, format="mp3")
             print(f"Arquivo gerado: {final_file}")
 
-        if modo_saida in ("juntos", "ambos"):
+        if output_mode in ("juntos", "ambos"):
             todos_tempos.append(combinado)
 
-    limpar_temporarios(base_dir)
+    tempClear(base_dir)
 
 # Consolidado
-if modo_saida in ("juntos", "ambos") and todos_tempos:
+if output_mode in ("juntos", "ambos") and todos_tempos:
     combinado_total = sum(todos_tempos)
     if introducao_audio:
         combinado_total = introducao_audio + combinado_total

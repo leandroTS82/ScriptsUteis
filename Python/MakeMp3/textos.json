@@ -1,53 +1,80 @@
 {
   "velocidades": { "pt": 3, "en": 1 },
   "repeat_each": { "pt": 1, "en": 2 },
-  "introducao": "Vamos revisar expressões comuns do dia a dia em inglês.",
-  "nome_arquivos": "DailyExpressions_Review",
+  "introducao": "Vamos revisar expressões e palavras úteis para o dia a dia em inglês.",
+  "nome_arquivos": "DailyVocabulary_Review",
 
-  "Review": [
+  "Vocabulary": [
     [
-      { "lang": "pt", "text": "Problema resolvido: CORS is solved." },
-      { "lang": "en", "text": "CORS is solved.", "repeat": 1, "pause": 400 }
+      { "lang": "pt", "text": "Dog collar — significa coleira de cachorro." },
+      { "lang": "en", "text": "I bought a new dog collar for my pet.","VoiceSpeed":3, "pause": 400 }
+      { "lang": "en", "text": "I bought a new dog collar for my pet.", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Vai ser tranquilo: It’s gonna be fine." },
-      { "lang": "en", "text": "It’s gonna be fine.", "pause": 400 }
+      { "lang": "pt", "text": "She is walking the dog — quer dizer ela está passeando com o cachorro." },
+      { "lang": "en", "text": "She is walking the dog.", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Vou verificar atualizações." },
-      { "lang": "en", "text": "I’m gonna check for updates.", "pause": 400 }
+      { "lang": "pt", "text": "Sunny, rainy e cloudy day — significam dia ensolarado, chuvoso e nublado." },
+      { "lang": "en", "text": "It’s a sunny day.", "pause": 400 },
+      { "lang": "en", "text": "It’s a rainy day.", "pause": 400 },
+      { "lang": "en", "text": "It’s a cloudy day.", "pause": 800 }
     ],
     [
-      { "lang": "pt", "text": "Vou usar isso." },
-      { "lang": "en", "text": "I’m gonna use it.", "pause": 400 }
+      { "lang": "pt", "text": "Come over — significa vir ou visitar alguém." },
+      { "lang": "en", "text": "Come over to my house this evening.", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Quanto tempo precisamos?" },
-      { "lang": "en", "text": "How much time do we need?", "pause": 400 }
+      { "lang": "pt", "text": "As well — quer dizer também." },
+      { "lang": "en", "text": "I like coffee and tea as well.", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Não tenho certeza." },
-      { "lang": "en", "text": "I’m not sure.", "pause": 400 }
+      { "lang": "pt", "text": "I am doing well — significa estou bem." },
+      { "lang": "en", "text": "I am doing well.", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Quero fazer isso." },
-      { "lang": "en", "text": "I wanna do it.", "pause": 400 }
+      { "lang": "pt", "text": "Relatives — quer dizer parentes." },
+      { "lang": "en", "text": "We visited our relatives last weekend.", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Isso vai ajudar." },
-      { "lang": "en", "text": "It’s gonna help.", "pause": 400 }
+      { "lang": "pt", "text": "Parents — significa pais." },
+      { "lang": "en", "text": "My parents are very kind.", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Bom saber." },
-      { "lang": "en", "text": "Good to know.", "pause": 400 }
+      { "lang": "pt", "text": "How is it going — é uma forma informal de perguntar como vai." },
+      { "lang": "en", "text": "Hey, how is it going?", "pause": 400 }
     ],
     [
-      { "lang": "pt", "text": "Somos capazes." },
-      { "lang": "en", "text": "We are able.", "pause": 800 }
+      { "lang": "pt", "text": "What does ... mean — é usado para perguntar o significado de uma palavra." },
+      { "lang": "en", "text": "What does buddy mean?", "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "What a pity — quer dizer que pena." },
+      { "lang": "en", "text": "What a pity!", "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Buddy — significa amigo, parceiro." },
+      { "lang": "en", "text": "He is my buddy.", "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Fill — quer dizer preencher ou encher." },
+      { "lang": "en", "text": "Fill the bottle with water.", "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "For a while — quer dizer por um tempo." },
+      { "lang": "en", "text": "Stay here for a while.", "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Past weekend e last weekend — significam fim de semana passado." },
+      { "lang": "en", "text": "We stayed home last weekend.", "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "A few songs — significa algumas músicas." },
+      { "lang": "en", "text": "I know a few songs in English.", "pause": 800 }
     ]
   ],
 
   "Instrucoesadicionais": [
-    { "lang": "pt", "text": "Repita cada frase em voz alta e tente imaginar uma situação real onde você a usaria." }
+    { "lang": "pt", "text": "Repita cada frase em voz alta, imitando a entonação e praticando o ritmo natural do inglês." }
   ]
 }
