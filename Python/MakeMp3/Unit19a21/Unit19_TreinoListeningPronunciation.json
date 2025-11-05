@@ -1,0 +1,27 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Vamos praticar listening e pronunciation com frases em inglês e português.",
+  "nome_arquivos": "Unit19_TreinoListeningPronunciation",  
+  "Superlatives": [
+    [
+      { "lang": "pt", "text": "O Monte Everest é a montanha mais alta do mundo.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Mount Everest is the highest mountain in the world.", "VoiceSpeed": 1, "pause":400 },
+      { "lang": "en", "text": "Mount Everest is the highest mountain in the world.", "VoiceSpeed": 2, "repeat": 2, "pause": 500 }
+    ],
+    [
+      { "lang": "pt", "text": "O Nilo é o rio mais longo da Terra.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The Nile is the longest river on Earth.", "VoiceSpeed": 1, "pause":400 },
+      { "lang": "en", "text": "The Nile is the longest river on Earth.", "VoiceSpeed": 2, "repeat": 2, "pause": 500 }
+    ],
+    [
+      { "lang": "pt", "text": "É a cidade mais antiga do país.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "It is the oldest city in the country.", "VoiceSpeed": 1, "pause":400 },
+      { "lang": "en", "text": "It is the oldest city in the country.", "VoiceSpeed": 2, "repeat": 2, "pause": 500 }
+    ]
+  ],
+
+  "Instrucoesadicionais": [
+    { "lang": "pt", "text": "Repita cada frase em voz alta após ouvir. Foque na pronúncia e entonação." },
+    { "lang": "en", "text": "Repeat each sentence aloud after listening. Focus on pronunciation and intonation." }
+  ]
+}

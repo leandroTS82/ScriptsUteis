@@ -1,0 +1,64 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Bem-vindo ao treino de Listening e Pronunciation da Unit 20.",
+  "nome_arquivos": "Unit20_Listening_Pronunciation",
+  "Presente": [
+    [
+      { "lang": "pt", "text": "Você gosta de ouvir música?" },
+      { "lang": "en", "text": "Do you like listening to music?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "Do you like listening to music?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Qual é o seu cantor favorito?" },
+      { "lang": "en", "text": "Who is your favorite singer?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "Who is your favorite singer?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Você toca algum instrumento?" },
+      { "lang": "en", "text": "Do you play any instruments?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "Do you play any instruments?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Com que frequência você ouve música?" },
+      { "lang": "en", "text": "How often do you listen to music?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "How often do you listen to music?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Quando você geralmente ouve música?" },
+      { "lang": "en", "text": "When do you usually listen to music?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "When do you usually listen to music?", "VoiceSpeed": 2, "pause":400  }
+    ]
+  ],
+  "Superlatives": [
+    [
+      { "lang": "pt", "text": "Qual é o tipo de música mais popular no seu país?" },
+      { "lang": "en", "text": "What’s the most popular type of music in your country?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "What’s the most popular type of music in your country?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Quem é o cantor brasileiro mais famoso?" },
+      { "lang": "en", "text": "Who is the most famous Brazilian singer?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "Who is the most famous Brazilian singer?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Qual foi o melhor show que você já viu?" },
+      { "lang": "en", "text": "What’s the best concert you’ve ever seen?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "What’s the best concert you’ve ever seen?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Quem é o músico mais talentoso que você conhece?" },
+      { "lang": "en", "text": "Who is the most talented musician you know?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "Who is the most talented musician you know?", "VoiceSpeed": 2, "pause":400  }
+    ],
+    [
+      { "lang": "pt", "text": "Qual é a música mais relaxante para você?" },
+      { "lang": "en", "text": "What’s the most relaxing song for you?", "VoiceSpeed": 1, "pause":400  },
+      { "lang": "en", "text": "What’s the most relaxing song for you?", "VoiceSpeed": 2, "pause":400  }
+    ]
+  ],
+  "Instrucoesadicionais": [
+    { "lang": "pt", "text": "Repita as frases em voz alta após ouvir cada uma." },
+    { "lang": "pt", "text": "Tente imitar a pronúncia e a entonação da voz em inglês." },
+    { "lang": "pt", "text": "Volte e pratique diariamente para melhorar sua compreensão auditiva." }
+  ]
+}

@@ -1,0 +1,36 @@
+
+{
+  "repeat_each": { "pt": 2, "en": 2 },
+  "introducao": "Bem-vindo ao treino de Listening e Pronunciation!",
+  "nome_arquivos": "Unit21_Treino_Listen_Pronounce",
+  
+  "Listening": [
+    { "lang": "en", "text": "How are you today?", "VoiceSpeed": 1,"pause": 400 },
+    { "lang": "pt", "text": "Como você está hoje?" },
+    { "lang": "en", "text": "I'm feeling great, thank you!", "VoiceSpeed": 2,"pause": 400 },
+    { "lang": "pt", "text": "Estou me sentindo ótimo, obrigado!" }
+  ],
+
+  "Pronunciation": [
+    [
+      { "lang": "en", "text": "Repeat after me.", "VoiceSpeed": 1,"pause": 400 },
+      { "pause": 500 },
+      { "lang": "en", "text": "Repeat after me.", "VoiceSpeed": 2,"pause": 400 }
+    ],
+    [
+      { "lang": "en", "text": "This is an English practice.", "VoiceSpeed": 1,"pause": 400 },
+      { "pause": 500 },
+      { "lang": "en", "text": "This is an English practice.", "VoiceSpeed": 2,"pause": 400 }
+    ],
+    [
+      { "lang": "en", "text": "Listen carefully.", "VoiceSpeed": 1,"pause": 400 },
+      { "pause": 500 },
+      { "lang": "en", "text": "Listen carefully.", "VoiceSpeed": 2,"pause": 400 }
+    ]
+  ],
+
+  "Instrucoesadicionais": [
+    { "lang": "pt", "text": "Ouça cada frase em diferentes velocidades e repita em voz alta." },
+    { "lang": "pt", "text": "Pratique a pronúncia até soar natural e clara." }
+  ]
+}

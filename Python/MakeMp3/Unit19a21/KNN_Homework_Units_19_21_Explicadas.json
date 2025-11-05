@@ -1,0 +1,144 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Bem-vindo ao treino de Listening e Compreensão. Vamos revisar as Unidades 19 a 21 com explicações detalhadas.",
+  "nome_arquivos": "KNN_Homework_Units_19_21_Explicadas",
+
+  "UNIT19": [
+    [
+      { "lang": "pt", "text": "Qual é o melhor filme para assistir com sua família?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The best movie to watch with my family is Inside Out. It's fun and emotional.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "I like it because everyone in my family enjoys it, and it teaches important lessons about emotions.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Qual foi a pior música que você ouviu no ano passado?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The worst song I listened to last year was too repetitive and annoying.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "It kept playing everywhere, and the lyrics didn’t make much sense.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Aquelas garotas são as melhores dançarinas da competição?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Yes, they are! They dance very well and have great energy.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Their moves are synchronized, and they always smile while performing.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Qual era a pior coisa para fazer na escola?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The worst thing to do at school was cleaning the classroom after lunch.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "It was boring and sometimes the food smell was terrible.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Qual é a melhor coisa para comer quando você está cansado?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The best thing to eat when I am tired is pasta or chocolate.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "They give me energy and make me feel better instantly.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Qual é a pior coisa para fazer nos finais de semana?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The worst thing to do on weekends is studying all day.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Weekends are for relaxing and spending time with friends or family.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Por que os desenhos eram a melhor coisa para assistir?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Because they were funny and made me happy.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Cartoons helped me learn new words and imagine creative stories.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Qual é o pior lugar para acampar?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The worst place to go camping is a very cold or rainy area.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "It’s hard to sleep in a wet tent and keep things dry.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Qual é o melhor: Superman ou Capitão América?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Captain America, because he is brave and kind.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "He always fights for justice and helps his friends.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Quem é o melhor vilão da Disney?", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Maleficent, because she is powerful and elegant.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Her story shows that villains can have emotions too.", "VoiceSpeed": 2, "pause": 400 }
+    ]
+  ],
+
+  "UNIT20": [
+    [
+      { "lang": "pt", "text": "Sim, a Katryn é a melhor professora aqui.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Yes, Katryn is the best teacher here.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "She explains everything clearly and makes learning fun.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Não, essa não foi a pior música que ele cantou ontem.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "No, that was not the worst song he performed yesterday.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Actually, I liked it; it was much better than his last one.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Tirar um cochilo é muito mais relaxante do que comprar online.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Taking a nap is way more relaxing than shopping online.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "When I rest, I feel recharged, but shopping only makes me spend money.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Nada é tão entediante quanto pescar.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Nothing is as boring as fishing.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "I prefer more active hobbies like hiking or playing sports.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Eu tenho quinze playlists no meu celular agora.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "I have fifteen playlists on my phone right now.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Each one is for a different mood or activity.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Minha banda favorita é Coldplay, porque suas músicas são inspiradoras e cheias de emoção.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "My favorite band is Coldplay because their songs are inspiring and full of emotion.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Their music always makes me feel hopeful and positive.", "VoiceSpeed": 2, "pause": 400 }
+    ]
+  ],
+
+  "UNIT21": [
+    [
+      { "lang": "pt", "text": "O diretor ficou bravo com os alunos.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The principal was mad at the students.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "They were talking loudly during class, and he lost his patience.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "O caminhoneiro era desajeitado e derrubou as caixas.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "The truck driver was clumsy and dropped the boxes.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "He was in a hurry and didn’t notice the boxes were unstable.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Aquele desenho foi tão bobo, mas eu adorei.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "That cartoon was so silly, but I loved it.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "It made me laugh a lot, even though it was childish.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Hoje é o melhor clima para um piquenique.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Today is the best weather for a picnic.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "It’s sunny but not too hot, just perfect to be outside.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Ela é a pessoa mais legal que eu conheço.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "She is the nicest person I know.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "She always helps others and never complains.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "O Brasil é um dos países mais quentes do mundo.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Brazil is one of the hottest countries in the world.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "Especially in the summer, temperatures can be really high.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Minha lembrança mais antiga é da pré-escola.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "My oldest memory is from kindergarten.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "I remember playing with blocks and learning colors.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "O comportamento mais estranho dele aconteceu ontem no almoço.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "His strangest behavior happened yesterday at lunch.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "He started laughing alone for no reason.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Alguns dos piores profissionais não se importam com a qualidade.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Some of the worst professionals don't care about quality.", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "They just want to finish fast, even if the result is bad.", "VoiceSpeed": 2, "pause": 400 }
+    ],
+    [
+      { "lang": "pt", "text": "Essa é a música mais legal da minha playlist.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "That's the coolest song on my playlist!", "VoiceSpeed": 1, "pause": 400 },
+      { "lang": "en", "text": "I always listen to it when I need to feel motivated.", "VoiceSpeed": 2, "pause": 400 }
+    ]
+  ]
+}

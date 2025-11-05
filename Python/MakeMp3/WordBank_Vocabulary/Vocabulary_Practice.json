@@ -1,0 +1,140 @@
+{
+  "velocidades": { "pt": 3, "en": 1 },
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Vamos estudar novas palavras e expressões em inglês, com exemplos e explicações práticas.",
+  "nome_arquivos": "Vocabulary_Practice",
+  "Vocabulary": [
+
+    [
+      { "lang": "pt", "text": "Expressão: Have a break — significa fazer uma pausa. Pode ser usada com adjetivos como 'brief' para indicar uma pausa curta." },
+      { "lang": "en", "text": "I need to have a break.", "pause": 400 },
+      { "lang": "en", "text": "Let’s have a brief break.", "pause": 400 },
+      { "lang": "en", "text": "Do you want to have a break now?", "pause": 400 },
+      { "lang": "en", "text": "Don’t you need a brief break?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Verbo: Burp — significa arrotar. É usado para descrever o som que fazemos depois de comer ou beber." },
+      { "lang": "en", "text": "The baby burped after drinking milk.", "pause": 400 },
+      { "lang": "en", "text": "He didn’t burp after lunch.", "pause": 400 },
+      { "lang": "en", "text": "Did you just burp?", "pause": 400 },
+      { "lang": "en", "text": "Don’t burp at the table!", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Palavra: Downtown — significa centro da cidade. Refere-se à área principal onde há lojas, prédios e escritórios." },
+      { "lang": "en", "text": "I work downtown.", "pause": 400 },
+      { "lang": "en", "text": "We don’t live downtown.", "pause": 400 },
+      { "lang": "en", "text": "Do you like going downtown on weekends?", "pause": 400 },
+      { "lang": "en", "text": "Isn’t downtown always busy?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Expressão: Every single day — significa todos os dias, com ênfase. É usada para reforçar frequência." },
+      { "lang": "en", "text": "She studies English every single day.", "pause": 400 },
+      { "lang": "en", "text": "I don’t go to the gym every single day.", "pause": 400 },
+      { "lang": "en", "text": "Do you drink coffee every single day?", "pause": 400 },
+      { "lang": "en", "text": "Don’t you call your parents every single day?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Palavras: Inner city e suburb — Inner city é a parte central da cidade, geralmente mais antiga; suburb significa subúrbio ou bairro residencial afastado." },
+      { "lang": "en", "text": "I live in the suburbs.", "pause": 400 },
+      { "lang": "en", "text": "He works in the inner city.", "pause": 400 },
+      { "lang": "en", "text": "Do you prefer living in the suburb or in the inner city?", "pause": 400 },
+      { "lang": "en", "text": "Isn’t the inner city noisier than the suburb?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Expressão: Role play — significa dramatização ou simulação de situações. Muito usada em aulas de inglês." },
+      { "lang": "en", "text": "Let’s do a role play.", "pause": 400 },
+      { "lang": "en", "text": "We didn’t do a role play today.", "pause": 400 },
+      { "lang": "en", "text": "Did you enjoy the role play activity?", "pause": 400 },
+      { "lang": "en", "text": "Wasn’t that role play fun?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Verbo: Walk around — significa andar por aí ou passear." },
+      { "lang": "en", "text": "I love to walk around the park.", "pause": 400 },
+      { "lang": "en", "text": "We didn’t walk around the city last weekend.", "pause": 400 },
+      { "lang": "en", "text": "Do you like to walk around downtown?", "pause": 400 },
+      { "lang": "en", "text": "Why don’t we walk around the neighborhood?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Verbo: Chatted — é o passado de chat, que significa conversar informalmente." },
+      { "lang": "en", "text": "We chatted for hours last night.", "pause": 400 },
+      { "lang": "en", "text": "I didn’t chat with him yesterday.", "pause": 400 },
+      { "lang": "en", "text": "Who did you chat with online?", "pause": 400 },
+      { "lang": "en", "text": "Haven’t you chatted with her yet?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Expressão: Chess is a board game — quer dizer 'xadrez é um jogo de tabuleiro'." },
+      { "lang": "en", "text": "Chess is a board game.", "pause": 400 },
+      { "lang": "en", "text": "It’s not a card game; it’s a board game.", "pause": 400 },
+      { "lang": "en", "text": "Do you play board games?", "pause": 400 },
+      { "lang": "en", "text": "Isn’t chess a fun board game?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Palavra: Surroundings — significa arredores, ambiente ao redor de um lugar." },
+      { "lang": "en", "text": "The hotel is beautiful, and the surroundings are amazing.", "pause": 400 },
+      { "lang": "en", "text": "I don’t like these surroundings.", "pause": 400 },
+      { "lang": "en", "text": "Are you comfortable with your surroundings?", "pause": 400 },
+      { "lang": "en", "text": "Aren’t the surroundings peaceful here?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Expressão: Touristic spots — significa pontos turísticos." },
+      { "lang": "en", "text": "We visited many touristic spots in Paris.", "pause": 400 },
+      { "lang": "en", "text": "They didn’t go to all the touristic spots.", "pause": 400 },
+      { "lang": "en", "text": "Did you enjoy the touristic spots?", "pause": 400 },
+      { "lang": "en", "text": "Aren’t the touristic spots crowded?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Verbo: Cried — é o passado de cry, que significa chorar." },
+      { "lang": "en", "text": "She cried after watching the movie.", "pause": 400 },
+      { "lang": "en", "text": "He didn’t cry at all.", "pause": 400 },
+      { "lang": "en", "text": "Did you cry during the film?", "pause": 400 },
+      { "lang": "en", "text": "Why did the baby cry?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Expressão: Wave your hand — significa acenar com a mão." },
+      { "lang": "en", "text": "Wave your hand to say hello.", "pause": 400 },
+      { "lang": "en", "text": "Don’t wave your hand during class.", "pause": 400 },
+      { "lang": "en", "text": "Did she wave her hand at you?", "pause": 400 },
+      { "lang": "en", "text": "Who waved their hand first?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Palavra: Peck — significa dar um selinho ou bicada (de pássaro)." },
+      { "lang": "en", "text": "He gave her a quick peck on the cheek.", "pause": 400 },
+      { "lang": "en", "text": "The bird pecked the bread.", "pause": 400 },
+      { "lang": "en", "text": "Did you see the birds pecking the seeds?", "pause": 400 },
+      { "lang": "en", "text": "Don’t peck too hard!", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Palavra: Pepper — significa pimenta ou pimentão, dependendo do contexto." },
+      { "lang": "en", "text": "Could you pass me the pepper, please?", "pause": 400 },
+      { "lang": "en", "text": "I don’t like spicy pepper.", "pause": 400 },
+      { "lang": "en", "text": "Do you grow peppers in your garden?", "pause": 400 },
+      { "lang": "en", "text": "Isn’t black pepper good for health?", "pause": 800 }
+    ],
+
+    [
+      { "lang": "pt", "text": "Palavra: Pickled — significa em conserva. Exemplo: pepinos em conserva = pickled cucumbers." },
+      { "lang": "en", "text": "I love pickled cucumbers.", "pause": 400 },
+      { "lang": "en", "text": "She doesn’t eat pickled onions.", "pause": 400 },
+      { "lang": "en", "text": "Do you like pickled vegetables?", "pause": 400 },
+      { "lang": "en", "text": "Aren’t pickled foods salty?", "pause": 800 }
+    ]
+  ],
+
+  "Instrucoesadicionais": [
+    { "lang": "pt", "text": "Repita cada frase em voz alta. Tente usar essas palavras em frases próprias e imagine situações reais para fixar o vocabulário." }
+  ]
+}
