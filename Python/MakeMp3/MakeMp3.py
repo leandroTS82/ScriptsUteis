@@ -31,10 +31,12 @@ Funcionalidades principais:
 ---------------------------------------------------------------
 ⚙️ Requisitos
 ---------------------------------------------------------------
+- Execute: & C:/dev/scripts/git/ScriptsUteis/.venv/Scripts/Activate.ps1
+        ou & "C:\dev\scripts\ScriptsUteis\.venv\Scripts\Activate.ps1"
+        ou o endereço onde está o seu env/stripts/activate
 - Python 3.9+
 - Dependências Python:
     pip install gTTS pydub
-
 ---------------------------------------------------------------
 📂 Estrutura esperada
 ---------------------------------------------------------------
@@ -72,6 +74,8 @@ Funcionalidades principais:
 ---------------------------------------------------------------
 ▶️ Como executar
 ---------------------------------------------------------------
+C:\dev\scripts\ScriptsUteis\.venv\Scripts\Activate.ps1
+
 1. Crie um arquivo textos.json no mesmo diretório do script.
 2. Ajuste as configurações iniciais no script (output_mode, default_voiceSpeed).
 3. Execute:

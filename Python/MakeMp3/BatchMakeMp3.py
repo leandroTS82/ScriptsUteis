@@ -1,3 +1,4 @@
+# C:\dev\scripts\ScriptsUteis\.venv\Scripts\Activate.ps1
 import os
 import shutil
 import subprocess
@@ -5,7 +6,7 @@ import sys
 
 # Caminhos base
 base_dir = os.path.dirname(os.path.abspath(__file__))
-fileSource_dir = os.path.join(base_dir, "20251029")  # pasta de origem 
+fileSource_dir = os.path.join(base_dir, "WordBank_Vocabulary")  # pasta de origem 
 textos_json = os.path.join(base_dir, "textos.json")
 make_mp3_script = os.path.join(base_dir, "MakeMp3.py")
 audios_juntos = os.path.join(base_dir, "audios", "juntos")

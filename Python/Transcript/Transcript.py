@@ -25,8 +25,12 @@ Fluxo:
 ---------------------------------------------------------------
 ⚙️ Requisitos
 ---------------------------------------------------------------
+- Execute: & C:/dev/scripts/git/ScriptsUteis/.venv/Scripts/Activate.ps1
+        ou & "C:\dev\scripts\ScriptsUteis\.venv\Scripts\Activate.ps1"
+        ou o endereço onde está o seu env/stripts/activate
 - Python 3.9+
 - Dependências Python:
+    pip install openai-whisper
     pip install torch openai-whisper
 - FFmpeg instalado:
     Windows:
