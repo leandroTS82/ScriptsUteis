@@ -5,3 +5,8 @@ ComandosGitBash/ExportedFiles
 PowerShell/ScanDir/files/Material de apoio
 Python/MakeMp3/audios
 Python/MakeMp3/textos.json
+Python/MakeVideo/20251106_WordBank/
+Python/MakeVideo/temp/
+*.mp4
+Python/MakeVideo/20251107_JobInterview_WordBank/
+Python/MakeVideo/20251107_KNN/

@@ -1,125 +1,50 @@
 {
   "velocidades": { "pt": 3, "en": 1 },
   "repeat_each": { "pt": 1, "en": 2 },
-  "introducao": "Vamos revisar e praticar o nosso Word Bank, aprendendo o significado e o uso de cada palavra e expressão.",
-  "nome_arquivos": "WordBank_Vocabulary",
+  "introducao": "Vamos estudar o vocabulário e os tempos verbais da frase sobre revisar o ClickUp.",
+  "nome_arquivos": "ClickUp_Words_and_Tenses",
 
-  "WordBank": [
-
+  "Words_and_Tenses": [
     [
-      { "lang": "pt", "text": "Expressão: Have a break — significa fazer uma pausa. 'Have a brief break' quer dizer fazer uma pausa curta." },
-      { "lang": "en", "text": "I need to have a break.", "pause": 400 },
-      { "lang": "en", "text": "Let’s have a brief break.", "pause": 400 },
-      { "lang": "en", "text": "Do you want to have a break now?", "pause": 400 }
+      { "lang": "pt", "text": "Palavra: need to — significa precisar ou ter que fazer algo.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "I need to review ClickUp.", "VoiceSpeed": 1, "pause": 500 },
+      { "lang": "en", "text": "I need to review ClickUp.", "VoiceSpeed": 2, "pause": 500 }
     ],
-
     [
-      { "lang": "pt", "text": "Verbo: Burp — significa arrotar, o som que fazemos depois de comer ou beber." },
-      { "lang": "en", "text": "The baby burped after drinking milk.", "pause": 400 },
-      { "lang": "en", "text": "Did you just burp?", "pause": 400 },
-      { "lang": "en", "text": "Don’t burp at the table!", "pause": 400 }
+      { "lang": "pt", "text": "Verbo: review — significa revisar ou analisar novamente.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "I review my notes every week.", "VoiceSpeed": 1, "pause": 500 },
+      { "lang": "en", "text": "I review my notes every week.", "VoiceSpeed": 2, "pause": 500 }
     ],
-
     [
-      { "lang": "pt", "text": "Substantivo: Downtown — significa o centro da cidade, onde há lojas, prédios e escritórios." },
-      { "lang": "en", "text": "I work downtown.", "pause": 400 },
-      { "lang": "en", "text": "Do you like going downtown on weekends?", "pause": 400 },
-      { "lang": "en", "text": "Downtown is always busy.", "pause": 400 }
+      { "lang": "pt", "text": "Verbo: check — significa verificar ou conferir.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "Let me check ClickUp first.", "VoiceSpeed": 1, "pause": 500 },
+      { "lang": "en", "text": "Let me check ClickUp first.", "VoiceSpeed": 2, "pause": 500 }
     ],
-
     [
-      { "lang": "pt", "text": "Expressão: Every single day — quer dizer todos os dias, com ênfase e intensidade." },
-      { "lang": "en", "text": "She studies English every single day.", "pause": 400 },
-      { "lang": "en", "text": "Do you drink coffee every single day?", "pause": 400 },
-      { "lang": "en", "text": "I don’t go to the gym every single day.", "pause": 400 }
+      { "lang": "pt", "text": "Verbo: access — significa acessar, entrar em um sistema ou aplicativo.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "I haven’t accessed ClickUp in a long time.", "VoiceSpeed": 1, "pause": 500 },
+      { "lang": "en", "text": "I haven’t accessed ClickUp in a long time.", "VoiceSpeed": 2, "pause": 500 }
     ],
-
     [
-      { "lang": "pt", "text": "Palavras: Inner city e suburb — Inner city é a parte central e antiga da cidade; suburb é o bairro mais afastado e tranquilo." },
-      { "lang": "en", "text": "I live in the suburbs.", "pause": 400 },
-      { "lang": "en", "text": "He works in the inner city.", "pause": 400 },
-      { "lang": "en", "text": "Do you prefer living in the suburb or in the inner city?", "pause": 400 }
+      { "lang": "pt", "text": "Expressão de tempo: a long time — significa muito tempo.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "It’s been a long time since I last used ClickUp.", "VoiceSpeed": 1, "pause": 500 },
+      { "lang": "en", "text": "It’s been a long time since I last used ClickUp.", "VoiceSpeed": 2, "pause": 500 }
     ],
-
     [
-      { "lang": "pt", "text": "Expressão: Role play — significa dramatização, quando você simula uma conversa ou situação." },
-      { "lang": "en", "text": "Let’s do a role play.", "pause": 400 },
-      { "lang": "en", "text": "Did you enjoy the role play activity?", "pause": 400 },
-      { "lang": "en", "text": "We didn’t do a role play today.", "pause": 400 }
+      { "lang": "pt", "text": "Tempo verbal: Present Perfect — usamos para ações que começaram no passado e continuam relevantes agora.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "I haven’t accessed it in a long time.", "VoiceSpeed": 1, "pause": 500 },
+      { "lang": "en", "text": "I haven’t accessed it in a long time.", "VoiceSpeed": 2, "pause": 500 }
     ],
-
     [
-      { "lang": "pt", "text": "Verbo: Walk around — significa passear ou andar por aí, sem destino específico." },
-      { "lang": "en", "text": "I love to walk around the park.", "pause": 400 },
-      { "lang": "en", "text": "Do you like to walk around downtown?", "pause": 400 },
-      { "lang": "en", "text": "Why don’t we walk around the neighborhood?", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Verbo: Chatted — é o passado de chat, que significa conversar de forma informal." },
-      { "lang": "en", "text": "We chatted for hours last night.", "pause": 400 },
-      { "lang": "en", "text": "Who did you chat with online?", "pause": 400 },
-      { "lang": "en", "text": "I didn’t chat with him yesterday.", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Frase: Chess is a board game — quer dizer 'xadrez é um jogo de tabuleiro'." },
-      { "lang": "en", "text": "Chess is a board game.", "pause": 400 },
-      { "lang": "en", "text": "It’s not a card game; it’s a board game.", "pause": 400 },
-      { "lang": "en", "text": "Do you play board games?", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Substantivo: Surroundings — significa arredores, ambiente ao redor." },
-      { "lang": "en", "text": "The surroundings are beautiful.", "pause": 400 },
-      { "lang": "en", "text": "Are you comfortable with your surroundings?", "pause": 400 },
-      { "lang": "en", "text": "I don’t like these surroundings.", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Expressão: Touristic spots — significa pontos turísticos." },
-      { "lang": "en", "text": "We visited many touristic spots in Paris.", "pause": 400 },
-      { "lang": "en", "text": "Did you enjoy the touristic spots?", "pause": 400 },
-      { "lang": "en", "text": "Aren’t the touristic spots crowded?", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Verbo: Cried — é o passado de cry, que significa chorar." },
-      { "lang": "en", "text": "She cried after watching the movie.", "pause": 400 },
-      { "lang": "en", "text": "He didn’t cry at all.", "pause": 400 },
-      { "lang": "en", "text": "Did you cry during the film?", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Expressão: Wave your hand — significa acenar com a mão para cumprimentar ou se despedir." },
-      { "lang": "en", "text": "Wave your hand to say hello.", "pause": 400 },
-      { "lang": "en", "text": "Did she wave her hand at you?", "pause": 400 },
-      { "lang": "en", "text": "Don’t wave your hand during class.", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Palavra: Peck — significa dar um selinho ou uma bicada, dependendo do contexto." },
-      { "lang": "en", "text": "He gave her a quick peck on the cheek.", "pause": 400 },
-      { "lang": "en", "text": "The bird pecked the bread.", "pause": 400 },
-      { "lang": "en", "text": "Don’t peck too hard!", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Palavra: Pepper — pode significar pimenta ou pimentão." },
-      { "lang": "en", "text": "Could you pass me the pepper, please?", "pause": 400 },
-      { "lang": "en", "text": "Do you grow peppers in your garden?", "pause": 400 },
-      { "lang": "en", "text": "I don’t like spicy pepper.", "pause": 400 }
-    ],
-
-    [
-      { "lang": "pt", "text": "Adjetivo: Pickled — significa em conserva. Exemplo: pickled cucumbers — pepinos em conserva." },
-      { "lang": "en", "text": "I love pickled cucumbers.", "pause": 400 },
-      { "lang": "en", "text": "She doesn’t eat pickled onions.", "pause": 400 },
-      { "lang": "en", "text": "Do you like pickled vegetables?", "pause": 400 }
+      { "lang": "pt", "text": "Estrutura alternativa com since: It’s been a while since I last used it.", "VoiceSpeed": 3 },
+      { "lang": "en", "text": "It’s been a while since I last used it.", "VoiceSpeed": 1, "pause": 500 },
+      { "lang": "en", "text": "It’s been a while since I last used it.", "VoiceSpeed": 2, "pause": 500 }
     ]
   ],
 
   "Instrucoesadicionais": [
-    { "lang": "pt", "text": "Revise cada palavra e repita as frases em voz alta. Depois, tente criar novos exemplos pessoais com o mesmo vocabulário. Isso ajuda a fixar o conteúdo e melhorar sua fluência." }
+    { "lang": "pt", "text": "Repita cada frase em inglês duas vezes, prestando atenção ao tempo verbal." },
+    { "lang": "pt", "text": "Perceba como o Present Perfect conecta passado e presente." },
+    { "lang": "pt", "text": "Use as expressões 'since' e 'for' corretamente em frases do dia a dia." }
   ]
 }

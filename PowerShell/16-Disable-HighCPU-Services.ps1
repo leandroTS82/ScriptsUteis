@@ -32,6 +32,7 @@ Write-Host "==============================" -ForegroundColor Cyan
 
 # Lista de serviços para desativar
 $servicesToDisable = @(
+    "Warsaw",
     "SysMain",                          # Superfetch / SysMain
     "DiagTrack",                        # Connected User Experiences and Telemetry
     "WSearch",                          # Windows Search (opcional)
