@@ -1,0 +1,110 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Bem-vindo à Lesson 1. Hoje você vai aprender perguntas e respostas simples sobre objetos, pessoas e lugares.",
+  "nome_arquivos": "Lesson1",
+
+  "Lesson1_Objects_and_Questions": [
+    { "lang": "en", "text": "What's this?", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'O que é isto?'. É usada para perguntar o nome de um objeto próximo. A seguir, três frases para praticar.", "pause": 800 },
+    { "lang": "en", "text": "What's this? It's a pen.", "pause": 800 },
+    { "lang": "en", "text": "What's this? It's a pencil.", "pause": 800 },
+    { "lang": "en", "text": "What's this? It's a book.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos continuar.", "pause": 400 },
+
+    { "lang": "en", "text": "Is this a pen?", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'Isto é uma caneta?'. Usamos para confirmar um objeto. A seguir, três exemplos.", "pause": 800 },
+    { "lang": "en", "text": "Is this a pen? Yes, it’s a pen.", "pause": 800 },
+    { "lang": "en", "text": "Is this a pencil? No, it isn’t; it’s a book.", "pause": 800 },
+    { "lang": "en", "text": "Is this a table? Yes, it’s a table.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo para a próxima.", "pause": 400 }
+  ],
+
+  "Lesson1_Negatives_and_Descriptions": [
+    { "lang": "en", "text": "No, it isn’t.", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'Não, não é'. Usamos para negar perguntas. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "Is this a pen? No, it isn’t; it’s a pencil.", "pause": 800 },
+    { "lang": "en", "text": "Is this a chair? No, it isn’t; it’s a table.", "pause": 800 },
+    { "lang": "en", "text": "Is this a book? No, it isn’t; it’s a notebook.", "pause": 800 },
+    { "lang": "pt", "text": "Muito bem, vamos adiante.", "pause": 400 },
+
+    { "lang": "en", "text": "Is the pen short?", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'A caneta é curta?'. Observe o uso de adjetivos curtos e longos.", "pause": 800 },
+    { "lang": "en", "text": "Is the pen short? No, it isn’t short; it’s long.", "pause": 800 },
+    { "lang": "en", "text": "Is the pencil long? No, it isn’t long; it’s short.", "pause": 800 },
+    { "lang": "en", "text": "Is the room short? No, it isn’t short; it’s long.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima seção.", "pause": 400 }
+  ],
+
+  "Lesson1_People_and_Pronouns": [
+    { "lang": "en", "text": "What's this?", "pause": 300 },
+    { "lang": "pt", "text": "Aqui, usamos para identificar pessoas. A seguir, exemplos simples.", "pause": 800 },
+    { "lang": "en", "text": "What’s this? It’s a man.", "pause": 800 },
+    { "lang": "en", "text": "What’s this? It’s a woman.", "pause": 800 },
+    { "lang": "en", "text": "What’s this? It’s a boy.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos seguir.", "pause": 400 },
+
+    { "lang": "en", "text": "Is this a girl?", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'Isto é uma menina?'. Observe as respostas negativas.", "pause": 800 },
+    { "lang": "en", "text": "Is this a girl? No, it isn’t; it’s a man.", "pause": 800 },
+    { "lang": "en", "text": "Is this a man? No, it isn’t; it’s a woman.", "pause": 800 },
+    { "lang": "en", "text": "Is this a boy? No, it isn’t; it’s a girl.", "pause": 800 },
+    { "lang": "pt", "text": "Muito bem, continuando.", "pause": 400 }
+  ],
+
+  "Lesson1_Prepositional_Phrases": [
+    { "lang": "en", "text": "on", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'sobre' ou 'em cima de'. Indica posição. Vamos ver exemplos.", "pause": 800 },
+    { "lang": "en", "text": "The pen is on the book.", "pause": 800 },
+    { "lang": "en", "text": "The book is on the table.", "pause": 800 },
+    { "lang": "en", "text": "The picture is on the wall.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima palavra.", "pause": 400 },
+
+    { "lang": "en", "text": "under", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'debaixo de'. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "The pen is under the book.", "pause": 800 },
+    { "lang": "en", "text": "The pencil is under the chair.", "pause": 800 },
+    { "lang": "en", "text": "The box is under the table.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos adiante.", "pause": 400 },
+
+    { "lang": "en", "text": "in", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'dentro de'. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "The pen is in the box.", "pause": 800 },
+    { "lang": "en", "text": "The clock is in the room.", "pause": 800 },
+    { "lang": "en", "text": "The picture is in the book.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 }
+  ],
+
+  "Lesson1_Titles_and_Names": [
+    { "lang": "en", "text": "Mr and Mrs", "pause": 300 },
+    { "lang": "pt", "text": "Usamos 'Mr' para homens e 'Mrs' para mulheres casadas. Veja exemplos.", "pause": 800 },
+    { "lang": "en", "text": "Is this Mr Brown? Yes, it’s Mr Brown.", "pause": 800 },
+    { "lang": "en", "text": "Is this Mrs Brown? No, it isn’t; it’s Mr Brown.", "pause": 800 },
+    { "lang": "en", "text": "Is this Anna Brown? No, it isn’t Anna Brown; it’s Mr Brown.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos para o próximo.", "pause": 400 }
+  ],
+
+  "Lesson1_Colors_and_Numbers": [
+    { "lang": "en", "text": "What colour is this?", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'Que cor é esta?'. Vamos praticar com objetos.", "pause": 800 },
+    { "lang": "en", "text": "What colour’s this pencil? It’s black.", "pause": 800 },
+    { "lang": "en", "text": "What colour’s this pen? It’s green.", "pause": 800 },
+    { "lang": "en", "text": "What colour’s this book? It’s white.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima.", "pause": 400 },
+
+    { "lang": "en", "text": "one two three four five", "pause": 300 },
+    { "lang": "pt", "text": "Esses são números de 1 a 5 em inglês. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "One, two, three, four, five.", "pause": 800 },
+    { "lang": "en", "text": "Count to five with me: one, two, three, four, five.", "pause": 800 },
+    { "lang": "en", "text": "There are five books on the table.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 }
+  ],
+
+  "Lesson1_Location_Questions": [
+    { "lang": "en", "text": "Where’s the pen?", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'Onde está a caneta?'. É usado para perguntar localização. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "Where’s the pen? The pen’s on the book.", "pause": 800 },
+    { "lang": "en", "text": "Where’s the book? The book’s on the table.", "pause": 800 },
+    { "lang": "en", "text": "Where’s the picture? The picture’s on the wall.", "pause": 800 },
+    { "lang": "pt", "text": "Parabéns! Você concluiu o treino da Lesson 1.", "pause": 800 }
+  ]
+}

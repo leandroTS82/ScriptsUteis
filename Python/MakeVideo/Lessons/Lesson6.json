@@ -1,0 +1,91 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Bem-vindo à Lesson 6. Hoje você vai aprender sobre continentes, números ordinais e pronomes possessivos.",
+  "nome_arquivos": "Lesson6",
+
+  "Listening": [
+    { "lang": "en", "text": "Europe and Asia", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'Europa e Ásia'. Vamos praticar com perguntas simples sobre países. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Is Greece in Asia? No, Greece isn’t in Asia; it’s in Europe.", "pause": 800 },
+    { "lang": "en", "text": "Is India in Europe? No, India isn’t in Europe; it’s in Asia.", "pause": 800 },
+    { "lang": "en", "text": "Are France and Italy in Asia? No, they’re in Europe.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos continuar.", "pause": 400 },
+
+    { "lang": "en", "text": "first, second, third", "pause": 300 },
+    { "lang": "pt", "text": "São números ordinais: primeiro, segundo e terceiro. Usados para indicar ordem. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "This is the first lesson.", "pause": 800 },
+    { "lang": "en", "text": "You are the second student.", "pause": 800 },
+    { "lang": "en", "text": "Today is the third day of the week.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo para a próxima.", "pause": 400 },
+
+    { "lang": "en", "text": "fifth, sixth, twelfth", "pause": 300 },
+    { "lang": "pt", "text": "Significam quinto, sexto e décimo segundo. São ordinais também. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "This is the fifth book on the shelf.", "pause": 800 },
+    { "lang": "en", "text": "Today is the sixth of May.", "pause": 800 },
+    { "lang": "en", "text": "The twelfth letter of the alphabet is L.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima palavra.", "pause": 400 },
+
+    { "lang": "en", "text": "cardinal and ordinal numbers", "pause": 300 },
+    { "lang": "pt", "text": "Cardinal indica quantidade, como 1, 2, 3. Ordinal indica posição, como 1st, 2nd, 3rd. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "The cardinal numbers are one, two, three.", "pause": 800 },
+    { "lang": "en", "text": "The ordinal numbers are first, second, and third.", "pause": 800 },
+    { "lang": "en", "text": "A is the first letter of the alphabet.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos adiante.", "pause": 400 },
+
+    { "lang": "en", "text": "twentieth, twenty-first, twenty-fifth", "pause": 300 },
+    { "lang": "pt", "text": "São números ordinais usados para posições acima de vinte. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "T is the twentieth letter of the alphabet.", "pause": 800 },
+    { "lang": "en", "text": "U is the twenty-first letter of the alphabet.", "pause": 800 },
+    { "lang": "en", "text": "Y is the twenty-fifth letter of the alphabet.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo para a próxima.", "pause": 400 },
+
+    { "lang": "en", "text": "last", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'último'. É usado para indicar o fim de uma sequência. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Which is the last letter of the alphabet? Z is the last letter of the alphabet.", "pause": 800 },
+    { "lang": "en", "text": "Is A the last letter? No, A is the first letter of the alphabet.", "pause": 800 },
+    { "lang": "en", "text": "Z comes last in the alphabet.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima expressão.", "pause": 400 },
+
+    { "lang": "en", "text": "give", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'dar' ou 'entregar'. Vamos praticar no presente contínuo. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Give me the book, please.", "pause": 800 },
+    { "lang": "en", "text": "He’s giving her the book.", "pause": 800 },
+    { "lang": "en", "text": "She’s giving him the pencil.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo para a próxima.", "pause": 400 },
+
+    { "lang": "en", "text": "French, German, Italian, English", "pause": 300 },
+    { "lang": "pt", "text": "São nacionalidades: francês, alemão, italiano e inglês. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Are you French or German? No, I’m not French or German; I’m English.", "pause": 800 },
+    { "lang": "en", "text": "Am I Italian or French? No, you aren’t Italian; you’re English.", "pause": 800 },
+    { "lang": "en", "text": "Are the students German or English? The students are English.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos continuar.", "pause": 400 },
+
+    { "lang": "en", "text": "my and your", "pause": 300 },
+    { "lang": "pt", "text": "‘My’ significa 'meu' e ‘your’ significa 'seu'. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Is this your book? No, it isn’t your book; it’s my book.", "pause": 800 },
+    { "lang": "en", "text": "Is that my dress? No, it isn’t your dress; it’s my dress.", "pause": 800 },
+    { "lang": "en", "text": "This is my notebook; that’s your notebook.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima parte.", "pause": 400 },
+
+    { "lang": "en", "text": "his and her", "pause": 300 },
+    { "lang": "pt", "text": "‘His’ significa dele e ‘her’ significa dela. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Are these his boots? No, they’re her boots.", "pause": 800 },
+    { "lang": "en", "text": "Is this his bag? No, it isn’t his bag; it’s her bag.", "pause": 800 },
+    { "lang": "en", "text": "What colour’s his suit? His suit’s black.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 },
+
+    { "lang": "en", "text": "our, your, their", "pause": 300 },
+    { "lang": "pt", "text": "‘Our’ significa nosso, ‘your’ significa de vocês e ‘their’ significa deles. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Are these our shoes? No, they aren’t our shoes; they’re their shoes.", "pause": 800 },
+    { "lang": "en", "text": "What colour are their shoes? Their shoes are black.", "pause": 800 },
+    { "lang": "en", "text": "Where are our books? Our books are on the table.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima.", "pause": 400 },
+
+    { "lang": "en", "text": "all", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'todos' ou 'todas'. É usado para generalizar. A seguir, três frases para você praticar.", "pause": 800 },
+    { "lang": "en", "text": "Are all the walls in this room white? Yes, all the walls are white.", "pause": 800 },
+    { "lang": "en", "text": "Are all the books in this room English books? Yes, all the books are English books.", "pause": 800 },
+    { "lang": "en", "text": "Are all the students sitting? Yes, all the students are sitting.", "pause": 800 },
+    { "lang": "pt", "text": "Parabéns! Você concluiu o treino.", "pause": 800 }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Bem-vindo à Lesson 4. Hoje você vai aprender sobre posições, números, quantidades e o uso de there is e there are.",
+  "nome_arquivos": "Lesson4",
+
+  "Lesson4_01_Between_and_Us": [
+    { "lang": "en", "text": "between", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'entre'. É usado para indicar algo no meio de dois elementos.", "pause": 800 },
+    { "lang": "en", "text": "Which letter’s between D and F? E’s between D and F.", "pause": 800 },
+    { "lang": "en", "text": "Which letter’s between H and J? I’s between H and J.", "pause": 800 },
+    { "lang": "en", "text": "Which letter’s between Q and S? R’s between Q and S.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos continuar.", "pause": 400 },
+
+    { "lang": "en", "text": "us", "pause": 300 },
+    { "lang": "pt", "text": "‘Us’ significa 'nós' como objeto da frase. Veja os exemplos.", "pause": 800 },
+    { "lang": "en", "text": "Where’s the table? The table’s in front of us.", "pause": 800 },
+    { "lang": "en", "text": "Are the walls in front of us? No, they’re behind us.", "pause": 800 },
+    { "lang": "en", "text": "Is the table behind us? No, it isn’t; it’s in front of us.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima parte.", "pause": 400 }
+  ],
+
+  "Lesson4_02_Them_and_People": [
+    { "lang": "en", "text": "them", "pause": 300 },
+    { "lang": "pt", "text": "‘Them’ significa 'eles' ou 'elas' como objeto. Vamos ver.", "pause": 800 },
+    { "lang": "en", "text": "Where’s the house? The house’s behind them.", "pause": 800 },
+    { "lang": "en", "text": "Are you behind them? No, I’m in front of them.", "pause": 800 },
+    { "lang": "en", "text": "Am I in front of them? No, you aren’t; you’re behind them.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 },
+
+    { "lang": "en", "text": "student and teacher", "pause": 300 },
+    { "lang": "pt", "text": "‘Student’ significa estudante e ‘teacher’ significa professor.", "pause": 800 },
+    { "lang": "en", "text": "Am I a student? No, you aren’t; you’re the teacher.", "pause": 800 },
+    { "lang": "en", "text": "Are you the teacher? No, I’m not; I’m a student.", "pause": 800 },
+    { "lang": "en", "text": "Is he a teacher? Yes, he’s a teacher.", "pause": 800 },
+    { "lang": "pt", "text": "Muito bem, vamos adiante.", "pause": 400 }
+  ],
+
+  "Lesson4_03_Numbers_and_Math": [
+    { "lang": "en", "text": "numbers from thirty to million", "pause": 300 },
+    { "lang": "pt", "text": "Agora vamos estudar números maiores, de 30 até um milhão.", "pause": 800 },
+    { "lang": "en", "text": "Thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.", "pause": 800 },
+    { "lang": "en", "text": "One thousand, one million.", "pause": 800 },
+    { "lang": "en", "text": "What number’s this? It’s 1,815.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima parte.", "pause": 400 },
+
+    { "lang": "en", "text": "plus and equals", "pause": 300 },
+    { "lang": "pt", "text": "‘Plus’ significa somar e ‘equals’ significa igual. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "What’s this? It’s two plus two equals four.", "pause": 800 },
+    { "lang": "en", "text": "How much is thirteen plus five? Thirteen plus five equals eighteen.", "pause": 800 },
+    { "lang": "en", "text": "How much is sixteen plus thirty? Sixteen plus thirty equals forty-six.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 }
+  ],
+
+  "Lesson4_04_ThereIs_and_ThereAre": [
+    { "lang": "en", "text": "there is / there’s", "pause": 300 },
+    { "lang": "pt", "text": "Usamos 'there is' para indicar que algo existe no singular.", "pause": 800 },
+    { "lang": "en", "text": "Is there a pen on this book? Yes, there’s a pen on this book.", "pause": 800 },
+    { "lang": "en", "text": "Is there a light on the ceiling? Yes, there’s a light on the ceiling.", "pause": 800 },
+    { "lang": "en", "text": "Is there a bag in this room? Yes, there’s a bag in this room.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima expressão.", "pause": 400 },
+
+    { "lang": "en", "text": "there are / now", "pause": 300 },
+    { "lang": "pt", "text": "Usamos 'there are' para o plural. 'Now' significa agora.", "pause": 800 },
+    { "lang": "en", "text": "Are there two pens on the book now? Yes, there are two pens on the book now.", "pause": 800 },
+    { "lang": "en", "text": "Are there twelve chairs in this room? Yes, there are twelve chairs in this room.", "pause": 800 },
+    { "lang": "en", "text": "Are there pictures on these walls? Yes, there are pictures on these walls.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos adiante.", "pause": 400 }
+  ],
+
+  "Lesson4_05_Negative_ThereIs_and_ThereAre": [
+    { "lang": "en", "text": "there isn’t", "pause": 300 },
+    { "lang": "pt", "text": "Forma negativa de 'there is'. Significa 'não há' ou 'não existe'.", "pause": 800 },
+    { "lang": "en", "text": "Is there a pen on the book? No, there isn’t a pen on the book.", "pause": 800 },
+    { "lang": "en", "text": "Is there a book on the floor? No, there isn’t a book on the floor.", "pause": 800 },
+    { "lang": "en", "text": "Is there a clock on the table? No, there isn’t a clock on the table.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima forma.", "pause": 400 },
+
+    { "lang": "en", "text": "there aren’t", "pause": 300 },
+    { "lang": "pt", "text": "Forma negativa de 'there are'. Significa 'não há' no plural.", "pause": 800 },
+    { "lang": "en", "text": "Are there three clocks on that wall? No, there aren’t three clocks; there’s one clock on that wall.", "pause": 800 },
+    { "lang": "en", "text": "Are there a hundred pictures in this room? No, there aren’t a hundred pictures; there are a few pictures.", "pause": 800 },
+    { "lang": "en", "text": "Are there a thousand chairs in this room? No, there aren’t a thousand chairs; there are ten chairs.", "pause": 800 },
+    { "lang": "pt", "text": "Continuando.", "pause": 400 }
+  ],
+
+  "Lesson4_06_High_and_Low": [
+    { "lang": "en", "text": "high and low", "pause": 300 },
+    { "lang": "pt", "text": "‘High’ significa alto e ‘low’ significa baixo.", "pause": 800 },
+    { "lang": "en", "text": "Is the chair high? No, the chair isn’t high; it’s low.", "pause": 800 },
+    { "lang": "en", "text": "Is the wall low? No, the wall isn’t low; it’s high.", "pause": 800 },
+    { "lang": "en", "text": "Is the table high? No, the table isn’t high; it’s low.", "pause": 800 },
+    { "lang": "pt", "text": "Parabéns! Você concluiu a Lesson 4.", "pause": 800 }
+  ]
+}

@@ -74,7 +74,7 @@ SUBTITLE_POSITION = "bottom"
 # Diretórios
 TEMP_DIR = "./temp"
 # OUTPUT_DIR = "videos"
-OUTPUT_DIR = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\20251107_JobInterview_WordBank"
+OUTPUT_DIR = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\Lessons"
 
 # Arquivos a remover antes de mover o resultado final
 CLEANUP_PATTERNS = ["tmp_*", "blurred_bg.jpg"]

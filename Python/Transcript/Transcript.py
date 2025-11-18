@@ -30,8 +30,11 @@ Fluxo:
         ou o endereço onde está o seu env/stripts/activate
 - Python 3.9+
 - Dependências Python:
+    pip install "numpy<=2.2.0"
     pip install openai-whisper
     pip install torch openai-whisper
+    *Se tiver algum problema e precisar reinstalar:
+    pip install --force-reinstall openai-whisper
 - FFmpeg instalado:
     Windows:
         winget install Gyan.FFmpeg

@@ -1,0 +1,115 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "Bem-vindo à Lesson 2. Hoje você vai aprender o verbo to be, posições e ações do dia a dia.",
+  "nome_arquivos": "Lesson2",
+
+  "Lesson2_01_VerbToBe_Affirmative": [
+    { "lang": "en", "text": "I am", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'eu sou' ou 'eu estou'. É a forma afirmativa do verbo to be. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "I am a teacher.", "pause": 800 },
+    { "lang": "en", "text": "I am happy.", "pause": 800 },
+    { "lang": "en", "text": "I am from Brazil.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima expressão.", "pause": 400 },
+
+    { "lang": "en", "text": "You are", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'você é' ou 'você está'.", "pause": 800 },
+    { "lang": "en", "text": "You are my friend.", "pause": 800 },
+    { "lang": "en", "text": "You are smart.", "pause": 800 },
+    { "lang": "en", "text": "You are at home.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos adiante.", "pause": 400 },
+
+    { "lang": "en", "text": "He is / She is / It is", "pause": 300 },
+    { "lang": "pt", "text": "Usamos 'he' para ele, 'she' para ela e 'it' para coisas ou animais. Vamos ver exemplos.", "pause": 800 },
+    { "lang": "en", "text": "He is Mr Brown.", "pause": 800 },
+    { "lang": "en", "text": "She is Mrs Brown.", "pause": 800 },
+    { "lang": "en", "text": "It is a book.", "pause": 800 },
+    { "lang": "pt", "text": "Muito bem, continuando.", "pause": 400 }
+  ],
+
+  "Lesson2_02_VerbToBe_Negative": [
+    { "lang": "en", "text": "I am not", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'eu não sou' ou 'eu não estou'. É a forma negativa do verbo to be.", "pause": 800 },
+    { "lang": "en", "text": "I am not a student.", "pause": 800 },
+    { "lang": "en", "text": "I am not tired.", "pause": 800 },
+    { "lang": "en", "text": "I am not at work.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos continuar.", "pause": 400 },
+
+    { "lang": "en", "text": "He isn’t / She isn’t / It isn’t", "pause": 300 },
+    { "lang": "pt", "text": "São formas negativas contraídas de 'he is not', 'she is not' e 'it is not'.", "pause": 800 },
+    { "lang": "en", "text": "He isn’t Mr Smith; he’s Mr Brown.", "pause": 800 },
+    { "lang": "en", "text": "She isn’t Mrs Brown; she’s Mrs Smith.", "pause": 800 },
+    { "lang": "en", "text": "It isn’t a pencil; it’s a pen.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 }
+  ],
+
+  "Lesson2_03_Prepositions_and_Pronouns": [
+    { "lang": "en", "text": "in front of", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'em frente de' ou 'na frente de'.", "pause": 800 },
+    { "lang": "en", "text": "The table is in front of me.", "pause": 800 },
+    { "lang": "en", "text": "The wall is in front of you.", "pause": 800 },
+    { "lang": "en", "text": "The pen is in front of the book.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima preposição.", "pause": 400 },
+
+    { "lang": "en", "text": "behind", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'atrás de'.", "pause": 800 },
+    { "lang": "en", "text": "The house is behind him.", "pause": 800 },
+    { "lang": "en", "text": "The chair is behind me.", "pause": 800 },
+    { "lang": "en", "text": "The book is behind the table.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos adiante.", "pause": 400 }
+  ],
+
+  "Lesson2_04_Positions_and_Actions": [
+    { "lang": "en", "text": "standing", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'em pé'.", "pause": 800 },
+    { "lang": "en", "text": "Are you standing on the floor? Yes, I’m standing on the floor.", "pause": 800 },
+    { "lang": "en", "text": "Am I standing in front of you? Yes, you’re standing in front of me.", "pause": 800 },
+    { "lang": "en", "text": "Are you standing behind the chair? Yes, I’m standing behind the chair.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima.", "pause": 400 },
+
+    { "lang": "en", "text": "sitting", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'sentado'.", "pause": 800 },
+    { "lang": "en", "text": "Are you sitting on the chair? Yes, I’m sitting on the chair.", "pause": 800 },
+    { "lang": "en", "text": "Are you sitting on the floor? No, I’m sitting on the chair.", "pause": 800 },
+    { "lang": "en", "text": "Is he sitting behind me? No, he’s sitting in front of you.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 }
+  ],
+
+  "Lesson2_05_PresentContinuous": [
+    { "lang": "en", "text": "opening", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'abrindo'. É usado no presente contínuo.", "pause": 800 },
+    { "lang": "en", "text": "Am I opening the door? Yes, you’re opening the door.", "pause": 800 },
+    { "lang": "en", "text": "Am I opening the window? No, you’re closing the window.", "pause": 800 },
+    { "lang": "en", "text": "Am I opening the book? Yes, you’re opening the book.", "pause": 800 },
+    { "lang": "pt", "text": "Próxima palavra.", "pause": 400 },
+
+    { "lang": "en", "text": "closing", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'fechando'.", "pause": 800 },
+    { "lang": "en", "text": "Am I closing the door? Yes, you’re closing the door.", "pause": 800 },
+    { "lang": "en", "text": "Am I closing the window? No, you’re opening the window.", "pause": 800 },
+    { "lang": "en", "text": "Am I closing the book? Yes, you’re closing the book.", "pause": 800 },
+    { "lang": "pt", "text": "Vamos adiante.", "pause": 400 },
+
+    { "lang": "en", "text": "What am I doing?", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'O que estou fazendo?'. Vamos praticar.", "pause": 800 },
+    { "lang": "en", "text": "What am I doing? You’re taking the book from the table.", "pause": 800 },
+    { "lang": "en", "text": "What am I doing? You’re opening the book.", "pause": 800 },
+    { "lang": "en", "text": "What am I doing? You’re putting the book on the table.", "pause": 800 },
+    { "lang": "pt", "text": "Muito bem, próxima.", "pause": 400 }
+  ],
+
+  "Lesson2_06_Which_Open_Closed": [
+    { "lang": "en", "text": "Which", "pause": 300 },
+    { "lang": "pt", "text": "Significa 'qual'. É usado para escolher entre opções.", "pause": 800 },
+    { "lang": "en", "text": "Which pencil’s black? This pencil’s black.", "pause": 800 },
+    { "lang": "en", "text": "Which pencil’s green? This pencil’s green.", "pause": 800 },
+    { "lang": "en", "text": "Which pencil’s brown? This pencil’s brown.", "pause": 800 },
+    { "lang": "pt", "text": "Seguindo.", "pause": 400 },
+
+    { "lang": "en", "text": "open and closed", "pause": 300 },
+    { "lang": "pt", "text": "‘Open’ significa aberto, e ‘closed’ significa fechado.", "pause": 800 },
+    { "lang": "en", "text": "Which book’s open? This book’s open.", "pause": 800 },
+    { "lang": "en", "text": "Which book’s closed? This book’s closed.", "pause": 800 },
+    { "lang": "en", "text": "The door’s open, the window’s closed.", "pause": 800 },
+    { "lang": "pt", "text": "Parabéns! Você concluiu a Lesson 2.", "pause": 800 }
+  ]
+}
