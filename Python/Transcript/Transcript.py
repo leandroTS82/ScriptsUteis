@@ -1,35 +1,35 @@
-"""
+r"""
 ===============================================================
- Script: Extrair áudio de vídeo e gerar transcrição/tradução
- Autor: Leandro (versão aprimorada)
+ Script: Extract audio from video and generate transcription/translation
+ Author: Leandro (enhanced version)
 ===============================================================
 
-📌 O que este script faz?
+What this script does
 ---------------------------------------------------------------
-Automatiza a extração de áudio, transcrição e tradução de um ou vários vídeos,
-organizando tudo em pastas individuais por arquivo.
+Automates audio extraction, transcription, and translation of one or several
+videos, organizing everything into per-video folders.
 
-Fluxo:
-1. Localiza vídeos (.mp4 ou .mkv) em um diretório especificado.
-   - Pode ser passado via linha de comando: 
+Flow:
+1. Finds videos (.mp4 or .mkv) in a target directory.
+   - Can be passed via command line:
        python transcript.py "C:/Videos"
-   - Ou definido diretamente na variável DEFAULT_VIDEO_PATH.
-2. Para cada vídeo encontrado:
-   - Cria uma pasta com o mesmo nome do arquivo.
-   - Move o vídeo para dentro dessa pasta.
-   - Extrai o áudio (.mp3) com FFmpeg.
-   - Transcreve o áudio (Português e tradução para Inglês).
-   - Gera saídas TXT, SRT e VTT em ./transcripts.
-3. Mantém cada projeto isolado e organizado.
+   - Or defined directly in DEFAULT_VIDEO_PATH.
+2. For each video found:
+   - Creates a folder with the same name as the video.
+   - Moves the video into its folder.
+   - Extracts audio (.mp3) with FFmpeg.
+   - Transcribes audio based on --lang:
+       --lang pt    → Portuguese only
+       --lang en    → English (translated) only
+       --lang both  → Both languages
+       No --lang    → Default: both
+   - Generates TXT, SRT, VTT files inside ./transcripts.
+3. Keeps each project clean and organized.
 
+Requirements
 ---------------------------------------------------------------
-⚙️ Requisitos
----------------------------------------------------------------
-- Execute: & C:/dev/scripts/git/ScriptsUteis/.venv/Scripts/Activate.ps1
-        ou & "C:\dev\scripts\ScriptsUteis\.venv\Scripts\Activate.ps1"
-        ou o endereço onde está o seu env/stripts/activate
 - Python 3.9+
-- Dependências Python:
+- Install dependencies:
     pip install "numpy<=2.2.0"
     pip install openai-whisper
     pip install torch openai-whisper
@@ -43,11 +43,9 @@ Fluxo:
     macOS:
         brew install ffmpeg
 
+Folder structure produced
 ---------------------------------------------------------------
-📂 Estrutura de pastas resultante
----------------------------------------------------------------
-Para cada vídeo processado:
-📁 ./Videos/
+./Videos/
     └── aula/
         ├── aula.mp4
         ├── mp3/
@@ -60,26 +58,27 @@ Para cada vídeo processado:
             ├── aula.en.srt
             └── aula.en.vtt
 
+How to run
 ---------------------------------------------------------------
-▶️ Como executar
----------------------------------------------------------------
-1. Caminho padrão (definido no código)
+1. Default path:
     python transcript.py
 
-2. Caminho manual:
+2. Manual path:
     python transcript.py "C:/MeusVideos"
-    python transcript.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - AliancaAmerica\\Movies"
-    python transcript.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\Communication site - ReunioesGravadas"
 
-3. Caminho + arquivo específico:
-    python transcript.py "C:/MeusVideos/aula01.mp4"
+3. Path + language:
+    python transcript.py "C:/Videos" --lang pt
+    python transcript.py "C:/Videos" --lang en
+    python transcript.py "C:/Videos" --lang both
 
+Most used example:
+    python transcript.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS\\Communication site - ReunioesGravadas"
+
+Use cases
 ---------------------------------------------------------------
-💡 Casos de uso
----------------------------------------------------------------
-- Geração automática de legendas multilíngues.
-- Transcrição de reuniões, aulas e entrevistas.
-- Organização de datasets de áudio e texto.
+- Creating multilingual subtitles
+- Transcribing meetings, classes, interviews
+- Building clean datasets of audio + text
 ===============================================================
 """
 
@@ -92,16 +91,15 @@ import sys
 import shutil
 from datetime import datetime, timedelta
 
+# ===============================================================
+# DEFAULT CONFIGURATION
+# ===============================================================
+
+DEFAULT_VIDEO_PATH = r"./Movies"
+
 
 # ===============================================================
-# ⚙️ CONFIGURAÇÃO PADRÃO
-# ===============================================================
-DEFAULT_VIDEO_PATH = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - AliancaAmerica\\Movies\\20251029.mp4"
-  # Caminho padrão caso não seja passado via comando
-
-
-# ===============================================================
-# 🧩 FUNÇÕES AUXILIARES
+# AUXILIARY FUNCTIONS
 # ===============================================================
 
 def format_time_srt(secs: float) -> str:
@@ -159,58 +157,54 @@ def extract_audio(video_path: str, output_dir: str) -> str:
     ]
 
     subprocess.run(command, check=True)
-    print(f"Áudio extraído: {audio_path}")
+    print(f"Audio extracted: {audio_path}")
     return audio_path
 
 
-def transcribe_and_translate(file_path: str, output_dir: str):
+def transcribe_and_translate(file_path: str, output_dir: str, lang_option: str):
     model = whisper.load_model("medium")
     base_name = os.path.splitext(os.path.basename(file_path))[0]
     os.makedirs(output_dir, exist_ok=True)
 
-    # Transcrição em português
-    print("Transcrevendo (Português)...")
-    result_pt = model.transcribe(file_path, task="transcribe", language="pt")
-    save_txt(result_pt["segments"], os.path.join(output_dir, f"{base_name}.pt.txt"))
-    save_srt(result_pt["segments"], os.path.join(output_dir, f"{base_name}.pt.srt"))
-    save_vtt(result_pt["segments"], os.path.join(output_dir, f"{base_name}.pt.vtt"))
+    if lang_option in ["pt", "both"]:
+        print("Transcribing (Portuguese)...")
+        result_pt = model.transcribe(file_path, task="transcribe", language="pt")
+        save_txt(result_pt["segments"], os.path.join(output_dir, f"{base_name}.pt.txt"))
+        save_srt(result_pt["segments"], os.path.join(output_dir, f"{base_name}.pt.srt"))
+        save_vtt(result_pt["segments"], os.path.join(output_dir, f"{base_name}.pt.vtt"))
 
-    # Tradução para inglês
-    print("Traduzindo (Inglês)...")
-    result_en = model.transcribe(file_path, task="translate")
-    save_txt(result_en["segments"], os.path.join(output_dir, f"{base_name}.en.txt"))
-    save_srt(result_en["segments"], os.path.join(output_dir, f"{base_name}.en.srt"))
-    save_vtt(result_en["segments"], os.path.join(output_dir, f"{base_name}.en.vtt"))
+    if lang_option in ["en", "both"]:
+        print("Translating (English)...")
+        result_en = model.transcribe(file_path, task="translate")
+        save_txt(result_en["segments"], os.path.join(output_dir, f"{base_name}.en.txt"))
+        save_srt(result_en["segments"], os.path.join(output_dir, f"{base_name}.en.srt"))
+        save_vtt(result_en["segments"], os.path.join(output_dir, f"{base_name}.en.vtt"))
 
-    print(f"Arquivos gerados em: {output_dir}")
+    print(f"Files generated in: {output_dir}")
 
 
-def process_video(video_file: str):
+def process_video(video_file: str, lang_option: str):
     base_name = os.path.splitext(os.path.basename(video_file))[0]
     video_dir = os.path.join(os.path.dirname(video_file), base_name)
 
-    # Cria pasta específica para o vídeo
     os.makedirs(video_dir, exist_ok=True)
 
-    # Move vídeo para dentro da nova pasta
     new_video_path = os.path.join(video_dir, os.path.basename(video_file))
     if os.path.abspath(video_file) != os.path.abspath(new_video_path):
         shutil.move(video_file, new_video_path)
 
-    print(f"\n🎬 Processando: {base_name}")
-    print(f"Pasta criada: {video_dir}")
+    print(f"\nProcessing: {base_name}")
+    print(f"Folder created: {video_dir}")
 
-    # Extrai áudio
     mp3_dir = os.path.join(video_dir, "mp3")
     audio_file = extract_audio(new_video_path, mp3_dir)
 
-    # Transcreve e traduz
     transcript_dir = os.path.join(video_dir, "transcripts")
-    transcribe_and_translate(audio_file, transcript_dir)
+    transcribe_and_translate(audio_file, transcript_dir, lang_option)
 
 
 # ===============================================================
-# 🚀 EXECUÇÃO PRINCIPAL
+# MAIN EXECUTION
 # ===============================================================
 
 if __name__ == "__main__":
@@ -218,37 +212,61 @@ if __name__ == "__main__":
     start_dt = datetime.now()
 
     print("\n===================================================")
-    print("▶️ Iniciando processamento...")
-    print(f"⏱️ Início: {start_dt.strftime('%d/%m/%Y %H:%M:%S')}")
+    print("Starting...")
+    print(f"Start: {start_dt.strftime('%d/%m/%Y %H:%M:%S')}")
     print("===================================================\n")
 
-    # Caminho informado via comando
-    input_arg = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_VIDEO_PATH
+    lang_option = "both"
+    input_path = None
 
-    # Se for um arquivo
-    if os.path.isfile(input_arg):
-        files_to_process = [input_arg]
+    # New robust argument parser
+    args = sys.argv[1:]
+    i = 0
+    while i < len(args):
+        arg = args[i]
+
+        if arg.startswith("--lang"):
+            if "=" in arg:
+                lang_option = arg.split("=")[1].lower()
+            else:
+                if i + 1 < len(args):
+                    lang_option = args[i + 1].lower()
+                    i += 1
+        else:
+            input_path = arg
+
+        i += 1
+
+    if lang_option not in ["pt", "en", "both"]:
+        print(f"Invalid --lang option: {lang_option}. Expected: pt | en | both")
+        exit(1)
+
+    if input_path is None:
+        input_path = DEFAULT_VIDEO_PATH
+
+    if os.path.isfile(input_path):
+        files_to_process = [input_path]
     else:
-        # Lista todos os vídeos no diretório
-        files_to_process = glob.glob(os.path.join(input_arg, "*.mp4")) + glob.glob(os.path.join(input_arg, "*.mkv"))
+        files_to_process = glob.glob(os.path.join(input_path, "*.mp4")) + \
+                           glob.glob(os.path.join(input_path, "*.mkv"))
 
     if not files_to_process:
-        print(f"Nenhum vídeo encontrado em {input_arg}")
+        print(f"No video found in {input_path}")
         exit(1)
 
     for video in files_to_process:
         try:
-            process_video(video)
+            process_video(video, lang_option)
         except Exception as e:
-            print(f"❌ Erro ao processar {video}: {e}")
+            print(f"Error processing {video}: {e}")
 
     end_time = time.time()
     end_dt = datetime.now()
     elapsed = timedelta(seconds=end_time - start_time)
 
     print("\n===================================================")
-    print("✅ Processamento concluído com sucesso!")
-    print(f"⏱️ Início: {start_dt.strftime('%d/%m/%Y %H:%M:%S')}")
-    print(f"⏹️ Fim:    {end_dt.strftime('%d/%m/%Y %H:%M:%S')}")
-    print(f"⏱️ Total:  {elapsed}")
+    print("Done!")
+    print(f"Start: {start_dt.strftime('%d/%m/%Y %H:%M:%S')}")
+    print(f"End:   {end_dt.strftime('%d/%m/%Y %H:%M:%S')}")
+    print(f"Total: {elapsed}")
     print("===================================================\n")
