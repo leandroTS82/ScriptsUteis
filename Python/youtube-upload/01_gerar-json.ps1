@@ -16,6 +16,7 @@
     - Os JSONs são criados no mesmo diretório.
     - O nome dos JSONs será:
           <nome_do_arquivo>.json
+    - Se o JSON já existir, ele não será recriado.
 ===============================================================
 #>
 
@@ -40,6 +41,16 @@ if ($files.Count -eq 0) {
 
 foreach ($file in $files) {
 
+    # Nome do JSON gerado
+    $jsonFileName = "$($file.BaseName).json"
+    $jsonFilePath = Join-Path $Path $jsonFileName
+
+    # Se já existe, pular
+    if (Test-Path $jsonFilePath) {
+        Write-Host "Ignorado (já existe): $jsonFileName"
+        continue
+    }
+
     # Criar estrutura do JSON
     $obj = [PSCustomObject]@{
         FileName   = $file.Name
@@ -53,14 +64,10 @@ foreach ($file in $files) {
     # Converter para JSON
     $json = $obj | ConvertTo-Json -Depth 5 -Compress
 
-    # Nome do JSON gerado (sem prefixo 01_)
-    $jsonFileName = "$($file.BaseName).json"
-    $jsonFilePath = Join-Path $Path $jsonFileName
-
     # Salvar JSON
     Set-Content -Path $jsonFilePath -Value $json -Encoding UTF8
 
-    Write-Host "Gerado: $jsonFilePath"
+    Write-Host "Gerado: $jsonFileName"
 }
 
 Write-Host "Processo concluído com sucesso."
