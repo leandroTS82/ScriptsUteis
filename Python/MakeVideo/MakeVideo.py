@@ -20,53 +20,11 @@ Novidades:
  - Fundo translúcido atrás do texto (parametrizável)
  - Geração inteligente (vídeo completo ou seções + completo)
  - Total compatibilidade com JSONs de treino multilíngue
+ - Caminho JSON configurável por variável
 
 Execução:
     python .\MakeVideo.py
 ===============================================================
-
-# ============================================================
-# MAPEAMENTO DE VOZES - GOOGLE TTS (Wavenet)
-# ============================================================
-
-VOZES DISPONÍVEIS NO GOOGLE CLOUD TTS:
-
-Português (Brasil)
-    pt-BR-Wavenet-A  (masculina)
-    pt-BR-Wavenet-B  (masculina)
-    pt-BR-Wavenet-C  (feminina)
-    pt-BR-Wavenet-D  (feminina)
-    pt-BR-Wavenet-E  (neutra)
-    pt-BR-Wavenet-F  (feminina, natural)
-
-Inglês (EUA)
-    en-US-Wavenet-A  (masculina)
-    en-US-Wavenet-D  (masculina, suave)
-    en-US-Wavenet-F  (feminina, clara)
-    en-US-Wavenet-H  (feminina, alegre)
-
-Espanhol
-    es-ES-Wavenet-B  (masculina)
-    es-ES-Wavenet-C  (feminina)
-
-Francês
-    fr-FR-Wavenet-B  (masculina)
-    fr-FR-Wavenet-C  (feminina)
-
-
-
-# ============================================================
-# MAPEAMENTO DE VOZES - GEMINI AI STUDIO
-# ============================================================
-
-VOZES DISPONÍVEIS NO GEMINI 2.5 PRO PREVIEW TTS:
-
-- Zephyr → Bright, higher pitch (ideal para introduções)
-- Puck   → Upbeat, middle pitch (neutra, educativa)
-- Charon → Informative, lower pitch (explicações em PT)
-- Kore   → Firm, middle pitch (narrações consistentes)
-- Fenrir → Excitable, lower middle pitch (mistura perfeita PT/EN)
-
 """
 
 import os
@@ -99,7 +57,8 @@ FONT = "Arial-Bold"
 BACKGROUND_IMAGE = "Teacher_Leandrinho.png"
 
 TEMP_DIR = "./temp"
-OUTPUT_DIR = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\LessonsGOOGLE_TTS"
+# OUTPUT_DIR = "./Videos/Gemini"
+OUTPUT_DIR = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\WordBank"
 TEXT_BG_COLOR = (0, 0, 0)
 TEXT_BG_OPACITY = 0.55
 BLUR_AMOUNT = 18
@@ -110,11 +69,15 @@ SUBTITLE_POSITION = "bottom"
 # ============================================================
 VOICE_MODE = "GOOGLE_TTS"   # "GTTS", "GOOGLE_TTS" ou "GEMINI"
 VOICE_TYPE = "male"
-ENABLE_FALLBACK = True
+ENABLE_FALLBACK = False
 
 GOOGLE_TTS_CREDENTIALS = os.path.join(os.path.dirname(__file__), "google-tts.json")
 GEMINI_KEY_PATH = os.path.join(os.path.dirname(__file__), "google-gemini-key.txt")
 
+# Caminho do arquivo JSON de entrada (parametrizável) - o padrão é textos.json
+JSON_FILE_PATH = os.path.join(os.path.dirname(__file__), "textos.json")
+
+# Mapeamento de vozes do Google Cloud
 VOICE_MAP = {
     ("pt", "female"): "pt-BR-Wavenet-F",
     ("pt", "male"): "pt-BR-Wavenet-B",
@@ -161,7 +124,6 @@ def generate_blurred_background(source_path, output_path):
 
 
 def cleanup_temp(base_dir):
-    """Remove o diretório temporário"""
     try:
         if os.path.exists(base_dir):
             shutil.rmtree(base_dir)
@@ -169,13 +131,12 @@ def cleanup_temp(base_dir):
     except Exception as e:
         print(f"⚠️ Erro ao remover temporários: {e}")
 
-
 # ============================================================
 # GERAÇÃO DE TTS
 # ============================================================
 
 def generate_tts_gemini(text, lang, filename):
-    """Gera voz natural usando Gemini 2.5 Pro Preview TTS via REST API"""
+    """Gera voz natural usando Gemini 2.5 Pro Preview TTS via REST API (formato 2025-11)"""
     try:
         if not os.path.exists(GEMINI_KEY_PATH):
             raise FileNotFoundError("Arquivo google-gemini-key.txt não encontrado.")
@@ -184,15 +145,27 @@ def generate_tts_gemini(text, lang, filename):
 
         url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-preview-tts:generateContent?key={key}"
 
+        # Seleção de voz
         if lang == "pt":
             style = "Read aloud in Brazilian Portuguese with a lively, warm, and encouraging teacher tone."
+            voice = "Charon"
         elif lang == "en":
             style = "Read aloud in English with a clear, calm, and friendly educational tone."
+            voice = "Puck"
         else:
             style = f"Read aloud in {lang} with a natural and instructive tone."
+            voice = "Fenrir"
 
+        # ✅ Estrutura correta atual (2025-11)
         payload = {
-            "contents": [{"parts": [{"text": f"{style}\n\n{text}"}]}]
+            "contents": [{"role": "user", "parts": [{"text": f"{style}\n\n{text}"}]}],
+            "generationConfig": {
+                "responseModalities": ["AUDIO"]
+            },
+            "audioConfig": {
+                "voiceConfig": {"speaker": voice},
+                "audioEncoding": "MP3"
+            }
         }
 
         headers = {"Content-Type": "application/json"}
@@ -208,12 +181,13 @@ def generate_tts_gemini(text, lang, filename):
             .get("inline_data", {})
             .get("data")
         )
+
         if not audio_b64:
             raise RuntimeError("A resposta do Gemini não contém dados de áudio base64.")
-        audio_bytes = base64.b64decode(audio_b64)
 
         with open(filename, "wb") as f:
-            f.write(audio_bytes)
+            f.write(base64.b64decode(audio_b64))
+
         return filename
 
     except Exception as ex:
@@ -223,20 +197,20 @@ def generate_tts_gemini(text, lang, filename):
         raise
 
 
+
+
 def generate_tts_google(text, lang, velocidade, filename, voice="female"):
-    """Usa Google Cloud Text-to-Speech (Wavenet neural)"""
     try:
         client = texttospeech.TextToSpeechClient.from_service_account_file(GOOGLE_TTS_CREDENTIALS)
         lang_code = lang + "-BR" if lang == "pt" else lang
         name = VOICE_MAP.get((lang, voice), f"{lang_code}-Wavenet-A")
 
-        # Controle de entonação e velocidade natural por idioma
         if lang == "pt":
             pitch = 2.0 if voice == "female" else 0.5
-            rate = 1.05  # levemente mais rápido, tom natural de instrutor
+            rate = 1.05
         elif lang == "en":
-            pitch = -0.5  # tom mais suave
-            rate = 0.85   # fala mais lenta e clara (ideal para aprendizado)
+            pitch = -0.5
+            rate = 0.82
         elif lang == "es":
             pitch = 0.5
             rate = 0.95
@@ -270,21 +244,18 @@ def generate_tts_google(text, lang, velocidade, filename, voice="female"):
 
 
 def generate_tts_gtts(text, lang, filename):
-    """Fallback simples com gTTS"""
     tts = gTTS(text=text, lang=lang, slow=False)
     tts.save(filename)
     return filename
 
 
 def generate_tts(text, lang, velocidade, filename, voice_type):
-    """Seleciona o modo TTS configurado"""
     if VOICE_MODE == "GEMINI":
         return generate_tts_gemini(text, lang, filename)
     elif VOICE_MODE == "GOOGLE_TTS":
         return generate_tts_google(text, lang, velocidade, filename, voice_type)
     else:
         return generate_tts_gtts(text, lang, filename)
-
 
 # ============================================================
 # CRIAÇÃO DE CLIPES
@@ -338,14 +309,13 @@ def process_block(items, base_dir, velocidades, repeat_each, voice_type, blurred
             idx += 1
     return clips
 
-
 # ============================================================
 # EXECUÇÃO PRINCIPAL
 # ============================================================
 
 def main():
     try:
-        with open("textos.json", "r", encoding="utf-8") as f:
+        with open(JSON_FILE_PATH, "r", encoding="utf-8") as f:
             conteudo = json.load(f)
     except Exception as e:
         print(f"Erro ao ler JSON: {e}")
@@ -362,8 +332,6 @@ def main():
     introducao = conteudo.get("introducao")
 
     secoes = [k for k in conteudo.keys() if k not in ("velocidades", "repeat_each", "introducao", "nome_arquivos")]
-    gerar_separados = len(secoes) > 1
-
     base_dir = ensure_dirs()
     blurred_path = os.path.join(base_dir, "blurred_bg.jpg")
     generate_blurred_background(BACKGROUND_IMAGE, blurred_path)
@@ -376,7 +344,6 @@ def main():
         intro_clip = create_video_segment(introducao, "pt", velocidades.get("pt", 2), "intro", base_dir, VOICE_TYPE, blurred_path, BACKGROUND_IMAGE)
         all_clips.append(intro_clip)
 
-    # --- gera vídeos por seção sem perda de sincronia ---
     for section in secoes:
         print(f"📖 Seção: {section}")
         clips = process_block(conteudo[section], base_dir, velocidades, repeat_each, VOICE_TYPE, blurred_path, BACKGROUND_IMAGE)
@@ -387,7 +354,6 @@ def main():
             print(f"✅ Vídeo salvo: {section_path}")
             all_clips.extend(clips)
 
-    # --- gera vídeo completo unindo os mesmos clipes (sem reimportar) ---
     if all_clips:
         final_video = concatenate_videoclips(all_clips, method="compose")
         final_path = os.path.join(OUTPUT_DIR, f"{nome_arquivos}_FULL.mp4")

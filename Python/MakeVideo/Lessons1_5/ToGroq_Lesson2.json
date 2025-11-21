@@ -3,7 +3,7 @@
   "introducao": "Bem-vindo à Lesson 2. Hoje você vai aprender o verbo to be, posições e ações do dia a dia.",
   "nome_arquivos": "Lesson2",
 
-  "Lesson2_01_VerbToBe_Affirmative": [
+  "Lesson2": [
     { "lang": "en", "text": "I am", "pause": 300 },
     { "lang": "pt", "text": "Significa 'eu sou' ou 'eu estou'. É a forma afirmativa do verbo to be. Vamos praticar.", "pause": 800 },
     { "lang": "en", "text": "I am a teacher.", "pause": 800 },
@@ -24,9 +24,7 @@
     { "lang": "en", "text": "She is Mrs Brown.", "pause": 800 },
     { "lang": "en", "text": "It is a book.", "pause": 800 },
     { "lang": "pt", "text": "Muito bem, continuando.", "pause": 400 }
-  ],
-
-  "Lesson2_02_VerbToBe_Negative": [
+  ,
     { "lang": "en", "text": "I am not", "pause": 300 },
     { "lang": "pt", "text": "Significa 'eu não sou' ou 'eu não estou'. É a forma negativa do verbo to be.", "pause": 800 },
     { "lang": "en", "text": "I am not a student.", "pause": 800 },
@@ -40,9 +38,7 @@
     { "lang": "en", "text": "She isn’t Mrs Brown; she’s Mrs Smith.", "pause": 800 },
     { "lang": "en", "text": "It isn’t a pencil; it’s a pen.", "pause": 800 },
     { "lang": "pt", "text": "Seguindo.", "pause": 400 }
-  ],
-
-  "Lesson2_03_Prepositions_and_Pronouns": [
+  ,
     { "lang": "en", "text": "in front of", "pause": 300 },
     { "lang": "pt", "text": "Significa 'em frente de' ou 'na frente de'.", "pause": 800 },
     { "lang": "en", "text": "The table is in front of me.", "pause": 800 },
@@ -56,9 +52,7 @@
     { "lang": "en", "text": "The chair is behind me.", "pause": 800 },
     { "lang": "en", "text": "The book is behind the table.", "pause": 800 },
     { "lang": "pt", "text": "Vamos adiante.", "pause": 400 }
-  ],
-
-  "Lesson2_04_Positions_and_Actions": [
+  ,
     { "lang": "en", "text": "standing", "pause": 300 },
     { "lang": "pt", "text": "Significa 'em pé'.", "pause": 800 },
     { "lang": "en", "text": "Are you standing on the floor? Yes, I’m standing on the floor.", "pause": 800 },
@@ -72,9 +66,7 @@
     { "lang": "en", "text": "Are you sitting on the floor? No, I’m sitting on the chair.", "pause": 800 },
     { "lang": "en", "text": "Is he sitting behind me? No, he’s sitting in front of you.", "pause": 800 },
     { "lang": "pt", "text": "Seguindo.", "pause": 400 }
-  ],
-
-  "Lesson2_05_PresentContinuous": [
+  ,
     { "lang": "en", "text": "opening", "pause": 300 },
     { "lang": "pt", "text": "Significa 'abrindo'. É usado no presente contínuo.", "pause": 800 },
     { "lang": "en", "text": "Am I opening the door? Yes, you’re opening the door.", "pause": 800 },
@@ -95,9 +87,7 @@
     { "lang": "en", "text": "What am I doing? You’re opening the book.", "pause": 800 },
     { "lang": "en", "text": "What am I doing? You’re putting the book on the table.", "pause": 800 },
     { "lang": "pt", "text": "Muito bem, próxima.", "pause": 400 }
-  ],
-
-  "Lesson2_06_Which_Open_Closed": [
+  ,
     { "lang": "en", "text": "Which", "pause": 300 },
     { "lang": "pt", "text": "Significa 'qual'. É usado para escolher entre opções.", "pause": 800 },
     { "lang": "en", "text": "Which pencil’s black? This pencil’s black.", "pause": 800 },

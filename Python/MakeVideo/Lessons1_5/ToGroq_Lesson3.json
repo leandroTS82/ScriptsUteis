@@ -3,7 +3,7 @@
   "introducao": "Bem-vindo à Lesson 3. Hoje você vai aprender demonstrativos, plurais, cores e o alfabeto.",
   "nome_arquivos": "Lesson3",
 
-  "Lesson3_01_This_That_and_Chart": [
+  "Lesson3": [
     { "lang": "en", "text": "this and that", "pause": 300 },
     { "lang": "pt", "text": "Usamos 'this' para algo próximo e 'that' para algo distante. Vamos praticar.", "pause": 800 },
     { "lang": "en", "text": "What colour’s this pencil? This pencil’s black.", "pause": 800 },
@@ -18,9 +18,7 @@
     { "lang": "en", "text": "There are fifteen books on the table.", "pause": 800 },
     { "lang": "en", "text": "Count from eleven to fifteen.", "pause": 800 },
     { "lang": "pt", "text": "Seguindo.", "pause": 400 }
-  ],
-
-  "Lesson3_02_Plural_and_WeAre": [
+  ,
     { "lang": "en", "text": "plural", "pause": 300 },
     { "lang": "pt", "text": "Plural indica mais de um. Normalmente adicionamos 's' ao final das palavras.", "pause": 800 },
     { "lang": "en", "text": "What’s the plural of book? The plural of book is books.", "pause": 800 },
@@ -34,9 +32,7 @@
     { "lang": "en", "text": "Where are we sitting? We’re sitting on the chairs.", "pause": 800 },
     { "lang": "en", "text": "Are we standing? No, we’re sitting.", "pause": 800 },
     { "lang": "pt", "text": "Vamos adiante.", "pause": 400 }
-  ],
-
-  "Lesson3_03_TheyAre_and_Negatives": [
+ ,
     { "lang": "en", "text": "they are / they’re", "pause": 300 },
     { "lang": "pt", "text": "Usamos 'they are' para 'eles são' ou 'elas estão'.", "pause": 800 },
     { "lang": "en", "text": "Are they standing? Yes, they’re standing.", "pause": 800 },
@@ -50,9 +46,7 @@
     { "lang": "en", "text": "Are they standing behind the house? No, they aren’t behind the house; they’re in front of it.", "pause": 800 },
     { "lang": "en", "text": "Are we standing? No, we aren’t; we’re sitting.", "pause": 800 },
     { "lang": "pt", "text": "Muito bem.", "pause": 400 }
-  ],
-
-  "Lesson3_04_Colors_and_Demonstratives": [
+  ,
     { "lang": "en", "text": "red, blue, yellow, grey", "pause": 300 },
     { "lang": "pt", "text": "Essas são cores básicas em inglês: vermelho, azul, amarelo e cinza.", "pause": 800 },
     { "lang": "en", "text": "What colour’s this pencil? This pencil’s red.", "pause": 800 },
@@ -66,9 +60,7 @@
     { "lang": "en", "text": "What colour are those pencils? Those pencils are white and brown.", "pause": 800 },
     { "lang": "en", "text": "Where are those pencils? Those pencils are on the wall.", "pause": 800 },
     { "lang": "pt", "text": "Continuando.", "pause": 400 }
-  ],
-
-  "Lesson3_05_People_and_Numbers": [
+  ,
     { "lang": "en", "text": "men and women", "pause": 300 },
     { "lang": "pt", "text": "O plural de 'man' é 'men', e o plural de 'woman' é 'women'.", "pause": 800 },
     { "lang": "en", "text": "What’s the plural of man? The plural of man is men.", "pause": 800 },
@@ -82,9 +74,7 @@
     { "lang": "en", "text": "There are twenty students in the room.", "pause": 800 },
     { "lang": "en", "text": "Count from sixteen to twenty.", "pause": 800 },
     { "lang": "pt", "text": "Próximo tema.", "pause": 400 }
-  ],
-
-  "Lesson3_06_Clothes_and_Alphabet": [
+  ,
     { "lang": "en", "text": "clothes and accessories", "pause": 300 },
     { "lang": "pt", "text": "Vamos aprender algumas roupas e acessórios comuns.", "pause": 800 },
     { "lang": "en", "text": "These are shoes, boots, socks, trousers, and jackets.", "pause": 800 },
@@ -98,9 +88,7 @@
     { "lang": "en", "text": "What letter’s this? It’s B.", "pause": 800 },
     { "lang": "en", "text": "What letter’s this? It’s C.", "pause": 800 },
     { "lang": "pt", "text": "Seguindo.", "pause": 400 }
-  ],
-
-  "Lesson3_07_Vowels_Consonants_and_Order": [
+  ,
     { "lang": "en", "text": "vowels and consonants", "pause": 300 },
     { "lang": "pt", "text": "As vogais em inglês são A, E, I, O, U. As outras letras são consoantes.", "pause": 800 },
     { "lang": "en", "text": "These are the five vowels: A, E, I, O, U.", "pause": 800 },

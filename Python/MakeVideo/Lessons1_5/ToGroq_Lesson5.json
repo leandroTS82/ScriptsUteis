@@ -3,7 +3,7 @@
   "introducao": "Bem-vindo à Lesson 5. Hoje você vai aprender o modo imperativo, preposições, capitais, roupas e expressões de quantidade.",
   "nome_arquivos": "Lesson5",
 
-  "Lesson5_Imperative_and_Actions": [
+  "Lesson5": [
     { "lang": "en", "text": "imperative", "pause": 300 },
     { "lang": "pt", "text": "O modo imperativo é usado para dar ordens ou instruções, como 'Take!', 'Put!', 'Open!' e 'Close!'.", "pause": 800 },
     { "lang": "en", "text": "Take the book, please.", "pause": 800 },
@@ -17,18 +17,14 @@
     { "lang": "en", "text": "She’s opening the book.", "pause": 800 },
     { "lang": "en", "text": "He’s putting the book on the table.", "pause": 800 },
     { "lang": "pt", "text": "Muito bem, próxima parte.", "pause": 400 }
-  ],
-
-  "Lesson5_Here_and_There": [
+  ,
     { "lang": "en", "text": "here and there", "pause": 300 },
     { "lang": "pt", "text": "‘Here’ significa aqui e ‘there’ significa lá. Observe os exemplos.", "pause": 800 },
     { "lang": "en", "text": "Where’s the black pencil? The black pencil’s here in front of me.", "pause": 800 },
     { "lang": "en", "text": "Where’s the white pencil? The white pencil’s there on the wall.", "pause": 800 },
     { "lang": "en", "text": "Are you sitting there? No, I’m not sitting there; I’m sitting here.", "pause": 800 },
     { "lang": "pt", "text": "Vamos continuar.", "pause": 400 }
-  ],
-
-  "Lesson5_Countries_and_Capitals": [
+ ,
     { "lang": "en", "text": "capital and countries", "pause": 300 },
     { "lang": "pt", "text": "Vamos aprender nomes de países e suas capitais.", "pause": 800 },
     { "lang": "en", "text": "What’s the capital of England? London’s the capital of England.", "pause": 800 },
@@ -36,9 +32,7 @@
     { "lang": "en", "text": "What’s the capital of Greece? Athens’s the capital of Greece.", "pause": 800 },
     { "lang": "en", "text": "What’s the capital of China? Beijing’s the capital of China.", "pause": 800 },
     { "lang": "pt", "text": "Próximo tema.", "pause": 400 }
-  ],
-
-  "Lesson5_Reading_and_Writing": [
+  ,
     { "lang": "en", "text": "reading and writing", "pause": 300 },
     { "lang": "pt", "text": "‘Reading’ significa lendo e ‘writing’ significa escrevendo. Vamos praticar.", "pause": 800 },
     { "lang": "en", "text": "What am I doing? You’re reading the book.", "pause": 800 },
@@ -46,18 +40,14 @@
     { "lang": "en", "text": "Am I writing in the book? No, you’re not writing; you’re reading.", "pause": 800 },
     { "lang": "en", "text": "Am I reading the book? No, you’re not reading; you’re writing.", "pause": 800 },
     { "lang": "pt", "text": "Muito bem, próxima seção.", "pause": 400 }
-  ],
-
-  "Lesson5_Clothes_and_Objects": [
+  ,
     { "lang": "en", "text": "clothes and accessories", "pause": 300 },
     { "lang": "pt", "text": "Vamos aprender nomes de roupas e acessórios comuns.", "pause": 800 },
     { "lang": "en", "text": "This is a coat, dress, or skirt.", "pause": 800 },
     { "lang": "en", "text": "These are tights and scarves.", "pause": 800 },
     { "lang": "en", "text": "These are blouses, pockets, and handkerchiefs.", "pause": 800 },
     { "lang": "pt", "text": "Seguindo.", "pause": 400 }
-  ],
-
-  "Lesson5_HowMany_and_GoingTo": [
+  ,
     { "lang": "en", "text": "how many", "pause": 300 },
     { "lang": "pt", "text": "‘How many’ é usado para perguntar 'quantos' ou 'quantas' de algo.", "pause": 800 },
     { "lang": "en", "text": "How many pictures are there on these walls? There are pictures on these walls.", "pause": 800 },

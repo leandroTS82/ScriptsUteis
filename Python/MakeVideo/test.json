@@ -1,0 +1,25 @@
+{
+    "repeat_each": {
+        "pt": 1,
+        "en": 1
+    },
+    "introducao": "",
+    "nome_arquivos": "Teste",
+    "Listening": [
+        {
+            "lang": "pt",
+            "text": "Audio em portguês, a seguir aulio em inglês com a tag lang",
+            "pause": 400
+        },
+        {
+            "lang": "en",
+            "text": "It's been a while",
+            "pause": 300
+        },
+        {
+            "lang": "en",
+            "text": "Tag lang está agora em inglês, mas o texto está misturando as lingaguens, aseguir frase em inglês: It's been a while",
+            "pause": 300
+        }
+    ]
+}
