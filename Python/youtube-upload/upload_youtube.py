@@ -30,7 +30,7 @@
 #          "Skipping already uploaded file: uploaded_202501021300_Video1.mp4"
 
 #Execução
-# python upload_youtube.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\LessonsGOOGLE_TTS\\Lessons 1-5"
+# python upload_youtube.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\WordBank"
 # -------------------------------------------------------
 
 import os

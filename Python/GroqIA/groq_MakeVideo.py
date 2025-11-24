@@ -26,7 +26,7 @@
  Uso:
     python groq_MakeVideo.py <path_jsons_complementares> <path_videos_destino>
 exemplo:
-python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\MakeVideo\\Lessons1_5" "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\LessonsGOOGLE_TTS\\Lessons 1-5"
+python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\MakeVideo\\20251106_WordBank" "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\WordBank"
 =====================================================================
 """
 

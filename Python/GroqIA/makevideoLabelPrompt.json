@@ -1,3 +1,4 @@
 {
-  "IMPORTANT": " Nome da playlist deve ser: Stage 1 - Lesson 1 a 5. maximize o SEO para youtube, playlist.Id deve ser vazia"
+  "Intent 1": "Classifique os termos como beginner intermediate e advanced, se os termo forem simples adicione playlist 'Wordbank beginner (Iniciante) 1', ou se for intermediário 'Wordbank intermediate 1' se for avançado 'Wordbank advanced 1', interprete e adicione corretamente em playlist.name. Title deve ser Resumido e refletir o conteúdo a ser aprendido.",
+  "Intent 2":"Title mescle inglês e Português."
 }

@@ -1,6 +1,8 @@
 {
   "system_rules": [
     "You must always respond ONLY with a valid JSON object containing YouTube metadata.",
+    "maximize o SEO para youtube",
+    "playlist.Id deve ser vazia",
     "The JSON must include the following top-level fields: title, description, tags, category_id, visibility, playlist, made_for_kids, embeddable.",
     "The playlist field must include: create_if_not_exists, id, name, description.",
     "Descriptions must be educational, structured, and specifically based on the vocabulary and examples provided by the user.",
