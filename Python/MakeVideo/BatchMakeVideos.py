@@ -22,7 +22,7 @@ o MakeVideo.py, gerando um vídeo separado.
 ---------------------------------------------------------------
 ⚙️ Execução:
 ---------------------------------------------------------------
-    python .\BatchMakeVideos.py ./batch
+    python .\BatchMakeVideos.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\MakeVideo\\Content\\20251124_wordBank"
 
 O script:
   1️⃣ Localiza todos os .json dentro do diretório informado.

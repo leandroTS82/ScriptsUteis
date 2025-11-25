@@ -1,4 +1,5 @@
 {
-  "Intent 1": "Classifique os termos como beginner intermediate e advanced, se os termo forem simples adicione playlist 'Wordbank beginner (Iniciante) 1', ou se for intermediário 'Wordbank intermediate 1' se for avançado 'Wordbank advanced 1', interprete e adicione corretamente em playlist.name. Title deve ser Resumido e refletir o conteúdo a ser aprendido.",
-  "Intent 2":"Title mescle inglês e Português."
+  "Intent1": "Classifique os termos como beginner intermediate e advanced, se os termo forem simples adicione playlist 'Wordbank beginner (Iniciante) 2', ou se for intermediário 'Wordbank intermediate 1' se for avançado 'Wordbank advanced 1', interprete e adicione corretamente em playlist.name. Title deve ser Resumido e refletir o conteúdo a ser aprendido.",
+  "Intent2":"Title mescle inglês e Português.",
+  "Intent3": "category_id = 27 (education)"
 }

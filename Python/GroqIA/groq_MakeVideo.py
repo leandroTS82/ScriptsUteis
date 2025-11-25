@@ -26,7 +26,7 @@
  Uso:
     python groq_MakeVideo.py <path_jsons_complementares> <path_videos_destino>
 exemplo:
-python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\MakeVideo\\20251106_WordBank" "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\WordBank"
+python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\MakeVideo\\Content\\20251124_wordBank" "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\WordBank"
 =====================================================================
 """
 
@@ -38,10 +38,10 @@ import sys
 import time
 
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
-API_KEY_FILE = "./groq_api_key.txt"
-SYSTEM_PROMPT_FILE = "./systemPrompt.json"
-BASE_PROMPT_FILE = "./makevideoLabelPrompt.json"
-OUTPUT_DIR = "./output"
+API_KEY_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\GroqIA\\groq_api_key.txt"
+SYSTEM_PROMPT_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\GroqIA\\systemPrompt.json"
+BASE_PROMPT_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\GroqIA\\makevideoLabelPrompt.json"
+OUTPUT_DIR = "C:\\dev\\scripts\\ScriptsUteis\\Python\\GroqIA\\output"
 MODEL_NAME = "openai/gpt-oss-20b"
 
 VIDEO_EXTENSIONS = [".mp4", ".mov", ".mkv", ".avi"]
