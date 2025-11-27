@@ -36,6 +36,7 @@ import requests
 from datetime import datetime
 import sys
 import time
+from generate_thumbnail import create_thumbnail
 
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
 API_KEY_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\GroqIA\\groq_api_key.txt"
@@ -271,6 +272,14 @@ def main():
         # Criar JSON com nome do vídeo
         new_json_path = write_json_for_video(dest_dir, video_file_path, metadata_json)
         print(f"JSON criado: {new_json_path}")
+        
+        # === NOVA ETAPA: GERAR THUMBNAIL ===
+        try:
+            print("🎨 Gerando Thumbnail...")
+            create_thumbnail(new_json_path) # Gera o .jpg na mesma pasta do vídeo
+        except Exception as e:
+            print(f"⚠️ Erro ao gerar thumbnail: {e}")
+        # ===================================
 
         # Renomear arquivo de entrada
         new_name = rename_to_processed(full_source_path)

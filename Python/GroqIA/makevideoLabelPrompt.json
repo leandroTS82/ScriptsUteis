@@ -1,5 +1,6 @@
 {
-  "Intent1": "Classifique os termos como beginner intermediate e advanced, se os termo forem simples adicione playlist 'Wordbank beginner (Iniciante) 2', ou se for intermediário 'Wordbank intermediate 1' se for avançado 'Wordbank advanced 1', interprete e adicione corretamente em playlist.name. Title deve ser Resumido e refletir o conteúdo a ser aprendido.",
-  "Intent2":"Title mescle inglês e Português.",
-  "Intent3": "category_id = 27 (education)"
+  "Intent1": "Analyze the vocabulary complexity. If simple words/grammar -> Playlist name: 'Wordbank Beginner (Iniciante)'. If intermediate -> 'Wordbank Intermediate'. If advanced -> 'Wordbank Advanced'.",
+  "Intent2": "GENERATE A CLICKBAIT-STYLE TITLE (Ethical Clickbait). Don't just describe the content, sell the benefit. Examples of good patterns: 'Como usar [Topico] sem errar', 'A diferença entre [A] e [B]', 'Aprenda [Topico] em 5 minutos'.",
+  "Intent3": "Context: The target audience is Brazilians learning English. Ensure the hook is in Portuguese, but the key English terms remain in English.",
+  "Intent4": "Description Structure: 1. Hook (PT), 2. What you will learn (Bulleted list), 3. Call to Action (Subscribe), 4. Key Vocabulary List."
 }
