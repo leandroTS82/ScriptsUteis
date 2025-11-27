@@ -120,6 +120,25 @@ def upload_video(metadata, video_path):
         print(f"YouTube API error: {e}")
         return None
 
+# -------------------------------------------------------
+# Upload de Thumbnail (Capa)
+# -------------------------------------------------------
+def upload_thumbnail(video_id, thumbnail_path):
+    if not thumbnail_path or not os.path.exists(thumbnail_path):
+        print(f"Thumbnail not found or not specified: {thumbnail_path}")
+        return
+
+    youtube = get_authenticated_service()
+    print(f"Uploading thumbnail: {thumbnail_path}")
+
+    try:
+        youtube.thumbnails().set(
+            videoId=video_id,
+            media_body=MediaFileUpload(thumbnail_path)
+        ).execute()
+        print("Thumbnail upload complete.")
+    except HttpError as e:
+        print(f"Failed to upload thumbnail: {e}")
 
 # -------------------------------------------------------
 # Playlist helpers
@@ -236,12 +255,37 @@ def process_single_mode():
         print("Erro: metadata.json precisa conter video_file.")
         return
 
+    # Tenta achar thumbnail no JSON ou pelo nome do arquivo
+    thumb_path = metadata.get("thumbnail_path")
+    if not thumb_path:
+        # Tenta chutar o nome se não estiver no JSON
+        base_path = os.path.splitext(video_path)[0]
+        for ext in [".jpg", ".png", ".jpeg"]:
+            if os.path.exists(base_path + ext):
+                thumb_path = base_path + ext
+                break
+
+    # 1. Sobe o vídeo
     video_id = upload_video(metadata, video_path)
 
     if video_id:
+        # 2. Sobe a thumbnail (se existir)
+        if thumb_path:
+            upload_thumbnail(video_id, thumb_path)
+        
+        # 3. Resolve Playlist e finaliza
         playlist_id = resolve_playlist(metadata)
         add_to_playlist(video_id, playlist_id)
+        
+        # Renomeia vídeo, json e também a thumbnail para não subir de novo
         rename_uploaded_files(video_path, "metadata.json")
+        if thumb_path and "uploaded_" not in thumb_path:
+             # Pequena lógica para renomear a thumb também
+             timestamp = datetime.now().strftime("%Y%m%d%H%M")
+             dir_name = os.path.dirname(thumb_path)
+             base_name = os.path.basename(thumb_path)
+             os.rename(thumb_path, os.path.join(dir_name, f"uploaded_{timestamp}_{base_name}"))
+
         print("All tasks completed successfully.")
 
 
@@ -252,6 +296,8 @@ def process_batch_mode(directory):
     print(f"\nBatch mode enabled.\nDirectory: {directory}")
 
     supported_ext = [".mp4", ".mov", ".mkv", ".avi"]
+    # Extensões de imagem suportadas
+    image_exts = [".jpg", ".png", ".jpeg"]
 
     files = os.listdir(directory)
     videos = [
@@ -264,20 +310,25 @@ def process_batch_mode(directory):
         return
 
     for video in videos:
-
-        # NOVA REGRA → ignorar arquivos uploaded_
+        # Ignorar arquivos uploaded_
         if video.lower().startswith("uploaded_"):
             print(f"Skipping already uploaded file: {video}")
             continue
 
         video_path = os.path.join(directory, video)
-
         base = os.path.splitext(video)[0]
         json_path = os.path.join(directory, f"{base}.json")
 
+        # Procura automática da Thumbnail (Mesmo nome do vídeo)
+        thumb_path = None
+        for ext in image_exts:
+            potential_thumb = os.path.join(directory, f"{base}{ext}")
+            if os.path.exists(potential_thumb):
+                thumb_path = potential_thumb
+                break
+
         if not os.path.exists(json_path):
             print(f"\nWARNING: JSON not found for video: {video}")
-            print(f"Expected: {base}.json")
             continue
 
         print(f"\nProcessing video: {video}")
@@ -285,12 +336,28 @@ def process_batch_mode(directory):
         with open(json_path, "r", encoding="utf-8") as jf:
             metadata = json.load(jf)
 
+        # 1. Upload Vídeo
         video_id = upload_video(metadata, video_path)
 
         if video_id:
+            # 2. Upload Thumbnail (se encontrada)
+            if thumb_path:
+                # Verifica se não é uma thumbnail já renomeada (caso raro, mas bom garantir)
+                if not os.path.basename(thumb_path).startswith("uploaded_"):
+                    upload_thumbnail(video_id, thumb_path)
+            
+            # 3. Playlist e Renomeação
             playlist_id = resolve_playlist(metadata)
             add_to_playlist(video_id, playlist_id)
+            
             rename_uploaded_files(video_path, json_path)
+            
+            # Renomeia a thumbnail também para evitar confusão futura
+            if thumb_path and os.path.exists(thumb_path):
+                 timestamp = datetime.now().strftime("%Y%m%d%H%M")
+                 new_thumb_name = f"uploaded_{timestamp}_{os.path.basename(thumb_path)}"
+                 os.rename(thumb_path, os.path.join(directory, new_thumb_name))
+                 print(f"Renamed thumbnail → {new_thumb_name}")
 
     print("\nBatch upload completed.")
 

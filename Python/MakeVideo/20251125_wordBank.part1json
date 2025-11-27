@@ -1,0 +1,66 @@
+{
+    "repeat_each": {
+        "pt": 1,
+        "en": 2
+    },
+    "introducao": "Bem-vindo ao treino de Listening e Pronunciation - Vamos treinar novos termos e palavras.",
+    "nome_arquivos": "20251125_wordBank_part1",
+    "Listening": [
+        [
+        { "lang": "en", "text": "main goal", "pause": 1000 },
+        { "lang": "pt", "text": "Significa 'objetivo principal', o foco mais importante." },
+        { "lang": "en", "text": "Our main goal is to simplify the process.", "pause": 1000 },
+        { "lang": "en", "text": "The main goal of the update is to improve stability.", "pause": 1000 },
+        { "lang": "en", "text": "Training the team is a main goal for this quarter.", "pause": 1000 },
+        { "lang": "pt", "text": "Beleza! Já podemos seguir para o próximo termo." }
+        ],
+        [
+        { "lang": "en", "text": "principal", "pause": 1000 },
+        { "lang": "pt", "text": "Significa 'diretor' ou 'responsável máximo' de uma escola ou instituição." },
+        { "lang": "en", "text": "The principal spoke to the students this morning.", "pause": 1000 },
+        { "lang": "en", "text": "The principal approved the new school policy.", "pause": 1000 },
+        { "lang": "en", "text": "Parents met with the principal to discuss improvements.", "pause": 1000 },
+        { "lang": "pt", "text": "Ótimo! Me envie o próximo termo." }
+        ],
+        [
+        { "lang": "en", "text": "clumsy", "pause": 1000 },
+        { "lang": "pt", "text": "Significa 'desajeitado', alguém que faz coisas com falta de coordenação." },
+        { "lang": "en", "text": "He is a bit clumsy and often drops things.", "pause": 1000 },
+        { "lang": "en", "text": "She felt clumsy walking with the new shoes.", "pause": 1000 },
+        { "lang": "en", "text": "Being tired can make you clumsy during simple tasks.", "pause": 1000 },
+        { "lang": "pt", "text": "Tudo certo! Pode mandar o próximo." }
+        ],
+        [
+        { "lang": "en", "text": "silly", "pause": 1000 },
+        { "lang": "pt", "text": "Significa 'bobo' ou 'tolo', algo que não é sério e costuma ser engraçado." },
+        { "lang": "en", "text": "He made a silly joke during the meeting.", "pause": 1000 },
+        { "lang": "en", "text": "That was a silly mistake, but easy to fix.", "pause": 1000 },
+        { "lang": "en", "text": "The movie had many silly moments that made everyone laugh.", "pause": 1000 },
+        { "lang": "pt", "text": "Perfeito! Me envie o próximo termo quando quiser." }
+        ],
+        [
+        { "lang": "en", "text": "silly cartoon", "pause": 1000 },
+        { "lang": "pt", "text": "Significa um desenho 'bobo' ou 'engraçado', com humor simples e exagerado." },
+        { "lang": "en", "text": "The kids laughed at the silly cartoon on TV.", "pause": 1000 },
+        { "lang": "en", "text": "He created a silly cartoon to make the presentation lighter.", "pause": 1000 },
+        { "lang": "en", "text": "This silly cartoon character always does ridiculous things.", "pause": 1000 },
+        { "lang": "pt", "text": "Legal! Pronto para mais combinações." }
+        ],
+        [
+        { "lang": "en", "text": "mistakes", "pause": 1000 },
+        { "lang": "pt", "text": "Significa 'erros', ações ou decisões feitas de forma incorreta." },
+        { "lang": "en", "text": "Everyone makes mistakes while learning something new.", "pause": 1000 },
+        { "lang": "en", "text": "Small mistakes can be corrected quickly.", "pause": 1000 },
+        { "lang": "en", "text": "Mistakes help us understand what to improve next time.", "pause": 1000 },
+        { "lang": "pt", "text": "Tudo certo, podemos continuar com o próximo." }
+        ],
+        [
+        { "lang": "en", "text": "best weather", "pause": 1000 },
+        { "lang": "pt", "text": "Significa 'melhor clima', usado para falar de condições climáticas agradáveis." },
+        { "lang": "en", "text": "This city has the best weather during spring.", "pause": 1000 },
+        { "lang": "en", "text": "We chose the date with the best weather for the event.", "pause": 1000 },
+        { "lang": "en", "text": "They moved there because the region offers the best weather all year.", "pause": 1000 },
+        { "background":"C:\\dev\\scripts\\ScriptsUteis\\Python\\MakeVideo\\MediaContent\\LeandroLearn_Parabéns.png", "lang": "pt", "text": "Excelente trabalho! Você finalizou este treino." }
+        ]
+    ]
+}
