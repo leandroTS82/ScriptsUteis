@@ -69,11 +69,12 @@ def generate_image(word, output_path, mode="landscape"):
 
     prompt = (
         f"Generate a vibrant and friendly educational {mode} thumbnail featuring "
-        f"Leandrinho, an upbeat Brazilian English teacher who uses AI technology. "
+        f"Leandrinho, an upbeat Brazilian English teacher who uses technology. "
         f"The theme must clearly show the meaning of '{word}'. "
         f"Leandrinho must be smiling, expressive, confident, and teaching. "
         f"Preserve the character identity from the reference image but allow changes "
         f"in pose, expression, background, lighting, and composition."
+        f"In bellow part of image add the youtube logo subscriber and phase 'curta e compartilhe'"
     )
 
     print("🧠 Gerando imagem com IA (Gemini Flash Image)...")
