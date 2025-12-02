@@ -1,3 +1,14 @@
+$rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
+$outputFile    = ".\files\allsetra-platform-backend.txt"
+
+$selectedFiles = @("ServiceCollectionExtensions")    
+$onlyFolders   = @(
+    "AllsetraPlatform.BE.Infrastructure",
+    "Allsetra.Platform.BE.AppHost",
+    "Allsetra.Platform.BE.API",
+    "Allsetra.Platform.BE.ServiceDefaults",
+    "AllsetraPlatform.BE.Domain"
+)
 $rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\GroqIA_WordBank"
 $outputFile    = ".\files\GroqIA_WordBank.txt"
 
@@ -9,75 +20,109 @@ Este arquivo contem:
 Utilize-o para analise de codigo, auditoria ou documentacao do projeto.
 "@
 
-# Itens (pastas/arquivos) a ignorar por nome OU parte do caminho
+# Exclusões por nome/pasta
 $exceptions = @(
-    "node_modules",
-    "bin",
-    ".idea",
-    ".github",
-    "Properties",
-    "obj",
-    ".git",
-    ".vs",
-    "dist",
-    "Migrations",
-    "Class1.cs",
-    "certificates",
-    "Resources",
-    "Usings.cs",
-    "data"
+    "node_modules","bin",".idea",".github","Properties","obj",".git",".vs",
+    "dist","Migrations","Class1.cs","certificates","Resources","Usings.cs","data"
 )
 
-# Extensoes a ignorar
+# Extensões a ignorar
 $exceptionsExtensions = @(
-    ".png",".jpg",".jpeg",".gif",".ico",
-    ".exe",".dll",".pdb",
-    ".zip",".rar",".7z",
-    ".db",".mdf",".ldf",
-    ".pdf",".mp4",".http",".user",".csproj",".sln"
+    ".png",".jpg",".jpeg",".gif",".ico",".exe",".dll",".pdb",".zip",".rar",".7z",
+    ".db",".mdf",".ldf",".pdf",".mp4",".http",".user",".csproj",".sln"
 )
 
-# Mostrar arquivos na arvore (true = lista arquivos; false = so diretorios)
 $showFiles = $true
 
-# Pastas a incluir (nome exato, sem considerar maiúsculas/minúsculas)
-$onlyFolders = @()  # Ex: @("Pasta1","Pasta2")
-
-# Extensões a incluir (com ponto e minúsculas)
-$onlyExtensions = @() # Ex: @(".docx",".txt")
-
 # --------- Helpers ---------
+
 function Should-ExcludePath {
-    param([string]$path, [string[]]$terms)
+    param([string]$path,[string[]]$terms)
     foreach ($t in $terms) {
         if ($path -like "*$t*") { return $true }
     }
     return $false
 }
 
-function Should-IncludePath {
-    param([string]$path, [string[]]$folders, [string[]]$exts)
+# -------------------------
+# MATCH SELECTED FILES
+# -------------------------
+function Match-SelectedFile {
+    param(
+        [string]$fileName,
+        [string[]]$patterns
+    )
 
-    if (($folders.Count -eq 0) -and ($exts.Count -eq 0)) { return $true }
+    # selectedFiles vazio → não matcha nada!
+    if ($patterns.Count -eq 0) { 
+        return $false
+    }
+
+    foreach ($pattern in $patterns) {
+        $p = $pattern.ToLower()
+        $nameLower = $fileName.ToLower()
+
+        # Caso: nome completo exato + extensão
+        if ($p -like "*.cs") {
+            if ($nameLower -eq $p) { return $true }
+        }
+        else {
+            # Caso: contém trecho
+            if ($nameLower -like "*$p*") { return $true }
+        }
+    }
+    return $false
+}
+
+# -------------------------
+# CONTROLE DE INCLUSÃO
+# -------------------------
+function Should-IncludePath {
+    param(
+        [string]$path,
+        [string[]]$onlyFolders,
+        [string[]]$onlyExtensions,
+        [string[]]$selectedFiles
+    )
 
     $pathLower = $path.ToLower()
-    $pathMatch = $false
-    $extMatch  = $false
+    $fileName = [System.IO.Path]::GetFileName($pathLower)
+    $extension = [System.IO.Path]::GetExtension($pathLower)
 
-    foreach ($f in $folders) {
+    # 1. selectedFiles tem prioridade máxima
+    if (Match-SelectedFile -fileName $fileName -patterns $selectedFiles) {
+        return $true
+    }
+
+    # 2. Controlar folders explicitamente permitidos
+    foreach ($f in $onlyFolders) {
         $folderLower = $f.ToLower()
         if ($pathLower -match "[\\/]$folderLower([\\/]|$)") { 
-            $pathMatch = $true
-            break 
+            return $true
         }
     }
 
-    $extension = [System.IO.Path]::GetExtension($path).ToLower()
-    if ($exts -contains $extension) { $extMatch = $true }
+    # 3. Extensões desejadas
+    if ($onlyExtensions.Count -gt 0 -and ($onlyExtensions -contains $extension)) {
+        return $true
+    }
 
-    return ($pathMatch -or $extMatch)
+    # 4. Caso especial — selectedFiles vazio e onlyFolders ativo → não incluir outros caminhos
+    if ($onlyFolders.Count -gt 0 -and $selectedFiles.Count -eq 0) {
+        return $false
+    }
+
+    # 5. Só libera tudo SEM QUALQUER filtro
+    if ($onlyFolders.Count -eq 0 -and $onlyExtensions.Count -eq 0 -and $selectedFiles.Count -eq 0) {
+        return $true
+    }
+
+    return $false
 }
 
+# -------------------------
+# LISTAGEM DA ÁRVORE
+# -------------------------
 function List-FolderContent {
     param(
         [string]$path,
@@ -86,31 +131,13 @@ function List-FolderContent {
 
     $indent = ("|   " * $indentLevel)
 
-    # Pastas (respeita exclusões, mas percorre todas)
     $dirs = Get-ChildItem -Path $path -Directory -ErrorAction SilentlyContinue |
             Where-Object { -not (Should-ExcludePath -path $_.FullName -terms $exceptions) } |
             Sort-Object Name
 
     foreach ($dir in $dirs) {
-        $shouldShow = $false
 
-        if ($onlyFolders.Count -gt 0) {
-            # Se houver pastas na lista, mostra se a própria pasta ou algo dentro dela bate
-            $shouldShow = (Should-IncludePath -path $dir.FullName -folders $onlyFolders -exts $onlyExtensions) -or
-                          (Get-ChildItem -Path $dir.FullName -Recurse -File -ErrorAction SilentlyContinue |
-                           Where-Object { Should-IncludePath -path $_.FullName -folders $onlyFolders -exts $onlyExtensions } |
-                           Select-Object -First 1)
-        }
-        elseif ($onlyExtensions.Count -gt 0) {
-            # Só mostra se houver arquivo com extensão desejada dentro
-            $shouldShow = (Get-ChildItem -Path $dir.FullName -Recurse -File -ErrorAction SilentlyContinue |
-                           Where-Object { Should-IncludePath -path $_.FullName -folders $onlyFolders -exts $onlyExtensions } |
-                           Select-Object -First 1)
-        }
-        else {
-            # Sem filtros → mostra tudo (respeitando exclusões)
-            $shouldShow = $true
-        }
+        $shouldShow = (Should-IncludePath -path $dir.FullName -onlyFolders $onlyFolders -onlyExtensions $onlyExtensions -selectedFiles $selectedFiles)
 
         if ($shouldShow) {
             Add-Content -Path $outputFile -Value "$indent|-- $($dir.Name)"
@@ -124,7 +151,7 @@ function List-FolderContent {
                  Where-Object {
                     -not (Should-ExcludePath -path $_.FullName -terms $exceptions) -and
                     (-not ($exceptionsExtensions -contains $_.Extension.ToLower())) -and
-                    (Should-IncludePath -path $_.FullName -folders $onlyFolders -exts $onlyExtensions)
+                    (Should-IncludePath -path $_.FullName -onlyFolders $onlyFolders -onlyExtensions $onlyExtensions -selectedFiles $selectedFiles)
                  } |
                  Sort-Object Name
 
@@ -135,14 +162,15 @@ function List-FolderContent {
 }
 
 function Get-RelativePathSafe {
-    param([string]$root, [string]$full)
+    param([string]$root,[string]$full)
     if ($full.StartsWith($root, [System.StringComparison]::OrdinalIgnoreCase)) {
         return $full.Substring($root.Length).TrimStart('\','/')
     }
     return $full
 }
 
-# --------- Scanner principal ---------
+# --------- Scanner Principal ---------
+
 function ScanProject {
     param(
         [string]$rootDirectory,
@@ -169,7 +197,7 @@ function ScanProject {
 
     Add-Content -Path $outputFile -Value "|"
     Add-Content -Path $outputFile -Value ("=" * 80)
-    Add-Content -Path $outputFile -Value "`r`nCONTEUDO DOS ARQUIVOS (filtrados):`r`n"
+    Add-Content -Path $outputFile -Value "`r`nCONTEUDO DOS ARQUIVOS:`r`n"
 
     Get-ChildItem -Path $rootDirectory -Recurse -File -ErrorAction SilentlyContinue |
     ForEach-Object {
@@ -179,19 +207,18 @@ function ScanProject {
 
         if (Should-ExcludePath -path $filePath -terms $exceptions) { return }
         if ($exceptionsExtensions -contains $_.Extension.ToLower()) { return }
-        if (-not (Should-IncludePath -path $filePath -folders $onlyFolders -exts $onlyExtensions)) { return }
+        if (-not (Should-IncludePath -path $filePath -onlyFolders $onlyFolders -onlyExtensions $onlyExtensions -selectedFiles $selectedFiles)) { return }
 
         $relativePath = Get-RelativePathSafe -root $rootDirectory -full $filePath
 
         try {
-            $fileContent = Get-Content -Path $filePath -ErrorAction Stop
+            $fileContent = Get-Content -Path $filePath
             Add-Content -Path $outputFile -Value "Arquivo: $relativePath"
             Add-Content -Path $outputFile -Value "-----------------------------"
             Add-Content -Path $outputFile -Value $fileContent
             Add-Content -Path $outputFile -Value "`r`n"
         }
         catch {
-            Write-Warning "Nao foi possível ler o arquivo: $relativePath"
             Add-Content -Path $outputFile -Value "Arquivo: $relativePath"
             Add-Content -Path $outputFile -Value "-----------------------------"
             Add-Content -Path $outputFile -Value "[ERRO AO LER O ARQUIVO]"
