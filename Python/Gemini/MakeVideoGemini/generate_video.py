@@ -8,4 +8,5 @@ def build_video(word, images_dir, audio_dir, output_path):
     bg = ImageClip(img_path).set_duration(narration.duration)
 
     final = bg.set_audio(narration)
+
     final.write_videofile(output_path, fps=30)

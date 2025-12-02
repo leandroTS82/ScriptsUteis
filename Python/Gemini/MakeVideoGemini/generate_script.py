@@ -6,26 +6,25 @@ def extract_json(text):
     match = re.search(r"\{.*\}", text, re.DOTALL)
     return match.group(0) if match else None
 
-
 def generate_lesson_json(word):
     config = GeminiConfig()
     model = config.get_text()
 
     prompt = f"""
-    Gere APENAS um JSON válido, seguindo EXATAMENTE este formato:
+    Gere APENAS um JSON válido, seguindo exatamente este formato:
 
     {{
       "repeat_each": {{"pt": 1, "en": 2}},
-      "introducao": "Introdução curta explicando a palavra '{word}'.",
+      "introducao": "Introdução curta estilo YouTuber explicando a palavra '{word}'.",
       "nome_arquivos": "Tema_{word}",
       "WORD_BANK": [
         [
           {{ "lang": "en", "text": "{word}", "pause": 1000 }},
           {{ "lang": "pt", "text": "Explique o significado de '{word}'." }},
-          {{ "lang": "en", "text": "Crie frase simples com '{word}'.", "pause": 1000 }},
-          {{ "lang": "en", "text": "Crie segunda frase curta com '{word}'.", "pause": 1000 }},
-          {{ "lang": "en", "text": "Crie frase longa contendo '{word}'.", "pause": 1000 }},
-          {{ "lang": "pt", "text": "Mensagem final estilo YouTuber." }}
+          {{ "lang": "en", "text": "Crie uma frase simples com '{word}'.", "pause": 1000 }},
+          {{ "lang": "en", "text": "Crie outra frase curta com '{word}'.", "pause": 1000 }},
+          {{ "lang": "en", "text": "Crie uma frase mais longa com '{word}'.", "pause": 1000 }},
+          {{ "lang": "pt", "text": "Mensagem final estilo YouTuber incentivando a continuar estudando." }}
         ]
       ]
     }}
@@ -33,14 +32,10 @@ def generate_lesson_json(word):
 
     response = model.generate_content(prompt)
     raw = response.text.strip()
+
     json_text = extract_json(raw)
-
     if not json_text:
-        fix_prompt = f"Corrija este conteúdo e retorne APENAS JSON válido:\n\n{raw}"
-        fix_response = model.generate_content(fix_prompt)
-        json_text = extract_json(fix_response.text.strip())
-
-    if not json_text:
-        raise ValueError("❌ ERRO: Gemini não retornou JSON válido.")
+        fix = model.generate_content(f"Corrija este JSON e retorne apenas JSON válido:\n{raw}")
+        json_text = extract_json(fix.text.strip())
 
     return json.loads(json_text)

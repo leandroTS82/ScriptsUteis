@@ -23,3 +23,12 @@ Python/ContentFabric/5youtube-upload/token.json
 Python/ContentFabric/3MakeVideo/google-tts.json
 Python/ContentFabric/5youtube-upload/client_secret.json
 Python/ContentFabric/1GroqIA_WordBank/2ContentToCreate/
+Python/Gemini/MakeVideoGemini/outputs/
+Python/Gemini/MakeVideoGemini/__pycache__
+Python/Gemini/MakeVideoGemini/__pycache__/gemini_config.cpython-312.pyc
+Python/Gemini/MakeVideoGemini/__pycache__/generate_image.cpython-312.pyc
+Python/Gemini/MakeVideoGemini/__pycache__/gemini_config.cpython-312.pyc
+Python/Gemini/MakeVideoGemini/__pycache__/generate_audio.cpython-312.pyc
+Python/Gemini/MakeVideoGemini/__pycache__/generate_image.cpython-312.pyc
+Python/Gemini/MakeVideoGemini/__pycache__/generate_script.cpython-312.pyc
+Python/Gemini/MakeVideoGemini/__pycache__/generate_video.cpython-312.pyc
