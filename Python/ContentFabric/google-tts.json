@@ -1,13 +1,13 @@
 {
   "type": "service_account",
   "project_id": "vibrant-petal-478619-k9",
-  "private_key_id": "5f7f6e3f16e688e49c9e9040d41b83431ce1eb75",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCobmcojDBBz9Vv\nXdX2BFC2mEj3PTT7LzV5eb7PMzspAsouyOhTInBBQVzr+C8HGk9AZx/ovWFW5sod\njPIK4nEg3ps0isNW3BobSFOF9uOadISVhJOyFDvcv9ryAh4MphcWq2jkvtKAXet3\nlwnBco/fWOTHnJuFhfjnw3I1IpUkAipVc27pGJ0NTYq07aoX+HjJLq4NRJUwkVlO\n18xQyAY5c77Yax7fIgmuE3MB5aylRU3iOVeDjWt7+krVCBKhI4WBpOj1bSHe/WRp\nTiRixr1dNIU7bJKabTsyGFbLDYlclXJbR2WxbWFNdgTbKDvDyOx7ra08uTDjih6U\nx13i31AxAgMBAAECggEAAjYaXL778HZChaz6RtnLRz1wOk5Den+F/MV9XMYt+vms\nVsFIoxRI++NYPWkfkXDeDOD5u1YWr8PVkB4iTKQo0vMXP7Epc8PNpDFutsvdNME+\nPyILqB8xwsICVXJzi2wYEiIvnS637+tjwLkC/dcjpk2aCdifllkCIcVYM9RDl+KZ\nsCzuwShJxnRLBM+wDQdAK8t4iP0CYb0X7Jm7udFfPR6jc2IR3AuCV6YSXjcGr/4d\nymFwaQ45c10IK8XvMu/52R7P2xlD/RQoFBH7P9S7zIOW1mi5FLb/4qKsYxwdfu4X\nidHgs/x8x6/PDtaPJuF0i4m2ja8Qqg+ARDPV8maYoQKBgQDVc/+aevYZTt0mvqVp\n6A8Ok6QXsArBndBExgRXZTxy8sRafhAZhySbESyS85EACycSj6+eSoAhq0AtUfEB\nzZa5bhsPj31Ha4ku8u03HrPAwma2IchijZzWfN3qEQcj+P/qH49SIhi4WI3Sm3q1\nkwbq4We5mkDdGq7VzgA1CD0JUQKBgQDKAQwD272jHcGai4pJPAoCOtrDv6MTomGs\n9RPZBXmYcrMEBgBtYwmSMb6mGjnaD8qBnPZFInl0aM29144oWamI5oJTQq53GyOu\nnfMxygn8NwSr+W9hXUnm2kohhJAnrTtt5DwregBJ660L6uLW7hlxwJOwiWMUumVn\nsg0WvxAg4QKBgG9SDtT/Gcf7JEUnmlcQaoHcp/CepA10A4FKkEsQBiWgzJyxMC5Q\nF9wzab69/jo6lscMXre7/PUSPeck2/9nvBq6/Kvx1pFf2Oy+Ts63WWHHQQ/tsHcN\nieUmvAltlf7Bxp3Qlcts8t15eYWEBswZgLsQkSrv8rIdT188D0mZIVPxAoGAW5Mp\n7T3atG2y7OrBX/3V07j2n7LqrOX6PbxEqSewPgoRWYuW+f/hwOLIOOi+vTpXZXbQ\ntfqw8LLqQlvL2EL9dlB5WGFsUhZ9kJWOQE4FRM90ULodYhg2fm8LGDLOXw5LWMAU\n/uip5Njwc+yhtSnvYwAYc/l0b1soyV+QS3WGTEECgYBkHyCnIIUEXR2JyC6QFad8\n0mpJ2ZZaouGH69uAzVKZmdY0Er8rmeU+ZT2BmSwaBOzTtMLi4MCWTtngRqecI+8w\nqjchmrAShwLrFOuZzezDh2XCaVd+7fWLo+14JHXBPO6gBHzqwloCiJ1VSX9fMeqO\nojkCIzxoFJXPyGUk1STJAg==\n-----END PRIVATE KEY-----\n",
-  "client_email": "makevideo-tts@vibrant-petal-478619-k9.iam.gserviceaccount.com",
+  "private_key_id": "***",
+  "private_key": "***",
+  "client_email": "***",
   "client_id": "114450847033987430696",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/makevideo-tts%40vibrant-petal-478619-k9.iam.gserviceaccount.com",
+  "client_x509_cert_url": "***",
   "universe_domain": "googleapis.com"
 }
