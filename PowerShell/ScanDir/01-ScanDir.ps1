@@ -1,16 +1,8 @@
-$rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
-$outputFile    = ".\files\allsetra-platform-backend.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini"
+$outputFile    = ".\files\Gemini\Gemini.txt"
 
-$selectedFiles = @("ServiceCollectionExtensions")    
-$onlyFolders   = @(
-    "AllsetraPlatform.BE.Infrastructure",
-    "Allsetra.Platform.BE.AppHost",
-    "Allsetra.Platform.BE.API",
-    "Allsetra.Platform.BE.ServiceDefaults",
-    "AllsetraPlatform.BE.Domain"
-)
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\GroqIA_WordBank"
-$outputFile    = ".\files\GroqIA_WordBank.txt"
+$selectedFiles = @("")    
+$onlyFolders   = @()
 
 # Descricao do conteudo do arquivo de saída
 $outputDescription = @"

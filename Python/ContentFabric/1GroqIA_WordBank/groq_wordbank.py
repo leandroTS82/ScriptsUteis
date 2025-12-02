@@ -12,7 +12,6 @@
     - Aceitar WordBank no formato correto OU achatado
 =====================================================================
 """
-
 import os
 import json
 import sys
@@ -26,8 +25,17 @@ SYSTEM_PROMPT_FILE = "./systemPrompt.json"
 BASE_PROMPT_FILE = "./userPromptBase.json"
 TRANSLATOR_PROMPT = "./translator_prompt.json"
 
-OUTPUT_DIR = "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\ContentToCreate"
+OUTPUT_DIR = "./2ContentToCreate"
 MODEL_NAME = "openai/gpt-oss-20b"
+
+# ANSI COLORS
+C_RESET = "\033[0m"
+C_TITLE = "\033[96m"
+C_GREEN = "\033[92m"
+C_YELLOW = "\033[93m"
+C_BLUE = "\033[94m"
+C_MAGENTA = "\033[95m"
+C_BOLD = "\033[1m"
 
 
 # ---------------------------------------------
@@ -81,14 +89,22 @@ def translate_to_en(text):
 def parse_words(arg):
     arg = arg.strip()
 
+    # ["a", "b"]
     if arg.startswith("[") and arg.endswith("]"):
         words = json.loads(arg)
         return [w.strip() for w in words], True
 
+    # {word}
+    if arg.startswith("{") and arg.endswith("}"):
+        clean = arg.replace("{", "").replace("}", "")
+        return [clean.strip()], False
+
+    # multiple with commas
     if "," in arg:
         words = [w.strip() for w in arg.split(",")]
         return words, False
 
+    # single word
     return [arg], False
 
 
@@ -106,19 +122,12 @@ def save_output(content, outname):
 # Ensure WORD_BANK grouped correctly
 # ---------------------------------------------
 def ensure_grouped(wordbank):
-    """
-    Garante que:
-    - Se vier no formato ideal       => [[{obj},{obj}]]
-    - Se vier achatado (lista plana) => [[{obj},{obj}]]
-    """
     if len(wordbank) == 0:
         return [[]]
 
-    # Caso típico errado: [{"lang": ...}, {...}, {...}]
     if isinstance(wordbank[0], dict):
         return [wordbank]
 
-    # Caso WORD_BANK já esteja agrupado
     return wordbank
 
 
@@ -154,36 +163,37 @@ def normalize_wordbank(wordbank):
 
 
 # ---------------------------------------------
-# Terminal Preview
+# Terminal Preview (new improved 🎨)
 # ---------------------------------------------
-def preview_terminal(json_path):
-    data = load_json(json_path)
+def preview_terminal(json_path_or_text, from_memory=False):
+    if from_memory:
+        data = json.loads(json_path_or_text)
+    else:
+        data = load_json(json_path_or_text)
 
-    print("\n\n===============================")
-    print("📝 PREVIEW DO CONTEÚDO GERADO")
-    print("===============================\n")
+    print(f"\n{C_TITLE}{C_BOLD}╔════════════════════════════════════════════╗")
+    print("║            PREVIEW DO WORD BANK           ║")
+    print(f"╚════════════════════════════════════════════╝{C_RESET}\n")
 
-    print("📌 Introdução:")
+    print(f"{C_MAGENTA}{C_BOLD}📌 Introdução:{C_RESET}")
     print(data.get("introducao", ""))
     print()
 
-    print("📁 nome_arquivos:")
+    print(f"{C_MAGENTA}{C_BOLD}📁 nome_arquivos:{C_RESET}")
     print(data.get("nome_arquivos", ""))
     print()
 
-    print("🧠 WORD BANK:\n")
+    print(f"{C_MAGENTA}{C_BOLD}🧠 WORD BANK:{C_RESET}\n")
 
     raw_wordbank = data.get("WORD_BANK", [])
-
     grouped_wordbank = ensure_grouped(raw_wordbank)
-
     wordbank = normalize_wordbank(grouped_wordbank)
 
     for i, group in enumerate(wordbank):
-        print(f"--- Grupo {i+1} ---")
-        
+        print(f"{C_BLUE}{C_BOLD}┌── Grupo {i+1} ─────────────────────┐{C_RESET}")
+
         first = True
-        is_last_group = (i == len(wordbank) - 1)
+        is_last = (i == len(wordbank) - 1)
 
         for item in group:
             lang = item.get("lang")
@@ -191,31 +201,30 @@ def preview_terminal(json_path):
             pause = item.get("pause", None)
 
             if first and lang == "en":
-                print(f"🇺🇸 EN → {text}  (pause={pause})")
+                print(f"{C_GREEN}🇺🇸 Palavra-chave: {text} (pause={pause}){C_RESET}")
                 first = False
                 continue
 
             if lang == "pt" and text.startswith("Significa"):
-                print(f"🇧🇷 PT (definição) → {text}")
+                print(f"{C_YELLOW}📘 Definição PT: {text}{C_RESET}")
                 continue
 
             if lang == "en":
-                print(f"    ➜ Exemplo EN: {text}")
+                print(f"   ➜ Exemplo EN: {text}")
                 continue
 
             if lang == "pt" and not text.startswith("Significa"):
-                if is_last_group:
-                    print(f"⭐ Finalização PT: {text}")
+                if is_last:
+                    print(f"{C_GREEN}⭐ Finalização PT: {text}{C_RESET}")
                 else:
-                    print(f"🔄 Transição PT: {text}")
+                    print(f"{C_YELLOW}🔄 Transição PT: {text}{C_RESET}")
                 continue
 
             print(f"❓ {text}")
 
-        print("\n")
+        print(f"{C_BLUE}{C_BOLD}└───────────────────────────────────────┘{C_RESET}\n")
 
-    print("===============================")
-    print("✔ Fim do preview\n")
+    print(f"{C_GREEN}{C_BOLD}✔ Fim do preview{C_RESET}\n")
 
 
 # ---------------------------------------------
@@ -223,10 +232,19 @@ def preview_terminal(json_path):
 # ---------------------------------------------
 def main():
     if len(sys.argv) < 2:
-        print("Uso: python groq_wordbank.py WORD")
+        print("Uso:")
+        print(" python groq_wordbank.py WORD")
+        print(" python groq_wordbank.py -njson WORD")
         return
 
-    raw_input = sys.argv[1]
+    no_json_mode = False
+
+    # Detecta -njson
+    if sys.argv[1] == "-njson":
+        no_json_mode = True
+        raw_input = " ".join(sys.argv[2:])
+    else:
+        raw_input = sys.argv[1]
 
     words_raw, is_grouped = parse_words(raw_input)
 
@@ -239,8 +257,14 @@ def main():
 
     print("Gerando JSON para:", translated_words)
 
-    json_output = call_groq(system_prompt, base_prompt)
+    json_output_str = call_groq(system_prompt, base_prompt)
 
+    if no_json_mode:
+        # Apenas preview (sem gerar arquivo)
+        preview_terminal(json_output_str, from_memory=True)
+        return
+
+    # Comportamento normal: salvar JSON + preview
     if is_grouped:
         outname = "Group_" + "_".join(translated_words).replace(" ", "_") + ".json"
     else:
@@ -249,8 +273,7 @@ def main():
         else:
             outname = "Multiple_" + "_".join(translated_words) + ".json"
 
-    outpath = save_output(json_output, outname)
-
+    outpath = save_output(json_output_str, outname)
     preview_terminal(outpath)
 
 

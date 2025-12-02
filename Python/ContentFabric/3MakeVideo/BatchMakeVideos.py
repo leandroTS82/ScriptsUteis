@@ -33,7 +33,7 @@ IGNORED_PREFIXES = [
 ]
 
 # Diretório padrão se nenhum argumento for informado
-DEFAULT_ROOT = "./ContentToCreate"
+DEFAULT_ROOT = "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\1GroqIA_WordBank\\2ContentToCreate"
 
 
 def collect_all_json_files(root_dir):

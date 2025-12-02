@@ -1,0 +1,15 @@
+{
+  "repeat_each": { "pt": 1, "en": 2 },
+  "introducao": "",
+  "nome_arquivos": "",
+  "WORD_BANK": [
+    [
+      { "lang": "en", "text": "", "pause": 1000 },
+      { "lang": "pt", "text": "" },
+      { "lang": "en", "text": "", "pause": 1000 },
+      { "lang": "en", "text": "", "pause": 1000 },
+      { "lang": "en", "text": "", "pause": 1000 },
+      { "lang": "pt", "text": "" }
+    ]
+  ]
+}
