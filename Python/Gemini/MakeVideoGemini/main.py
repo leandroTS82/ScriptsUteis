@@ -34,8 +34,20 @@ print(f"✔ JSON salvo em: {json_path}")
 img_path = f"outputs/images/{WORD}.png"
 generate_image(WORD, img_path, mode="landscape")
 
-# ---- 3) Áudio ----
-text = " ".join(item["text"] for item in lesson["WORD_BANK"][0])
+# ---- 3) TEXTO DO ÁUDIO (incluindo introdução) ----
+parts = []
+
+# introdução
+parts.append(lesson["introducao"])
+
+# WORD_BANK completo
+for group in lesson["WORD_BANK"]:
+    for item in group:
+        parts.append(item["text"])
+
+# texto final para TTS
+text = ". ".join(parts)
+
 audio_path = f"outputs/audio/{WORD}.wav"
 generate_audio(text, audio_path, voice="Fenrir")
 
