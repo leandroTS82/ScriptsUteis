@@ -1,0 +1,22 @@
+{
+  "api_key_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\groq_api_key.txt",
+  "system_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\systemPrompt.json",
+  "base_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\makevideoLabelPrompt.json",
+
+  "input_json_dir": "",
+  "videos_dir": "",
+  "output_dir": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\output",
+
+  "enable_thumbnail": false,
+  "thumbnail_max_width": 1280,
+  "thumbnail_max_height": 720,
+
+  "model": "openai/gpt-oss-20b",
+  "temperature": 0.2,
+
+  "video_extensions": [".mp4", ".mov", ".mkv", ".avi"],
+
+  "retry_max_attempts": 5,
+
+  "debug": false
+}

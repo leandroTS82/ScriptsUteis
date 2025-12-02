@@ -72,7 +72,7 @@ How to run
     python transcript.py "C:/Videos" --lang both
 
 Most used example:
-    python transcript.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS\\Communication site - ReunioesGravadas"
+    python transcript.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
 
 Use cases
 ---------------------------------------------------------------

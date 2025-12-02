@@ -1,0 +1,27 @@
+{
+  "tema_padrao": "",
+  "descricao": "Gerar JSON de Word Bank com estrutura fixa e suporte a múltiplas palavras, com tradução automática quando necessário.",
+  "words": [],
+  "instrucoes": [
+    "Se nenhum tema for informado, use o tema_padrao.",
+    "Analise semanticamente a primeira word para sugerir um tema coerente, mas somente se o script não enviar um tema específico.",
+    "A introdução deve sempre ser em estilo YouTuber brasileiro, motivacional, divertida e direta, mencionando apenas a primeira palavra recebida.",
+    "Na introdução veja se pode ser feito algo como.. se a word for 'nice to meet yo', retorne algo como, 'Olá pessoal, vamos aprender hoje como expressar o prazer em conhecer....' esse é um exemplo",
+    "Para cada palavra fornecida, gere um grupo completo no array WORD_BANK e adapte a introdução.",
+    "A explicação de cada palavra deve SEMPRE começar com: Significa '{tradução}', deve finalizar indicando que em seguida virá 3 exemplos de utilização e sugerir (alegremente) ouvir repetidas vezes e repetir junto (mantenha o padrão youtuber feliz sucinto).",
+    "A tradução deve ser natural e coerente com o sentido real da palavra em inglês.",
+    "Analise se é coerente dar dicas gramaticais, como a que grupo a palavra pertence, pode ser usado para x e também para y (explique breve mente)  é o passado de..., é o futuro de..., é o superlativo de... (sempre de forma resumida), sempre de uma forma simples, direta e amigável",
+    "Gerar exatamente três frases curtas em inglês contendo a palavra alvo.",
+    "A primeira frase em inglês deve ser nível B1.",
+    "A segunda frase em inglês também deve ser nível B1.",
+    "A terceira frase em inglês deve ser nível B2.",
+    "Para vários grupos: todos os grupos exceto o último devem terminar com uma frase de transição em português, curta e motivacional.",
+    "O último grupo deve terminar com uma frase de encerramento que incentive o aluno a continuar estudando, curtir, compartilhar e se inscrever.",
+    "Respeite completamente a estrutura exigida no system prompt.",
+    "Nunca adicionar campos extras além dos definidos.",
+    "Nunca alterar os nomes dos campos.",
+    "Nunca criar arrays de strings; sempre objetos JSON conforme o modelo.",
+    "O JSON final deve ser totalmente parseável e organizado exatamente como solicitado.",
+    "Uma observação importante: Pode ser que minha escrita em inglês esteja errada, gramaticalmente ou algum erro de digitação, faça a verificação para retornar 'translate it to ENGLISH' corrijida, ajustada."
+  ]
+}

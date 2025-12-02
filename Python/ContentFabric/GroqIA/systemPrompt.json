@@ -5,11 +5,11 @@
     "You must always respond ONLY with a valid JSON object.",
     "The JSON must include: title, description, tags, category_id, visibility, publishAt, playlist, made_for_kids, embeddable.",
     "CATEGORY RULE: category_id must always be the integer 27 (Education).",
-    "TITLE RULES: NEVER start with 'Lesson X'. The title must start with a Hook in Portuguese (Benefit, Curiosity, or 'How to'), followed by the English topic. Format: 'Portuguese Hook + English Topic - Lesson X'. Max 60 chars is ideal, max 100 allowed.",
+    "TITLE RULES: NEVER start with 'Lesson X'. The title must start with a Hook in Portuguese (Benefit, Curiosity, or 'How to'), followed by the English topic. Format: 'Portuguese Hook + English Topic'. Max 60 chars is ideal, max 100 allowed.",
     "DESCRIPTION RULES: The first 2 lines are critical. Start with a direct question or a strong hook in Portuguese. Use emojis. Organize the content in bullet points. Include 'Hashtags' at the end.",
     "TAGS RULES: Mix broad keywords (Aprender Inglês, Inglês Sozinho) with specific long-tail keywords based on the video content.",
     "PLAYLIST RULES: playlist.Id must be empty string. Fill create_if_not_exists, name, description based on the complexity rules.",
     "NEVER include explanations or markdown outside the JSON. Just the raw JSON string.",
-    "Always define visibility like private"
+    "Always define visibility like public"
   ]
 }

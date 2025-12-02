@@ -1,0 +1,124 @@
+{
+  "_instructions": {
+    "ABOUT_THIS_FILE": "Este arquivo controla TODAS as configurações do MakeVideo.py. Nenhum valor precisa ser alterado dentro do código. Basta ajustar este arquivo.",
+    "PATH_RULE": "IMPORTANTE: Se um caminho NÃO começar com 'C:/' ou '/', ele será interpretado como PASTA RELATIVA ao diretório onde o MakeVideo.py está. Exemplos: './temp', 'Videos', 'img/bg.jpg'.",
+    "VIDEO_RULE": "O tamanho do vídeo deve seguir o padrão [LARGURA, ALTURA]. Fontes precisam estar instaladas no sistema.",
+    "COLORS": "Cores são sempre em RGB. Exemplo: [255, 0, 0] = vermelho.",
+    "BOOLEAN_INFO": "Valores true/false devem estar em minúsculo (JSON).",
+    "TTS_INFO": "Se GOOGLE_TTS falhar e ENABLE_FALLBACK for true, o script usa gTTS automaticamente.",
+    "CUSTOM_FOLDERS": "Cada categoria dentro de ContentCreated pode ter até MAX_ITEMS_PER_FOLDER itens (vídeos + JSONs). Depois disso, será criado um sufixo _2, _3 etc."
+  },
+
+  "paths": {
+    "_instructions": {
+      "TEMP_DIR": "Pasta onde arquivos temporários são criados durante a geração do vídeo.",
+      "OUTPUT_DIR": "Pasta onde o vídeo final será salvo ANTES de ser movido para ContentCreated.",
+      "BACKGROUND_IMAGE": "Imagem principal usada como fundo nítido (pode ser JPG/PNG/GIF/MP4).",
+      "GOOGLE_TTS_CREDENTIALS": "Arquivo JSON de credenciais do Google Cloud TTS.",
+      "BACKGROUND_MUSIC": "Caminho para música de fundo. Se vazio, nenhuma música será adicionada."
+    },
+
+    "TEMP_DIR": "./temp",
+    "OUTPUT_DIR": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\ContentCreated\\20251201",
+    "BACKGROUND_IMAGE": "./default_Image.png",
+    "GOOGLE_TTS_CREDENTIALS": "./google-tts.json",
+    "BACKGROUND_MUSIC": ""
+  },
+
+  "video": {
+    "_instructions": {
+      "VIDEO_SIZE": "Resolução final do vídeo em pixels (exemplo: 1280x720).",
+      "FPS": "Taxa de quadros. 24 é cinematográfico e já ideal.",
+      "TEXT_COLOR": "Cor da fonte das legendas.",
+      "FONT": "Nome da fonte instalada no sistema. Precisa existir.",
+      "TEXT_BG_COLOR": "Cor da caixa translúcida atrás do texto.",
+      "TEXT_BG_OPACITY": "Opacidade da caixa atrás do texto (0 a 1).",
+      "BLUR_AMOUNT": "Intensidade do desfoque de fundo.",
+      "SUBTITLE_POSITION": "Posição do texto: bottom, top ou center.",
+      "BACKGROUND_MUSIC": "Mesmo campo de paths.BACKGROUND_MUSIC. Se preenchido aqui, sobrescreve.",
+      "MUSIC_VOLUME": "Volume da música (0 a 1). 0.15 = 15%.",
+      "VOICE_VOLUME": "Volume da voz TTS (0 a 1).",
+      "MUSIC_FADE_DURATION": "Duração do fade in/out da música.",
+      "MUSIC_LOOP": "Se true, a música repete até o final do vídeo.",
+      "MUSIC_START_AT": "Início da música em segundos.",
+      "MUSIC_STOP_AT": "Tempo final da música. Null = até acabar."
+    },
+
+    "VIDEO_SIZE": [1280, 720],
+    "FPS": 24,
+    "TEXT_COLOR": "white",
+    "FONT": "Arial-Bold",
+    "TEXT_BG_COLOR": [0, 0, 0],
+    "TEXT_BG_OPACITY": 0.55,
+    "BLUR_AMOUNT": 18,
+    "SUBTITLE_POSITION": "bottom",
+
+    "BACKGROUND_MUSIC": "",
+    "MUSIC_VOLUME": 0.16,
+    "VOICE_VOLUME": 1.0,
+    "MUSIC_FADE_DURATION": 2.0,
+    "MUSIC_LOOP": true,
+    "MUSIC_START_AT": 0,
+    "MUSIC_STOP_AT": null
+  },
+
+  "processing": {
+    "_instructions": {
+      "PAUSE_MULTIPLIER": "Multiplica todas as pausas do JSON. Ex: 1.2 aumenta 20%.",
+      "JSON_PREFIX": "Prefixo aplicado ao JSON movido para ContentCreated.",
+      "MAX_ITEMS_PER_FOLDER": "Número máximo de itens por categoria antes de criar _2, _3..."
+    },
+
+    "PAUSE_MULTIPLIER": 1.2,
+    "JSON_PREFIX": "Created_",
+    "MAX_ITEMS_PER_FOLDER": 10
+  },
+
+  "tts": {
+    "_instructions": {
+      "VOICE_MODE": "GOOGLE_TTS ou GTTS.",
+      "VOICE_TYPE": "male ou female.",
+      "ENABLE_FALLBACK": "Se true, usa gTTS quando o Google falhar.",
+      "VOICE_SPEED_ADJUST": "Multiplicador automático por idioma.",
+      "default_voiceSpeed": "Velocidade padrão para cada idioma (configurável por item no JSON).",
+      "default_repeat": "Quantidade de repetições padrão.",
+      "VOICE_MAP": "Mapeamento das vozes WAVENET do Google por idioma e gênero."
+    },
+
+    "VOICE_MODE": "GOOGLE_TTS",
+    "VOICE_TYPE": "male",
+    "ENABLE_FALLBACK": true,
+
+    "VOICE_SPEED_ADJUST": {
+      "pt": 1.0,
+      "en": 0.75,
+      "es": 1.0,
+      "fr": 1.0
+    },
+
+    "default_voiceSpeed": {
+      "pt": 3,
+      "en": 1,
+      "es": 2,
+      "fr": 2
+    },
+
+    "default_repeat": {
+      "pt": 1,
+      "en": 2,
+      "es": 1,
+      "fr": 1
+    },
+
+    "VOICE_MAP": {
+      "pt_female": "pt-BR-Wavenet-F",
+      "pt_male": "pt-BR-Wavenet-B",
+      "en_female": "en-US-Wavenet-F",
+      "en_male": "en-US-Wavenet-D",
+      "es_female": "es-ES-Wavenet-C",
+      "es_male": "es-ES-Wavenet-B",
+      "fr_female": "fr-FR-Wavenet-C",
+      "fr_male": "fr-FR-Wavenet-B"
+    }
+  }
+}

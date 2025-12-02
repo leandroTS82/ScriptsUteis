@@ -1,5 +1,5 @@
-$rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
-$outputFile    = ".\files\Conteudo_allsetra-platform-backend.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\GroqIA_WordBank"
+$outputFile    = ".\files\GroqIA_WordBank.txt"
 
 # Descricao do conteudo do arquivo de saída
 $outputDescription = @"
