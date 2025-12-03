@@ -1,0 +1,82 @@
+import os
+import json
+import subprocess
+import sys
+
+BATCH_FILE = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\1GroqIA_WordBank\2ContentToCreate\CreateLater.json"
+MAIN_SCRIPT = "main.py"
+
+def load_pending():
+    if not os.path.exists(BATCH_FILE):
+        print("❌ O arquivo CreateLater.json não existe!")
+        return []
+
+    with open(BATCH_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    return data.get("pending", [])
+
+
+def save_pending(pending_list):
+    with open(BATCH_FILE, "w", encoding="utf-8") as f:
+        json.dump({"pending": pending_list}, f, indent=2, ensure_ascii=False)
+
+
+def run_word(word):
+    print("\n🟦 Iniciando geração para:", word)
+    print("⏳ Aguarde...\n")
+
+    # ----------- FORÇANDO AMBIENTE UTF-8 NO WINDOWS -----------
+    env = os.environ.copy()
+    env["PYTHONUTF8"] = "1"
+    env["PYTHONIOENCODING"] = "utf-8"
+
+    try:
+        result = subprocess.run(
+            [sys.executable, MAIN_SCRIPT, word],
+            capture_output=False,
+            text=True,
+            encoding="utf-8",
+            env=env
+        )
+        return True
+
+    except Exception as e:
+        print("❌ ERRO AO EXECUTAR main.py:")
+        print(e)
+        return False
+
+
+def run_batch():
+    print("\n🟦 Lendo CreateLater.json...\n")
+
+    pending = load_pending()
+    if not pending:
+        print("🎉 Nada para processar!")
+        return
+
+    print(f"🟦 {len(pending)} itens encontrados na lista.\n")
+
+    still_pending = []
+
+    for word in pending:
+        ok = run_word(word)
+
+        if ok:
+            print(f"\n🟦 ✔ Concluído: {word}")
+        else:
+            print(f"\n⛔ Erro ao processar: {word}")
+            still_pending.append(word)
+            print("➡ Item mantido no pending.\n")
+            break  # interrompe lote
+
+    save_pending(still_pending)
+
+    if not still_pending:
+        print("\n🟦 🎉 Todos os vídeos foram gerados com sucesso!")
+    else:
+        print("\n🟦 ⚠ PROCESSAMENTO INTERROMPIDO — ainda restam itens no pending!")
+
+
+if __name__ == "__main__":
+    run_batch()

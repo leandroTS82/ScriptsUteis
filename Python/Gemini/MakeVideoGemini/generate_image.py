@@ -74,7 +74,7 @@ def generate_image(word, output_path, mode="landscape"):
         f"Leandrinho must be smiling, expressive, confident, and teaching. "
         f"Preserve the character identity from the reference image but allow changes "
         f"in pose, expression, background, lighting, and composition."
-        f"In bellow part of image add the youtube logo subscriber and phase 'curta e compartilhe'"
+        f"In The top part of the image add the youtube logo subscriber and phase 'curta e compartilhe' discreetly"
     )
 
     print("🧠 Gerando imagem com IA (Gemini Flash Image)...")
