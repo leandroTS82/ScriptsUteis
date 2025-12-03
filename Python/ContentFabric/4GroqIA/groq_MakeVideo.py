@@ -70,12 +70,12 @@ def load_json(path):
     return json.load(open(path, "r", encoding="utf-8"))
 
 
-def save_output_json(content, suffix=""):
+# ✔ AJUSTADO — metadata agora tem o nome EXATO do arquivo
+def save_output_json(content, base_name):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    filename = os.path.join(
-        OUTPUT_DIR,
-        f"metadata_{suffix}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    )
+
+    filename = os.path.join(OUTPUT_DIR, f"{base_name}.json")
+
     open(filename, "w", encoding="utf-8").write(content)
     return filename
 
@@ -96,12 +96,16 @@ def write_json_for_video(dest_dir, video_path, metadata_text):
     return out_json
 
 
+# ✔ AJUSTADO — agora o prefixo é AlteradoPorgroq_MakeVideo_
 def rename_processed(input_path):
     folder = os.path.dirname(input_path)
     old = os.path.basename(input_path)
-    new = os.path.join(folder, f"ToGroq_{old}")
-    os.rename(input_path, new)
-    return new
+
+    new_name = f"AlteradoPorgroq_MakeVideo_{old}"
+    new_path = os.path.join(folder, new_name)
+
+    os.rename(input_path, new_path)
+    return new_path
 
 
 # ======================================================================
@@ -195,7 +199,7 @@ def main():
 
     files = [
         f for f in os.listdir(json_dir)
-        if f.endswith(".json") and not f.lower().startswith("togroq_")
+        if f.endswith(".json") and not f.lower().startswith("alteradoporgroq_makevideo_")
     ]
 
     print(f"Encontrados {len(files)} arquivo(s)\n")
@@ -221,7 +225,8 @@ def main():
         print("🚀 Chamando Groq...")
         metadata = call_groq(system_prompt, merged_prompt)
 
-        out_meta_path = save_output_json(metadata, suffix=nome)
+        # ✔ AJUSTADO — metadata salva com nome EXATO
+        out_meta_path = save_output_json(metadata, base_name=nome)
         print(f"✔ Metadata salva: {out_meta_path}")
 
         print("🎥 Localizando vídeo...")
@@ -240,6 +245,7 @@ def main():
         else:
             print("⏭ Thumbnail desativado (config).")
 
+        # ✔ AJUSTADO — renomeia com prefixo correto
         new_path = rename_processed(full_path)
         print(f"🔁 Renomeado para: {new_path}")
 
