@@ -15,15 +15,15 @@ def generate_lesson_json(word):
 
     {{
       "repeat_each": {{"pt": 1, "en": 2}},
-      "introducao": "Introdução curta estilo YouTuber explicando a palavra '{word}'.",
-      "nome_arquivos": "Tema_{word}",
+      "introducao": "Introdução curta e animada estilo ten teacher YouTuber explicando a palavra '{word}'.",
+      "nome_arquivos": "{word}",
       "WORD_BANK": [
         [
           {{ "lang": "en", "text": "{word}", "pause": 1000 }},
           {{ "lang": "pt", "text": "Explique o significado de '{word}'." }},
-          {{ "lang": "en", "text": "Crie uma frase simples com '{word}'.", "pause": 1000 }},
-          {{ "lang": "en", "text": "Crie outra frase curta com '{word}'.", "pause": 1000 }},
-          {{ "lang": "en", "text": "Crie uma frase mais longa com '{word}'.", "pause": 1000 }},
+          {{ "lang": "en", "text": "Crie uma frase simples (A2) com '{word}'.", "pause": 1000 }},
+          {{ "lang": "en", "text": "Crie outra frase curta (B2) com '{word}'.", "pause": 1000 }},
+          {{ "lang": "en", "text": "Crie uma frase um pouco mais longa (B2) com '{word}'.", "pause": 1000 }},
           {{ "lang": "pt", "text": "Mensagem final estilo YouTuber incentivando a continuar estudando." }}
         ]
       ]

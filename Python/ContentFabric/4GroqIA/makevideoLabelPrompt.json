@@ -1,6 +1,6 @@
 {
-  "Intent1": "Analyze the vocabulary complexity. create Wordbank and Phrases playlist.",
-  "Intent2": "GENERATE A CLICKBAIT-STYLE TITLE (Ethical Clickbait). Don't just describe the content, sell the benefit. Examples of good patterns: 'Como usar [Topico] sem errar', 'A diferença entre [A] e [B]', 'Aprenda [Topico] em 5 minutos'.",
+  "Intent1": "Playlist name shall be {defined with theme}",
+  "Intent2": "GENERATE A CLICKBAIT-STYLE TITLE (Ethical Clickbait), a Smile title as a ten teacher influencer from youtube. Don't just describe the content, sell the benefit.",
   "Intent3": "Context: The target audience is Brazilians learning English. Ensure the hook is in Portuguese, but the key English terms remain in English.",
   "Intent4": "Description Structure: 1. Hook (PT), 2. What you will learn (Bulleted list), 3. Call to Action (Subscribe), 4. Key Vocabulary List."
 }

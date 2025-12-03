@@ -101,7 +101,7 @@ def rename_processed(input_path):
     folder = os.path.dirname(input_path)
     old = os.path.basename(input_path)
 
-    new_name = f"AlteradoPorgroq_MakeVideo_{old}"
+    new_name = f"{old}"
     new_path = os.path.join(folder, new_name)
 
     os.rename(input_path, new_path)
