@@ -262,6 +262,41 @@ def main():
     if no_json_mode:
         # Apenas preview (sem gerar arquivo)
         preview_terminal(json_output_str, from_memory=True)
+
+        # ------------------------------------------
+        # NOVO RECURSO: Registrar em CreateLater.json
+        # ------------------------------------------
+        word_to_add = translated_words[0]
+
+        create_later_path = "./2ContentToCreate/CreateLater.json"
+
+        # Se não existir → criar arquivo novo
+        if not os.path.exists(create_later_path):
+            data = {"pending": [word_to_add]}
+            open(create_later_path, "w", encoding="utf-8").write(
+                json.dumps(data, indent=2, ensure_ascii=False)
+            )
+            print(f"📌 CreateLater.json criado e palavra adicionada: {word_to_add}")
+            return
+
+        # Se já existir → carregar e acrescentar palavra (se não existir)
+        try:
+            existing = json.loads(open(create_later_path, "r", encoding="utf-8").read())
+        except:
+            existing = {"pending": []}  # fallback de segurança
+
+        if "pending" not in existing:
+            existing["pending"] = []
+
+        if word_to_add not in existing["pending"]:
+            existing["pending"].append(word_to_add)
+            open(create_later_path, "w", encoding="utf-8").write(
+                json.dumps(existing, indent=2, ensure_ascii=False)
+            )
+            print(f"📌 Palavra adicionada ao CreateLater.json: {word_to_add}")
+        else:
+            print(f"ℹ Palavra já existia no CreateLater.json: {word_to_add}")
+
         return
 
     # Comportamento normal: salvar JSON + preview
