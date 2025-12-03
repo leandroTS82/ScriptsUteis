@@ -1,11 +1,11 @@
 {
-  "api_key_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\groq_api_key.txt",
-  "system_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\systemPrompt.json",
-  "base_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\makevideoLabelPrompt.json",
+  "api_key_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\groq_api_key.txt",
+  "system_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\systemPrompt.json",
+  "base_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\makevideoLabelPrompt.json",
 
   "input_json_dir": "",
   "videos_dir": "",
-  "output_dir": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\output",
+  "output_dir": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\output",
 
   "enable_thumbnail": false,
   "thumbnail_max_width": 1280,

@@ -10,6 +10,9 @@
   - Suporte a debug
   - NOVO: Se apenas 1 path for informado → usar o mesmo diretório
 =====================================================================
+
+python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\Gemini\\MakeVideoGemini\\outputs\\videos"
+
 """
 
 import os
@@ -25,7 +28,7 @@ from generate_thumbnail import create_thumbnail
 # LOAD GLOBAL CONFIG
 # ======================================================================
 
-CONFIG_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\GroqIA\\groq_MakeVideo.json"
+CONFIG_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\groq_MakeVideo.json"
 
 if not os.path.exists(CONFIG_FILE):
     raise FileNotFoundError(f"Config file not found: {CONFIG_FILE}")
