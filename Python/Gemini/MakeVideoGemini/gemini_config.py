@@ -9,8 +9,8 @@ class GeminiConfig:
         self.api_key = self._load_key()
         self._configure_sdk()
 
-        self.MODEL_TEXT = "gemini-3-pro-preview"
-        self.MODEL_AUDIO = "gemini-3-pro-preview"
+        self.MODEL_TEXT = "gemini-2.5-pro"
+        self.MODEL_AUDIO = "gemini-2.5-pro"
 
     def _load_key(self):
         if not os.path.exists(self.key_path):

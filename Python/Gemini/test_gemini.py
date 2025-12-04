@@ -12,7 +12,7 @@ with open(key_path, "r") as f:
 genai.configure(api_key=api_key)
 
 try:
-    model = genai.GenerativeModel("gemini-3-pro-preview")
+    model = genai.GenerativeModel("gemini-2.5-pro")
     response = model.generate_content("Say hello!")
     print("✅ Chave funcionando!")
     print("Resposta:", response.text)

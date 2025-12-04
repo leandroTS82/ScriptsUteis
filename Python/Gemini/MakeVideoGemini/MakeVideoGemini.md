@@ -95,9 +95,9 @@ class GeminiConfig:
         self.api_key = self._load_key()
         self._configure_sdk()
 
-        self.MODEL_TEXT = "gemini-3-pro-preview"
-        self.MODEL_IMAGE = "gemini-3-pro-preview"
-        self.MODEL_AUDIO = "gemini-3-pro-preview"
+        self.MODEL_TEXT = "gemini-2.5-pro"
+        self.MODEL_IMAGE = "gemini-2.5-pro"
+        self.MODEL_AUDIO = "gemini-2.5-pro"
 
     def _load_key(self):
         if not os.path.exists(self.key_path):
@@ -318,7 +318,7 @@ Moviepy - Writing video awesome.mp4
 Seu projeto Gemini só aceita:
 
 ```
-gemini-3-pro-preview
+gemini-2.5-pro
 ```
 
 ### 2) FFmpeg não encontrado

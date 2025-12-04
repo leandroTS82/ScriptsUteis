@@ -232,13 +232,13 @@ def rename_uploaded_files(video_path, json_path=None):
     directory = os.path.dirname(video_path)
 
     video_name = os.path.basename(video_path)
-    new_video_name = f"uploaded_{timestamp}_{video_name}"
+    new_video_name = f"uploaded_{video_name}"
     os.rename(video_path, os.path.join(directory, new_video_name))
     print(f"Renamed video → {new_video_name}")
 
     if json_path and os.path.exists(json_path):
         json_name = os.path.basename(json_path)
-        new_json_name = f"uploaded_{timestamp}_{json_name}"
+        new_json_name = f"uploaded_{json_name}"
         os.rename(json_path, os.path.join(directory, new_json_name))
         print(f"Renamed metadata → {new_json_name}")
 
@@ -284,7 +284,7 @@ def process_single_mode():
              timestamp = datetime.now().strftime("%Y%m%d%H%M")
              dir_name = os.path.dirname(thumb_path)
              base_name = os.path.basename(thumb_path)
-             os.rename(thumb_path, os.path.join(dir_name, f"uploaded_{timestamp}_{base_name}"))
+             os.rename(thumb_path, os.path.join(dir_name, f"uploaded_{base_name}"))
 
         print("All tasks completed successfully.")
 
@@ -355,7 +355,7 @@ def process_batch_mode(directory):
             # Renomeia a thumbnail também para evitar confusão futura
             if thumb_path and os.path.exists(thumb_path):
                  timestamp = datetime.now().strftime("%Y%m%d%H%M")
-                 new_thumb_name = f"uploaded_{timestamp}_{os.path.basename(thumb_path)}"
+                 new_thumb_name = f"uploaded_{os.path.basename(thumb_path)}"
                  os.rename(thumb_path, os.path.join(directory, new_thumb_name))
                  print(f"Renamed thumbnail → {new_thumb_name}")
 
