@@ -1,15 +1,14 @@
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini"
-$outputFile    = ".\files\Gemini\Gemini.txt"
+# allsetra-admin-portal-backend
+# allsetra-platform-backend"
 
-$selectedFiles = @("")    
-$onlyFolders   = @()
+$rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
+$outputFile    = ".\files\allsetra-platform-backend.txt"
+
+$selectedFiles = @()    
+$onlyFolders   = @("TheftReports","Allsetra.Platform.BE.Api", "Allsetra.Platform.BE.AppHost","AllsetraPlatform.BE.Dispatching")
 
 # Descricao do conteudo do arquivo de saída
 $outputDescription = @"
-Este arquivo contem:
-1. Estrutura completa de diretorios e arquivos do projeto.
-2. Conteudo de todos os arquivos permitidos.
-Utilize-o para analise de codigo, auditoria ou documentacao do projeto.
 "@
 
 # Exclusões por nome/pasta
