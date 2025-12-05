@@ -140,7 +140,7 @@ def handle_youtube_limit_reached(directory=None):
     if directory is None:
         directory = os.getcwd()
 
-    save_report(directory)
+    save_report("./")
     sys.exit(0)
 
 
@@ -329,7 +329,7 @@ def process_single_mode():
 
     if not video_id:
         add_error_to_report(video_path, REPORT["last_global_error"])
-        save_report(os.path.dirname(video_path))
+        save_report("./")
         return
 
     upload_thumbnail(video_id, thumb_path)
@@ -342,7 +342,7 @@ def process_single_mode():
     REPORT["total_uploaded"] = 1
     REPORT["videos"].append({"file": video_path, "uploaded": True, "error": None})
 
-    save_report(os.path.dirname(video_path))
+    save_report("./")
 
     print("\n✔ Upload concluído com sucesso!")
 
@@ -405,7 +405,7 @@ def process_batch_mode(directory):
         REPORT["videos"].append({"file": video, "uploaded": True, "error": None})
         REPORT["total_uploaded"] += 1
 
-    save_report(directory)
+    save_report("./")
     print("\n✔ Batch upload completed!")
 
 

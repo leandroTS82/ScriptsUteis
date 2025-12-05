@@ -1,21 +1,18 @@
 """
 ====================================================================================
- Script: mainTranscript.py (Groq + Gemini Hybrid)
+ Script: mainTranscript.py (Groq + Gemini Hybrid + Registro Estendido)
  Funções:
    - Detectar idioma e traduzir PT → EN corrigindo ortografia
    - Corrigir inglês errado
-   - Gerar definição PT + exemplos EN (A2, B1, B2)
-   - Preview colorido extremamente limpo
-   - Explicar rapidamente o motivo do erro
-   - Exibir modelo utilizado (Groq ou Gemini)
+   - Gerar definição PT + 3 exemplos EN (A2, B1, B2)
+   - Exemplos obrigatoriamente frases completas
+   - Preview colorido
+   - Explicar motivo do erro
+   - Indicar modelo utilizado (Groq ou Gemini)
    - Registrar frase corrigida no CreateLater.json (sem ponto final)
-   - EXECUÇÃO INTELIGENTE:
-         ✔ Primeiro tenta GROQ
-         ✔ Se Groq falhar → fallback para GEMINI
-         ✔ Flag -Gemini → força uso do Gemini
+   - Registrar resultado em TranscriptResults.json
+   - Groq → fallback Gemini → forçar Gemini com -Gemini
 ====================================================================================
-Python mainTranscript.py ""
-
 """
 
 import os
@@ -36,37 +33,66 @@ GEMINI_KEY_PATH = "../Gemini/google-gemini-key.txt"
 GEMINI_MODEL = "gemini-2.0-flash"
 
 OUTPUT_CREATE_LATER = "./CreateLater.json"
+OUTPUT_FULL_RESULTS = "./TranscriptResults.json"
 
-# Gemini key
 genai.configure(api_key=open(GEMINI_KEY_PATH, "r").read().strip())
 
 
 # ================================================================================
 # HELPERS
 # ================================================================================
-def sanitize_sentence(s):
-    """Remove trailing punctuation when saving to CreateLater.json"""
+def sanitize_sentence(s: str) -> str:
+    """Remove trailing punctuation and trim whitespace."""
     return s.rstrip(".!? ").strip()
+
+
+def safe_json_dump(path, data):
+    """Save JSON with proper unicode."""
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 
 def load_groq_key():
     return open(GROQ_API_KEY_FILE, "r", encoding="utf-8").read().strip()
 
 
+# ================================================================================
+# SAVE CreateLater.json
+# ================================================================================
 def save_create_later(item):
     item = sanitize_sentence(item)
 
     if not os.path.exists(OUTPUT_CREATE_LATER):
-        json.dump({"pending": [item]}, open(OUTPUT_CREATE_LATER, "w"), indent=2)
+        safe_json_dump(OUTPUT_CREATE_LATER, {"pending": [item]})
         print(f"📌 CreateLater.json criado com: {item}")
         return
 
-    data = json.load(open(OUTPUT_CREATE_LATER, "r"))
-
+    data = json.load(open(OUTPUT_CREATE_LATER, "r", encoding="utf-8"))
     if item not in data["pending"]:
         data["pending"].append(item)
-        json.dump(data, open(OUTPUT_CREATE_LATER, "w"), indent=2)
+        safe_json_dump(OUTPUT_CREATE_LATER, data)
         print(f"📌 Adicionado ao CreateLater.json: {item}")
+
+
+# ================================================================================
+# SAVE TranscriptResults.json (novo recurso)
+# ================================================================================
+def save_transcript_result(palavra, definicao, exemplos):
+    entry = {
+        "palavra_chave": palavra,
+        "definicao_pt": definicao,
+        "exemplos": exemplos
+    }
+
+    if not os.path.exists(OUTPUT_FULL_RESULTS):
+        safe_json_dump(OUTPUT_FULL_RESULTS, [entry])
+        print("📚 TranscriptResults.json criado!")
+        return
+
+    data = json.load(open(OUTPUT_FULL_RESULTS, "r", encoding="utf-8"))
+    data.append(entry)
+    safe_json_dump(OUTPUT_FULL_RESULTS, data)
+    print("📚 Conteúdo registrado em TranscriptResults.json")
 
 
 # ================================================================================
@@ -74,39 +100,25 @@ def save_create_later(item):
 # ================================================================================
 def groq_translate_fix(text):
     prompt = f"""
-Analyze the following sentence. It may contain:
-- Portuguese
-- incorrect English
-- or mixed PT/EN.
+Analyze the input. It may contain Portuguese or incorrect English.
 
-Tasks:
-1. Translate PT → EN if needed.
-2. Fix all grammar if needed.
-3. Return ONLY this JSON:
+Return ONLY JSON:
 {{
  "corrected": "...",
  "had_error": true/false,
- "reason": "quick explanation of the error in 1 short sentence"
+ "reason": "short explanation"
 }}
-
-Respond ONLY with JSON.
 Input: "{text}"
 """
 
     payload = {"model": GROQ_MODEL, "messages": [{"role": "user", "content": prompt}]}
-
-    headers = {
-        "Authorization": f"Bearer {load_groq_key()}",
-        "Content-Type": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {load_groq_key()}", "Content-Type": "application/json"}
 
     try:
-        resp = requests.post(GROQ_URL, json=payload, headers=headers, timeout=12)
+        resp = requests.post(GROQ_URL, json=payload, headers=headers, timeout=10)
         resp.raise_for_status()
-        msg = resp.json()["choices"][0]["message"]["content"]
-
-        msg_clean = msg[msg.find("{"):msg.rfind("}") + 1]
-        data = json.loads(msg_clean)
+        raw = resp.json()["choices"][0]["message"]["content"]
+        data = json.loads(raw[raw.find("{"):raw.rfind("}") + 1])
         data["model_used"] = "Groq"
         return data
     except Exception:
@@ -118,28 +130,18 @@ Input: "{text}"
 # ================================================================================
 def gemini_translate_fix(text):
     prompt = f"""
-Analyze the following sentence that may contain Portuguese or incorrect English.
-
-Tasks:
-1. Translate PT → EN if needed.
-2. Fix grammar.
-3. Return ONLY this JSON:
+Translate if needed, fix grammar, return only JSON:
 {{
  "corrected": "...",
  "had_error": true/false,
- "reason": "quick explanation of why the input was incorrect"
+ "reason": "short explanation"
 }}
-
 Input: "{text}"
 """
 
     model = genai.GenerativeModel(GEMINI_MODEL)
-    resp = model.generate_content(prompt)
-
-    msg = resp.text.strip()
-    msg_clean = msg[msg.find("{"):msg.rfind("}") + 1]
-
-    data = json.loads(msg_clean)
+    raw = model.generate_content(prompt).text
+    data = json.loads(raw[raw.find("{"):raw.rfind("}") + 1])
     data["model_used"] = "Gemini"
     return data
 
@@ -149,46 +151,43 @@ Input: "{text}"
 # ================================================================================
 def generate_wordbank_data(corrected_sentence, force_gemini=False):
     prompt = f"""
-Create a WordBank-style JSON for the English phrase:
-"{corrected_sentence}"
-
-Return ONLY this JSON:
+Create JSON:
 {{
-  "definition_pt": "explicação NATURAL em português explicando o significado",
-  "examples": [
-    {{"level": "A2", "phrase": "..." }},
-    {{"level": "B1", "phrase": "..." }},
-    {{"level": "B2", "phrase": "..." }}
-  ]
+ "definition_pt": "...",
+ "examples": [
+   {{"level": "A2", "phrase": "..." }},
+   {{"level": "B1", "phrase": "..." }},
+   {{"level": "B2", "phrase": "..." }}
+ ]
 }}
 
 RULES:
-- All examples MUST be in English.
-- Must use EXACT phrase: {corrected_sentence}
-- No comments, no markdown.
+- All 3 examples must be FULL sentences (subject + verb + complement)
+- Each example MUST include the phrase verbatim: "{corrected_sentence}"
+- The sentence CANNOT be just the phrase alone
+- A2 sentence must be simple and short
+- B1 sentence must add context
+- B2 sentence must expand meaning naturally
+- All examples MUST be in English
 """
 
-    if force_gemini:
-        model = genai.GenerativeModel(GEMINI_MODEL)
-        raw = model.generate_content(prompt).text
-    else:
-        try:
+    try:
+        if not force_gemini:
             payload = {"model": GROQ_MODEL, "messages": [{"role": "user", "content": prompt}]}
-            headers = {
-                "Authorization": f"Bearer {load_groq_key()}",
-                "Content-Type": "application/json"
-            }
+            headers = {"Authorization": f"Bearer {load_groq_key()}", "Content-Type": "application/json"}
             resp = requests.post(GROQ_URL, json=payload, headers=headers)
             resp.raise_for_status()
             raw = resp.json()["choices"][0]["message"]["content"]
             model_used = "Groq"
-        except:
-            model = genai.GenerativeModel(GEMINI_MODEL)
-            raw = model.generate_content(prompt).text
-            model_used = "Gemini"
+        else:
+            raise Exception()
 
-    json_clean = raw[raw.find("{"):raw.rfind("}") + 1]
-    data = json.loads(json_clean)
+    except:
+        model = genai.GenerativeModel(GEMINI_MODEL)
+        raw = model.generate_content(prompt).text
+        model_used = "Gemini"
+
+    data = json.loads(raw[raw.find("{"):raw.rfind("}") + 1])
     data["model_used"] = model_used
     return data
 
@@ -231,38 +230,36 @@ def print_preview(original, corrected, had_error, reason, definition_pt, example
 # ================================================================================
 def main():
     if len(sys.argv) < 2:
-        print("Uso: python mainTranscript.py \"frase aqui\"")
+        print("Uso: python mainTranscript.py \"frase\"")
         print("     python mainTranscript.py -Gemini \"frase\"")
         return
 
     force_gemini = sys.argv[1] == "-Gemini"
-    original = " ".join(sys.argv[2:] if force_gemini else sys.argv[1:])
+    original = " ".join(sys.argv[2:] if force_gemini else sys.argv[1:]).strip()
 
     print("🔍 Processando:", original)
 
-    # 1) Tradução + correção
-    if force_gemini:
-        result = gemini_translate_fix(original)
-    else:
-        result = groq_translate_fix(original)
-        if result is None:
-            print("⚠️ Groq falhou, alternando para Gemini…")
-            result = gemini_translate_fix(original)
+    # 1) TRADUZIR / CORRIGIR
+    result = gemini_translate_fix(original) if force_gemini else (groq_translate_fix(original) or gemini_translate_fix(original))
 
     corrected = result["corrected"]
     had_error = result["had_error"]
-    reason = result.get("reason", "grammar issue")
+    reason = result["reason"]
     model_used = result["model_used"]
 
-    # 2) Registrar CreateLater.json
+    # 2) SALVAR CreateLater.json
     save_create_later(corrected)
 
-    # 3) Gerar exemplos + definição
+    # 3) GERAR EXPLICAÇÃO + EXEMPLOS
     data = generate_wordbank_data(corrected, force_gemini)
+    definicao = data["definition_pt"]
+    exemplos = data["examples"]
 
-    # 4) Preview
-    print_preview(original, corrected, had_error, reason,
-                  data["definition_pt"], data["examples"], model_used)
+    # 4) PREVIEW
+    print_preview(original, corrected, had_error, reason, definicao, exemplos, model_used)
+
+    # 5) SALVAR TranscriptResults.json
+    save_transcript_result(corrected, definicao, exemplos)
 
 
 if __name__ == "__main__":
