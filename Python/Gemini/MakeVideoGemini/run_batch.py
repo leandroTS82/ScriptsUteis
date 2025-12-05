@@ -4,7 +4,7 @@ import json
 import subprocess
 import sys
 
-BATCH_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\1GroqIA_WordBank\\2ContentToCreate\\CreateLater.json"
+BATCH_FILE = "C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater.json"
 MAIN_SCRIPT = "main.py"
 
 def load_pending():
