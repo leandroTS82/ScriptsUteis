@@ -66,5 +66,13 @@
   "GeneralVocabulary": {
     "name": "Vocabulário Geral de Inglês — Palavras do Dia",
     "description": "Amplie seu vocabulário com palavras úteis e fáceis de memorizar, explicadas com exemplos práticos."
+  },
+  "HouseItems": {
+    "name": "Inglês para Itens da Casa — Vocabulário Prático",
+    "description": "Aprenda nomes de utensílios domésticos, eletrodomésticos, objetos e cômodos para falar como um nativo."
+  },
+  "JobInterview": {
+    "name": "Inglês para Entrevista de Emprego — Respostas Prontas",
+    "description": "Aprenda como responder perguntas de entrevista em inglês, frases-chave, vocabulário profissional e exemplos reais."
   }
 }
