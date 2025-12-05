@@ -1,15 +1,8 @@
 # -------------------------------------------------------
-# upload_youtube.py
+# upload_youtube.py — versão corrigida com erro técnico completo no relatório
 # -------------------------------------------------------
-# NOVAS MELHORIAS:
-#
-# ✔ Detecta limite diário do YouTube (uploadLimitExceeded)
-# ✔ Ao primeiro erro desse tipo → PARA o script imediatamente
-# ✔ Exibe mensagem amigável ao usuário
-# ✔ Salva relatório JSON antes de encerrar
-# ✔ Funciona em modo SINGLE ou BATCH
-# -------------------------------------------------------
-# python upload_youtube.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
+# python upload_youtube.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
+
 import os
 import sys
 import json
@@ -21,9 +14,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import google.auth
 
-# -------------------------------------------------------
-# OAuth2 scopes e arquivos
-# -------------------------------------------------------
+# OAuth2 -------------------------------------------------
 
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.upload",
@@ -34,10 +25,7 @@ SCOPES = [
 TOKEN_PATH = "token.json"
 CLIENT_SECRET_FILE = "youtube-upload-desktop.json"
 
-
-# -------------------------------------------------------
-# Estrutura do relatório
-# -------------------------------------------------------
+# Report -------------------------------------------------
 
 REPORT = {
     "start_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -48,14 +36,10 @@ REPORT = {
     "skipped_uploaded_files": 0,
     "failed_uploads": 0,
     "youtube_limit_error": False,
-    "last_global_error": None,
+    "last_global_error": None,         # <- mensagem técnica real
     "videos": []
 }
 
-
-# -------------------------------------------------------
-# Salvar relatório
-# -------------------------------------------------------
 
 def save_report(output_dir):
     REPORT["end_time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -68,22 +52,16 @@ def save_report(output_dir):
     print(f"\n📄 Relatório gerado em: {report_path}")
 
 
-# -------------------------------------------------------
-# Adicionar erro no relatório
-# -------------------------------------------------------
-
 def add_error_to_report(video_name, error_message):
     REPORT["failed_uploads"] += 1
     REPORT["videos"].append({
         "file": video_name,
         "uploaded": False,
-        "error": error_message
+        "error": error_message   # <- agora sempre erro técnico real
     })
 
 
-# -------------------------------------------------------
-# Autenticação OAuth2
-# -------------------------------------------------------
+# Autenticação ------------------------------------------
 
 def get_authenticated_service():
     creds = None
@@ -107,46 +85,42 @@ def get_authenticated_service():
     return build("youtube", "v3", credentials=creds)
 
 
-# -------------------------------------------------------
-# Detectar limite diário
-# -------------------------------------------------------
+# Limite Diário ------------------------------------------
 
 def is_youtube_limit_error(error: HttpError):
     if error.resp.status == 403:
         msg = str(error).lower()
-        keywords = [
+        return any(keyword in msg for keyword in [
             "uploadlimitexceeded",
             "user rate limit",
             "rate limit",
             "quota",
             "daily limit"
-        ]
-        return any(k in msg for k in keywords)
+        ])
     return False
 
 
 def handle_youtube_limit_reached(directory=None):
     """
-    Exibe mensagem amigável e encerra o script.
+    Exibe mensagem amigável e encerra o script,
+    mas mantemos a mensagem técnica REAL no relatório.
     """
+
     print("\n🚫 O YouTube informou que o LIMITE DIÁRIO de uploads foi atingido.")
     print("⏳ Não há erro no seu vídeo, JSON ou script.")
     print("💡 Isso é uma restrição automática do YouTube para todos os canais.")
     print("🔁 Tente novamente após o reset diário (normalmente após 21h no Brasil).")
 
+    print("\n🔍 Detalhe técnico retornado pela API:")
+    print(REPORT["last_global_error"])
+
     REPORT["youtube_limit_error"] = True
-    REPORT["last_global_error"] = "Daily upload limit reached"
 
-    if directory is None:
-        directory = os.getcwd()
-
-    save_report("./")
+    save_report("./reports")
     sys.exit(0)
 
 
-# -------------------------------------------------------
-# Upload de vídeo
-# -------------------------------------------------------
+# Upload de vídeo ---------------------------------------
 
 def upload_video(metadata, video_path):
     youtube = get_authenticated_service()
@@ -168,13 +142,13 @@ def upload_video(metadata, video_path):
     media = MediaFileUpload(video_path, chunksize=-1, resumable=True)
 
     try:
-        print(f"\n📤 Uploading video: {video_path}")
-        request = youtube.videos().insert(
+        print(f"\n📤 Uploading: {video_path}")
+        response = youtube.videos().insert(
             part="snippet,status",
             body=body,
             media_body=media
-        )
-        response = request.execute()
+        ).execute()
+
         print("✔ Upload complete.")
         return response["id"]
 
@@ -187,9 +161,7 @@ def upload_video(metadata, video_path):
         return None
 
 
-# -------------------------------------------------------
-# Upload da Thumbnail
-# -------------------------------------------------------
+# Upload Thumbnail --------------------------------------
 
 def upload_thumbnail(video_id, thumbnail_path):
     if not thumbnail_path or not os.path.exists(thumbnail_path):
@@ -205,12 +177,10 @@ def upload_thumbnail(video_id, thumbnail_path):
         print("🖼 Thumbnail enviada.")
     except HttpError as e:
         REPORT["last_global_error"] = str(e)
-        add_error_to_report(thumbnail_path, f"Thumbnail upload failed: {e}")
+        add_error_to_report(thumbnail_path, str(e))
 
 
-# -------------------------------------------------------
-# Playlist helpers
-# -------------------------------------------------------
+# Playlist ----------------------------------------------
 
 def find_playlist_by_name(name):
     youtube = get_authenticated_service()
@@ -228,16 +198,15 @@ def find_playlist_by_name(name):
 
 def create_playlist(name, description):
     youtube = get_authenticated_service()
-    body = {
-        "snippet": {"title": name, "description": description},
-        "status": {"privacyStatus": "public"}
-    }
-
     print(f"📁 Creating playlist: {name}")
-    return youtube.playlists().insert(
+    response = youtube.playlists().insert(
         part="snippet,status",
-        body=body
-    ).execute()["id"]
+        body={
+            "snippet": {"title": name, "description": description},
+            "status": {"privacyStatus": "public"}
+        }
+    ).execute()
+    return response["id"]
 
 
 def resolve_playlist(metadata):
@@ -269,7 +238,6 @@ def add_to_playlist(video_id, playlist_id):
         return
 
     youtube = get_authenticated_service()
-
     youtube.playlistItems().insert(
         part="snippet",
         body={
@@ -281,31 +249,26 @@ def add_to_playlist(video_id, playlist_id):
     ).execute()
 
 
-# -------------------------------------------------------
-# Renomear arquivos enviados
-# -------------------------------------------------------
+# Renomear arquivos -------------------------------------
 
 def rename_uploaded_files(video_path, json_path=None, thumb_path=None):
+
     directory = os.path.dirname(video_path)
 
     new_video = "uploaded_" + os.path.basename(video_path)
     os.rename(video_path, os.path.join(directory, new_video))
-    print(f"🔄 Renamed video → {new_video}")
+    print(f"🔄 Renamed → {new_video}")
 
     if json_path and os.path.exists(json_path):
         new_json = "uploaded_" + os.path.basename(json_path)
         os.rename(json_path, os.path.join(directory, new_json))
-        print(f"🔄 Renamed metadata → {new_json}")
 
     if thumb_path and os.path.exists(thumb_path):
         new_thumb = "uploaded_" + os.path.basename(thumb_path)
         os.rename(thumb_path, os.path.join(directory, new_thumb))
-        print(f"🔄 Renamed thumbnail → {new_thumb}")
 
 
-# -------------------------------------------------------
-# SINGLE MODE
-# -------------------------------------------------------
+# SINGLE MODE -------------------------------------------
 
 def process_single_mode():
     REPORT["mode"] = "single"
@@ -329,7 +292,7 @@ def process_single_mode():
 
     if not video_id:
         add_error_to_report(video_path, REPORT["last_global_error"])
-        save_report("./")
+        save_report("./reports")
         return
 
     upload_thumbnail(video_id, thumb_path)
@@ -342,14 +305,11 @@ def process_single_mode():
     REPORT["total_uploaded"] = 1
     REPORT["videos"].append({"file": video_path, "uploaded": True, "error": None})
 
-    save_report("./")
+    save_report("./reports")
+    print("\n✔ Upload concluído!")
 
-    print("\n✔ Upload concluído com sucesso!")
 
-
-# -------------------------------------------------------
-# BATCH MODE
-# -------------------------------------------------------
+# BATCH MODE --------------------------------------------
 
 def process_batch_mode(directory):
     REPORT["mode"] = "batch"
@@ -366,12 +326,13 @@ def process_batch_mode(directory):
 
         if video.lower().startswith("uploaded_"):
             REPORT["skipped_uploaded_files"] += 1
-            print(f"⏭ Skipping already uploaded file: {video}")
+            print(f"⏭ Skipping {video}")
             continue
 
         video_path = os.path.join(directory, video)
         json_path = os.path.join(directory, f"{os.path.splitext(video)[0]}.json")
 
+        # thumbnail
         thumb_path = None
         for ext in image_exts:
             t = os.path.join(directory, f"{os.path.splitext(video)[0]}{ext}")
@@ -379,6 +340,7 @@ def process_batch_mode(directory):
                 thumb_path = t
                 break
 
+        # json faltando
         if not os.path.exists(json_path):
             add_error_to_report(video, "JSON not found")
             print(f"⚠ JSON not found for {video}")
@@ -389,7 +351,7 @@ def process_batch_mode(directory):
         video_id = upload_video(metadata, video_path)
 
         if video_id == "YOUTUBE_LIMIT":
-            add_error_to_report(video, "Daily upload limit reached")
+            add_error_to_report(video, REPORT["last_global_error"])
             handle_youtube_limit_reached(directory)
 
         if not video_id:
@@ -397,6 +359,7 @@ def process_batch_mode(directory):
             continue
 
         upload_thumbnail(video_id, thumb_path)
+
         playlist_id = resolve_playlist(metadata)
         add_to_playlist(video_id, playlist_id)
 
@@ -405,13 +368,11 @@ def process_batch_mode(directory):
         REPORT["videos"].append({"file": video, "uploaded": True, "error": None})
         REPORT["total_uploaded"] += 1
 
-    save_report("./")
+    save_report("./reports")
     print("\n✔ Batch upload completed!")
 
 
-# -------------------------------------------------------
-# EXECUÇÃO
-# -------------------------------------------------------
+# EXECUÇÃO ----------------------------------------------
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
