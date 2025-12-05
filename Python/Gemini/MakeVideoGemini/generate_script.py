@@ -23,8 +23,8 @@ def generate_lesson_json(word):
           {{ "lang": "pt", "text": "Explique o significado de '{word}'." }},
           {{ "lang": "en", "text": "Crie uma frase simples (A2) com '{word}'.", "pause": 1000 }},
           {{ "lang": "en", "text": "Crie outra frase curta (B2) com '{word}'.", "pause": 1000 }},
-          {{ "lang": "en", "text": "Crie uma frase um pouco mais longa (B2) com '{word} (same times add here a small tip in portuguese)'.", "pause": 1500 }},
-          {{ "lang": "pt", "text": "Mensagem final com breve resuminho do conteúdo estilo YouTuber incentivando a continuar estudando." }}
+          {{ "lang": "en", "text": "Crie uma frase um pouco mais longa (B2) com '{word}'.", "pause": 1500 }},
+          {{ "lang": "pt", "text": "Mensagem final com breve resuminho do conteúdo estilo YouTuber incentivando a continuar estudando, (same times add here a small tip in portuguese)." }}
         ]
       ]
     }}

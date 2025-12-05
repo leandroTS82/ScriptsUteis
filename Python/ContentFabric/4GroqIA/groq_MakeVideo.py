@@ -3,32 +3,38 @@
  Script: groq_MakeVideo.py
  Autor: Leandro
 
- Versão com:
-  - Configuração completa via groq_MakeVideo.json
-  - Controle de thumbnail
-  - Mudança fácil de modelo/temperatura
-  - Suporte a debug
-  - NOVO: Se apenas 1 path for informado → usar o mesmo diretório
+ VERSÃO FINAL:
+  - Playlist sempre em OBJETO ÚNICO
+  - Forçar playlist via CLI (--playlist)
+  - Playlist automática via friendly_playlist_names.json
+  - JSON original movido imediatamente para processed_json_dir
+  - JSON final sempre salvo com o NOME DO VÍDEO
+  - Correção automática de JSON malformado
+  - Correção automática da playlist (remove listas)
+  - Rate limit inteligente (jitter + respeito ao "try again in X ms")
+  - Ignora arquivos já processados
+  - Remoção 100% da thumbnail
 =====================================================================
 
-python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\Gemini\\MakeVideoGemini\\outputs\\videos"
-
+Exemplos:
+python groq_MakeVideo.py "C:\\Content"
+python groq_MakeVideo.py "C:\\Content" --playlist "Inglês para Viagem"
+python groq_MakeVideo.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
 """
-
 import os
 import json
 import requests
-from datetime import datetime
-import sys
+import shutil
+import argparse
 import time
-from generate_thumbnail import create_thumbnail
+import random
 
 
 # ======================================================================
-# LOAD GLOBAL CONFIG
+# CONFIG
 # ======================================================================
 
-CONFIG_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\groq_MakeVideo.json"
+CONFIG_FILE = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\4GroqIA\groq_MakeVideo.json"
 
 if not os.path.exists(CONFIG_FILE):
     raise FileNotFoundError(f"Config file not found: {CONFIG_FILE}")
@@ -36,21 +42,23 @@ if not os.path.exists(CONFIG_FILE):
 CONFIG = json.load(open(CONFIG_FILE, "r", encoding="utf-8"))
 
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
+
 API_KEY_FILE = CONFIG["api_key_file"]
 SYSTEM_PROMPT_FILE = CONFIG["system_prompt_file"]
 BASE_PROMPT_FILE = CONFIG["base_prompt_file"]
-OUTPUT_DIR = CONFIG["output_dir"]
+FRIENDLY_PLAYLISTS_FILE = CONFIG["friendly_playlists_file"]
+
+PROCESSED_DIR = CONFIG["processed_json_dir"]
 
 MODEL_NAME = CONFIG["model"]
 TEMPERATURE = CONFIG["temperature"]
 VIDEO_EXTENSIONS = CONFIG["video_extensions"]
 RETRY_MAX = CONFIG["retry_max_attempts"]
-ENABLE_THUMB = CONFIG["enable_thumbnail"]
 DEBUG = CONFIG["debug"]
 
 
 # ======================================================================
-# Utils
+# UTILS
 # ======================================================================
 
 def log(msg):
@@ -58,62 +66,83 @@ def log(msg):
         print(f"[DEBUG] {msg}")
 
 
-def load_file(path):
-    if not os.path.exists(path):
-        raise FileNotFoundError(path)
+def load_text(path):
     return open(path, "r", encoding="utf-8").read().strip()
 
 
 def load_json(path):
-    if not os.path.exists(path):
-        raise FileNotFoundError(path)
     return json.load(open(path, "r", encoding="utf-8"))
 
 
-# ✔ AJUSTADO — metadata agora tem o nome EXATO do arquivo
-def save_output_json(content, base_name):
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-    filename = os.path.join(OUTPUT_DIR, f"{base_name}.json")
-
-    open(filename, "w", encoding="utf-8").write(content)
-    return filename
+def ensure_dir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
 
 
-def find_video(dest_directory, tag):
-    for f in os.listdir(dest_directory):
-        f_low = f.lower()
-        if any(f_low.endswith(ext) for ext in VIDEO_EXTENSIONS):
-            if tag.lower() in f_low:
-                return os.path.join(dest_directory, f)
-    raise FileNotFoundError(f"No video containing '{tag}' found.")
-
-
-def write_json_for_video(dest_dir, video_path, metadata_text):
-    base = os.path.splitext(os.path.basename(video_path))[0]
-    out_json = os.path.join(dest_dir, base + ".json")
-    open(out_json, "w", encoding="utf-8").write(metadata_text)
-    return out_json
-
-
-# ✔ AJUSTADO — agora o prefixo é AlteradoPorgroq_MakeVideo_
-def rename_processed(input_path):
-    folder = os.path.dirname(input_path)
-    old = os.path.basename(input_path)
-
-    new_name = f"{old}"
-    new_path = os.path.join(folder, new_name)
-
-    os.rename(input_path, new_path)
+def move_to_processed(src_path):
+    """Move JSON original imediatamente."""
+    ensure_dir(PROCESSED_DIR)
+    new_path = os.path.join(PROCESSED_DIR, os.path.basename(src_path))
+    shutil.move(src_path, new_path)
     return new_path
 
 
+def find_video(video_dir, tag):
+    """Procura vídeo cujo nome contém o nome_arquivos."""
+    for f in os.listdir(video_dir):
+        if any(f.lower().endswith(ext) for ext in VIDEO_EXTENSIONS):
+            if tag.lower() in f.lower():
+                return os.path.join(video_dir, f)
+
+    raise FileNotFoundError(f"Nenhum vídeo contendo '{tag}' encontrado em: {video_dir}")
+
+
+def write_final_json(video_path, metadata_json):
+    """Salva metadados com o MESMO NOME do vídeo."""
+    video_name = os.path.splitext(os.path.basename(video_path))[0]
+    final_path = os.path.join(os.path.dirname(video_path), f"{video_name}.json")
+
+    with open(final_path, "w", encoding="utf-8") as f:
+        json.dump(metadata_json, f, ensure_ascii=False, indent=2)
+
+    return final_path
+
+
 # ======================================================================
-# Groq API call with retry
+# JSON FIX & VALIDATION
+# ======================================================================
+
+def safe_extract_json(text):
+    """Extrai e corrige JSON malformado vindo do Groq."""
+    first = text.find("{")
+    last = text.rfind("}")
+
+    if first == -1 or last == -1:
+        raise ValueError("❌ Nenhum JSON válido encontrado.")
+
+    raw = text[first:last+1]
+
+    try:
+        return json.loads(raw)
+    except:
+        pass
+
+    # Tentar correção simples
+    cleaned = raw.replace("\t", "").replace("\n\n", "\n")
+    try:
+        return json.loads(cleaned)
+    except:
+        print("❌ JSON retornado pela IA não pôde ser corrigido:")
+        print(raw)
+        raise
+
+
+# ======================================================================
+# GROQ API WITH RATE LIMIT CONTROL
 # ======================================================================
 
 def call_groq(system_prompt, user_prompt):
-    api_key = load_file(API_KEY_FILE)
+    api_key = load_text(API_KEY_FILE)
 
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -132,38 +161,60 @@ def call_groq(system_prompt, user_prompt):
     }
 
     retries = 0
-    while True:
-        log(f"Sending request to Groq... attempt {retries+1}")
 
+    while True:
         res = requests.post(API_URL, json=payload, headers=headers)
 
+        # SUCESSO
         if res.status_code == 200:
             return res.json()["choices"][0]["message"]["content"]
 
+        # RATE LIMIT
         if res.status_code == 429:
-            print("\n[Rate Limit] Groq pediu para aguardar...")
-
+            wait_ms = None
             try:
                 msg = res.json().get("error", {}).get("message", "")
-                if "try again in" in msg:
-                    ms = int(msg.split("try again in")[1].split("ms")[0].strip())
-                    wait = ms / 1000
-                else:
-                    wait = 2 ** retries
+                if "try again in" in msg.lower():
+                    wait_ms = int(msg.lower().split("try again in")[1].split("ms")[0])
             except:
-                wait = 2 ** retries
+                pass
 
-            print(f"Aguardando {wait:.2f} segundos...\n")
+            if wait_ms:
+                wait = wait_ms / 1000
+            else:
+                wait = min(2 ** retries + random.uniform(0.1, 0.3), 30)
+
+            print(f"[Groq] Rate limit detectado → aguardando {wait:.2f}s…")
             time.sleep(wait)
 
             retries += 1
             if retries > RETRY_MAX:
-                raise RuntimeError("Max retry reached!")
+                raise RuntimeError("❌ Tentativas máximas atingidas no rate limit.")
 
             continue
 
-        print("ERRO:", res.text)
-        res.raise_for_status()
+        # OUTRO ERRO
+        raise RuntimeError(f"Erro inesperado da API Groq:\n{res.text}")
+
+
+# ======================================================================
+# BUILD DEFINITIVE PLAYLIST OBJECT
+# ======================================================================
+
+def build_playlist_object(playlist_key, friendly):
+    """Converte playlist_key → playlist final com name + description."""
+    if playlist_key not in friendly:
+        print(f"⚠ Playlist_key '{playlist_key}' não encontrada. Usando 'GeneralVocabulary'.")
+        playlist_key = "GeneralVocabulary"
+
+    entry = friendly[playlist_key]
+
+    return {
+        "Id": "",
+        "create_if_not_exists": True,
+        "name": entry["name"],
+        "description": entry["description"]
+    }
 
 
 # ======================================================================
@@ -172,84 +223,85 @@ def call_groq(system_prompt, user_prompt):
 
 def main():
 
-    if len(sys.argv) < 2:
-        print("Uso:")
-        print("python groq_MakeVideo.py <path> [videos_dir]")
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", help="Pasta contendo JSONs e/ou vídeos")
+    parser.add_argument("--videos", help="Pasta onde estão os vídeos")
+    parser.add_argument("--playlist", help="Playlist fixa (sobrescreve IA)")
+    args = parser.parse_args()
 
-    # Caso só um path seja informado → tudo acontece nele
-    if len(sys.argv) == 2:
-        json_dir = sys.argv[1]
-        video_dir = sys.argv[1]
-        print("📁 Modo simplificado: usando o mesmo diretório para JSONs e Vídeos.\n")
-    else:
-        json_dir = sys.argv[1]
-        video_dir = sys.argv[2]
+    json_dir = args.path
+    video_dir = args.videos if args.videos else args.path
 
-    if not os.path.isdir(json_dir):
-        raise NotADirectoryError(json_dir)
-    if not os.path.isdir(video_dir):
-        raise NotADirectoryError(video_dir)
-
-    print(f"📦 Processando JSONs em: {json_dir}")
-    print(f"🎥 Buscando vídeos em: {video_dir}\n")
+    ensure_dir(PROCESSED_DIR)
 
     system_prompt = load_json(SYSTEM_PROMPT_FILE)
     base_prompt = load_json(BASE_PROMPT_FILE)
+    friendly_playlists = load_json(FRIENDLY_PLAYLISTS_FILE)
 
-    files = [
+    # JSONs ainda não processados
+    json_files = [
         f for f in os.listdir(json_dir)
-        if f.endswith(".json") and not f.lower().startswith("alteradoporgroq_makevideo_")
+        if f.endswith(".json") and not os.path.exists(os.path.join(PROCESSED_DIR, f))
     ]
 
-    print(f"Encontrados {len(files)} arquivo(s)\n")
+    print(f"📄 JSONs encontrados: {len(json_files)}")
 
-    for file in files:
+    for filename in json_files:
 
-        full_path = os.path.join(json_dir, file)
-        print(f"\n📄 Processando: {file}")
+        full_path = os.path.join(json_dir, filename)
+        print(f"\n🔎 Processando: {filename}")
 
         comp_json = load_json(full_path)
 
         if "nome_arquivos" not in comp_json:
-            print("⚠ Ignorado (sem nome_arquivos)")
+            print("⚠ 'nome_arquivos' ausente. Ignorando.")
             continue
 
-        nome = comp_json["nome_arquivos"]
+        tag = comp_json["nome_arquivos"]
 
-        merged_prompt = {
+        # Mover original imediatamente
+        moved_path = move_to_processed(full_path)
+        print(f"📁 JSON original movido para: {moved_path}")
+
+        # Criar prompt
+        user_prompt = {
             "base": base_prompt,
-            "extra": comp_json
+            "extra": comp_json,
+            "friendly_keys": list(friendly_playlists.keys()),
+            "force_playlist": args.playlist
         }
 
-        print("🚀 Chamando Groq...")
-        metadata = call_groq(system_prompt, merged_prompt)
+        print("🚀 Chamando Groq…")
+        raw_output = call_groq(system_prompt, user_prompt)
 
-        # ✔ AJUSTADO — metadata salva com nome EXATO
-        out_meta_path = save_output_json(metadata, base_name=nome)
-        print(f"✔ Metadata salva: {out_meta_path}")
+        print("🧪 Validando JSON retornado...")
+        metadata_json = safe_extract_json(raw_output)
 
-        print("🎥 Localizando vídeo...")
-        video_path = find_video(video_dir, nome)
-
-        new_json_path = write_json_for_video(video_dir, video_path, metadata)
-        print(f"✔ JSON criado: {new_json_path}")
-
-        if ENABLE_THUMB:
-            print("🖼 Gerando Thumbnail...")
-            try:
-                create_thumbnail(new_json_path)
-                print("✔ Thumbnail criada.")
-            except Exception as e:
-                print(f"⚠ Erro no thumbnail: {e}")
+        # ------------------------------
+        # PLAYLIST KEY → PLAYLIST FINAL
+        # ------------------------------
+        if args.playlist:
+            playlist_key = args.playlist
         else:
-            print("⏭ Thumbnail desativado (config).")
+            playlist_key = metadata_json.get("playlist_key", "GeneralVocabulary")
 
-        # ✔ AJUSTADO — renomeia com prefixo correto
-        new_path = rename_processed(full_path)
-        print(f"🔁 Renomeado para: {new_path}")
+        metadata_json["playlist"] = build_playlist_object(playlist_key, friendly_playlists)
 
-    print("\n🎉 Processo concluído!\n")
+        # remover a chave auxiliar
+        if "playlist_key" in metadata_json:
+            del metadata_json["playlist_key"]
+
+        print(f"📌 Playlist selecionada: {metadata_json['playlist']['name']}")
+
+        # Localizar vídeo
+        print("🎥 Procurando vídeo…")
+        video_path = find_video(video_dir, tag)
+
+        # Escrever JSON final
+        final_json_path = write_final_json(video_path, metadata_json)
+        print(f"✔ JSON FINAL CRIADO: {final_json_path}")
+
+    print("\n🎉 Processo concluído com sucesso!\n")
 
 
 if __name__ == "__main__":

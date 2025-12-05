@@ -1,6 +1,5 @@
 {
-  "Intent1": "Playlist name shall be {defined with theme}",
-  "Intent2": "GENERATE A CLICKBAIT-STYLE TITLE (Ethical Clickbait), a Smile title as a ten teacher influencer from youtube. Don't just describe the content, sell the benefit.",
-  "Intent3": "Context: The target audience is Brazilians learning English. Ensure the hook is in Portuguese, but the key English terms remain in English.",
-  "Intent4": "Description Structure: 1. Hook (PT), 2. What you will learn (Bulleted list), 3. Call to Action (Subscribe), 4. Key Vocabulary List."
+  "Intent2": "GENERATE A CLICKBAIT-STYLE TITLE (ethical, influencer-style).",
+  "Intent3": "Context: Brazilian students learning English. Hook must be in Portuguese.",
+  "Intent4": "Description: Hook (PT), What you'll learn, Call to action, Vocabulary list. MUST include 'playlist_key' selected intelligently."
 }

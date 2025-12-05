@@ -1,0 +1,70 @@
+{
+  "Grammar": {
+    "name": "Gramática Essencial do Inglês",
+    "description": "Domine a gramática inglesa com explicações simples, exemplos claros e dicas práticas para acelerar sua fluência no dia a dia."
+  },
+  "PhrasalVerbs": {
+    "name": "Phrasal Verbs no Dia a Dia",
+    "description": "Aprenda phrasal verbs usados por nativos em conversas reais, séries e trabalho — explicado de forma leve e fácil."
+  },
+  "DailyRoutine": {
+    "name": "Inglês para a Rotina Diária",
+    "description": "Fale sobre sua rotina em inglês com naturalidade! Vocabulário prático, expressões reais e exemplos do cotidiano."
+  },
+  "WeatherNature": {
+    "name": "Inglês para Falar do Clima e da Natureza",
+    "description": "Descubra como descrever clima, tempo e natureza como um nativo — perfeito para conversas, viagens e exames."
+  },
+  "HomeFurniture": {
+    "name": "Vocabulário de Casa e Móveis em Inglês",
+    "description": "Aprenda o vocabulário essencial de casa, móveis e objetos do lar para viver ou viajar para países de língua inglesa."
+  },
+  "HealthMedicine": {
+    "name": "Inglês para Saúde: Sintomas, Remédios e Emergências",
+    "description": "Fale com confiança sobre saúde, sintomas e emergências — vocabulário fundamental para consultas e viagens."
+  },
+  "BodyParts": {
+    "name": "Partes do Corpo em Inglês — Vocabulário Fácil",
+    "description": "Aprenda as partes do corpo em inglês com explicações claras e frases práticas para usar no dia a dia."
+  },
+  "AccidentsInjuries": {
+    "name": "Inglês para Acidentes e Primeiros Socorros",
+    "description": "Saiba como descrever acidentes, dores e emergências — inglês útil para situações reais e inesperadas."
+  },
+  "FoodCooking": {
+    "name": "Inglês para Comida, Cozinha e Restaurante",
+    "description": "Domine o inglês para cozinha, receitas e restaurantes — ideal para viagens, intercâmbio e amantes da gastronomia."
+  },
+  "Shopping": {
+    "name": "Inglês para Compras: Frases e Vocabulário",
+    "description": "Aprenda frases essenciais para comprar roupas, eletrônicos e produtos no exterior com segurança e naturalidade."
+  },
+  "Transportation": {
+    "name": "Inglês para Transporte e Viagens Urbanas",
+    "description": "Comunique-se com facilidade em ônibus, metrô, taxi e aeroportos — frases úteis e vocabulário real."
+  },
+  "EmotionsFeelings": {
+    "name": "Como Expressar Emoções em Inglês",
+    "description": "Descubra como expressar emoções, sentimentos e sensações com naturalidade — essencial para conversas profundas."
+  },
+  "BusinessWork": {
+    "name": "Inglês para Trabalho e Negócios",
+    "description": "Aprenda o inglês profissional usado em reuniões, e-mails, entrevistas e ambiente corporativo global."
+  },
+  "Hobbies": {
+    "name": "Inglês para Hobbies e Tempo Livre",
+    "description": "Fale sobre seus hobbies, esportes e atividades favoritas em inglês com fluidez e naturalidade."
+  },
+  "Travel": {
+    "name": "Inglês para Viagem — Frases Essenciais",
+    "description": "Frases essenciais para aeroportos, hotéis, restaurantes e turismo — perfeito para qualquer viagem internacional."
+  },
+  "ExpressionsIdioms": {
+    "name": "Expressões e Idioms Essenciais do Inglês",
+    "description": "Aprenda expressões idiomáticas que nativos usam o tempo todo — aumente sua naturalidade e fluência rapidamente."
+  },
+  "GeneralVocabulary": {
+    "name": "Vocabulário Geral de Inglês — Palavras do Dia",
+    "description": "Amplie seu vocabulário com palavras úteis e fáceis de memorizar, explicadas com exemplos práticos."
+  }
+}
