@@ -14,6 +14,8 @@
          ✔ Se Groq falhar → fallback para GEMINI
          ✔ Flag -Gemini → força uso do Gemini
 ====================================================================================
+Python mainTranscript.py ""
+
 """
 
 import os
