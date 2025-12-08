@@ -1,159 +1,300 @@
 import os
 import io
-from PIL import Image, ImageDraw, ImageFont
+import base64
+from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageFilter
 from google import genai
 from google.genai import types
+from groq import Groq
 
-# --------------------------------------------------------
+# ================================================================
 # CONFIGURAÇÕES
-# --------------------------------------------------------
+# ================================================================
 
-DEFAULT_IMAGE = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\assets\default_bg.png"  # usado como base para o estilo
-GEMINI_KEY = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\google-gemini-key.txt"
+DEFAULT_IMAGE = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\assets\default_bg.png"
+GEMINI_KEY   = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\google-gemini-key.txt"
+GROQ_KEY     = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\groq_api_key.txt"
 
-IMAGE_WIDTH = 1344
-IMAGE_HEIGHT = 768
+TARGET_W = 1344
+TARGET_H = 768
 
-HEADER_HEIGHT = 110
-FOOTER_HEIGHT = 120
-HEADER_BG = (0, 0, 0, 160)
-FOOTER_BG = (0, 0, 0, 160)
-
-HEADER_TEXT_COLOR = "white"
-FOOTER_TEXT_COLOR = "white"
-
-HEADER_FONT_SIZE = 54
-FOOTER_FONT_SIZE = 42
+BADGE_SIZE_RATIO = 0.18
+BADGE_PADDING = 30
 
 
-# --------------------------------------------------------
-# LOAD KEY
-# --------------------------------------------------------
+# ================================================================
+# HELPERS
+# ================================================================
+
 def _load_key(path):
     if not os.path.exists(path):
         raise FileNotFoundError(f"Chave não encontrada: {path}")
-    return open(path, "r").read().strip()
+    return open(path).read().strip()
 
 
-# --------------------------------------------------------
-# GEMINI IMAGE GENERATION
-# --------------------------------------------------------
-def try_gemini_image(prompt, reference_img):
-    """
-    Usa o modelo correto para gerar imagem:
-    gemini-2.5-flash-image (gera imagens 16:9 com baixo custo)
-    """
+def resize_no_distortion(img, target_w, target_h):
+    img_ratio = img.width / img.height
+    tgt_ratio = target_w / target_h
+
+    if img_ratio > tgt_ratio:
+        new_height = target_h
+        new_width = int(new_height * img_ratio)
+    else:
+        new_width = target_w
+        new_height = int(new_width / img_ratio)
+
+    img = img.resize((new_width, new_height), Image.LANCZOS)
+
+    left = (img.width - target_w) // 2
+    top = (img.height - target_h) // 2
+
+    return img.crop((left, top, left + target_w, top + target_h))
+
+
+# ================================================================
+# 1) TÍTULO SEO
+# ================================================================
+
+def generate_seo_title(story_text):
+    prompt = f"""
+Crie um título curto, chamativo, estilo thumbnail YouTube.
+Máximo 48 caracteres. Sem emojis.
+
+História:
+{story_text}
+"""
+
     try:
-        api_key = _load_key(GEMINI_KEY)
-        client = genai.Client(api_key=api_key)
+        client = Groq(api_key=_load_key(GROQ_KEY))
+        res = client.chat.completions.create(
+            model="llama-3.2-1b-preview",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=40
+        )
+        title = res.choices[0].message["content"].strip()
+        if title:
+            return title
+    except:
+        pass
 
-        response = client.models.generate_content(
+    try:
+        client = genai.Client(api_key=_load_key(GEMINI_KEY))
+        res = client.models.generate_content(
+            model="gemini-2.0-flash-lite-preview",
+            contents=prompt
+        )
+        return res.text.strip()
+    except:
+        return "História Incrível"
+
+
+# ================================================================
+# 2) IMAGEM PRINCIPAL
+# ================================================================
+
+def try_gemini_image(prompt):
+    try:
+        client = genai.Client(api_key=_load_key(GEMINI_KEY))
+        res = client.models.generate_content(
             model="gemini-2.5-flash-image",
-            contents=[prompt, reference_img],
+            contents=prompt,
             config=types.GenerateContentConfig(
-                image_config=types.ImageConfig(
-                    aspect_ratio="16:9"
-                )
+                image_config=types.ImageConfig(aspect_ratio="16:9")
+            )
+        )
+        for part in res.candidates[0].content.parts:
+            if hasattr(part, "inline_data") and part.inline_data:
+                return part.inline_data.data
+    except Exception as e:
+        print("⚠ Gemini image falhou:", e)
+
+    return None
+
+
+def try_groq_image(prompt):
+    try:
+        client = Groq(api_key=_load_key(GROQ_KEY))
+        res = client.images.generate(
+            model="luma-flux-schnell",
+            prompt=prompt,
+            size="1024x576"
+        )
+
+        if hasattr(res, "image_base64"):
+            return base64.b64decode(res.image_base64)
+
+    except Exception as e:
+        print("⚠ Groq image falhou:", e)
+
+    return None
+
+
+# ================================================================
+# 3) REMOVER FUNDO (SEM OPENCV)
+# ================================================================
+
+def remove_background(pil_img):
+    img = pil_img.convert("RGBA")
+    pixels = img.load()
+
+    for y in range(img.height):
+        for x in range(img.width):
+            r, g, b, a = pixels[x, y]
+
+            # Considera fundo branco ou claro
+            if r > 200 and g > 200 and b > 200:
+                pixels[x, y] = (r, g, b, 0)
+
+    return img
+
+
+# ================================================================
+# 4) VARIANTE DO LEANDRINHO
+# ================================================================
+
+def generate_leandrinho_variant():
+    prompt = (
+        "Generate a small transparent PNG illustration of Leandrinho, the cheerful Brazilian English teacher. "
+        "Keep the same identity but change pose to a happy presenter. "
+        "NO BACKGROUND. Transparent only."
+    )
+
+    try:
+        base_img = Image.open(DEFAULT_IMAGE).convert("RGBA")
+        client = genai.Client(api_key=_load_key(GEMINI_KEY))
+
+        res = client.models.generate_content(
+            model="gemini-2.5-flash-image",
+            contents=[prompt, base_img],
+            config=types.GenerateContentConfig(
+                image_config=types.ImageConfig(aspect_ratio="1:1")
             )
         )
 
-        # SDK: retorno correto
-        for part in response.candidates[0].content.parts:
-            if hasattr(part, "inline_data"):
-                return part.inline_data.data
-
-        return None
+        for part in res.candidates[0].content.parts:
+            if part.inline_data:
+                badge_raw = Image.open(io.BytesIO(part.inline_data.data)).convert("RGBA")
+                return remove_background(badge_raw)
 
     except Exception as e:
-        print("⚠ Gemini image falhou:", e)
-        return None
+        print("⚠ Falha ao gerar variante do Leandrinho:", e)
+
+    return Image.open(DEFAULT_IMAGE).convert("RGBA")
 
 
-# --------------------------------------------------------
-# DRAW HEADER & FOOTER
-# --------------------------------------------------------
-def draw_header_and_footer(final_img, title_text):
-    """Adiciona header e footer com fundo escuro e texto."""
-    draw = ImageDraw.Draw(final_img)
+# ================================================================
+# 5) APRIMORAR SELO (sombra + borda)
+# ================================================================
 
-    # Fontes
+def enhance_badge(badge):
+    shadow = Image.new("RGBA", (badge.width+20, badge.height+20), (0,0,0,0))
+    sd = ImageDraw.Draw(shadow)
+    sd.ellipse([10,10,badge.width+10, badge.height+10], fill=(0,0,0,120))
+    shadow = shadow.filter(ImageFilter.GaussianBlur(10))
+
+    mask = Image.new("L", badge.size, 0)
+    mdraw = ImageDraw.Draw(mask)
+    mdraw.rounded_rectangle([0,0,badge.width,badge.height], radius=45, fill=255)
+    badge.putalpha(mask)
+
+    return shadow, badge
+
+
+# ================================================================
+# 6) TÍTULO ESTILO YOUTUBE
+# ================================================================
+
+def apply_title(img, title):
+    draw = ImageDraw.Draw(img)
+
+    # =====================================================
+    # NORMALIZAÇÃO DO TEXTO (EVITA multiline)
+    # =====================================================
+    title = title.replace("\n", " ").replace("\r", " ").strip()
+    title = " ".join(title.split())  # remove múltiplos espaços
+
+    # =====================================================
+    # FONTE ESTILO YOUTUBE
+    # =====================================================
     try:
-        font_header = ImageFont.truetype("arial.ttf", HEADER_FONT_SIZE)
-        font_footer = ImageFont.truetype("arial.ttf", FOOTER_FONT_SIZE)
+        font = ImageFont.truetype("impact.ttf", 88)
     except:
-        font_header = ImageFont.load_default()
-        font_footer = ImageFont.load_default()
+        try:
+            font = ImageFont.truetype("arialbd.ttf", 88)
+        except:
+            font = ImageFont.load_default()
 
-    # HEADER
-    draw.rectangle(
-        [0, 0, IMAGE_WIDTH, HEADER_HEIGHT],
-        fill=HEADER_BG
-    )
+    # =====================================================
+    # MEDIR TEXTO SEM ERROS
+    # =====================================================
+    try:
+        tw = draw.textlength(title, font=font)
+    except Exception:
+        # fallback seguro
+        tw = len(title) * 20  
 
-    w = draw.textlength(title_text, font=font_header)
-    draw.text(
-        ((IMAGE_WIDTH - w) / 2, HEADER_HEIGHT / 2 - HEADER_FONT_SIZE / 2),
-        title_text,
-        font=font_header,
-        fill=HEADER_TEXT_COLOR
-    )
+    x = (img.width - tw) // 2
+    y = 25
 
-    # FOOTER
-    draw.rectangle(
-        [0, IMAGE_HEIGHT - FOOTER_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT],
-        fill=FOOTER_BG
-    )
+    # =====================================================
+    # CONTORNO GROSSO (EFEITO YOUTUBE)
+    # =====================================================
+    for dx in range(-4, 5):
+        for dy in range(-4, 5):
+            draw.text((x + dx, y + dy), title, font=font, fill="black")
 
-    footer_text = "Inscreva-se no canal e deixe seu like!"
-    w2 = draw.textlength(footer_text, font=font_footer)
+    # =====================================================
+    # TEXTO FINAL
+    # =====================================================
+    draw.text((x, y), title, font=font, fill="white")
 
-    draw.text(
-        ((IMAGE_WIDTH - w2) / 2, IMAGE_HEIGHT - FOOTER_HEIGHT + 35),
-        footer_text,
-        font=font_footer,
-        fill=FOOTER_TEXT_COLOR
-    )
-
-    return final_img
+    return img
 
 
-# --------------------------------------------------------
-# MAIN FUNCTION
-# --------------------------------------------------------
+
+# ================================================================
+# 7) FUNÇÃO PRINCIPAL
+# ================================================================
+
 def generate_story_image_or_gif(story_text, safe_name):
+    print("🧠 Gerando título SEO...")
+    title = generate_seo_title(story_text)
+
     prompt = (
-        "Generate a cinematic 16:9 illustrated scene that visually represents the story below. "
-        "Use soft lighting, expressive characters, emotional storytelling, and modern composition. "
-        "Keep it realistic but artistic.\n\n"
-        f"Story:\n{story_text}"
+        "Create a cinematic expressive 16:9 illustration based on the story. "
+        "DO NOT include Leandrinho. Natural characters only.\n\n"
+        f"{story_text}"
     )
 
-    # Carregar imagem base do Leandrinho
-    if not os.path.exists(DEFAULT_IMAGE):
-        raise FileNotFoundError("DEFAULT_IMAGE não encontrada: " + DEFAULT_IMAGE)
+    raw = try_gemini_image(prompt) or try_groq_image(prompt)
 
-    base_img = Image.open(DEFAULT_IMAGE)
-
-    print("🧠 Tentando gerar imagem com Gemini...")
-
-    result = try_gemini_image(prompt, base_img)
-
-    # Fallback se falhar
-    if not result:
-        print("⚠ Falha geral na geração → usando imagem padrão.")
-        final_img = base_img.resize((IMAGE_WIDTH, IMAGE_HEIGHT))
+    if not raw:
+        img = Image.open(DEFAULT_IMAGE).convert("RGBA")
+        img = resize_no_distortion(img, TARGET_W, TARGET_H)
     else:
-        final_img = Image.open(io.BytesIO(result))
-        final_img = final_img.resize((IMAGE_WIDTH, IMAGE_HEIGHT))
+        img = Image.open(io.BytesIO(raw)).convert("RGBA")
+        img = resize_no_distortion(img, TARGET_W, TARGET_H)
 
-    # Adicionar Header e Footer
-    title_text = "História: " + safe_name.replace("_", " ").title()
-    final_img = draw_header_and_footer(final_img, title_text)
+    # título
+    img = apply_title(img, title)
 
-    # Salvar resultado final
-    output_path = f"outputs/images/{safe_name}.png"
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    final_img.save(output_path, "PNG")
+    # selo
+    badge = generate_leandrinho_variant()
+    shadow, badge = enhance_badge(badge)
 
-    print("✔ Imagem gerada e salva em:", output_path)
-    return output_path
+    bw = int(TARGET_W * BADGE_SIZE_RATIO)
+    bh = int(bw * (badge.height / badge.width))
+    badge = badge.resize((bw, bh), Image.LANCZOS)
+    shadow = shadow.resize((bw+20, bh+20), Image.LANCZOS)
+
+    px = TARGET_W - bw - BADGE_PADDING
+    py = TARGET_H - bh - BADGE_PADDING
+
+    img.alpha_composite(shadow, (px-10, py-10))
+    img.alpha_composite(badge, (px, py))
+
+    out = f"outputs/images/{safe_name}.png"
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    img.save(out, "PNG")
+
+    print("✔ Imagem gerada:", out)
+    return out

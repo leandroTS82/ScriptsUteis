@@ -15,7 +15,7 @@ def save_wave(filename, pcm, channels=1, rate=24000, sample_width=2):
         wf.setframerate(rate)
         wf.writeframes(pcm)
 
-def generate_story_audio(text, output_path, voice="Kore"):
+def generate_story_audio(text, output_path, voice="Fenrir"):
     api_key = _load_key()
     client = genai.Client(api_key=api_key)
 
