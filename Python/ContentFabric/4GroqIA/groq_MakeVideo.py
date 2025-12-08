@@ -10,9 +10,10 @@
   - JSON original movido imediatamente para processed_json_dir
   - JSON final sempre salvo com o NOME DO VÍDEO
   - Correção automática de JSON malformado
-  - Correção automática da playlist (remove listas)
   - Rate limit inteligente (jitter + respeito ao "try again in X ms")
   - Ignora arquivos já processados
+  - Ignora arquivos que iniciam com uploaded_
+  - Exibe total de arquivos ignorados por uploaded_
   - Remoção 100% da thumbnail
 =====================================================================
 
@@ -93,7 +94,6 @@ def find_video(video_dir, tag):
         if any(f.lower().endswith(ext) for ext in VIDEO_EXTENSIONS):
             if tag.lower() in f.lower():
                 return os.path.join(video_dir, f)
-
     raise FileNotFoundError(f"Nenhum vídeo contendo '{tag}' encontrado em: {video_dir}")
 
 
@@ -127,7 +127,6 @@ def safe_extract_json(text):
     except:
         pass
 
-    # Tentar correção simples
     cleaned = raw.replace("\t", "").replace("\n\n", "\n")
     try:
         return json.loads(cleaned)
@@ -165,13 +164,13 @@ def call_groq(system_prompt, user_prompt):
     while True:
         res = requests.post(API_URL, json=payload, headers=headers)
 
-        # SUCESSO
         if res.status_code == 200:
             return res.json()["choices"][0]["message"]["content"]
 
-        # RATE LIMIT
         if res.status_code == 429:
             wait_ms = None
+            msg = ""
+
             try:
                 msg = res.json().get("error", {}).get("message", "")
                 if "try again in" in msg.lower():
@@ -193,12 +192,11 @@ def call_groq(system_prompt, user_prompt):
 
             continue
 
-        # OUTRO ERRO
         raise RuntimeError(f"Erro inesperado da API Groq:\n{res.text}")
 
 
 # ======================================================================
-# BUILD DEFINITIVE PLAYLIST OBJECT
+# PLAYLIST BUILDER
 # ======================================================================
 
 def build_playlist_object(playlist_key, friendly):
@@ -238,13 +236,23 @@ def main():
     base_prompt = load_json(BASE_PROMPT_FILE)
     friendly_playlists = load_json(FRIENDLY_PLAYLISTS_FILE)
 
-    # JSONs ainda não processados
+    ignored_uploaded = 0
+
     json_files = [
         f for f in os.listdir(json_dir)
-        if f.endswith(".json") and not os.path.exists(os.path.join(PROCESSED_DIR, f))
+        if f.endswith(".json")
+        and not f.startswith("uploaded_")  # <── NOVO FILTRO
+        and not os.path.exists(os.path.join(PROCESSED_DIR, f))
     ]
 
+    # contar quantos foram ignorados
+    ignored_uploaded = len([
+        f for f in os.listdir(json_dir)
+        if f.endswith(".json") and f.startswith("uploaded_")
+    ])
+
     print(f"📄 JSONs encontrados: {len(json_files)}")
+    print(f"⚪ Arquivos ignorados (uploaded_*): {ignored_uploaded}")
 
     for filename in json_files:
 
@@ -259,11 +267,9 @@ def main():
 
         tag = comp_json["nome_arquivos"]
 
-        # Mover original imediatamente
         moved_path = move_to_processed(full_path)
         print(f"📁 JSON original movido para: {moved_path}")
 
-        # Criar prompt
         user_prompt = {
             "base": base_prompt,
             "extra": comp_json,
@@ -274,34 +280,23 @@ def main():
         print("🚀 Chamando Groq…")
         raw_output = call_groq(system_prompt, user_prompt)
 
-        print("🧪 Validando JSON retornado...")
         metadata_json = safe_extract_json(raw_output)
 
-        # ------------------------------
-        # PLAYLIST KEY → PLAYLIST FINAL
-        # ------------------------------
-        if args.playlist:
-            playlist_key = args.playlist
-        else:
-            playlist_key = metadata_json.get("playlist_key", "GeneralVocabulary")
-
+        playlist_key = args.playlist or metadata_json.get("playlist_key", "GeneralVocabulary")
         metadata_json["playlist"] = build_playlist_object(playlist_key, friendly_playlists)
 
-        # remover a chave auxiliar
         if "playlist_key" in metadata_json:
             del metadata_json["playlist_key"]
 
         print(f"📌 Playlist selecionada: {metadata_json['playlist']['name']}")
 
-        # Localizar vídeo
-        print("🎥 Procurando vídeo…")
         video_path = find_video(video_dir, tag)
 
-        # Escrever JSON final
         final_json_path = write_final_json(video_path, metadata_json)
         print(f"✔ JSON FINAL CRIADO: {final_json_path}")
 
-    print("\n🎉 Processo concluído com sucesso!\n")
+    print("\n🎉 Processo concluído com sucesso!")
+    print(f"📌 Total ignorado (uploaded_*): {ignored_uploaded}\n")
 
 
 if __name__ == "__main__":
