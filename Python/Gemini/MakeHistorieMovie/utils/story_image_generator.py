@@ -1,96 +1,159 @@
 import os
 import io
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from google import genai
 from google.genai import types
-from groq import Groq
 
+# --------------------------------------------------------
+# CONFIGURAÇÕES
+# --------------------------------------------------------
 
-DEFAULT_IMAGE = "assets/default_bg.png"
-DEFAULT_GIF = "assets/default.gif"
-
+DEFAULT_IMAGE = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\assets\default_bg.png"  # usado como base para o estilo
 GEMINI_KEY = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\google-gemini-key.txt"
-GROQ_KEY = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\groq_api_key.txt"
+
+IMAGE_WIDTH = 1344
+IMAGE_HEIGHT = 768
+
+HEADER_HEIGHT = 110
+FOOTER_HEIGHT = 120
+HEADER_BG = (0, 0, 0, 160)
+FOOTER_BG = (0, 0, 0, 160)
+
+HEADER_TEXT_COLOR = "white"
+FOOTER_TEXT_COLOR = "white"
+
+HEADER_FONT_SIZE = 54
+FOOTER_FONT_SIZE = 42
 
 
+# --------------------------------------------------------
+# LOAD KEY
+# --------------------------------------------------------
 def _load_key(path):
     if not os.path.exists(path):
         raise FileNotFoundError(f"Chave não encontrada: {path}")
-    return open(path).read().strip()
+    return open(path, "r").read().strip()
 
 
-# =====================================================
-# 1. Tentar gerar imagem com Gemini
-# =====================================================
-def try_gemini_image(prompt):
+# --------------------------------------------------------
+# GEMINI IMAGE GENERATION
+# --------------------------------------------------------
+def try_gemini_image(prompt, reference_img):
+    """
+    Usa o modelo correto para gerar imagem:
+    gemini-2.5-flash-image (gera imagens 16:9 com baixo custo)
+    """
     try:
         api_key = _load_key(GEMINI_KEY)
         client = genai.Client(api_key=api_key)
 
         response = client.models.generate_content(
             model="gemini-2.5-flash-image",
-            contents=prompt
+            contents=[prompt, reference_img],
+            config=types.GenerateContentConfig(
+                image_config=types.ImageConfig(
+                    aspect_ratio="16:9"
+                )
+            )
         )
 
-        for part in response.parts:
-            if part.inline_data:
+        # SDK: retorno correto
+        for part in response.candidates[0].content.parts:
+            if hasattr(part, "inline_data"):
                 return part.inline_data.data
 
         return None
+
     except Exception as e:
         print("⚠ Gemini image falhou:", e)
         return None
 
 
-# =====================================================
-# 2. Tentar gerar imagem com Groq
-# =====================================================
-def try_groq_image(prompt):
+# --------------------------------------------------------
+# DRAW HEADER & FOOTER
+# --------------------------------------------------------
+def draw_header_and_footer(final_img, title_text):
+    """Adiciona header e footer com fundo escuro e texto."""
+    draw = ImageDraw.Draw(final_img)
+
+    # Fontes
     try:
-        api = _load_key(GROQ_KEY)
-        client = Groq(api_key=api)
+        font_header = ImageFont.truetype("arial.ttf", HEADER_FONT_SIZE)
+        font_footer = ImageFont.truetype("arial.ttf", FOOTER_FONT_SIZE)
+    except:
+        font_header = ImageFont.load_default()
+        font_footer = ImageFont.load_default()
 
-        response = client.images.generate(
-            model="luma-flux-schnell",
-            prompt=prompt,
-            size="1024x576"
-        )
-
-        if hasattr(response, "image_base64"):
-            import base64
-            return base64.b64decode(response.image_base64)
-
-        return None
-    except Exception as e:
-        print("⚠ Groq image falhou:", e)
-        return None
-
-
-# =====================================================
-# 3. Função principal: imagem ou GIF
-# =====================================================
-def generate_story_image_or_gif(story_text, safe_name):
-    prompt = (
-        "Generate an illustrated scenic thumbnail representing this story: "
-        f"\"{story_text}\". Style: cinematic, soft lighting, emotional, expressive, 16:9."
+    # HEADER
+    draw.rectangle(
+        [0, 0, IMAGE_WIDTH, HEADER_HEIGHT],
+        fill=HEADER_BG
     )
 
+    w = draw.textlength(title_text, font=font_header)
+    draw.text(
+        ((IMAGE_WIDTH - w) / 2, HEADER_HEIGHT / 2 - HEADER_FONT_SIZE / 2),
+        title_text,
+        font=font_header,
+        fill=HEADER_TEXT_COLOR
+    )
+
+    # FOOTER
+    draw.rectangle(
+        [0, IMAGE_HEIGHT - FOOTER_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT],
+        fill=FOOTER_BG
+    )
+
+    footer_text = "Inscreva-se no canal e deixe seu like!"
+    w2 = draw.textlength(footer_text, font=font_footer)
+
+    draw.text(
+        ((IMAGE_WIDTH - w2) / 2, IMAGE_HEIGHT - FOOTER_HEIGHT + 35),
+        footer_text,
+        font=font_footer,
+        fill=FOOTER_TEXT_COLOR
+    )
+
+    return final_img
+
+
+# --------------------------------------------------------
+# MAIN FUNCTION
+# --------------------------------------------------------
+def generate_story_image_or_gif(story_text, safe_name):
+    prompt = (
+        "Generate a cinematic 16:9 illustrated scene that visually represents the story below. "
+        "Use soft lighting, expressive characters, emotional storytelling, and modern composition. "
+        "Keep it realistic but artistic.\n\n"
+        f"Story:\n{story_text}"
+    )
+
+    # Carregar imagem base do Leandrinho
+    if not os.path.exists(DEFAULT_IMAGE):
+        raise FileNotFoundError("DEFAULT_IMAGE não encontrada: " + DEFAULT_IMAGE)
+
+    base_img = Image.open(DEFAULT_IMAGE)
+
     print("🧠 Tentando gerar imagem com Gemini...")
-    result = try_gemini_image(prompt)
 
-    if not result:
-        print("⚠ Tentando gerar imagem com Groq...")
-        result = try_groq_image(prompt)
+    result = try_gemini_image(prompt, base_img)
 
-    # Fallback
+    # Fallback se falhar
     if not result:
         print("⚠ Falha geral na geração → usando imagem padrão.")
-        return DEFAULT_IMAGE
+        final_img = base_img.resize((IMAGE_WIDTH, IMAGE_HEIGHT))
+    else:
+        final_img = Image.open(io.BytesIO(result))
+        final_img = final_img.resize((IMAGE_WIDTH, IMAGE_HEIGHT))
 
-    # Salvar imagem gerada
+    # Adicionar Header e Footer
+    title_text = "História: " + safe_name.replace("_", " ").title()
+    final_img = draw_header_and_footer(final_img, title_text)
+
+    # Salvar resultado final
     output_path = f"outputs/images/{safe_name}.png"
-    with open(output_path, "wb") as f:
-        f.write(result)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    final_img.save(output_path, "PNG")
 
-    print("✔ Imagem gerada:", output_path)
+    print("✔ Imagem gerada e salva em:", output_path)
     return output_path
