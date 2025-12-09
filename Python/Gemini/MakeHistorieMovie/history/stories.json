@@ -1,12 +1,8 @@
 {
   "stories": [
     {
-      "title": "On Monday morning",
-      "text": "On Monday morning, the weather was rainy, and I was at home with my daughter. We planned to go to the park later, but first I needed to fix a small problem in a project. The login was not working, and the system did not return the user information, so I tried again and again until I found the issue. When the sun finally came out, I felt happy because the problem was solved. I closed my computer, told my family the good news, and we all went outside together to enjoy the warm weather."
-    },
-    {
-      "title": "On Tuesday",
-      "text": "On Tuesday, the weather was cold and windy, so I stayed inside with my family. While they prepared hot chocolate, I opened my laptop to fix a problem in a small application. The screen was showing wrong information because of a missing field, so I checked the code slowly and found the mistake. After I corrected it, the app worked again, and I felt very happy. My family called me to the living room, and we spent the rest of the afternoon relaxing together while the wind continued outside."
+      "title": "Picnic by the Shore",
+      "text": "Yesterday I took my youngest daughter to the coast of São Paulo, and we brought a blanket for a picnic. She lays out the blanket carefully while I grabbed a banana nut muffin at a nearby bakery. She opened the wrapper, took a big bite, and said it was “crunchy and soft.” Later, we went to feed the ducks with a few bread crumbs, enjoying a simple and peaceful afternoon together."
     }
   ]
 }

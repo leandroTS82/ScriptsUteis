@@ -19,7 +19,7 @@ TARGET_W = 1344
 TARGET_H = 768
 
 BADGE_SIZE_RATIO = 0.22
-BADGE_PADDING = 25
+BADGE_PADDING = 25  # distância das bordas
 
 
 # ============================================
@@ -51,7 +51,7 @@ def resize_no_distortion(img, target_w, target_h):
 
 
 # ============================================
-# REMOÇÃO DE FUNDO SEM OPENCV (Pillow Only)
+# REMOVER FUNDO DE IMAGEM (SEM OPENCV)
 # ============================================
 
 def remove_background(pil_img):
@@ -62,9 +62,9 @@ def remove_background(pil_img):
     for pixel in datas:
         r, g, b, a = pixel
 
-        # considera branco / quase branco como fundo
+        # remove branco ou quase branco
         if r > 230 and g > 230 and b > 230:
-            new_data.append((255, 255, 255, 0))  # transparente
+            new_data.append((255, 255, 255, 0))
         else:
             new_data.append(pixel)
 
@@ -91,31 +91,25 @@ def try_gemini_main_image(prompt):
         for part in response.candidates[0].content.parts:
             if hasattr(part, "inline_data") and part.inline_data:
                 return part.inline_data.data
-        return None
 
     except Exception as e:
         print("⚠ Gemini main image falhou:", e)
-        return None
+    return None
 
 
 # ============================================
-# GERAÇÃO DO LEANDRINHO VARIANTE
+# GERAÇÃO DO LEANDRINHO (SELO)
 # ============================================
 
 def generate_leandrinho_variant(story_text):
     base_img = Image.open(DEFAULT_IMAGE).convert("RGBA")
 
     prompt = (
-        "Generate a small holographic-style badge illustration of Leandrinho, "
-        "the friendly Brazilian English teacher. "
-        "He should have a dynamic, expressive posture matching the story above right.\n\n"
-        f"Story: {story_text}\n\n"
-        "Rules:\n"
-        "- Maintain character identity.\n"
-        "- Add soft blue glow (tech hologram).\n"
-        "- tech hologram like Iron man movies or doctor strange, but keep the theme style and context.\n"
-        "- Add @StudyWithLeandrinho refer youtube channel.\n"
-        "- Pose modified: expressive hands, smiling, talking vibe.\n"
+        "Generate a holographic-style narrator badge of Leandrinho, the friendly Brazilian English teacher. "
+        "He should appear expressive, smiling, and actively presenting the story. "
+        "Add a soft blue glow around the character for a tech hologram effect. "
+        "Keep the background fully transparent. Pose should adapt to the story theme.\n\n"
+        f"Story: {story_text}"
     )
 
     try:
@@ -132,8 +126,7 @@ def generate_leandrinho_variant(story_text):
             if part.inline_data:
                 raw = part.inline_data.data
                 badge = Image.open(io.BytesIO(raw)).convert("RGBA")
-                badge = remove_background(badge)
-                return badge
+                return remove_background(badge)
 
     except Exception as e:
         print("⚠ Erro ao gerar variant do Leandrinho:", e)
@@ -142,32 +135,30 @@ def generate_leandrinho_variant(story_text):
 
 
 # ============================================
-# APLICAR TÍTULO ESTILO YOUTUBE
+# TÍTULO ESTILO YOUTUBE
 # ============================================
 
 def apply_title(img, title):
     draw = ImageDraw.Draw(img)
-
-    title = title.replace("\n", " ").replace("\r", " ").strip()
     title = " ".join(title.split())
 
     try:
-        font = ImageFont.truetype("impact.ttf", 88)
+        font = ImageFont.truetype("impact.ttf", 86)
     except:
-        font = ImageFont.truetype("arialbd.ttf", 88)
+        font = ImageFont.truetype("arialbd.ttf", 86)
 
     try:
         tw = draw.textlength(title, font=font)
-    except Exception:
-        tw = len(title) * 22
+    except:
+        tw = len(title) * 20
 
     x = (img.width - tw) // 2
     y = 25
 
-    # contorno
-    for dx in range(-5, 6):
-        for dy in range(-5, 6):
-            draw.text((x + dx, y + dy), title, font=font, fill="black")
+    # contorno forte estilo YouTube
+    for dx in range(-4, 5):
+        for dy in range(-4, 5):
+            draw.text((x+dx, y+dy), title, font=font, fill="black")
 
     draw.text((x, y), title, font=font, fill="white")
 
@@ -175,29 +166,33 @@ def apply_title(img, title):
 
 
 # ============================================
-# ADICIONAR LEANDRINHO (HOLOGRAMA)
+# ADICIONAR LEANDRINHO — CANTO SUPERIOR DIREITO
 # ============================================
 
 def add_leandrinho_badge(img, story_text):
     badge = generate_leandrinho_variant(story_text)
 
+    # tamanho proporcional
     badge_w = int(TARGET_W * BADGE_SIZE_RATIO)
     badge_h = int(badge_w * (badge.height / badge.width))
     badge = badge.resize((badge_w, badge_h), Image.LANCZOS)
 
-    glow = Image.new("RGBA", (badge_w + 30, badge_h + 30), (0, 0, 0, 0))
+    # glow holográfico
+    glow = Image.new("RGBA", (badge_w + 40, badge_h + 40), (0, 0, 0, 0))
     glow_draw = ImageDraw.Draw(glow)
     glow_draw.ellipse(
-        [0, 0, badge_w + 30, badge_h + 30],
-        fill=(0, 170, 255, 85)
+        [0, 0, badge_w + 40, badge_h + 40],
+        fill=(0, 180, 255, 85)
     )
-    glow = glow.filter(ImageFilter.GaussianBlur(15))
+    glow = glow.filter(ImageFilter.GaussianBlur(18))
 
+    # POSICIONAMENTO — TOPO DIREITO
     pos_x = TARGET_W - badge_w - BADGE_PADDING
-    pos_y = TARGET_H - badge_h - BADGE_PADDING
+    pos_y = BADGE_PADDING
 
-    img.alpha_composite(glow, (pos_x - 15, pos_y - 15))
+    img.alpha_composite(glow, (pos_x - 20, pos_y - 20))
     img.alpha_composite(badge, (pos_x, pos_y))
+
     return img
 
 
@@ -207,9 +202,11 @@ def add_leandrinho_badge(img, story_text):
 
 def generate_story_image_or_gif(story_text, safe_name, final_title):
     prompt = (
-        "Generate a modern images, style miles morales universe 16:9 illustrated scene matching the story below. "
-        "style marvel animations"
-        "Do NOT include the narrator. Natural lighting, expressive characters.\n\n"
+        "Create a modern cinematic illustration in the visual style of the Miles Morales "
+        "animated universe (Spider-Verse). Use expressive characters, vibrant lighting, "
+        "dynamic posing and a comic-film texture. "
+        "Represent the story below WITHOUT including the narrator. "
+        "Leave free space on the top-right area for a holographic badge narrator.\n\n"
         f"{story_text}"
     )
 
@@ -217,15 +214,19 @@ def generate_story_image_or_gif(story_text, safe_name, final_title):
     result = try_gemini_main_image(prompt)
 
     if not result:
-        print("⚠ Fallback → usando DEFAULT_IMAGE")
+        print("⚠ Usando imagem padrão")
         img = Image.open(DEFAULT_IMAGE).convert("RGBA").resize((TARGET_W, TARGET_H))
     else:
         img = Image.open(io.BytesIO(result)).convert("RGBA")
         img = resize_no_distortion(img, TARGET_W, TARGET_H)
 
+    # Título estilo YouTube
     img = apply_title(img, final_title)
+
+    # Leandrinho no topo direito
     img = add_leandrinho_badge(img, story_text)
 
+    # Salvar
     output_path = f"outputs/images/{safe_name}.png"
     os.makedirs("outputs/images", exist_ok=True)
     img.save(output_path, "PNG")
