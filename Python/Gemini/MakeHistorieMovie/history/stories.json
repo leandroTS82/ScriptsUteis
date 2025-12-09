@@ -1,17 +1,5 @@
 {
   "stories": [
-    { 
-      "title": "Uma manhã diferente",
-      "text": "He wakes up early. He is tired. He needs breakfast. Breakfast will give him energy. He goes to the kitchen. He pours milk into the bowl. He sees the wheat cereal box. Wheat cereal is healthy. He opens the box. There is a toy inside. It is a small car."
-    },
-    { 
-      "title": "Um dia no shopping",
-      "text": "She goes to the mall. There are many stores at the mall. She sees a clothing store. She goes inside. There are many different shirts. Some shirts have flowers. Other shirts have stripes. She gets a flowered shirt. It is pink and white. She tries it on. She looks in the mirror. The shirt looks great."
-    },
-    {
-      "title": "A cor perfeita",
-      "text": "His house is white. White is too boring. He goes to the paint store. He looks at the different colors. He sees the red bucket. Red is too daring. He sees the blue bucket. Blue is too sad. He sees the yellow bucket. Yellow is too bright. He sees the green bucket. Green is perfect."
-    },
     {
       "title": "On Monday morning",
       "text": "On Monday morning, the weather was rainy, and I was at home with my daughter. We planned to go to the park later, but first I needed to fix a small problem in a project. The login was not working, and the system did not return the user information, so I tried again and again until I found the issue. When the sun finally came out, I felt happy because the problem was solved. I closed my computer, told my family the good news, and we all went outside together to enjoy the warm weather."

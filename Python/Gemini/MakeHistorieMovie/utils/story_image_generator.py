@@ -108,7 +108,7 @@ def generate_leandrinho_variant(story_text):
     prompt = (
         "Generate a small holographic-style badge illustration of Leandrinho, "
         "the friendly Brazilian English teacher. "
-        "He should have a dynamic, expressive posture matching the story below.\n\n"
+        "He should have a dynamic, expressive posture matching the story above right.\n\n"
         f"Story: {story_text}\n\n"
         "Rules:\n"
         "- Maintain character identity.\n"
@@ -207,7 +207,7 @@ def add_leandrinho_badge(img, story_text):
 
 def generate_story_image_or_gif(story_text, safe_name, final_title):
     prompt = (
-        "Generate a modern images, using afro american people 16:9 illustrated scene matching the story below. "
+        "Generate a modern images, style miles morales universe 16:9 illustrated scene matching the story below. "
         "style marvel animations"
         "Do NOT include the narrator. Natural lighting, expressive characters.\n\n"
         f"{story_text}"
