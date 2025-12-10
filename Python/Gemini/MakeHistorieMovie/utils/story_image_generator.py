@@ -202,7 +202,7 @@ def add_leandrinho_badge(img, story_text):
 
 def generate_story_image_or_gif(story_text, safe_name, final_title):
     prompt = (
-        "Create a modern cinematic illustration in the visual style of the Miles Morales "
+        "Create a modern cinematic illustration in the visual style of the Miles Morales (with afro american people)"
         "animated universe (Spider-Verse). Use expressive characters, vibrant lighting, "
         "dynamic posing and a comic-film texture. "
         "Represent the story below WITHOUT including the narrator. "

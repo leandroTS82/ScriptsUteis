@@ -2,6 +2,7 @@
 # upload_youtube.py — versão corrigida com erro técnico completo no relatório
 # -------------------------------------------------------
 # python upload_youtube.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
+# python upload_youtube.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\Gemini\\MakeVideoGemini\\outputs\\videos"
 
 import os
 import sys

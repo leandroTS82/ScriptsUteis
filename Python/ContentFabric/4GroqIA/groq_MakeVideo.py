@@ -21,6 +21,7 @@ Exemplos:
 python groq_MakeVideo.py "C:\\Content"
 python groq_MakeVideo.py "C:\\Content" --playlist "Inglês para Viagem"
 python groq_MakeVideo.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
+python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\Gemini\\MakeVideoGemini\\outputs\\videos"
 """
 import os
 import json

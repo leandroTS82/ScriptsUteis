@@ -37,7 +37,7 @@ def generate_story_audio(text, output_path, voice="Fenrir", slow_mode=True):
         print("⏳ Modo de fala lento moderado.")
 
         enhanced_text = (
-            "Read this text slightly slower than normal, about five percent slower, "
+            "Read this text like read for a kid "
             "with smooth transitions but without long pauses. "
             "Maintain a natural, clear, conversational tone.\n\n"
             + text

@@ -1,8 +1,84 @@
 {
   "stories": [
     {
-      "title": "Picnic by the Shore",
-      "text": "Yesterday I took my youngest daughter to the coast of São Paulo, and we brought a blanket for a picnic. She lays out the blanket carefully while I grabbed a banana nut muffin at a nearby bakery. She opened the wrapper, took a big bite, and said it was “crunchy and soft.” Later, we went to feed the ducks with a few bread crumbs, enjoying a simple and peaceful afternoon together."
+      "title": "Morning at the Shore",
+      "text": "Yesterday I walked to the coast and brought a blanket for a picnic. I sat down and opened a banana nut muffin. The wrapper blew across the street, so I grabbed it quickly. The muffin was crunchy on the outside and soft on the inside. Today I feel rested, and I think tomorrow I will go back to enjoy the sunny day."
+    },
+    {
+      "title": "A Quick Snack",
+      "text": "Yesterday I stopped by a small bakery and bought a snack with wheat and carrot. I took a big bite, and it tasted crispy and soft. Today I put the rest in the pantry, and I think tomorrow I will check it out again because it was delicious."
+    },
+    {
+      "title": "Feeding the Ducks",
+      "text": "Yesterday I walked to a quiet park to feed the ducks. I brought bread crumbs and watched them rush by with excitement. Today I feel calm after spending time outside, and tomorrow I might take more crumbs to see them again."
+    },
+    {
+      "title": "A Windy Afternoon",
+      "text": "Yesterday the weather changed, and the wind blew strongly. A paper wrapper blew across the street, and I tried to catch it. Today the wind slowed down, and I stayed on the couch to rest. I think tomorrow the day will be bright and peaceful."
+    },
+    {
+      "title": "Planning the Day",
+      "text": "Yesterday I laid out my plan and wrote everything down. I had enough time to work and finish what was done. Today I analyzed some tasks again, and tomorrow I will fold my notes and start fresh."
+    },
+    {
+      "title": "Inside the Café",
+      "text": "Yesterday it started drizzling, so I ran to the closest café to take shelter. I ordered a warm drink and watched people rush by with umbrellas. Today the rain is softer, and tomorrow I hope for a sunny day."
+    },
+    {
+      "title": "A Short Walk",
+      "text": "Yesterday I walked everywhere looking for something to snack on. I found a bakery and bought a banana nut muffin. I took a big bite, and it tasted great. Today I feel better, and tomorrow I will walk again to clear my thoughts."
+    },
+    {
+      "title": "A Simple Task",
+      "text": "Yesterday I worked on the mapping of a small task and it was done quickly. Today I checked the results carefully and felt satisfied. Tomorrow I will do something else and keep working steadily."
+    },
+    {
+      "title": "Quiet Afternoon",
+      "text": "Yesterday I took a nap on the couch because my mind was tired. Today I feel firm and ready, even though the day is a bit too bright. Tomorrow I shall do more, but for now it is enough."
+    },
+    {
+      "title": "Trying Something New",
+      "text": "Yesterday I went to a small shop and tried on a shirt with stripes. It looked great, but it felt too daring for me. Today I think about borrowing something else, and tomorrow I might check the shop again."
+    },
+    {
+      "title": "A Light Drizzle",
+      "text": "Yesterday it started drizzling while I was walking. I looked for a place to take shelter and found a small café. I bought a warm drink and waited. Today the rain slowed down, and I feel calm. I think tomorrow the weather will be better."
+    },
+    {
+      "title": "The Picnic Blanket",
+      "text": "Yesterday I carried a blanket for a picnic and laid it out near some trees. I had a small snack and felt relaxed. Today I cleaned the blanket and folded it neatly. I think tomorrow I will use it again for a quiet afternoon."
+    },
+    {
+      "title": "Something Sweet",
+      "text": "Yesterday I grabbed a banana nut muffin from a bakery. When I opened the wrapper, the wind blew lightly, and the paper almost flew away. The muffin was crunchy and soft. Today I want something else sweet, and tomorrow I may buy another one."
+    },
+    {
+      "title": "The Ducks Again",
+      "text": "Yesterday I went to the park to feed the ducks. I took bread crumbs and watched them come closer. Today I don’t have enough crumbs, but tomorrow I will get more to see them again."
+    },
+    {
+      "title": "Too Bright",
+      "text": "Yesterday the sun was too bright, and I stayed inside to rest on the couch. Today my mind is tired, so I took a nap. I think tomorrow I will walk outside to clear my thoughts."
+    },
+    {
+      "title": "A Simple Walk",
+      "text": "Yesterday I walked everywhere looking for a snack. I found something with wheat and carrot, and it tasted good. Today I put the rest in the pantry. Tomorrow I will try something else."
+    },
+    {
+      "title": "Checking My Notes",
+      "text": "Yesterday I was jotting down ideas and tried to organize them. Today I analyzed everything again and felt it was enough for now. Tomorrow I will continue working on the last one I wrote."
+    },
+    {
+      "title": "The Quiet Room",
+      "text": "Yesterday I sat on the couch and tried to think, but I wasn’t thinking about anything. Today I feel more awake and ready. Tomorrow I shall do what I have to do."
+    },
+    {
+      "title": "Trying On Clothes",
+      "text": "Yesterday I went to a small shop and tried on a shirt with stripes. It looked great, but the color felt too daring. Today I want to try it on again. Tomorrow I might buy it if I still like it."
+    },
+    {
+      "title": "A Gentle Morning",
+      "text": "Yesterday I woke up early and checked a few tasks. Everything looked good and was done as expected. Today I worked slowly, and tomorrow I hope to feel more engaged and ready to continue."
     }
   ]
 }

@@ -1,11 +1,11 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
-$outputFile    = ".\files\allsetra-platform-backend.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini"
+$outputFile    = ".\files\Gemini.txt"
 
 $selectedFiles = @()    
-$onlyFolders   = @("TheftReports","Allsetra.Platform.BE.Api", "Allsetra.Platform.BE.AppHost","AllsetraPlatform.BE.Dispatching")
+$onlyFolders   = @()
 
 # Descricao do conteudo do arquivo de saída
 $outputDescription = @"
