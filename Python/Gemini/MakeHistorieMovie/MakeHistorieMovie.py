@@ -8,7 +8,7 @@ from utils.story_audio_generator import generate_story_audio
 from utils.story_video_builder import build_story_video
 from utils.story_theme_extractor import extract_story_theme
 
-
+# python MakeHistorieMovie.py                                         
 # -------------------------------------------------------
 # FLAGS
 # -------------------------------------------------------
