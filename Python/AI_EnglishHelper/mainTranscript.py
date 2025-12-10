@@ -23,7 +23,7 @@ import google.generativeai as genai
 # ================================================================================
 # CONFIG
 # ================================================================================
-GROQ_KEY_FILE = "../Groq/groq_api_key.txt"
+GROQ_KEY_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 

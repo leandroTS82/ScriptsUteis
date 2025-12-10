@@ -19,7 +19,7 @@ import requests
 from datetime import datetime
 
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
-API_KEY_FILE = "./groq_api_key.txt"
+API_KEY_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
 
 SYSTEM_PROMPT_FILE = "./systemPrompt.json"
 BASE_PROMPT_FILE = "./userPromptBase.json"

@@ -12,7 +12,7 @@ import base64
 import requests
 
 API_URL_CHAT = "https://api.groq.com/openai/v1/chat/completions"
-API_KEY_FILE = "./groq_api_key.txt"
+API_KEY_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
 
 TRANSLATOR_PROMPT = "./ImageGen_translator_prompt.json"
 

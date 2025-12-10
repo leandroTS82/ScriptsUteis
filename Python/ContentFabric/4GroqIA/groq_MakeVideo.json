@@ -1,5 +1,5 @@
 {
-  "api_key_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\groq_api_key.txt",
+  "api_key_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt",
   "system_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\systemPrompt.json",
   "base_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\makevideoLabelPrompt.json",
 

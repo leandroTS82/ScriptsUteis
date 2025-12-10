@@ -4,7 +4,7 @@ import os
 from google import genai
 
 GEMINI_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
-GROQ_KEY = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\groq_api_key.txt"
+GROQ_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
 
 def _load_key(path):
     if not os.path.exists(path):
