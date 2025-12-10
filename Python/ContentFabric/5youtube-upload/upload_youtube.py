@@ -27,8 +27,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.force-ssl"
 ]
 
-TOKEN_PATH = "token.json"
-CLIENT_SECRET_FILE = "youtube-upload-desktop.json"
+TOKEN_PATH = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\youtube_token.json"
+CLIENT_SECRET_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\youtube-upload-desktop.json"
 
 REPORT_DIR = "./reports"
 
