@@ -3,7 +3,7 @@ from groq import Groq
 import os
 from google import genai
 
-GEMINI_KEY = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\google-gemini-key.txt"
+GEMINI_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
 GROQ_KEY = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\groq_api_key.txt"
 
 def _load_key(path):

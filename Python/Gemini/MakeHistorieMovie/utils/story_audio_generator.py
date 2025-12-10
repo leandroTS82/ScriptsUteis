@@ -3,7 +3,7 @@ import wave
 from google import genai
 from google.genai import types
 
-API_KEY_PATH = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\google-gemini-key.txt"
+API_KEY_PATH = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
 
 
 def _load_key():

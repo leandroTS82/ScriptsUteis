@@ -1,6 +1,6 @@
 import google.generativeai as genai
 
-key_path = "./google-gemini-key.txt"
+key_path = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
 api_key = open(key_path).read().strip()
 
 genai.configure(api_key=api_key)

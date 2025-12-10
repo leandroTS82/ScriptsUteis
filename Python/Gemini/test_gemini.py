@@ -2,7 +2,7 @@ import google.generativeai as genai
 import os
 
 # Caminho da sua chave
-key_path = "./google-gemini-key.txt"
+key_path = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
 
 # Ler a chave
 with open(key_path, "r") as f:

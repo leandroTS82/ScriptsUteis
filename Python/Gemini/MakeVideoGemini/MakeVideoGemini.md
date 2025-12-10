@@ -90,7 +90,7 @@ import google.generativeai as genai
 
 class GeminiConfig:
 
-    def __init__(self, key_path="google-gemini-key.txt"):
+    def __init__(self, key_path="C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"):
         self.key_path = key_path
         self.api_key = self._load_key()
         self._configure_sdk()
