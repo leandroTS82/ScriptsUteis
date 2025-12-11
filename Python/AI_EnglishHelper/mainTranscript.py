@@ -12,6 +12,7 @@
    - Registro em CreateLater.json e TranscriptResults.json
    - Groq → fallback Gemini → forçar Gemini com -Gemini
 ====================================================================================
+python mainTranscript.py
 """
 
 import os
@@ -108,23 +109,23 @@ def save_transcript_result(palavra, definicao, exemplos):
 # ================================================================================
 def groq_correct_and_translate(text):
     prompt = f"""
-Your tasks:
+                Your tasks:
 
-1. Correct misspellings in Portuguese or English.
-2. If the input is Portuguese → translate to natural English.
-3. If partially Portuguese → translate to English.
-4. If English has grammar mistakes → correct it.
-5. ALWAYS output final English only.
+                1. Correct misspellings in Portuguese or English.
+                2. If the input is Portuguese → translate to natural English.
+                3. If partially Portuguese → translate to English.
+                4. If English has grammar mistakes → correct it.
+                5. ALWAYS output final English only.
 
-Return ONLY JSON:
-{{
- "corrected": "final English",
- "had_error": true/false,
- "reason": "short explanation"
-}}
+                Return ONLY JSON:
+                {{
+                "corrected": "final English",
+                "had_error": true/false,
+                "reason": "short explanation"
+                }}
 
-Input: "{text}"
-"""
+                Input: "{text}"
+            """ 
 
     payload = {"model": GROQ_MODEL, "messages": [{"role": "user", "content": prompt}]}
     headers = {"Authorization": f"Bearer {load_groq_key()}", "Content-Type": "application/json"}
@@ -145,23 +146,23 @@ Input: "{text}"
 # ================================================================================
 def gemini_correct_and_translate(text):
     prompt = f"""
-You MUST ALWAYS output English.
+                    You MUST ALWAYS output English.
 
-Tasks:
-1. Fix misspellings (PT or EN)
-2. If PT → translate to English
-3. If EN → fix grammar
-4. Mixed → translate PT parts and correct English
+                    Tasks:
+                    1. Fix misspellings (PT or EN)
+                    2. If PT → translate to English
+                    3. If EN → fix grammar
+                    4. Mixed → translate PT parts and correct English
 
-Return ONLY JSON:
-{{
- "corrected": "final English",
- "had_error": true/false,
- "reason": "short explanation"
-}}
+                    Return ONLY JSON:
+                    {{
+                    "corrected": "final English",
+                    "had_error": true/false,
+                    "reason": "short explanation"
+                    }}
 
-Input: "{text}"
-"""
+                    Input: "{text}"
+                """
 
     model = genai.GenerativeModel(GEMINI_MODEL)
     raw = model.generate_content(prompt).text
@@ -190,7 +191,7 @@ def generate_wordbank(corrected_sentence, force_gemini=False):
 Create the following JSON:
 
 {{
- "definition_pt": "explicação natural e clara do significado em português",
+ "definition_pt": "Tradução mais explicação natural e clara do significado em português, dicas gramaticais, de 1 exemplo simples de como seria em portugUês.",
  "examples": [
     {",".join([f'{{"level": "{e["level"]}", "size": "{e["size"]}", "phrase": "..."}}' for e in example_specs])}
  ]
