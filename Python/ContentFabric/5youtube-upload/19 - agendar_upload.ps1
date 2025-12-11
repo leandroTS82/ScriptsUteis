@@ -1,29 +1,32 @@
-# Exemplo para esperar 15 minutos:
-    # powershell -ExecutionPolicy Bypass -File run_delayed.ps1 -Minutes 15
-# Exemplo para esperar 120 minutos (2 horas):
-    # powershell -ExecutionPolicy Bypass -File run_delayed.ps1 -Minutes 120
-
-pparam(
-    [int]$Minutes = 0
-)
+# ==========================================
+# CONFIGURAÇÃO
+# ==========================================
+$Minutes = 15   # Altere o tempo aqui
+# ==========================================
 
 $startSchedule = (Get-Date).ToString("HH:mm:ss")
 Write-Host "`nIniciando agendamento às $startSchedule..."
 
-$seconds = $Minutes * 60
+$seconds = [int]$Minutes * 60
 Write-Host "Aguardando $Minutes minuto(s)..."
 
-for ($i = $seconds; $i -ge 0; $i--) {
-    $minLeft = [math]::Floor($i / 60)
-    $secLeft = $i % 60
+if ($seconds -gt 0) {
+    for ($i = $seconds; $i -ge 0; $i--) {
 
-    $msg = "Tempo restante: {0:D2}:{1:D2}" -f $minLeft, $secLeft
-    Write-Host -NoNewline "`r$msg"
+        # FORÇA OS TIPOS PARA EVITAR ERRO DE FORMATAÇÃO
+        $minLeft = [int]([math]::Floor($i / 60))
+        $secLeft = [int]($i % 60)
 
-    Start-Sleep -Seconds 1
+        # Formatação segura
+        $msg = ("Tempo restante: {0:D2}:{1:D2}" -f $minLeft, $secLeft)
+
+        Write-Host -NoNewline "`r$msg"
+
+        Start-Sleep -Seconds 1
+    }
 }
 
 $startTime = (Get-Date).ToString("HH:mm:ss")
 Write-Host "`nIniciando upload às $startTime..."
 
-python upload_youtube.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+python upload_youtube.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
