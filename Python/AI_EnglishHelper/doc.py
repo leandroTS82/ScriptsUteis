@@ -20,7 +20,7 @@ from reportlab.lib import colors
 # ------------------------------------------------
 # Estas variáveis podem ser alteradas para mudar completamente a estrutura
 # do estudo gerado pelo Groq sem precisar alterar o resto do script.
-# python FileReview.py
+# python doc.py
 # ------------------------------------------------
 
 SYSTEM_PROMPT = """
@@ -67,7 +67,7 @@ Here is a list of vocabulary entries. Generate a bilingual English learning guid
 # ================================================================================
 # CONFIGURAÇÃO GROQ
 # ================================================================================
-GROQ_API_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
+GROQ_API_KEY = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 

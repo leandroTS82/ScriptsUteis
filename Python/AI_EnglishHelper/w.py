@@ -11,6 +11,7 @@
    - Preview colorido
    - Registro em CreateLater.json e TranscriptResults.json
    - Solicita input se nenhum termo for passado via CLI
+   - Loop interativo: repetir processo e gerar PDF via doc.py
 ====================================================================================
 python mainTranscript.py "frase"
 python mainTranscript.py
@@ -207,23 +208,12 @@ def print_preview(original, corrected, had_error, reason, definition_pt, example
         print(f" ➜ ({ex['level']}, {ex['size']}) {ex['phrase']}")
 
 
+
 # ================================================================================
-# MAIN
+# LÓGICA PRINCIPAL EXTRAÍDA PARA REUTILIZAÇÃO
 # ================================================================================
 
-def main():
-
-    # Se nenhum argumento → solicitar input
-    if len(sys.argv) < 2:
-        print("Nenhum termo informado.")
-        original = input("Digite a frase/termo a ser processado: ").strip()
-
-        if not original:
-            print("Nenhuma entrada fornecida. Encerrando.")
-            return
-    else:
-        original = " ".join(sys.argv[1:]).strip()
-
+def process_term(original):
     print("🔍 Processando:", original)
 
     # 1. Correção e tradução
@@ -249,6 +239,44 @@ def main():
 
     # 5. Salvar resultado final
     save_transcript_result(corrected, wb["definition_pt"], wb["examples"])
+
+
+
+# ================================================================================
+# MAIN COM LOOP E PDF
+# ================================================================================
+
+def main():
+
+    while True:
+
+        # Solicitar input caso nenhum argumento tenha sido passado
+        if len(sys.argv) < 2:
+            print("Nenhum termo informado.")
+            original = input("Digite a frase/termo a ser processado: ").strip()
+
+            if not original:
+                print("Nenhuma entrada fornecida. Encerrando.")
+                return
+        else:
+            original = " ".join(sys.argv[1:]).strip()
+            sys.argv = [sys.argv[0]]  # limpar argumentos após o primeiro ciclo
+
+        # Executar processamento
+        process_term(original)
+
+        # PDF opcional
+        gerar_pdf = input("\nDeseja gerar o PDF? (S/N): ").strip().lower()
+        if gerar_pdf == "s":
+            print("📄 Gerando PDF via doc.py...")
+            os.system("python ./doc.py")
+
+        # Novo termo?
+        repetir = input("\nDeseja buscar um novo termo? (S/N): ").strip().lower()
+        if repetir != "s":
+            print("\nEncerrando o programa.")
+            break
+
 
 
 if __name__ == "__main__":
