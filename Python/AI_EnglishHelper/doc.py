@@ -146,6 +146,7 @@ FILENAME RULES
 
 - Derive from terms and/or categories.
 - Use 1–4 key words (nouns/verbs).
+- Provide examples of important tenses.
 - Only lowercase, underscore.
 - Max 45 characters.
 - DO NOT use generic names like "vocabulary_module", "training_file", etc.
@@ -195,7 +196,7 @@ The JSON MUST follow this structure:
       ]
     }},
     {{
-      "title": "Grammar & Usage",
+      "title": "Grammar & Usage: English Verb Tenses",
       "content": [
         {{ "type": "rule", "text": "" }},
         {{ "type": "examples", "items": [ {{ "en": "", "pt": "" }} ] }}
