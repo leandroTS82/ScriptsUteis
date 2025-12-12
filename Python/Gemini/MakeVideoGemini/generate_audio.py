@@ -18,7 +18,7 @@ def save_wave(filename, pcm, channels=1, rate=24000, sample_width=2):
         wf.setframerate(rate)
         wf.writeframes(pcm)
 
-def generate_audio(text, output_path, voice="Fenrir"):
+def generate_audio(text, output_path, voice="Charon"):
     """
     Gera áudio usando gemini-2.5-flash-preview-tts
     e interpreta <break time="Xs"/>.

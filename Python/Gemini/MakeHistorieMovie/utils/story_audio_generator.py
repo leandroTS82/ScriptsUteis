@@ -18,7 +18,7 @@ def save_wave(filename, pcm, channels=1, rate=24000, sample_width=2):
         wf.writeframes(pcm)
 
 
-def generate_story_audio(text, output_path, voice="Fenrir", slow_mode=True):
+def generate_story_audio(text, output_path, voice="Charon", slow_mode=True):
     """
     slow_mode=True  → fala ~85% da velocidade normal (moderado)
     slow_mode=False → fala padrão da API
@@ -37,7 +37,8 @@ def generate_story_audio(text, output_path, voice="Fenrir", slow_mode=True):
         print("⏳ Modo de fala lento moderado.")
 
         enhanced_text = (
-            "Read this text Maintain a natural, clear, calm and conversational tone.\n\n"
+            "You are younger YouTuber speaking naturally to English students\n\n"
+            "Read this text Maintain a natural, clear, friendly, learner-focused..\n\n"
             + text
         )
 

@@ -7,91 +7,119 @@ import shutil
 
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, PageBreak, HRFlowable
+    SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 
-# ================================================================================
-# CONFIGURAÇÕES DO SISTEMA
-# ================================================================================
 
-# Variáveis configuráveis pelo usuário (PROMPTS)
-# ------------------------------------------------
-# Estas variáveis podem ser alteradas para mudar completamente a estrutura
-# do estudo gerado pelo Groq sem precisar alterar o resto do script.
-# python doc.py
-# ------------------------------------------------
+# =====================================================================================
+# CONFIGURAÇÕES DO SISTEMA
+# =====================================================================================
+
+# GROQ_API_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
+GROQ_API_KEY = "***"
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL = "openai/gpt-oss-20b"
+
+INPUT_JSON_PATH = "./TranscriptResults.json"
+JSON_OUTPUT_DIR = "./json"
+PDF_OUTPUT_DIR = "./EnglishReview"
+
+os.makedirs(JSON_OUTPUT_DIR, exist_ok=True)
+os.makedirs(PDF_OUTPUT_DIR, exist_ok=True)
+
+
+# =====================================================================================
+# PROMPTS – Groq gera JSON final no estilo CALLAN
+# =====================================================================================
 
 SYSTEM_PROMPT = """
-You are an expert English teacher.
+You are an English teacher and instructional designer.
 
-You MUST return a structured bilingual study guide with the following clear sections:
+TASK:
+Transform the user vocabulary list into a structured JSON formatted as a CALLAN-STYLE
+training module.
 
-## Vocabulary List
-For each vocabulary item:
-- English term
-- Portuguese definition
-- English explanation in simple form
-- Example in English
-- Translation of example into Portuguese
+RETURN ONLY VALID JSON.
 
-## Grammar & Usage
-Explain how expressions are used, common mistakes, when to use them.
-Include EN → PT versions.
-
-## Patterns & Collocations
-Provide common combinations, small phrases, and usage patterns (EN + PT).
-
-## Reading Practice
-A short paragraph in English using several words.
-Then a full Portuguese translation.
-
-## Study Tips
-Simple practical advice for learning the terms.
+STRUCTURE:
+{
+  "filename": "safe_filename_lowercase_no_spaces",
+  "cover": {
+    "title": "",
+    "subtitle": "",
+    "author": "",
+    "edition": ""
+  },
+  "sections": [
+    {
+      "title": "",
+      "entries": [
+        {
+          "term": "",
+          "content": [
+            { "type": "definition_pt", "text": "" },
+            { "type": "explanation_en", "text": "" },
+            { "type": "collocations", "items": ["", ""] },
+            {
+              "type": "examples",
+              "items": [
+                { "level": "", "en": "", "pt": "" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Grammar & Usage",
+      "content": [
+        { "type": "rule", "text": "" },
+        { "type": "examples", "items": [ { "en": "", "pt": "" } ] }
+      ]
+    },
+    {
+      "title": "Patterns & Collocations",
+      "content": [
+        { "type": "list", "title": "", "items": ["", ""] }
+      ]
+    },
+    {
+      "title": "Reading Practice",
+      "content": [
+        { "type": "reading_en", "text": "" },
+        { "type": "reading_pt", "text": "" }
+      ]
+    },
+    {
+      "title": "Study Tips",
+      "tips": ["", ""]
+    }
+  ]
+}
 
 RULES:
-- MUST use section headers starting with “## ” exactly.
-- MUST NOT use markdown bold (**), italics (*), or pipes (|).
-- MUST NOT return tables; only clean paragraphs and lists.
+- JSON must be valid.
+- filename must contain only lowercase letters, numbers, and underscores.
+- Keep CALLAN style: short, clear, progressive, easy to read.
+- All example phrases must be improved, simplified, and friendly for learners.
+- Return English and Portuguese versions of examples where appropriate.
 """
 
-# Prompt de usuário poderá ser modificado em caso de necessidade
 USER_PROMPT_TEMPLATE = """
-Here is a list of vocabulary entries. Generate a bilingual English learning guide:
+Here is the raw vocabulary list. Transform it into the structured CALLAN JSON:
 
 {json_content}
 """
 
 
-# ================================================================================
-# CONFIGURAÇÃO GROQ
-# ================================================================================
-GROQ_API_KEY = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt"
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "openai/gpt-oss-20b"
+# =====================================================================================
+# CHAMADA GROQ
+# =====================================================================================
 
-INPUT_JSON_PATH = "./TranscriptResults.json"
-OUTPUT_DIR = "./EnglishReview"
-TEMP_DIR = "./.temp"
-
-
-# ================================================================================
-# LIMPEZA DE ARTEFATOS
-# ================================================================================
-def clean_llm_text(text: str) -> str:
-    text = re.sub(r"\*\*(.*?)\*\*", r"\1", text)
-    text = re.sub(r"\*(.*?)\*", r"\1", text)
-    text = re.sub(r"\|\|+", "", text)
-    text = text.replace("  ", " ")
-    return text.strip()
-
-
-# ================================================================================
-# CHAMAR GROQ
-# ================================================================================
-def call_groq(json_content: str) -> str:
-    prompt = USER_PROMPT_TEMPLATE.format(json_content=json_content)
+def call_groq_structured(content: str) -> dict:
+    prompt = USER_PROMPT_TEMPLATE.format(json_content=content)
 
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
@@ -101,102 +129,272 @@ def call_groq(json_content: str) -> str:
     body = {
         "model": GROQ_MODEL,
         "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {
+                "role": "system",
+                "content": SYSTEM_PROMPT + 
+                "\n\nIMPORTANT:\nReturn ONLY JSON. No markdown. No explanations."
+            },
             {"role": "user", "content": prompt}
         ],
-        "temperature": 0.2,
+        "temperature": 0.2
     }
 
     response = requests.post(GROQ_URL, headers=headers, json=body)
 
     if response.status_code != 200:
-        raise Exception(f"Erro Groq: {response.status_code} - {response.text}")
+        raise Exception(f"Groq error {response.status_code}: {response.text}")
 
-    result = response.json()["choices"][0]["message"]["content"]
-    return clean_llm_text(result)
+    json_str = response.json()["choices"][0]["message"]["content"].strip()
+
+    # SALVA RETORNO BRUTO PARA DEBUG
+    with open("last_groq_raw.txt", "w", encoding="utf-8") as f:
+        f.write(json_str)
+
+    # ============================================================
+    # 1. Verificação inicial — retorno vazio
+    # ============================================================
+    if not json_str:
+        raise Exception("Groq returned an empty response. Check last_groq_raw.txt.")
+
+    # ============================================================
+    # 2. Se já inicia com '{', tenta fazer loads direto
+    # ============================================================
+    if json_str.startswith("{"):
+        try:
+            return json.loads(json_str)
+        except json.JSONDecodeError:
+            pass  # Vamos tentar limpeza mais abaixo
+
+    # ============================================================
+    # 3. LIMPEZA AUTOMÁTICA: extrair apenas o trecho JSON
+    # ============================================================
+    try:
+        start = json_str.index("{")
+        end = json_str.rindex("}") + 1
+        cleaned = json_str[start:end]
+
+        return json.loads(cleaned)
+
+    except Exception:
+        pass
+
+    # ============================================================
+    # 4. ÚLTIMA TENTATIVA: corrigir aspas quebradas
+    # ============================================================
+    try:
+        fixed = json_str.replace("\n", " ").replace("\r", " ")
+        fixed = re.sub(r"([a-zA-Z0-9_]+):", r'"\1":', fixed)
+        return json.loads(fixed)
+    except Exception:
+        pass
+
+    # ============================================================
+    # 5. TUDO FALHOU → Exibir erro com retorno bruto
+    # ============================================================
+    raise Exception(
+        "Groq did not return valid JSON. See last_groq_raw.txt for debugging.\n"
+        f"Raw response:\n{json_str}"
+    )
 
 
-# ================================================================================
-# ESTILOS DO PDF (PROFISSIONAIS)
-# ================================================================================
+
+# =====================================================================================
+# ESTILOS DO REPORTLAB – CALLAN STYLE
+# =====================================================================================
+
 def build_styles():
     styles = getSampleStyleSheet()
 
     styles.add(ParagraphStyle(
-        name="TitleCustom",
-        fontSize=26,
-        leading=30,
+        name="CoverTitle",
+        fontSize=28,
+        leading=34,
         alignment=1,
-        textColor=colors.HexColor("#1B4F72"),
-        spaceAfter=28
+        spaceAfter=20,
+        textColor=colors.HexColor("#0B3C5D")
     ))
 
     styles.add(ParagraphStyle(
-        name="SectionCustom",
-        fontSize=18,
-        leading=22,
-        textColor=colors.HexColor("#154360"),
+        name="CoverSubtitle",
+        fontSize=16,
+        leading=20,
+        alignment=1,
+        spaceAfter=20,
+        textColor=colors.HexColor("#1F618D")
+    ))
+
+    styles.add(ParagraphStyle(
+        name="SectionTitle",
+        fontSize=20,
+        leading=26,
         spaceBefore=20,
-        spaceAfter=12
+        spaceAfter=10,
+        textColor=colors.HexColor("#154360")
     ))
 
     styles.add(ParagraphStyle(
-        name="BodyCustom",
-        parent=styles["Normal"],
+        name="TermTitle",
+        fontSize=16,
+        leading=22,
+        spaceBefore=12,
+        spaceAfter=6,
+        textColor=colors.HexColor("#0E6251")
+    ))
+
+    styles.add(ParagraphStyle(
+        name="Body",
         fontSize=12,
         leading=18,
         spaceAfter=10
     ))
 
     styles.add(ParagraphStyle(
-        name="PortugueseCustom",
-        parent=styles["Normal"],
-        fontSize=11,
-        leading=16,
+        name="DefinitionPT",
+        fontSize=12,
+        leading=18,
         textColor=colors.HexColor("#7E5109"),
         spaceAfter=10
+    ))
+
+    styles.add(ParagraphStyle(
+        name="ExplanationEN",
+        fontSize=12,
+        leading=18,
+        textColor=colors.HexColor("#1A5276"),
+        spaceAfter=10
+    ))
+
+    styles.add(ParagraphStyle(
+        name="ListItem",
+        fontSize=12,
+        leading=16,
+        leftIndent=15,
+        bulletIndent=10,
+        spaceAfter=4
+    ))
+
+    styles.add(ParagraphStyle(
+        name="ExampleItem",
+        fontSize=12,
+        leading=16,
+        leftIndent=20,
+        spaceAfter=6,
+        textColor=colors.HexColor("#117A65")
+    ))
+
+    styles.add(ParagraphStyle(
+        name="ReadingEN",
+        fontSize=12,
+        leading=18,
+        spaceAfter=6,
+        textColor=colors.HexColor("#0E6655")
+    ))
+
+    styles.add(ParagraphStyle(
+        name="ReadingPT",
+        fontSize=11,
+        leading=16,
+        spaceAfter=10,
+        textColor=colors.HexColor("#7D6608")
     ))
 
     return styles
 
 
-# ================================================================================
-# CRIAR PDF
-# ================================================================================
-def generate_pdf(output_path: str, structured_text: str):
+# =====================================================================================
+# RENDER PDF – CALLAN STYLE
+# =====================================================================================
+
+def generate_pdf_from_json(output_path: str, data: dict):
     styles = build_styles()
     story = []
 
-    story.append(Paragraph("English Study Guide – Bilingual Edition", styles["TitleCustom"]))
-    story.append(HRFlowable(width="100%", thickness=1, color=colors.grey))
-    story.append(Spacer(1, 24))
+    # COVER
+    cover = data["cover"]
+    story.append(Paragraph(cover["title"], styles["CoverTitle"]))
+    story.append(Paragraph(cover["subtitle"], styles["CoverSubtitle"]))
+    story.append(Spacer(1, 20))
+    story.append(Paragraph(f"Author: {cover['author']}", styles["Body"]))
+    story.append(Paragraph(f"Edition: {cover['edition']}", styles["Body"]))
+    story.append(PageBreak())
 
-    sections = re.split(r"(?=## )", structured_text)
+    # TABLE OF CONTENTS
+    story.append(Paragraph("Table of Contents", styles["SectionTitle"]))
+    toc_rows = [[sec["title"]] for sec in data["sections"]]
 
-    for sec in sections:
-        sec = sec.strip()
-        if not sec.startswith("##"):
-            continue
+    toc_table = Table(toc_rows, [450])
+    toc_table.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), colors.lightgrey),
+        ("TEXTCOLOR", (0,0), (-1,0), colors.black),
+        ("FONTSIZE", (0,0), (-1,-1), 12),
+        ("BOTTOMPADDING", (0,0), (-1,-1), 6)
+    ]))
 
-        title_line, *content = sec.split("\n", 1)
-        section_title = clean_llm_text(title_line.replace("##", "").strip())
-        story.append(Paragraph(section_title, styles["SectionCustom"]))
+    story.append(toc_table)
+    story.append(PageBreak())
 
-        if content:
-            paragraphs = content[0].split("\n")
+    # SECTIONS
+    for sec in data["sections"]:
+        story.append(Paragraph(sec["title"], styles["SectionTitle"]))
 
-            for p in paragraphs:
-                p = clean_llm_text(p)
-                if not p:
-                    continue
+        # Vocabulary List sections
+        if "entries" in sec:
+            for entry in sec["entries"]:
+                story.append(Paragraph(entry["term"], styles["TermTitle"]))
 
-                if p.lower().startswith("pt:"):
-                    story.append(Paragraph(p[3:].strip(), styles["PortugueseCustom"]))
-                else:
-                    story.append(Paragraph(p, styles["BodyCustom"]))
+                for item in entry["content"]:
+                    t = item["type"]
+
+                    if t == "definition_pt":
+                        story.append(Paragraph(item["text"], styles["DefinitionPT"]))
+
+                    elif t == "explanation_en":
+                        story.append(Paragraph(item["text"], styles["ExplanationEN"]))
+
+                    elif t == "collocations":
+                        for col in item["items"]:
+                            story.append(Paragraph(f"- {col}", styles["ListItem"]))
+
+                    elif t == "examples":
+                        for ex in item["items"]:
+                            story.append(Paragraph(
+                                f"{ex['level']} — {ex['en']} / {ex['pt']}",
+                                styles["ExampleItem"]
+                            ))
+
+        # Standard content sections
+        if "content" in sec:
+            for item in sec["content"]:
+                t = item["type"]
+
+                if t == "rule":
+                    story.append(Paragraph(item["text"], styles["Body"]))
+
+                elif t == "examples":
+                    for ex in item["items"]:
+                        story.append(Paragraph(
+                            f"{ex['en']} / {ex['pt']}",
+                            styles["ExampleItem"]
+                        ))
+
+                elif t == "list":
+                    story.append(Paragraph(item["title"], styles["TermTitle"]))
+                    for x in item["items"]:
+                        story.append(Paragraph(f"- {x}", styles["ListItem"]))
+
+                elif t == "reading_en":
+                    story.append(Paragraph(item["text"], styles["ReadingEN"]))
+
+                elif t == "reading_pt":
+                    story.append(Paragraph(item["text"], styles["ReadingPT"]))
+
+        if "tips" in sec:
+            for tip in sec["tips"]:
+                story.append(Paragraph(f"• {tip}", styles["ListItem"]))
 
         story.append(PageBreak())
 
+    # BUILD PDF
     doc = SimpleDocTemplate(
         output_path,
         pagesize=letter,
@@ -205,77 +403,35 @@ def generate_pdf(output_path: str, structured_text: str):
         topMargin=60,
         bottomMargin=50
     )
+
     doc.build(story)
 
 
-# ================================================================================
-# DIVIDIR JSON GRANDE EM PARTES DE 10 ITENS
-# ================================================================================
-def split_json_into_parts(full_list):
-    os.makedirs(TEMP_DIR, exist_ok=True)
+# =====================================================================================
+# MAIN PIPELINE
+# =====================================================================================
 
-    parts = []
-    part_number = 1
-
-    for i in range(0, len(full_list), 10):
-        chunk = full_list[i:i + 10]
-        part_path = os.path.join(TEMP_DIR, f"part_{part_number}.json")
-
-        with open(part_path, "w", encoding="utf-8") as f:
-            json.dump(chunk, f, indent=2, ensure_ascii=False)
-
-        parts.append(part_path)
-        part_number += 1
-
-    return parts
-
-
-# ================================================================================
-# MAIN
-# ================================================================================
 def main():
     if not os.path.exists(INPUT_JSON_PATH):
-        print("Arquivo TranscriptResults.json não encontrado.")
+        print("TranscriptResults.json not found.")
         return
 
-    with open(INPUT_JSON_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    raw_json = json.load(open(INPUT_JSON_PATH, "r", encoding="utf-8"))
 
-    # Divide caso seja array grande
-    parts = split_json_into_parts(data)
+    print("Calling Groq…")
+    structured = call_groq_structured(json.dumps(raw_json, ensure_ascii=False))
 
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    filename = structured["filename"]
     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M")
+    pdf_path = os.path.join(PDF_OUTPUT_DIR, f"{timestamp}_{filename}.pdf")
 
-    # Processa cada parte
-    for idx, part_path in enumerate(parts, start=1):
-        with open(part_path, "r", encoding="utf-8") as f:
-            part_json = json.load(f)
+    print(f"Generating PDF: {pdf_path}")
+    generate_pdf_from_json(pdf_path, structured)
 
-        print(f"Processando parte {idx}/{len(parts)}...")
+    dest_json = os.path.join(JSON_OUTPUT_DIR, f"{timestamp}_TranscriptResults.json")
+    shutil.move(INPUT_JSON_PATH, dest_json)
 
-        groq_text = call_groq(json.dumps(part_json, indent=2, ensure_ascii=False))
-
-        pdf_name = f"{timestamp}_part{idx}.pdf"
-        pdf_path = os.path.join(OUTPUT_DIR, pdf_name)
-
-        print(f"Gerando PDF {pdf_name}...")
-        generate_pdf(pdf_path, groq_text)
-
-    # Remove diretório temporário
-    shutil.rmtree(TEMP_DIR, ignore_errors=True)
-
-    # ================================
-    # Renomear e mover TranscriptResults.json
-    # ================================
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M")
-    json_new_name = f"{timestamp}_TranscriptResults.json"
-    json_new_path = os.path.join(OUTPUT_DIR, json_new_name)
-
-    shutil.move(INPUT_JSON_PATH, json_new_path)
-
-    print(f"Arquivo original movido para: {json_new_name}")
-    print("Todos os PDFs foram gerados com sucesso!")
+    print("Process completed successfully.")
 
 
 if __name__ == "__main__":
