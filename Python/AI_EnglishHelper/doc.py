@@ -17,7 +17,6 @@ from reportlab.lib import colors
 # CONFIGURAÇÕES DO SISTEMA
 # =====================================================================================
 
-# GROQ_API_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
 GROQ_API_KEY = "***"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
@@ -31,25 +30,80 @@ os.makedirs(PDF_OUTPUT_DIR, exist_ok=True)
 
 
 # =====================================================================================
-# PROMPTS – Groq gera JSON final no estilo CALLAN
+# SYSTEM PROMPT – CALLAN + NOVAS REGRAS DE FILENAME + REGRAS DE ESTRUTURA
 # =====================================================================================
 
 SYSTEM_PROMPT = """
 You are an English teacher and instructional designer.
 
 TASK:
-Transform the user vocabulary list into a structured JSON formatted as a CALLAN-STYLE
-training module.
+Transform the user vocabulary list into a structured CALLAN-STYLE JSON module.
+Return ONLY JSON. Do NOT output explanations or markdown.
 
-RETURN ONLY VALID JSON.
+=====================================================================================
+FILENAME RULES
+=====================================================================================
 
-STRUCTURE:
+1. If the input contains ONLY ONE “palavra_chave”, the filename MUST be a normalized
+version of that term:
+- remove articles and stopwords (the, a, an, in, on, when, I, etc.)
+- extract only key nouns and/or verbs
+- convert to lowercase
+- replace spaces with underscores
+- keep only a–z, 0–9 and underscore
+Example:
+  "The statuses were adjusted" -> "statuses_adjusted"
+
+2. If the input contains TWO OR MORE terms:
+   - extract the essential nouns/verbs from each “palavra_chave”
+   - choose 2–4 important category words (status, enum, database, step, error, fix…)
+   - compress them into a short filename
+   - MUST be human-readable and informative
+   - MUST NOT exceed 45 characters
+
+3. NEVER generate generic filenames like:
+   "vocabulary_module"
+   "training_file"
+   "lesson"
+   "module_file"
+
+4. ALWAYS produce lowercase, underscore-separated safe identifiers.
+
+=====================================================================================
+STRUCTURE RULES
+=====================================================================================
+
+ALL sections MUST be inside the array "sections": [].
+NEVER output sections at top-level.
+
+WRONG:
+"Reading Practice": { ... }
+
+RIGHT:
 {
-  "filename": "safe_filename_lowercase_no_spaces",
+  "title": "Reading Practice",
+  "content": [ ... ]
+}
+
+If the content is examples, grammar, tips, etc., ALWAYS follow the structure:
+
+{
+  "title": "",
+  "entries": [ ... ],   <-- Vocabulary
+  "content": [ ... ],   <-- Grammar, patterns, reading
+  "tips": [ ... ]       <-- Study tips
+}
+
+=====================================================================================
+OUTPUT STRUCTURE
+=====================================================================================
+
+{
+  "filename": "generated_filename_here",
   "cover": {
     "title": "",
     "subtitle": "",
-    "author": "",
+    "author": "Leandro teixeira da silva",
     "edition": ""
   },
   "sections": [
@@ -98,13 +152,6 @@ STRUCTURE:
     }
   ]
 }
-
-RULES:
-- JSON must be valid.
-- filename must contain only lowercase letters, numbers, and underscores.
-- Keep CALLAN style: short, clear, progressive, easy to read.
-- All example phrases must be improved, simplified, and friendly for learners.
-- Return English and Portuguese versions of examples where appropriate.
 """
 
 USER_PROMPT_TEMPLATE = """
@@ -115,7 +162,7 @@ Here is the raw vocabulary list. Transform it into the structured CALLAN JSON:
 
 
 # =====================================================================================
-# CHAMADA GROQ
+# PARSER ROBUSTO + FALLBACK
 # =====================================================================================
 
 def call_groq_structured(content: str) -> dict:
@@ -129,11 +176,7 @@ def call_groq_structured(content: str) -> dict:
     body = {
         "model": GROQ_MODEL,
         "messages": [
-            {
-                "role": "system",
-                "content": SYSTEM_PROMPT + 
-                "\n\nIMPORTANT:\nReturn ONLY JSON. No markdown. No explanations."
-            },
+            {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.2
@@ -146,60 +189,76 @@ def call_groq_structured(content: str) -> dict:
 
     json_str = response.json()["choices"][0]["message"]["content"].strip()
 
-    # SALVA RETORNO BRUTO PARA DEBUG
     with open("last_groq_raw.txt", "w", encoding="utf-8") as f:
         f.write(json_str)
 
-    # ============================================================
-    # 1. Verificação inicial — retorno vazio
-    # ============================================================
     if not json_str:
-        raise Exception("Groq returned an empty response. Check last_groq_raw.txt.")
+        raise Exception("Groq returned empty output.")
 
-    # ============================================================
-    # 2. Se já inicia com '{', tenta fazer loads direto
-    # ============================================================
+    # Tentativa direta
     if json_str.startswith("{"):
         try:
             return json.loads(json_str)
-        except json.JSONDecodeError:
-            pass  # Vamos tentar limpeza mais abaixo
+        except:
+            pass
 
-    # ============================================================
-    # 3. LIMPEZA AUTOMÁTICA: extrair apenas o trecho JSON
-    # ============================================================
+    # Extração entre { e }
     try:
         start = json_str.index("{")
         end = json_str.rindex("}") + 1
         cleaned = json_str[start:end]
-
         return json.loads(cleaned)
-
-    except Exception:
+    except:
         pass
 
-    # ============================================================
-    # 4. ÚLTIMA TENTATIVA: corrigir aspas quebradas
-    # ============================================================
+    # Última tentativa
     try:
-        fixed = json_str.replace("\n", " ").replace("\r", " ")
-        fixed = re.sub(r"([a-zA-Z0-9_]+):", r'"\1":', fixed)
+        fixed = re.sub(r"([a-zA-Z0-9_]+):", r'"\1":', json_str)
         return json.loads(fixed)
-    except Exception:
-        pass
-
-    # ============================================================
-    # 5. TUDO FALHOU → Exibir erro com retorno bruto
-    # ============================================================
-    raise Exception(
-        "Groq did not return valid JSON. See last_groq_raw.txt for debugging.\n"
-        f"Raw response:\n{json_str}"
-    )
-
+    except:
+        raise Exception(
+            "Groq returned invalid JSON. Inspect last_groq_raw.txt.\n"
+            f"Raw content:\n{json_str}"
+        )
 
 
 # =====================================================================================
-# ESTILOS DO REPORTLAB – CALLAN STYLE
+# NORMALIZAÇÃO DE SEÇÕES — CORRIGE ERROS DO GROQ
+# =====================================================================================
+
+def normalize_sections(structured: dict) -> dict:
+    if "sections" not in structured or not isinstance(structured["sections"], list):
+        structured["sections"] = []
+
+    known = {
+        "Reading Practice",
+        "Study Tips",
+        "Patterns & Collocations",
+        "Grammar & Usage",
+        "Vocabulary",
+        "Vocabulary List"
+    }
+
+    extras = []
+
+    for key in list(structured.keys()):
+        if key in known and key != "sections":
+            extras.append((key, structured[key]))
+            del structured[key]
+
+    for title, obj in extras:
+        structured["sections"].append({
+            "title": title,
+            "content": obj.get("content", []),
+            "entries": obj.get("entries", []),
+            "tips": obj.get("tips", [])
+        })
+
+    return structured
+
+
+# =====================================================================================
+# ESTILOS VISUAIS – CALLAN STYLE
 # =====================================================================================
 
 def build_styles():
@@ -269,7 +328,6 @@ def build_styles():
         fontSize=12,
         leading=16,
         leftIndent=15,
-        bulletIndent=10,
         spaceAfter=4
     ))
 
@@ -302,14 +360,14 @@ def build_styles():
 
 
 # =====================================================================================
-# RENDER PDF – CALLAN STYLE
+# RENDERIZAÇÃO DO PDF
 # =====================================================================================
 
 def generate_pdf_from_json(output_path: str, data: dict):
     styles = build_styles()
     story = []
 
-    # COVER
+    # CAPA
     cover = data["cover"]
     story.append(Paragraph(cover["title"], styles["CoverTitle"]))
     story.append(Paragraph(cover["subtitle"], styles["CoverSubtitle"]))
@@ -318,7 +376,7 @@ def generate_pdf_from_json(output_path: str, data: dict):
     story.append(Paragraph(f"Edition: {cover['edition']}", styles["Body"]))
     story.append(PageBreak())
 
-    # TABLE OF CONTENTS
+    # SUMÁRIO
     story.append(Paragraph("Table of Contents", styles["SectionTitle"]))
     toc_rows = [[sec["title"]] for sec in data["sections"]]
 
@@ -333,11 +391,11 @@ def generate_pdf_from_json(output_path: str, data: dict):
     story.append(toc_table)
     story.append(PageBreak())
 
-    # SECTIONS
+    # SEÇÕES
     for sec in data["sections"]:
         story.append(Paragraph(sec["title"], styles["SectionTitle"]))
 
-        # Vocabulary List sections
+        # VOCABULARY
         if "entries" in sec:
             for entry in sec["entries"]:
                 story.append(Paragraph(entry["term"], styles["TermTitle"]))
@@ -347,14 +405,11 @@ def generate_pdf_from_json(output_path: str, data: dict):
 
                     if t == "definition_pt":
                         story.append(Paragraph(item["text"], styles["DefinitionPT"]))
-
                     elif t == "explanation_en":
                         story.append(Paragraph(item["text"], styles["ExplanationEN"]))
-
                     elif t == "collocations":
                         for col in item["items"]:
                             story.append(Paragraph(f"- {col}", styles["ListItem"]))
-
                     elif t == "examples":
                         for ex in item["items"]:
                             story.append(Paragraph(
@@ -362,39 +417,35 @@ def generate_pdf_from_json(output_path: str, data: dict):
                                 styles["ExampleItem"]
                             ))
 
-        # Standard content sections
+        # OUTRAS SEÇÕES
         if "content" in sec:
             for item in sec["content"]:
                 t = item["type"]
 
                 if t == "rule":
                     story.append(Paragraph(item["text"], styles["Body"]))
-
                 elif t == "examples":
                     for ex in item["items"]:
                         story.append(Paragraph(
                             f"{ex['en']} / {ex['pt']}",
                             styles["ExampleItem"]
                         ))
-
                 elif t == "list":
                     story.append(Paragraph(item["title"], styles["TermTitle"]))
                     for x in item["items"]:
                         story.append(Paragraph(f"- {x}", styles["ListItem"]))
-
                 elif t == "reading_en":
                     story.append(Paragraph(item["text"], styles["ReadingEN"]))
-
                 elif t == "reading_pt":
                     story.append(Paragraph(item["text"], styles["ReadingPT"]))
 
+        # STUDY TIPS
         if "tips" in sec:
             for tip in sec["tips"]:
                 story.append(Paragraph(f"• {tip}", styles["ListItem"]))
 
         story.append(PageBreak())
 
-    # BUILD PDF
     doc = SimpleDocTemplate(
         output_path,
         pagesize=letter,
@@ -420,6 +471,7 @@ def main():
 
     print("Calling Groq…")
     structured = call_groq_structured(json.dumps(raw_json, ensure_ascii=False))
+    structured = normalize_sections(structured)
 
     filename = structured["filename"]
     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M")
