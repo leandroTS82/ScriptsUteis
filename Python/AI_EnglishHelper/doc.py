@@ -30,128 +30,201 @@ os.makedirs(PDF_OUTPUT_DIR, exist_ok=True)
 
 
 # =====================================================================================
-# SYSTEM PROMPT – CALLAN + NOVAS REGRAS DE FILENAME + REGRAS DE ESTRUTURA
+# LISTA DE CATEGORIAS — EMBUTIDA NO PROMPT
 # =====================================================================================
 
-SYSTEM_PROMPT = """
+CATEGORY_DATA = {
+  "Grammar": {
+    "name": "Gramática Essencial do Inglês",
+    "description": "Domine a gramática inglesa com explicações simples, exemplos claros e dicas práticas para acelerar sua fluência no dia a dia."
+  },
+  "PhrasalVerbs": {
+    "name": "Phrasal Verbs no Dia a Dia",
+    "description": "Aprenda phrasal verbs usados por nativos em conversas reais, séries e trabalho — explicado de forma leve e fácil."
+  },
+  "DailyRoutine": {
+    "name": "Inglês para a Rotina Diária",
+    "description": "Fale sobre sua rotina em inglês com naturalidade! Vocabulário prático, expressões reais e exemplos do cotidiano."
+  },
+  "WeatherNature": {
+    "name": "Inglês para Falar do Clima e da Natureza",
+    "description": "Descubra como descrever clima, tempo e natureza como um nativo — perfeito para conversas, viagens e exames."
+  },
+  "HomeFurniture": {
+    "name": "Vocabulário de Casa e Móveis em Inglês",
+    "description": "Aprenda o vocabulário essencial de casa, móveis e objetos do lar para viver ou viajar para países de língua inglesa."
+  },
+  "HealthMedicine": {
+    "name": "Inglês para Saúde: Sintomas, Remédios e Emergências",
+    "description": "Fale com confiança sobre saúde, sintomas e emergências — vocabulário fundamental para consultas e viagens."
+  },
+  "BodyParts": {
+    "name": "Partes do Corpo em Inglês — Vocabulário Fácil",
+    "description": "Aprenda as partes do corpo em inglês com explicações claras e frases práticas para usar no dia a dia."
+  },
+  "AccidentsInjuries": {
+    "name": "Inglês para Acidentes e Primeiros Socorros",
+    "description": "Saiba como descrever acidentes, dores e emergências — inglês útil para situações reais e inesperadas."
+  },
+  "FoodCooking": {
+    "name": "Inglês para Comida, Cozinha e Restaurante",
+    "description": "Domine o inglês para cozinha, receitas e restaurantes — ideal para viagens, intercâmbio e amantes da gastronomia."
+  },
+  "Shopping": {
+    "name": "Inglês para Compras: Frases e Vocabulário",
+    "description": "Aprenda frases essenciais para comprar roupas, eletrônicos e produtos no exterior com segurança e naturalidade."
+  },
+  "Transportation": {
+    "name": "Inglês para Transporte e Viagens Urbanas",
+    "description": "Comunique-se com facilidade em ônibus, metrô, taxi e aeroportos — frases úteis e vocabulário real."
+  },
+  "EmotionsFeelings": {
+    "name": "Como Expressar Emoções em Inglês",
+    "description": "Descubra como expressar emoções, sentimentos e sensações com naturalidade — essencial para conversas profundas."
+  },
+  "BusinessWork": {
+    "name": "Inglês para Trabalho e Negócios",
+    "description": "Aprenda o inglês profissional usado em reuniões, e-mails, entrevistas e ambiente corporativo global."
+  },
+  "Hobbies": {
+    "name": "Inglês para Hobbies e Tempo Livre",
+    "description": "Fale sobre seus hobbies, esportes e atividades favoritas em inglês com fluidez e naturalidade."
+  },
+  "Travel": {
+    "name": "Inglês para Viagem — Frases Essenciais",
+    "description": "Frases essenciais para aeroportos, hotéis, restaurantes e turismo — perfeito para qualquer viagem internacional."
+  },
+  "ExpressionsIdioms": {
+    "name": "Expressões e Idioms Essenciais do Inglês",
+    "description": "Aprenda expressões idiomáticas que nativos usam o tempo todo — aumente sua naturalidade e fluência rapidamente."
+  },
+  "GeneralVocabulary": {
+    "name": "Vocabulário Geral de Inglês — Palavras do Dia",
+    "description": "Amplie seu vocabulário com palavras úteis e fáceis de memorizar, explicadas com exemplos práticos."
+  },
+  "HouseItems": {
+    "name": "Inglês para Itens da Casa — Vocabulário Prático",
+    "description": "Aprenda nomes de utensílios domésticos, eletrodomésticos, objetos e cômodos para falar como um nativo."
+  },
+  "JobInterview": {
+    "name": "Inglês para Entrevista de Emprego — Respostas Prontas",
+    "description": "Aprenda como responder perguntas de entrevista em inglês, frases-chave, vocabulário profissional e exemplos reais."
+  }
+}
+
+CATEGORY_JSON = json.dumps(CATEGORY_DATA, indent=2, ensure_ascii=False)
+
+
+# =====================================================================================
+# SYSTEM PROMPT – EXPLÍCITO SOBRE SEÇÕES E CATEGORIAS
+# =====================================================================================
+
+SYSTEM_PROMPT = f"""
 You are an English teacher and instructional designer.
 
 TASK:
 Transform the user vocabulary list into a structured CALLAN-STYLE JSON module.
 Return ONLY JSON. Do NOT output explanations or markdown.
 
-=====================================================================================
+===============================================================================
+CATEGORIES AVAILABLE FOR CLASSIFICATION
+===============================================================================
+
+{CATEGORY_JSON}
+
+CATEGORY RULES:
+- Analyze all "palavra_chave".
+- Choose 1–3 best matching categories.
+- Return:
+   "category_keys": ["BusinessWork", "GeneralVocabulary"],
+   "category_names": ["Inglês para Trabalho e Negócios", "Vocabulário Geral de Inglês — Palavras do Dia"].
+- First category = primary.
+
+===============================================================================
 FILENAME RULES
-=====================================================================================
+===============================================================================
 
-1. If the input contains ONLY ONE “palavra_chave”, the filename MUST be a normalized
-version of that term:
-- remove articles and stopwords (the, a, an, in, on, when, I, etc.)
-- extract only key nouns and/or verbs
-- convert to lowercase
-- replace spaces with underscores
-- keep only a–z, 0–9 and underscore
-Example:
-  "The statuses were adjusted" -> "statuses_adjusted"
+- Derive from terms and/or categories.
+- Use 1–4 key words (nouns/verbs).
+- Only lowercase, underscore.
+- Max 45 characters.
+- DO NOT use generic names like "vocabulary_module", "training_file", etc.
 
-2. If the input contains TWO OR MORE terms:
-   - extract the essential nouns/verbs from each “palavra_chave”
-   - choose 2–4 important category words (status, enum, database, step, error, fix…)
-   - compress them into a short filename
-   - MUST be human-readable and informative
-   - MUST NOT exceed 45 characters
+===============================================================================
+SECTION STRUCTURE (MANDATORY)
+===============================================================================
 
-3. NEVER generate generic filenames like:
-   "vocabulary_module"
-   "training_file"
-   "lesson"
-   "module_file"
+You MUST return exactly 5 sections in this order:
 
-4. ALWAYS produce lowercase, underscore-separated safe identifiers.
+1) Vocabulary
+2) Grammar & Usage
+3) Patterns & Collocations
+4) Reading Practice
+5) Study Tips
 
-=====================================================================================
-STRUCTURE RULES
-=====================================================================================
+The JSON MUST follow this structure:
 
-ALL sections MUST be inside the array "sections": [].
-NEVER output sections at top-level.
-
-WRONG:
-"Reading Practice": { ... }
-
-RIGHT:
-{
-  "title": "Reading Practice",
-  "content": [ ... ]
-}
-
-If the content is examples, grammar, tips, etc., ALWAYS follow the structure:
-
-{
-  "title": "",
-  "entries": [ ... ],   <-- Vocabulary
-  "content": [ ... ],   <-- Grammar, patterns, reading
-  "tips": [ ... ]       <-- Study tips
-}
-
-=====================================================================================
-OUTPUT STRUCTURE
-=====================================================================================
-
-{
-  "filename": "generated_filename_here",
-  "cover": {
+{{
+  "filename": "",
+  "category_keys": [],
+  "category_names": [],
+  "cover": {{
     "title": "",
     "subtitle": "",
     "author": "Leandro teixeira da silva",
     "edition": ""
-  },
+  }},
   "sections": [
-    {
-      "title": "",
+    {{
+      "title": "Vocabulary",
       "entries": [
-        {
+        {{
           "term": "",
           "content": [
-            { "type": "definition_pt", "text": "" },
-            { "type": "explanation_en", "text": "" },
-            { "type": "collocations", "items": ["", ""] },
-            {
+            {{ "type": "definition_pt", "text": "" }},
+            {{ "type": "explanation_en", "text": "" }},
+            {{ "type": "collocations", "items": ["", ""] }},
+            {{
               "type": "examples",
               "items": [
-                { "level": "", "en": "", "pt": "" }
+                {{ "level": "", "en": "", "pt": "" }}
               ]
-            }
+            }}
           ]
-        }
+        }}
       ]
-    },
-    {
+    }},
+    {{
       "title": "Grammar & Usage",
       "content": [
-        { "type": "rule", "text": "" },
-        { "type": "examples", "items": [ { "en": "", "pt": "" } ] }
+        {{ "type": "rule", "text": "" }},
+        {{ "type": "examples", "items": [ {{ "en": "", "pt": "" }} ] }}
       ]
-    },
-    {
+    }},
+    {{
       "title": "Patterns & Collocations",
       "content": [
-        { "type": "list", "title": "", "items": ["", ""] }
+        {{ "type": "list", "title": "", "items": ["", ""] }}
       ]
-    },
-    {
+    }},
+    {{
       "title": "Reading Practice",
       "content": [
-        { "type": "reading_en", "text": "" },
-        { "type": "reading_pt", "text": "" }
+        {{ "type": "reading_en", "text": "" }},
+        {{ "type": "reading_pt", "text": "" }}
       ]
-    },
-    {
+    }},
+    {{
       "title": "Study Tips",
       "tips": ["", ""]
-    }
+    }}
   ]
-}
+}}
+
+RULES:
+- All vocabulary explanations MUST be clear and simple.
+- Examples MUST have EN + PT when possible.
+- Keep CALLAN style: short, clear, progressive.
 """
 
 USER_PROMPT_TEMPLATE = """
@@ -162,7 +235,7 @@ Here is the raw vocabulary list. Transform it into the structured CALLAN JSON:
 
 
 # =====================================================================================
-# PARSER ROBUSTO + FALLBACK
+# CHAMADA AO GROQ – PARSER ROBUSTO
 # =====================================================================================
 
 def call_groq_structured(content: str) -> dict:
@@ -192,55 +265,41 @@ def call_groq_structured(content: str) -> dict:
     with open("last_groq_raw.txt", "w", encoding="utf-8") as f:
         f.write(json_str)
 
-    if not json_str:
-        raise Exception("Groq returned empty output.")
-
     # Tentativa direta
-    if json_str.startswith("{"):
-        try:
-            return json.loads(json_str)
-        except:
-            pass
-
-    # Extração entre { e }
     try:
-        start = json_str.index("{")
-        end = json_str.rindex("}") + 1
-        cleaned = json_str[start:end]
-        return json.loads(cleaned)
-    except:
+        return json.loads(json_str)
+    except Exception:
         pass
 
-    # Última tentativa
+    # Extração do primeiro { ... }
     try:
-        fixed = re.sub(r"([a-zA-Z0-9_]+):", r'"\1":', json_str)
-        return json.loads(fixed)
-    except:
-        raise Exception(
-            "Groq returned invalid JSON. Inspect last_groq_raw.txt.\n"
-            f"Raw content:\n{json_str}"
-        )
+        cleaned = json_str[json_str.index("{"):json_str.rindex("}") + 1]
+        return json.loads(cleaned)
+    except Exception:
+        pass
+
+    raise Exception("Groq returned invalid JSON. See last_groq_raw.txt.")
 
 
 # =====================================================================================
-# NORMALIZAÇÃO DE SEÇÕES — CORRIGE ERROS DO GROQ
+# NORMALIZAÇÃO DE SEÇÕES (CASO O GROQ AINDA FUJA DO FORMATO)
 # =====================================================================================
 
 def normalize_sections(structured: dict) -> dict:
     if "sections" not in structured or not isinstance(structured["sections"], list):
         structured["sections"] = []
 
+    # Seções conhecidas que podem vir soltas
     known = {
+        "Vocabulary",
+        "Grammar & Usage",
+        "Patterns & Collocations",
         "Reading Practice",
         "Study Tips",
-        "Patterns & Collocations",
-        "Grammar & Usage",
-        "Vocabulary",
         "Vocabulary List"
     }
 
     extras = []
-
     for key in list(structured.keys()):
         if key in known and key != "sections":
             extras.append((key, structured[key]))
@@ -249,10 +308,27 @@ def normalize_sections(structured: dict) -> dict:
     for title, obj in extras:
         structured["sections"].append({
             "title": title,
-            "content": obj.get("content", []),
             "entries": obj.get("entries", []),
+            "content": obj.get("content", []),
             "tips": obj.get("tips", [])
         })
+
+    # Garante que as seções estejam na ordem esperada se existirem
+    order = ["Vocabulary", "Grammar & Usage", "Patterns & Collocations", "Reading Practice", "Study Tips"]
+    sections_by_title = {s["title"]: s for s in structured["sections"] if "title" in s}
+    ordered_sections = []
+
+    for t in order:
+        if t in sections_by_title:
+            ordered_sections.append(sections_by_title[t])
+
+    # Se algo sobrar com título diferente, mantém no final
+    for s in structured["sections"]:
+        if s.get("title") not in order:
+            ordered_sections.append(s)
+
+    if ordered_sections:
+        structured["sections"] = ordered_sections
 
     return structured
 
@@ -278,33 +354,42 @@ def build_styles():
         fontSize=16,
         leading=20,
         alignment=1,
-        spaceAfter=20,
+        spaceAfter=10,
         textColor=colors.HexColor("#1F618D")
     ))
 
     styles.add(ParagraphStyle(
-        name="SectionTitle",
-        fontSize=20,
-        leading=26,
-        spaceBefore=20,
-        spaceAfter=10,
-        textColor=colors.HexColor("#154360")
-    ))
-
-    styles.add(ParagraphStyle(
-        name="TermTitle",
-        fontSize=16,
-        leading=22,
-        spaceBefore=12,
+        name="CategoryTag",
+        fontSize=12,
+        leading=14,
+        alignment=1,
         spaceAfter=6,
-        textColor=colors.HexColor("#0E6251")
+        textColor=colors.HexColor("#145A32")
     ))
 
     styles.add(ParagraphStyle(
         name="Body",
         fontSize=12,
         leading=18,
+        spaceAfter=8
+    ))
+
+    styles.add(ParagraphStyle(
+        name="SectionTitle",
+        fontSize=20,
+        leading=24,
+        textColor=colors.HexColor("#154360"),
+        spaceBefore=20,
         spaceAfter=10
+    ))
+
+    styles.add(ParagraphStyle(
+        name="TermTitle",
+        fontSize=16,
+        leading=20,
+        textColor=colors.HexColor("#0E6251"),
+        spaceBefore=10,
+        spaceAfter=6
     ))
 
     styles.add(ParagraphStyle(
@@ -312,7 +397,7 @@ def build_styles():
         fontSize=12,
         leading=18,
         textColor=colors.HexColor("#7E5109"),
-        spaceAfter=10
+        spaceAfter=8
     ))
 
     styles.add(ParagraphStyle(
@@ -320,7 +405,7 @@ def build_styles():
         fontSize=12,
         leading=18,
         textColor=colors.HexColor("#1A5276"),
-        spaceAfter=10
+        spaceAfter=8
     ))
 
     styles.add(ParagraphStyle(
@@ -336,24 +421,24 @@ def build_styles():
         fontSize=12,
         leading=16,
         leftIndent=20,
-        spaceAfter=6,
-        textColor=colors.HexColor("#117A65")
+        textColor=colors.HexColor("#117A65"),
+        spaceAfter=4
     ))
 
     styles.add(ParagraphStyle(
         name="ReadingEN",
         fontSize=12,
         leading=18,
-        spaceAfter=6,
-        textColor=colors.HexColor("#0E6655")
+        textColor=colors.HexColor("#0E6655"),
+        spaceAfter=6
     ))
 
     styles.add(ParagraphStyle(
         name="ReadingPT",
         fontSize=11,
         leading=16,
-        spaceAfter=10,
-        textColor=colors.HexColor("#7D6608")
+        textColor=colors.HexColor("#7D6608"),
+        spaceAfter=10
     ))
 
     return styles
@@ -367,77 +452,84 @@ def generate_pdf_from_json(output_path: str, data: dict):
     styles = build_styles()
     story = []
 
-    # CAPA
+    category_names = data.get("category_names", [])
+    main_cat = category_names[0] if category_names else "General Module"
+    extra_cats = ", ".join(category_names[1:]) if len(category_names) > 1 else None
+
     cover = data["cover"]
+
+    # CAPA
     story.append(Paragraph(cover["title"], styles["CoverTitle"]))
     story.append(Paragraph(cover["subtitle"], styles["CoverSubtitle"]))
+    story.append(Paragraph(f"Category: {main_cat}", styles["CategoryTag"]))
+    if extra_cats:
+        story.append(Paragraph(f"Secondary: {extra_cats}", styles["CategoryTag"]))
     story.append(Spacer(1, 20))
     story.append(Paragraph(f"Author: {cover['author']}", styles["Body"]))
-    story.append(Paragraph(f"Edition: {cover['edition']}", styles["Body"]))
+    if cover.get("edition"):
+        story.append(Paragraph(f"Edition: {cover['edition']}", styles["Body"]))
     story.append(PageBreak())
 
     # SUMÁRIO
     story.append(Paragraph("Table of Contents", styles["SectionTitle"]))
-    toc_rows = [[sec["title"]] for sec in data["sections"]]
-
-    toc_table = Table(toc_rows, [450])
+    toc_rows = [[sec.get("title", "")] for sec in data["sections"]]
+    toc_table = Table(toc_rows, colWidths=[450])
     toc_table.setStyle(TableStyle([
         ("BACKGROUND", (0,0), (-1,0), colors.lightgrey),
-        ("TEXTCOLOR", (0,0), (-1,0), colors.black),
         ("FONTSIZE", (0,0), (-1,-1), 12),
-        ("BOTTOMPADDING", (0,0), (-1,-1), 6)
+        ("BOTTOMPADDING", (0,0), (-1,-1), 6),
     ]))
-
     story.append(toc_table)
     story.append(PageBreak())
 
     # SEÇÕES
     for sec in data["sections"]:
-        story.append(Paragraph(sec["title"], styles["SectionTitle"]))
+        title = sec.get("title", "")
+        story.append(Paragraph(title, styles["SectionTitle"]))
 
         # VOCABULARY
-        if "entries" in sec:
+        if title.lower().startswith("vocabulary") and "entries" in sec:
             for entry in sec["entries"]:
-                story.append(Paragraph(entry["term"], styles["TermTitle"]))
-
-                for item in entry["content"]:
-                    t = item["type"]
-
+                story.append(Paragraph(entry.get("term", ""), styles["TermTitle"]))
+                for item in entry.get("content", []):
+                    t = item.get("type")
                     if t == "definition_pt":
-                        story.append(Paragraph(item["text"], styles["DefinitionPT"]))
+                        story.append(Paragraph(item.get("text", ""), styles["DefinitionPT"]))
                     elif t == "explanation_en":
-                        story.append(Paragraph(item["text"], styles["ExplanationEN"]))
+                        story.append(Paragraph(item.get("text", ""), styles["ExplanationEN"]))
                     elif t == "collocations":
-                        for col in item["items"]:
+                        for col in item.get("items", []):
                             story.append(Paragraph(f"- {col}", styles["ListItem"]))
                     elif t == "examples":
-                        for ex in item["items"]:
+                        for ex in item.get("items", []):
                             story.append(Paragraph(
-                                f"{ex['level']} — {ex['en']} / {ex['pt']}",
+                                f"{ex.get('level','')} — {ex.get('en','')} / {ex.get('pt','')}",
                                 styles["ExampleItem"]
                             ))
 
-        # OUTRAS SEÇÕES
+        # OUTRAS SEÇÕES (Grammar, Patterns, Reading)
         if "content" in sec:
             for item in sec["content"]:
-                t = item["type"]
-
+                t = item.get("type")
                 if t == "rule":
-                    story.append(Paragraph(item["text"], styles["Body"]))
+                    story.append(Paragraph(item.get("text", ""), styles["ExplanationEN"]))
                 elif t == "examples":
-                    for ex in item["items"]:
+                    for ex in item.get("items", []):
                         story.append(Paragraph(
-                            f"{ex['en']} / {ex['pt']}",
+                            f"{ex.get('en','')} / {ex.get('pt','')}",
                             styles["ExampleItem"]
                         ))
                 elif t == "list":
-                    story.append(Paragraph(item["title"], styles["TermTitle"]))
-                    for x in item["items"]:
+                    story.append(Paragraph(item.get("title", ""), styles["TermTitle"]))
+                    for x in item.get("items", []):
                         story.append(Paragraph(f"- {x}", styles["ListItem"]))
                 elif t == "reading_en":
-                    story.append(Paragraph(item["text"], styles["ReadingEN"]))
+                    story.append(Paragraph(item.get("text", ""), styles["ReadingEN"]))
                 elif t == "reading_pt":
-                    story.append(Paragraph(item["text"], styles["ReadingPT"]))
+                    story.append(Paragraph(item.get("text", ""), styles["ReadingPT"]))
+                # fallback genérico se vier algo diferente
+                elif "text" in item:
+                    story.append(Paragraph(item.get("text", ""), styles["Body"]))
 
         # STUDY TIPS
         if "tips" in sec:
@@ -454,7 +546,6 @@ def generate_pdf_from_json(output_path: str, data: dict):
         topMargin=60,
         bottomMargin=50
     )
-
     doc.build(story)
 
 
@@ -467,13 +558,14 @@ def main():
         print("TranscriptResults.json not found.")
         return
 
-    raw_json = json.load(open(INPUT_JSON_PATH, "r", encoding="utf-8"))
+    with open(INPUT_JSON_PATH, "r", encoding="utf-8") as f:
+        raw_json = json.load(f)
 
     print("Calling Groq…")
     structured = call_groq_structured(json.dumps(raw_json, ensure_ascii=False))
     structured = normalize_sections(structured)
 
-    filename = structured["filename"]
+    filename = structured.get("filename", "module")
     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M")
     pdf_path = os.path.join(PDF_OUTPUT_DIR, f"{timestamp}_{filename}.pdf")
 
