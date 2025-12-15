@@ -33,7 +33,6 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 CREATE_LATER = "./CreateLater.json"
 FULL_RESULTS = "./TranscriptResults.json"
 
-# LEVELS embutidos
 LEVELS = {
     "A1": {"enabled": True,  "size": "short"},
     "A2": {"enabled": True,  "size": "medium"},
@@ -42,7 +41,6 @@ LEVELS = {
     "C1": {"enabled": False, "size": "long"},
     "C2": {"enabled": False, "size": "long"}
 }
-
 
 # ================================================================================
 # HELPERS
@@ -58,9 +56,15 @@ def safe_json_dump(path, data):
 
 
 def groq(prompt):
-    """Função única e otimizada para chamadas Groq."""
-    headers = {"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"}
-    payload = {"model": GROQ_MODEL, "messages": [{"role": "user", "content": prompt}]}
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "model": GROQ_MODEL,
+        "messages": [{"role": "user", "content": prompt}]
+    }
 
     res = requests.post(GROQ_URL, json=payload, headers=headers, timeout=20)
     res.raise_for_status()
@@ -70,37 +74,36 @@ def groq(prompt):
 
 
 # ================================================================================
-# 1 — CORRIGIR + TRADUZIR (GROQ)
+# 1 — CORRIGIR + TRADUZIR
 # ================================================================================
 
 def correct_and_translate(text):
-
     prompt = f"""
-                Your tasks:
+Your tasks:
 
-                1. Correct misspellings in Portuguese or English.
-                2. If the input is Portuguese → translate to natural English.
-                3. If partially Portuguese → translate to English.
-                4. If English has grammar mistakes → correct it.
-                5. ALWAYS output final English only.
+1. Correct misspellings in Portuguese or English.
+2. If the input is Portuguese → translate to natural English.
+3. If partially Portuguese → translate to English.
+4. If English has grammar mistakes → correct it.
+5. ALWAYS output final English only.
+6. When I put 'vs' between terms, I want to know the comparisons and meaning for each, In this case, the examples should be for each term.
 
-                Return ONLY JSON:
-                {{
-                "corrected": "final English",
-                "had_error": true/false,
-                "reason": "short explanation"
-                }}
+Return ONLY JSON:
+{{
+  "corrected": "final English",
+  "had_error": true/false,
+  "reason": "short explanation"
+}}
 
-                Input: "{text}"
-                """
-
+Input: "{text}"
+"""
     obj = json.loads(groq(prompt))
     obj["model_used"] = "Groq"
     return obj
 
 
 # ================================================================================
-# 2 — DEFINIÇÃO + EXEMPLOS (GROQ)
+# 2 — DEFINIÇÃO + EXEMPLOS
 # ================================================================================
 
 def generate_wordbank(term):
@@ -112,31 +115,32 @@ def generate_wordbank(term):
     ]
 
     examples_json = ",".join(
-        [f'{{"level":"{e["level"]}","size":"{e["size"]}","phrase":"..."}}' for e in example_specs]
+        [
+            f'{{"level":"{e["level"]}","size":"{e["size"]}","phrase":"..."}}'
+            for e in example_specs
+        ]
     )
 
     prompt = f"""
 Create the following JSON:
 
 {{
- "definition_pt": "Tradução mais explicação natural e clara do significado em português, dicas gramaticais, de 1 exemplo simples de como seria em portugUês.",
+ "definition_pt": "Tradução mais explicação natural e clara do significado em português, com dica gramatical simples.",
  "examples": [{examples_json}]
 }}
 
 Rules:
 - Do NOT repeat the phrase at the beginning.
-- Explain the meaning of "{term}" in Portuguese naturally.
-- ALL sentences must be FULL English sentences.
+- Explain the meaning of "{term}" naturally in Portuguese.
+- ALL examples must be FULL English sentences.
 - Every example MUST contain the phrase "{term}".
 - short → 4–8 words
 - medium → 10–16 words
 - long → 18–28 words
-- NO isolated phrase alone.
-- Must sound natural for each CEFR level.
+- Sound natural for each CEFR level.
 
 Return ONLY JSON.
 """
-
     obj = json.loads(groq(prompt))
     obj["model_used"] = "Groq"
     return obj
@@ -162,7 +166,11 @@ def save_create_later(item):
 
 
 def save_transcript_result(palavra, definicao, exemplos):
-    entry = {"palavra_chave": palavra, "definicao_pt": definicao, "exemplos": exemplos}
+    entry = {
+        "palavra_chave": palavra,
+        "definicao_pt": definicao,
+        "exemplos": exemplos
+    }
 
     if not os.path.exists(FULL_RESULTS):
         safe_json_dump(FULL_RESULTS, [entry])
@@ -189,7 +197,7 @@ def print_preview(original, corrected, had_error, reason, definition_pt, example
     C_TITLE = "\033[96m\033[1m"
 
     print(f"{C_TITLE}\n══════════════════════════════════════")
-    print(f"           PREVIEW DO TRANSCRIPT")
+    print("           PREVIEW DO TRANSCRIPT")
     print(f"══════════════════════════════════════{C_RESET}\n")
 
     print(f"Modelo usado: {model}\n")
@@ -208,25 +216,20 @@ def print_preview(original, corrected, had_error, reason, definition_pt, example
         print(f" ➜ ({ex['level']}, {ex['size']}) {ex['phrase']}")
 
 
-
 # ================================================================================
-# LÓGICA PRINCIPAL EXTRAÍDA PARA REUTILIZAÇÃO
+# PROCESSAMENTO
 # ================================================================================
 
 def process_term(original):
     print("🔍 Processando:", original)
 
-    # 1. Correção e tradução
     result = correct_and_translate(original)
     corrected = sanitize_sentence(result["corrected"])
 
-    # 2. Registrar CreateLater
     save_create_later(corrected)
 
-    # 3. Definição e exemplos
     wb = generate_wordbank(corrected)
 
-    # 4. Preview
     print_preview(
         original,
         corrected,
@@ -237,46 +240,44 @@ def process_term(original):
         wb["model_used"]
     )
 
-    # 5. Salvar resultado final
     save_transcript_result(corrected, wb["definition_pt"], wb["examples"])
 
 
-
 # ================================================================================
-# MAIN COM LOOP E PDF
+# MAIN (COM MELHORIA SOLICITADA)
 # ================================================================================
 
 def main():
 
     while True:
 
-        # Solicitar input caso nenhum argumento tenha sido passado
         if len(sys.argv) < 2:
-            print("Nenhum termo informado.")
             original = input("Digite a frase/termo a ser processado: ").strip()
-
             if not original:
                 print("Nenhuma entrada fornecida. Encerrando.")
                 return
         else:
             original = " ".join(sys.argv[1:]).strip()
-            sys.argv = [sys.argv[0]]  # limpar argumentos após o primeiro ciclo
+            sys.argv = [sys.argv[0]]
 
-        # Executar processamento
         process_term(original)
 
-        # PDF opcional
-        gerar_pdf = input("\nDeseja gerar o PDF? (S/N): ").strip().lower()
-        if gerar_pdf == "s":
-            print("📄 Gerando PDF via doc.py...")
-            os.system("python ./doc.py")
+        proximo = input(
+            "\nDigite apenas 's' para sair\n"
+            "OU digite a frase/termo a ser processado: "
+        ).strip()
 
-        # Novo termo?
-        repetir = input("\nDeseja buscar um novo termo? (S/N): ").strip().lower()
-        if repetir != "s":
+        if proximo.lower() == "s":
+            gerar_pdf = input("\nDeseja gerar o PDF? (S/N): ").strip().lower()
+            if gerar_pdf == "s":
+                print("📄 Gerando PDF via doc.py...")
+                os.system("python ./doc.py")
+
             print("\nEncerrando o programa.")
             break
-
+        else:
+            sys.argv = [sys.argv[0], proximo]
+            continue
 
 
 if __name__ == "__main__":
