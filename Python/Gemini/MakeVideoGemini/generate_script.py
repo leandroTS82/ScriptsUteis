@@ -18,8 +18,8 @@ def generate_lesson_json(word):
     # -------------------------------------------------
     known_terms = load_known_terms(
         target_word=word,
-        percentage=0.7,
-        max_terms=25,
+        percentage=0.8,
+        max_terms=60,
         verbose=True
     )
 

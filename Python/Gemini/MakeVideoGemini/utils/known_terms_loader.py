@@ -22,8 +22,8 @@ def normalize_term(term: str) -> str:
 
 def load_known_terms(
     target_word: str,
-    percentage=0.7,
-    max_terms=25,
+    percentage=0.8,
+    max_terms=60,
     terms_file=DEFAULT_TERMS_FILE,
     verbose=True
 ):
