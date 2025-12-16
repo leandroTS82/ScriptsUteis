@@ -21,6 +21,7 @@ import os
 import sys
 import json
 import requests
+from datetime import datetime
 
 # ================================================================================
 # CONFIG - CHAVE DIRETA
@@ -30,7 +31,13 @@ GROQ_API_KEY = "***"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
-CREATE_LATER = "./CreateLater.json"
+
+
+# 1. Obtém a data atual no formato yyyyMMdd
+current_date = datetime.now().strftime('%Y%m%d')
+
+# 2. Define os caminhos dos arquivos usando f-strings
+CREATE_LATER = f".CreateLater/CreateLater_{current_date}.json"
 FULL_RESULTS = "./TranscriptResults.json"
 
 LEVELS = {

@@ -5,28 +5,30 @@ from google.genai import types
 
 API_KEY_PATH = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
 
+
 def load_api_key():
     if not os.path.exists(API_KEY_PATH):
         raise FileNotFoundError(f"API Key não encontrada: {API_KEY_PATH}")
     return open(API_KEY_PATH, "r").read().strip()
 
+
 def save_wave(filename, pcm, channels=1, rate=24000, sample_width=2):
-    """Salva áudio PCM em WAV."""
     with wave.open(filename, "wb") as wf:
         wf.setnchannels(channels)
         wf.setsampwidth(sample_width)
         wf.setframerate(rate)
         wf.writeframes(pcm)
 
-def generate_audio(text, output_path, voice="Charon"):
+
+def generate_audio(text, output_path, voice="schedar"):
     """
-    Gera áudio usando gemini-2.5-flash-preview-tts
-    e interpreta <break time="Xs"/>.
+    Gera áudio com Gemini TTS.
     """
+
     api_key = load_api_key()
     client = genai.Client(api_key=api_key)
 
-    print("🎤 Gerando áudio com Gemini (TTS)...")
+    print(f"🎤 Gerando áudio com Gemini (TTS)... Voz: {voice}")
 
     response = client.models.generate_content(
         model="gemini-2.5-flash-preview-tts",

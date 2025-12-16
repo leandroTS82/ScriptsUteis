@@ -3,9 +3,11 @@ import os
 import json
 import subprocess
 import sys
+from datetime import datetime
 
-BATCH_FILE = "C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater.json"
+BATCH_FILE = r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater.json"
 MAIN_SCRIPT = "main.py"
+
 
 def load_pending():
     if not os.path.exists(BATCH_FILE):
@@ -27,13 +29,12 @@ def run_word(word):
     print("\n🟦 Iniciando geração para:", word)
     print("⏳ Aguarde...\n")
 
-    # ----------- FORÇANDO AMBIENTE UTF-8 NO WINDOWS -----------
     env = os.environ.copy()
     env["PYTHONUTF8"] = "1"
     env["PYTHONIOENCODING"] = "utf-8"
 
     try:
-        result = subprocess.run(
+        subprocess.run(
             [sys.executable, MAIN_SCRIPT, word],
             capture_output=False,
             text=True,
@@ -49,11 +50,17 @@ def run_word(word):
 
 
 def run_batch():
+    start_time = datetime.now()
+    print("\n🕒 Início do processamento:", start_time.strftime("%H:%M:%S"))
     print("\n🟦 Lendo CreateLater.json...\n")
 
     pending = load_pending()
     if not pending:
         print("🎉 Nada para processar!")
+
+        end = datetime.now()
+        print("\n🕒 Fim:", end.strftime("%H:%M:%S"))
+        print("⏱ Duração:", str(end - start_time).split(".")[0])
         return
 
     print(f"🟦 {len(pending)} itens encontrados na lista.\n")
@@ -69,7 +76,7 @@ def run_batch():
             print(f"\n⛔ Erro ao processar: {word}")
             still_pending.append(word)
             print("➡ Item mantido no pending.\n")
-            break  # interrompe lote
+            break
 
     save_pending(still_pending)
 
@@ -77,6 +84,14 @@ def run_batch():
         print("\n🟦 🎉 Todos os vídeos foram gerados com sucesso!")
     else:
         print("\n🟦 ⚠ PROCESSAMENTO INTERROMPIDO — ainda restam itens no pending!")
+
+    # Hora de término
+    end = datetime.now()
+    print("\n🕒 Fim do processamento:", end.strftime("%H:%M:%S"))
+
+    # Duração total formatada
+    duration = str(end - start_time).split(".")[0]
+    print("⏱ Tempo total:", duration)
 
 
 if __name__ == "__main__":
