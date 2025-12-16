@@ -24,20 +24,20 @@ import requests
 from datetime import datetime
 
 # ================================================================================
-# CONFIG - CHAVE DIRETA
+# CONFIG - CHAVE DIRETA (MANTIDA)
 # ================================================================================
 
 GROQ_API_KEY = "***"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
+# ================================================================================
+# PATHS
+# ================================================================================
 
-
-# 1. Obtém a data atual no formato yyyyMMdd
 current_date = datetime.now().strftime('%Y%m%d')
 
-# 2. Define os caminhos dos arquivos usando f-strings
-CREATE_LATER = f".CreateLater/CreateLater_{current_date}.json"
+CREATE_LATER = f"./CreateLater/CreateLater_{current_date}.json"
 FULL_RESULTS = "./TranscriptResults.json"
 
 LEVELS = {
@@ -53,16 +53,23 @@ LEVELS = {
 # HELPERS
 # ================================================================================
 
-def sanitize_sentence(s):
+def sanitize_sentence(s: str) -> str:
     return s.rstrip(".!? ").strip()
 
 
-def safe_json_dump(path, data):
+def ensure_dir(path: str):
+    directory = os.path.dirname(path)
+    if directory and not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+
+
+def safe_json_dump(path: str, data):
+    ensure_dir(path)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def groq(prompt):
+def groq(prompt: str) -> str:
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json"
@@ -79,12 +86,11 @@ def groq(prompt):
     raw = res.json()["choices"][0]["message"]["content"]
     return raw[raw.find("{"): raw.rfind("}") + 1]
 
-
 # ================================================================================
 # 1 — CORRIGIR + TRADUZIR
 # ================================================================================
 
-def correct_and_translate(text):
+def correct_and_translate(text: str):
     prompt = f"""
 Your tasks:
 
@@ -93,7 +99,7 @@ Your tasks:
 3. If partially Portuguese → translate to English.
 4. If English has grammar mistakes → correct it.
 5. ALWAYS output final English only.
-6. When I put 'vs' between terms, I want to know the comparisons and meaning for each, In this case, the examples should be for each term.
+6. When I put 'vs' between terms, I want to know the comparisons and meaning for each.
 
 Return ONLY JSON:
 {{
@@ -108,13 +114,11 @@ Input: "{text}"
     obj["model_used"] = "Groq"
     return obj
 
-
 # ================================================================================
 # 2 — DEFINIÇÃO + EXEMPLOS
 # ================================================================================
 
-def generate_wordbank(term):
-
+def generate_wordbank(term: str):
     example_specs = [
         {"level": lvl, "size": cfg["size"]}
         for lvl, cfg in LEVELS.items()
@@ -152,12 +156,11 @@ Return ONLY JSON.
     obj["model_used"] = "Groq"
     return obj
 
-
 # ================================================================================
 # ARQUIVOS
 # ================================================================================
 
-def save_create_later(item):
+def save_create_later(item: str):
     item = sanitize_sentence(item)
 
     if not os.path.exists(CREATE_LATER):
@@ -165,7 +168,9 @@ def save_create_later(item):
         print(f"📌 CreateLater.json criado → {item}")
         return
 
-    data = json.load(open(CREATE_LATER, "r", encoding="utf-8"))
+    with open(CREATE_LATER, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
     if item not in data["pending"]:
         data["pending"].append(item)
         safe_json_dump(CREATE_LATER, data)
@@ -184,18 +189,18 @@ def save_transcript_result(palavra, definicao, exemplos):
         print("📚 TranscriptResults.json criado!")
         return
 
-    data = json.load(open(FULL_RESULTS, "r", encoding="utf-8"))
+    with open(FULL_RESULTS, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
     data.append(entry)
     safe_json_dump(FULL_RESULTS, data)
     print("📚 Registrado em TranscriptResults.json")
-
 
 # ================================================================================
 # PREVIEW
 # ================================================================================
 
 def print_preview(original, corrected, had_error, reason, definition_pt, examples, model):
-
     C_RESET = "\033[0m"
     C_RED = "\033[91m"
     C_GREEN = "\033[92m"
@@ -222,12 +227,11 @@ def print_preview(original, corrected, had_error, reason, definition_pt, example
     for ex in examples:
         print(f" ➜ ({ex['level']}, {ex['size']}) {ex['phrase']}")
 
-
 # ================================================================================
 # PROCESSAMENTO
 # ================================================================================
 
-def process_term(original):
+def process_term(original: str):
     print("🔍 Processando:", original)
 
     result = correct_and_translate(original)
@@ -249,15 +253,12 @@ def process_term(original):
 
     save_transcript_result(corrected, wb["definition_pt"], wb["examples"])
 
-
 # ================================================================================
-# MAIN (COM MELHORIA SOLICITADA)
+# MAIN
 # ================================================================================
 
 def main():
-
     while True:
-
         if len(sys.argv) < 2:
             original = input("Digite a frase/termo a ser processado: ").strip()
             if not original:
@@ -284,8 +285,6 @@ def main():
             break
         else:
             sys.argv = [sys.argv[0], proximo]
-            continue
-
 
 if __name__ == "__main__":
     main()
