@@ -3,16 +3,29 @@
 # ==========================================
 
 # Caminho de origem
+## Vídeos
+#$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\videos"
 
-$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\videos"
+## Audio
 #$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\audio"
-#$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\images"
+
+##Imagens
+$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\images"
+
+## Uploaded
 #$SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
 
 # Caminho de destino
-$SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+## Vídeos
+#$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+
+## Audio
 #$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Audios para estudar inglês"
-#$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\Imagens"
+
+##Imagens
+$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\Imagens"
+
+## Uploaded
 #$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"
 
 # Filtros (preencha conforme necessário)
