@@ -17,6 +17,7 @@ def generate_lesson_json(word):
     # 🔹 CARREGA TERMOS JÁ ESTUDADOS (70%)
     # -------------------------------------------------
     known_terms = load_known_terms(
+        target_word=word,
         percentage=0.7,
         max_terms=25,
         verbose=True
@@ -28,36 +29,33 @@ def generate_lesson_json(word):
             "\nKnown vocabulary to PRIORITIZE in examples:\n"
             + ", ".join(known_terms)
             + "\n\nRules:\n"
-              "- Prefer using these terms whenever possible\n"
-              "- At least 70% of example sentences should reuse them\n"
-              "- New words are allowed only if necessary for natural flow\n"
-              "- Focus on reinforcement, not novelty\n"
+            "- At least 70% of example sentences MUST reuse these terms\n"
+            "- Max 150 characters per example sentence\n"
+            "- New words allowed only if strictly necessary\n"
         )
 
     # -------------------------------------------------
     # 🔹 PROMPT FINAL
     # -------------------------------------------------
     prompt = f"""
-You are an English teacher creating study material for Brazilian students.
-
-Your goal is vocabulary reinforcement through repetition.
-
+    You are a happier English teacher creating study material for Brazilian students. 
+    Your goal is vocabulary reinforcement through repetition, using English as the main language but Portuguese as support.
 {known_terms_block}
 
 Generate ONLY a valid JSON following EXACTLY this structure:
 
 {{
   "repeat_each": {{ "pt": 1, "en": 2 }},
-  "introducao": "Introdução curta e animada em um estilo jovem teacher YouTuber explicando a palavra '{word}'.",
+  "introducao": "Introdução curta e animada em um estilo jovem e descolado teacher YouTuber explicando a palavra '{word}'.",
   "nome_arquivos": "{word}",
   "WORD_BANK": [
     [
       {{ "lang": "en", "text": "{word}", "pause": 1000 }},
       {{ "lang": "pt", "text": "Explique o significado de '{word}' em português." }},
       {{ "lang": "en", "text": "Create a simple A2 sentence using '{word}'.", "pause": 1000 }},
-      {{ "lang": "en", "text": "Create another short B1/B2 sentence using '{word}'.", "pause": 1000 }},
-      {{ "lang": "en", "text": "Create a slightly longer B2 sentence using '{word}'.", "pause": 1500 }},
-      {{ "lang": "pt", "text": "Mensagem final estilo YouTuber incentivando a prática contínua." }}
+      {{ "lang": "en", "text": "Create another short B1 sentence using '{word}'.", "pause": 1000 }},
+      {{ "lang": "en", "text": "Create a slightly short B1/B2 sentence using '{word}' with Max 100 characters.", "pause": 1500 }},
+      {{ "lang": "pt", "text": "Mensagem final estilo YouTuber incentivando a prática contínua e com dicas de usos alternativos e gramática." }}
     ]
   ]
 }}
