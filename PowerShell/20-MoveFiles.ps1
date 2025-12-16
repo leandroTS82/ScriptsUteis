@@ -3,25 +3,34 @@
 # ==========================================
 
 # Caminho de origem
-$SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+
+$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\videos"
+#$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\audio"
+#$SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\images"
+#$SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
 
 # Caminho de destino
-$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"
+$SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+#$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Audios para estudar inglês"
+#$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\Imagens"
+#$DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"
 
 # Filtros (preencha conforme necessário)
 # StartsWith → arquivos que começam com o texto definido
 # Contains → arquivos que contêm o texto definido
 # ExactName → nome exatamente igual
+# Extension → extensão do arquivo (ex: .mp3, .wav)
 #Case-insensitive garantido usando StringComparison.OrdinalIgnoreCase
 # Usa OR lógico (se atender a qualquer critério, o arquivo é movido) - Se não quiser usar algum filtro, deixe a variável vazia
 
-$StartsWith = "uploaded_"     # arquivos que INICIAM com
-$Contains   = ""              # arquivos que CONTÊM
-$ExactName  = ""              # arquivos EXATAMENTE iguais
+$StartsWith = ""     # arquivos que INICIAM com
+$Contains   = ""     # arquivos que CONTÊM
+$ExactName  = ""     # arquivos EXATAMENTE iguais
+$Extension  = ""     # extensão do arquivo (inclua o ponto, ex: .mp3)
 
 # Flags de controle
 $IncludeSubfolders = $true    # true = percorre subpastas
-$DryRun            = $true    # true = apenas simula (preview)
+$DryRun            = $false    # true = apenas simula (preview)
 
 # Quantos arquivos mostrar no preview
 $PreviewSampleSize = 10
@@ -48,11 +57,18 @@ $files = if ($IncludeSubfolders) {
 $filteredFiles = $files | Where-Object {
 
     $name = $_.Name
+    $ext  = $_.Extension
+
+    # Se nenhum filtro foi informado, mover tudo
+    if (-not $StartsWith -and -not $Contains -and -not $ExactName -and -not $Extension) {
+        return $true
+    }
 
     (
         ($StartsWith -and $name.StartsWith($StartsWith, [System.StringComparison]::OrdinalIgnoreCase)) -or
         ($Contains   -and $name.IndexOf($Contains, [System.StringComparison]::OrdinalIgnoreCase) -ge 0) -or
-        ($ExactName  -and $name.Equals($ExactName, [System.StringComparison]::OrdinalIgnoreCase))
+        ($ExactName  -and $name.Equals($ExactName, [System.StringComparison]::OrdinalIgnoreCase)) -or
+        ($Extension  -and $ext.Equals($Extension, [System.StringComparison]::OrdinalIgnoreCase))
     )
 }
 
@@ -99,4 +115,3 @@ else {
     Write-Host "Processo concluído com sucesso."
     Write-Host "Arquivos movidos: $($filteredFiles.Count)"
 }
-
