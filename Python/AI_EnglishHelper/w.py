@@ -27,7 +27,9 @@ from datetime import datetime
 # CONFIG - CHAVE DIRETA (MANTIDA)
 # ================================================================================
 
-GROQ_API_KEY = "***"
+GROQ_API_KEY = ""
+GROQ_KEY_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt"
+
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
@@ -69,9 +71,28 @@ def safe_json_dump(path: str, data):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def load_groq_key() -> str:
+    # Usa a chave direta se for válida
+    if isinstance(GROQ_API_KEY, str) and GROQ_API_KEY.strip().startswith("gsk_"):
+        return GROQ_API_KEY.strip()
+
+    # Caso contrário, tenta carregar do arquivo
+    if os.path.exists(GROQ_KEY_PATH):
+        with open(GROQ_KEY_PATH, "r", encoding="utf-8") as f:
+            key = f.read().strip()
+            if key.startswith("gsk_"):
+                return key
+
+    raise RuntimeError(
+        "❌ GROQ API Key inválida.\n"
+        "Defina GROQ_API_KEY diretamente ou informe uma chave válida em:\n"
+        f"{GROQ_KEY_PATH}"
+    )
+
+
 def groq(prompt: str) -> str:
     headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Authorization": f"Bearer {load_groq_key()}",
         "Content-Type": "application/json"
     }
 

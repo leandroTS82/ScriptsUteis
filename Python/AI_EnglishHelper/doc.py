@@ -17,13 +17,29 @@ from reportlab.lib import colors
 # CONFIGURAÇÕES DO SISTEMA
 # =====================================================================================
 
-GROQ_API_KEY = "***"
+GROQ_API_KEY = ""
+GROQ_KEY_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt"
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# NOVA LÓGICA: carregar chave automaticamente se GROQ_API_KEY estiver vazia
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+if not GROQ_API_KEY:
+    if not os.path.exists(GROQ_KEY_PATH):
+        raise FileNotFoundError(f"GROQ API key file not found: {GROQ_KEY_PATH}")
+
+    with open(GROQ_KEY_PATH, "r", encoding="utf-8") as f:
+        GROQ_API_KEY = f.read().strip()
+
+    if not GROQ_API_KEY:
+        raise ValueError("GROQ API key file is empty.")
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
 INPUT_JSON_PATH = "./TranscriptResults.json"
-JSON_OUTPUT_DIR = "./json"
-PDF_OUTPUT_DIR = "./EnglishReview"
+JSON_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês/json"
+PDF_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês/EnglishReview"
 
 os.makedirs(JSON_OUTPUT_DIR, exist_ok=True)
 os.makedirs(PDF_OUTPUT_DIR, exist_ok=True)
