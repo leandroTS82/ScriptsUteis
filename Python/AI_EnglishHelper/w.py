@@ -23,9 +23,9 @@ import json
 import requests
 from datetime import datetime
 
-# ================================================================================
+# ================================================================================  
 # CONFIG - CHAVE DIRETA (MANTIDA)
-# ================================================================================
+# ================================================================================  
 
 GROQ_API_KEY = ""
 GROQ_KEY_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt"
@@ -33,9 +33,9 @@ GROQ_KEY_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
-# ================================================================================
+# ================================================================================  
 # PATHS
-# ================================================================================
+# ================================================================================  
 
 current_date = datetime.now().strftime('%Y%m%d')
 
@@ -51,9 +51,9 @@ LEVELS = {
     "C2": {"enabled": False, "size": "long"}
 }
 
-# ================================================================================
+# ================================================================================  
 # HELPERS
-# ================================================================================
+# ================================================================================  
 
 def sanitize_sentence(s: str) -> str:
     return s.rstrip(".!? ").strip()
@@ -72,11 +72,9 @@ def safe_json_dump(path: str, data):
 
 
 def load_groq_key() -> str:
-    # Usa a chave direta se for válida
     if isinstance(GROQ_API_KEY, str) and GROQ_API_KEY.strip().startswith("gsk_"):
         return GROQ_API_KEY.strip()
 
-    # Caso contrário, tenta carregar do arquivo
     if os.path.exists(GROQ_KEY_PATH):
         with open(GROQ_KEY_PATH, "r", encoding="utf-8") as f:
             key = f.read().strip()
@@ -107,22 +105,44 @@ def groq(prompt: str) -> str:
     raw = res.json()["choices"][0]["message"]["content"]
     return raw[raw.find("{"): raw.rfind("}") + 1]
 
-# ================================================================================
-# 1 — CORRIGIR + TRADUZIR
-# ================================================================================
+# ================================================================================  
+# 1 — CORRIGIR + TRADUZIR (ALTERADO AQUI)
+# ================================================================================  
 
 def correct_and_translate(text: str):
     prompt = f"""
+You are an English teacher specializing in helping Brazilian students understand grammar, usage, and natural phrasing.
+You are a private English teacher helping a software developer improve communication with a Dutch team that speaks English.
 Your tasks:
 
 1. Correct misspellings in Portuguese or English.
 2. If the input is Portuguese → translate to natural English.
-3. If partially Portuguese → translate to English.
-4. If English has grammar mistakes → correct it.
+3. If partially Portuguese → translate entirely to English.
+4. If the English has grammar mistakes → correct it.
 5. ALWAYS output final English only.
 6. When I put 'vs' between terms, I want to know the comparisons and meaning for each.
 
-Return ONLY JSON:
+IMPORTANT:
+Before producing the final JSON, apply the following internal reasoning standard even though it will NOT appear in the JSON output:
+
+INTERNAL EXPLANATION PATTERN (do NOT output this explicitly):
+- Identify what the student is really asking or trying to say.
+- Fix the sentence in English.
+- Understand WHY the mistake happens, especially comparing with Portuguese logic.
+- Give a simple and natural pronunciation according to English usage.
+- Apply the rules:
+   * when + present → future meaning  
+   * correct order for questions
+   * verb tenses and natural phrasing
+- Internally generate:
+   - corrected version
+   - why it is correct
+   - why the other form is wrong
+   - examples of contrast
+But do NOT output this explanation. Only use it to improve the correction.
+
+Return ONLY JSON in the format:
+
 {{
   "corrected": "final English",
   "had_error": true/false,
