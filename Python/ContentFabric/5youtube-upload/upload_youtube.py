@@ -1,13 +1,27 @@
 # -------------------------------------------------------
-# upload_youtube.py — versão corrigida com erro técnico completo no relatório
+# upload_youtube.py — versão FINAL com thumbnail automática via Groq
 # -------------------------------------------------------
-# python upload_youtube.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
-# python upload_youtube.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\Gemini\\MakeVideoGemini\\outputs\\videos"
 
 import os
 import sys
 import json
+import requests
 from datetime import datetime
+
+# ======================================================
+# REGISTRA ThumbnailGenerator NO PYTHONPATH
+# ======================================================
+
+THUMBNAIL_GENERATOR_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\ThumbnailGenerator"
+
+if THUMBNAIL_GENERATOR_DIR not in sys.path:
+    sys.path.append(THUMBNAIL_GENERATOR_DIR)
+
+from generate_thumbnail import generate_thumbnail
+
+# ======================================================
+# RESTANTE DOS IMPORTS
+# ======================================================
 
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -16,10 +30,33 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 # -------------------------------------------------------
-# CONFIGURAÇÕES
+# CONFIGURAÇÕES GERAIS
 # -------------------------------------------------------
 
-DEFAULT_VIDEO_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+DEFAULT_VIDEO_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos\\Teste"
+
+THUMBNAIL_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Images"
+
+FONTS_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\ThumbnailGenerator\fonts"
+
+FONT_MAP = {
+    "bebas_neue": "BebasNeue-Regular.ttf",
+    "montserrat": "Montserrat-Bold.ttf",
+    "anton": "Anton-Regular.ttf"
+}
+
+# ---------------- GROQ ----------------
+
+GROQ_API_KEY = open(
+    r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt",
+    "r",
+    encoding="utf-8"
+).read().strip()
+
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL = "openai/gpt-oss-20b"
+
+# ---------------- YOUTUBE ----------------
 
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.upload",
@@ -27,14 +64,15 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.force-ssl"
 ]
 
-TOKEN_PATH = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\youtube_token.json"
-CLIENT_SECRET_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\youtube-upload-desktop.json"
+TOKEN_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\youtube_token.json"
+CLIENT_SECRET_FILE = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\youtube-upload-desktop.json"
 
 REPORT_DIR = "./reports"
 
 # -------------------------------------------------------
 # CORES TERMINAL
 # -------------------------------------------------------
+
 RESET = "\033[0m"
 RED = "\033[91m"
 GREEN = "\033[92m"
@@ -60,61 +98,43 @@ REPORT = {
 }
 
 # -------------------------------------------------------
-# SAVE REPORT
+# REPORT HELPERS
 # -------------------------------------------------------
 
 def save_report():
     os.makedirs(REPORT_DIR, exist_ok=True)
-
     REPORT["end_time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    timestamp = datetime.now().strftime("%Y%m%d%H%M")
-    output_path = os.path.join(REPORT_DIR, f"{timestamp}_report.json")
+    ts = datetime.now().strftime("%Y%m%d%H%M")
+    path = os.path.join(REPORT_DIR, f"{ts}_report.json")
 
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8") as f:
         json.dump(REPORT, f, indent=4, ensure_ascii=False)
 
-    print(f"\n{BLUE}📄 Relatório gerado em:{RESET} {output_path}")
-
-# -------------------------------------------------------
-# REPORT HELPERS
-# -------------------------------------------------------
+    print(f"\n{BLUE}📄 Relatório gerado:{RESET} {path}")
 
 def add_error(file_name, message):
     REPORT["failed_uploads"] += 1
-    REPORT["videos"].append({
-        "file": file_name,
-        "uploaded": False,
-        "error": message
-    })
+    REPORT["videos"].append({"file": file_name, "uploaded": False, "error": message})
 
 def add_warning(file_name, message):
-    REPORT["warnings"].append({
-        "file": file_name,
-        "warning": message
-    })
+    REPORT["warnings"].append({"file": file_name, "warning": message})
 
 # -------------------------------------------------------
-# AUTHENTICATION
+# AUTH
 # -------------------------------------------------------
 
 def get_authenticated_service():
     creds = None
 
     if os.path.exists(TOKEN_PATH):
-        with open(TOKEN_PATH, "r") as f:
-            creds_data = json.load(f)
-            from google.oauth2.credentials import Credentials
-            creds = Credentials.from_authorized_user_info(creds_data, SCOPES)
+        from google.oauth2.credentials import Credentials
+        creds = Credentials.from_authorized_user_info(json.load(open(TOKEN_PATH)), SCOPES)
 
     if not creds or not creds.valid:
         if creds and creds.refresh_token:
             creds.refresh(Request())
         else:
-            print(f"{BLUE}🔐 Abrindo navegador para autenticação...{RESET}")
-            flow = InstalledAppFlow.from_client_secrets_file(
-                CLIENT_SECRET_FILE,
-                SCOPES
-            )
+            flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
             creds = flow.run_local_server(port=8080)
 
         with open(TOKEN_PATH, "w") as f:
@@ -123,233 +143,191 @@ def get_authenticated_service():
     return build("youtube", "v3", credentials=creds)
 
 # -------------------------------------------------------
-# LIMIT DETECTION
+# GROQ — GERAR DESIGN DO THUMB
 # -------------------------------------------------------
 
-def is_upload_limit_error(error: HttpError):
-    msg = str(error).lower()
-    if error.resp.status == 403:
-        return any(k in msg for k in [
-            "uploadlimitexceeded",
-            "daily limit",
-            "quotaexceeded",
-            "quota exceeded"
-        ])
-    return False
+def generate_thumbnail_design(video_json):
+    prompt = f"""
+You are a YouTube thumbnail copywriter and visual designer.
 
-def handle_limit_and_exit():
-    REPORT["youtube_limit_error"] = True
-    print(f"\n{RED}🚫 YouTube atingiu o LIMITE DIÁRIO de uploads.{RESET}")
-    print(f"{YELLOW}Motivo técnico completo:{RESET}")
-    print(REPORT["last_global_error"])
-    save_report()
-    sys.exit(0)
+Rules:
+- Portuguese (Brazil)
+- Max 5 words
+- Uppercase
+- Young YouTube style
+- SEO optimized
+- High contrast
+- No emojis
+
+Layout:
+- Text will be placed TOP-LEFT
+
+Return ONLY valid JSON:
+
+{{
+  "title": "",
+  "highlight": "",
+  "font": "bebas_neue | montserrat | anton",
+  "text_color": "#FFFFFF",
+  "highlight_color": "#A855F7",
+  "stroke_color": "#000000"
+}}
+
+Context:
+Title: {video_json["title"]}
+Description: {video_json["description"]}
+Tags: {", ".join(video_json.get("tags", []))}
+"""
+
+    payload = {
+        "model": GROQ_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.8
+    }
+
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    res = requests.post(GROQ_URL, json=payload, headers=headers)
+    res.raise_for_status()
+
+    text = res.json()["choices"][0]["message"]["content"]
+    start, end = text.find("{"), text.rfind("}") + 1
+    return json.loads(text[start:end])
 
 # -------------------------------------------------------
-# VIDEO UPLOAD
+# UPLOAD VIDEO
 # -------------------------------------------------------
 
 def upload_video(metadata, video_path):
     youtube = get_authenticated_service()
 
-    try:
-        snippet = {
-            "title": metadata["title"],
-            "description": metadata["description"],
-            "tags": metadata["tags"],
-            "categoryId": metadata["category_id"]
-        }
-        status = {
-            "privacyStatus": metadata["visibility"],
-            "selfDeclaredMadeForKids": metadata["made_for_kids"],
-            "embeddable": metadata["embeddable"]
-        }
-    except KeyError as e:
-        raise KeyError(f"JSON está faltando a chave obrigatória: {e}")
+    snippet = {
+        "title": metadata["title"],
+        "description": metadata["description"],
+        "tags": metadata["tags"],
+        "categoryId": metadata["category_id"]
+    }
+
+    status = {
+        "privacyStatus": metadata["visibility"],
+        "selfDeclaredMadeForKids": metadata["made_for_kids"],
+        "embeddable": metadata["embeddable"]
+    }
 
     media = MediaFileUpload(video_path, chunksize=-1, resumable=True)
 
     try:
-        print(f"{BLUE}📤 Enviando:{RESET} {video_path}")
-        response = youtube.videos().insert(
+        print(f"{BLUE}📤 Enviando vídeo:{RESET} {video_path}")
+        res = youtube.videos().insert(
             part="snippet,status",
             body={"snippet": snippet, "status": status},
             media_body=media
         ).execute()
-
-        print(f"{GREEN}✔ Upload concluído!{RESET}")
-        return response["id"]
+        return res["id"]
 
     except HttpError as e:
         REPORT["last_global_error"] = str(e)
-
-        if is_upload_limit_error(e):
-            return "UPLOAD_LIMIT"
-
         return None
 
 # -------------------------------------------------------
-# PLAYLIST
+# UPLOAD THUMB
 # -------------------------------------------------------
 
-def find_playlist(name):
-    youtube = get_authenticated_service()
-    resp = youtube.playlists().list(
-        part="snippet",
-        mine=True,
-        maxResults=50
-    ).execute()
-
-    for item in resp.get("items", []):
-        if item["snippet"]["title"].lower() == name.lower():
-            return item["id"]
-
-    return None
-
-def create_playlist(name, desc):
-    youtube = get_authenticated_service()
-    print(f"{YELLOW}📁 Criando playlist:{RESET} {name}")
-    resp = youtube.playlists().insert(
-        part="snippet,status",
-        body={"snippet": {"title": name, "description": desc},
-              "status": {"privacyStatus": "public"}}
-    ).execute()
-    return resp["id"]
-
-def resolve_playlist(metadata):
-    info = metadata.get("playlist", {})
-
-    if not info:
-        return None
-
-    if info.get("id"):
-        return info["id"]
-
-    name = info.get("name")
-    desc = info.get("description", "")
-
-    existing = find_playlist(name)
-    if existing:
-        print(f"{GREEN}✔ Playlist encontrada:{RESET} {name}")
-        return existing
-
-    if info.get("create_if_not_exists"):
-        return create_playlist(name, desc)
-
-    return None
-
-# -------------------------------------------------------
-# THUMBNAIL
-# -------------------------------------------------------
-
-def upload_thumbnail(video_id, thumb):
-    if not thumb or not os.path.exists(thumb):
+def upload_thumbnail(video_id, thumb_path):
+    if not thumb_path or not os.path.exists(thumb_path):
         return
 
     youtube = get_authenticated_service()
-
     try:
         youtube.thumbnails().set(
             videoId=video_id,
-            media_body=MediaFileUpload(thumb)
+            media_body=MediaFileUpload(thumb_path)
         ).execute()
-
-        print(f"{GREEN}🖼 Thumbnail enviada!{RESET}")
-
+        print(f"{GREEN}🖼 Thumbnail enviada:{RESET} {thumb_path}")
     except HttpError as e:
-        add_warning(thumb, str(e))
+        add_warning(os.path.basename(thumb_path), str(e))
 
 # -------------------------------------------------------
-# FILE RENAME
-# -------------------------------------------------------
-
-def rename_uploaded(video_path, json_path, thumb):
-    directory = os.path.dirname(video_path)
-
-    new_video = os.path.join(directory, "uploaded_" + os.path.basename(video_path))
-    os.rename(video_path, new_video)
-
-    if json_path and os.path.exists(json_path):
-        new_json = os.path.join(directory, "uploaded_" + os.path.basename(json_path))
-        os.rename(json_path, new_json)
-
-    if thumb and os.path.exists(thumb):
-        new_thumb = os.path.join(directory, "uploaded_" + os.path.basename(thumb))
-        os.rename(thumb, new_thumb)
-
-# -------------------------------------------------------
-# BATCH PROCESS
+# BATCH
 # -------------------------------------------------------
 
 def process_batch(directory):
-    supported = [".mp4", ".mov", ".mkv", ".avi"]
-    images = [".jpg", ".jpeg", ".png"]
-
+    video_exts = (".mp4", ".mov", ".mkv", ".avi")
     files = os.listdir(directory)
-    valid_videos = []
 
-    # FILTRAGEM INICIAL
+    videos = []
     for f in files:
-        ext = os.path.splitext(f)[1].lower()
-
-        if ext not in supported:
-            continue
-
         if f.lower().startswith("uploaded_"):
             REPORT["skipped_uploaded_files"] += 1
             continue
+        if f.lower().endswith(video_exts):
+            if os.path.exists(os.path.join(directory, os.path.splitext(f)[0] + ".json")):
+                videos.append(f)
 
-        json_path = os.path.join(directory, f"{os.path.splitext(f)[0]}.json")
-        if not os.path.exists(json_path):
-            add_warning(f, "JSON não encontrado — vídeo ignorado")
-            continue
+    REPORT["total_videos_found"] = len(videos)
 
-        valid_videos.append(f)
-
-    REPORT["total_videos_found"] = len(valid_videos)
-
-    # LOOP PRINCIPAL
-    for video in valid_videos:
+    for video in videos:
+        base = os.path.splitext(video)[0]
 
         video_path = os.path.join(directory, video)
-        json_path = os.path.join(directory, f"{os.path.splitext(video)[0]}.json")
+        json_path = os.path.join(directory, base + ".json")
+        metadata = json.load(open(json_path, encoding="utf-8"))
 
-        metadata = json.load(open(json_path, "r", encoding="utf-8"))
+        # -------- THUMBNAIL --------
+        # -------- THUMBNAIL --------
+        raw_image = os.path.join(THUMBNAIL_DIR, base + ".png")
+        thumb_path = os.path.join(THUMBNAIL_DIR, base + "_thumb.png")
 
-        # Thumbnail automática
-        thumb = None
-        for ext in images:
-            candidate = os.path.join(directory, f"{os.path.splitext(video)[0]}{ext}")
-            if os.path.exists(candidate):
-                thumb = candidate
-                break
+        if os.path.exists(raw_image):   
+            try:
+                design = generate_thumbnail_design(metadata)
 
+                font_file = FONT_MAP.get(design["font"], FONT_MAP["bebas_neue"])
+                font_path = os.path.join(FONTS_DIR, font_file)
+
+                generate_thumbnail(
+                    image_path=raw_image,
+                    output_path=thumb_path,
+                    title=design["title"],
+                    highlight=design["highlight"],
+                    font_path=font_path,
+                    text_color=design["text_color"],
+                    highlight_color=design["highlight_color"],
+                    stroke_color=design["stroke_color"]
+                )
+
+                print(f"{GREEN}🎨 Thumbnail gerada:{RESET} {thumb_path}")
+
+            except Exception as e:
+                add_warning(video, f"Falha ao gerar thumbnail: {e}")
+                thumb_path = None
+        else:
+            add_warning(video, "Imagem base da thumbnail não encontrada")
+            thumb_path = None
+
+        # -------- UPLOAD --------
         video_id = upload_video(metadata, video_path)
-
-        if video_id == "UPLOAD_LIMIT":
-            add_error(video, REPORT["last_global_error"])
-            handle_limit_and_exit()
-
         if not video_id:
             add_error(video, REPORT["last_global_error"])
             continue
 
-        upload_thumbnail(video_id, thumb)
+        upload_thumbnail(video_id, thumb_path)
 
-        playlist_id = resolve_playlist(metadata)
-        if playlist_id:
-            youtube = get_authenticated_service()
-            youtube.playlistItems().insert(
-                part="snippet",
-                body={
-                    "snippet": {
-                        "playlistId": playlist_id,
-                        "resourceId": {"kind": "youtube#video", "videoId": video_id}
-                    }
-                }
-            ).execute()
+        # -------- RENAME APÓS UPLOAD --------
+        os.rename(video_path, os.path.join(directory, "uploaded_" + video))
+        os.rename(json_path, os.path.join(directory, "uploaded_" + base + ".json"))
 
-        rename_uploaded(video_path, json_path, thumb)
+        if thumb_path and os.path.exists(thumb_path):
+            os.rename(
+                thumb_path,
+                os.path.join(
+                    THUMBNAIL_DIR,
+                    "uploaded_" + os.path.basename(thumb_path)
+                )
+            )
 
         REPORT["videos"].append({"file": video, "uploaded": True, "error": None})
         REPORT["total_uploaded"] += 1
@@ -358,18 +336,12 @@ def process_batch(directory):
     print(f"\n{GREEN}✔ Batch upload concluído!{RESET}")
 
 # -------------------------------------------------------
-# ENTRY POINT
+# ENTRY
 # -------------------------------------------------------
 
 if __name__ == "__main__":
-
-    # Se nenhum argumento for passado → usar diretório default
-    if len(sys.argv) == 1:
-        directory = DEFAULT_VIDEO_DIRECTORY
-        print(f"{BLUE}Usando diretório DEFAULT:{RESET} {directory}")
-    else:
-        directory = sys.argv[1]
-        print(f"{BLUE}Usando diretório:{RESET} {directory}")
+    directory = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_VIDEO_DIRECTORY
+    print(f"{BLUE}Usando diretório:{RESET} {directory}")
 
     if not os.path.isdir(directory):
         print(f"{RED}❌ Diretório inválido:{RESET} {directory}")
