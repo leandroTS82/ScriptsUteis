@@ -18,7 +18,7 @@ from reportlab.lib import colors
 # =====================================================================================
 
 GROQ_API_KEY = ""
-GROQ_KEY_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt"
+GROQ_KEY_PATH = r"..\secret_tokens_keys\groq_api_key.txt"
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # NOVA LÓGICA: carregar chave automaticamente se GROQ_API_KEY estiver vazia
