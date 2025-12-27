@@ -1,5 +1,6 @@
 # -------------------------------------------------------
-# upload_youtube.py — versão FINAL com thumbnail automática via Groq
+# upload_youtube.py — FINAL
+# Limite de uploads + feedback avançado + report robusto
 # -------------------------------------------------------
 
 import os
@@ -7,6 +8,12 @@ import sys
 import json
 import requests
 from datetime import datetime
+
+# ======================================================
+# CONFIGURAÇÃO DE LIMITE (YOUTUBE)
+# ======================================================
+
+MAX_UPLOADS_PER_RUN = 10  # 🔥 AJUSTE AQUI SE NECESSÁRIO
 
 # ======================================================
 # REGISTRA ThumbnailGenerator NO PYTHONPATH
@@ -20,7 +27,7 @@ if THUMBNAIL_GENERATOR_DIR not in sys.path:
 from generate_thumbnail import generate_thumbnail
 
 # ======================================================
-# RESTANTE DOS IMPORTS
+# IMPORTS YOUTUBE
 # ======================================================
 
 from googleapiclient.discovery import build
@@ -29,14 +36,12 @@ from googleapiclient.errors import HttpError
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-# -------------------------------------------------------
+# ======================================================
 # CONFIGURAÇÕES GERAIS
-# -------------------------------------------------------
+# ======================================================
 
-DEFAULT_VIDEO_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos\\Teste"
-
+DEFAULT_VIDEO_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos\Teste"
 THUMBNAIL_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Images"
-
 FONTS_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\ThumbnailGenerator\fonts"
 
 FONT_MAP = {
@@ -69,9 +74,9 @@ CLIENT_SECRET_FILE = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\you
 
 REPORT_DIR = "./reports"
 
-# -------------------------------------------------------
+# ======================================================
 # CORES TERMINAL
-# -------------------------------------------------------
+# ======================================================
 
 RESET = "\033[0m"
 RED = "\033[91m"
@@ -79,32 +84,34 @@ GREEN = "\033[92m"
 YELLOW = "\033[93m"
 BLUE = "\033[94m"
 
-# -------------------------------------------------------
-# REPORT STRUCTURE
-# -------------------------------------------------------
+# ======================================================
+# REPORT
+# ======================================================
 
 REPORT = {
     "start_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     "end_time": None,
     "mode": "batch",
+    "max_uploads_per_run": MAX_UPLOADS_PER_RUN,
+    "execution_stopped_reason": None,
     "total_videos_found": 0,
-    "total_uploaded": 0,
-    "skipped_uploaded_files": 0,
+    "processed_videos": 0,
+    "successful_uploads": 0,
     "failed_uploads": 0,
-    "youtube_limit_error": False,
-    "last_global_error": None,
+    "skipped_uploaded_files": 0,
+    "remaining_videos_not_processed": 0,
     "videos": [],
     "warnings": []
 }
 
-# -------------------------------------------------------
-# REPORT HELPERS
-# -------------------------------------------------------
+# ======================================================
+# HELPERS
+# ======================================================
 
 def save_report():
     os.makedirs(REPORT_DIR, exist_ok=True)
     REPORT["end_time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    ts = datetime.now().strftime("%Y%m%d%H%M")
+    ts = datetime.now().strftime("%Y%m%d%H%M%S")
     path = os.path.join(REPORT_DIR, f"{ts}_report.json")
 
     with open(path, "w", encoding="utf-8") as f:
@@ -114,27 +121,38 @@ def save_report():
 
 def add_error(file_name, message):
     REPORT["failed_uploads"] += 1
-    REPORT["videos"].append({"file": file_name, "uploaded": False, "error": message})
+    REPORT["videos"].append({
+        "file": file_name,
+        "uploaded": False,
+        "error": message
+    })
 
 def add_warning(file_name, message):
-    REPORT["warnings"].append({"file": file_name, "warning": message})
+    REPORT["warnings"].append({
+        "file": file_name,
+        "warning": message
+    })
 
-# -------------------------------------------------------
-# AUTH
-# -------------------------------------------------------
+# ======================================================
+# AUTH YOUTUBE
+# ======================================================
 
 def get_authenticated_service():
     creds = None
 
     if os.path.exists(TOKEN_PATH):
         from google.oauth2.credentials import Credentials
-        creds = Credentials.from_authorized_user_info(json.load(open(TOKEN_PATH)), SCOPES)
+        creds = Credentials.from_authorized_user_info(
+            json.load(open(TOKEN_PATH)), SCOPES
+        )
 
     if not creds or not creds.valid:
         if creds and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(
+                CLIENT_SECRET_FILE, SCOPES
+            )
             creds = flow.run_local_server(port=8080)
 
         with open(TOKEN_PATH, "w") as f:
@@ -142,9 +160,9 @@ def get_authenticated_service():
 
     return build("youtube", "v3", credentials=creds)
 
-# -------------------------------------------------------
-# GROQ — GERAR DESIGN DO THUMB
-# -------------------------------------------------------
+# ======================================================
+# GROQ — THUMB DESIGN
+# ======================================================
 
 def generate_thumbnail_design(video_json):
     prompt = f"""
@@ -159,11 +177,7 @@ Rules:
 - High contrast
 - No emojis
 
-Layout:
-- Text will be placed TOP-LEFT
-
 Return ONLY valid JSON:
-
 {{
   "title": "",
   "highlight": "",
@@ -176,7 +190,6 @@ Return ONLY valid JSON:
 Context:
 Title: {video_json["title"]}
 Description: {video_json["description"]}
-Tags: {", ".join(video_json.get("tags", []))}
 """
 
     payload = {
@@ -197,96 +210,104 @@ Tags: {", ".join(video_json.get("tags", []))}
     start, end = text.find("{"), text.rfind("}") + 1
     return json.loads(text[start:end])
 
-# -------------------------------------------------------
-# UPLOAD VIDEO
-# -------------------------------------------------------
+# ======================================================
+# UPLOAD VIDEO + THUMB
+# ======================================================
 
 def upload_video(metadata, video_path):
     youtube = get_authenticated_service()
 
-    snippet = {
-        "title": metadata["title"],
-        "description": metadata["description"],
-        "tags": metadata["tags"],
-        "categoryId": metadata["category_id"]
-    }
-
-    status = {
-        "privacyStatus": metadata["visibility"],
-        "selfDeclaredMadeForKids": metadata["made_for_kids"],
-        "embeddable": metadata["embeddable"]
-    }
-
     media = MediaFileUpload(video_path, chunksize=-1, resumable=True)
 
     try:
-        print(f"{BLUE}📤 Enviando vídeo:{RESET} {video_path}")
+        print(f"{BLUE}📤 Enviando vídeo:{RESET} {os.path.basename(video_path)}")
         res = youtube.videos().insert(
             part="snippet,status",
-            body={"snippet": snippet, "status": status},
+            body={
+                "snippet": {
+                    "title": metadata["title"],
+                    "description": metadata["description"],
+                    "tags": metadata["tags"],
+                    "categoryId": metadata["category_id"]
+                },
+                "status": {
+                    "privacyStatus": metadata["visibility"],
+                    "selfDeclaredMadeForKids": metadata["made_for_kids"],
+                    "embeddable": metadata["embeddable"]
+                }
+            },
             media_body=media
         ).execute()
+
         return res["id"]
 
     except HttpError as e:
-        REPORT["last_global_error"] = str(e)
-        return None
-
-# -------------------------------------------------------
-# UPLOAD THUMB
-# -------------------------------------------------------
+        return str(e)
 
 def upload_thumbnail(video_id, thumb_path):
     if not thumb_path or not os.path.exists(thumb_path):
         return
 
     youtube = get_authenticated_service()
-    try:
-        youtube.thumbnails().set(
-            videoId=video_id,
-            media_body=MediaFileUpload(thumb_path)
-        ).execute()
-        print(f"{GREEN}🖼 Thumbnail enviada:{RESET} {thumb_path}")
-    except HttpError as e:
-        add_warning(os.path.basename(thumb_path), str(e))
+    youtube.thumbnails().set(
+        videoId=video_id,
+        media_body=MediaFileUpload(thumb_path)
+    ).execute()
 
-# -------------------------------------------------------
-# BATCH
-# -------------------------------------------------------
+# ======================================================
+# BATCH PROCESS
+# ======================================================
 
 def process_batch(directory):
     video_exts = (".mp4", ".mov", ".mkv", ".avi")
-    files = os.listdir(directory)
 
-    videos = []
-    for f in files:
+    candidates = []
+    for f in os.listdir(directory):
         if f.lower().startswith("uploaded_"):
             REPORT["skipped_uploaded_files"] += 1
             continue
+
         if f.lower().endswith(video_exts):
-            if os.path.exists(os.path.join(directory, os.path.splitext(f)[0] + ".json")):
-                videos.append(f)
+            base = os.path.splitext(f)[0]
+            if os.path.exists(os.path.join(directory, base + ".json")):
+                candidates.append(f)
 
-    REPORT["total_videos_found"] = len(videos)
+    REPORT["total_videos_found"] = len(candidates)
 
-    for video in videos:
+    print(f"\n{BLUE}🎯 Vídeos encontrados:{RESET} {len(candidates)}")
+    print(f"{BLUE}🚦 Limite por execução:{RESET} {MAX_UPLOADS_PER_RUN}\n")
+
+    for index, video in enumerate(candidates, start=1):
+
+        if REPORT["successful_uploads"] >= MAX_UPLOADS_PER_RUN:
+            REPORT["execution_stopped_reason"] = "YouTube upload limit reached"
+            break
+
+        REPORT["processed_videos"] += 1
+
+        print(
+            f"{YELLOW}▶ Processando {index}/{len(candidates)} "
+            f"(uploads: {REPORT['successful_uploads']}/{MAX_UPLOADS_PER_RUN}){RESET}"
+        )
+
         base = os.path.splitext(video)[0]
-
         video_path = os.path.join(directory, video)
         json_path = os.path.join(directory, base + ".json")
         metadata = json.load(open(json_path, encoding="utf-8"))
 
-        # -------- THUMBNAIL --------
-        # -------- THUMBNAIL --------
+        # Thumbnail
         raw_image = os.path.join(THUMBNAIL_DIR, base + ".png")
-        thumb_path = os.path.join(THUMBNAIL_DIR, base + "_thumb.png")
+        thumb_path = None
 
-        if os.path.exists(raw_image):   
+        if os.path.exists(raw_image):
             try:
                 design = generate_thumbnail_design(metadata)
+                font_path = os.path.join(
+                    FONTS_DIR,
+                    FONT_MAP.get(design["font"], FONT_MAP["bebas_neue"])
+                )
 
-                font_file = FONT_MAP.get(design["font"], FONT_MAP["bebas_neue"])
-                font_path = os.path.join(FONTS_DIR, font_file)
+                thumb_path = os.path.join(THUMBNAIL_DIR, base + "_thumb.png")
 
                 generate_thumbnail(
                     image_path=raw_image,
@@ -299,52 +320,45 @@ def process_batch(directory):
                     stroke_color=design["stroke_color"]
                 )
 
-                print(f"{GREEN}🎨 Thumbnail gerada:{RESET} {thumb_path}")
+                print(f"{GREEN}🎨 Thumbnail gerada{RESET}")
 
             except Exception as e:
-                add_warning(video, f"Falha ao gerar thumbnail: {e}")
-                thumb_path = None
-        else:
-            add_warning(video, "Imagem base da thumbnail não encontrada")
-            thumb_path = None
+                add_warning(video, f"Thumbnail falhou: {e}")
 
-        # -------- UPLOAD --------
-        video_id = upload_video(metadata, video_path)
-        if not video_id:
-            add_error(video, REPORT["last_global_error"])
+        result = upload_video(metadata, video_path)
+
+        if len(result) != 11:
+            add_error(video, result)
             continue
 
-        upload_thumbnail(video_id, thumb_path)
+        upload_thumbnail(result, thumb_path)
 
-        # -------- RENAME APÓS UPLOAD --------
         os.rename(video_path, os.path.join(directory, "uploaded_" + video))
         os.rename(json_path, os.path.join(directory, "uploaded_" + base + ".json"))
 
-        if thumb_path and os.path.exists(thumb_path):
-            os.rename(
-                thumb_path,
-                os.path.join(
-                    THUMBNAIL_DIR,
-                    "uploaded_" + os.path.basename(thumb_path)
-                )
-            )
+        REPORT["successful_uploads"] += 1
+        REPORT["videos"].append({"file": video, "uploaded": True})
 
-        REPORT["videos"].append({"file": video, "uploaded": True, "error": None})
-        REPORT["total_uploaded"] += 1
+        print(f"{GREEN}✔ Upload concluído{RESET}\n")
+
+    REPORT["remaining_videos_not_processed"] = (
+        REPORT["total_videos_found"] - REPORT["processed_videos"]
+    )
 
     save_report()
-    print(f"\n{GREEN}✔ Batch upload concluído!{RESET}")
+    print(f"\n{GREEN}🏁 Execução finalizada{RESET}")
 
-# -------------------------------------------------------
+# ======================================================
 # ENTRY
-# -------------------------------------------------------
+# ======================================================
 
 if __name__ == "__main__":
     directory = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_VIDEO_DIRECTORY
-    print(f"{BLUE}Usando diretório:{RESET} {directory}")
+
+    print(f"{BLUE}📁 Diretório:{RESET} {directory}")
 
     if not os.path.isdir(directory):
-        print(f"{RED}❌ Diretório inválido:{RESET} {directory}")
+        print(f"{RED}❌ Diretório inválido{RESET}")
         sys.exit(1)
 
     process_batch(directory)
