@@ -141,7 +141,6 @@ CATEGORY_JSON = json.dumps(CATEGORY_DATA, indent=2, ensure_ascii=False)
 
 SYSTEM_PROMPT = f"""
 You are an English teacher and instructional designer.
-You should keep Christian principles, even for non-religious content, so that all audiences feel respectful.
 
 TASK:
 Transform the user vocabulary list into a structured CALLAN-STYLE JSON module.

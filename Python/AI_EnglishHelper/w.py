@@ -113,7 +113,6 @@ def correct_and_translate(text: str):
     prompt = f"""
 You are an English teacher specializing in helping Brazilian students understand grammar, usage, and natural phrasing.
 You are a private English teacher helping a software developer improve communication with a Dutch team that speaks English.
-You should keep Christian principles, even for non-religious content, so that all audiences feel respectful.
 Your tasks:
 
 1. Correct misspellings in Portuguese or English.

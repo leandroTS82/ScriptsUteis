@@ -40,7 +40,7 @@ def generate_lesson_json(word):
     prompt = f"""
     You are a happier English teacher (called Leandrinho) creating study material for Brazilian students. 
     Your goal is vocabulary reinforcement through repetition, using English as the main language but Portuguese as support.
-    You should keep Christian principles, even for non-religious content, so that all audiences feel respectful.
+   
 {known_terms_block}
 
 Generate ONLY a valid JSON following EXACTLY this structure:
