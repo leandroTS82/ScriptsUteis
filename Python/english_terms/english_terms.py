@@ -1,7 +1,7 @@
 import os
 import json
 import re
-from typing import Any, Set
+from typing import Any, Set, List
 from langdetect import detect, LangDetectException
 
 # =========================================================
@@ -9,10 +9,13 @@ from langdetect import detect, LangDetectException
 # python english_terms.py
 # =========================================================
 
-ROOT_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript"
+ROOT_PATHS: List[str] = [
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript"
+]
+
 OUTPUT_FILE = "./english_terms.json"
 
-MAX_TEXT_LENGTH = 40
+MAX_TEXT_LENGTH = 10
 
 PHRASES_TO_REMOVE = [
     "você não vai acreditar",
@@ -44,9 +47,7 @@ def clean_unwanted_phrases(text: str) -> str:
         pattern = r"\s*" + re.escape(phrase) + r"\s*"
         text_lower = re.sub(pattern, " ", text_lower)
 
-    # normaliza espaços
     text_lower = re.sub(r"\s{2,}", " ", text_lower)
-
     return text_lower.strip()
 
 
@@ -54,9 +55,17 @@ def normalize(text: str) -> str:
     """
     Limpeza final e padronização.
     """
+    if not text:
+        return ""
+
+    # 🔥 normalização crítica: underline vira espaço
+    text = text.replace("_", " ")
+    text = text.replace("'", "")
+
     text = clean_unwanted_phrases(text)
     text = re.sub(r"[^\w\s']", "", text)
     text = re.sub(r"\s{2,}", " ", text)
+
     return text.strip().lower()
 
 
@@ -117,7 +126,8 @@ def extract_from_json_file(file_path: str, results: Set[str]):
         extract_from_obj(data, results)
 
     except Exception as e:
-        print(f"⚠️ Erro ao processar {file_path}: {e}")
+        print(f"⚠️  Erro ao processar: {file_path}")
+        print(f"    ↳ {e}")
 
 
 # =========================================================
@@ -128,31 +138,49 @@ def main():
     english_terms: Set[str] = set()
     ignored_files_lower = {f.lower() for f in IGNORED_FILES}
 
-    for root, _, files in os.walk(ROOT_PATH):
-        for file in files:
-            if not file.lower().endswith(".json"):
-                continue
+    total_files = 0
+    processed_files = 0
 
-            if file.lower() in ignored_files_lower:
-                continue
+    print("🔎 Iniciando varredura de paths...\n")
 
-            extract_from_json_file(os.path.join(root, file), english_terms)
+    for root_path in ROOT_PATHS:
+        print(f"📂 Path base: {root_path}")
+
+        for root, _, files in os.walk(root_path):
+            json_files = [f for f in files if f.lower().endswith(".json")]
+            total_files += len(json_files)
+
+            for file in json_files:
+                if file.lower() in ignored_files_lower:
+                    continue
+
+                full_path = os.path.join(root, file)
+                processed_files += 1
+
+                print(f"  ▶️  [{processed_files}/{total_files}] Processando: {file}")
+                extract_from_json_file(full_path, english_terms)
+
+    # 🔥 Garantia final de deduplicação sem underline
+    normalized_final_terms = {
+        normalize(term) for term in english_terms if normalize(term)
+    }
 
     output = {
-        "source_path": ROOT_PATH,
+        "source_paths": ROOT_PATHS,
         "max_text_length": MAX_TEXT_LENGTH,
         "ignored_files": IGNORED_FILES,
         "removed_phrases": PHRASES_TO_REMOVE,
-        "total_terms": len(english_terms),
-        "terms": sorted(english_terms)
+        "total_terms": len(normalized_final_terms),
+        "terms": sorted(normalized_final_terms)
     }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
-    print("✅ Extração concluída — APENAS INGLÊS")
+    print("\n✅ Extração concluída — APENAS INGLÊS")
     print(f"📄 Arquivo gerado: {OUTPUT_FILE}")
-    print(f"🔤 Total de termos únicos: {len(english_terms)}")
+    print(f"📊 Arquivos processados: {processed_files}")
+    print(f"🔤 Total de termos únicos finais: {len(normalized_final_terms)}")
 
 
 if __name__ == "__main__":
