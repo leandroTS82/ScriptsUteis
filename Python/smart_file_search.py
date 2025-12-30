@@ -4,10 +4,9 @@
  Autor: Leandro
 ===========================================================
 
-Busca inteligente por termos em arquivos (PDF, TXT, JSON, MD, HTML),
+Busca inteligente por termos em arquivos (PDF),
 com ranking de relevância baseado em:
 - Nome do arquivo
-- Títulos / cabeçalhos
 - Corpo do texto
 
 Compatível com:
@@ -18,7 +17,6 @@ Compatível com:
 
 import os
 import re
-import json
 from typing import List, Dict
 from PyPDF2 import PdfReader
 
@@ -32,7 +30,8 @@ SEARCH_PATHS = [
 ]
 
 IGNORED_EXTENSIONS = [
-    ".exe", ".dll", ".bin", ".jpg", ".png", ".mp4", ".zip", ".txt", ".json", ".md", ".html", ".htm"
+    ".exe", ".dll", ".bin", ".jpg", ".png", ".mp4", ".zip",
+    ".txt", ".json", ".md", ".html", ".htm"
 ]
 
 SUPPORTED_EXTENSIONS = [
@@ -40,6 +39,13 @@ SUPPORTED_EXTENSIONS = [
 ]
 
 CASE_INSENSITIVE = True
+
+# 🧩 SNIPPET
+SNIPPET_CHARS = 30  # caracteres antes e depois do termo
+
+# 🎨 CORES (ANSI)
+COLOR_HIGHLIGHT = "\033[93m"  # amarelo
+COLOR_RESET = "\033[0m"
 
 # =========================================================
 # UTILITÁRIOS
@@ -49,24 +55,55 @@ def normalize(text: str) -> str:
     return text.lower() if CASE_INSENSITIVE else text
 
 
+def clean_text(text: str) -> str:
+    text = text.replace("\n", " ")
+    return re.sub(r"\s+", " ", text)
+
+
 def read_file_content(path: str) -> str:
-    ext = os.path.splitext(path)[1].lower()
-
     try:
-        if ext == ".pdf":
-            reader = PdfReader(path)
-            return "\n".join(page.extract_text() or "" for page in reader.pages)
-
-        with open(path, "r", encoding="utf-8", errors="ignore") as f:
-            return f.read()
-
+        reader = PdfReader(path)
+        return "\n".join(page.extract_text() or "" for page in reader.pages)
     except Exception:
         return ""
+
+
+def extract_snippets(content: str, term: str) -> List[str]:
+    snippets = []
+
+    clean = clean_text(content)
+    clean_norm = normalize(clean)
+    term_norm = normalize(term)
+
+    start = 0
+    while True:
+        index = clean_norm.find(term_norm, start)
+        if index == -1:
+            break
+
+        begin = max(0, index - SNIPPET_CHARS)
+        end = min(len(clean), index + len(term) + SNIPPET_CHARS)
+
+        snippet = clean[begin:end]
+
+        # destaca termo
+        snippet_highlighted = re.sub(
+            re.escape(term),
+            f"{COLOR_HIGHLIGHT}{term}{COLOR_RESET}",
+            snippet,
+            flags=re.IGNORECASE
+        )
+
+        snippets.append(f"... {snippet_highlighted} ...")
+        start = index + len(term_norm)
+
+    return snippets
 
 
 def score_content(term: str, filename: str, content: str) -> Dict:
     score = 0
     occurrences = []
+    snippets = []
 
     term_norm = normalize(term)
     filename_norm = normalize(filename)
@@ -77,32 +114,18 @@ def score_content(term: str, filename: str, content: str) -> Dict:
         score += 100
         occurrences.append("nome_do_arquivo")
 
-    # ⚠️ Títulos / cabeçalhos
-    header_patterns = [
-        r"<h1.*?>.*?</h1>",
-        r"<h2.*?>.*?</h2>",
-        r"<title.*?>.*?</title>",
-        r"^# .+$",
-        r"^## .+$"
-    ]
-
-    for pattern in header_patterns:
-        for match in re.findall(pattern, content, re.MULTILINE | re.IGNORECASE):
-            if term_norm in normalize(match):
-                score += 50
-                occurrences.append("titulo/cabecalho")
-
     # ℹ️ Corpo do texto
     body_count = content_norm.count(term_norm)
     if body_count > 0:
         score += body_count * 10
         occurrences.append(f"corpo_texto({body_count})")
+        snippets = extract_snippets(content, term)
 
     return {
         "score": score,
-        "occurrences": occurrences
+        "occurrences": occurrences,
+        "snippets": snippets
     }
-
 
 # =========================================================
 # BUSCA PRINCIPAL
@@ -116,15 +139,12 @@ def search(term: str) -> List[Dict]:
             for file in files:
                 ext = os.path.splitext(file)[1].lower()
 
-                if ext in IGNORED_EXTENSIONS:
-                    continue
-
-                if ext not in SUPPORTED_EXTENSIONS:
+                if ext in IGNORED_EXTENSIONS or ext not in SUPPORTED_EXTENSIONS:
                     continue
 
                 full_path = os.path.join(root, file)
-
                 content = read_file_content(full_path)
+
                 if not content:
                     continue
 
@@ -135,14 +155,14 @@ def search(term: str) -> List[Dict]:
                         "file": file,
                         "path": full_path,
                         "score": score_data["score"],
-                        "where": score_data["occurrences"]
+                        "where": score_data["occurrences"],
+                        "snippets": score_data["snippets"]
                     })
 
     return sorted(results, key=lambda x: x["score"], reverse=True)
 
-
 # =========================================================
-# CLI INTERATIVO
+# CLI
 # =========================================================
 
 def main():
@@ -157,9 +177,6 @@ def main():
 
         if not results:
             print("\n❌ Nenhum resultado encontrado.")
-            retry = input("Deseja buscar outro termo? (Enter para continuar / 's' para sair): ")
-            if retry.lower() == "s":
-                break
             continue
 
         print(f"\n✅ {len(results)} resultado(s) encontrado(s):\n")
@@ -169,6 +186,12 @@ def main():
             print(f"📍 \"{r['path']}\"")
             print(f"⭐ Relevância: {r['score']}")
             print(f"🔎 Ocorrências: {', '.join(r['where'])}")
+
+            if r["snippets"]:
+                print("🧩 Trechos encontrados:")
+                for s in r["snippets"]:
+                    print(f"   {s}")
+
             print("-" * 60)
 
     print("\n👋 Encerrando busca.")
