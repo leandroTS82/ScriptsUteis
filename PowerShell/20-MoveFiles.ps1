@@ -22,6 +22,21 @@ $PathMappings = @(
         DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Images"
     },
     @{
+        # Audio historia
+        SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeHistorieMovie\outputs\audio"
+        DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Audios para estudar inglês\Histories"
+    },
+    @{
+        # Imagens historia
+        SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeHistorieMovie\outputs\images"
+        DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Images"
+    },
+     @{
+        # Vídeos historia
+        SourcePath = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeHistorieMovie\outputs\videos"
+        DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories"
+    },
+    @{
         # !!!! Uploaded StartsWith: uploaded_
         #SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
         #DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"
