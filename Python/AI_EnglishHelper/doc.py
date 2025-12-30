@@ -58,6 +58,10 @@ CATEGORY_DATA = {
     "name": "Phrasal Verbs no Dia a Dia",
     "description": "Aprenda phrasal verbs usados por nativos em conversas reais, séries e trabalho — explicado de forma leve e fácil."
   },
+  "ChunksOfEnglish": {
+    "name": "Chunks of English",
+    "description": "Aprenda chunks de inglês usados por nativos em conversas reais, séries e ambiente de trabalho — expressões prontas que tornam seu inglês mais natural, fluido e confiante."
+  },
   "DailyRoutine": {
     "name": "Inglês para a Rotina Diária",
     "description": "Fale sobre sua rotina em inglês com naturalidade! Vocabulário prático, expressões reais e exemplos do cotidiano."
@@ -137,10 +141,12 @@ CATEGORY_JSON = json.dumps(CATEGORY_DATA, indent=2, ensure_ascii=False)
 
 SYSTEM_PROMPT = f"""
 You are an English teacher and instructional designer.
+You should keep Christian principles, even for non-religious content, so that all audiences feel respectful.
 
 TASK:
 Transform the user vocabulary list into a structured CALLAN-STYLE JSON module.
 Return ONLY JSON. Do NOT output explanations or markdown.
+Replace the underscore (_) with a context-appropriate word or phrase.
 
 ===============================================================================
 CATEGORIES AVAILABLE FOR CLASSIFICATION
