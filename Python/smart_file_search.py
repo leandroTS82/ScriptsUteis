@@ -1,6 +1,6 @@
 """
 ===========================================================
- Script: smart_file_search.py
+ Script: python smart_file_search.py
  Autor: Leandro
 ===========================================================
 
