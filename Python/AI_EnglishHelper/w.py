@@ -42,6 +42,8 @@ current_date = datetime.now().strftime('%Y%m%d')
 CREATE_LATER = f"./CreateLater/CreateLater_{current_date}.json"
 FULL_RESULTS = "./TranscriptResults.json"
 
+EXTERNAL_TERMS_PATH = r"C:\dev\scripts\ScriptsUteis\Python\english_terms\english_terms.json"
+
 LEVELS = {
     "A1": {"enabled": False,  "size": "short"},
     "A2": {"enabled": True,  "size": "medium"},
@@ -71,6 +73,34 @@ def safe_json_dump(path: str, data):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def load_external_terms() -> list[str]:
+    """
+    Lê ./english_terms.json no formato padrão.
+    Se qualquer erro ocorrer, retorna lista vazia.
+    """
+    if not os.path.exists(EXTERNAL_TERMS_PATH):
+        return []
+
+    try:
+        with open(EXTERNAL_TERMS_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        terms = data.get("terms", [])
+        if not isinstance(terms, list):
+            return []
+
+        cleaned = {
+            t.strip().lower()
+            for t in terms
+            if isinstance(t, str) and t.strip()
+        }
+
+        return sorted(cleaned)
+
+    except Exception:
+        return []
+
+
 def load_groq_key() -> str:
     if isinstance(GROQ_API_KEY, str) and GROQ_API_KEY.strip().startswith("gsk_"):
         return GROQ_API_KEY.strip()
@@ -86,8 +116,8 @@ def load_groq_key() -> str:
         "Defina GROQ_API_KEY diretamente ou informe uma chave válida em:\n"
         f"{GROQ_KEY_PATH}"
     )
-
-
+    
+    
 def groq(prompt: str) -> str:
     headers = {
         "Authorization": f"Bearer {load_groq_key()}",
@@ -106,7 +136,7 @@ def groq(prompt: str) -> str:
     return raw[raw.find("{"): raw.rfind("}") + 1]
 
 # ================================================================================  
-# 1 — CORRIGIR + TRADUZIR (ALTERADO AQUI)
+# 1 — CORRIGIR + TRADUZIR (INALTERADO)
 # ================================================================================  
 
 def correct_and_translate(text: str):
@@ -154,11 +184,11 @@ Input: "{text}"
     obj["model_used"] = "Groq"
     return obj
 
-# ================================================================================
-# 2 — DEFINIÇÃO + EXEMPLOS
-# ================================================================================
+# ================================================================================  
+# 2 — DEFINIÇÃO + EXEMPLOS (AJUSTE CONTROLADO)
+# ================================================================================  
 
-def generate_wordbank(term: str):
+def generate_wordbank(term: str, external_terms: list[str]):
     example_specs = [
         {"level": lvl, "size": cfg["size"]}
         for lvl, cfg in LEVELS.items()
@@ -166,11 +196,20 @@ def generate_wordbank(term: str):
     ]
 
     examples_json = ",".join(
-        [
-            f'{{"level":"{e["level"]}","size":"{e["size"]}","phrase":"..."}}'
-            for e in example_specs
-        ]
+        f'{{"level":"{e["level"]}","size":"{e["size"]}","phrase":"..."}}'
+        for e in example_specs
     )
+
+    terms_block = ""
+    if external_terms:
+        terms_block = f"""
+Use approximately 60% of the following terms across the examples.
+Do NOT force all of them into a single sentence.
+Use them naturally and spread them across different examples.
+
+Available terms:
+{", ".join(external_terms)}
+"""
 
     prompt = f"""
 Create the following JSON:
@@ -190,15 +229,17 @@ Rules:
 - long → 18–28 words
 - Sound natural for each CEFR level.
 
+{terms_block}
+
 Return ONLY JSON.
 """
     obj = json.loads(groq(prompt))
     obj["model_used"] = "Groq"
     return obj
 
-# ================================================================================
-# ARQUIVOS
-# ================================================================================
+# ================================================================================  
+# ARQUIVOS (INALTERADO)
+# ================================================================================  
 
 def save_create_later(item: str):
     item = sanitize_sentence(item)
@@ -236,9 +277,9 @@ def save_transcript_result(palavra, definicao, exemplos):
     safe_json_dump(FULL_RESULTS, data)
     print("📚 Registrado em TranscriptResults.json")
 
-# ================================================================================
-# PREVIEW
-# ================================================================================
+# ================================================================================  
+# PREVIEW (INALTERADO)
+# ================================================================================  
 
 def print_preview(original, corrected, had_error, reason, definition_pt, examples, model):
     C_RESET = "\033[0m"
@@ -267,9 +308,9 @@ def print_preview(original, corrected, had_error, reason, definition_pt, example
     for ex in examples:
         print(f" ➜ ({ex['level']}, {ex['size']}) {ex['phrase']}")
 
-# ================================================================================
+# ================================================================================  
 # PROCESSAMENTO
-# ================================================================================
+# ================================================================================  
 
 def process_term(original: str):
     print("🔍 Processando:", original)
@@ -279,7 +320,8 @@ def process_term(original: str):
 
     save_create_later(corrected)
 
-    wb = generate_wordbank(corrected)
+    external_terms = load_external_terms()
+    wb = generate_wordbank(corrected, external_terms)
 
     print_preview(
         original,
@@ -293,9 +335,9 @@ def process_term(original: str):
 
     save_transcript_result(corrected, wb["definition_pt"], wb["examples"])
 
-# ================================================================================
-# MAIN
-# ================================================================================
+# ================================================================================  
+# MAIN (INALTERADO)
+# ================================================================================  
 
 def main():
     while True:
@@ -325,6 +367,7 @@ def main():
             break
         else:
             sys.argv = [sys.argv[0], proximo]
+
 
 if __name__ == "__main__":
     main()
