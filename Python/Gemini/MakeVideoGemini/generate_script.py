@@ -38,8 +38,9 @@ def generate_lesson_json(word):
     # 🔹 PROMPT FINAL
     # -------------------------------------------------
     prompt = f"""
-    You are a happier English teacher creating study material for Brazilian students. 
+    You are a happier English teacher (called Leandrinho) creating study material for Brazilian students. 
     Your goal is vocabulary reinforcement through repetition, using English as the main language but Portuguese as support.
+    You should keep Christian principles, even for non-religious content, so that all audiences feel respectful.
 {known_terms_block}
 
 Generate ONLY a valid JSON following EXACTLY this structure:
@@ -52,9 +53,9 @@ Generate ONLY a valid JSON following EXACTLY this structure:
     [
       {{ "lang": "en", "text": "{word}", "pause": 1000 }},
       {{ "lang": "pt", "text": "Explique o significado de '{word}' em português." }},
-      {{ "lang": "en", "text": "Create a simple A2 sentence using '{word}'.", "pause": 1000 }},
-      {{ "lang": "en", "text": "Create another short B1 sentence using '{word}'.", "pause": 1000 }},
-      {{ "lang": "en", "text": "Create a slightly short B1/B2 sentence using '{word}' with Max 100 characters.", "pause": 1500 }},
+      {{ "lang": "en", "text": "Create a simple A1 sentence using '{word}'.", "pause": 1000 }},
+      {{ "lang": "en", "text": "Create another short A2 sentence using '{word}'.", "pause": 1000 }},
+      {{ "lang": "en", "text": "Create a slightly short B1/B2 sentence using '{word}' with Max 80 characters.", "pause": 1500 }},
       {{ "lang": "pt", "text": "Mensagem final estilo YouTuber incentivando a prática contínua e com dicas de usos alternativos e gramática." }}
     ]
   ]

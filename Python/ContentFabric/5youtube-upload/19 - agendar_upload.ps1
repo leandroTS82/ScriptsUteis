@@ -1,7 +1,7 @@
 # ==========================================
 # CONFIGURAÇÃO
 # ==========================================
-$Minutes = 15   # Altere o tempo aqui
+$Minutes = 265   # Altere o tempo aqui
 # ==========================================
 
 $startSchedule = (Get-Date).ToString("HH:mm:ss")

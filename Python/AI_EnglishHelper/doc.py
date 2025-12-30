@@ -146,7 +146,6 @@ You should keep Christian principles, even for non-religious content, so that al
 TASK:
 Transform the user vocabulary list into a structured CALLAN-STYLE JSON module.
 Return ONLY JSON. Do NOT output explanations or markdown.
-Replace the underscore (_) with a context-appropriate word or phrase.
 
 ===============================================================================
 CATEGORIES AVAILABLE FOR CLASSIFICATION

@@ -37,50 +37,47 @@ Generate short, bold, click-worthy thumbnails for young audiences."""
 
 def call_groq(video_json):
     prompt = f"""
-You are a YouTube thumbnail copywriter.
+Você é um copywriter de thumbnails para YouTube.
 
-Your task:
-Create a SHORT, INVITING thumbnail text that summarizes the MAIN IDEA
-of the video description, as a natural invitation to click.
+Sua tarefa
 
-Language:
-- Portuguese (Brazil)
+Criar um texto CURTO e CONVIDATIVO para thumbnail que resuma a IDEIA PRINCIPAL da descrição do vídeo, funcionando como um convite natural ao clique.
 
-Tone:
-- Conversational
-- Natural
-- Curious
-- Not generic
-- Not educational-sounding
+Idioma
 
-Rules:
-- MAX 6 words total
-- ALL CAPS
-- No emojis
-- No generic hooks like:
-  "VOCÊ SABIA", "APRENDA", "DICA", "INGLÊS FÁCIL"
+Português (Brasil)
 
-The text should feel like:
-- a subtle invitation
-- a moment of realization
-- a hint of what the learner will understand
+Tom
 
-Good examples of style (DO NOT copy literally):
-- "QUANDO A FICHA CAI"
-- "DO JEITO CERTO"
-- "NA HORA CERTA"
-- "QUANDO FAZ SENTIDO"
-- "NO USO REAL"
-- "NA PRÁTICA"
+Conversacional
 
-Structure:
-- Title = short inviting phrase that reflects the description
-- Highlight = the English term (or key part of it)
+Natural
 
-Layout:
-- Text positioned TOP-LEFT
-- Title smaller
-- Highlight BIG and clear
+Curioso
+
+Não genérico
+
+Não com cara de conteúdo educacional
+
+Regras
+
+MÁXIMO de 6 palavras no total
+
+TUDO EM CAIXA ALTA
+Com emojis
+O texto deve transmitir:
+Um convite sutil e animado
+Um momento de “clique mental”
+Uma dica do que o aluno vai entender
+
+Estrutura
+Título = frase curta e convidativa e animada que reflita a descrição e estigue a curiosidade.
+Destaque = o termo em inglês (ou a parte-chave dele)
+
+Layout
+Texto posicionado no CANTO SUPERIOR ESQUERDO
+Título menor
+Destaque GRANDE e claro
 
 Return ONLY valid JSON:
 

@@ -9,3 +9,5 @@ print("📌 MODELOS DISPONÍVEIS PARA SUA KEY:\n")
 
 for m in genai.list_models():
     print("➡", m.name, " | métodos:", m.supported_generation_methods)
+    
+    # Python list_models.py

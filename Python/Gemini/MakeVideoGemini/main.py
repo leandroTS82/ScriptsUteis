@@ -101,7 +101,13 @@ os.makedirs("outputs/videos", exist_ok=True)
 # ----------------------------------------------------
 # 1) Gerar JSON da aula
 # ----------------------------------------------------
-lesson = generate_lesson_json(RAW_WORD)
+try:
+    lesson = generate_lesson_json(RAW_WORD)
+except Exception as e:
+    print("❌ Erro crítico ao gerar JSON:")
+    print(e)
+    sys.exit(1)
+    
 lesson["nome_arquivos"] = SAFE_NAME
 
 json_path = f"outputs/videos/{SAFE_NAME}.json"

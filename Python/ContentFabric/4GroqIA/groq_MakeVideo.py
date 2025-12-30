@@ -15,14 +15,15 @@
   - Ignora arquivos que iniciam com uploaded_
   - Exibe total de arquivos ignorados por uploaded_
   - Remoção 100% da thumbnail
+  - ⏱ Delay entre chamadas ao Groq
 =====================================================================
 
 Exemplos:
 python groq_MakeVideo.py "C:\\Content"
 python groq_MakeVideo.py "C:\\Content" --playlist "Inglês para Viagem"
-python groq_MakeVideo.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
-python groq_MakeVideo.py "C:\\dev\\scripts\\ScriptsUteis\\Python\\Gemini\\MakeVideoGemini\\outputs\\videos"
+python groq_MakeVideo.py "C:\\Content" --sleep-between 30
 """
+
 import os
 import json
 import requests
@@ -82,7 +83,6 @@ def ensure_dir(path):
 
 
 def move_to_processed(src_path):
-    """Move JSON original imediatamente."""
     ensure_dir(PROCESSED_DIR)
     new_path = os.path.join(PROCESSED_DIR, os.path.basename(src_path))
     shutil.move(src_path, new_path)
@@ -90,7 +90,6 @@ def move_to_processed(src_path):
 
 
 def find_video(video_dir, tag):
-    """Procura vídeo cujo nome contém o nome_arquivos."""
     for f in os.listdir(video_dir):
         if any(f.lower().endswith(ext) for ext in VIDEO_EXTENSIONS):
             if tag.lower() in f.lower():
@@ -99,7 +98,6 @@ def find_video(video_dir, tag):
 
 
 def write_final_json(video_path, metadata_json):
-    """Salva metadados com o MESMO NOME do vídeo."""
     video_name = os.path.splitext(os.path.basename(video_path))[0]
     final_path = os.path.join(os.path.dirname(video_path), f"{video_name}.json")
 
@@ -110,35 +108,27 @@ def write_final_json(video_path, metadata_json):
 
 
 # ======================================================================
-# JSON FIX & VALIDATION
+# JSON FIX
 # ======================================================================
 
 def safe_extract_json(text):
-    """Extrai e corrige JSON malformado vindo do Groq."""
     first = text.find("{")
     last = text.rfind("}")
 
     if first == -1 or last == -1:
         raise ValueError("❌ Nenhum JSON válido encontrado.")
 
-    raw = text[first:last+1]
+    raw = text[first:last + 1]
 
     try:
         return json.loads(raw)
     except:
-        pass
-
-    cleaned = raw.replace("\t", "").replace("\n\n", "\n")
-    try:
+        cleaned = raw.replace("\t", "").replace("\n\n", "\n")
         return json.loads(cleaned)
-    except:
-        print("❌ JSON retornado pela IA não pôde ser corrigido:")
-        print(raw)
-        raise
 
 
 # ======================================================================
-# GROQ API WITH RATE LIMIT CONTROL
+# GROQ API
 # ======================================================================
 
 def call_groq(system_prompt, user_prompt):
@@ -149,14 +139,12 @@ def call_groq(system_prompt, user_prompt):
         "Content-Type": "application/json"
     }
 
-    messages = [
-        {"role": "system", "content": json.dumps(system_prompt)},
-        {"role": "user", "content": json.dumps(user_prompt)}
-    ]
-
     payload = {
         "model": MODEL_NAME,
-        "messages": messages,
+        "messages": [
+            {"role": "system", "content": json.dumps(system_prompt)},
+            {"role": "user", "content": json.dumps(user_prompt)}
+        ],
         "temperature": TEMPERATURE
     }
 
@@ -169,41 +157,36 @@ def call_groq(system_prompt, user_prompt):
             return res.json()["choices"][0]["message"]["content"]
 
         if res.status_code == 429:
-            wait_ms = None
-            msg = ""
+            msg = res.json().get("error", {}).get("message", "").lower()
+            wait = None
 
-            try:
-                msg = res.json().get("error", {}).get("message", "")
-                if "try again in" in msg.lower():
-                    wait_ms = int(msg.lower().split("try again in")[1].split("ms")[0])
-            except:
-                pass
+            if "try again in" in msg:
+                try:
+                    wait = int(msg.split("try again in")[1].split("ms")[0]) / 1000
+                except:
+                    pass
 
-            if wait_ms:
-                wait = wait_ms / 1000
-            else:
-                wait = min(2 ** retries + random.uniform(0.1, 0.3), 30)
+            if wait is None:
+                wait = min(2 ** retries + random.uniform(0.5, 1.2), 60)
 
-            print(f"[Groq] Rate limit detectado → aguardando {wait:.2f}s…")
+            print(f"[Groq] Rate limit → aguardando {wait:.2f}s")
             time.sleep(wait)
 
             retries += 1
             if retries > RETRY_MAX:
-                raise RuntimeError("❌ Tentativas máximas atingidas no rate limit.")
+                raise RuntimeError("❌ Rate limit excedido.")
 
             continue
 
-        raise RuntimeError(f"Erro inesperado da API Groq:\n{res.text}")
+        raise RuntimeError(res.text)
 
 
 # ======================================================================
-# PLAYLIST BUILDER
+# PLAYLIST
 # ======================================================================
 
 def build_playlist_object(playlist_key, friendly):
-    """Converte playlist_key → playlist final com name + description."""
     if playlist_key not in friendly:
-        print(f"⚠ Playlist_key '{playlist_key}' não encontrada. Usando 'GeneralVocabulary'.")
         playlist_key = "GeneralVocabulary"
 
     entry = friendly[playlist_key]
@@ -225,11 +208,19 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="Pasta contendo JSONs e/ou vídeos")
     parser.add_argument("--videos", help="Pasta onde estão os vídeos")
-    parser.add_argument("--playlist", help="Playlist fixa (sobrescreve IA)")
+    parser.add_argument("--playlist", help="Playlist fixa")
+    parser.add_argument(
+        "--sleep-between",
+        type=int,
+        default=20,
+        help="Delay (segundos) entre chamadas ao Groq"
+    )
+
     args = parser.parse_args()
 
     json_dir = args.path
     video_dir = args.videos if args.videos else args.path
+    sleep_seconds = args.sleep_between
 
     ensure_dir(PROCESSED_DIR)
 
@@ -237,29 +228,26 @@ def main():
     base_prompt = load_json(BASE_PROMPT_FILE)
     friendly_playlists = load_json(FRIENDLY_PLAYLISTS_FILE)
 
-    ignored_uploaded = 0
-
     json_files = [
         f for f in os.listdir(json_dir)
         if f.endswith(".json")
-        and not f.startswith("uploaded_")  # <── NOVO FILTRO
+        and not f.startswith("uploaded_")
         and not os.path.exists(os.path.join(PROCESSED_DIR, f))
     ]
 
-    # contar quantos foram ignorados
     ignored_uploaded = len([
         f for f in os.listdir(json_dir)
         if f.endswith(".json") and f.startswith("uploaded_")
     ])
 
     print(f"📄 JSONs encontrados: {len(json_files)}")
-    print(f"⚪ Arquivos ignorados (uploaded_*): {ignored_uploaded}")
+    print(f"⚪ Ignorados (uploaded_*): {ignored_uploaded}")
 
-    for filename in json_files:
+    for idx, filename in enumerate(json_files, start=1):
+
+        print(f"\n🔎 [{idx}/{len(json_files)}] Processando: {filename}")
 
         full_path = os.path.join(json_dir, filename)
-        print(f"\n🔎 Processando: {filename}")
-
         comp_json = load_json(full_path)
 
         if "nome_arquivos" not in comp_json:
@@ -269,7 +257,7 @@ def main():
         tag = comp_json["nome_arquivos"]
 
         moved_path = move_to_processed(full_path)
-        print(f"📁 JSON original movido para: {moved_path}")
+        print(f"📁 JSON movido → {moved_path}")
 
         user_prompt = {
             "base": base_prompt,
@@ -285,16 +273,16 @@ def main():
 
         playlist_key = args.playlist or metadata_json.get("playlist_key", "GeneralVocabulary")
         metadata_json["playlist"] = build_playlist_object(playlist_key, friendly_playlists)
-
-        if "playlist_key" in metadata_json:
-            del metadata_json["playlist_key"]
-
-        print(f"📌 Playlist selecionada: {metadata_json['playlist']['name']}")
+        metadata_json.pop("playlist_key", None)
 
         video_path = find_video(video_dir, tag)
-
         final_json_path = write_final_json(video_path, metadata_json)
+
         print(f"✔ JSON FINAL CRIADO: {final_json_path}")
+
+        if idx < len(json_files):
+            print(f"⏳ Aguardando {sleep_seconds}s antes da próxima chamada…")
+            time.sleep(sleep_seconds)
 
     print("\n🎉 Processo concluído com sucesso!")
     print(f"📌 Total ignorado (uploaded_*): {ignored_uploaded}\n")

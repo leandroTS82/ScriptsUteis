@@ -52,8 +52,11 @@ def load_known_terms(
     for t in raw_terms:
         original = t.strip()
 
+        # Só traduz se tiver caracteres claramente PT
         if is_probably_portuguese(original):
             original = translate_to_english(original)
+        else:
+            original = original.lower()
 
         norm = normalize_term(original)
         if norm:

@@ -1,12 +1,12 @@
 {
   "stories": [
     {
-      "title": "Waves and Sandcastles",
-      "text": "Today I went to the beach and saw some children building sandcastles on the sand. They laughed when a small wave came and took part of the castle away, but they quickly started making new ones. Nearby, a boy gets a surfboard and runs toward the water, excited to catch his first wave. I sat down on the sand to watch everything, feeling relaxed as the day slowly drifted away."
+      "title": "A Daily Personal Care Routine",
+      "text": "Every morning, I get out of bed early, take a shower, and get ready for school. After class, I sometimes step out for a quick walk. If I get a cut while shaving, I use aftershave to soothe the skin. I always keep my grown facial hair trimmed and my hands clean"
     },
-    {
-      "title": "Fun Day at the Beach",
-      "text": "The beach is fun! Some people swim in the water. They see who is the fastest. The winner gets a surfboard. Some people lie down on the sand. They want to relax. The kids make sandcastles. They try to make the castles big and tall. Later, the water washes the sandcastles away. The kids make new ones."
+      {
+      "title": "Alignment on Deletion Behavior",
+      "text": "Hi, I’m sending this message so we can align once you’re back from vacation. Regarding the deletion topic, there are still some open points to be clarified with the business team. However, I thought it would be useful to already prepare a minimal implementation on the technical side. Based on our previous discussions, I created a field in the Zoho test environment called “Verwijderd uit Diefstalmelding” (the name can still be adjusted). This is a boolean field that indicates whether a theft report was deleted by the user. When a theft report is deleted in the portal, this field is set to true. I’m sharing this to initiate the discussion and to validate the expected behavior during development. I will also send a short video demonstrating this working in a local environment. For the demo, I am not using the theft portal UI, but rather Postman and the backend endpoints, purely to illustrate the intended behavior. Let me know your thoughts. Best regards, Leandro"
     }
   ]
 }

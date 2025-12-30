@@ -2,6 +2,7 @@
   "api_key_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt",
   "system_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\systemPrompt.json",
   "base_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\makevideoLabelPrompt.json",
+  "Gemini_api_key_file":"C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt",
 
   "friendly_playlists_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\friendly_playlist_names.json",
 

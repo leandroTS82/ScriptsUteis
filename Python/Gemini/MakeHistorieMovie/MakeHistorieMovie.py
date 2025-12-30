@@ -49,7 +49,7 @@ os.makedirs("outputs/audio", exist_ok=True)
 os.makedirs("outputs/videos", exist_ok=True)
 
 AUDIO_DEST = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Audios para estudar inglês\Histories"
-VIDEO_DEST = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories"
+VIDEO_DEST = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories\20251229"
 
 os.makedirs(AUDIO_DEST, exist_ok=True)
 os.makedirs(VIDEO_DEST, exist_ok=True)

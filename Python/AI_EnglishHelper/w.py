@@ -43,10 +43,10 @@ CREATE_LATER = f"./CreateLater/CreateLater_{current_date}.json"
 FULL_RESULTS = "./TranscriptResults.json"
 
 LEVELS = {
-    "A1": {"enabled": True,  "size": "short"},
+    "A1": {"enabled": False,  "size": "short"},
     "A2": {"enabled": True,  "size": "medium"},
     "B1": {"enabled": True,  "size": "medium"},
-    "B2": {"enabled": False, "size": "long"},
+    "B2": {"enabled": True, "size": "medium"},
     "C1": {"enabled": False, "size": "long"},
     "C2": {"enabled": False, "size": "long"}
 }
@@ -125,7 +125,6 @@ Your tasks:
 
 IMPORTANT:
 Before producing the final JSON, apply the following internal reasoning standard even though it will NOT appear in the JSON output:
-Replace the underscore (_) with a context-appropriate word or phrase.
 INTERNAL EXPLANATION PATTERN (do NOT output this explicitly):
 - Identify what the student is really asking or trying to say.
 - Fix the sentence in English.

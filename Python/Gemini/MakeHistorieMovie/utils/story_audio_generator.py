@@ -38,7 +38,8 @@ def generate_story_audio(text, output_path, voice="Charon", slow_mode=True):
 
         enhanced_text = (
             "You are younger YouTuber speaking naturally to English students\n\n"
-            "Read this text Maintain a natural, clear, friendly, learner-focused..\n\n"
+            "You should keep Christian principles, even for non-religious content, so that all audiences feel respectful.\n\n"
+            "Read this text Maintain a natural, clear, friendly, learner-focused, talk slowly..\n\n"
             + text
         )
 

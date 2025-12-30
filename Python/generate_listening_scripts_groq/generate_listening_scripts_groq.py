@@ -55,6 +55,7 @@ def groq_request(prompt: str) -> str:
                 "role": "system",
                 "content": (
                     "You are an English teacher creating natural, simple examples. "
+                    "You should keep Christian principles, even for non-religious content, so that all audiences feel respectful."
                     "Always respond clearly and objectively."
                 )
             },
