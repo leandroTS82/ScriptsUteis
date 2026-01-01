@@ -5,19 +5,14 @@ class GeminiClient:
     def __init__(self, api_key: str):
         self.client = genai.Client(api_key=api_key)
 
-    def generate_audio(self, text: str, voice="Charon") -> bytes:
+    def generate_audio(self, text: str, instruction: str = "") -> bytes:
+        final_text = f"{instruction}\n\n{text}" if instruction else text
+
         response = self.client.models.generate_content(
             model="gemini-2.5-flash-preview-tts",
-            contents=text,
+            contents=final_text,
             config=types.GenerateContentConfig(
-                response_modalities=["AUDIO"],
-                speech_config=types.SpeechConfig(
-                    voice_config=types.VoiceConfig(
-                        prebuilt_voice_config=types.PrebuiltVoiceConfig(
-                            voice_name=voice
-                        )
-                    )
-                )
+                response_modalities=["AUDIO"]
             )
         )
         return response.candidates[0].content.parts[0].inline_data.data
@@ -30,7 +25,14 @@ class GeminiClient:
                 image_config=types.ImageConfig(aspect_ratio="16:9")
             )
         )
-        for p in response.candidates[0].content.parts:
-            if p.inline_data:
-                return p.inline_data.data
-        raise RuntimeError("Gemini did not return image bytes")
+        for part in response.candidates[0].content.parts:
+            if part.inline_data:
+                return part.inline_data.data
+        raise RuntimeError("No image returned")
+
+    def generate_text(self, prompt: str) -> str:
+        res = self.client.models.generate_content(
+            model="gemini-2.0-flash-lite-preview",
+            contents=prompt
+        )
+        return res.text

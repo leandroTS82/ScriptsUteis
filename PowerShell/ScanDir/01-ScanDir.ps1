@@ -1,7 +1,7 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\NewHistory"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini\NewHistory"
 $outputFile    = ".\files\newHistory\NewHistory.txt"
 
 $selectedFiles = @()    

@@ -48,6 +48,6 @@ Python/Gemini/MakeVideoGemini/utils/__pycache__/
 Python/ContentFabric/ThumbnailGenerator/__pycache__/
 Python/AI_EnglishHelper/TranscriptResults copy.json
 Python/MakeMp3/CreateLater/
-Python/NewHistory/utils/__pycache__/
-Python/NewHistory/core/__pycache__/
-Python/NewHistory/outputs/subtitles/um_passeio_noturno_com_max.en.srt
+Python/Gemini/NewHistory/utils/__pycache__/
+Python/Gemini/NewHistory/core/__pycache__/
+Python/Gemini/NewHistory/outputs/audio/
