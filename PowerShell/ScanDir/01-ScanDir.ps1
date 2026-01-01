@@ -1,8 +1,8 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini"
-$outputFile    = ".\files\Gemini.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\NewHistory"
+$outputFile    = ".\files\newHistory\NewHistory.txt"
 
 $selectedFiles = @()    
 $onlyFolders   = @()
