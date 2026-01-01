@@ -31,10 +31,10 @@ for story in stories:
     title = generate_title(client, story_text, prompts.title_prompt(story_text))
     badge = generate_badge(client, prompts.badge_prompt(story_text))
 
-    audio_path = f"outputs/audio/{slug}.wav"
-    srt_path = f"outputs/subtitles/{slug}.en.srt"
-    image_path = f"outputs/images/{slug}.png"
-    video_path = f"outputs/videos/{slug}.mp4"
+    audio_path = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\newHistory\\{slug}.wav"
+    srt_path = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Histories\\NewHistory\\subtitles\\{slug}.en.srt"
+    image_path = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Images\\{slug}.png"
+    video_path = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Histories\\NewHistory\\{slug}.mp4"
 
     save_wav(
         audio_path,
