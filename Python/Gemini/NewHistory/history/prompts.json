@@ -11,5 +11,25 @@
   "subtitle_style": {
     "font": "arial.ttf",
     "font_size": 44
+  },
+  "youtube": {
+    "description_template": "E aí! Teacher aqui 👋\n\nHoje vamos aprender inglês com a história:\n\"{title}\"\n\n📖 História:\n{story}\n\n👉 Curta, comente e se inscreva!",
+    "tags": [
+      "english learning",
+      "english stories",
+      "learn english with stories",
+      "english listening",
+      "esl"
+    ],
+    "category_id": 27,
+    "visibility": "public",
+    "made_for_kids": false,
+    "embeddable": true,
+    "playlist": {
+      "Id": "",
+      "create_if_not_exists": true,
+      "name": "English Stories — Learn with Context",
+      "description": "Aprenda inglês com histórias curtas e naturais."
+    }
   }
 }
