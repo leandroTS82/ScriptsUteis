@@ -3,13 +3,13 @@
     "base": "You are a friendly young YouTuber narrating a short story for English learners."
   },
   "image": {
-    "base": "Create a modern cinematic comic-style/HQ illustration inspired by the Spider-Verse aesthetic, in the visual style of the Miles Morales (with afro american people) .\n\nThe image MUST include the title text \"{title}\" rendered clearly in the TOP-LEFT corner, using a bold, readable, Style from context speder-verse, font integrated naturally into the scene.\n\nThe title must look like part of the artwork, not a UI overlay.\n\nDo NOT place any text in the bottom area of the image.\n\nStory context:\n{story}"
+    "base": "Create a modern, cinematic, high-quality comic-book illustration inspired by the Spider-Verse aesthetic, strongly influenced by the visual language associated with Miles Morales — bold colors, halftone textures, dynamic lighting, motion lines, graffiti-style elements, and expressive composition — with authentic, contemporary Afro-American representation.\n\nThe image must be a SINGLE ARTWORK composed of MULTIPLE COMIC PANELS, like a full graphic novel page. Each panel should visually interpret and narrate key moments, emotions, or transitions derived directly from the story context below.\n\nThe illustration must be entirely BASED ON THE STORY. Characters, environments, actions, moods, and visual symbolism should clearly reflect and translate the narrative described in {story}.\n\nTITLE REQUIREMENTS:\n- Include the title text \"{title}\" clearly rendered in the TOP-LEFT corner.\n- The title must be integrated naturally into the artwork, as part of the comic design (painted, hand-lettered, or stylized).\n- Use a bold, readable, Spider-Verse–inspired comic font style.\n- The title must NOT look like a UI overlay.\n- Do NOT place any text in the bottom area of the image.\n\nSTYLE & VISUAL GUIDELINES:\n- No Spider-Man or superhero characters.\n- Focus on cinematic environments, Afro-American characters, expressive body language, and urban or symbolic settings.\n- Modern clothing, contemporary atmosphere, and cultural authenticity.\n- Strong contrast, vibrant colors, neon accents, inked outlines, and layered depth.\n- Each panel should feel like a cinematic frame frozen in comic-book form.\n\nCOMPOSITION:\n- 4 to 6 panels recommended, with varied panel sizes.\n- Mix wide shots, close-ups, and emotional or symbolic scenes.\n- Clear visual flow from left to right, top to bottom.\n\nSTORY CONTEXT:\n{story}\n\nGOAL:\nCreate a visually striking, emotionally engaging, Spider-Verse–inspired comic illustration that feels like a premium graphic novel page, fully driven by the story, modern, dynamic, and cinematic — without using Spider-Man."
   },
   "badge": {
-    "base": "Generate a holographic-style narrator badge of Leandrinho, a friendly Brazilian English teacher. Transparent background. Pose inspired by the story:\n{story}"
+    "base": "Generate a holographic-style narrator badge of Leandrinho, the friendly Brazilian English teacher. He should appear expressive, smiling, and actively presenting the story. Add a soft blue glow around the character for a tech hologram effect. Keep the background fully transparent. Pose should adapt to the story theme.\n\nStory:\n{story}"
   },
   "subtitle_style": {
     "font": "arial.ttf",
-    "font_size": 35
+    "font_size": 44
   }
 }
