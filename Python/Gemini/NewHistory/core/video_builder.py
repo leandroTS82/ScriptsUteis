@@ -3,7 +3,6 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import os
 import re
-import textwrap
 
 VIDEO_W = 1920
 VIDEO_H = 1080
@@ -13,13 +12,14 @@ SUBTITLE_MAX_WIDTH = int(VIDEO_W * 0.80)
 SUBTITLE_BOTTOM_MARGIN = 90
 SUBTITLE_PADDING = 30
 SUBTITLE_BG_ALPHA = 160
+SUBTITLE_RADIUS = 25
 
 
 # --------------------------------------------------
 # SRT PARSER
 # --------------------------------------------------
 
-def parse_srt(path):
+def parse_srt(path: str):
     with open(path, encoding="utf-8") as f:
         blocks = re.split(r"\n\s*\n", f.read().strip())
 
@@ -43,11 +43,11 @@ def parse_srt(path):
 # SUBTITLE RENDER
 # --------------------------------------------------
 
-def draw_subtitle(frame, text, font):
+def draw_subtitle(frame: Image.Image, text: str, font: ImageFont.FreeTypeFont):
     img = frame.copy().convert("RGBA")
     draw = ImageDraw.Draw(img)
 
-    # Quebra de linhas baseada em largura real
+    # Quebra de linhas baseada na largura real do texto
     words = text.split()
     lines = []
     current = ""
@@ -65,23 +65,25 @@ def draw_subtitle(frame, text, font):
 
     # Métricas
     _, _, _, line_height = draw.textbbox((0, 0), "Ay", font=font)
+
     box_height = (
         len(lines) * (line_height + 8)
         + SUBTITLE_PADDING * 2
     )
 
-    box_width = max(
-        draw.textlength(line, font=font) for line in lines
-    ) + SUBTITLE_PADDING * 2
+    box_width = (
+        max(draw.textlength(line, font=font) for line in lines)
+        + SUBTITLE_PADDING * 2
+    )
 
     x_box = (VIDEO_W - box_width) // 2
     y_box = VIDEO_H - box_height - SUBTITLE_BOTTOM_MARGIN
 
-    # Fundo
-    draw.rectangle(
+    # Fundo arredondado (CORRETO)
+    draw.rounded_rectangle(
         (x_box, y_box, x_box + box_width, y_box + box_height),
-        fill=(0, 0, 0, SUBTITLE_BG_ALPHA),
-        radius=25
+        radius=SUBTITLE_RADIUS,
+        fill=(0, 0, 0, SUBTITLE_BG_ALPHA)
     )
 
     # Texto
@@ -105,21 +107,24 @@ def draw_subtitle(frame, text, font):
 # --------------------------------------------------
 
 def build_video(
-    image_path,
-    audio_path,
-    srt_path,
-    output_path,
-    title_text,
-    badge_img,
-    subtitle_style
+    image_path: str,
+    audio_path: str,
+    srt_path: str,
+    output_path: str,
+    badge_img: Image.Image,
+    subtitle_style: dict
 ):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     audio = AudioFileClip(audio_path)
-    duration = audio.duration
     segments = parse_srt(srt_path)
 
-    bg = Image.open(image_path).convert("RGB").resize((VIDEO_W, VIDEO_H))
+    bg = (
+        Image.open(image_path)
+        .convert("RGB")
+        .resize((VIDEO_W, VIDEO_H))
+    )
+
     badge = badge_img.resize((220, 220))
 
     font = ImageFont.truetype(
@@ -127,25 +132,10 @@ def build_video(
         subtitle_style["font_size"]
     )
 
-    title_font = ImageFont.truetype(
-        subtitle_style["font"],
-        subtitle_style["font_size"] + 14
-    )
-
     def make_frame(t):
         frame = bg.copy().convert("RGBA")
-        draw = ImageDraw.Draw(frame)
 
-        # TÍTULO
-        draw.text(
-            (VIDEO_W // 2, 35),
-            title_text,
-            fill="white",
-            anchor="ma",
-            font=title_font
-        )
-
-        # SELO
+        # SELO (topo direito)
         frame.alpha_composite(
             badge,
             (VIDEO_W - badge.width - 30, 30)
@@ -159,7 +149,11 @@ def build_video(
 
         return np.array(frame)
 
-    video = VideoClip(make_frame, duration=duration).set_audio(audio)
+    video = (
+        VideoClip(make_frame, duration=audio.duration)
+        .set_audio(audio)
+    )
+
     video.write_videofile(
         output_path,
         fps=FPS,

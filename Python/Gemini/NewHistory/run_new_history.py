@@ -2,7 +2,6 @@ import json
 from utils.slugify import slugify
 from utils.gemini_client import GeminiClient
 from utils.prompt_manager import PromptManager
-from utils.title_generator import generate_title
 from utils.badge_generator import generate_badge
 from core.audio_generator import save_wav
 from core.subtitle_generator import generate_srt
@@ -22,13 +21,12 @@ state = load_state("history/history_state.json")
 
 for story in stories:
     slug = slugify(story["title"])
-
     if is_processed(state, slug):
         continue
 
+    title = story["title"]
     story_text = story["text"]
 
-    title = generate_title(client, story_text, prompts.title_prompt(story_text))
     badge = generate_badge(client, prompts.badge_prompt(story_text))
 
     audio_path = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\newHistory\\{slug}.wav"
@@ -36,20 +34,30 @@ for story in stories:
     image_path = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Images\\{slug}.png"
     video_path = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Histories\\NewHistory\\{slug}.mp4"
 
+
     save_wav(
         audio_path,
-        client.generate_audio(story_text, prompts.audio_instruction(slow=True))
+        client.generate_audio(
+            story_text,
+            prompts.audio_instruction(slow=True)
+        )
     )
 
     generate_srt(audio_path, srt_path)
-    save_image(image_path, client.generate_image(prompts.image_prompt(story_text)))
+
+    # 🔥 TÍTULO VAI PARA O GEMINI
+    save_image(
+        image_path,
+        client.generate_image(
+            prompts.image_prompt(story_text, title)
+        )
+    )
 
     build_video(
         image_path=image_path,
         audio_path=audio_path,
         srt_path=srt_path,
         output_path=video_path,
-        title_text=title,
         badge_img=badge,
         subtitle_style=prompts.subtitle_style()
     )
@@ -57,4 +65,4 @@ for story in stories:
     mark_processed(state, slug)
     save_state("history/history_state.json", state)
 
-print("🎉 New History com prompts desacoplados gerado com sucesso")
+print("🎉 New History gerado com título embutido na imagem")

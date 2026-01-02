@@ -51,3 +51,4 @@ Python/MakeMp3/CreateLater/
 Python/Gemini/NewHistory/utils/__pycache__/
 Python/Gemini/NewHistory/core/__pycache__/
 Python/Gemini/NewHistory/outputs/audio/
+Python/extract_reading_practice/pdf_json_dump/

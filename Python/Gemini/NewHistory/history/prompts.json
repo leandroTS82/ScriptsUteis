@@ -1,21 +1,14 @@
 {
-  "badge": {
-    "prompt": "Generate a holographic-style narrator badge of Leandrinho, the friendly Brazilian English teacher. He should appear expressive, smiling, and actively presenting the story. Add a soft blue glow around the character for a tech hologram effect. Keep the background fully transparent. Pose should adapt to the story theme."
-  },
-
-  "image": {
-    "base_prompt": "Create a modern cinematic illustration in the visual style of the Miles Morales (with afro american people)  animated universe (Spider-Verse). Use expressive characters, vibrant lighting, dynamic posing and a comic-film texture. Represent the story below WITHOUT including the narrator. Leave free space on the top-right area for a holographic badge narrator."
-  },
-
-  "title": {
-    "prompt": "Generate a short, catchy YouTube-style title (3–6 words). Capitalize words."
-  },
-
   "audio": {
-    "slow_instruction": "Read this story clearly and slowly for English learners, with friendly tone."
+    "base": "You are a friendly young YouTuber narrating a short story for English learners."
   },
-
-  "subtitle": {
+  "image": {
+    "base": "Create a modern cinematic comic-style/HQ illustration inspired by the Spider-Verse aesthetic, in the visual style of the Miles Morales (with afro american people) .\n\nThe image MUST include the title text \"{title}\" rendered clearly in the TOP-LEFT corner, using a bold, readable, Style from context speder-verse, font integrated naturally into the scene.\n\nThe title must look like part of the artwork, not a UI overlay.\n\nDo NOT place any text in the bottom area of the image.\n\nStory context:\n{story}"
+  },
+  "badge": {
+    "base": "Generate a holographic-style narrator badge of Leandrinho, a friendly Brazilian English teacher. Transparent background. Pose inspired by the story:\n{story}"
+  },
+  "subtitle_style": {
     "font": "arial.ttf",
     "font_size": 35
   }
