@@ -360,6 +360,13 @@ def main():
         if proximo.lower() == "s":
             gerar_pdf = input("\nDeseja gerar o PDF? (S/N): ").strip().lower()
             if gerar_pdf == "s":
+                raw = "./last_groq_raw.txt"
+                if os.path.exists(raw):
+                    try:
+                        os.remove(raw)
+                    except Exception:
+                        pass
+                    
                 print("📄 Gerando PDF via doc.py...")
                 os.system("python ./doc.py")
 
