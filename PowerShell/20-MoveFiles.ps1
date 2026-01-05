@@ -38,8 +38,8 @@ $PathMappings = @(
     },
     @{
         # !!!! Uploaded StartsWith: uploaded_
-        SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload\NewHistory"
-        DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded\NewHistory"
+        #SourcePath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload\NewHistory"
+        #DestinationPath = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded\NewHistory"
     }
     @{
         # !!!! Uploaded StartsWith: uploaded_
@@ -56,7 +56,7 @@ $PathMappings = @(
 #Case-insensitive garantido usando StringComparison.OrdinalIgnoreCase
 # Usa OR lógico (se atender a qualquer critério, o arquivo é movido) - Se não quiser usar algum filtro, deixe a variável vazia
 
-$StartsWith = "uploaded_"     # arquivos que INICIAM com
+$StartsWith = ""     # arquivos que INICIAM com
 $Contains   = ""     # arquivos que CONTÊM
 $ExactName  = ""     # arquivos EXATAMENTE iguais
 $Extension  = ""     # extensão do arquivo (inclua o ponto, ex: .mp3)
