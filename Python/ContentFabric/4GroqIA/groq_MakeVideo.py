@@ -16,6 +16,7 @@
   - Exibe total de arquivos ignorados por uploaded_
   - Remoção 100% da thumbnail
   - ⏱ Delay entre chamadas ao Groq
+  - 🔑 SUPORTE A MÚLTIPLAS GROQ API KEYS (ROTATION)
 =====================================================================
 
 Exemplos:
@@ -33,7 +34,6 @@ import argparse
 import time
 import random
 
-
 # ======================================================================
 # CONFIG
 # ======================================================================
@@ -47,7 +47,7 @@ CONFIG = json.load(open(CONFIG_FILE, "r", encoding="utf-8"))
 
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
-API_KEY_FILE = CONFIG["api_key_file"]
+API_KEYS_FILE = CONFIG["api_key_file"]
 SYSTEM_PROMPT_FILE = CONFIG["system_prompt_file"]
 BASE_PROMPT_FILE = CONFIG["base_prompt_file"]
 FRIENDLY_PLAYLISTS_FILE = CONFIG["friendly_playlists_file"]
@@ -60,7 +60,6 @@ VIDEO_EXTENSIONS = CONFIG["video_extensions"]
 RETRY_MAX = CONFIG["retry_max_attempts"]
 DEBUG = CONFIG["debug"]
 
-
 # ======================================================================
 # UTILS
 # ======================================================================
@@ -69,19 +68,12 @@ def log(msg):
     if DEBUG:
         print(f"[DEBUG] {msg}")
 
-
-def load_text(path):
-    return open(path, "r", encoding="utf-8").read().strip()
-
-
 def load_json(path):
     return json.load(open(path, "r", encoding="utf-8"))
-
 
 def ensure_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
-
 
 def move_to_processed(src_path):
     ensure_dir(PROCESSED_DIR)
@@ -89,14 +81,12 @@ def move_to_processed(src_path):
     shutil.move(src_path, new_path)
     return new_path
 
-
 def find_video(video_dir, tag):
     for f in os.listdir(video_dir):
         if any(f.lower().endswith(ext) for ext in VIDEO_EXTENSIONS):
             if tag.lower() in f.lower():
                 return os.path.join(video_dir, f)
     raise FileNotFoundError(f"Nenhum vídeo contendo '{tag}' encontrado em: {video_dir}")
-
 
 def write_final_json(video_path, metadata_json):
     video_name = os.path.splitext(os.path.basename(video_path))[0]
@@ -106,7 +96,6 @@ def write_final_json(video_path, metadata_json):
         json.dump(metadata_json, f, ensure_ascii=False, indent=2)
 
     return final_path
-
 
 # ======================================================================
 # JSON FIX
@@ -127,19 +116,32 @@ def safe_extract_json(text):
         cleaned = raw.replace("\t", "").replace("\n\n", "\n")
         return json.loads(cleaned)
 
+# ======================================================================
+# GROQ KEYS MANAGER
+# ======================================================================
+
+def load_groq_keys(path):
+    data = load_json(path)
+    keys = [k["key"] for k in data if k.get("key")]
+    if not keys:
+        raise RuntimeError("❌ Nenhuma API key válida encontrada em GroqKeys.json")
+    return keys
+
+class GroqKeyManager:
+    def __init__(self, keys):
+        self.keys = keys
+        self.index = 0
+
+    def next_key(self):
+        key = self.keys[self.index]
+        self.index = (self.index + 1) % len(self.keys)
+        return key
 
 # ======================================================================
 # GROQ API
 # ======================================================================
 
-def call_groq(system_prompt, user_prompt):
-    api_key = load_text(API_KEY_FILE)
-
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
-    }
-
+def call_groq(system_prompt, user_prompt, key_manager):
     payload = {
         "model": MODEL_NAME,
         "messages": [
@@ -150,14 +152,30 @@ def call_groq(system_prompt, user_prompt):
     }
 
     retries = 0
+    attempted_keys = 0
+    max_keys = len(key_manager.keys)
 
     while True:
+        api_key = key_manager.next_key()
+        attempted_keys += 1
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+
         res = requests.post(API_URL, json=payload, headers=headers)
 
         if res.status_code == 200:
             return res.json()["choices"][0]["message"]["content"]
 
         if res.status_code == 429:
+            log("Rate limit com key atual.")
+
+            if attempted_keys < max_keys:
+                log("Tentando próxima key...")
+                continue
+
             msg = res.json().get("error", {}).get("message", "").lower()
             wait = None
 
@@ -170,17 +188,18 @@ def call_groq(system_prompt, user_prompt):
             if wait is None:
                 wait = min(2 ** retries + random.uniform(0.5, 1.2), 60)
 
-            print(f"[Groq] Rate limit → aguardando {wait:.2f}s")
+            print(f"[Groq] Todas as keys em rate limit → aguardando {wait:.2f}s")
             time.sleep(wait)
 
             retries += 1
+            attempted_keys = 0
+
             if retries > RETRY_MAX:
-                raise RuntimeError("❌ Rate limit excedido.")
+                raise RuntimeError("❌ Rate limit excedido em todas as keys.")
 
             continue
 
         raise RuntimeError(res.text)
-
 
 # ======================================================================
 # PLAYLIST
@@ -199,23 +218,16 @@ def build_playlist_object(playlist_key, friendly):
         "description": entry["description"]
     }
 
-
 # ======================================================================
 # MAIN
 # ======================================================================
 
 def main():
-
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="Pasta contendo JSONs e/ou vídeos")
     parser.add_argument("--videos", help="Pasta onde estão os vídeos")
     parser.add_argument("--playlist", help="Playlist fixa")
-    parser.add_argument(
-        "--sleep-between",
-        type=int,
-        default=20,
-        help="Delay (segundos) entre chamadas ao Groq"
-    )
+    parser.add_argument("--sleep-between", type=int, default=20)
 
     args = parser.parse_args()
 
@@ -228,6 +240,11 @@ def main():
     system_prompt = load_json(SYSTEM_PROMPT_FILE)
     base_prompt = load_json(BASE_PROMPT_FILE)
     friendly_playlists = load_json(FRIENDLY_PLAYLISTS_FILE)
+
+    groq_keys = load_groq_keys(API_KEYS_FILE)
+    key_manager = GroqKeyManager(groq_keys)
+
+    print(f"🔑 Groq keys carregadas: {len(groq_keys)}")
 
     json_files = [
         f for f in os.listdir(json_dir)
@@ -245,7 +262,6 @@ def main():
     print(f"⚪ Ignorados (uploaded_*): {ignored_uploaded}")
 
     for idx, filename in enumerate(json_files, start=1):
-
         print(f"\n🔎 [{idx}/{len(json_files)}] Processando: {filename}")
 
         full_path = os.path.join(json_dir, filename)
@@ -268,7 +284,7 @@ def main():
         }
 
         print("🚀 Chamando Groq…")
-        raw_output = call_groq(system_prompt, user_prompt)
+        raw_output = call_groq(system_prompt, user_prompt, key_manager)
 
         metadata_json = safe_extract_json(raw_output)
 
@@ -287,7 +303,6 @@ def main():
 
     print("\n🎉 Processo concluído com sucesso!")
     print(f"📌 Total ignorado (uploaded_*): {ignored_uploaded}\n")
-
 
 if __name__ == "__main__":
     main()
