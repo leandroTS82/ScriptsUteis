@@ -17,6 +17,7 @@
   - Remoção 100% da thumbnail
   - ⏱ Delay entre chamadas ao Groq
   - 🔑 SUPORTE A MÚLTIPLAS GROQ API KEYS (ROTATION)
+  - 🧯 ERROR REPORT JSON (RESILIÊNCIA)
 =====================================================================
 
 Exemplos:
@@ -33,12 +34,15 @@ import shutil
 import argparse
 import time
 import random
+import traceback
+from datetime import datetime
 
 # ======================================================================
 # CONFIG
 # ======================================================================
 
 CONFIG_FILE = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\4GroqIA\groq_MakeVideo.json"
+ERROR_REPORT_FILE = "./groq_MakeVideo_error_report.json"
 
 if not os.path.exists(CONFIG_FILE):
     raise FileNotFoundError(f"Config file not found: {CONFIG_FILE}")
@@ -91,11 +95,36 @@ def find_video(video_dir, tag):
 def write_final_json(video_path, metadata_json):
     video_name = os.path.splitext(os.path.basename(video_path))[0]
     final_path = os.path.join(os.path.dirname(video_path), f"{video_name}.json")
-
     with open(final_path, "w", encoding="utf-8") as f:
         json.dump(metadata_json, f, ensure_ascii=False, indent=2)
-
     return final_path
+
+# ======================================================================
+# ERROR REPORT
+# ======================================================================
+
+def log_error_report(json_file, stage, exc: Exception):
+    entry = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "json_file": json_file,
+        "stage": stage,
+        "error_type": type(exc).__name__,
+        "message": str(exc),
+        "details": repr(exc),
+        "stacktrace": traceback.format_exc()
+    }
+
+    if os.path.exists(ERROR_REPORT_FILE):
+        report = load_json(ERROR_REPORT_FILE)
+    else:
+        report = []
+
+    report.append(entry)
+
+    with open(ERROR_REPORT_FILE, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    print(f"🧯 Erro registrado em {ERROR_REPORT_FILE}")
 
 # ======================================================================
 # JSON FIX
@@ -170,27 +199,11 @@ def call_groq(system_prompt, user_prompt, key_manager):
             return res.json()["choices"][0]["message"]["content"]
 
         if res.status_code == 429:
-            log("Rate limit com key atual.")
-
             if attempted_keys < max_keys:
-                log("Tentando próxima key...")
                 continue
 
-            msg = res.json().get("error", {}).get("message", "").lower()
-            wait = None
-
-            if "try again in" in msg:
-                try:
-                    wait = int(msg.split("try again in")[1].split("ms")[0]) / 1000
-                except:
-                    pass
-
-            if wait is None:
-                wait = min(2 ** retries + random.uniform(0.5, 1.2), 60)
-
-            print(f"[Groq] Todas as keys em rate limit → aguardando {wait:.2f}s")
+            wait = min(2 ** retries + random.uniform(0.5, 1.2), 60)
             time.sleep(wait)
-
             retries += 1
             attempted_keys = 0
 
@@ -224,16 +237,14 @@ def build_playlist_object(playlist_key, friendly):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("path", help="Pasta contendo JSONs e/ou vídeos")
-    parser.add_argument("--videos", help="Pasta onde estão os vídeos")
-    parser.add_argument("--playlist", help="Playlist fixa")
+    parser.add_argument("path")
+    parser.add_argument("--videos")
+    parser.add_argument("--playlist")
     parser.add_argument("--sleep-between", type=int, default=20)
-
     args = parser.parse_args()
 
     json_dir = args.path
     video_dir = args.videos if args.videos else args.path
-    sleep_seconds = args.sleep_between
 
     ensure_dir(PROCESSED_DIR)
 
@@ -241,10 +252,7 @@ def main():
     base_prompt = load_json(BASE_PROMPT_FILE)
     friendly_playlists = load_json(FRIENDLY_PLAYLISTS_FILE)
 
-    groq_keys = load_groq_keys(API_KEYS_FILE)
-    key_manager = GroqKeyManager(groq_keys)
-
-    print(f"🔑 Groq keys carregadas: {len(groq_keys)}")
+    key_manager = GroqKeyManager(load_groq_keys(API_KEYS_FILE))
 
     json_files = [
         f for f in os.listdir(json_dir)
@@ -253,56 +261,46 @@ def main():
         and not os.path.exists(os.path.join(PROCESSED_DIR, f))
     ]
 
-    ignored_uploaded = len([
-        f for f in os.listdir(json_dir)
-        if f.endswith(".json") and f.startswith("uploaded_")
-    ])
-
-    print(f"📄 JSONs encontrados: {len(json_files)}")
-    print(f"⚪ Ignorados (uploaded_*): {ignored_uploaded}")
-
     for idx, filename in enumerate(json_files, start=1):
         print(f"\n🔎 [{idx}/{len(json_files)}] Processando: {filename}")
+        try:
+            full_path = os.path.join(json_dir, filename)
+            comp_json = load_json(full_path)
 
-        full_path = os.path.join(json_dir, filename)
-        comp_json = load_json(full_path)
+            if "nome_arquivos" not in comp_json:
+                raise ValueError("'nome_arquivos' ausente")
 
-        if "nome_arquivos" not in comp_json:
-            print("⚠ 'nome_arquivos' ausente. Ignorando.")
-            continue
+            tag = comp_json["nome_arquivos"]
+            move_to_processed(full_path)
 
-        tag = comp_json["nome_arquivos"]
+            raw = call_groq(
+                system_prompt,
+                {
+                    "base": base_prompt,
+                    "extra": comp_json,
+                    "friendly_keys": list(friendly_playlists.keys()),
+                    "force_playlist": args.playlist
+                },
+                key_manager
+            )
 
-        moved_path = move_to_processed(full_path)
-        print(f"📁 JSON movido → {moved_path}")
+            metadata_json = safe_extract_json(raw)
+            playlist_key = args.playlist or metadata_json.get("playlist_key", "GeneralVocabulary")
+            metadata_json["playlist"] = build_playlist_object(playlist_key, friendly_playlists)
+            metadata_json.pop("playlist_key", None)
 
-        user_prompt = {
-            "base": base_prompt,
-            "extra": comp_json,
-            "friendly_keys": list(friendly_playlists.keys()),
-            "force_playlist": args.playlist
-        }
+            video_path = find_video(video_dir, tag)
+            write_final_json(video_path, metadata_json)
 
-        print("🚀 Chamando Groq…")
-        raw_output = call_groq(system_prompt, user_prompt, key_manager)
+            print("✔ Sucesso")
 
-        metadata_json = safe_extract_json(raw_output)
+        except Exception as e:
+            log_error_report(filename, "processing", e)
+            print("⚠ Erro tratado. Seguindo para o próximo.")
 
-        playlist_key = args.playlist or metadata_json.get("playlist_key", "GeneralVocabulary")
-        metadata_json["playlist"] = build_playlist_object(playlist_key, friendly_playlists)
-        metadata_json.pop("playlist_key", None)
+        time.sleep(args.sleep_between)
 
-        video_path = find_video(video_dir, tag)
-        final_json_path = write_final_json(video_path, metadata_json)
-
-        print(f"✔ JSON FINAL CRIADO: {final_json_path}")
-
-        if idx < len(json_files):
-            print(f"⏳ Aguardando {sleep_seconds}s antes da próxima chamada…")
-            time.sleep(sleep_seconds)
-
-    print("\n🎉 Processo concluído com sucesso!")
-    print(f"📌 Total ignorado (uploaded_*): {ignored_uploaded}\n")
+    print("\n🎉 Processo concluído com resiliência total.")
 
 if __name__ == "__main__":
     main()
