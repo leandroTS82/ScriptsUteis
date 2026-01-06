@@ -15,6 +15,7 @@ REM ============================================
 
 python video_playlist_player.py ^
  --path "%VIDEO_PATH%" ^
+ --use-mapping ^
  --repeat-video %REPEAT_VIDEO% ^
  --pause %PAUSE_SECONDS% ^
  %SHUFFLE% ^
