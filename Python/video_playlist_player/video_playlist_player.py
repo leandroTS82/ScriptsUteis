@@ -1,3 +1,28 @@
+r"""
+🧾 RESUMO FUNCIONAL (PARA USUÁRIOS NÃO TÉCNICOS)
+▶ Modo simples (playlist normal)
+set USE_MAPPING=false
+set USE_RANDOM_SUBSET=false
+
+▶ Modo inteligente (balanceamento automático)
+set USE_MAPPING=true
+set USE_RANDOM_SUBSET=false
+
+▶ Modo subconjunto inteligente (recomendado)
+set USE_MAPPING=true
+set USE_RANDOM_SUBSET=true
+set SUBSET_MAX=5
+
+▶ Painel / estudo contínuo
+set LOOP=true
+set PAUSE_SECONDS=30
+
+📁 Arquivos gerados automaticamente
+Arquivo	Função
+video_play_count.json	Histórico de execuções
+selected_videos.json	Subconjunto fixado
+Nenhum banco de dados	100% local
+"""
 import os
 import json
 import random
@@ -5,7 +30,7 @@ import subprocess
 import time
 import argparse
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, date
 
 # ======================================================
 # CONFIGURAÇÕES
@@ -18,7 +43,7 @@ MAPPING_FILE = Path("./video_play_count.json")
 SUBSET_FILE = Path("./selected_videos.json")
 
 # ======================================================
-# FUNÇÕES
+# FUNÇÕES AUXILIARES
 # ======================================================
 
 def get_videos_from_path(path: Path):
@@ -28,7 +53,9 @@ def get_videos_from_path(path: Path):
     ]
 
 
-# ---------------- MAPEAMENTO ----------------
+# ======================================================
+# MAPEAMENTO (CONTADORES)
+# ======================================================
 
 def load_or_create_mapping(videos):
     if MAPPING_FILE.exists():
@@ -42,8 +69,7 @@ def load_or_create_mapping(videos):
     mapping = {k: v for k, v in mapping.items() if k in video_names}
 
     for video in videos:
-        if video.name not in mapping:
-            mapping[video.name] = 0
+        mapping.setdefault(video.name, 0)
 
     save_mapping(mapping)
     return mapping
@@ -55,33 +81,46 @@ def save_mapping(mapping):
 
 
 def build_playlist_with_mapping(videos, mapping, shuffle: bool):
+    """
+    Ordena vídeos priorizando os menos reproduzidos.
+    Shuffle ocorre apenas dentro do mesmo contador.
+    """
     grouped = {}
 
     for video in videos:
-        count = mapping.get(video.name, 0)
-        grouped.setdefault(count, []).append(video)
+        grouped.setdefault(mapping.get(video.name, 0), []).append(video)
 
-    ordered = []
+    playlist = []
     for count in sorted(grouped.keys()):
         group = grouped[count]
         if shuffle:
             random.shuffle(group)
-        ordered.extend(group)
+        playlist.extend(group)
 
-    return ordered
+    return playlist
 
 
-# ---------------- SUBSET ----------------
+# ======================================================
+# SUBSET (SELEÇÃO PARCIAL)
+# ======================================================
 
-def build_random_subset(videos, mapping, subset_max: int, shuffle: bool):
-    ordered = build_playlist_with_mapping(videos, mapping, shuffle)
-    max_allowed = min(len(ordered), subset_max)
+def should_reset_subset_daily():
+    if not SUBSET_FILE.exists():
+        return False
 
-    subset_size = random.randint(1, max_allowed)
-    selected = ordered[:subset_size]
+    with open(SUBSET_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    save_subset(selected)
-    return selected
+    generated = datetime.fromisoformat(data.get("generated_at"))
+    return generated.date() != date.today()
+
+
+def load_subset(videos):
+    with open(SUBSET_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    video_map = {v.name: v for v in videos}
+    return [video_map[name] for name in data.get("videos", []) if name in video_map]
 
 
 def save_subset(videos):
@@ -95,7 +134,26 @@ def save_subset(videos):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-# ---------------- VÍDEO ----------------
+def build_random_subset(
+    videos,
+    mapping,
+    subset_max,
+    shuffle,
+    fixed_size=False
+):
+    ordered = build_playlist_with_mapping(videos, mapping, shuffle)
+    max_allowed = min(len(ordered), subset_max)
+
+    size = subset_max if fixed_size else random.randint(1, max_allowed)
+    selected = ordered[:size]
+
+    save_subset(selected)
+    return selected
+
+
+# ======================================================
+# VÍDEO
+# ======================================================
 
 def get_video_duration_seconds(video_path: Path) -> int:
     result = subprocess.run(
@@ -126,9 +184,7 @@ def play_video_for_duration(video_path: Path, duration_seconds: int):
         stderr=subprocess.DEVNULL
     )
 
-    print(f"⏱ Duração: {duration_seconds}s")
     time.sleep(duration_seconds)
-
     process.terminate()
     process.wait()
 
@@ -140,24 +196,29 @@ def play_video_for_duration(video_path: Path, duration_seconds: int):
 def main():
     parser = argparse.ArgumentParser(description="Video Playlist Player")
 
+    # Básico
     parser.add_argument("--path", required=True)
     parser.add_argument("--repeat-video", type=int, default=1)
     parser.add_argument("--pause", type=int, default=0)
     parser.add_argument("--shuffle", action="store_true")
     parser.add_argument("--loop", action="store_true")
 
+    # Mapping
     parser.add_argument("--use-mapping", action="store_true")
+
+    # Subset
     parser.add_argument("--use-random-subset", action="store_true")
     parser.add_argument("--subset-max", type=int, default=5)
 
+    # 🔒 NOVOS RECURSOS (DESABILITADOS)
+    parser.add_argument("--reuse-last-subset", action="store_true")
+    parser.add_argument("--subset-fixed-size", action="store_true")
+    parser.add_argument("--subset-reset-daily", action="store_true")
+    parser.add_argument("--max-total-playtime", type=int, default=0)
+
     args = parser.parse_args()
 
-    video_path = Path(args.path)
-    if not video_path.exists():
-        print("[ERRO] Caminho inválido.")
-        return
-
-    videos = get_videos_from_path(video_path)
+    videos = get_videos_from_path(Path(args.path))
     if not videos:
         print("[ERRO] Nenhum vídeo encontrado.")
         return
@@ -165,45 +226,51 @@ def main():
     mapping = None
     if args.use_mapping:
         mapping = load_or_create_mapping(videos)
-        print("🗂 use-mapping ATIVADO")
-
-    print(f"🎬 Total vídeos encontrados: {len(videos)}")
 
     subset_playlist = None
+    total_playtime = 0
 
-    # 🔒 GERA O SUBSET UMA ÚNICA VEZ
+    # ===== SUBSET INIT =====
     if args.use_random_subset:
         if not args.use_mapping:
             print("[ERRO] random-subset requer --use-mapping")
             return
 
-        subset_playlist = build_random_subset(
-            videos,
-            mapping,
-            args.subset_max,
-            args.shuffle
+        reuse_allowed = (
+            args.reuse_last_subset and
+            SUBSET_FILE.exists() and
+            not (args.subset_reset_daily and should_reset_subset_daily())
         )
 
-        print(f"🎯 Subset FIXADO ({len(subset_playlist)} vídeos)")
-        print(f"Arquivo: {SUBSET_FILE.resolve()}")
+        if reuse_allowed:
+            subset_playlist = load_subset(videos)
+        else:
+            subset_playlist = build_random_subset(
+                videos,
+                mapping,
+                args.subset_max,
+                args.shuffle,
+                fixed_size=args.subset_fixed_size
+            )
 
     while True:
-        if subset_playlist is not None:
-            playlist = subset_playlist
-        else:
-            if args.use_mapping:
-                playlist = build_playlist_with_mapping(videos, mapping, args.shuffle)
-            else:
-                playlist = videos.copy()
-                if args.shuffle:
-                    random.shuffle(playlist)
+        playlist = subset_playlist if subset_playlist else (
+            build_playlist_with_mapping(videos, mapping, args.shuffle)
+            if args.use_mapping else
+            random.sample(videos, len(videos)) if args.shuffle else videos
+        )
 
         for video in playlist:
             duration = get_video_duration_seconds(video)
 
-            for i in range(args.repeat_video):
-                print(f"▶ {video.name} ({i+1}/{args.repeat_video})")
+            if args.max_total_playtime > 0:
+                if total_playtime + duration > args.max_total_playtime:
+                    print("⏹ Tempo máximo atingido.")
+                    return
+
+            for _ in range(args.repeat_video):
                 play_video_for_duration(video, duration)
+                total_playtime += duration
 
                 if args.use_mapping:
                     mapping[video.name] += 1
