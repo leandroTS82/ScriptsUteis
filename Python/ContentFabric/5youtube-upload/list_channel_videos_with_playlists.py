@@ -18,8 +18,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 # ======================================================
 
 SCOPES = [
-    "https://www.googleapis.com/auth/youtube.readonly",
-    "https://www.googleapis.com/auth/youtube.force-ssl"
+    "https://www.googleapis.com/auth/youtube.readonly"
 ]
 
 TOKEN_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\youtube_token.json"
@@ -38,29 +37,40 @@ OUTPUT_FILE = os.path.join(
 )
 
 # ======================================================
-# AUTH
+# AUTH (ROBUSTO – À PROVA DE INVALID_SCOPE)
 # ======================================================
 
 def get_authenticated_service():
     creds = None
 
     if os.path.exists(TOKEN_PATH):
-        creds = Credentials.from_authorized_user_info(
-            json.load(open(TOKEN_PATH, encoding="utf-8")),
-            SCOPES
-        )
+        try:
+            with open(TOKEN_PATH, "r", encoding="utf-8") as f:
+                creds = Credentials.from_authorized_user_info(
+                    json.load(f),
+                    SCOPES
+                )
+        except Exception:
+            creds = None
 
     if not creds or not creds.valid:
-        if creds and creds.refresh_token:
-            creds.refresh(Request())
-        else:
+        try:
+            if creds and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                raise Exception("Forcing reauth")
+        except Exception:
+            if os.path.exists(TOKEN_PATH):
+                os.remove(TOKEN_PATH)
+
             flow = InstalledAppFlow.from_client_secrets_file(
-                CLIENT_SECRET_FILE, SCOPES
+                CLIENT_SECRET_FILE,
+                SCOPES
             )
             creds = flow.run_local_server(port=8080)
 
-        with open(TOKEN_PATH, "w", encoding="utf-8") as f:
-            f.write(creds.to_json())
+            with open(TOKEN_PATH, "w", encoding="utf-8") as f:
+                f.write(creds.to_json())
 
     return build("youtube", "v3", credentials=creds)
 
@@ -188,7 +198,7 @@ def main():
             ensure_ascii=False
         )
 
-    print(f"\n✅ Arquivo gerado com sucesso:")
+    print("\n✅ Arquivo gerado com sucesso:")
     print(f"📄 {OUTPUT_FILE}")
 
 # ======================================================

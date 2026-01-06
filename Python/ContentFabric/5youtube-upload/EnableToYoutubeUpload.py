@@ -17,6 +17,12 @@ PATH_MAPPINGS = [
         "SourcePath": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos",
         "DestinationPath": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
     }
+    #,{
+        ## Abaixo abilite somente para foorçar os que falharam no upload
+        #### Analise antes
+        #"SourcePath": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Youtube_Upload_Faulty_File",
+        #"DestinationPath": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
+    #}
 ]
 
 # ==========================================================

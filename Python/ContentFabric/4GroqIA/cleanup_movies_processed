@@ -1,0 +1,52 @@
+import os
+
+# ==========================================================
+# CONFIGURAÇÕES
+# ==========================================================
+
+VIDEOS_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+PROCESSED_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\movies_processed"
+
+# ==========================================================
+# EXECUÇÃO
+# ==========================================================
+
+def get_json_filenames(path: str) -> set[str]:
+    return {
+        f for f in os.listdir(path)
+        if f.lower().endswith(".json") and os.path.isfile(os.path.join(path, f))
+    }
+
+def main():
+    print("🔍 Lendo arquivos JSON em Videos...")
+    videos_json = get_json_filenames(VIDEOS_DIR)
+
+    print(f"📁 Total encontrados em Videos: {len(videos_json)}")
+
+    if not videos_json:
+        print("⚠️ Nenhum JSON encontrado. Encerrando.")
+        return
+
+    deleted = 0
+    not_found = 0
+
+    print("\n🧹 Verificando e excluindo em movies_processed...\n")
+
+    for filename in sorted(videos_json):
+        processed_file = os.path.join(PROCESSED_DIR, filename)
+
+        if os.path.exists(processed_file):
+            os.remove(processed_file)
+            print(f"🗑️ Excluído: {filename}")
+            deleted += 1
+        else:
+            print(f"❌ Não encontrado em movies_processed: {filename}")
+            not_found += 1
+
+    print("\n================ RESULTADO ================")
+    print(f"✅ Excluídos: {deleted}")
+    print(f"⚠️ Não encontrados: {not_found}")
+    print("==========================================")
+
+if __name__ == "__main__":
+    main()
