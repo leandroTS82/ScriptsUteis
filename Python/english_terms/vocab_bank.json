@@ -1,0 +1,3475 @@
+{
+  "60 seconds": {
+    "term": "60 seconds",
+    "translation": "60 segundos",
+    "definition": "The duration of time equal to one minute, often used to describe a brief period of 60 seconds.",
+    "examples": [
+      "I will finish this task in 60 seconds.",
+      "The video clip lasts exactly 60 seconds."
+    ],
+    "expressions": [
+      "give me 60 seconds",
+      "just 60 seconds",
+      "within 60 seconds",
+      "in 60 seconds",
+      "60 seconds flat"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "a few more": {
+    "term": "a few more",
+    "translation": "mais alguns",
+    "definition": "a small additional number of something",
+    "examples": [
+      "We need a few more minutes to finish the project.",
+      "She bought a few more books for the library."
+    ],
+    "expressions": [
+      "a few more minutes",
+      "a few more days",
+      "a few more people",
+      "a few more times",
+      "a few more questions"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "acting": {
+    "term": "acting",
+    "translation": "atuar",
+    "definition": "The profession of performing in plays, movies, or television; the process of performing; the manner of behaving or presenting oneself.",
+    "examples": [
+      "Her acting in the play was praised by critics.",
+      "The movie's acting was criticized for being overdramatic."
+    ],
+    "expressions": [
+      "acting out",
+      "acting like",
+      "acting as",
+      "acting on",
+      "acting up"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "actions": {
+    "term": "actions",
+    "translation": "ações",
+    "definition": "A noun referring to deeds or steps taken to achieve a result; the things that are done.",
+    "examples": [
+      "The committee's actions led to significant policy changes.",
+      "Her actions during the emergency saved many lives."
+    ],
+    "expressions": [
+      "take action",
+      "in action",
+      "action plan",
+      "action movie",
+      "action taken"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "adjectives": {
+    "term": "adjectives",
+    "translation": "adjetivos",
+    "definition": "Adjectives are words that describe or modify nouns, providing more information about their characteristics, quantity, or state.",
+    "examples": [
+      "The quick brown fox jumps over the lazy dog.",
+      "She wore a bright red dress."
+    ],
+    "expressions": [
+      "big deal",
+      "small talk",
+      "good morning",
+      "bad habit",
+      "high quality"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "advanced": {
+    "term": "advanced",
+    "translation": "avançado",
+    "definition": "Having a higher level of skill, knowledge, or experience; more complex or sophisticated.",
+    "examples": [
+      "She has an advanced understanding of calculus.",
+      "The advanced course will cover quantum mechanics."
+    ],
+    "expressions": [
+      "advanced level",
+      "advanced stage",
+      "advanced skills",
+      "advanced technology",
+      "advanced stage of development"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "alphabet": {
+    "term": "alphabet",
+    "translation": "alfabeto",
+    "definition": "The set of letters or symbols used in a particular language to represent its sounds.",
+    "examples": [
+      "The alphabet is the foundation of reading and writing.",
+      "She learned the alphabet before she started learning to read."
+    ],
+    "expressions": [
+      "alphabet soup",
+      "alphabetical order",
+      "the ABCs",
+      "alphabet of a language"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "although": {
+    "term": "although",
+    "translation": "embora",
+    "definition": "used to introduce a fact that makes the main statement seem surprising or unlikely",
+    "examples": [
+      "Although it was raining, we went for a walk.",
+      "She passed the exam, although she had not studied much."
+    ],
+    "expressions": [
+      "although it was raining",
+      "although he was late",
+      "although she is young",
+      "although the task was difficult",
+      "although it seemed impossible"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "anything": {
+    "term": "anything",
+    "translation": "qualquer coisa",
+    "definition": "Any object, person, or thing; used to refer to something unspecified.",
+    "examples": [
+      "I don't have anything to wear.",
+      "Do you need anything else?"
+    ],
+    "expressions": [
+      "anything else",
+      "anything but",
+      "anything goes",
+      "anything you want",
+      "anything for me",
+      "anything in particular"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "anywhere": {
+    "term": "anywhere",
+    "translation": "qualquer lugar",
+    "definition": "at or to any place; at any location",
+    "examples": [
+      "I can go anywhere you want.",
+      "He didn't know where to go, so he went anywhere."
+    ],
+    "expressions": [
+      "anywhere but",
+      "anywhere else",
+      "anywhere in the world",
+      "anywhere at all",
+      "anywhere you look"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "apostrophe": {
+    "term": "apostrophe",
+    "translation": "apóstrofo",
+    "definition": "A punctuation mark (') used to indicate possession or the omission of letters in contractions.",
+    "examples": [
+      "It's a beautiful day.",
+      "Don't forget to bring your books."
+    ],
+    "expressions": [
+      "apostrophe in contractions",
+      "apostrophe for possession",
+      "apostrophe usage rules",
+      "apostrophe in plural nouns",
+      "apostrophe in titles"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "as as": {
+    "term": "as as",
+    "translation": "como",
+    "definition": "Used to compare or indicate similarity.",
+    "examples": [
+      "She sings as as well as he does.",
+      "He worked as as diligently as his colleague."
+    ],
+    "expressions": [
+      "as as well",
+      "as as if",
+      "as as soon"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "basics": {
+    "term": "basics",
+    "translation": "básicos",
+    "definition": "The fundamental principles or essential elements of something, often referring to the simplest or most basic aspects.",
+    "examples": [
+      "She taught us the basics of cooking, starting with how to boil water and chop onions.",
+      "Learning the basics of a new language is essential before moving on to more advanced grammar."
+    ],
+    "expressions": [
+      "the basics of",
+      "basic skills",
+      "basic principles",
+      "basic rules",
+      "basic knowledge"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "beach": {
+    "term": "beach",
+    "translation": "praia",
+    "definition": "A stretch of land along the shore of a sea, ocean, or lake, often sandy and used for recreation.",
+    "examples": [
+      "We spent the whole afternoon sunbathing on the beach.",
+      "The waves crashed against the rocks as we walked along the beach."
+    ],
+    "expressions": [
+      "beach day",
+      "beach house",
+      "beach vacation",
+      "beach weather",
+      "beachfront"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "beauty": {
+    "term": "beauty",
+    "translation": "beleza",
+    "definition": "The quality or combination of qualities that pleases the senses or mind; attractiveness or aesthetic appeal.",
+    "examples": [
+      "She admired the beauty of the sunset over the ocean.",
+      "The artist captured the beauty of the city in his painting."
+    ],
+    "expressions": [
+      "beauty is in the eye of the beholder",
+      "beauty is only skin deep",
+      "beauty marks",
+      "beauty sleep",
+      "beauty pageant"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "become": {
+    "term": "become",
+    "translation": "tornar-se",
+    "definition": "To begin to be or to have a particular quality or state; to transform into a different condition or form.",
+    "examples": [
+      "She became a teacher after completing her degree.",
+      "The situation became more complicated as time passed."
+    ],
+    "expressions": [
+      "become aware",
+      "become familiar",
+      "become familiar with",
+      "become a habit",
+      "become a problem",
+      "become a reality",
+      "become a threat",
+      "become a part of"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "belongs to": {
+    "term": "belongs to",
+    "translation": "pertence a",
+    "definition": "Indicates possession or association, meaning that something is owned by or associated with a particular person, group, or category.",
+    "examples": [
+      "This book belongs to me.",
+      "The responsibility belongs to the manager."
+    ],
+    "expressions": [
+      "belongs to the same family",
+      "belongs to the group",
+      "belongs to the category",
+      "belongs to the tradition",
+      "belongs to the realm"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "boring": {
+    "term": "boring",
+    "translation": "entediante",
+    "definition": "Uninteresting or dull; lacking excitement or variety.",
+    "examples": [
+      "The lecture was so boring that many students fell asleep.",
+      "He found the movie boring and left the theater early."
+    ],
+    "expressions": [
+      "bored to death",
+      "as boring as a stone",
+      "boring as a wet weekend"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "borrow": {
+    "term": "borrow",
+    "translation": "emprestar",
+    "definition": "To take and use something belonging to someone else with the intention of returning it later.",
+    "examples": [
+      "Can I borrow your umbrella?",
+      "She borrowed a book from the library."
+    ],
+    "expressions": [
+      "borrow a book",
+      "borrow money",
+      "borrow someone's time",
+      "borrow a pen",
+      "borrow a car"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "business": {
+    "term": "business",
+    "translation": "negócio",
+    "definition": "An organization or activity that involves making and selling goods or services, or the conduct of such activities.",
+    "examples": [
+      "She started a small business selling handmade crafts.",
+      "The business was struggling during the recession."
+    ],
+    "expressions": [
+      "in business",
+      "business as usual",
+      "business trip",
+      "business plan",
+      "business card"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "chatted": {
+    "term": "chatted",
+    "translation": "conversou",
+    "definition": "Engaged in informal conversation, typically in a relaxed or friendly manner.",
+    "examples": [
+      "After the meeting, they chatted about their weekend plans.",
+      "She chatted with her friends on the phone for hours."
+    ],
+    "expressions": [
+      "chat with someone",
+      "chat room",
+      "chat app",
+      "chat up",
+      "chat about",
+      "chatting online"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "cheerful": {
+    "term": "cheerful",
+    "translation": "alegre",
+    "definition": "Feeling or showing happiness and optimism; bright and lively",
+    "examples": [
+      "She greeted everyone with a cheerful smile.",
+      "The cheerful music lifted the mood of the entire room."
+    ],
+    "expressions": [
+      "cheerful disposition",
+      "cheerful spirit",
+      "cheerful atmosphere"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "chilling": {
+    "term": "chilling",
+    "translation": "relaxando",
+    "definition": "(verb) To relax or unwind; (adjective) Cool or pleasantly cold; (noun) A state of relaxation or coolness.",
+    "examples": [
+      "After a long day at work, I just want to be chilling on the couch.",
+      "The temperature in the room is chilling, so I turned on the heater."
+    ],
+    "expressions": [
+      "chilling out",
+      "chilling with friends",
+      "chilling vibes",
+      "chill out",
+      "chill"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "choose": {
+    "term": "choose",
+    "translation": "escolher",
+    "definition": "To select or pick something from a range of options.",
+    "examples": [
+      "You should choose a healthy breakfast before heading to work.",
+      "When given the chance, she chose to study abroad."
+    ],
+    "expressions": [
+      "choose one's words",
+      "choose between",
+      "choose to",
+      "choose up",
+      "choose a path"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "classroom": {
+    "term": "classroom",
+    "translation": "quadro de aula",
+    "definition": "A room in a school where lessons are taught and students learn.",
+    "examples": [
+      "The teacher arranged the desks in a circle in the classroom to encourage discussion.",
+      "During the lockdown, students had to adapt to online classes from their home classrooms."
+    ],
+    "expressions": [
+      "in the classroom",
+      "classroom setting",
+      "classroom environment",
+      "classroom management",
+      "classroom technology"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "clickbait": {
+    "term": "clickbait",
+    "translation": "título chamativo",
+    "definition": "A headline, title, or link designed to attract attention and encourage people to click on it, often by using sensational or misleading content.",
+    "examples": [
+      "You won't believe what happened next!",
+      "This one trick will change your life forever!"
+    ],
+    "expressions": [
+      "clickbait article",
+      "clickbait headline",
+      "clickbait video",
+      "clickbait content",
+      "clickbait marketing"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "closing": {
+    "term": "closing",
+    "translation": "fechamento",
+    "definition": "The act of bringing something to an end or concluding it; the final part of an event, meeting, or transaction.",
+    "examples": [
+      "The closing of the conference was marked by a keynote speech.",
+      "She was nervous about the closing of the deal, hoping the terms would be favorable."
+    ],
+    "expressions": [
+      "closing time",
+      "closing remarks",
+      "closing ceremony",
+      "closing price",
+      "closing argument"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "clothes": {
+    "term": "clothes",
+    "translation": "roupas",
+    "definition": "Garments worn by a person, typically covering the body.",
+    "examples": [
+      "She bought new clothes at the mall.",
+      "The clothes were too expensive for his budget."
+    ],
+    "expressions": [
+      "clothes line",
+      "clothes rack",
+      "clothes hanger",
+      "clothes to wear",
+      "clothes on sale"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "clumsy": {
+    "term": "clumsy",
+    "translation": "desajeitado",
+    "definition": "Lacking coordination or skill; awkward in movement or action.",
+    "examples": [
+      "He was clumsy when he tried to lift the heavy box, spilling his coffee in the process.",
+      "Her clumsy attempt at dancing made everyone laugh, but she kept trying with enthusiasm."
+    ],
+    "expressions": [
+      "clumsy as a newborn deer",
+      "clumsy mistake",
+      "clumsy gesture",
+      "clumsy with words",
+      "clumsy in handling"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "coffee": {
+    "term": "coffee",
+    "translation": "café",
+    "definition": "A brewed drink prepared from roasted coffee beans.",
+    "examples": [
+      "I love starting my day with a cup of coffee.",
+      "She asked for a coffee with milk and sugar."
+    ],
+    "expressions": [
+      "a cup of coffee",
+      "coffee break",
+      "coffee shop",
+      "coffee table",
+      "coffee lover"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "cold stare": {
+    "term": "cold stare",
+    "translation": "olhar frio",
+    "definition": "A look that conveys indifference, disdain, or a lack of warmth, often used to express disapproval or detachment.",
+    "examples": [
+      "She gave him a cold stare when he tried to joke about the serious situation.",
+      "The politician's cold stare at the press conference made everyone feel uneasy."
+    ],
+    "expressions": [
+      "give someone a cold stare",
+      "receive a cold stare",
+      "cold stare from a stranger"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "comes in": {
+    "term": "comes in",
+    "translation": "chega",
+    "definition": "1. To arrive or appear at a place. 2. To be available in a particular form, size, or color. 3. (idiom) To be useful or convenient (comes in handy).",
+    "examples": [
+      "The new phone comes in black, white, and blue.",
+      "The meeting comes in at 3 p.m."
+    ],
+    "expressions": [
+      "comes in handy"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "commands": {
+    "term": "commands",
+    "translation": "comandos",
+    "definition": "A command is an instruction or directive given to someone or something to perform a specific action.",
+    "examples": [
+      "The teacher gave the students commands to follow during the drill.",
+      "In the video game, players issue commands to control their units."
+    ],
+    "expressions": [
+      "give commands",
+      "follow commands",
+      "issue commands",
+      "commands of the day",
+      "command and control"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "cooking": {
+    "term": "cooking",
+    "translation": "cozinhar",
+    "definition": "The activity of preparing food by combining, mixing, and heating ingredients.",
+    "examples": [
+      "She spent the afternoon cooking a hearty stew for her family.",
+      "The chef demonstrated how to cook the perfect steak at the culinary workshop."
+    ],
+    "expressions": [
+      "cooking up a storm",
+      "cooking with love",
+      "cooking for someone",
+      "cooking up a plan",
+      "cooking the books"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "counting": {
+    "term": "counting",
+    "translation": "contagem",
+    "definition": "The action or process of determining the number of something, or the act of enumerating items.",
+    "examples": [
+      "I am counting the number of apples in the basket.",
+      "She was counting her money before making a purchase."
+    ],
+    "expressions": [
+      "counting on",
+      "counting the cost",
+      "counting the odds",
+      "counting the days",
+      "counting the money"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "countries": {
+    "term": "countries",
+    "translation": "países",
+    "definition": "Plural of country; a nation or territory with its own government, borders, and population.",
+    "examples": [
+      "Many countries have adopted renewable energy policies to combat climate change.",
+      "The conference will bring together representatives from several countries to discuss trade agreements."
+    ],
+    "expressions": [
+      "countries around the world",
+      "in the countries of Europe",
+      "countries of the world",
+      "countries that share a border",
+      "countries with a high standard of living"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "currently": {
+    "term": "currently",
+    "translation": "atualmente",
+    "definition": "at the present time; at the moment; now",
+    "examples": [
+      "I am currently working on a new project.",
+      "The store is currently closed for renovations."
+    ],
+    "expressions": [
+      "currently available",
+      "currently in use",
+      "currently on sale",
+      "currently not available",
+      "currently running",
+      "currently in progress"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "downstairs": {
+    "term": "downstairs",
+    "translation": "embaixo / no andar inferior",
+    "definition": "Located below or on a lower floor of a building; also used to refer to the lower part of a house or apartment.",
+    "examples": [
+      "I left my keys downstairs, so I had to go back to get them.",
+      "The kitchen is downstairs, while the bedrooms are upstairs."
+    ],
+    "expressions": [
+      "go downstairs",
+      "come downstairs",
+      "downstairs from",
+      "downstairs neighbor"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "each other": {
+    "term": "each other",
+    "translation": "um ao outro",
+    "definition": "used to indicate that two or more people or things do something to each other",
+    "examples": [
+      "They looked at each other.",
+      "The two teams congratulated each other after the game."
+    ],
+    "expressions": [
+      "look at each other",
+      "talk to each other",
+      "help each other",
+      "respect each other",
+      "love each other"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "eachother": {
+    "term": "eachother",
+    "translation": "um ao outro",
+    "definition": "used to refer to a reciprocal action or relationship between two or more people or things",
+    "examples": [
+      "They helped each other finish the project on time.",
+      "The siblings always argue with each other, but they also support each other."
+    ],
+    "expressions": [
+      "look out for each other",
+      "help each other",
+      "talk to each other",
+      "in each other's shoes",
+      "give each other a hand"
+    ],
+    "stats": {
+      "seen": 1,
+      "correct": 1,
+      "wrong": 0
+    }
+  },
+  "education": {
+    "term": "education",
+    "translation": "educação",
+    "definition": "The process of acquiring knowledge, skills, values, and habits through study, instruction, or experience, typically in a structured setting such as schools or universities.",
+    "examples": [
+      "Education is the foundation for personal and societal growth.",
+      "She believes that education should be accessible to everyone."
+    ],
+    "expressions": [
+      "formal education",
+      "higher education",
+      "education system",
+      "education policy",
+      "education reform"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "enough": {
+    "term": "enough",
+    "translation": "suficiente",
+    "definition": "Adequate in quantity or quality; sufficient to meet a need or requirement.",
+    "examples": [
+      "I have enough money to buy a new laptop.",
+      "She didn't have enough time to finish the project."
+    ],
+    "expressions": [
+      "not enough",
+      "enough already",
+      "good enough",
+      "do you have enough?",
+      "enough is enough",
+      "just enough",
+      "more than enough",
+      "less than enough",
+      "enough for you?"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "everywhere": {
+    "term": "everywhere",
+    "translation": "em todo lugar",
+    "definition": "In or to all places; at all places.",
+    "examples": [
+      "She searched everywhere for her keys.",
+      "The news spread everywhere across the country."
+    ],
+    "expressions": [
+      "everywhere I look",
+      "everywhere else",
+      "everywhere in the world",
+      "everywhere you go",
+      "everywhere you turn"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "firm": {
+    "term": "firm",
+    "translation": "empresa",
+    "definition": "A business organization that sells goods or services; a company.",
+    "examples": [
+      "The firm announced a new product line at the conference.",
+      "She works for a small firm in downtown that specializes in graphic design."
+    ],
+    "expressions": [
+      "firm up",
+      "firm hand",
+      "firm decision",
+      "firm footing",
+      "firmly",
+      "firmly established"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "fluency": {
+    "term": "fluency",
+    "translation": "fluência",
+    "definition": "The ability to speak, write, or read a language smoothly, accurately, and with ease.",
+    "examples": [
+      "Her fluency in Spanish impressed everyone at the conference.",
+      "The program focuses on improving students' reading fluency through repeated practice."
+    ],
+    "expressions": [
+      "language fluency",
+      "reading fluency",
+      "speaking fluency",
+      "fluency test",
+      "fluency level"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "food": {
+    "term": "food",
+    "translation": "comida",
+    "definition": "Any substance that can be eaten or drunk by living organisms to provide energy and nutrients.",
+    "examples": [
+      "She packed a sandwich and a bottle of water for lunch.",
+      "The restaurant offers a variety of international dishes."
+    ],
+    "expressions": [
+      "food for thought",
+      "food and water",
+      "food chain",
+      "food poisoning",
+      "food for thought"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "food words": {
+    "term": "food words",
+    "translation": "palavras de comida",
+    "definition": "Words related to food, such as names of foods, cooking terms, and expressions used in culinary contexts.",
+    "examples": [
+      "I learned many food words in my culinary class.",
+      "The recipe book contains a list of food words to help beginners."
+    ],
+    "expressions": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "snack",
+      "meal",
+      "menu",
+      "taste",
+      "spice",
+      "delicious",
+      "savory"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "foot": {
+    "term": "foot",
+    "translation": "pé",
+    "definition": "The lower extremity of the leg, used for standing, walking, or running; also a unit of length equal to 12 inches (30.48 cm).",
+    "examples": [
+      "She planted her foot firmly on the ground before leaping.",
+      "The bridge is 100 feet long."
+    ],
+    "expressions": [
+      "on foot",
+      "foot the bill",
+      "have a foot in both camps",
+      "feet of clay",
+      "foot the cost",
+      "foot the door",
+      "foot in the door"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for beauty": {
+    "term": "for beauty",
+    "translation": "por beleza",
+    "definition": "Used to indicate that an action or decision is motivated by aesthetic considerations or the desire to achieve beauty.",
+    "examples": [
+      "She trimmed the hedge for beauty.",
+      "They painted the walls for beauty."
+    ],
+    "expressions": [
+      "for beauty's sake",
+      "for the sake of beauty",
+      "beauty for beauty's sake",
+      "beauty for the sake of"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for food": {
+    "term": "for food",
+    "translation": "para comida",
+    "definition": "A prepositional phrase indicating purpose or reason related to food, often used to describe a location, container, or activity intended for eating or storing food.",
+    "examples": [
+      "We set up a table for food at the picnic.",
+      "She brought a bag for food to the camping trip."
+    ],
+    "expressions": [
+      "for food and drink",
+      "for food only",
+      "for food preparation",
+      "for food safety",
+      "for food storage",
+      "for food service"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for health": {
+    "term": "for health",
+    "translation": "para a saúde",
+    "definition": "Used to indicate a purpose or reason related to health or well-being.",
+    "examples": [
+      "He exercises for health to maintain a strong heart.",
+      "She took the supplement for health to boost her immune system."
+    ],
+    "expressions": [
+      "for health reasons",
+      "for health and safety",
+      "for health benefits",
+      "for health and fitness"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for her": {
+    "term": "for her",
+    "translation": "para ela",
+    "definition": "A prepositional phrase indicating purpose, benefit, or direction toward a female person.",
+    "examples": [
+      "I bought this gift for her.",
+      "She was praised for her hard work."
+    ],
+    "expressions": [
+      "for her sake",
+      "for her benefit",
+      "for her eyes only",
+      "for her own good",
+      "for her future"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for him": {
+    "term": "for him",
+    "translation": "para ele",
+    "definition": "A prepositional phrase indicating that something is intended for or benefits a male person.",
+    "examples": [
+      "I bought a gift for him.",
+      "She cooked dinner for him."
+    ],
+    "expressions": [
+      "for him to do something",
+      "for him to be",
+      "for him and for her",
+      "for him to understand",
+      "for him to see"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for when": {
+    "term": "for when",
+    "translation": "para quando",
+    "definition": "A phrase used to refer to a future event or situation that may happen, often implying preparation or readiness; similar to 'in case' or 'when'.",
+    "examples": [
+      "Bring an umbrella for when it rains.",
+      "I’ll keep the spare key for when you need it."
+    ],
+    "expressions": [
+      "for when you need help",
+      "for when you are traveling",
+      "for when the lights go out"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for women": {
+    "term": "for women",
+    "translation": "para mulheres",
+    "definition": "Used to indicate that something is intended or suitable for women.",
+    "examples": [
+      "This dress is for women.",
+      "The workshop is for women only."
+    ],
+    "expressions": [
+      "for women only",
+      "women's",
+      "for women and girls",
+      "for women in the workplace",
+      "for women entrepreneurs"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "for work": {
+    "term": "for work",
+    "translation": "para o trabalho",
+    "definition": "Used to indicate that something is done or intended for the purpose of employment or job duties.",
+    "examples": [
+      "I need to finish this report for work before the deadline.",
+      "She is going to the office for work, so she will be late for the meeting."
+    ],
+    "expressions": [
+      "for work purposes",
+      "for work reasons",
+      "for work-related tasks",
+      "for work hours",
+      "for work commitments"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "gathers": {
+    "term": "gathers",
+    "translation": "reúne",
+    "definition": "To bring together or collect; to assemble; to accumulate over time.",
+    "examples": [
+      "She gathers the data from each experiment before analyzing the results.",
+      "The community gathers at the town hall every Friday to discuss local issues."
+    ],
+    "expressions": [
+      "gathers momentum",
+      "gathers dust",
+      "gathers steam",
+      "gathers strength",
+      "gathers support",
+      "gathers information",
+      "gathers data"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "go to the": {
+    "term": "go to the",
+    "translation": "ir para o",
+    "definition": "A phrase indicating movement toward a specific place or destination.",
+    "examples": [
+      "I go to the store every Saturday.",
+      "She goes to the doctor for a check‑up."
+    ],
+    "expressions": [
+      "go to the hospital",
+      "go to the office",
+      "go to the park",
+      "go to the gym",
+      "go to the movies"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "going to": {
+    "term": "going to",
+    "translation": "ir a",
+    "definition": "Used to express a planned action or future event, often with 'to' followed by a verb.",
+    "examples": [
+      "I am going to study tonight.",
+      "She is going to visit her parents next week."
+    ],
+    "expressions": [
+      "going to bed",
+      "going to work",
+      "going to school",
+      "going to the store",
+      "going to the doctor",
+      "going to the party"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "hand": {
+    "term": "hand",
+    "translation": "mão",
+    "definition": "The prehensile, flexible part of the human arm that includes the fingers and thumb, used for grasping and manipulating objects.",
+    "examples": [
+      "She held the cup with her hand.",
+      "He offered to lend a hand with the moving boxes."
+    ],
+    "expressions": [
+      "hand in hand",
+      "lend a hand",
+      "hand over",
+      "in hand",
+      "hand out"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "handouts": {
+    "term": "handouts",
+    "translation": "panfletos",
+    "definition": "Printed materials distributed to people, often during a lecture, seminar, or meeting, to provide information, support, or instructions.",
+    "examples": [
+      "The professor distributed handouts to the students before the lecture.",
+      "During the workshop, participants received handouts with step-by-step instructions."
+    ],
+    "expressions": [
+      "handouts for a presentation",
+      "handouts for a seminar",
+      "handouts on the topic",
+      "handouts to distribute",
+      "handouts for the audience"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "head": {
+    "term": "head",
+    "translation": "cabeça",
+    "definition": "The upper part of the human body, containing the brain, eyes, ears, nose, and mouth; or the front or leading part of something.",
+    "examples": [
+      "She wore a bright red hat on her head.",
+      "He took a head start on the race by arriving early."
+    ],
+    "expressions": [
+      "head over heels",
+      "head start",
+      "head in the clouds",
+      "head in the sand",
+      "head for",
+      "head to",
+      "head of",
+      "head up",
+      "head down"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "headache": {
+    "term": "headache",
+    "translation": "dor de cabeça",
+    "definition": "A continuous pain in the head, often caused by tension, stress, or illness.",
+    "examples": [
+      "I have a headache after staying up all night studying.",
+      "She took a painkiller to relieve her headache before the meeting."
+    ],
+    "expressions": [
+      "headache in the back of my head",
+      "headache in the neck",
+      "headache of the mind",
+      "to have a headache",
+      "to give someone a headache",
+      "headache over something",
+      "headache about something"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "headaches": {
+    "term": "headaches",
+    "translation": "dor de cabeça",
+    "definition": "pain or discomfort in the head or upper part of the body, often caused by stress, illness, or lack of sleep.",
+    "examples": [
+      "I have a headache after staying up all night.",
+      "She suffered from frequent headaches during the exam period."
+    ],
+    "expressions": [
+      "headache",
+      "migraine",
+      "to have a headache",
+      "to suffer from headaches",
+      "headache-free",
+      "to get a headache",
+      "a headache in the neck"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "health": {
+    "term": "health",
+    "translation": "saúde",
+    "definition": "The state of being free from illness or injury; overall physical and mental well-being.",
+    "examples": [
+      "Regular exercise and a balanced diet are essential for maintaining good health.",
+      "The pandemic highlighted the importance of public health measures."
+    ],
+    "expressions": [
+      "good health",
+      "health and safety",
+      "health care",
+      "public health",
+      "mental health",
+      "health insurance",
+      "health check",
+      "health crisis"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "hideous": {
+    "term": "hideous",
+    "translation": "horrível",
+    "definition": "extremely unpleasant or unattractive; repulsive",
+    "examples": [
+      "The horror movie featured a hideous monster that terrified the audience.",
+      "She found the idea of eating the spoiled food hideous and refused to try it."
+    ],
+    "expressions": [
+      "hideous as a monster",
+      "hideous sight",
+      "hideous appearance",
+      "hideous behavior"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "home items": {
+    "term": "home items",
+    "translation": "itens domésticos",
+    "definition": "Things or objects that are found in or used within a home, such as furniture, appliances, and decorative items.",
+    "examples": [
+      "I need to buy new home items for the apartment, like a sofa and a lamp.",
+      "The cleaning crew will replace all the old home items with modern ones."
+    ],
+    "expressions": [
+      "home items list",
+      "home items for sale",
+      "home items and accessories",
+      "home items inventory",
+      "home items and furnishings"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "i think so": {
+    "term": "i think so",
+    "translation": "eu acho que sim",
+    "definition": "A phrase used to express agreement or belief that something is true or will happen.",
+    "examples": [
+      "\"Will the train arrive on time?\" \"I think so.\"",
+      "\"Do you think we should go to the party?\" \"I think so.\""
+    ],
+    "expressions": [
+      "I think so",
+      "I believe so",
+      "I suppose so",
+      "I guess so",
+      "I think that's right"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "in a while": {
+    "term": "in a while",
+    "translation": "em pouco tempo",
+    "definition": "After a short period of time; soon; within a brief time frame.",
+    "examples": [
+      "I'll be back in a while.",
+      "You can finish the report in a while if you focus."
+    ],
+    "expressions": [
+      "in a while",
+      "in a while, I'll be there",
+      "in a while, the traffic will clear",
+      "in a while, we will finish the project"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "influencer": {
+    "term": "influencer",
+    "translation": "influenciador",
+    "definition": "A person who has the power to influence the opinions or actions of others, especially through social media.",
+    "examples": [
+      "She became a popular influencer by sharing her travel adventures on Instagram.",
+      "Brands often collaborate with influencers to promote their products to a wider audience."
+    ],
+    "expressions": [
+      "influencer marketing",
+      "social media influencer",
+      "micro-influencer",
+      "influencer culture",
+      "influencer economy"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "inner city": {
+    "term": "inner city",
+    "translation": "cidade interior",
+    "definition": "A part of a city that is located in the central area, often associated with lower-income neighborhoods and higher crime rates.",
+    "examples": [
+      "Many inner-city schools struggle with limited resources and overcrowded classrooms.",
+      "The new community center aims to provide safe spaces for inner-city youth."
+    ],
+    "expressions": [
+      "inner-city school",
+      "inner-city life",
+      "inner-city gang",
+      "inner-city poverty",
+      "inner-city development"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "instead": {
+    "term": "instead",
+    "translation": "em vez de",
+    "definition": "Used to indicate an alternative or substitution, meaning 'as an alternative to something else'.",
+    "examples": [
+      "I will go to the park instead of staying home.",
+      "She chose tea instead of coffee."
+    ],
+    "expressions": [
+      "instead of",
+      "instead of doing something",
+      "instead of that",
+      "instead of going",
+      "instead of saying"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "investors": {
+    "term": "investors",
+    "translation": "investidores",
+    "definition": "Individuals or entities that allocate capital into projects, businesses, or ventures with the expectation of receiving financial returns or other benefits.",
+    "examples": [
+      "The investors in the startup were thrilled by the rapid growth and early profitability.",
+      "Many investors prefer diversified portfolios to mitigate risk and ensure steady returns."
+    ],
+    "expressions": [
+      "attract investors",
+      "raise capital from investors",
+      "seek investors",
+      "institutional investors",
+      "private investors"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "is thirsty": {
+    "term": "is thirsty",
+    "translation": "está com sede",
+    "definition": "Feeling the need for water or a desire for something, often used figuratively to express a strong desire or craving.",
+    "examples": [
+      "After the long run, he is thirsty and needs a glass of water.",
+      "She is thirsty for knowledge and spends hours reading."
+    ],
+    "expressions": [
+      "thirsty for success",
+      "thirsty for knowledge",
+      "thirsty for a drink",
+      "thirsty as a camel",
+      "thirsty for attention"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "it is": {
+    "term": "it is",
+    "translation": "é",
+    "definition": "A contraction of 'it is', used to state a fact, describe a situation, or introduce a subject. It functions as a linking verb in present tense.",
+    "examples": [
+      "It is raining outside.",
+      "It is a good idea to bring an umbrella."
+    ],
+    "expressions": [
+      "It is what it is",
+      "It is not what you think",
+      "It is a good idea",
+      "It is up to you",
+      "It is time"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "it led": {
+    "term": "it led",
+    "translation": "isso levou",
+    "definition": "Past tense of 'lead', indicating that something caused or resulted in something else.",
+    "examples": [
+      "It led to a major breakthrough in cancer research.",
+      "It led the team to victory after a long season."
+    ],
+    "expressions": [
+      "It led to a breakthrough",
+      "It led to a change",
+      "It led to a decision",
+      "It led to a new direction"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "itch": {
+    "term": "itch",
+    "translation": "coceira",
+    "definition": "A feeling that makes you want to scratch, or a strong desire to do something.",
+    "examples": [
+      "I have an itch on my arm that I can't ignore.",
+      "He had an itch to travel the world."
+    ],
+    "expressions": [
+      "itch to do something",
+      "scratch an itch",
+      "give someone an itch"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "its worth": {
+    "term": "its worth",
+    "translation": "seu valor",
+    "definition": "A phrase used to describe the value, importance, or usefulness of something.",
+    "examples": [
+      "The antique vase is worth a lot of money, but its worth goes beyond its monetary value.",
+      "When deciding whether to invest, you should consider the project's worth."
+    ],
+    "expressions": [
+      "it's worth it",
+      "worth its weight",
+      "worth a try",
+      "worth a look",
+      "of its worth"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "knew": {
+    "term": "knew",
+    "translation": "sabia",
+    "definition": "Past tense of 'know', meaning to have knowledge or awareness of something.",
+    "examples": [
+      "I knew the answer before the quiz started.",
+      "She knew the streets of the city like the back of her hand."
+    ],
+    "expressions": [
+      "knew nothing",
+      "knew better",
+      "knew it was going to happen",
+      "knew for sure",
+      "knew the drill"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "learning": {
+    "term": "learning",
+    "translation": "aprendizado",
+    "definition": "The acquisition of knowledge, skills, or habits through study, experience, or instruction.",
+    "examples": [
+      "She is dedicated to learning new languages.",
+      "Learning from mistakes is essential for growth."
+    ],
+    "expressions": [
+      "learning curve",
+      "learning to",
+      "learning about",
+      "learning something new",
+      "learning from experience"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "math": {
+    "term": "math",
+    "translation": "matemática",
+    "definition": "The abstract science of number, quantity, and space, especially as applied to solving problems.",
+    "examples": [
+      "She studied math for three hours before the exam.",
+      "The math teacher explained the concept of fractions using real-life examples."
+    ],
+    "expressions": [
+      "math class",
+      "math homework",
+      "math test",
+      "math problem",
+      "math skills"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "meaning": {
+    "term": "meaning",
+    "translation": "significado",
+    "definition": "The idea or concept that a word, phrase, or symbol represents.",
+    "examples": [
+      "The meaning of the word \"love\" is complex and varies across cultures.",
+      "She couldn't find the meaning of his silence during the meeting."
+    ],
+    "expressions": [
+      "to find meaning",
+      "the meaning of life",
+      "give meaning to",
+      "meaningful",
+      "meaningful conversation"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "might": {
+    "term": "might",
+    "translation": "poderia",
+    "definition": "Used to express possibility, permission, or a suggestion in the past or present.",
+    "examples": [
+      "It might rain later, so bring an umbrella.",
+      "She might have left early because she was feeling unwell."
+    ],
+    "expressions": [
+      "might as well",
+      "might not",
+      "might have",
+      "might be",
+      "might even",
+      "might even be"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "my purpose": {
+    "term": "my purpose",
+    "translation": "meu propósito",
+    "definition": "The reason for which something is done or created, or for which something exists; a person's intended aim or goal.",
+    "examples": [
+      "My purpose in studying English is to communicate with people from around the world.",
+      "When she asked why she was there, she replied, \"My purpose is to help those in need.\""
+    ],
+    "expressions": [
+      "my purpose is",
+      "for my purpose",
+      "to my purpose",
+      "my purpose in life",
+      "my purpose here"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "necessity": {
+    "term": "necessity",
+    "translation": "necessidade",
+    "definition": "A thing that is needed or essential; a requirement or indispensable condition.",
+    "examples": [
+      "Water is a necessity for all living organisms.",
+      "The necessity of a good education cannot be overstated."
+    ],
+    "expressions": [
+      "necessity of the hour",
+      "necessity of life",
+      "necessity of survival",
+      "necessity of the situation",
+      "necessity of action"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "nowhere": {
+    "term": "nowhere",
+    "translation": "em lugar nenhum",
+    "definition": "Not in any place; no place; not found anywhere.",
+    "examples": [
+      "I looked for my keys everywhere, but they were nowhere.",
+      "She felt like she was nowhere in the world."
+    ],
+    "expressions": [
+      "nowhere to go",
+      "nowhere to hide",
+      "nowhere to be found",
+      "nowhere else",
+      "nowhere in sight"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "often": {
+    "term": "often",
+    "translation": "frequentemente",
+    "definition": "occurring or done many times, frequently",
+    "examples": [
+      "She often goes to the gym after work.",
+      "I often forget my keys at home."
+    ],
+    "expressions": [
+      "often enough",
+      "often used",
+      "often said",
+      "often times",
+      "often enough to"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "over there": {
+    "term": "over there",
+    "translation": "lá",
+    "definition": "At a place that is not near the speaker, but within sight or reachable distance.",
+    "examples": [
+      "I can see the house over there.",
+      "She pointed over there to indicate the direction."
+    ],
+    "expressions": [
+      "over there, I can see the mountain",
+      "over there, there's a park",
+      "over there, we can find the restaurant",
+      "over there, the kids are playing",
+      "over there, the shop is closed"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "ownership": {
+    "term": "ownership",
+    "translation": "propriedade",
+    "definition": "The state or fact of owning something; the condition of being the owner of a particular thing or property.",
+    "examples": [
+      "She claimed ownership of the antique vase after the auction.",
+      "The company’s ownership structure was complex, with many stakeholders."
+    ],
+    "expressions": [
+      "ownership rights",
+      "ownership interest",
+      "ownership transfer",
+      "ownership costs",
+      "ownership dispute"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "people": {
+    "term": "people",
+    "translation": "pessoas",
+    "definition": "A group of human beings; individuals collectively.",
+    "examples": [
+      "People gather in the park every Sunday to enjoy the music.",
+      "The people in this town are known for their hospitality."
+    ],
+    "expressions": [
+      "people say",
+      "people of the world",
+      "people like",
+      "people who",
+      "people are"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "plate": {
+    "term": "plate",
+    "translation": "prato",
+    "definition": "A flat dish, typically made of ceramic, metal, or glass, used for serving or holding food.",
+    "examples": [
+      "She placed the steaming soup on a silver plate before serving it to the guests.",
+      "The chef carefully plated the dish, arranging the garnish to make it look as appealing as it tasted."
+    ],
+    "expressions": [
+      "plate of food",
+      "plate number",
+      "plate glass",
+      "plate a dish",
+      "plate glass window"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "reaches": {
+    "term": "reaches",
+    "translation": "atinge",
+    "definition": "To arrive at a particular place or condition; to extend to; to achieve a goal or limit.",
+    "examples": [
+      "She reaches the top of the mountain after a long hike.",
+      "The company's profits have reached a record high this quarter."
+    ],
+    "expressions": [
+      "reaches out",
+      "reaches for",
+      "reaches a conclusion",
+      "reaches a decision",
+      "reaches a settlement"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "reading": {
+    "term": "reading",
+    "translation": "leitura",
+    "definition": "The action or skill of interpreting written or printed matter.",
+    "examples": [
+      "She spent the afternoon reading a novel.",
+      "Reading improves vocabulary and comprehension."
+    ],
+    "expressions": [
+      "reading comprehension",
+      "reading time",
+      "reading list",
+      "reading material",
+      "reading habit"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "reason": {
+    "term": "reason",
+    "translation": "razão",
+    "definition": "A cause, explanation, or justification for an action or event.",
+    "examples": [
+      "She gave a valid reason for her absence.",
+      "The reason for the delay was a technical malfunction."
+    ],
+    "expressions": [
+      "for no reason",
+      "by reason of",
+      "give me a reason",
+      "no reason to worry",
+      "reason to be proud"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "relatives": {
+    "term": "relatives",
+    "translation": "parentes",
+    "definition": "Family members related by blood or marriage",
+    "examples": [
+      "I have many relatives who live in different countries.",
+      "During the holidays, we gather with our relatives for a big dinner."
+    ],
+    "expressions": [
+      "close relatives",
+      "distant relatives",
+      "relatives and friends",
+      "relatives and acquaintances"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "right": {
+    "term": "right",
+    "translation": "direito",
+    "definition": "A moral or legal entitlement to have or do something; also a direction opposite of left; can mean correct or appropriate.",
+    "examples": [
+      "She has the right to a fair trial.",
+      "Make sure you take the right turn at the intersection."
+    ],
+    "expressions": [
+      "right away",
+      "right now",
+      "right on",
+      "right to",
+      "right as rain",
+      "right in the middle",
+      "right through",
+      "right off the bat",
+      "right on target"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "role play": {
+    "term": "role play",
+    "translation": "jogo de interpretação de papéis",
+    "definition": "An activity in which participants act out or simulate a particular role or scenario, often used in training, therapy, or entertainment.",
+    "examples": [
+      "During the workshop, the participants engaged in role play to practice customer service skills.",
+      "The therapist used role play to help the patient confront social anxiety."
+    ],
+    "expressions": [
+      "role play exercise",
+      "role play scenario",
+      "role play activity",
+      "role play session",
+      "role play game"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "seat": {
+    "term": "seat",
+    "translation": "assento",
+    "definition": "A place or object where a person can sit; a position or role; the act of sitting in a seat.",
+    "examples": [
+      "Please take a seat in the front row.",
+      "The seat of the chair was broken and needed repair."
+    ],
+    "expressions": [
+      "take a seat",
+      "seat of the pants",
+      "seat of the mind",
+      "seat of the soul",
+      "seat of power",
+      "seat of the government",
+      "seat of the throne"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "security": {
+    "term": "security",
+    "translation": "segurança",
+    "definition": "The state of being free from danger, threat, or risk; protection against harm.",
+    "examples": [
+      "The security of the building was enhanced with new cameras.",
+      "She was worried about her financial security after losing her job."
+    ],
+    "expressions": [
+      "security guard",
+      "security system",
+      "security clearance",
+      "personal security",
+      "financial security",
+      "national security",
+      "public security",
+      "security deposit",
+      "security measure",
+      "security risk"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "she stands": {
+    "term": "she stands",
+    "translation": "ela está em pé",
+    "definition": "The phrase 'she stands' is the third-person singular present tense of the verb 'stand', meaning that she is in an upright position or that she remains in a particular state or position.",
+    "examples": [
+      "She stands at the window, watching the rain fall.",
+      "She stands for equality and will not back down."
+    ],
+    "expressions": [
+      "stand up for",
+      "stand by",
+      "stand out",
+      "stand in",
+      "stand over",
+      "stand with"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "shiny word": {
+    "term": "shiny word",
+    "translation": "palavra brilhante",
+    "definition": "A word that is particularly appealing, attractive, or eye-catching, often used to describe marketing terms or buzzwords that sound impressive but may lack depth.",
+    "examples": [
+      "The CEO used the shiny word \"synergy\" to impress the investors during the presentation.",
+      "In the article, the author highlighted the shiny word \"innovation\" as a key theme for the company's future."
+    ],
+    "expressions": [
+      "shiny word",
+      "shiny words",
+      "shiny word marketing",
+      "shiny word hype",
+      "shiny word buzz"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "ship word": {
+    "term": "ship word",
+    "translation": "palavra que significa navio",
+    "definition": "A noun that denotes a vessel used for traveling on water.",
+    "examples": [
+      "The ship word \"vessel\" is often used in legal documents.",
+      "In everyday speech, people might use \"boat\" as a ship word."
+    ],
+    "expressions": [
+      "cargo ship",
+      "warship",
+      "tanker ship",
+      "fishing ship",
+      "merchant ship"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "shorter": {
+    "term": "shorter",
+    "translation": "mais curto",
+    "definition": "Comparative form of 'short', meaning having less length or duration than something else.",
+    "examples": [
+      "She is shorter than her brother.",
+      "The shorter route takes less time."
+    ],
+    "expressions": [
+      "shorter than",
+      "shorter version",
+      "shorter than expected",
+      "shorter than usual"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "shortest": {
+    "term": "shortest",
+    "translation": "mais curto",
+    "definition": "The one that has the least length or duration among a group or set.",
+    "examples": [
+      "The shortest route to the museum is via the main street.",
+      "She completed the marathon in the shortest time of her career."
+    ],
+    "expressions": [
+      "the shortest route",
+      "the shortest distance",
+      "the shortest path",
+      "the shortest time",
+      "the shortest possible"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "should": {
+    "term": "should",
+    "translation": "deveria",
+    "definition": "Used to express obligation, duty, or recommendation, often in a polite or indirect way.",
+    "examples": [
+      "You should study for the exam.",
+      "I should call my mother."
+    ],
+    "expressions": [
+      "should be",
+      "should have",
+      "shouldn't",
+      "shouldn't be",
+      "shouldn't have",
+      "should do",
+      "shouldn't do"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "shout": {
+    "term": "shout",
+    "translation": "gritar",
+    "definition": "To speak or shout loudly, often to express strong emotion or to be heard over a distance.",
+    "examples": [
+      "He shouted for help when the alarm went off.",
+      "She shouted at the top of her lungs during the concert."
+    ],
+    "expressions": [
+      "shout out",
+      "shout across the room",
+      "shout a warning",
+      "shout for joy",
+      "shout for help"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "show me": {
+    "term": "show me",
+    "translation": "mostre-me",
+    "definition": "A phrase used to request someone to demonstrate, reveal, or provide evidence of something, often implying a desire to see or understand it directly.",
+    "examples": [
+      "Can you show me how to solve this equation?",
+      "Show me the documents you mentioned in the meeting."
+    ],
+    "expressions": [
+      "Show me the way",
+      "Show me what you mean",
+      "Show me your work",
+      "Show me the money",
+      "Show me the evidence",
+      "Show me how it's done"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "slightly": {
+    "term": "slightly",
+    "translation": "ligeiramente",
+    "definition": "To a small degree; somewhat; not greatly, but a little.",
+    "examples": [
+      "The soup was slightly salty, so I added more water.",
+      "She was slightly disappointed when the concert was canceled."
+    ],
+    "expressions": [
+      "slightly different",
+      "slightly better",
+      "slightly older",
+      "slightly less",
+      "slightly more"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "somewhere": {
+    "term": "somewhere",
+    "translation": "em algum lugar",
+    "definition": "at or to a place that is not specified or known; at a particular location that is not identified",
+    "examples": [
+      "I left my keys somewhere in the kitchen.",
+      "She disappeared somewhere in the city."
+    ],
+    "expressions": [
+      "somewhere over the rainbow",
+      "somewhere in the world",
+      "somewhere else",
+      "somewhere between",
+      "somewhere in the middle"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "spanish": {
+    "term": "spanish",
+    "translation": "espanhol",
+    "definition": "Spanish is an adjective referring to Spain, its people, culture, or language, and also a noun denoting the Romance language spoken in Spain and many Latin American countries.",
+    "examples": [
+      "She studied Spanish at university to prepare for her trip to Madrid.",
+      "The Spanish cuisine features tapas, paella, and a variety of olive oils."
+    ],
+    "expressions": [
+      "Spanish language",
+      "Spanish culture",
+      "Spanish cuisine",
+      "Spanish people",
+      "Spanish heritage"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "steadfast": {
+    "term": "steadfast",
+    "translation": "inabalável",
+    "definition": "Firmly fixed or unwavering in purpose, loyalty, or determination.",
+    "examples": [
+      "She remained steadfast in her commitment to the cause.",
+      "His steadfast determination helped him overcome the obstacles."
+    ],
+    "expressions": [
+      "steadfast friend",
+      "steadfast loyalty",
+      "steadfast resolve",
+      "steadfast support",
+      "steadfast dedication"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "sunshine": {
+    "term": "sunshine",
+    "translation": "luz do sol",
+    "definition": "The light and warmth that comes from the sun.",
+    "examples": [
+      "After the storm, the sunshine made the garden look vibrant.",
+      "She smiled as the sunshine filtered through the curtains."
+    ],
+    "expressions": [
+      "a ray of sunshine",
+      "sunshine state of mind",
+      "sunshine and rainbows",
+      "sunshine on a cloudy day"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "surgery": {
+    "term": "surgery",
+    "translation": "cirurgia",
+    "definition": "The branch of medicine that deals with the diagnosis and treatment of injuries and diseases by manual and instrumental techniques, especially operations.",
+    "examples": [
+      "She underwent surgery to repair the torn ligament.",
+      "The surgeon performed a complex surgery on the patient's heart."
+    ],
+    "expressions": [
+      "major surgery",
+      "minor surgery",
+      "surgery schedule",
+      "surgery room",
+      "surgery team"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "tall short": {
+    "term": "tall short",
+    "translation": "alto curto",
+    "definition": "A phrase that juxtaposes two opposing qualities, often used humorously to describe something that is both tall and short at the same time, or to refer to a short story that is a tall tale.",
+    "examples": [
+      "The comedian told a tall short about a giant who could fit in a shoebox.",
+      "Her explanation was a tall short: a brief but exaggerated tale of her trip to Mars."
+    ],
+    "expressions": [
+      "tall short story",
+      "tall short joke",
+      "tall short explanation"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "teacher": {
+    "term": "teacher",
+    "translation": "professor",
+    "definition": "A person who teaches, especially in a school or university.",
+    "examples": [
+      "The teacher explained the lesson clearly.",
+      "She became a teacher after completing her degree."
+    ],
+    "expressions": [
+      "teacher's pet",
+      "to be a teacher"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "tema often": {
+    "term": "tema often",
+    "translation": "tema frequentemente",
+    "definition": "A combination of the noun 'tema' (theme) and the adverb 'often', indicating that a theme is used or appears frequently.",
+    "examples": [
+      "In many novels, the theme of redemption often appears.",
+      "The teacher often uses the theme of cooperation in his lessons."
+    ],
+    "expressions": [
+      "often",
+      "frequently",
+      "regularly",
+      "often times"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "tema there": {
+    "term": "tema there",
+    "translation": "tema lá",
+    "definition": "A subject or topic of discussion, especially in literature or art.",
+    "examples": [
+      "The tema there was the conflict between tradition and modernity.",
+      "In the conference, the tema there was climate change."
+    ],
+    "expressions": [
+      "theme there",
+      "topic there",
+      "subject there"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "tema those": {
+    "term": "tema those",
+    "translation": "aqueles temas",
+    "definition": "A phrase used to refer to multiple themes that are being pointed out or discussed.",
+    "examples": [
+      "I found the book's discussion on those themes to be insightful.",
+      "She highlighted those themes in her presentation."
+    ],
+    "expressions": [
+      "those themes",
+      "those topics",
+      "those subjects"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "tema whose": {
+    "term": "tema whose",
+    "translation": "tema cujo",
+    "definition": "A phrase that combines the noun 'tema' (meaning 'theme' or 'subject') with the relative pronoun 'whose', used to indicate possession or association.",
+    "examples": [
+      "The tema whose colors are vibrant attracts attention.",
+      "She studied the tema whose origins trace back to ancient folklore."
+    ],
+    "expressions": [
+      "tema whose meaning",
+      "tema whose origin",
+      "tema whose significance"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "temporary": {
+    "term": "temporary",
+    "translation": "temporário",
+    "definition": "lasting for only a limited period of time; not permanent.",
+    "examples": [
+      "The company hired a temporary worker to cover the vacation of a permanent employee.",
+      "She was given a temporary visa to stay in the country while her application was processed."
+    ],
+    "expressions": [
+      "temporary solution",
+      "temporary fix",
+      "temporary measure",
+      "temporary arrangement",
+      "temporary residency",
+      "temporary staff"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "that": {
+    "term": "that",
+    "translation": "que",
+    "definition": "That is a demonstrative pronoun, determiner, adjective, or conjunction used to refer to a specific thing or to introduce a clause.",
+    "examples": [
+      "I think that you are right.",
+      "That book is mine."
+    ],
+    "expressions": [
+      "that is",
+      "what that means",
+      "that is all",
+      "that being said",
+      "that being the case",
+      "that said",
+      "that doesn't matter",
+      "that will be",
+      "that is the point",
+      "that is how it is"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "that itch": {
+    "term": "that itch",
+    "translation": "essa coceira",
+    "definition": "A phrase used to describe a strong urge or desire to do something, often implying that the person feels compelled to act on it.",
+    "examples": [
+      "I have that itch to travel and see new places.",
+      "She couldn't ignore that itch to start her own business."
+    ],
+    "expressions": [
+      "can't scratch that itch",
+      "the itch to travel",
+      "the itch to learn",
+      "the itch to explore",
+      "the itch to change"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "that was": {
+    "term": "that was",
+    "translation": "isso era",
+    "definition": "Used to refer to something that has already happened or to describe a past situation.",
+    "examples": [
+      "That was the best concert I've ever attended.",
+      "When I saw the accident, I thought, \"That was a close call.\""
+    ],
+    "expressions": [
+      "that was the time",
+      "that was the day",
+      "that was the moment",
+      "that was the point",
+      "that was the thing"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "that word": {
+    "term": "that word",
+    "translation": "essa palavra",
+    "definition": "A specific word that has been mentioned or is understood from context.",
+    "examples": [
+      "I don't like that word.",
+      "She said that word and everyone laughed."
+    ],
+    "expressions": [
+      "that word is a curse word",
+      "that word is a euphemism",
+      "that word is a technical term",
+      "that word is a slang term",
+      "that word is a taboo word"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "thats fine": {
+    "term": "thats fine",
+    "translation": "tudo bem",
+    "definition": "An informal expression used to indicate that a situation or proposal is acceptable or satisfactory.",
+    "examples": [
+      "A: Can I borrow your car tonight? B: That's fine, just be careful.",
+      "She apologized for being late, and I said, 'That's fine.'"
+    ],
+    "expressions": [
+      "That's fine, thanks.",
+      "That's fine with me.",
+      "That's fine, no problem.",
+      "That's fine, I understand.",
+      "That's fine, let's move on."
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "the store": {
+    "term": "the store",
+    "translation": "a loja",
+    "definition": "A place where goods or services are sold to customers, typically a retail establishment.",
+    "examples": [
+      "I need to go to the store to buy milk.",
+      "The store was closed on Sundays."
+    ],
+    "expressions": [
+      "go to the store",
+      "the store is closed",
+      "store owner",
+      "store clerk",
+      "store front"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "the wind": {
+    "term": "the wind",
+    "translation": "o vento",
+    "definition": "The natural movement of air, especially when it is strong or moving in a particular direction.",
+    "examples": [
+      "The wind was so strong that it knocked over the trees.",
+      "She listened to the wind as it whispered through the leaves."
+    ],
+    "expressions": [
+      "in the wind",
+      "against the wind",
+      "wind in your hair",
+      "wind of change",
+      "wind up",
+      "wind down",
+      "wind through",
+      "wind in the sails"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "them": {
+    "term": "them",
+    "translation": "eles/elas",
+    "definition": "\"them\" is a third-person plural object pronoun used to refer to people or things previously mentioned.",
+    "examples": [
+      "I saw them at the park.",
+      "She gave the books to them."
+    ],
+    "expressions": [
+      "for them",
+      "to them",
+      "about them",
+      "in front of them",
+      "with them",
+      "in their own words",
+      "in their shoes"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "there": {
+    "term": "there",
+    "translation": "lá",
+    "definition": "Adverb or pronoun used to indicate a place or existence; also used in expressions such as 'there is', 'there are', 'therefore', etc.",
+    "examples": [
+      "She put the book over there on the shelf.",
+      "There are five people waiting in line."
+    ],
+    "expressions": [
+      "there is",
+      "there are",
+      "there's",
+      "over there",
+      "therefore",
+      "there's no way",
+      "there you go",
+      "there's a lot of",
+      "there's a chance"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "there are": {
+    "term": "there are",
+    "translation": "há",
+    "definition": "A phrase used to indicate the existence or presence of multiple items or people in a particular place or situation.",
+    "examples": [
+      "There are five books on the table.",
+      "There are no more tickets left for the concert."
+    ],
+    "expressions": [
+      "there are many",
+      "there are few",
+      "there are no",
+      "there are some",
+      "there are several"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "there is": {
+    "term": "there is",
+    "translation": "há",
+    "definition": "Used to indicate the existence of something.",
+    "examples": [
+      "There is a book on the table.",
+      "There is no way to finish it."
+    ],
+    "expressions": [
+      "there is no",
+      "there is a",
+      "there is an",
+      "there is a chance",
+      "there is a problem",
+      "there is a solution",
+      "there is a way",
+      "there is a reason",
+      "there is a possibility",
+      "there is a difference"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "there isnt": {
+    "term": "there isnt",
+    "translation": "não há",
+    "definition": "Used to indicate that something does not exist or is not present.",
+    "examples": [
+      "There isn't any milk left in the fridge.",
+      "There isn't a single reason why we should wait."
+    ],
+    "expressions": [
+      "there isn't any",
+      "there isn't a",
+      "there isn't a chance",
+      "there isn't a problem",
+      "there isn't a reason"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "they are": {
+    "term": "they are",
+    "translation": "eles são",
+    "definition": "Contraction of 'they' and 'are', used as a subject-verb phrase in the present tense to describe or state something about a group of people or things.",
+    "examples": [
+      "They are studying for their exams.",
+      "They are not ready for the trip yet."
+    ],
+    "expressions": [
+      "They are going",
+      "They are ready",
+      "They are the best",
+      "They are not here",
+      "They are the ones"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "they arent": {
+    "term": "they arent",
+    "translation": "eles não são",
+    "definition": "Contraction of 'they are not', used to negate the verb 'to be' for the third-person plural.",
+    "examples": [
+      "They aren't going to the party tonight.",
+      "They aren't ready for the exam yet."
+    ],
+    "expressions": [
+      "They aren't going to be late",
+      "They aren't sure about the plan",
+      "They aren't interested in that",
+      "They aren't the same",
+      "They aren't allowed to enter"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "thing": {
+    "term": "thing",
+    "translation": "coisa",
+    "definition": "An object, item, or concept that can be identified or described.",
+    "examples": [
+      "I found a strange thing in the attic.",
+      "He said he had a thing to do."
+    ],
+    "expressions": [
+      "a thing of beauty",
+      "a thing of wonder",
+      "a thing of the past",
+      "a thing to consider"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "think": {
+    "term": "think",
+    "translation": "pensar",
+    "definition": "To use one's mind to consider, reason, or form an opinion about something.",
+    "examples": [
+      "I think the movie was better than I expected.",
+      "She thinks about her future plans every night."
+    ],
+    "expressions": [
+      "think about",
+      "think of",
+      "think over",
+      "think ahead",
+      "think twice",
+      "think outside the box",
+      "think for a moment",
+      "think of the consequences",
+      "think on your feet"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "think in": {
+    "term": "think in",
+    "translation": "pensar em",
+    "definition": "to consider something using a particular perspective or framework, often implying a specific way of processing information",
+    "examples": [
+      "She tends to think in colors rather than numbers when she designs her artwork.",
+      "When planning the project, we must think in terms of budget constraints and realistic timelines."
+    ],
+    "expressions": [
+      "think in terms of",
+      "think in advance",
+      "think in black and white",
+      "think in a different language",
+      "think in the long run"
+    ],
+    "stats": {
+      "seen": 1,
+      "correct": 0,
+      "wrong": 1
+    }
+  },
+  "think verb": {
+    "term": "think verb",
+    "translation": "pensar",
+    "definition": "To use one's mind to consider, reason, or form an opinion about something; to have an idea or belief.",
+    "examples": [
+      "I think the meeting will start at 3 PM.",
+      "She thinks that the new policy will improve efficiency."
+    ],
+    "expressions": [
+      "think about",
+      "think of",
+      "think over",
+      "think through",
+      "think ahead",
+      "think twice",
+      "think outside the box",
+      "think on your feet",
+      "think for a moment"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "this that": {
+    "term": "this that",
+    "translation": "isto e aquilo",
+    "definition": "A colloquial phrase meaning various things or a mix of items, often used when the speaker is vague or refers to many items without specifying them.",
+    "examples": [
+      "I bought this that from the market, but I don't remember exactly what it was.",
+      "She kept this that on the shelf, a mix of old letters and photographs."
+    ],
+    "expressions": [
+      "this and that",
+      "this and that thing",
+      "this and that stuff",
+      "this and that mix",
+      "this and that collection"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "thoroughly": {
+    "term": "thoroughly",
+    "translation": "minuciosamente",
+    "definition": "in a complete and careful way; with great attention to detail.",
+    "examples": [
+      "She thoroughly cleaned the house before the guests arrived.",
+      "He thoroughly enjoyed the concert, praising every performance."
+    ],
+    "expressions": [
+      "thoroughly investigate",
+      "thoroughly examine",
+      "thoroughly understand",
+      "thoroughly prepared",
+      "thoroughly tested",
+      "thoroughly researched",
+      "thoroughly review",
+      "thoroughly analyze",
+      "thoroughly read",
+      "thoroughly check"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "those": {
+    "term": "those",
+    "translation": "aqueles",
+    "definition": "Plural demonstrative pronoun used to refer to something far from the speaker.",
+    "examples": [
+      "Those books on the shelf belong to my sister.",
+      "I remember those days when we used to play outside."
+    ],
+    "expressions": [
+      "those days",
+      "those days are gone",
+      "those people",
+      "those are the ones",
+      "those are the ones I like"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "to belong": {
+    "term": "to belong",
+    "translation": "pertencer",
+    "definition": "To be the property of; to be a member of; to have a connection to something or someone.",
+    "examples": [
+      "The house belongs to me.",
+      "She belongs to the choir."
+    ],
+    "expressions": [
+      "belong to",
+      "belong to someone",
+      "belong to a group",
+      "belong to a family",
+      "belong to a place"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "to bloom": {
+    "term": "to bloom",
+    "translation": "florir",
+    "definition": "To produce flowers or to develop and become fully grown; to prosper or flourish.",
+    "examples": [
+      "The roses will bloom in late spring.",
+      "After years of hard work, her career finally bloomed."
+    ],
+    "expressions": [
+      "bloom into",
+      "blooming",
+      "in full bloom",
+      "blooming with",
+      "bloom like a flower"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "to borrow": {
+    "term": "to borrow",
+    "translation": "emprestar",
+    "definition": "To take and use something owned by someone else for a temporary period, with the intention of returning it.",
+    "examples": [
+      "I will borrow a book from the library for the weekend.",
+      "Can I borrow your pen while you finish this task?"
+    ],
+    "expressions": [
+      "borrow a hand",
+      "borrow a look",
+      "borrow a phrase",
+      "borrow money",
+      "borrow time"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "to have": {
+    "term": "to have",
+    "translation": "ter",
+    "definition": "To possess, own, or hold something.",
+    "examples": [
+      "I have a new car.",
+      "She has been working here for five years."
+    ],
+    "expressions": [
+      "have a good time",
+      "have a look",
+      "have a seat",
+      "have a break",
+      "have to",
+      "have been",
+      "have been doing"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "to know": {
+    "term": "to know",
+    "translation": "saber",
+    "definition": "To have knowledge or information about something; to be aware of or familiar with it.",
+    "examples": [
+      "I know the answer to the question.",
+      "She knows how to play the piano."
+    ],
+    "expressions": [
+      "know what I'm saying",
+      "know the difference",
+      "know for sure",
+      "know someone",
+      "know how to"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "too boring": {
+    "term": "too boring",
+    "translation": "muito entediante",
+    "definition": "Excessively dull or uninteresting; lacking excitement.",
+    "examples": [
+      "The lecture was too boring for the students to stay focused.",
+      "She found the movie too boring to finish."
+    ],
+    "expressions": [
+      "too boring to watch",
+      "too boring to read",
+      "too boring for me",
+      "too boring to stay awake",
+      "too boring to listen to"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "too bright": {
+    "term": "too bright",
+    "translation": "muito brilhante",
+    "definition": "Excessively bright; too much light or too vivid to be comfortable or appropriate.",
+    "examples": [
+      "The new LED lights in the hallway are too bright for my liking.",
+      "Her smile was too bright, almost blinding."
+    ],
+    "expressions": [
+      "too bright for my taste",
+      "too bright to be subtle",
+      "too bright to be taken seriously",
+      "too bright for a night out"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "tough": {
+    "term": "tough",
+    "translation": "difícil",
+    "definition": "Adjective meaning strong, hard, or difficult to break or defeat; also used to describe something that is difficult to deal with or endure.",
+    "examples": [
+      "The exam was tough, but I managed to pass.",
+      "She has a tough personality, always standing up for herself."
+    ],
+    "expressions": [
+      "tough luck",
+      "tough cookie",
+      "tough as nails",
+      "tough decision",
+      "tough spot"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "treat word": {
+    "term": "treat word",
+    "translation": "palavra de tratamento",
+    "definition": "A word or title used to address someone politely or formally, such as 'Mr.', 'Ms.', 'Dr.', or 'Sir'.",
+    "examples": [
+      "She greeted the guests with 'Good morning, ladies and gentlemen.'",
+      "He called his teacher 'Professor' as a sign of respect."
+    ],
+    "expressions": [
+      "Mr.",
+      "Ms.",
+      "Mrs.",
+      "Dr.",
+      "Sir",
+      "Madam",
+      "Professor"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "try it on": {
+    "term": "try it on",
+    "translation": "experimentar",
+    "definition": "To put on clothing or accessories to see if they fit or look good, often before purchasing.",
+    "examples": [
+      "I need to try it on before I buy it.",
+      "She asked the clerk to let her try it on."
+    ],
+    "expressions": [
+      "try it on for size",
+      "try it on and see how it looks",
+      "try it on and see if it fits",
+      "try it on before buying"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "warehouse": {
+    "term": "warehouse",
+    "translation": "armazém",
+    "definition": "A large building where goods are stored.",
+    "examples": [
+      "The company moved its inventory to a new warehouse.",
+      "Workers loaded the trucks at the warehouse."
+    ],
+    "expressions": [
+      "warehouse manager",
+      "warehouse stock",
+      "warehouse space",
+      "warehouse storage",
+      "warehouse delivery"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "warmth": {
+    "term": "warmth",
+    "translation": "calor",
+    "definition": "The quality or state of being warm; friendly affection or kindness.",
+    "examples": [
+      "The warmth of the sun on my skin was comforting.",
+      "She greeted me with a warmth that made me feel at home."
+    ],
+    "expressions": [
+      "warmth of the sun",
+      "warmth of a hug",
+      "warmth in his voice",
+      "warmth and comfort"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "weather": {
+    "term": "weather",
+    "translation": "tempo",
+    "definition": "The state of the atmosphere at a particular place and time, especially as regards heat, cloudiness, dryness, sunshine, wind, rain, etc.",
+    "examples": [
+      "The weather today is sunny and warm, perfect for a picnic.",
+      "We had to cancel the hike because the weather turned stormy."
+    ],
+    "expressions": [
+      "weather forecast",
+      "weather conditions",
+      "weather report",
+      "weather pattern",
+      "weather front",
+      "weather warning",
+      "weather station",
+      "weather balloon",
+      "weather vane",
+      "weathered"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "wheat": {
+    "term": "wheat",
+    "translation": "trigo",
+    "definition": "A cereal grain that is a staple food in many parts of the world, used to make flour for bread, pasta, and other foods.",
+    "examples": [
+      "I bought a bag of wheat flour for baking bread.",
+      "The wheat fields were golden in the sunset."
+    ],
+    "expressions": [
+      "wheat and barley",
+      "wheat field",
+      "wheat flour",
+      "wheat seed",
+      "wheat crop"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "whenever": {
+    "term": "whenever",
+    "translation": "sempre que",
+    "definition": "at any time that; at the moment something occurs; whenever something happens",
+    "examples": [
+      "You can call me whenever you need assistance.",
+      "I will go to the park whenever the weather is nice."
+    ],
+    "expressions": [
+      "whenever you need help",
+      "whenever the opportunity arises",
+      "whenever you feel like it",
+      "whenever the time comes",
+      "whenever you want to visit"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "whereas": {
+    "term": "whereas",
+    "translation": "enquanto",
+    "definition": "used to introduce a statement that contrasts with or compares to a previous statement",
+    "examples": [
+      "He likes coffee, whereas she prefers tea.",
+      "The company is profitable, whereas its competitor is losing money."
+    ],
+    "expressions": [
+      "whereas",
+      "whereas ..."
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "which": {
+    "term": "which",
+    "translation": "qual",
+    "definition": "A relative pronoun used to refer to a noun or pronoun that has already been mentioned, often used to ask a question or provide additional information.",
+    "examples": [
+      "Which book did you read last night?",
+      "The car, which was red, sped past us."
+    ],
+    "expressions": [
+      "which way",
+      "which one",
+      "which is",
+      "which of"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "whistle": {
+    "term": "whistle",
+    "translation": "sopro",
+    "definition": "A short, high‑pitched sound produced by blowing air through pursed lips or a small device, or the act of making such a sound.",
+    "examples": [
+      "He blew a whistle to signal the start of the game.",
+      "The whistle of the train echoed through the valley."
+    ],
+    "expressions": [
+      "blow a whistle",
+      "whistle in the wind",
+      "whistle stop",
+      "whistle for help",
+      "whistle at someone"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "whose": {
+    "term": "whose",
+    "translation": "cujo",
+    "definition": "Used to ask about or indicate possession or relationship, referring to a person or thing previously mentioned.",
+    "examples": [
+      "Whose book is this?",
+      "I don't know whose idea that was."
+    ],
+    "expressions": [
+      "whose name",
+      "whose idea",
+      "whose fault",
+      "whose turn",
+      "whose opinion"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "wipes off": {
+    "term": "wipes off",
+    "translation": "limpar",
+    "definition": "To remove something by wiping it away; to clean a surface by wiping.",
+    "examples": [
+      "She wiped off the coffee stain from the carpet.",
+      "He wiped off the dust from the bookshelf before the guests arrived."
+    ],
+    "expressions": [
+      "wipe off the dust",
+      "wipe off the stain",
+      "wipe off the marks",
+      "wipe off the surface",
+      "wipe off the board"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "wrapper": {
+    "term": "wrapper",
+    "translation": "embrulho",
+    "definition": "A covering or container used to wrap something, often for protection, presentation, or packaging.",
+    "examples": [
+      "She carefully slid the chocolate wrapper over the gift before placing it in the box.",
+      "The wrapper of the new phone is made from recyclable materials."
+    ],
+    "expressions": [
+      "wrapper around",
+      "wrapper for",
+      "wrapper class",
+      "wrapper function",
+      "wrapper code"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "writing": {
+    "term": "writing",
+    "translation": "escrita",
+    "definition": "The activity of creating written text, or the process of composing words on a surface.",
+    "examples": [
+      "She spent the afternoon on her writing, drafting a new chapter for her novel.",
+      "His writing has improved over the years, becoming clearer and more engaging."
+    ],
+    "expressions": [
+      "writing a letter",
+      "writing a report",
+      "writing a novel",
+      "writing down",
+      "writing off",
+      "writing in a journal",
+      "writing a check",
+      "writing a speech",
+      "writing a book",
+      "writing a poem"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  }
+}
