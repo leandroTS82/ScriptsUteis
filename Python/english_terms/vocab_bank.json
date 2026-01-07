@@ -679,8 +679,8 @@
       "command and control"
     ],
     "stats": {
-      "seen": 0,
-      "correct": 0,
+      "seen": 1,
+      "correct": 1,
       "wrong": 0
     }
   },
@@ -3465,6 +3465,47 @@
       "writing a speech",
       "writing a book",
       "writing a poem"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "high": {
+    "term": "high",
+    "translation": "alto",
+    "definition": "Of great height or elevation; tall; elevated; also used to describe something that is high in price, intensity, or level.",
+    "examples": [
+      "The skyscraper is very high.",
+      "Her spirits were high after the good news."
+    ],
+    "expressions": [
+      "high as a kite",
+      "high on the mountain",
+      "high on the road",
+      "high on the shelf"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "mouth": {
+    "term": "mouth",
+    "translation": "boca",
+    "definition": "The opening in the face of a human or animal, through which food is taken and sound is made.",
+    "examples": [
+      "She closed her mouth to keep the secret.",
+      "He opened his mouth wide to shout."
+    ],
+    "expressions": [
+      "mouth of a river",
+      "open mouth",
+      "mouth to mouth contact",
+      "mouth to mouth communication",
+      "mouth to mouth"
     ],
     "stats": {
       "seen": 0,
