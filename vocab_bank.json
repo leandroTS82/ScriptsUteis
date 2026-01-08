@@ -1,0 +1,331 @@
+{
+  "60 seconds": {
+    "term": "60 seconds",
+    "translation": "60 segundos",
+    "definition": "A unit of time equal to one minute, consisting of 60 seconds.",
+    "examples": [
+      "The race will start in 60 seconds, so get ready.",
+      "I only have 60 seconds to finish this task before the deadline."
+    ],
+    "expressions": [
+      "in 60 seconds",
+      "give me 60 seconds",
+      "the 60-second rule",
+      "60-second countdown",
+      "60 seconds of silence",
+      "60 seconds to spare"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "a few more": {
+    "term": "a few more",
+    "translation": "mais alguns",
+    "definition": "A small additional number of items or people, usually used to indicate a slight increase beyond what has already been mentioned.",
+    "examples": [
+      "I have finished the first three chapters; I need a few more to complete the book.",
+      "She asked for a few more minutes to finish her presentation."
+    ],
+    "expressions": [
+      "a few more minutes",
+      "a few more hours",
+      "a few more people",
+      "a few more days",
+      "a few more chances"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "acting": {
+    "term": "acting",
+    "translation": "atuar",
+    "definition": "The process of performing in a play, film, or other performance, or the behavior and conduct of a person in a particular situation.",
+    "examples": [
+      "She studied acting at the drama school to prepare for her first role.",
+      "His acting was so convincing that the audience believed he was really there."
+    ],
+    "expressions": [
+      "acting out",
+      "acting like",
+      "acting on",
+      "acting as",
+      "acting up",
+      "acting out of character",
+      "acting on impulse",
+      "acting as a spokesperson",
+      "acting on a whim"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "actions": {
+    "term": "actions",
+    "translation": "ações",
+    "definition": "The process of doing something; a deed or step taken to achieve a result.",
+    "examples": [
+      "The company's actions to reduce waste were praised by environmental groups.",
+      "His actions during the crisis saved many lives."
+    ],
+    "expressions": [
+      "take action",
+      "in action",
+      "action plan",
+      "action potential",
+      "action figure"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "adjectives": {
+    "term": "adjectives",
+    "translation": "adjetivos",
+    "definition": "Adjectives are words that describe or modify nouns, providing more detail about their characteristics, qualities, or states.",
+    "examples": [
+      "The **blue** sky looked **clear** and **vast**.",
+      "She wore a **shiny** silver necklace that made her look **elegant**."
+    ],
+    "expressions": [
+      "a big mistake",
+      "a small step",
+      "a bright future",
+      "a quick decision",
+      "a long journey"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "advanced": {
+    "term": "advanced",
+    "translation": "avançado",
+    "definition": "Having or showing a high level of skill, knowledge, or development; beyond basic or intermediate.",
+    "examples": [
+      "She has an advanced understanding of quantum mechanics.",
+      "The advanced course will cover topics that require prior experience."
+    ],
+    "expressions": [
+      "advanced level",
+      "advanced stage",
+      "advanced technology",
+      "advanced learner",
+      "advanced features"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "alphabet": {
+    "term": "alphabet",
+    "translation": "alfabeto",
+    "definition": "The set of letters or symbols in a fixed order used to write a language.",
+    "examples": [
+      "Children learn to read by first memorizing the alphabet.",
+      "The teacher asked the students to write their names in alphabetical order."
+    ],
+    "expressions": [
+      "learn the alphabet",
+      "alphabet soup",
+      "alphabetical order",
+      "alphabetical list"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "although": {
+    "term": "although",
+    "translation": "embora",
+    "definition": "A conjunction used to introduce a contrast or concession, indicating that something is true despite another fact.",
+    "examples": [
+      "Although it was raining, we went for a walk.",
+      "She passed the exam, although she had not studied."
+    ],
+    "expressions": [
+      "although",
+      "even though",
+      "though",
+      "though it is",
+      "although..."
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "anything": {
+    "term": "anything",
+    "translation": "qualquer coisa",
+    "definition": "Used to refer to any object, event, or situation, without specifying which one.",
+    "examples": [
+      "I can’t find anything in my bag.",
+      "She didn’t say anything about the meeting."
+    ],
+    "expressions": [
+      "anything else",
+      "anything else?",
+      "anything else to add?",
+      "anything else to say",
+      "anything else to do",
+      "anything else to know",
+      "anything else to ask",
+      "anything else to do with it",
+      "anything else to consider",
+      "anything else to mention"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "anywhere": {
+    "term": "anywhere",
+    "translation": "qualquer lugar",
+    "definition": "Anywhere refers to any place or location, without specifying a particular one.",
+    "examples": [
+      "You can find a good coffee shop anywhere in the city.",
+      "She said she would be ready to move anywhere for the right opportunity."
+    ],
+    "expressions": [
+      "anywhere else",
+      "anywhere in the world",
+      "anywhere you look",
+      "anywhere you go"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "apostrophe": {
+    "term": "apostrophe",
+    "translation": "apóstrofo",
+    "definition": "A punctuation mark (') used to indicate omitted letters in contractions or possessive forms, or to denote a quotation mark in some contexts.",
+    "examples": [
+      "She said, \"I can't go,\" and then left the room.",
+      "The cat's whiskers were twitching as it stared at the mouse."
+    ],
+    "expressions": [
+      "can't",
+      "won't",
+      "it's",
+      "they're",
+      "don't",
+      "I'm"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "as as": {
+    "term": "as as",
+    "translation": "como",
+    "definition": "Used in comparative sentences to link two adjectives or adverbs, meaning 'just as' or 'equally'. It forms the structure 'as ... as'.",
+    "examples": [
+      "She is as tall as her brother.",
+      "He runs as fast as a cheetah."
+    ],
+    "expressions": [
+      "as ... as",
+      "as ... as ever",
+      "as ... as possible",
+      "as ... as it gets",
+      "as ... as you can"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "attend to": {
+    "term": "attend to",
+    "translation": "atender a",
+    "definition": "To give attention or care to something or someone; to deal with a matter or task.",
+    "examples": [
+      "She will attend to the customer's complaints before the manager arrives.",
+      "The nurse will attend to the patient during the night shift."
+    ],
+    "expressions": [
+      "attend to a matter",
+      "attend to a request",
+      "attend to a problem",
+      "attend to the details",
+      "attend to the needs"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "basics": {
+    "term": "basics",
+    "translation": "básicos",
+    "definition": "The fundamental principles or essential elements of a subject or activity.",
+    "examples": [
+      "She taught us the basics of algebra before moving on to more advanced topics.",
+      "Before you start cooking, learn the basics of knife handling to stay safe."
+    ],
+    "expressions": [
+      "get the basics right",
+      "back to the basics",
+      "the basics of life",
+      "learn the basics first",
+      "master the basics"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  },
+  "beach": {
+    "term": "beach",
+    "translation": "praia",
+    "definition": "A sandy or pebbly shore by a body of water, especially the sea, where people can relax, swim, and play.",
+    "examples": [
+      "We spent the whole afternoon sunbathing on the beach.",
+      "The waves crashed against the rocks near the beach, creating a soothing sound."
+    ],
+    "expressions": [
+      "beach day",
+      "beach house",
+      "beach volleyball",
+      "beachcomber",
+      "beachfront",
+      "beach bum",
+      "beach walk",
+      "beach towel",
+      "beach umbrella",
+      "beach party"
+    ],
+    "stats": {
+      "seen": 0,
+      "correct": 0,
+      "wrong": 0
+    }
+  }
+}
