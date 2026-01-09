@@ -21,7 +21,7 @@ GROQ_KEYS = [
 key_cycle = cycle(GROQ_KEYS)
 
 # =====================================================================
-# GROQ CALL (ROTATION)
+# GROQ CALL (ROTATION + JSON HARD PARSE)
 # =====================================================================
 
 def call_groq(prompt: str) -> dict:
@@ -43,25 +43,24 @@ def call_groq(prompt: str) -> dict:
 
     raw = res.json()["choices"][0]["message"]["content"]
     json_text = raw[raw.find("{"): raw.rfind("}") + 1]
-    obj = json.loads(json_text)
-    obj["_key_used"] = key_info["name"]
 
-    return obj
+    data = json.loads(json_text)
+    data["_key_used"] = key_info["name"]
+    return data
 
 # =====================================================================
-# PROMPT BUILDER — PREVIEW ENRIQUECIDO
+# PROMPT BUILDER — FORMATO RÍGIDO
 # =====================================================================
 
 def build_prompt(term: str, context: str) -> str:
     return f"""
-You are a senior English teacher helping a Brazilian student build ACTIVE English.
+You are a senior English teacher with a young, charismatic, and friendly teaching style,
+helping a Brazilian student build ACTIVE English.
 
-Goal:
-- Connect logical and emotional journey
-- Describe an environment step by step in Portuguese
-- Transfer that idea into natural English
-- Improve the sentence gradually
-- Teach grammar by usage, not theory
+Teaching style:
+- Modern mentor, not classroom teacher
+- Clear, human, practical
+- Make the student think: "Ah, agora fez sentido"
 
 Context so far:
 {context}
@@ -69,12 +68,30 @@ Context so far:
 Input concept or sentence:
 "{term}"
 
-Return ONLY JSON with the structure below.
+Return ONLY valid JSON.
+DO NOT repeat fields.
+DO NOT change field names.
+DO NOT add extra text.
 
 {{
   "corrected_sentence": "...",
+
+  "translation_pt": "...",
+  "meaning_pt": "...",
+
   "why_this_is_better": "...",
+  "explanation_pt": "...",
+
+  "daily_usage_examples_en": [
+    "...",
+    "...",
+    "..."
+  ],
+
+  "formal_version_developer": "...",
+
   "grammar_focus": "...",
+
   "timeline": {{
     "present_positive": "...",
     "present_negative": "...",
@@ -85,19 +102,13 @@ Return ONLY JSON with the structure below.
     "question_positive": "...",
     "question_negative": "..."
   }},
+
   "learning_tip_pt": "Dica curta em português para melhorar o inglês ativo"
 }}
-
-Rules:
-- Be clear, simple, natural
-- Use descriptive language
-- Keep emotional + logical coherence
-- Do NOT explain grammar academically
-- Teach by contrast and examples
 """
 
 # =====================================================================
-# PREVIEW RENDER
+# PREVIEW RENDER — FORMATO FIXO
 # =====================================================================
 
 def render_preview(data: dict):
@@ -110,15 +121,42 @@ def render_preview(data: dict):
     print("Frase melhorada:")
     print(f"  {data['corrected_sentence']}\n")
 
+    print("Tradução:")
+    print(f"  {data['translation_pt']}\n")
+
+    print("Significado:")
+    print(f"  {data['meaning_pt']}\n")
+
     print("Por que ficou melhor:")
     print(f"  {data['why_this_is_better']}\n")
+
+    print("Explicação clara (PT):")
+    print(f"  {data['explanation_pt']}\n")
+
+    print("Como os americanos usam no dia a dia:")
+    for ex in data["daily_usage_examples_en"]:
+        print(f"  - {ex}")
+
+    print("\nVersão estritamente formal (developer):")
+    print(f"  {data['formal_version_developer']}\n")
 
     print("Foco gramatical prático:")
     print(f"  {data['grammar_focus']}\n")
 
     print("Linha do tempo verbal:\n")
-    for k, v in data["timeline"].items():
-        print(f"  {k.replace('_', ' ').title():<25}: {v}")
+    timeline_order = [
+        "present_positive",
+        "present_negative",
+        "past_positive",
+        "past_negative",
+        "future_positive",
+        "future_negative",
+        "question_positive",
+        "question_negative"
+    ]
+
+    for key in timeline_order:
+        print(f"  {key.replace('_', ' ').title():<25}: {data['timeline'][key]}")
 
     print("\nDica para inglês ativo:")
     print(f"  {data['learning_tip_pt']}")
@@ -155,7 +193,6 @@ def main():
         ).strip().lower()
 
         if action == "s":
-            print("Encerrando.")
             break
         elif action == "m":
             continue
