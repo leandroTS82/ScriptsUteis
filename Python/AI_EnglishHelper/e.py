@@ -2,6 +2,7 @@ import sys
 import json
 import requests
 from itertools import cycle
+import os
 
 # =====================================================================
 # GROQ CONFIG — MULTI KEY (INLINE)
@@ -19,6 +20,13 @@ GROQ_KEYS = [
 ]
 
 key_cycle = cycle(GROQ_KEYS)
+
+# =====================================================================
+# UTILS
+# =====================================================================
+
+def clear_console():
+    os.system("cls" if os.name == "nt" else "clear")
 
 # =====================================================================
 # GROQ CALL (ROTATION + JSON HARD PARSE)
@@ -198,6 +206,7 @@ def main():
             continue
         else:
             current_term = action
+            clear_console()   # <<< ÚNICA MELHORIA APLICADA
 
 if __name__ == "__main__":
     main()
