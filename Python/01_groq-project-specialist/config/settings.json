@@ -1,0 +1,32 @@
+{
+  "groq": {
+    "url": "https://api.groq.com/openai/v1/chat/completions",
+    "model": "openai/gpt-oss-20b",
+    "temperature": 0.2,
+    "timeout": 60
+  },
+
+  "review_rules": {
+    "architecture_patterns": ["CQRS", "Domain Events", "Clean Architecture"],
+    "anti_patterns": [
+      "ServiceCollectionExtensions duplicado",
+      "Program.cs excessivamente grande",
+      "Handlers com múltiplas responsabilidades"
+    ],
+    "focus": [
+      "responsabilidade única",
+      "acoplamento",
+      "coesão",
+      "clareza de fluxo"
+    ]
+  },
+
+  "reader": {
+    "extensions": [".cs", ".json", ".md"],
+    "ignore_folders": ["bin", "obj", ".git"]
+  },
+
+  "chunking": {
+    "max_chars": 12000
+  }
+}
