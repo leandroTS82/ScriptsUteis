@@ -5,7 +5,7 @@ from engine.chunker import Chunker
 from engine.prompt_builder import PromptBuilder
 from engine.reviewer import Reviewer
 
-PROJECT_PATH = r"C:\Dev\GitLTS\ScriptsUteis\PowerShell\ScanDir\files\EtiquetaNutricional.txt"
+PROJECT_PATH = r"C:\Dev\Outros\LTS\EtiquetaNutricional"
 
 with open("config/settings.json") as f:
     settings = json.load(f)
