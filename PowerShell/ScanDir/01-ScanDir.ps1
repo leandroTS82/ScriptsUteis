@@ -1,8 +1,8 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\Dev\Outros\LTS\EtiquetaNutricional"
-$outputFile    = ".\files\EtiquetaNutricional.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\english_extractor"
+$outputFile    = ".\files\english_extractor.txt"
 
 $selectedFiles = @()    
 $onlyFolders   = @()
