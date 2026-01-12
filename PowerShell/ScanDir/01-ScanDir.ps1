@@ -1,8 +1,8 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini\NewHistory"
-$outputFile    = ".\files\newHistory\NewHistory.txt"
+$rootDirectory = "C:\Dev\Outros\LTS\EtiquetaNutricional"
+$outputFile    = ".\files\EtiquetaNutricional.txt"
 
 $selectedFiles = @()    
 $onlyFolders   = @()
