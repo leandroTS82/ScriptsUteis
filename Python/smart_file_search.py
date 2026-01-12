@@ -36,13 +36,13 @@ IGNORED_EXTENSIONS = [
 ]
 
 SUPPORTED_EXTENSIONS = [
-    ".pdf"
+    ".pdf",".json"
 ]
 
 CASE_INSENSITIVE = True
 
 # 🧩 SNIPPET
-SNIPPET_CHARS = 30  # caracteres antes e depois do termo
+SNIPPET_CHARS = 50  # caracteres antes e depois do termo
 
 # 🎨 CORES (ANSI)
 COLOR_HIGHLIGHT = "\033[93m"  # amarelo

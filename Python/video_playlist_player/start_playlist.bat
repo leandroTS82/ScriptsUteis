@@ -54,7 +54,7 @@ REM Ativar tempo máximo total de execução
 set ENABLE_MAX_PLAYTIME=true
 
 REM Tempo máximo TOTAL em MINUTOS
-set MAX_TOTAL_PLAYTIME_MINUTES=15
+set MAX_TOTAL_PLAYTIME_MINUTES=10
 
 
 REM =====================================================================
