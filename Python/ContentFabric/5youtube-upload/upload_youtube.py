@@ -53,7 +53,7 @@ from google.auth.transport.requests import Request
 # ======================================================
 
 GROQ_API_KEY = open(
-    r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\groq_api_key.txt",
     encoding="utf-8"
 ).read().strip()
 
@@ -69,8 +69,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.force-ssl"
 ]
 
-TOKEN_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\youtube_token.json"
-CLIENT_SECRET_FILE = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\youtube-upload-desktop.json"
+TOKEN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\youtube_token.json"
+CLIENT_SECRET_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\youtube-upload-desktop.json"
 
 # ======================================================
 # CORES

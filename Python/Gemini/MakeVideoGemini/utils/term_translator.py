@@ -2,7 +2,7 @@ from groq import Groq
 import os
 import logging
 
-GROQ_KEY_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt"
+GROQ_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\groq_api_key.txt"
 
 _client = None
 _cache = {}

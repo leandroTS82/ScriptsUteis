@@ -80,7 +80,7 @@ LIMIT = get_limit()
 # ==================================================
 
 API_KEY = open(
-    r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\google-gemini-key.txt",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\google-gemini-key.txt",
     encoding="utf-8"
 ).read().strip()
 

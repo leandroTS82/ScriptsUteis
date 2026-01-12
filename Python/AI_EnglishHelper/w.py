@@ -28,7 +28,7 @@ from datetime import datetime
 # ================================================================================  
 
 GROQ_API_KEY = ""
-GROQ_KEY_PATH = r"..\secret_tokens_keys\groq_api_key.txt"
+GROQ_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\groq_api_key.txt"
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"

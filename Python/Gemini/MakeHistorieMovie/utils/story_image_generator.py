@@ -12,8 +12,8 @@ from groq import Groq
 # ============================================
 
 DEFAULT_IMAGE = r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\assets\default_bg.png"
-GEMINI_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
-GROQ_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
+GEMINI_KEY = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt"
+GROQ_KEY = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
 
 TARGET_W = 1344
 TARGET_H = 768

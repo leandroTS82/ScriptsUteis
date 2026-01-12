@@ -19,7 +19,7 @@ from typing import Dict, List
 TERMS_SOURCE_JSON = "./english_terms.json"
 VOCAB_DB_FILE = "./vocab_bank.json"
 
-GROQ_KEYS_JSON = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\GroqKeys.json"
+GROQ_KEYS_JSON = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\GroqKeys.json"
 
 GROQ_MODEL = "openai/gpt-oss-20b"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"

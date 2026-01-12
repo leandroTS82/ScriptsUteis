@@ -24,11 +24,11 @@ import google.generativeai as genai
 # ================================================================================
 # CONFIG
 # ================================================================================
-GROQ_KEY_FILE = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
+GROQ_KEY_FILE = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
-GEMINI_KEY_PATH = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
+GEMINI_KEY_PATH = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt"
 GEMINI_MODEL = "gemini-2.0-flash"
 
 LEVELS_FILE = "./levels.json"

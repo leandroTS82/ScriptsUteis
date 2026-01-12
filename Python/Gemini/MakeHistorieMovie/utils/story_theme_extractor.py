@@ -3,8 +3,8 @@ from groq import Groq
 import os
 from google import genai
 
-GEMINI_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
-GROQ_KEY = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\groq_api_key.txt"
+GEMINI_KEY = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt"
+GROQ_KEY = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
 
 def _load_key(path):
     if not os.path.exists(path):

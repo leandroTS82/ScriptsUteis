@@ -10,6 +10,8 @@
 =====================================================================
 
 python transcriptV2.py "C:\\MeusVideos"
+python transcriptV2.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
+
 """
 
 import whisper

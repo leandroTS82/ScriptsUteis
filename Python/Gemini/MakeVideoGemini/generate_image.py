@@ -4,7 +4,7 @@ from google import genai
 from google.genai import types
 from PIL import Image
 
-API_KEY_PATH = "C:\\dev\\scripts\\ScriptsUteis\\Python\\secret_tokens_keys\\google-gemini-key.txt"
+API_KEY_PATH = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt"
 
 DEFAULT_IMAGE_ASPECTS = {
     "landscape": "16:9",

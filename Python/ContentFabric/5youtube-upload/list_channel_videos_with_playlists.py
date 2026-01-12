@@ -21,8 +21,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.readonly"
 ]
 
-TOKEN_PATH = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\youtube_token.json"
-CLIENT_SECRET_FILE = r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\youtube-upload-desktop.json"
+TOKEN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\youtube_token.json"
+CLIENT_SECRET_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\youtube-upload-desktop.json"
 
 # ======================================================
 # OUTPUT

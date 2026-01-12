@@ -15,7 +15,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 FONTS_DIR = os.path.join(BASE_DIR, "fonts")
 
 GROQ_API_KEY = open(
-    r"C:\dev\scripts\ScriptsUteis\Python\secret_tokens_keys\groq_api_key.txt",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\groq_api_key.txt",
     "r",
     encoding="utf-8"
 ).read().strip()
