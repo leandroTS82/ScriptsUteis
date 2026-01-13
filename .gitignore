@@ -59,3 +59,4 @@ pdf_json_dump/
 Python/files/
 Python/01_groq-project-specialist/engine/__pycache__/
 Python/english_extractor/__pycache__/
+Python/__pycache__/

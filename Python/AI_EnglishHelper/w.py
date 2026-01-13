@@ -21,21 +21,28 @@ import os
 import sys
 import json
 import requests
+import random
+from itertools import cycle
 from datetime import datetime
 
-# ================================================================================  
-# CONFIG - CHAVE DIRETA (MANTIDA)
-# ================================================================================  
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+from groq_keys_loader import GROQ_KEYS
+# ================================================================================
+# CONFIG - GROQ MULTI KEYS (ROTATION / RANDOM)
+# ================================================================================
 
-GROQ_API_KEY = ""
-GROQ_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\groq_api_key.txt"
+
+
+_groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
-# ================================================================================  
+# ================================================================================
 # PATHS
-# ================================================================================  
+# ================================================================================
 
 current_date = datetime.now().strftime('%Y%m%d')
 
@@ -45,17 +52,17 @@ FULL_RESULTS = "./TranscriptResults.json"
 EXTERNAL_TERMS_PATH = r"C:\dev\scripts\ScriptsUteis\Python\english_terms\english_terms.json"
 
 LEVELS = {
-    "A1": {"enabled": False,  "size": "short"},
+    "A1": {"enabled": False, "size": "short"},
     "A2": {"enabled": True,  "size": "medium"},
     "B1": {"enabled": True,  "size": "medium"},
-    "B2": {"enabled": True, "size": "medium"},
+    "B2": {"enabled": True,  "size": "medium"},
     "C1": {"enabled": False, "size": "long"},
     "C2": {"enabled": False, "size": "long"}
 }
 
-# ================================================================================  
+# ================================================================================
 # HELPERS
-# ================================================================================  
+# ================================================================================
 
 def sanitize_sentence(s: str) -> str:
     return s.rstrip(".!? ").strip()
@@ -89,55 +96,60 @@ def load_external_terms() -> list[str]:
         if not isinstance(terms, list):
             return []
 
-        cleaned = {
+        return sorted({
             t.strip().lower()
             for t in terms
             if isinstance(t, str) and t.strip()
-        }
-
-        return sorted(cleaned)
+        })
 
     except Exception:
         return []
 
 
-def load_groq_key() -> str:
-    if isinstance(GROQ_API_KEY, str) and GROQ_API_KEY.strip().startswith("gsk_"):
-        return GROQ_API_KEY.strip()
+def get_next_groq_key() -> str:
+    for _ in range(len(GROQ_KEYS)):
+        key = next(_groq_key_cycle).get("key", "").strip()
+        if key.startswith("gsk_"):
+            return key
+    raise RuntimeError("❌ Nenhuma GROQ API Key válida encontrada.")
 
-    if os.path.exists(GROQ_KEY_PATH):
-        with open(GROQ_KEY_PATH, "r", encoding="utf-8") as f:
-            key = f.read().strip()
-            if key.startswith("gsk_"):
-                return key
 
-    raise RuntimeError(
-        "❌ GROQ API Key inválida.\n"
-        "Defina GROQ_API_KEY diretamente ou informe uma chave válida em:\n"
-        f"{GROQ_KEY_PATH}"
-    )
-    
-    
 def groq(prompt: str) -> str:
-    headers = {
-        "Authorization": f"Bearer {load_groq_key()}",
-        "Content-Type": "application/json"
-    }
+    last_error = None
 
-    payload = {
-        "model": GROQ_MODEL,
-        "messages": [{"role": "user", "content": prompt}]
-    }
+    for _ in range(len(GROQ_KEYS)):
+        api_key = get_next_groq_key()
 
-    res = requests.post(GROQ_URL, json=payload, headers=headers, timeout=20)
-    res.raise_for_status()
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
 
-    raw = res.json()["choices"][0]["message"]["content"]
-    return raw[raw.find("{"): raw.rfind("}") + 1]
+        payload = {
+            "model": GROQ_MODEL,
+            "messages": [{"role": "user", "content": prompt}]
+        }
 
-# ================================================================================  
+        try:
+            res = requests.post(GROQ_URL, json=payload, headers=headers, timeout=20)
+
+            if res.status_code == 429:
+                last_error = "Rate limit"
+                continue
+
+            res.raise_for_status()
+            raw = res.json()["choices"][0]["message"]["content"]
+            return raw[raw.find("{"): raw.rfind("}") + 1]
+
+        except requests.RequestException as e:
+            last_error = str(e)
+            continue
+
+    raise RuntimeError(f"❌ Todas as GROQ keys falharam. Último erro: {last_error}")
+
+# ================================================================================
 # 1 — CORRIGIR + TRADUZIR (INALTERADO)
-# ================================================================================  
+# ================================================================================
 
 def correct_and_translate(text: str):
     prompt = f"""
@@ -202,9 +214,9 @@ Input: "{text}"
     obj["model_used"] = "Groq"
     return obj
 
-# ================================================================================  
-# 2 — DEFINIÇÃO + EXEMPLOS (AJUSTE CONTROLADO)
-# ================================================================================  
+# ================================================================================
+# 2 — DEFINIÇÃO + EXEMPLOS (INALTERADO)
+# ================================================================================
 
 def generate_wordbank(term: str, external_terms: list[str]):
     example_specs = [
@@ -224,7 +236,6 @@ def generate_wordbank(term: str, external_terms: list[str]):
 Use approximately 60% of the following terms across the examples.
 Do NOT force all of them into a single sentence.
 Use them naturally and spread them across different examples.
-
 Available terms:
 {", ".join(external_terms)}
 """
@@ -248,16 +259,14 @@ Rules:
 - Sound natural for each CEFR level.
 
 {terms_block}
-
-Return ONLY JSON.
 """
     obj = json.loads(groq(prompt))
     obj["model_used"] = "Groq"
     return obj
 
-# ================================================================================  
-# ARQUIVOS (INALTERADO)
-# ================================================================================  
+# ================================================================================
+# FILES / PREVIEW / PROCESSAMENTO / MAIN (INALTERADOS)
+# ================================================================================
 
 def save_create_later(item: str):
     item = sanitize_sentence(item)
@@ -353,10 +362,6 @@ def process_term(original: str):
 
     save_transcript_result(corrected, wb["definition_pt"], wb["examples"])
 
-# ================================================================================  
-# MAIN (INALTERADO)
-# ================================================================================  
-
 def main():
     while True:
         if len(sys.argv) < 2:
@@ -396,3 +401,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
