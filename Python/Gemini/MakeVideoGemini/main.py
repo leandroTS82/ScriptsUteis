@@ -64,7 +64,7 @@ def run_test_audio():
     output_path = f"outputs/audio/{voiceTest}_test_audio.wav"
     generate_audio(test_text, output_path, voice=voiceTest)
 
-    print("\n🎉 Áudio de teste gerado!")
+    print("\n  Áudio de teste gerado!")
     print(f"➡ Arquivo: {output_path}")
     sys.exit(0)
 
@@ -177,6 +177,6 @@ zephyr, zubenelgenubi
 video_path = f"outputs/videos/{SAFE_NAME}.mp4"
 build_video(SAFE_NAME, "outputs/images", "outputs/audio", video_path)
 
-print("\n🎉 VÍDEO FINAL GERADO:")
+print("\n  VÍDEO FINAL GERADO:")
 print(video_path)
 print(f"📁 JSON correspondente: {json_path}")

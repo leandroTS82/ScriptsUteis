@@ -167,7 +167,7 @@ def search(term: str) -> List[Dict]:
 # =========================================================
 
 def main():
-    print("\n🔎 Smart File Search\n")
+    print("\n Smart File Search\n")
 
     while True:
         term = input("Digite o termo de busca (ou 's' para sair): ").strip()
@@ -186,7 +186,7 @@ def main():
             print(f"📄 {r['file']}")
             print(f"📍 \"{r['path']}\"")
             print(f"⭐ Relevância: {r['score']}")
-            print(f"🔎 Ocorrências: {', '.join(r['where'])}")
+            print(f" Ocorrências: {', '.join(r['where'])}")
 
             if r["snippets"]:
                 print("🧩 Trechos encontrados:")

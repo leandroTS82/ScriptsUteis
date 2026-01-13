@@ -80,7 +80,7 @@ def load_known_terms(
     if verbose:
         print("\n🧠 [KnownTerms] Vocabulário carregado (inteligente)")
         print(f"🎯 Palavra-alvo: {target_word}")
-        print(f"📊 Total analisado: {len(raw_terms)}")
+        print(f" Total analisado: {len(raw_terms)}")
         print(f"🔢 Selecionados: {final_size}")
         print("📝 Termos priorizados:")
         for t in selected:

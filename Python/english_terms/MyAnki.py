@@ -211,7 +211,7 @@ def render_header(db: Dict[str, dict]):
     def pct(x):
         return (x / seen * 100) if seen else 0.0
 
-    print(f"{CYAN}📊 PROGRESSO GERAL{RESET}")
+    print(f"{CYAN} PROGRESSO GERAL{RESET}")
     print(f"{GREEN}✅ Acertos : {progress_bar(pct(correct))} {pct(correct):6.2f}%{RESET}")
     print(f"{RED}❌ Erros   : {progress_bar(pct(wrong))} {pct(wrong):6.2f}%{RESET}")
     print(f"{YELLOW}🤷 Não sei : {progress_bar(pct(dont))} {pct(dont):6.2f}%{RESET}")
@@ -249,7 +249,7 @@ def play(db: Dict[str, dict]):
         ]
 
         if not eligible_terms:
-            print(f"{GREEN}🎉 Todos os termos atingiram {MAX_CORRECT_PER_TERM} acertos!{RESET}")
+            print(f"{GREEN}  Todos os termos atingiram {MAX_CORRECT_PER_TERM} acertos!{RESET}")
             return
 
         random.shuffle(eligible_terms)

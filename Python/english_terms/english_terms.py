@@ -141,7 +141,7 @@ def main():
     total_files = 0
     processed_files = 0
 
-    print("🔎 Iniciando varredura de paths...\n")
+    print(" Iniciando varredura de paths...\n")
 
     for root_path in ROOT_PATHS:
         print(f"📂 Path base: {root_path}")
@@ -179,7 +179,7 @@ def main():
 
     print("\n✅ Extração concluída — APENAS INGLÊS")
     print(f"📄 Arquivo gerado: {OUTPUT_FILE}")
-    print(f"📊 Arquivos processados: {processed_files}")
+    print(f" Arquivos processados: {processed_files}")
     print(f"🔤 Total de termos únicos finais: {len(normalized_final_terms)}")
 
 

@@ -130,7 +130,7 @@ video, audio {{
 
 <body>
 
-<h1>🔎 "{term}"</h1>
+<h1> "{term}"</h1>
 <small>{len(results)} resultado(s) • {datetime.now():%d/%m/%Y %H:%M:%S}</small>
 
 <div class="grid">

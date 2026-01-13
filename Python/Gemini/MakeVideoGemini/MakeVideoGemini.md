@@ -256,7 +256,7 @@ print("📌 GERANDO VÍDEO FINAL...")
 video_path = f"outputs/videos/{WORD}.mp4"
 build_video(WORD, "outputs/images", "outputs/audio", video_path)
 
-print("🎉 VÍDEO GERADO:", video_path)
+print("  VÍDEO GERADO:", video_path)
 ```
 
 ---
@@ -306,7 +306,7 @@ MakeVideoGemini/
 📌 GERANDO VÍDEO FINAL...
 Moviepy - Building video awesome.mp4
 Moviepy - Writing video awesome.mp4
-🎉 VÍDEO GERADO: outputs/videos/awesome.mp4
+  VÍDEO GERADO: outputs/videos/awesome.mp4
 ```
 
 ---

@@ -262,7 +262,7 @@ def main():
     ]
 
     for idx, filename in enumerate(json_files, start=1):
-        print(f"\n🔎 [{idx}/{len(json_files)}] Processando: {filename}")
+        print(f"\n [{idx}/{len(json_files)}] Processando: {filename}")
         try:
             full_path = os.path.join(json_dir, filename)
             comp_json = load_json(full_path)
@@ -300,7 +300,7 @@ def main():
 
         time.sleep(args.sleep_between)
 
-    print("\n🎉 Processo concluído com resiliência total.")
+    print("\n Processo concluído com resiliência total.")
 
 if __name__ == "__main__":
     main()

@@ -144,7 +144,7 @@ def main():
         prompt = f"Ultra-detailed high quality illustration of: {word_en}"
         generate_image(prompt, filename)
 
-    print("\n🎉 Todas as imagens foram geradas com sucesso!\n")
+    print("\n Todas as imagens foram geradas com sucesso!\n")
 
 
 if __name__ == "__main__":

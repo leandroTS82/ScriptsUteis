@@ -686,7 +686,7 @@ def main():
     # Remover temporários
     cleanup_temp(base_dir)
 
-    print("🎉 Processo finalizado com sucesso!")
+    print("  Processo finalizado com sucesso!")
 
 
 # ============================================================

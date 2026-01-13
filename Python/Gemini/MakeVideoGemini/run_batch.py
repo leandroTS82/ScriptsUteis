@@ -11,7 +11,7 @@ MAIN_SCRIPT = "main.py"
 
 def load_pending():
     if not os.path.exists(BATCH_FILE):
-        print("❌ O arquivo CreateLater.json não existe!")
+        print(" O arquivo CreateLater.json não existe!")
         return []
 
     with open(BATCH_FILE, "r", encoding="utf-8") as f:
@@ -26,8 +26,8 @@ def save_pending(pending_list):
 
 
 def run_word(word):
-    print("\n🟦 Iniciando geração para:", word)
-    print("⏳ Aguarde...\n")
+    print("\n Iniciando geração para:", word)
+    print(" Aguarde...\n")
 
     env = os.environ.copy()
     env["PYTHONUTF8"] = "1"
@@ -44,26 +44,26 @@ def run_word(word):
         return True
 
     except Exception as e:
-        print("❌ ERRO AO EXECUTAR main.py:")
+        print(" ERRO AO EXECUTAR main.py:")
         print(e)
         return False
 
 
 def run_batch():
     start_time = datetime.now()
-    print("\n🕒 Início do processamento:", start_time.strftime("%H:%M:%S"))
-    print("\n🟦 Lendo CreateLater.json...\n")
+    print("\n Início do processamento:", start_time.strftime("%H:%M:%S"))
+    print("\n Lendo CreateLater.json...\n")
 
     pending = load_pending()
     if not pending:
-        print("🎉 Nada para processar!")
+        print(" Nada para processar!")
 
         end = datetime.now()
-        print("\n🕒 Fim:", end.strftime("%H:%M:%S"))
+        print("\n Fim:", end.strftime("%H:%M:%S"))
         print("⏱ Duração:", str(end - start_time).split(".")[0])
         return
 
-    print(f"🟦 {len(pending)} itens encontrados na lista.\n")
+    print(f" {len(pending)} itens encontrados na lista.\n")
 
     still_pending = []
 
@@ -71,9 +71,9 @@ def run_batch():
         ok = run_word(word)
 
         if ok:
-            print(f"\n🟦 ✔ Concluído: {word}")
+            print(f"\n ✔ Concluído: {word}")
         else:
-            print(f"\n⛔ Erro ao processar: {word}")
+            print(f"\n Erro ao processar: {word}")
             still_pending.append(word)
             print("➡ Item mantido no pending.\n")
             break
@@ -81,13 +81,13 @@ def run_batch():
     save_pending(still_pending)
 
     if not still_pending:
-        print("\n🟦 🎉 Todos os vídeos foram gerados com sucesso!")
+        print("\n Todos os vídeos foram gerados com sucesso!")
     else:
-        print("\n🟦 ⚠ PROCESSAMENTO INTERROMPIDO — ainda restam itens no pending!")
+        print("\n ⚠ PROCESSAMENTO INTERROMPIDO — ainda restam itens no pending!")
 
     # Hora de término
     end = datetime.now()
-    print("\n🕒 Fim do processamento:", end.strftime("%H:%M:%S"))
+    print("\n Fim do processamento:", end.strftime("%H:%M:%S"))
 
     # Duração total formatada
     duration = str(end - start_time).split(".")[0]

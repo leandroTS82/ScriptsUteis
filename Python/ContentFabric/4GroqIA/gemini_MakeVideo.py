@@ -184,7 +184,7 @@ def main():
     print(f"📄 JSONs encontrados: {len(files)}")
 
     for idx, file in enumerate(files, 1):
-        print(f"\n🔎 [{idx}/{len(files)}] {file}")
+        print(f"\n [{idx}/{len(files)}] {file}")
         path = os.path.join(json_dir, file)
         data = load_json(path)
 
@@ -218,7 +218,7 @@ def main():
             print(f"❌ ERRO: {str(e)}")
             print("   JSON ORIGINAL PRESERVADO")
 
-    print("\n🎉 Execução concluída")
+    print("\n Execução concluída")
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-"""
+r"""
 =====================================================================
  Script: transcriptV2.py
  Author: Leandro
@@ -25,6 +25,27 @@ from datetime import datetime, timedelta
 from moviepy.editor import VideoFileClip, VideoClip, AudioFileClip
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
+
+# ===============================================================
+# ENGLISH CONTENT EXTRACTOR (OPTIONAL / DECOUPLED)
+# ===============================================================
+
+EXTRACTOR_PATH = r"C:\dev\scripts\ScriptsUteis\Python\english_extractor"
+
+if EXTRACTOR_PATH not in sys.path:
+    sys.path.append(EXTRACTOR_PATH)
+
+try:
+    from run_extract import run as extract_english_content
+    EXTRACTOR_ENABLED = True
+except Exception:
+    EXTRACTOR_ENABLED = False
+
+# Máximo de caracteres por envio ao extrator (rate-limit safe)
+EXTRACTOR_CHUNK_SIZE = 1200
+
+# Delay entre chamadas ao Groq (segundos)
+EXTRACTOR_SLEEP = 1.2
 
 # ===============================================================
 # CONFIG
@@ -182,6 +203,32 @@ def build_video_with_dual_subs(video_path, audio_path, seg_en, seg_pt, output_pa
     audio.close()
 
 # ===============================================================
+# ENGLISH EXTRACTOR HELPERS (CHUNKED)
+# ===============================================================
+
+def chunk_text(text: str, max_size: int):
+    chunks = []
+    current = ""
+
+    for sentence in text.split(". "):
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+
+        candidate = f"{current} {sentence}".strip()
+        if len(candidate) <= max_size:
+            current = candidate
+        else:
+            if current:
+                chunks.append(current)
+            current = sentence
+
+    if current:
+        chunks.append(current)
+
+    return chunks
+
+# ===============================================================
 # PROCESS VIDEO
 # ===============================================================
 
@@ -208,6 +255,38 @@ def process_video(video_file):
 
     print("🌍 Traduzindo EN...")
     en = model.transcribe(audio_path, task="translate")
+
+    # ===========================================================
+    # ENGLISH CONTENT EXTRACTION (CHUNKED / NON-BLOCKING)
+    # ===========================================================
+
+    if EXTRACTOR_ENABLED:
+        try:
+            full_en_text = " ".join(
+                s.get("text", "").strip()
+                for s in en.get("segments", [])
+                if s.get("text")
+            )
+
+            chunks = chunk_text(full_en_text, EXTRACTOR_CHUNK_SIZE)
+
+            for idx, chunk in enumerate(chunks, start=1):
+                if len(chunk.strip()) < 50:
+                    continue  # evita envio de lixo muito curto
+
+                try:
+                    print(
+                        f"📤 Sending extractor chunk {idx}/{len(chunks)} "
+                        f"({len(chunk)} chars)"
+                    )
+                    extract_english_content(chunk)
+                    print(f"✅ Extractor chunk {idx} processed")
+                    time.sleep(EXTRACTOR_SLEEP)
+                except Exception as e:
+                    print(f"⚠️ Extractor chunk {idx} skipped: {e}")
+
+        except Exception as e:
+            print(f"⚠️ English extractor skipped: {e}")
 
     print("🎬 Renderizando vídeo...")
     build_video_with_dual_subs(
@@ -249,7 +328,7 @@ if __name__ == "__main__":
     elapsed = timedelta(seconds=time.time() - start)
 
     print("\n===================================================")
-    print("🎉 transcriptV2 concluído com sucesso")
+    print("  transcriptV2 concluído com sucesso")
     print(f"Início: {start_dt.strftime('%d/%m/%Y %H:%M:%S')}")
     print(f"Tempo total: {elapsed}")
     print("===================================================")

@@ -125,7 +125,7 @@ def move_uploaded_files():
     if not moved_any:
         print("ℹ Nenhum arquivo uploaded_ encontrado para mover.")
     else:
-        print("\n🎉 Todos os arquivos relacionados foram movidos com sucesso!")
+        print("\n  Todos os arquivos relacionados foram movidos com sucesso!")
 
 
 # -------------------------------------------------------------
@@ -137,7 +137,7 @@ def run_batch():
 
     pending = load_pending()
     if not pending:
-        print("🎉 Nada para processar!")
+        print("  Nada para processar!")
         return
 
     print(f"🟦 {len(pending)} itens encontrados na lista.\n")
@@ -190,7 +190,7 @@ def run_batch():
         print("❌ Erro ao enviar para o YouTube.")
         return
 
-    print("\n🎉🎉 PUBLICAÇÃO COMPLETA COM SUCESSO! 🎉🎉")
+    print("\n   PUBLICAÇÃO COMPLETA COM SUCESSO!   ")
 
     # -------------------------------------------------------------
     # ETAPA 4 — mover arquivos publicados

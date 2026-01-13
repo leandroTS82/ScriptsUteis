@@ -234,7 +234,7 @@ def main():
 
     materialize(mapping, video_index)
 
-    log("\n🎉 PROCESSO FINALIZADO COM SUCESSO")
+    log("\n  PROCESSO FINALIZADO COM SUCESSO")
 
 if __name__ == "__main__":
     main()

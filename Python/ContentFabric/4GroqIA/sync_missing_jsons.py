@@ -107,7 +107,7 @@ def main():
                 print("   ⚠ JSON já existia no destino. Ignorado.")
 
         else:
-            print("   🔎 JSON não encontrado em _movies_processed.")
+            print("    JSON não encontrado em _movies_processed.")
 
         # Reavalia: ainda está sem JSON? → mover vídeo
         if video_stem not in get_files_by_stem(VIDEOS_DIR, {JSON_EXTENSION}):
@@ -121,7 +121,7 @@ def main():
                 print("   📦 Vídeo movido para VideosSemJson.")
 
     print("\n==================================================")
-    print(f"📊 Total de vídeos analisados: {len(videos)}")
+    print(f" Total de vídeos analisados: {len(videos)}")
     print(f"📄 Vídeos inicialmente sem JSON: {missing_count}")
     print(f"♻ JSONs recuperados: {recovered_count}")
     print(f"📦 Vídeos movidos para VideosSemJson: {moved_videos_count}")

@@ -1,0 +1,658 @@
+{
+  "source": "english_extractor",
+  "generated_at": "2026-01-12T17:48:31.189488",
+  "items": {
+    "terms": [
+      {
+        "text": "dev",
+        "meaning": "ambiente de desenvolvimento",
+        "usage": "Used to refer to the development environment where code is tested before release.",
+        "example": "The new feature is still in dev and hasn't been deployed to production."
+      },
+      {
+        "text": "Prod",
+        "meaning": "ambiente de produção",
+        "usage": "Refers to the production environment where the application runs for end users.",
+        "example": "After thorough testing, the code was moved from dev to Prod."
+      },
+      {
+        "text": "stage",
+        "meaning": "ambiente de staging",
+        "usage": "A staging environment that mimics production for final testing.",
+        "example": "We deploy to stage first to ensure everything works before going to Prod."
+      },
+      {
+        "text": "SharePick",
+        "meaning": "SharePick (nome de ferramenta ou processo interno)",
+        "usage": "A tool or process used to manage deployments.",
+        "example": "All deployments must go through SharePick to maintain consistency."
+      },
+      {
+        "text": "feature flags",
+        "meaning": "flags de recursos (feature flags)",
+        "usage": "Mechanism to enable or disable features without redeploying code.",
+        "example": "We use feature flags to roll out new functionality gradually."
+      },
+      {
+        "text": "deploy",
+        "meaning": "implantar, publicar",
+        "usage": "The act of moving code from development to a live environment.",
+        "example": "We need to deploy the latest build to the staging server."
+      },
+      {
+        "text": "mapped",
+        "meaning": "mapeado",
+        "usage": "Configured to correspond to a specific environment or setting.",
+        "example": "Each feature flag must be mapped to the correct environment."
+      },
+      {
+        "text": "disabled",
+        "meaning": "desativado",
+        "usage": "Turned off or not active.",
+        "example": "The new feature is disabled until we finish testing."
+      },
+      {
+        "text": "upload",
+        "meaning": "carregar",
+        "usage": "Transfer code or files to a server.",
+        "example": "You can upload the build to the staging server."
+      },
+      {
+        "text": "pattern",
+        "meaning": "padrão",
+        "usage": "A repeated design or method.",
+        "example": "I created a pattern to separate brand deployments."
+      },
+      {
+        "text": "brand",
+        "meaning": "marca",
+        "usage": "A specific brand or product line.",
+        "example": "We need to deploy updates for each brand separately."
+      },
+      {
+        "text": "analyze",
+        "meaning": "analisar",
+        "usage": "Examine data or code to understand it.",
+        "example": "We need to analyze the logs to find the issue."
+      },
+      {
+        "text": "customers",
+        "meaning": "clientes",
+        "usage": "The end users or clients of the product.",
+        "example": "We must ensure the new feature works for all customers."
+      },
+      {
+        "text": "series",
+        "meaning": "série",
+        "usage": "A sequence of related items.",
+        "example": "We had a series of deployments that failed."
+      },
+      {
+        "text": "work",
+        "meaning": "trabalho",
+        "usage": "Effort or tasks required.",
+        "example": "This will require a lot of work to fix."
+      },
+      {
+        "text": "go up",
+        "meaning": "subir (para produção)",
+        "usage": "To move code to a higher environment.",
+        "example": "The build will go up to production after staging."
+      },
+      {
+        "term": "base information",
+        "meaning": "informação básica",
+        "usage": "basic data or facts that provide a starting point for further work",
+        "example": "We will send the base information first before the detailed report.",
+        "text": "base information"
+      },
+      {
+        "term": "full-depth report",
+        "meaning": "relatório completo e detalhado",
+        "usage": "a comprehensive report covering all aspects of a subject",
+        "example": "After the audit, we will produce a full-depth report.",
+        "text": "full-depth report"
+      },
+      {
+        "term": "metadata",
+        "meaning": "metadados",
+        "usage": "data that describes other data, such as author or creation date",
+        "example": "The metadata of the file includes author and creation date.",
+        "text": "metadata"
+      },
+      {
+        "term": "authentication process",
+        "meaning": "processo de autenticação",
+        "usage": "the steps taken to verify a user’s identity",
+        "example": "The authentication process requires a username and password.",
+        "text": "authentication process"
+      },
+      {
+        "term": "Zorro connection",
+        "meaning": "conexão Zorro",
+        "usage": "a specific integration or link named Zorro",
+        "example": "We are currently analyzing the Zorro connection for data sync.",
+        "text": "Zorro connection"
+      },
+      {
+        "term": "reducible code",
+        "meaning": "código reduzível",
+        "usage": "code that can be simplified or refactored",
+        "example": "Bruno wrote a reducible code that can be refactored.",
+        "text": "reducible code"
+      },
+      {
+        "term": "service",
+        "meaning": "serviço",
+        "usage": "a function or application that performs a specific task",
+        "example": "The new service will handle user authentication.",
+        "text": "service"
+      },
+      {
+        "term": "base integration",
+        "meaning": "integração básica",
+        "usage": "a foundational integration that can be reused across projects",
+        "example": "The base integration allows us to connect to multiple APIs.",
+        "text": "base integration"
+      },
+      {
+        "term": "TeFTPortal",
+        "meaning": "TeFTPortal (portal de dados)",
+        "usage": "a portal where data is uploaded and managed",
+        "example": "We need to upload the data into the TeFTPortal.",
+        "text": "TeFTPortal"
+      },
+      {
+        "text": "update",
+        "meaning": "atualização",
+        "usage": "A new piece of information or a change in a situation.",
+        "example": "Please send me an update on the project status."
+      },
+      {
+        "text": "today",
+        "meaning": "hoje",
+        "usage": "Refers to the current day.",
+        "example": "I have a meeting today."
+      },
+      {
+        "text": "guys",
+        "meaning": "pessoal, galera",
+        "usage": "Informal address to a group of people.",
+        "example": "Hey guys, can you help me with this?"
+      },
+      {
+        "term": "easier",
+        "meaning": "mais fácil",
+        "usage": "comparative adjective used to describe something that requires less effort or is simpler",
+        "example": "This method is easier than the previous one.",
+        "text": "easier"
+      },
+      {
+        "term": "simple",
+        "meaning": "simples",
+        "usage": "adjective describing something uncomplicated or straightforward",
+        "example": "The instructions are simple to follow.",
+        "text": "simple"
+      },
+      {
+        "term": "migrate",
+        "meaning": "migrar",
+        "usage": "verb meaning to move data or users from one system or platform to another",
+        "example": "We need to migrate the data to the new server.",
+        "text": "migrate"
+      },
+      {
+        "term": "accounts",
+        "meaning": "contas",
+        "usage": "plural noun referring to user or financial accounts",
+        "example": "We have to update all user accounts.",
+        "text": "accounts"
+      },
+      {
+        "term": "ready",
+        "meaning": "pronto",
+        "usage": "adjective meaning prepared or available to start",
+        "example": "I'm ready to start the project.",
+        "text": "ready"
+      },
+      {
+        "term": "working",
+        "meaning": "trabalhando",
+        "usage": "present participle of work, used to describe ongoing activity",
+        "example": "She is working on the report.",
+        "text": "working"
+      },
+      {
+        "term": "schedule",
+        "meaning": "agendar",
+        "usage": "verb meaning to plan a time for an event or activity",
+        "example": "Let's schedule a meeting for tomorrow.",
+        "text": "schedule"
+      },
+      {
+        "term": "meeting",
+        "meaning": "reunião",
+        "usage": "noun referring to a gathering of people for discussion or decision-making",
+        "example": "We have a meeting at 10 a.m.",
+        "text": "meeting"
+      }
+    ],
+    "chunks": [
+      {
+        "text": "in dev",
+        "meaning": "em desenvolvimento",
+        "usage": "Used to indicate that something is in the development environment.",
+        "example": "The new feature is still in dev before moving to production."
+      },
+      {
+        "text": "in Prod",
+        "meaning": "em produção",
+        "usage": "Used to indicate that something is in the production environment.",
+        "example": "The bug was fixed in Prod."
+      },
+      {
+        "text": "upload to the stage",
+        "meaning": "carregar para o ambiente de staging",
+        "usage": "Transfer code to the staging environment.",
+        "example": "You should upload to the stage before testing."
+      },
+      {
+        "text": "stage goes to Prod",
+        "meaning": "o ambiente de staging vai para produção",
+        "usage": "Describes the flow from staging to production.",
+        "example": "Once approved, the stage goes to Prod."
+      },
+      {
+        "text": "bit annoying",
+        "meaning": "um pouco irritante",
+        "usage": "Describes something mildly frustrating.",
+        "example": "It’s a bit annoying that we have to do this again."
+      },
+      {
+        "text": "analyze a lot",
+        "meaning": "analisar muito",
+        "usage": "To examine many aspects.",
+        "example": "We need to analyze a lot of logs."
+      },
+      {
+        "text": "just so you know",
+        "meaning": "para você saber",
+        "usage": "Used to give additional information.",
+        "example": "Just so you know, the deadline is next Friday."
+      },
+      {
+        "text": "doesn't show or change",
+        "meaning": "não mostra nem muda",
+        "usage": "Describes a feature that is disabled.",
+        "example": "When disabled, it doesn't show or change anything."
+      },
+      {
+        "text": "goes up disabled",
+        "meaning": "subir desativado",
+        "usage": "Deploying a feature that is disabled.",
+        "example": "The build goes up disabled so we can test it."
+      },
+      {
+        "text": "in theory",
+        "meaning": "em teoria",
+        "usage": "Used to express a theoretical possibility.",
+        "example": "In theory, this should work."
+      },
+      {
+        "text": "much more work",
+        "meaning": "muito mais trabalho",
+        "usage": "Describes a larger amount of effort.",
+        "example": "It would be much more work to do this manually."
+      },
+      {
+        "text": "doesn't go up",
+        "meaning": "não sobe",
+        "usage": "Describes something that is not deployed.",
+        "example": "The feature doesn't go up until it's ready."
+      },
+      {
+        "text": "goes up",
+        "meaning": "subir",
+        "usage": "To be deployed to a higher environment.",
+        "example": "The code goes up to production after testing."
+      },
+      {
+        "text": "doesn't show",
+        "meaning": "não mostra",
+        "usage": "Describes a feature that is hidden.",
+        "example": "When disabled, it doesn't show."
+      },
+      {
+        "text": "doesn't change",
+        "meaning": "não muda",
+        "usage": "Describes a feature that remains unchanged.",
+        "example": "The setting doesn't change when the flag is off."
+      },
+      {
+        "chunk": "just to see how it goes",
+        "meaning": "apenas para ver como funciona",
+        "usage": "used when testing or experimenting with a new approach",
+        "example": "We will just send the base information to see how it goes.",
+        "text": "just to see how it goes"
+      },
+      {
+        "chunk": "avoid spending time",
+        "meaning": "evitar gastar tempo",
+        "usage": "to save time by skipping unnecessary steps",
+        "example": "We should avoid spending time on unnecessary details.",
+        "text": "avoid spending time"
+      },
+      {
+        "chunk": "deal with the challenge",
+        "meaning": "lidar com o desafio",
+        "usage": "to address or manage a difficult problem",
+        "example": "We need to deal with the challenge of authentication.",
+        "text": "deal with the challenge"
+      },
+      {
+        "chunk": "things like that",
+        "meaning": "coisas assim",
+        "usage": "refers to similar items or examples",
+        "example": "We need to handle things like that in the report.",
+        "text": "things like that"
+      },
+      {
+        "chunk": "not ready to be shared",
+        "meaning": "não pronto para ser compartilhado",
+        "usage": "not yet suitable for distribution or collaboration",
+        "example": "The code is not ready to be shared.",
+        "text": "not ready to be shared"
+      },
+      {
+        "chunk": "not so good ways",
+        "meaning": "maneiras não tão boas",
+        "usage": "suboptimal methods or approaches",
+        "example": "Copying and pasting is not so good ways to share code.",
+        "text": "not so good ways"
+      },
+      {
+        "chunk": "copying and pasting",
+        "meaning": "copiar e colar",
+        "usage": "the act of duplicating content from one place to another",
+        "example": "Copying and pasting the water is not recommended.",
+        "text": "copying and pasting"
+      },
+      {
+        "chunk": "reuse",
+        "meaning": "reutilizar",
+        "usage": "to use something again in a new context",
+        "example": "We can reuse the base integration.",
+        "text": "reuse"
+      },
+      {
+        "chunk": "reach out to",
+        "meaning": "entrar em contato com",
+        "usage": "to contact someone for help or information",
+        "example": "You can reach out to Bruno for clarification.",
+        "text": "reach out to"
+      },
+      {
+        "chunk": "send a message",
+        "meaning": "enviar uma mensagem",
+        "usage": "to communicate via a written or electronic note",
+        "example": "Send a message to Bruno to ask questions.",
+        "text": "send a message"
+      },
+      {
+        "chunk": "clarify any doubts",
+        "meaning": "esclarecer quaisquer dúvidas",
+        "usage": "to clear up confusion or questions",
+        "example": "Feel free to clarify any doubts you have.",
+        "text": "clarify any doubts"
+      },
+      {
+        "chunk": "start with getting the data",
+        "meaning": "começar com a obtenção dos dados",
+        "usage": "to begin by acquiring the necessary information",
+        "example": "We will start with getting the data into the portal.",
+        "text": "start with getting the data"
+      },
+      {
+        "chunk": "what's going on",
+        "meaning": "o que está acontecendo",
+        "usage": "asking for the current situation or status",
+        "example": "What's going on with the project?",
+        "text": "what's going on"
+      },
+      {
+        "text": "Thank you for the update",
+        "meaning": "Obrigado pela atualização",
+        "usage": "Used to express gratitude for new information.",
+        "example": "Thank you for the update on the schedule."
+      },
+      {
+        "text": "Good luck today",
+        "meaning": "Boa sorte hoje",
+        "usage": "Wishing someone success for the current day.",
+        "example": "Good luck today on your exam!"
+      },
+      {
+        "text": "Thank you guys",
+        "meaning": "Obrigado, pessoal",
+        "usage": "Informal thanks to a group.",
+        "example": "Thank you guys for coming to the party."
+      },
+      {
+        "chunk": "make it more simple",
+        "meaning": "tornar mais simples",
+        "usage": "phrase used to suggest simplifying a process or explanation",
+        "example": "We can make it more simple by removing unnecessary steps.",
+        "text": "make it more simple"
+      },
+      {
+        "chunk": "don't need to migrate",
+        "meaning": "não precisamos migrar",
+        "usage": "phrase indicating that an action is unnecessary",
+        "example": "We don't need to migrate all the accounts at once.",
+        "text": "don't need to migrate"
+      },
+      {
+        "chunk": "in one go",
+        "meaning": "de uma vez",
+        "usage": "idiomatic phrase meaning all at once or without interruption",
+        "example": "You can download the file in one go.",
+        "text": "in one go"
+      },
+      {
+        "chunk": "let you know",
+        "meaning": "informar",
+        "usage": "phrase meaning to notify or update someone",
+        "example": "I'll let you know when the meeting is confirmed.",
+        "text": "let you know"
+      },
+      {
+        "chunk": "schedule a meeting",
+        "meaning": "agendar uma reunião",
+        "usage": "phrase meaning to arrange a time for a meeting",
+        "example": "We should schedule a meeting to discuss the project.",
+        "text": "schedule a meeting"
+      },
+      {
+        "chunk": "when I'm ready",
+        "meaning": "quando eu estiver pronto",
+        "usage": "phrase indicating readiness before taking an action",
+        "example": "I'll call you when I'm ready.",
+        "text": "when I'm ready"
+      },
+      {
+        "chunk": "start working on it",
+        "meaning": "começar a trabalhar nisso",
+        "usage": "phrase meaning to begin working on a task or project",
+        "example": "I'll start working on it tomorrow.",
+        "text": "start working on it"
+      },
+      {
+        "chunk": "this week",
+        "meaning": "esta semana",
+        "usage": "time phrase indicating the current week",
+        "example": "We will finish the task this week.",
+        "text": "this week"
+      }
+    ],
+    "expressions": [
+      {
+        "text": "cool",
+        "meaning": "legal, bacana",
+        "usage": "Used to express approval or excitement.",
+        "example": "Cool, that feature works!"
+      },
+      {
+        "text": "in theory",
+        "meaning": "em teoria",
+        "usage": "Used to indicate a theoretical possibility.",
+        "example": "In theory, this should solve the problem."
+      },
+      {
+        "expression": "but first",
+        "meaning": "mas primeiro",
+        "usage": "used to introduce an initial step before proceeding",
+        "example": "But first, let's review the requirements.",
+        "text": "but first"
+      },
+      {
+        "expression": "maybe",
+        "meaning": "talvez",
+        "usage": "indicates uncertainty or possibility",
+        "example": "Maybe we should wait until next week.",
+        "text": "maybe"
+      },
+      {
+        "expression": "I was thinking",
+        "meaning": "eu estava pensando",
+        "usage": "to express a thought or suggestion",
+        "example": "I was thinking we could try a different approach.",
+        "text": "I was thinking"
+      },
+      {
+        "text": "Thank you",
+        "meaning": "Obrigado",
+        "usage": "Standard expression of gratitude.",
+        "example": "Thank you for your help."
+      },
+      {
+        "text": "Good luck",
+        "meaning": "Boa sorte",
+        "usage": "Wishing someone success.",
+        "example": "Good luck on your interview."
+      },
+      {
+        "text": "Bye-bye",
+        "meaning": "Tchauzinho",
+        "usage": "Informal farewell.",
+        "example": "Bye-bye, see you tomorrow!"
+      },
+      {
+        "text": "Thanks",
+        "meaning": "Obrigado",
+        "usage": "Informal thanks.",
+        "example": "Thanks for the coffee."
+      },
+      {
+        "text": "Bye",
+        "meaning": "Tchau",
+        "usage": "Simple farewell.",
+        "example": "Bye, I'll call you later."
+      },
+      {
+        "expression": "yeah",
+        "meaning": "sim",
+        "usage": "informal affirmation or agreement",
+        "example": "Yeah, I agree with you.",
+        "text": "yeah"
+      },
+      {
+        "expression": "okay",
+        "meaning": "ok",
+        "usage": "interjection indicating agreement or acceptance",
+        "example": "Okay, let's proceed.",
+        "text": "okay"
+      }
+    ],
+    "discourse_markers": [
+      {
+        "text": "So",
+        "meaning": "Então",
+        "usage": "Used to connect ideas or indicate a consequence.",
+        "example": "So, we need to fix this issue."
+      },
+      {
+        "text": "Well",
+        "meaning": "Bem",
+        "usage": "Used to introduce a statement or pause.",
+        "example": "Well, I think we should try again."
+      },
+      {
+        "text": "But",
+        "meaning": "Mas",
+        "usage": "Used to contrast or introduce a counterpoint.",
+        "example": "I want to go, but I have to work."
+      },
+      {
+        "text": "Just so you know",
+        "meaning": "para você saber",
+        "usage": "Used to give additional information.",
+        "example": "Just so you know, the meeting is at 3 PM."
+      },
+      {
+        "text": "The thing is",
+        "meaning": "O fato é",
+        "usage": "Used to introduce an important point.",
+        "example": "The thing is, we don't have enough time."
+      },
+      {
+        "discourse_marker": "and",
+        "meaning": "e",
+        "usage": "connects items or clauses in a list",
+        "example": "We need to finish the report and submit it.",
+        "text": "and"
+      },
+      {
+        "discourse_marker": "then",
+        "meaning": "então",
+        "usage": "indicates the next step in a sequence",
+        "example": "First we gather data, then we analyze it.",
+        "text": "then"
+      },
+      {
+        "discourse_marker": "just",
+        "meaning": "apenas",
+        "usage": "emphasizes minimal action or quantity",
+        "example": "Just send the file.",
+        "text": "just"
+      },
+      {
+        "discourse_marker": "okay",
+        "meaning": "ok",
+        "usage": "acknowledges or confirms understanding",
+        "example": "Okay, I will do that.",
+        "text": "okay"
+      },
+      {
+        "discourse_marker": "yeah",
+        "meaning": "sim",
+        "usage": "expresses agreement or affirmation",
+        "example": "Yeah, that sounds good.",
+        "text": "yeah"
+      },
+      {
+        "discourse_marker": "right",
+        "meaning": "certo",
+        "usage": "confirms or agrees with a statement",
+        "example": "Right, let's proceed.",
+        "text": "right"
+      },
+      {
+        "marker": "and then",
+        "meaning": "e então",
+        "usage": "connective used to indicate a sequence of events or actions",
+        "example": "We finished the first part, and then we moved on.",
+        "text": "and then"
+      }
+    ]
+  }
+}

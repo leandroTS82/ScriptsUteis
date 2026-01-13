@@ -196,7 +196,7 @@ def main():
         total_moved += moved
 
     print("===================================================")
-    print("📊 Resumo final geral:")
+    print(" Resumo final geral:")
     print(f"   JSONs analisados: {total_analyzed}")
     print(f"   Conteúdos prontos movidos: {total_moved}")
     print("===================================================")

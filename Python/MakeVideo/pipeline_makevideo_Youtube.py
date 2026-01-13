@@ -74,7 +74,7 @@ def main():
     )
 
     print("\n=======================================================")
-    print("🎉 PIPELINE FINALIZADO COM SUCESSO!")
+    print("  PIPELINE FINALIZADO COM SUCESSO!")
     print("=======================================================\n")
 
 

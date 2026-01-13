@@ -21,7 +21,7 @@
 # 🎯 PASTA FIXA DOS JSONS
 $FolderPath = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
 
-Write-Host "🔎 Lendo JSONs da pasta fixa: $FolderPath" -ForegroundColor Cyan
+Write-Host " Lendo JSONs da pasta fixa: $FolderPath" -ForegroundColor Cyan
 
 # Verifica se a pasta existe
 if (-not (Test-Path $FolderPath)) {
@@ -85,4 +85,4 @@ foreach ($file in $jsonFiles) {
     }
 }
 
-Write-Host "`n🎉 Processo concluído com sucesso!" -ForegroundColor Magenta
+Write-Host "`n  Processo concluído com sucesso!" -ForegroundColor Magenta

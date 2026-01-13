@@ -329,7 +329,7 @@ def main():
         print(f"✅ Vídeo completo gerado: {final_path}")
 
     cleanup_temp(base_dir)
-    print("🎉 Processo finalizado com sucesso!")
+    print("  Processo finalizado com sucesso!")
 
 
 if __name__ == "__main__":

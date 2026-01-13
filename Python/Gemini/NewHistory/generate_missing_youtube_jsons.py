@@ -123,7 +123,7 @@ for slug, processed in state.items():
 # FINAL
 # ==================================================
 
-print("\n📊 RESUMO FINAL")
+print("\n RESUMO FINAL")
 print(f"✔ JSONs criados: {generated}")
 print(f"⏭ Ignorados / existentes / erro: {skipped}")
-print("\n🎉 Script finalizado.")
+print("\n  Script finalizado.")

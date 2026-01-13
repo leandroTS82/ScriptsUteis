@@ -227,4 +227,4 @@ for idx, story in enumerate(stories, start=1):
 
         print("➡ Continuando para a próxima história...")
 
-print("\n🎉 NewHistory finalizado com sucesso")
+print("\n  NewHistory finalizado com sucesso")

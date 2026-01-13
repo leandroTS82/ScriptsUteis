@@ -123,4 +123,4 @@ for index, story_obj in enumerate(stories, start=1):
 
     print(f"✔ Conteúdo final gerado:\n   - Áudio → {AUDIO_DEST}\n   - Vídeo → {VIDEO_DEST}")
 
-print("\n🎉 Todas as histórias foram processadas com sucesso!")
+print("\n  Todas as histórias foram processadas com sucesso!")

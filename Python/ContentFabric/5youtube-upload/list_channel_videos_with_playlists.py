@@ -161,7 +161,7 @@ def build_video_playlist_map(youtube, playlists):
 def main():
     youtube = get_authenticated_service()
 
-    print("🔎 Obtendo playlist de uploads do canal...")
+    print(" Obtendo playlist de uploads do canal...")
     uploads_playlist_id = get_uploads_playlist_id(youtube)
 
     print("📼 Listando vídeos do canal...")
