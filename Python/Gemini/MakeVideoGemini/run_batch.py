@@ -60,7 +60,7 @@ def run_batch():
 
         end = datetime.now()
         print("\n Fim:", end.strftime("%H:%M:%S"))
-        print("⏱ Duração:", str(end - start_time).split(".")[0])
+        print("Duração:", str(end - start_time).split(".")[0])
         return
 
     print(f" {len(pending)} itens encontrados na lista.\n")
@@ -71,11 +71,11 @@ def run_batch():
         ok = run_word(word)
 
         if ok:
-            print(f"\n ✔ Concluído: {word}")
+            print(f"\nConcluído: {word}")
         else:
             print(f"\n Erro ao processar: {word}")
             still_pending.append(word)
-            print("➡ Item mantido no pending.\n")
+            print("Item mantido no pending.\n")
             break
 
     save_pending(still_pending)
@@ -83,7 +83,7 @@ def run_batch():
     if not still_pending:
         print("\n Todos os vídeos foram gerados com sucesso!")
     else:
-        print("\n ⚠ PROCESSAMENTO INTERROMPIDO — ainda restam itens no pending!")
+        print("\n PROCESSAMENTO INTERROMPIDO — ainda restam itens no pending!")
 
     # Hora de término
     end = datetime.now()
@@ -91,7 +91,7 @@ def run_batch():
 
     # Duração total formatada
     duration = str(end - start_time).split(".")[0]
-    print("⏱ Tempo total:", duration)
+    print(" Tempo total:", duration)
 
 
 if __name__ == "__main__":

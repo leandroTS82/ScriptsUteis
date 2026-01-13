@@ -5,13 +5,15 @@ from itertools import cycle
 import os
 
 # =====================================================================
-# GROQ CONFIG — MULTI KEY (INLINE)
+# GROQ CONFIG — MULTI KEY (JSON FIRST, INLINE FALLBACK)
 # =====================================================================
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
-GROQ_KEYS = [
+GROQ_KEYS_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\GroqKeys.json"
+
+GROQ_KEYS_FALLBACK = [
     {"name": "lts@gmail.com", "key": "gsk_r***"},
     {"name": "ltsCV@gmail", "key": "gsk_4***"},
     {"name": "butterfly", "key": "gsk_n***"},
@@ -19,6 +21,24 @@ GROQ_KEYS = [
     {"name": "MelLuz201811@gmail.com", "key": "gsk_***i"}
 ]
 
+def load_groq_keys():
+    if os.path.exists(GROQ_KEYS_PATH):
+        try:
+            with open(GROQ_KEYS_PATH, "r", encoding="utf-8") as f:
+                keys = json.load(f)
+
+            if isinstance(keys, list) and all("key" in k for k in keys):
+                print(f"[GROQ] Keys carregadas do JSON ({len(keys)})")
+                return keys
+
+        except Exception as e:
+            print(f"[GROQ] Erro ao ler GroqKeys.json → usando fallback\n{e}")
+
+    print("[GROQ] Usando GROQ_KEYS inline (fallback)")
+    return GROQ_KEYS_FALLBACK
+
+
+GROQ_KEYS = load_groq_keys()
 key_cycle = cycle(GROQ_KEYS)
 
 # =====================================================================
@@ -206,7 +226,7 @@ def main():
             continue
         else:
             current_term = action
-            clear_console()   # <<< ÚNICA MELHORIA APLICADA
+            clear_console()
 
 if __name__ == "__main__":
     main()
