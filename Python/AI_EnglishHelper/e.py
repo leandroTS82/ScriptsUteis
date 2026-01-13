@@ -13,32 +13,12 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 
 GROQ_KEYS_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\GroqKeys.json"
 
-GROQ_KEYS_FALLBACK = [
-    {"name": "lts@gmail.com", "key": "gsk_r***"},
-    {"name": "ltsCV@gmail", "key": "gsk_4***"},
-    {"name": "butterfly", "key": "gsk_n***"},
-    {"name": "??", "key": "gsk_P***"},
-    {"name": "MelLuz201811@gmail.com", "key": "gsk_***i"}
-]
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in os.sys.path:
+    os.sys.path.insert(0, BASE_DIR)
 
-def load_groq_keys():
-    if os.path.exists(GROQ_KEYS_PATH):
-        try:
-            with open(GROQ_KEYS_PATH, "r", encoding="utf-8") as f:
-                keys = json.load(f)
+from groq_keys_loader import GROQ_KEYS
 
-            if isinstance(keys, list) and all("key" in k for k in keys):
-                print(f"[GROQ] Keys carregadas do JSON ({len(keys)})")
-                return keys
-
-        except Exception as e:
-            print(f"[GROQ] Erro ao ler GroqKeys.json → usando fallback\n{e}")
-
-    print("[GROQ] Usando GROQ_KEYS inline (fallback)")
-    return GROQ_KEYS_FALLBACK
-
-
-GROQ_KEYS = load_groq_keys()
 key_cycle = cycle(GROQ_KEYS)
 
 # =====================================================================
