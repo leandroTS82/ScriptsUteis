@@ -1,0 +1,18 @@
+{
+  "canonical_theme": {
+    "system": "You are an experienced English teacher and course designer.",
+    "user": "Normalize the following study topic into ONE canonical learning theme used in English teaching. Remove noise, merge similar concepts, and return ONLY the final theme name.\n\nTopic: {{theme}}"
+  },
+  "is_valid_topic": {
+    "system": "You are an English curriculum reviewer.",
+    "user": "Is the following topic a meaningful standalone English study topic (grammar, vocabulary, idioms, functions)? Answer ONLY true or false.\n\nTopic: {{theme}}"
+  },
+  "generate_intro": {
+    "system": "You are an English teacher helping Brazilian learners.",
+    "user": "Write a short, clear introduction (3–4 sentences) for an English study booklet about '{{theme}}'. Use simple English and a teaching tone."
+  },
+  "estimate_level": {
+    "system": "You are an English proficiency assessor.",
+    "user": "Estimate the CEFR level (A1, A2, B1, B2) most appropriate for studying the topic '{{theme}}'. Answer ONLY the level."
+  }
+}
