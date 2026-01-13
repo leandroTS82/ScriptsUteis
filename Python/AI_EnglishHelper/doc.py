@@ -4,6 +4,8 @@ import json
 import requests
 import datetime
 import shutil
+import random
+from itertools import cycle
 
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import (
@@ -14,28 +16,25 @@ from reportlab.lib import colors
 
 
 # =====================================================================================
-# CONFIGURAÇÕES DO SISTEMA
+# CONFIGURAÇÕES DO SISTEMA — MULTI GROQ KEYS (ROTATION / RANDOM)
 # =====================================================================================
 
-GROQ_API_KEY = ""
-GROQ_KEY_PATH = r"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in os.sys.path:
+    os.sys.path.insert(0, BASE_DIR)
 
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# NOVA LÓGICA: carregar chave automaticamente se GROQ_API_KEY estiver vazia
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-if not GROQ_API_KEY:
-    if not os.path.exists(GROQ_KEY_PATH):
-        raise FileNotFoundError(f"GROQ API key file not found: {GROQ_KEY_PATH}")
+from groq_keys_loader import GROQ_KEYS
 
-    with open(GROQ_KEY_PATH, "r", encoding="utf-8") as f:
-        GROQ_API_KEY = f.read().strip()
 
-    if not GROQ_API_KEY:
-        raise ValueError("GROQ API key file is empty.")
-# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+_groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
+
+
+# =====================================================================================
+# PATHS
+# =====================================================================================
 
 INPUT_JSON_PATH = "./TranscriptResults.json"
 JSON_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês/json"
@@ -43,6 +42,18 @@ PDF_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEM
 
 os.makedirs(JSON_OUTPUT_DIR, exist_ok=True)
 os.makedirs(PDF_OUTPUT_DIR, exist_ok=True)
+
+
+# =====================================================================================
+# GROQ KEY HANDLING (PADRÃO CONSOLIDADO)
+# =====================================================================================
+
+def get_next_groq_key() -> str:
+    for _ in range(len(GROQ_KEYS)):
+        key = next(_groq_key_cycle).get("key", "").strip()
+        if key.startswith("gsk_"):
+            return key
+    raise RuntimeError("❌ Nenhuma GROQ API Key válida encontrada.")
 
 
 # =====================================================================================
@@ -136,7 +147,7 @@ CATEGORY_JSON = json.dumps(CATEGORY_DATA, indent=2, ensure_ascii=False)
 
 
 # =====================================================================================
-# SYSTEM PROMPT – EXPLÍCITO SOBRE SEÇÕES E CATEGORIAS
+# SYSTEM PROMPT (INALTERADO)
 # =====================================================================================
 
 SYSTEM_PROMPT = f"""
@@ -256,51 +267,57 @@ Here is the raw vocabulary list. Transform it into the structured CALLAN JSON:
 
 
 # =====================================================================================
-# CHAMADA AO GROQ – PARSER ROBUSTO
+# CHAMADA AO GROQ — COM MULTI KEYS
 # =====================================================================================
 
 def call_groq_structured(content: str) -> dict:
     prompt = USER_PROMPT_TEMPLATE.format(json_content=content)
+    last_error = None
 
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
-        "Content-Type": "application/json"
-    }
+    for _ in range(len(GROQ_KEYS)):
+        api_key = get_next_groq_key()
 
-    body = {
-        "model": GROQ_MODEL,
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.2
-    }
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
 
-    response = requests.post(GROQ_URL, headers=headers, json=body)
+        body = {
+            "model": GROQ_MODEL,
+            "messages": [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 0.2
+        }
 
-    if response.status_code != 200:
-        raise Exception(f"Groq error {response.status_code}: {response.text}")
+        try:
+            response = requests.post(GROQ_URL, headers=headers, json=body)
 
-    json_str = response.json()["choices"][0]["message"]["content"].strip()
+            if response.status_code == 429:
+                last_error = "Rate limit"
+                continue
 
-    with open("last_groq_raw.txt", "w", encoding="utf-8") as f:
-        f.write(json_str)
+            if response.status_code != 200:
+                last_error = response.text
+                continue
 
-    # Tentativa direta
-    try:
-        return json.loads(json_str)
-    except Exception:
-        pass
+            json_str = response.json()["choices"][0]["message"]["content"].strip()
 
-    # Extração do primeiro { ... }
-    try:
-        cleaned = json_str[json_str.index("{"):json_str.rindex("}") + 1]
-        return json.loads(cleaned)
-    except Exception:
-        pass
+            with open("last_groq_raw.txt", "w", encoding="utf-8") as f:
+                f.write(json_str)
 
-    raise Exception("Groq returned invalid JSON. See last_groq_raw.txt.")
+            try:
+                return json.loads(json_str)
+            except Exception:
+                cleaned = json_str[json_str.index("{"):json_str.rindex("}") + 1]
+                return json.loads(cleaned)
 
+        except Exception as e:
+            last_error = str(e)
+            continue
+
+    raise RuntimeError(f"❌ Todas as GROQ keys falharam. Último erro: {last_error}")
 
 # =====================================================================================
 # NORMALIZAÇÃO DE SEÇÕES (CASO O GROQ AINDA FUJA DO FORMATO)
