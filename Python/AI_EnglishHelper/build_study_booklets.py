@@ -49,16 +49,21 @@ def normalize_theme(text: str) -> str:
     for k, v in ROOT_MAP.items():
         if k in t:
             return v
+
     words = re.findall(r"[a-z]+", t)
     words = [w for w in words if w not in STOPWORDS]
+
     return words[0] if words else "general"
 
 
 def extract_signals(pages):
     full_text = "\n".join(p["text"] for p in pages)
-
     title = pages[0]["text"].split("\n")[0]
-    vocab_matches = re.findall(r"\n([a-z][a-z\s]{2,})\n", full_text.lower())
+
+    vocab_matches = re.findall(
+        r"\n([a-z][a-z\s]{2,})\n",
+        full_text.lower()
+    )
 
     return {
         "title": title,
@@ -100,14 +105,14 @@ def split_sections(text):
 
 
 # =============================================================================
-# PDF STYLES
+# PDF STYLES (NOMES ÚNICOS — SEM CONFLITO)
 # =============================================================================
 
 def styles():
     s = getSampleStyleSheet()
 
     s.add(ParagraphStyle(
-        name="Title",
+        name="BookTitle",
         fontSize=26,
         alignment=1,
         textColor=colors.HexColor("#0B3C5D"),
@@ -115,7 +120,7 @@ def styles():
     ))
 
     s.add(ParagraphStyle(
-        name="Subtitle",
+        name="BookSubtitle",
         fontSize=15,
         alignment=1,
         spaceAfter=10,
@@ -123,7 +128,7 @@ def styles():
     ))
 
     s.add(ParagraphStyle(
-        name="Section",
+        name="BookSection",
         fontSize=20,
         textColor=colors.HexColor("#154360"),
         spaceBefore=18,
@@ -131,14 +136,14 @@ def styles():
     ))
 
     s.add(ParagraphStyle(
-        name="Body",
+        name="BookBody",
         fontSize=12,
         leading=18,
         spaceAfter=8
     ))
 
     s.add(ParagraphStyle(
-        name="Bullet",
+        name="BookBullet",
         fontSize=12,
         leading=16,
         leftIndent=16,
@@ -160,12 +165,12 @@ def generate_booklet(theme, items):
     filename = f"{date}_{theme}_study_booklet.pdf"
     path = os.path.join(OUTPUT_DIR, filename)
 
-    # CAPA
-    story.append(Paragraph(theme.upper(), s["Title"]))
-    story.append(Paragraph("English Study Booklet", s["Subtitle"]))
+    # ---------------- CAPA ----------------
+    story.append(Paragraph(theme.upper(), s["BookTitle"]))
+    story.append(Paragraph("English Study Booklet", s["BookSubtitle"]))
     story.append(Spacer(1, 20))
-    story.append(Paragraph(f"Author: {AUTHOR}", s["Body"]))
-    story.append(Paragraph(f"Generated on: {date}", s["Body"]))
+    story.append(Paragraph(f"Author: {AUTHOR}", s["BookBody"]))
+    story.append(Paragraph(f"Generated on: {date}", s["BookBody"]))
     story.append(PageBreak())
 
     aggregated = defaultdict(list)
@@ -175,15 +180,16 @@ def generate_booklet(theme, items):
             if v:
                 aggregated[k].append(v.strip())
 
-    # INTRO
-    story.append(Paragraph("Introduction", s["Section"]))
+    # ---------------- INTRO ----------------
+    story.append(Paragraph("Introduction", s["BookSection"]))
     story.append(Paragraph(
         f"This booklet consolidates essential concepts related to '{theme}', "
         "bringing vocabulary, grammar, patterns, and reading practice into a single, structured study material.",
-        s["Body"]
+        s["BookBody"]
     ))
     story.append(PageBreak())
 
+    # ---------------- SEÇÕES ----------------
     for sec, title in [
         ("vocabulary", "Vocabulary Core"),
         ("grammar", "Grammar & Usage"),
@@ -192,20 +198,26 @@ def generate_booklet(theme, items):
         ("study", "Study Guide")
     ]:
         if aggregated.get(sec):
-            story.append(Paragraph(title, s["Section"]))
+            story.append(Paragraph(title, s["BookSection"]))
             seen = set()
+
             for block in aggregated[sec]:
                 for line in block.splitlines():
                     l = line.strip()
+
                     if not l or l in seen:
                         continue
+
                     seen.add(l)
+
                     if l.startswith("-") or l.startswith("•"):
-                        story.append(Paragraph(l, s["Bullet"]))
+                        story.append(Paragraph(l, s["BookBullet"]))
                     else:
-                        story.append(Paragraph(l, s["Body"]))
+                        story.append(Paragraph(l, s["BookBody"]))
+
             story.append(PageBreak())
 
+    # ---------------- BUILD ----------------
     doc = SimpleDocTemplate(
         path,
         pagesize=letter,
@@ -214,8 +226,8 @@ def generate_booklet(theme, items):
         topMargin=60,
         bottomMargin=50
     )
-    doc.build(story)
 
+    doc.build(story)
     print(f"✔ Apostila gerada: {filename}")
 
 
