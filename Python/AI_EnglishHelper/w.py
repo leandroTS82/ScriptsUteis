@@ -233,9 +233,12 @@ def generate_wordbank(term: str, external_terms: list[str]):
     terms_block = ""
     if external_terms:
         terms_block = f"""
-Use approximately 60% of the following terms across the examples.
-Do NOT force all of them into a single sentence.
-Use them naturally and spread them across different examples.
+Use the following terms ONLY if they are semantically compatible with the meaning and communicative context of the sentence.
+
+- If a term does NOT fit naturally, DO NOT use it.
+- Never force unrelated words into an example.
+- Semantic coherence and natural English are MORE IMPORTANT than using the terms.
+- It is acceptable to use ZERO external terms if none fit naturally.
 Available terms:
 {", ".join(external_terms)}
 """
@@ -254,10 +257,21 @@ Rules:
 - ALL examples must be FULL English sentences.
 - ALL exemples, ALL phrase should make sense.
 - Every example MUST contain the phrase "{term}".
-- short → 4–8 words
+- short → 5–9 words, but MUST still form a complete, natural sentence or clause.
+    - Short examples should still convey a real communicative intention.
 - medium → 10–16 words
 - long → 18–28 words
 - Sound natural for each CEFR level.
+- Every example must be pragmatically and semantically natural.
+- Do NOT add random nouns, topics, or concepts.
+- If the term is a connector, adverbial phrase, or discourse marker,
+  the sentence must clearly show its logical function.
+- The sentence must sound like something a native speaker would actually say or write.
+- Avoid artificial lists, disconnected ideas, or keyword stuffing.
+
+If you cannot generate a natural sentence that fully respects all rules,
+rewrite the sentence until it sounds native and coherent.
+Never output awkward or forced English
 
 {terms_block}
 """
