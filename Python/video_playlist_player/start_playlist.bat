@@ -17,10 +17,10 @@ REM Caminho da pasta de vídeos
 set VIDEO_PATH=C:\Users\leand\Desktop\wordbank
 
 REM Quantas vezes cada vídeo será reproduzido
-set REPEAT_VIDEO=2
+set REPEAT_VIDEO=1
 
 REM Pausa entre execuções (segundos)
-set PAUSE_SECONDS=60
+set PAUSE_SECONDS=90
 
 
 REM =====================================================================
