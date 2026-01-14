@@ -109,7 +109,7 @@ def save_report():
     path = os.path.join(REPORT_DIR, f"{datetime.now():%Y%m%d%H%M%S}_report.json")
     with open(path, "w", encoding="utf-8") as f:
         json.dump(REPORT, f, indent=4, ensure_ascii=False)
-    print(f"{BLUE}📄 Relatório salvo:{RESET} {path}")
+    print(f"{BLUE}Relatório salvo:{RESET} {path}")
 
 def is_quota_error(error_msg: str) -> bool:
     msg = error_msg.lower()
@@ -196,12 +196,12 @@ def process_batch(directory):
 
     REPORT["total_videos_found"] = len(videos)
 
-    print(f"{BLUE}🎯 Encontrados:{RESET} {len(videos)} vídeos\n")
+    print(f"{BLUE}Encontrados:{RESET} {len(videos)} vídeos\n")
 
     for video in videos:
         if REPORT["successful_uploads"] >= MAX_UPLOADS_PER_RUN:
             REPORT["execution_stopped_reason"] = "Upload limit reached"
-            print(f"{YELLOW}🚦 Limite atingido. Encerrando execução.{RESET}")
+            print(f"{YELLOW}Limite atingido. Encerrando execução.{RESET}")
             break
 
         REPORT["processed_videos"] += 1
@@ -211,7 +211,7 @@ def process_batch(directory):
         json_path = os.path.join(directory, base + ".json")
         metadata = json.load(open(json_path, encoding="utf-8"))
 
-        print(f"{BLUE}📤 Upload:{RESET} {video}")
+        print(f"{BLUE}Upload:{RESET} {video}")
 
         result = upload_video(metadata, video_path)
 
@@ -225,10 +225,10 @@ def process_batch(directory):
 
             if is_quota_error(result):
                 REPORT["execution_stopped_reason"] = "YouTube quota error"
-                print(f"{RED}⛔ Limite do YouTube detectado.{RESET}")
+                print(f"{RED}Limite do YouTube detectado.{RESET}")
                 break
 
-            print(f"{RED}❌ Falha → movendo para Faulty{RESET}")
+            print(f"{RED}Falha -> movendo para Faulty{RESET}")
             move_to_faulty(video_path, json_path)
             continue
 
@@ -238,10 +238,10 @@ def process_batch(directory):
         REPORT["successful_uploads"] += 1
         REPORT["videos"].append({"file": video, "uploaded": True})
 
-        print(f"{GREEN}✔ Upload concluído{RESET}\n")
+        print(f"{GREEN}Upload concluído{RESET}\n")
 
     save_report()
-    print(f"{GREEN}🏁 Execução finalizada{RESET}")
+    print(f"{GREEN}Execução finalizada{RESET}")
 
 # ======================================================
 # ENTRY
@@ -250,10 +250,10 @@ def process_batch(directory):
 if __name__ == "__main__":
     directory = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_VIDEO_DIRECTORY
 
-    print(f"{BLUE}📁 Diretório:{RESET} {directory}")
+    print(f"{BLUE}Diretório:{RESET} {directory}")
 
     if not os.path.isdir(directory):
-        print(f"{RED}❌ Diretório inválido{RESET}")
+        print(f"{RED}Diretório inválido{RESET}")
         sys.exit(1)
 
     process_batch(directory)
