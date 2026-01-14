@@ -69,6 +69,20 @@ set LOOP=true
 
 
 REM =====================================================================
+REM ===================== PERGUNTA INTERATIVA ============================
+REM =====================================================================
+
+echo.
+set /p USER_CHOICE=Deseja reutilizar o ultimo subset salvo? (s/n): 
+
+if /I "%USER_CHOICE%"=="s" (
+    set REUSE_LAST_SUBSET=true
+) else (
+    set REUSE_LAST_SUBSET=false
+)
+
+
+REM =====================================================================
 REM =================== MONTAGEM DOS ARGUMENTOS ==========================
 REM =====================================================================
 
