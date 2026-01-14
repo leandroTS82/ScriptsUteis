@@ -1,7 +1,7 @@
 # -------------------------------------------------------
 # upload_youtube.py — FINAL
 # Limite de uploads + feedback avançado + report robusto
-
+#
 # python upload_youtube.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
 # -------------------------------------------------------
 
@@ -10,6 +10,7 @@ import sys
 import json
 import shutil
 import requests
+import random
 from datetime import datetime
 
 # ======================================================
@@ -190,6 +191,8 @@ def process_batch(directory):
         and not f.startswith("uploaded_")
         and os.path.exists(os.path.join(directory, os.path.splitext(f)[0] + ".json"))
     ]
+
+    random.shuffle(videos)
 
     REPORT["total_videos_found"] = len(videos)
 
