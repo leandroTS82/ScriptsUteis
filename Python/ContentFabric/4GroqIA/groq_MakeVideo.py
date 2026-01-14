@@ -15,9 +15,9 @@
   - Ignora arquivos que iniciam com uploaded_
   - Exibe total de arquivos ignorados por uploaded_
   - Remoção 100% da thumbnail
-  - ⏱ Delay entre chamadas ao Groq
-  - 🔑 SUPORTE A MÚLTIPLAS GROQ API KEYS (ROTATION)
-  - 🧯 ERROR REPORT JSON (RESILIÊNCIA)
+  - Delay entre chamadas ao Groq
+  - SUPORTE A MÚLTIPLAS GROQ API KEYS (ROTATION)
+  - ERROR REPORT JSON (RESILIÊNCIA)
 =====================================================================
 
 Exemplos:
@@ -124,7 +124,7 @@ def log_error_report(json_file, stage, exc: Exception):
     with open(ERROR_REPORT_FILE, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 
-    print(f"🧯 Erro registrado em {ERROR_REPORT_FILE}")
+    print(f"  Erro registrado em {ERROR_REPORT_FILE}")
 
 # ======================================================================
 # JSON FIX
@@ -135,7 +135,7 @@ def safe_extract_json(text):
     last = text.rfind("}")
 
     if first == -1 or last == -1:
-        raise ValueError("❌ Nenhum JSON válido encontrado.")
+        raise ValueError("Nenhum JSON válido encontrado.")
 
     raw = text[first:last + 1]
 
@@ -153,7 +153,7 @@ def load_groq_keys(path):
     data = load_json(path)
     keys = [k["key"] for k in data if k.get("key")]
     if not keys:
-        raise RuntimeError("❌ Nenhuma API key válida encontrada em GroqKeys.json")
+        raise RuntimeError("Nenhuma API key válida encontrada em GroqKeys.json")
     return keys
 
 class GroqKeyManager:
@@ -208,7 +208,7 @@ def call_groq(system_prompt, user_prompt, key_manager):
             attempted_keys = 0
 
             if retries > RETRY_MAX:
-                raise RuntimeError("❌ Rate limit excedido em todas as keys.")
+                raise RuntimeError("Rate limit excedido em todas as keys.")
 
             continue
 
@@ -292,11 +292,11 @@ def main():
             video_path = find_video(video_dir, tag)
             write_final_json(video_path, metadata_json)
 
-            print("✔ Sucesso")
+            print("Sucesso")
 
         except Exception as e:
             log_error_report(filename, "processing", e)
-            print("⚠ Erro tratado. Seguindo para o próximo.")
+            print("Erro tratado. Seguindo para o próximo.")
 
         time.sleep(args.sleep_between)
 

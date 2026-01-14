@@ -1,4 +1,5 @@
 import os
+import hashlib
 
 # ==========================================================
 # CONFIGURAÇÕES
@@ -8,7 +9,7 @@ VIDEOS_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\L
 PROCESSED_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\movies_processed"
 
 # ==========================================================
-# EXECUÇÃO
+# FUNÇÕES AUXILIARES
 # ==========================================================
 
 def get_json_filenames(path: str) -> set[str]:
@@ -16,6 +17,18 @@ def get_json_filenames(path: str) -> set[str]:
         f for f in os.listdir(path)
         if f.lower().endswith(".json") and os.path.isfile(os.path.join(path, f))
     }
+
+def file_hash(path: str) -> str:
+    """Gera hash SHA256 do conteúdo do arquivo"""
+    sha256 = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(8192), b""):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
+# ==========================================================
+# EXECUÇÃO
+# ==========================================================
 
 def main():
     print("🔍 Lendo arquivos JSON em Videos...")
@@ -29,23 +42,35 @@ def main():
 
     deleted = 0
     not_found = 0
+    different_content = 0
 
-    print("\n🧹 Verificando e excluindo em movies_processed...\n")
+    print("\n🧹 Verificando e excluindo em movies_processed (nome + conteúdo)...\n")
 
     for filename in sorted(videos_json):
+        video_file = os.path.join(VIDEOS_DIR, filename)
         processed_file = os.path.join(PROCESSED_DIR, filename)
 
-        if os.path.exists(processed_file):
-            os.remove(processed_file)
-            print(f"🗑️ Excluído: {filename}")
-            deleted += 1
-        else:
+        if not os.path.exists(processed_file):
             print(f"❌ Não encontrado em movies_processed: {filename}")
             not_found += 1
+            continue
+
+        # Comparar conteúdo via hash
+        video_hash = file_hash(video_file)
+        processed_hash = file_hash(processed_file)
+
+        if video_hash == processed_hash:
+            os.remove(processed_file)
+            print(f"🗑️ Excluído (conteúdo idêntico): {filename}")
+            deleted += 1
+        else:
+            print(f"⚠️ Conteúdo diferente (não excluído): {filename}")
+            different_content += 1
 
     print("\n================ RESULTADO ================")
-    print(f"✅ Excluídos: {deleted}")
-    print(f"⚠️ Não encontrados: {not_found}")
+    print(f"✅ Excluídos (nome + conteúdo iguais): {deleted}")
+    print(f"⚠️ Conteúdo diferente: {different_content}")
+    print(f"❌ Não encontrados: {not_found}")
     print("==========================================")
 
 if __name__ == "__main__":
