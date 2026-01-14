@@ -5,7 +5,7 @@
 # - Filtros independentes por path
 # - Controle GLOBAL de subpastas com exceções
 # - Ignora arquivos já existentes
-# - Feedback colorido e amigável
+# - Feedback colorido
 #
 # Filtros disponíveis (AND):
 #   ExcludeContains = @("preview", "test")
@@ -17,18 +17,18 @@
 Clear-Host
 
 Write-Host "==================================================" -ForegroundColor Cyan
-Write-Host " 📂 COPY FILES SMART — Processo iniciado" -ForegroundColor Cyan
+Write-Host " COPY FILES SMART — Processo iniciado" -ForegroundColor Cyan
 Write-Host "==================================================" -ForegroundColor Cyan
 Write-Host ""
 
 # ============================================================
-# CONFIGURAÇÃO GLOBAL
+# CONFIGURACAO GLOBAL
 # ============================================================
 
-# 🔁 Comportamento padrão: NÃO varrer subpastas
+# Comportamento padrao: NAO varrer subpastas
 $IncludeSubFolders = $false
 
-# 🔁 EXCEÇÕES: apenas estes sources varrem subpastas
+# Excecoes: apenas estes sources varrem subpastas
 $SourcesWithSubfolders = @(
     "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
 )
@@ -36,6 +36,7 @@ $SourcesWithSubfolders = @(
 # ============================================================
 # PATH MAPPINGS
 # ============================================================
+
 
 $PathMappings = @(
 
@@ -120,28 +121,25 @@ foreach ($map in $PathMappings) {
     $useSubfolders = $IncludeSubFolders -or ($SourcesWithSubfolders -contains $source)
 
     Write-Host "--------------------------------------------------" -ForegroundColor DarkGray
-    Write-Host "📁 Origem : $source" -ForegroundColor Yellow
-    Write-Host "📂 Destino: $dest" -ForegroundColor Yellow
-    Write-Host "📐 Subpastas: $useSubfolders" -ForegroundColor DarkCyan
+    Write-Host "Origem    : $source" -ForegroundColor Yellow
+    Write-Host "Destino   : $dest" -ForegroundColor Yellow
+    Write-Host "Subpastas : $useSubfolders" -ForegroundColor DarkCyan
 
     if (-not (Test-Path $source)) {
-        Write-Host "❌ Origem não encontrada. Pulando." -ForegroundColor Red
+        Write-Host "Origem nao encontrada. Pulando." -ForegroundColor Red
         continue
     }
 
     New-Item -ItemType Directory -Path $dest -Force | Out-Null
 
-    # Busca arquivos
     $files = Get-ChildItem -Path $source -File -Recurse:$useSubfolders
 
-    # -------- EXTENSIONS (AND)
     if ($map.Extensions) {
         $files = $files | Where-Object {
             $map.Extensions -contains $_.Extension.TrimStart(".").ToLower()
         }
     }
 
-    # -------- ENDS WITH (AND)
     if ($map.EndsWith) {
         $files = $files | Where-Object {
             $name = [IO.Path]::GetFileNameWithoutExtension($_.Name)
@@ -153,7 +151,7 @@ foreach ($map in $PathMappings) {
     }
 
     if (-not $files) {
-        Write-Host "ℹ️  Nenhum arquivo compatível encontrado." -ForegroundColor DarkGray
+        Write-Host "Nenhum arquivo compativel encontrado." -ForegroundColor DarkGray
         continue
     }
 
@@ -163,13 +161,13 @@ foreach ($map in $PathMappings) {
         $destFile = Join-Path $dest $file.Name
 
         if (Test-Path $destFile) {
-            Write-Host "⏭️  Ignorado (já existe): $($file.Name)" -ForegroundColor DarkGray
+            Write-Host "Ignorado (ja existe): $($file.Name)" -ForegroundColor DarkGray
             $totalSkipped++
             continue
         }
 
         Copy-Item $file.FullName $destFile
-        Write-Host "✅ Copiado: $($file.Name)" -ForegroundColor Green
+        Write-Host "Copiado: $($file.Name)" -ForegroundColor Green
         $totalCopied++
     }
 }
@@ -180,11 +178,11 @@ foreach ($map in $PathMappings) {
 
 Write-Host ""
 Write-Host "==================================================" -ForegroundColor Cyan
-Write-Host "  RESUMO FINAL" -ForegroundColor Cyan
+Write-Host " RESUMO FINAL" -ForegroundColor Cyan
 Write-Host "==================================================" -ForegroundColor Cyan
 Write-Host " Encontrados : $totalFound" -ForegroundColor White
-Write-Host "✅ Copiados    : $totalCopied" -ForegroundColor Green
-Write-Host "⏭️  Ignorados  : $totalSkipped" -ForegroundColor Yellow
+Write-Host " Copiados    : $totalCopied" -ForegroundColor Green
+Write-Host " Ignorados   : $totalSkipped" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "  Processo concluído com sucesso." -ForegroundColor Cyan
+Write-Host " Processo concluido com sucesso." -ForegroundColor Cyan
 Write-Host ""

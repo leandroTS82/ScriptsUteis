@@ -69,9 +69,8 @@ $DryRun            = $false   # true = apenas simula (preview)
 $PreviewSampleSize = 10
 
 # ==========================================
-# EXECUÇÃO
-# ==========================================
-
+# EXECUÇÃO PARA CADA PAR ORIGEM / DESTINO
+#
 foreach ($mapping in $PathMappings) {
 
     if (-not $mapping.SourcePath -or -not $mapping.DestinationPath) {

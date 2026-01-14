@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 setlocal enabledelayedexpansion
 
 REM ============================================================
@@ -24,7 +25,7 @@ REM ------------------------------------------------------------
 set AI_HELPER_DIR=C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper
 set CREATE_LATER=%AI_HELPER_DIR%\CreateLater.json
 set TEMP_BACKUP=%AI_HELPER_DIR%\temp_CreateLater.json
-set CREATED_MOVIES_DIR=%AI_HELPER_DIR%\CreatedMovies
+set CREATED_MOVIES_DIR=%AI_HELPER_DIR%\History_Created
 
 REM ------------------------------------------------------------
 REM 1 - BACKUP CreateLater.json
