@@ -1,6 +1,6 @@
 {
   "source": "english_extractor",
-  "generated_at": "2026-01-12T17:48:31.189488",
+  "generated_at": "2026-01-14T10:44:52.135750",
   "items": {
     "terms": [
       {
@@ -235,6 +235,83 @@
         "usage": "noun referring to a gathering of people for discussion or decision-making",
         "example": "We have a meeting at 10 a.m.",
         "text": "meeting"
+      },
+      {
+        "phrase": "deployment",
+        "meaning": "implantação",
+        "usage": "the process of installing and configuring software in a production environment.",
+        "example": "The deployment of the new app took two hours.",
+        "text": "deployment"
+      },
+      {
+        "phrase": "deployed version",
+        "meaning": "versão implantada",
+        "usage": "the specific release of software that has been released to users.",
+        "example": "We need to test the deployed version before the next update.",
+        "text": "deployed version"
+      },
+      {
+        "phrase": "app",
+        "meaning": "aplicativo",
+        "usage": "a software application that runs on a device or platform.",
+        "example": "I downloaded the app from the store.",
+        "text": "app"
+      },
+      {
+        "phrase": "tests",
+        "meaning": "testes",
+        "usage": "evaluations performed to verify that software works correctly.",
+        "example": "The QA team ran several tests on the new features.",
+        "text": "tests"
+      },
+      {
+        "phrase": "Zoho",
+        "meaning": "Zoho",
+        "usage": "a cloud-based software suite that includes email, CRM, and other tools.",
+        "example": "We use Zoho to send automated emails.",
+        "text": "Zoho"
+      },
+      {
+        "phrase": "no-code approach",
+        "meaning": "abordagem sem código",
+        "usage": "building software using visual tools without writing code.",
+        "example": "The no-code approach allows non-developers to create apps.",
+        "text": "no-code approach"
+      },
+      {
+        "phrase": "APIs",
+        "meaning": "APIs (Interfaces de Programação de Aplicações)",
+        "usage": "sets of protocols that allow different software components to communicate.",
+        "example": "We integrate with third-party services via APIs.",
+        "text": "APIs"
+      },
+      {
+        "phrase": "control",
+        "meaning": "controle",
+        "usage": "the ability to manage or direct a process or system.",
+        "example": "We maintain control over the data flow.",
+        "text": "control"
+      },
+      {
+        "phrase": "preferred language",
+        "meaning": "idioma preferido",
+        "usage": "the language a user chooses for the interface.",
+        "example": "The app should respect the user's preferred language.",
+        "text": "preferred language"
+      },
+      {
+        "phrase": "validation",
+        "meaning": "validação",
+        "usage": "the process of confirming that something meets requirements.",
+        "example": "The validation step ensures data integrity.",
+        "text": "validation"
+      },
+      {
+        "phrase": "send emails",
+        "meaning": "enviar e-mails",
+        "usage": "to transmit electronic mail messages.",
+        "example": "We need to send emails to all subscribers.",
+        "text": "send emails"
       }
     ],
     "chunks": [
@@ -492,6 +569,118 @@
         "usage": "time phrase indicating the current week",
         "example": "We will finish the task this week.",
         "text": "this week"
+      },
+      {
+        "phrase": "has some tests to do",
+        "meaning": "tem alguns testes a fazer",
+        "usage": "indicates that someone has pending tests to perform.",
+        "example": "Leandro has some tests to do before the release.",
+        "text": "has some tests to do"
+      },
+      {
+        "phrase": "deployed version of the app",
+        "meaning": "versão implantada do aplicativo",
+        "usage": "refers to the current live release of the software.",
+        "example": "We should check the deployed version of the app for bugs.",
+        "text": "deployed version of the app"
+      },
+      {
+        "phrase": "finished the deployment",
+        "meaning": "terminou a implantação",
+        "usage": "indicates that the deployment process has been completed.",
+        "example": "I finished the deployment yesterday.",
+        "text": "finished the deployment"
+      },
+      {
+        "phrase": "send emails using Zoho",
+        "meaning": "enviar e-mails usando Zoho",
+        "usage": "describes the action of sending emails through the Zoho platform.",
+        "example": "We send emails using Zoho for marketing campaigns.",
+        "text": "send emails using Zoho"
+      },
+      {
+        "phrase": "two ways",
+        "meaning": "duas maneiras",
+        "usage": "indicates that there are two options or methods.",
+        "example": "There are two ways to authenticate users.",
+        "text": "two ways"
+      },
+      {
+        "phrase": "first one",
+        "meaning": "primeiro",
+        "usage": "refers to the first option or item mentioned.",
+        "example": "The first one is simpler to implement.",
+        "text": "first one"
+      },
+      {
+        "phrase": "validated",
+        "meaning": "validado",
+        "usage": "indicates that something has been checked and confirmed.",
+        "example": "The feature was validated by the QA team.",
+        "text": "validated"
+      },
+      {
+        "phrase": "issues related to",
+        "meaning": "problemas relacionados a",
+        "usage": "refers to problems concerning a particular topic.",
+        "example": "We need to address issues related to security.",
+        "text": "issues related to"
+      },
+      {
+        "phrase": "less control over",
+        "meaning": "menos controle sobre",
+        "usage": "indicates limited authority or influence.",
+        "example": "We have less control over the third-party service.",
+        "text": "less control over"
+      },
+      {
+        "phrase": "second approach",
+        "meaning": "segunda abordagem",
+        "usage": "refers to an alternative method.",
+        "example": "The second approach uses APIs.",
+        "text": "second approach"
+      },
+      {
+        "phrase": "prefer this way",
+        "meaning": "preferir este caminho",
+        "usage": "indicates a preference for a particular method.",
+        "example": "I prefer this way to handle errors.",
+        "text": "prefer this way"
+      },
+      {
+        "phrase": "keep the control on our side",
+        "meaning": "manter o controle do nosso lado",
+        "usage": "to retain authority over a process.",
+        "example": "We keep the control on our side to ensure security.",
+        "text": "keep the control on our side"
+      },
+      {
+        "phrase": "letting control on Zoho side",
+        "meaning": "deixar o controle no lado do Zoho",
+        "usage": "giving authority to Zoho.",
+        "example": "We avoid letting control on Zoho side.",
+        "text": "letting control on Zoho side"
+      },
+      {
+        "phrase": "has to validate",
+        "meaning": "tem que validar",
+        "usage": "indicates a requirement to confirm something.",
+        "example": "He has to validate the data before submission.",
+        "text": "has to validate"
+      },
+      {
+        "phrase": "going to do that today",
+        "meaning": "vai fazer isso hoje",
+        "usage": "plans to perform an action on the same day.",
+        "example": "She is going to do that today.",
+        "text": "going to do that today"
+      },
+      {
+        "phrase": "after validating the deployed version",
+        "meaning": "depois de validar a versão implantada",
+        "usage": "following the validation of the live release.",
+        "example": "After validating the deployed version, we can release updates.",
+        "text": "after validating the deployed version"
       }
     ],
     "expressions": [
@@ -571,6 +760,13 @@
         "usage": "interjection indicating agreement or acceptance",
         "example": "Okay, let's proceed.",
         "text": "okay"
+      },
+      {
+        "phrase": "just to be quick",
+        "meaning": "só para ser rápido",
+        "usage": "an introductory phrase used to preface a brief statement.",
+        "example": "Just to be quick, I will skip the details.",
+        "text": "just to be quick"
       }
     ],
     "discourse_markers": [
@@ -652,6 +848,20 @@
         "usage": "connective used to indicate a sequence of events or actions",
         "example": "We finished the first part, and then we moved on.",
         "text": "and then"
+      },
+      {
+        "phrase": "because",
+        "meaning": "porque",
+        "usage": "introduces a reason or cause.",
+        "example": "I left early because I was tired.",
+        "text": "because"
+      },
+      {
+        "phrase": "after",
+        "meaning": "depois",
+        "usage": "indicates a time following an event.",
+        "example": "After the meeting, we went out for dinner.",
+        "text": "after"
       }
     ]
   }

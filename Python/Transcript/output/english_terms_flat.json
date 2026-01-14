@@ -108,6 +108,39 @@
     "term": "meeting"
   },
   {
+    "term": "deployment"
+  },
+  {
+    "term": "deployed version"
+  },
+  {
+    "term": "app"
+  },
+  {
+    "term": "tests"
+  },
+  {
+    "term": "Zoho"
+  },
+  {
+    "term": "no-code approach"
+  },
+  {
+    "term": "APIs"
+  },
+  {
+    "term": "control"
+  },
+  {
+    "term": "preferred language"
+  },
+  {
+    "term": "validation"
+  },
+  {
+    "term": "send emails"
+  },
+  {
     "term": "in dev"
   },
   {
@@ -225,6 +258,54 @@
     "term": "this week"
   },
   {
+    "term": "has some tests to do"
+  },
+  {
+    "term": "deployed version of the app"
+  },
+  {
+    "term": "finished the deployment"
+  },
+  {
+    "term": "send emails using Zoho"
+  },
+  {
+    "term": "two ways"
+  },
+  {
+    "term": "first one"
+  },
+  {
+    "term": "validated"
+  },
+  {
+    "term": "issues related to"
+  },
+  {
+    "term": "less control over"
+  },
+  {
+    "term": "second approach"
+  },
+  {
+    "term": "prefer this way"
+  },
+  {
+    "term": "keep the control on our side"
+  },
+  {
+    "term": "letting control on Zoho side"
+  },
+  {
+    "term": "has to validate"
+  },
+  {
+    "term": "going to do that today"
+  },
+  {
+    "term": "after validating the deployed version"
+  },
+  {
     "term": "cool"
   },
   {
@@ -258,6 +339,9 @@
     "term": "okay"
   },
   {
+    "term": "just to be quick"
+  },
+  {
     "term": "So"
   },
   {
@@ -283,5 +367,11 @@
   },
   {
     "term": "and then"
+  },
+  {
+    "term": "because"
+  },
+  {
+    "term": "after"
   }
 ]

@@ -6,9 +6,10 @@ import os
 # ============================================================
 
 ENGLISH_TERMS_FLAT = r"C:\dev\scripts\ScriptsUteis\Python\Transcript\output\english_terms_flat.json"
-TERMS_FROM_MOVIES  = r"C:\dev\scripts\ScriptsUteis\Python\english_terms\terms_From_Movies.json" #termos de vídos já criados
+TERMS_FROM_MOVIES  = r"C:\dev\scripts\ScriptsUteis\Python\english_terms\terms_From_Movies.json" # termos de vídeos já criados
 
 OUTPUT_FILE = "./pending_terms.json"
+IGNORE_TERMS_FILE = "./check_pending_ignore_terms.json"
 
 # ============================================================
 # HELPERS
@@ -27,11 +28,17 @@ if not os.path.exists(ENGLISH_TERMS_FLAT):
 if not os.path.exists(TERMS_FROM_MOVIES):
     raise FileNotFoundError(f"Arquivo não encontrado: {TERMS_FROM_MOVIES}")
 
+if not os.path.exists(IGNORE_TERMS_FILE):
+    raise FileNotFoundError(f"Arquivo não encontrado: {IGNORE_TERMS_FILE}")
+
 with open(ENGLISH_TERMS_FLAT, "r", encoding="utf-8") as f:
     flat_terms_raw = json.load(f)
 
 with open(TERMS_FROM_MOVIES, "r", encoding="utf-8") as f:
     movie_terms_raw = json.load(f)
+
+with open(IGNORE_TERMS_FILE, "r", encoding="utf-8") as f:
+    ignore_terms_raw = json.load(f)
 
 # ============================================================
 # NORMALIZATION
@@ -49,13 +56,19 @@ movie_terms = {
     if isinstance(term, str)
 }
 
+IGNORE_TERMS = {
+    normalize(term)
+    for term in ignore_terms_raw.get("ignore", [])
+    if isinstance(term, str)
+}
+
 # ============================================================
 # DIFF
 # ============================================================
 
 pending_terms = sorted([
     term for term in flat_terms
-    if term not in movie_terms
+    if term not in movie_terms and term not in IGNORE_TERMS
 ])
 
 # ============================================================

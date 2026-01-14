@@ -1,0 +1,28 @@
+{
+    "ignore": [
+        "ok",
+        "yes",
+        "no",
+        "hello",
+        "thank you",
+        "today",
+        "sharepick",
+        "prod",
+        "okay",
+        "teftportal",
+        "dev",
+        "bye",
+        "bye-bye",
+        "and",
+        "but",
+        "deploy",
+        "tests",
+        "zoho",
+        "zorro connection",
+        "hi",
+        "work",
+        "update",
+        "upload",
+        "yeah"
+    ]
+}
