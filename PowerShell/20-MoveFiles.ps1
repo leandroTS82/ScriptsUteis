@@ -69,18 +69,27 @@ $DryRun            = $false   # true = apenas simula (preview)
 $PreviewSampleSize = 10
 
 # ==========================================
-# EXECUÇÃO PARA CADA PAR ORIGEM / DESTINO
+# EXECUÇÃO
 # ==========================================
 
 foreach ($mapping in $PathMappings) {
 
-    # Ignorar entradas incompletas ou comentadas
     if (-not $mapping.SourcePath -or -not $mapping.DestinationPath) {
         continue
     }
 
     $SourcePath      = $mapping.SourcePath
     $DestinationPath = $mapping.DestinationPath
+
+    # ==========================================
+    # VALIDAR ORIGEM
+    # ==========================================
+    if (!(Test-Path $SourcePath)) {
+        Write-Host ""
+        Write-Host "Origem não encontrada. Ignorando:"
+        Write-Host "  $SourcePath"
+        continue
+    }
 
     # ==========================================
     # GARANTIR DESTINO
@@ -106,7 +115,6 @@ foreach ($mapping in $PathMappings) {
         $name = $_.Name
         $ext  = $_.Extension
 
-        # Se nenhum filtro foi informado, mover tudo
         if (-not $StartsWith -and -not $Contains -and -not $ExactName -and -not $Extension) {
             return $true
         }
@@ -129,27 +137,26 @@ foreach ($mapping in $PathMappings) {
         Write-Host "Origem:   $SourcePath"
         Write-Host "Destino: $DestinationPath"
         Write-Host ""
-        Write-Host "Total de arquivos encontrados: $($files.Count)"
-        Write-Host "Total de arquivos que SERIAM movidos: $($filteredFiles.Count)"
+        Write-Host "Total encontrados: $($files.Count)"
+        Write-Host "Total a mover:     $($filteredFiles.Count)"
         Write-Host ""
 
         if ($filteredFiles.Count -gt 0) {
-            Write-Host "Exemplos de arquivos:"
+            Write-Host "Exemplos:"
             $filteredFiles |
                 Select-Object -First $PreviewSampleSize |
                 ForEach-Object { Write-Host " - $($_.Name)" }
 
             if ($filteredFiles.Count -gt $PreviewSampleSize) {
-                Write-Host " ... e mais $($filteredFiles.Count - $PreviewSampleSize) arquivos."
+                Write-Host " ... e mais $($filteredFiles.Count - $PreviewSampleSize)"
             }
         }
         else {
-            Write-Host "Nenhum arquivo corresponde aos filtros informados."
+            Write-Host "Nenhum arquivo corresponde aos filtros."
         }
 
         Write-Host "=========================================="
-        Write-Host ""
-        Write-Host "Modo PREVIEW ativo. Nenhum arquivo foi movido por que dryrun está ativado."
+        Write-Host "Modo PREVIEW ativo. Nenhum arquivo movido."
     }
     else {
 
@@ -159,7 +166,7 @@ foreach ($mapping in $PathMappings) {
         }
 
         Write-Host ""
-        Write-Host "Processo concluído com sucesso."
+        Write-Host "Processo concluído."
         Write-Host "Arquivos movidos: $($filteredFiles.Count)"
     }
 }
