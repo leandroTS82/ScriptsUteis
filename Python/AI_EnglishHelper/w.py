@@ -252,6 +252,7 @@ Rules:
 - Do NOT repeat the phrase at the beginning.
 - Explain the meaning of "{term}" naturally in Portuguese.
 - ALL examples must be FULL English sentences.
+- ALL exemples, ALL phrase should make sense.
 - Every example MUST contain the phrase "{term}".
 - short → 4–8 words
 - medium → 10–16 words

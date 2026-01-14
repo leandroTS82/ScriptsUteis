@@ -178,6 +178,7 @@ FILENAME RULES
 - Derive from terms and/or categories.
 - Use 1–4 key words (nouns/verbs).
 - Provide examples of important tenses.
+- ALL exemples, ALL phrase should make sense.
 - Only lowercase, underscore.
 - Max 45 characters.
 - DO NOT use generic names like "vocabulary_module", "training_file", etc.
