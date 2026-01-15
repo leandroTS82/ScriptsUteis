@@ -52,10 +52,10 @@ FULL_RESULTS = "./TranscriptResults.json"
 EXTERNAL_TERMS_PATH = r"C:\dev\scripts\ScriptsUteis\Python\english_terms\english_terms.json"
 
 LEVELS = {
-    "A1": {"enabled": False, "size": "short"},
-    "A2": {"enabled": True,  "size": "medium"},
+    "A1": {"enabled": True, "size": "short"},
+    "A2": {"enabled": True,  "size": "short"},
     "B1": {"enabled": True,  "size": "medium"},
-    "B2": {"enabled": True,  "size": "medium"},
+    "B2": {"enabled": False,  "size": "medium"},
     "C1": {"enabled": False, "size": "long"},
     "C2": {"enabled": False, "size": "long"}
 }

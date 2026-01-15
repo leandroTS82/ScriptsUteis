@@ -8,6 +8,9 @@ import hashlib
 VIDEOS_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
 PROCESSED_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\movies_processed"
 
+# Flag: True = verifica conteúdo | False = apenas nome
+CHECK_CONTENT = False
+
 # ==========================================================
 # FUNÇÕES AUXILIARES
 # ==========================================================
@@ -44,7 +47,8 @@ def main():
     not_found = 0
     different_content = 0
 
-    print("\n🧹 Verificando e excluindo em movies_processed (nome + conteúdo)...\n")
+    mode = "NOME + CONTEÚDO" if CHECK_CONTENT else "APENAS NOME"
+    print(f"\n🧹 Modo de verificação: {mode}\n")
 
     for filename in sorted(videos_json):
         video_file = os.path.join(VIDEOS_DIR, filename)
@@ -55,21 +59,23 @@ def main():
             not_found += 1
             continue
 
-        # Comparar conteúdo via hash
-        video_hash = file_hash(video_file)
-        processed_hash = file_hash(processed_file)
+        if CHECK_CONTENT:
+            video_hash = file_hash(video_file)
+            processed_hash = file_hash(processed_file)
 
-        if video_hash == processed_hash:
-            os.remove(processed_file)
-            print(f"🗑️ Excluído (conteúdo idêntico): {filename}")
-            deleted += 1
-        else:
-            print(f"⚠️ Conteúdo diferente (não excluído): {filename}")
-            different_content += 1
+            if video_hash != processed_hash:
+                print(f"⚠️ Conteúdo diferente (não excluído): {filename}")
+                different_content += 1
+                continue
+
+        os.remove(processed_file)
+        print(f"🗑️ Excluído: {filename}")
+        deleted += 1
 
     print("\n================ RESULTADO ================")
-    print(f"✅ Excluídos (nome + conteúdo iguais): {deleted}")
-    print(f"⚠️ Conteúdo diferente: {different_content}")
+    print(f"✅ Excluídos: {deleted}")
+    if CHECK_CONTENT:
+        print(f"⚠️ Conteúdo diferente: {different_content}")
     print(f"❌ Não encontrados: {not_found}")
     print("==========================================")
 
