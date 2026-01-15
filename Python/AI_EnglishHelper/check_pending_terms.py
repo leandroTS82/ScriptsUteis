@@ -1,7 +1,6 @@
 import json
 import os
 import sys
-import subprocess
 
 # ============================================================
 # BASE DIR (PADRÃO PARA DEPENDÊNCIAS LOCAIS)
@@ -10,25 +9,6 @@ import subprocess
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
-
-# ============================================================
-# DEPENDÊNCIA OBRIGATÓRIA
-# ============================================================
-
-LIST_FILES_SCRIPT = os.path.join(
-    BASE_DIR,
-    "english_terms",
-    "list_files_to_json.py"
-)
-
-if not os.path.exists(LIST_FILES_SCRIPT):
-    raise FileNotFoundError(f"Dependência não encontrada: {LIST_FILES_SCRIPT}")
-
-print("▶ Executando dependência: list_files_to_json.py")
-subprocess.run(
-    [sys.executable, LIST_FILES_SCRIPT],
-    check=True
-)
 
 # ============================================================
 # PATHS
