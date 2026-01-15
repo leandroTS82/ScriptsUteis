@@ -6,7 +6,7 @@
     "CATEGORY RULE: always use category_id = 27 (Education).",
     "TITLE RULES: Begin with a Portuguese hook followed by the English topic.",
     "DESCRIPTION RULES: Strong PT hook + bullet points + call to action + vocabulary list.",
-    "TAGS RULES: Mix broad and specific SEO tags.",
+    "TAGS RULES: Mix broad and specific SEO tags, Add {term} translation in portuguese and equivalent in portuguese too for help when will seached.",
     "PLAYLIST RULE: select only ONE playlist_key from the provided 'friendly_playlists' keys.",
     "NEVER output explanations, only JSON."
   ]
