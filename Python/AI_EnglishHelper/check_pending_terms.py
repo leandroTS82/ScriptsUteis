@@ -1,12 +1,41 @@
 import json
 import os
+import sys
+import subprocess
+
+# ============================================================
+# BASE DIR (PADRÃO PARA DEPENDÊNCIAS LOCAIS)
+# ============================================================
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+# ============================================================
+# DEPENDÊNCIA OBRIGATÓRIA
+# ============================================================
+
+LIST_FILES_SCRIPT = os.path.join(
+    BASE_DIR,
+    "english_terms",
+    "list_files_to_json.py"
+)
+
+if not os.path.exists(LIST_FILES_SCRIPT):
+    raise FileNotFoundError(f"Dependência não encontrada: {LIST_FILES_SCRIPT}")
+
+print("▶ Executando dependência: list_files_to_json.py")
+subprocess.run(
+    [sys.executable, LIST_FILES_SCRIPT],
+    check=True
+)
 
 # ============================================================
 # PATHS
 # ============================================================
 
 ENGLISH_TERMS_FLAT = r"C:\dev\scripts\ScriptsUteis\Python\Transcript\output\english_terms_flat.json"
-TERMS_FROM_MOVIES  = r"C:\dev\scripts\ScriptsUteis\Python\english_terms\terms_From_Movies.json" # termos de vídeos já criados
+TERMS_FROM_MOVIES  = r"C:\dev\scripts\ScriptsUteis\Python\english_terms\terms_From_Movies.json"
 
 OUTPUT_FILE = "./pending_terms.json"
 IGNORE_TERMS_FILE = "./check_pending_ignore_terms.json"
