@@ -32,6 +32,7 @@ TERMS_PATHS = [
 ]
 
 PLAYLIST_OUTPUT_PATH = Path(r"C:\Users\leand\Desktop\wordbank\01-smart_playlists")
+
 # ======================================================
 # GROQ CONFIG (APENAS SE USE_GROQ = True)
 # ======================================================
@@ -39,6 +40,7 @@ PLAYLIST_OUTPUT_PATH = Path(r"C:\Users\leand\Desktop\wordbank\01-smart_playlists
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
+
 from groq_keys_loader import GROQ_KEYS
 _groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
 
@@ -230,29 +232,15 @@ def priority_key(video: Path, term: str, content: str):
 # PLAYLIST
 # ======================================================
 
-def write_playlist(videos, mode, meta, part_index=None, base_dir=None):
+def write_playlist(videos, mode, meta, part_index=None, base_dir=None, custom_name=None):
     output_dir = base_dir or PLAYLIST_OUTPUT_PATH
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    parts = ["play", mode]
-
-    if "term" in meta:
-        parts.append(f"term_{meta['term']}")
-
-    if "from" in meta:
-        parts.append(f"from_{meta['from']}")
-
-    if "to" in meta:
-        parts.append(f"to_{meta['to']}")
-
-    if meta.get("histories"):
-        parts.append("with_histories")
-
+    filename = custom_name
     if part_index is not None:
-        parts.append(f"part_{part_index}")
+        filename = f"{filename}_part_{part_index}"
 
-    name = "_".join(parts)
-    path = output_dir / f"{name}.m3u"
+    path = output_dir / f"{filename}.m3u"
 
     with open(path, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
@@ -275,6 +263,14 @@ def main():
     videos = get_all_videos(VIDEO_PATHS)
     srts = get_all_srts(HISTORY_VIDEO_PATHS) if include_histories else []
 
+    custom_name = None
+    if ask_yes_no("Deseja dar um nome à playlist?"):
+        custom_name = input("Insira o nome: ").strip()
+
+        if ask_yes_no("Deseja adicionar data ao nome?"):
+            today = datetime.now().strftime("%Y%m%d")
+            custom_name = f"{today}_{custom_name}"
+
     log("\nOpções:")
     log("1 - Data específica")
     log("2 - Intervalo de datas")
@@ -282,7 +278,6 @@ def main():
 
     option = input("Escolha (1/2/3): ").strip()
     selected = []
-    meta = {"histories": include_histories}
     mode = None
 
     # ==================================================
@@ -290,9 +285,7 @@ def main():
     # ==================================================
     if option == "1":
         d = ask_date("Informe a data")
-        mode = "date"
-        meta["from"] = normalize_date(d)
-
+        mode = "data"
         selected = [
             v for v in videos
             if datetime.fromtimestamp(v.stat().st_mtime).date() == d.date()
@@ -304,50 +297,34 @@ def main():
     elif option == "2":
         d1 = ask_date("Data inicial")
         d2 = ask_date("Data final")
-        mode = "range"
-        meta["from"] = normalize_date(d1)
-        meta["to"] = normalize_date(d2)
-
+        mode = "periodo"
         selected = [
             v for v in videos
             if d1 <= datetime.fromtimestamp(v.stat().st_mtime) <= d2
         ]
 
     # ==================================================
-    # OPÇÃO 3 — TERMO / SENTIDO
+    # OPÇÃO 3 — TERMO
     # ==================================================
     elif option == "3":
         term = input("Informe o termo/sentido: ").strip().lower()
-        mode = "term"
-        meta["term"] = term
+        mode = "termo"
         candidates = {}
 
-        log("\n📄 Analisando JSONs...\n")
         for f in TERMS_PATHS[0].glob("*.json"):
-            log(f"   ▶ {f.name}")
             nome_arquivo, content = extract_text_from_json(f)
             ref = nome_arquivo or f.stem
-
             if content and is_relevant(term, content, ref):
                 candidates[ref] = content
 
-        log("\n📜 Analisando SRTs...\n")
         for srt in srts:
             base = srt.stem.split(".")[0]
-            log(f"   ▶ {srt.name}")
             content = extract_text_from_srt(srt)
-
             if content and is_relevant(term, content, base):
                 candidates[base] = content
 
-        selected = [
-            v for v in videos
-            if v.stem in candidates
-        ]
-
-        selected.sort(
-            key=lambda v: priority_key(v, term, candidates.get(v.stem, ""))
-        )
+        selected = [v for v in videos if v.stem in candidates]
+        selected.sort(key=lambda v: priority_key(v, term, candidates.get(v.stem, "")))
 
     else:
         log("❌ Opção inválida")
@@ -357,38 +334,27 @@ def main():
         log("⚠ Nenhum vídeo encontrado")
         return
 
-    # ==================================================
-    # PARTICIONAMENTO DA PLAYLIST
-    # ==================================================
+    base_dir = PLAYLIST_OUTPUT_PATH / mode / (custom_name or "default")
 
-    # Se for busca por termo, preparar pasta do termo
-    term_output_dir = None
-    if mode == "term":
-        term_output_dir = PLAYLIST_OUTPUT_PATH / meta["term"]
-
-    # Se só houver 1 vídeo, NÃO perguntar
     if len(selected) == 1:
-        write_playlist(selected, mode, meta, base_dir=term_output_dir)
+        write_playlist(selected, mode, {}, base_dir=base_dir, custom_name=custom_name or mode)
         log("\n✅ Processo finalizado com sucesso")
         return
 
     if ask_yes_no("Deseja particionar a playlist?"):
         size = int(input("Quantos vídeos por playlist?: ").strip())
-        parts = [
-            selected[i:i + size]
-            for i in range(0, len(selected), size)
-        ]
-
+        parts = [selected[i:i + size] for i in range(0, len(selected), size)]
         for idx, chunk in enumerate(parts, 1):
             write_playlist(
                 chunk,
                 mode,
-                meta,
+                {},
                 part_index=idx,
-                base_dir=term_output_dir
+                base_dir=base_dir,
+                custom_name=custom_name or mode
             )
     else:
-        write_playlist(selected, mode, meta, base_dir=term_output_dir)
+        write_playlist(selected, mode, {}, base_dir=base_dir, custom_name=custom_name or mode)
 
     log("\n✅ Processo finalizado com sucesso")
 
