@@ -12,7 +12,7 @@ import re
 # CONFIGURAÇÕES INLINE
 # ======================================================
 
-USE_GROQ = False  # 🔥 True = usa Groq | False = 100% OFFLINE
+USE_GROQ = True  # 🔥 True = usa Groq | False = 100% OFFLINE
 
 VIDEO_EXTENSIONS = {".mp4", ".mkv", ".avi", ".mov", ".wmv"}
 SRT_EXTENSIONS = {".srt"}
@@ -31,8 +31,7 @@ TERMS_PATHS = [
     Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"),
 ]
 
-PLAYLIST_OUTPUT_PATH = Path("./playlists")
-
+PLAYLIST_OUTPUT_PATH = Path(r"C:\Users\leand\Desktop\wordbank\01-smart_playlists")
 # ======================================================
 # GROQ CONFIG (APENAS SE USE_GROQ = True)
 # ======================================================
@@ -231,8 +230,9 @@ def priority_key(video: Path, term: str, content: str):
 # PLAYLIST
 # ======================================================
 
-def write_playlist(videos, mode, meta, part_index=None):
-    PLAYLIST_OUTPUT_PATH.mkdir(parents=True, exist_ok=True)
+def write_playlist(videos, mode, meta, part_index=None, base_dir=None):
+    output_dir = base_dir or PLAYLIST_OUTPUT_PATH
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     parts = ["play", mode]
 
@@ -252,14 +252,14 @@ def write_playlist(videos, mode, meta, part_index=None):
         parts.append(f"part_{part_index}")
 
     name = "_".join(parts)
-    path = PLAYLIST_OUTPUT_PATH / f"{name}.m3u"
+    path = output_dir / f"{name}.m3u"
 
     with open(path, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
         for v in videos:
             f.write(str(v.resolve()) + "\n")
 
-    log(f"📄 Playlist criada: {path.name} ({len(videos)} vídeos)")
+    log(f"📄 Playlist criada: {path.resolve().name} ({len(videos)} vídeos)")
 
 # ======================================================
 # MAIN
@@ -358,8 +358,19 @@ def main():
         return
 
     # ==================================================
-    # PARTICIONAMENTO (NOVA FUNCIONALIDADE)
+    # PARTICIONAMENTO DA PLAYLIST
     # ==================================================
+
+    # Se for busca por termo, preparar pasta do termo
+    term_output_dir = None
+    if mode == "term":
+        term_output_dir = PLAYLIST_OUTPUT_PATH / meta["term"]
+
+    # Se só houver 1 vídeo, NÃO perguntar
+    if len(selected) == 1:
+        write_playlist(selected, mode, meta, base_dir=term_output_dir)
+        log("\n✅ Processo finalizado com sucesso")
+        return
 
     if ask_yes_no("Deseja particionar a playlist?"):
         size = int(input("Quantos vídeos por playlist?: ").strip())
@@ -369,9 +380,15 @@ def main():
         ]
 
         for idx, chunk in enumerate(parts, 1):
-            write_playlist(chunk, mode, meta, part_index=idx)
+            write_playlist(
+                chunk,
+                mode,
+                meta,
+                part_index=idx,
+                base_dir=term_output_dir
+            )
     else:
-        write_playlist(selected, mode, meta)
+        write_playlist(selected, mode, meta, base_dir=term_output_dir)
 
     log("\n✅ Processo finalizado com sucesso")
 
