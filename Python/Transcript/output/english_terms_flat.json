@@ -141,6 +141,84 @@
     "term": "send emails"
   },
   {
+    "term": "ZAP2Mail"
+  },
+  {
+    "term": "subscription"
+  },
+  {
+    "term": "key point"
+  },
+  {
+    "term": "mail service"
+  },
+  {
+    "term": "no code"
+  },
+  {
+    "term": "Zap to mail"
+  },
+  {
+    "term": "strategy"
+  },
+  {
+    "term": "details"
+  },
+  {
+    "term": "aware"
+  },
+  {
+    "term": "Zorgo"
+  },
+  {
+    "term": "Zmail"
+  },
+  {
+    "term": "external party"
+  },
+  {
+    "term": "subscriber"
+  },
+  {
+    "term": "platform"
+  },
+  {
+    "term": "tools"
+  },
+  {
+    "term": "documentation"
+  },
+  {
+    "term": "verification"
+  },
+  {
+    "term": "email"
+  },
+  {
+    "term": "study"
+  },
+  {
+    "term": "app-lock"
+  },
+  {
+    "term": "invest"
+  },
+  {
+    "term": "time"
+  },
+  {
+    "term": "SendGrid"
+  },
+  {
+    "term": "Zept"
+  },
+  {
+    "term": "link"
+  },
+  {
+    "term": "investigation"
+  },
+  {
     "term": "in dev"
   },
   {
@@ -306,6 +384,105 @@
     "term": "after validating the deployed version"
   },
   {
+    "term": "don't know"
+  },
+  {
+    "term": "don't know yet"
+  },
+  {
+    "term": "we don't know if we can use"
+  },
+  {
+    "term": "we don't know if we have this subscription"
+  },
+  {
+    "term": "or if we will have"
+  },
+  {
+    "term": "the key point here"
+  },
+  {
+    "term": "the key point here is that"
+  },
+  {
+    "term": "be aware"
+  },
+  {
+    "term": "use another mail service"
+  },
+  {
+    "term": "not in details"
+  },
+  {
+    "term": "involved in this approach"
+  },
+  {
+    "term": "looking to use"
+  },
+  {
+    "term": "aware of the details"
+  },
+  {
+    "term": "aware of the strategy"
+  },
+  {
+    "term": "outside of Zoho"
+  },
+  {
+    "term": "inside Zoho"
+  },
+  {
+    "term": "part of Zoho"
+  },
+  {
+    "term": "another platform"
+  },
+  {
+    "term": "different platform"
+  },
+  {
+    "term": "other tools"
+  },
+  {
+    "term": "take a look"
+  },
+  {
+    "term": "send me this link"
+  },
+  {
+    "term": "see with Rodrigo"
+  },
+  {
+    "term": "send you all the links"
+  },
+  {
+    "term": "I was investigating"
+  },
+  {
+    "term": "explain each one of them"
+  },
+  {
+    "term": "to continue the verification"
+  },
+  {
+    "term": "let's use Zept email"
+  },
+  {
+    "term": "go back to his study"
+  },
+  {
+    "term": "do the app-lock"
+  },
+  {
+    "term": "I just didn't want to invest that time"
+  },
+  {
+    "term": "maybe we'll use SendGrid"
+  },
+  {
+    "term": "do you have any documentation of this?"
+  },
+  {
     "term": "cool"
   },
   {
@@ -342,6 +519,21 @@
     "term": "just to be quick"
   },
   {
+    "term": "so that's the point"
+  },
+  {
+    "term": "in general"
+  },
+  {
+    "term": "Oh"
+  },
+  {
+    "term": "right?"
+  },
+  {
+    "term": "I understand"
+  },
+  {
     "term": "So"
   },
   {
@@ -373,5 +565,14 @@
   },
   {
     "term": "after"
+  },
+  {
+    "term": "here"
+  },
+  {
+    "term": "Like"
+  },
+  {
+    "term": "Ok"
   }
 ]

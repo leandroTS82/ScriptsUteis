@@ -22,11 +22,20 @@ import sys
 USE_INTERNAL_CONFIG = True
 
 # Pode ser PASTA ou CAMINHO COMPLETO DO VÍDEO
-VIDEO_PATH = r"C:\Users\leand\Desktop\GijsDemonstration"
-VIDEO_NAME = "05_Confitmation.mp4"
+VIDEO_PATH = r"C:\Users\leand\Desktop\01-ReunioesGravadas\20260116"
+VIDEO_NAME = "2026-01-16_09-28-59.mp4"
 
 TIMES = [
-    "00:27"
+    "00:07",
+    "01:11",
+    "01:52",
+    "02:12",
+    "02:57",
+    "03:10",
+    "03:45",
+    "03:56",
+    "04:43",
+    "06:17"
 ]
 
 # Se ffmpeg/ffprobe não estiver no PATH, informe aqui:

@@ -1,6 +1,6 @@
 {
   "source": "english_extractor",
-  "generated_at": "2026-01-14T10:44:52.135750",
+  "generated_at": "2026-01-16T10:57:29.283514",
   "items": {
     "terms": [
       {
@@ -312,6 +312,188 @@
         "usage": "to transmit electronic mail messages.",
         "example": "We need to send emails to all subscribers.",
         "text": "send emails"
+      },
+      {
+        "term": "ZAP2Mail",
+        "meaning": "ZAP2Mail (nome de produto, serviço de email)",
+        "usage": "refere-se a um serviço ou ferramenta específica de email",
+        "example": "I need to check if ZAP2Mail supports bulk sending.",
+        "text": "ZAP2Mail"
+      },
+      {
+        "term": "subscription",
+        "meaning": "assinatura, subscrição",
+        "usage": "um plano pago ou adesão a um serviço",
+        "example": "I renewed my subscription to the newsletter.",
+        "text": "subscription"
+      },
+      {
+        "term": "key point",
+        "meaning": "ponto-chave, ponto principal",
+        "usage": "a ideia mais importante ou central",
+        "example": "The key point of the lecture was the importance of data privacy.",
+        "text": "key point"
+      },
+      {
+        "term": "mail service",
+        "meaning": "serviço de e‑mail",
+        "usage": "A platform that sends or receives electronic mail.",
+        "example": "We need to set up a mail service for our newsletter.",
+        "text": "mail service"
+      },
+      {
+        "term": "no code",
+        "meaning": "sem código",
+        "usage": "Refers to software that can be used without writing code.",
+        "example": "The new app is a no‑code solution for automating tasks.",
+        "text": "no code"
+      },
+      {
+        "term": "Zap to mail",
+        "meaning": "Zap para e‑mail",
+        "usage": "A Zapier automation that sends data to an email address.",
+        "example": "I created a Zap to mail that forwards form submissions to my inbox.",
+        "text": "Zap to mail"
+      },
+      {
+        "term": "strategy",
+        "meaning": "estratégia",
+        "usage": "A plan of action designed to achieve a goal.",
+        "example": "Our marketing strategy focuses on social media engagement.",
+        "text": "strategy"
+      },
+      {
+        "term": "details",
+        "meaning": "detalhes",
+        "usage": "Specific information or facts about something.",
+        "example": "Can you give me the details of the project timeline?",
+        "text": "details"
+      },
+      {
+        "term": "aware",
+        "meaning": "ciente, estar ciente",
+        "usage": "To have knowledge or consciousness of something.",
+        "example": "She was aware of the risks before signing the contract.",
+        "text": "aware"
+      },
+      {
+        "term": "Zorgo",
+        "meaning": "Zorgo (nome próprio)",
+        "usage": "A company or product name mentioned in the conversation.",
+        "example": "We plan to integrate Zorgo into our workflow.",
+        "text": "Zorgo"
+      },
+      {
+        "term": "Zmail",
+        "meaning": "Zmail (nome próprio, serviço de e-mail)",
+        "usage": "Used as a proper noun referring to a specific email service.",
+        "example": "Zmail is not from Zoho.",
+        "text": "Zmail"
+      },
+      {
+        "term": "external party",
+        "meaning": "parte externa (pessoa ou organização fora da empresa)",
+        "usage": "Used to describe a third party not part of the organization.",
+        "example": "The external party signed the contract.",
+        "text": "external party"
+      },
+      {
+        "term": "subscriber",
+        "meaning": "assinante (pessoa que utiliza um serviço)",
+        "usage": "Refers to a user who has subscribed to a service.",
+        "example": "The subscriber received a welcome email.",
+        "text": "subscriber"
+      },
+      {
+        "term": "platform",
+        "meaning": "plataforma (ambiente de software)",
+        "usage": "Used to describe a system or service that hosts applications.",
+        "example": "The platform supports multiple integrations.",
+        "text": "platform"
+      },
+      {
+        "term": "tools",
+        "meaning": "ferramentas (recursos de software)",
+        "usage": "Refers to software utilities or applications.",
+        "example": "The tools help automate tasks.",
+        "text": "tools"
+      },
+      {
+        "term": "documentation",
+        "meaning": "documentação",
+        "usage": "official written records or instructions",
+        "example": "Please provide the documentation for the new software.",
+        "text": "documentation"
+      },
+      {
+        "term": "verification",
+        "meaning": "verificação",
+        "usage": "the process of confirming the accuracy or validity of something",
+        "example": "The verification of the data took longer than expected.",
+        "text": "verification"
+      },
+      {
+        "term": "email",
+        "meaning": "e‑mail",
+        "usage": "electronic message sent over the internet",
+        "example": "Send me an email with the details.",
+        "text": "email"
+      },
+      {
+        "term": "study",
+        "meaning": "estudo",
+        "usage": "a place or activity where research or learning occurs",
+        "example": "He returned to his study to work on the project.",
+        "text": "study"
+      },
+      {
+        "term": "app-lock",
+        "meaning": "bloqueio de aplicativo",
+        "usage": "a security feature that restricts access to an app",
+        "example": "I need to configure the app‑lock settings.",
+        "text": "app-lock"
+      },
+      {
+        "term": "invest",
+        "meaning": "investir",
+        "usage": "to allocate time, money, or effort into something with the expectation of gain",
+        "example": "I don't want to invest that time in this task.",
+        "text": "invest"
+      },
+      {
+        "term": "time",
+        "meaning": "tempo",
+        "usage": "a period during which events occur",
+        "example": "We have limited time to finish the assignment.",
+        "text": "time"
+      },
+      {
+        "term": "SendGrid",
+        "meaning": "SendGrid (marca)",
+        "usage": "a cloud‑based email delivery service",
+        "example": "We plan to use SendGrid for our marketing emails.",
+        "text": "SendGrid"
+      },
+      {
+        "term": "Zept",
+        "meaning": "Zept (marca)",
+        "usage": "a brand or service name",
+        "example": "Let's use Zept email for the campaign.",
+        "text": "Zept"
+      },
+      {
+        "term": "link",
+        "meaning": "link",
+        "usage": "a URL or hyperlink that directs to another webpage",
+        "example": "Please click on the link to access the document.",
+        "text": "link"
+      },
+      {
+        "term": "investigation",
+        "meaning": "investigação",
+        "usage": "the act of searching or examining to discover facts",
+        "example": "The investigation revealed several inconsistencies.",
+        "text": "investigation"
       }
     ],
     "chunks": [
@@ -681,6 +863,237 @@
         "usage": "following the validation of the live release.",
         "example": "After validating the deployed version, we can release updates.",
         "text": "after validating the deployed version"
+      },
+      {
+        "chunk": "don't know",
+        "meaning": "não sei",
+        "usage": "expressa falta de conhecimento ou certeza",
+        "example": "I don't know the answer to that question.",
+        "text": "don't know"
+      },
+      {
+        "chunk": "don't know yet",
+        "meaning": "ainda não sei",
+        "usage": "indica que o conhecimento ainda não foi adquirido",
+        "example": "I don't know yet if I'll attend the meeting.",
+        "text": "don't know yet"
+      },
+      {
+        "chunk": "we don't know if we can use",
+        "meaning": "não sabemos se podemos usar",
+        "usage": "expressa incerteza sobre a possibilidade de usar algo",
+        "example": "We don't know if we can use the new software until we get approval.",
+        "text": "we don't know if we can use"
+      },
+      {
+        "chunk": "we don't know if we have this subscription",
+        "meaning": "não sabemos se temos essa assinatura",
+        "usage": "expressa incerteza sobre a posse de uma assinatura",
+        "example": "We don't know if we have this subscription, so we need to check.",
+        "text": "we don't know if we have this subscription"
+      },
+      {
+        "chunk": "or if we will have",
+        "meaning": "ou se teremos",
+        "usage": "expressa incerteza alternativa sobre posse futura",
+        "example": "We don't know if we have this subscription or if we will have it later.",
+        "text": "or if we will have"
+      },
+      {
+        "chunk": "the key point here",
+        "meaning": "o ponto-chave aqui",
+        "usage": "introduz a ideia principal no contexto atual",
+        "example": "The key point here is that we need to act quickly.",
+        "text": "the key point here"
+      },
+      {
+        "chunk": "the key point here is that",
+        "meaning": "o ponto-chave aqui é que",
+        "usage": "introduz a ideia principal com uma cláusula",
+        "example": "The key point here is that we need to finish the report by Friday.",
+        "text": "the key point here is that"
+      },
+      {
+        "chunk": "be aware",
+        "meaning": "estar ciente",
+        "usage": "Used to indicate knowledge or consciousness of something.",
+        "example": "You should be aware of the new policy changes.",
+        "text": "be aware"
+      },
+      {
+        "chunk": "use another mail service",
+        "meaning": "usar outro serviço de e‑mail",
+        "usage": "Refers to switching to a different email platform.",
+        "example": "We decided to use another mail service after the outage.",
+        "text": "use another mail service"
+      },
+      {
+        "chunk": "not in details",
+        "meaning": "não em detalhes",
+        "usage": "Indicates a lack of specific information.",
+        "example": "I don't have the answer not in details, but I can give a general overview.",
+        "text": "not in details"
+      },
+      {
+        "chunk": "involved in this approach",
+        "meaning": "envolvido nesta abordagem",
+        "usage": "Describes participation or relevance to a particular method.",
+        "example": "The team is involved in this approach to streamline the process.",
+        "text": "involved in this approach"
+      },
+      {
+        "chunk": "looking to use",
+        "meaning": "pretender usar",
+        "usage": "Expresses intention to employ something.",
+        "example": "We are looking to use a new analytics tool.",
+        "text": "looking to use"
+      },
+      {
+        "chunk": "aware of the details",
+        "meaning": "ciente dos detalhes",
+        "usage": "Shows knowledge of specific information.",
+        "example": "He's aware of the details before the meeting.",
+        "text": "aware of the details"
+      },
+      {
+        "chunk": "aware of the strategy",
+        "meaning": "ciente da estratégia",
+        "usage": "Indicates understanding of a plan or approach.",
+        "example": "She is aware of the strategy we discussed.",
+        "text": "aware of the strategy"
+      },
+      {
+        "chunk": "outside of Zoho",
+        "meaning": "fora de Zoho",
+        "usage": "Describes something that is not part of the Zoho ecosystem.",
+        "example": "Zmail is outside of Zoho.",
+        "text": "outside of Zoho"
+      },
+      {
+        "chunk": "inside Zoho",
+        "meaning": "dentro de Zoho",
+        "usage": "Describes something that is part of the Zoho ecosystem.",
+        "example": "The service is inside Zoho.",
+        "text": "inside Zoho"
+      },
+      {
+        "chunk": "part of Zoho",
+        "meaning": "parte de Zoho",
+        "usage": "Describes something that belongs to Zoho.",
+        "example": "It is part of Zoho.",
+        "text": "part of Zoho"
+      },
+      {
+        "chunk": "another platform",
+        "meaning": "outra plataforma",
+        "usage": "Refers to a different platform besides the current one.",
+        "example": "We need to use another platform.",
+        "text": "another platform"
+      },
+      {
+        "chunk": "different platform",
+        "meaning": "plataforma diferente",
+        "usage": "Describes a platform that is not the same as the current one.",
+        "example": "It is a different platform.",
+        "text": "different platform"
+      },
+      {
+        "chunk": "other tools",
+        "meaning": "outras ferramentas",
+        "usage": "Refers to additional software utilities.",
+        "example": "We have other tools available.",
+        "text": "other tools"
+      },
+      {
+        "chunk": "take a look",
+        "meaning": "dar uma olhada",
+        "usage": "to examine something briefly",
+        "example": "Let me take a look at your report.",
+        "text": "take a look"
+      },
+      {
+        "chunk": "send me this link",
+        "meaning": "envie‑me este link",
+        "usage": "request for a hyperlink",
+        "example": "Send me this link so I can review it.",
+        "text": "send me this link"
+      },
+      {
+        "chunk": "see with Rodrigo",
+        "meaning": "verificar com Rodrigo",
+        "usage": "to confirm or discuss with someone",
+        "example": "I'll see with Rodrigo before proceeding.",
+        "text": "see with Rodrigo"
+      },
+      {
+        "chunk": "send you all the links",
+        "meaning": "enviar‑lhe todos os links",
+        "usage": "to provide multiple hyperlinks",
+        "example": "I'll send you all the links I found.",
+        "text": "send you all the links"
+      },
+      {
+        "chunk": "I was investigating",
+        "meaning": "eu estava investigando",
+        "usage": "describing past activity of searching",
+        "example": "I was investigating the issue yesterday.",
+        "text": "I was investigating"
+      },
+      {
+        "chunk": "explain each one of them",
+        "meaning": "explicar cada um deles",
+        "usage": "to provide details about each item",
+        "example": "Please explain each one of them.",
+        "text": "explain each one of them"
+      },
+      {
+        "chunk": "to continue the verification",
+        "meaning": "continuar a verificação",
+        "usage": "to proceed with checking",
+        "example": "To continue the verification, we need more data.",
+        "text": "to continue the verification"
+      },
+      {
+        "chunk": "let's use Zept email",
+        "meaning": "vamos usar o e‑mail Zept",
+        "usage": "suggestion to use a particular email service",
+        "example": "Let's use Zept email for this project.",
+        "text": "let's use Zept email"
+      },
+      {
+        "chunk": "go back to his study",
+        "meaning": "voltar ao seu estudo",
+        "usage": "return to a place of work",
+        "example": "He went back to his study after lunch.",
+        "text": "go back to his study"
+      },
+      {
+        "chunk": "do the app-lock",
+        "meaning": "configurar o bloqueio de aplicativo",
+        "usage": "to set up security on an app",
+        "example": "I need to do the app‑lock before sharing the app.",
+        "text": "do the app-lock"
+      },
+      {
+        "chunk": "I just didn't want to invest that time",
+        "meaning": "eu só não queria investir esse tempo",
+        "usage": "expressing reluctance to spend time",
+        "example": "I just didn't want to invest that time in the task.",
+        "text": "I just didn't want to invest that time"
+      },
+      {
+        "chunk": "maybe we'll use SendGrid",
+        "meaning": "talvez usemos o SendGrid",
+        "usage": "expressing possibility of using a service",
+        "example": "Maybe we'll use SendGrid for the email campaign.",
+        "text": "maybe we'll use SendGrid"
+      },
+      {
+        "chunk": "do you have any documentation of this?",
+        "meaning": "você tem alguma documentação sobre isso?",
+        "usage": "asking for written records",
+        "example": "Do you have any documentation of this?",
+        "text": "do you have any documentation of this?"
       }
     ],
     "expressions": [
@@ -767,6 +1180,41 @@
         "usage": "an introductory phrase used to preface a brief statement.",
         "example": "Just to be quick, I will skip the details.",
         "text": "just to be quick"
+      },
+      {
+        "expression": "so that's the point",
+        "meaning": "então esse é o ponto",
+        "usage": "enfatiza a conclusão principal ou fato importante",
+        "example": "We tried everything, but so that's the point: we can't change the policy.",
+        "text": "so that's the point"
+      },
+      {
+        "expression": "in general",
+        "meaning": "em geral",
+        "usage": "Used to refer to a broad or overall perspective.",
+        "example": "In general, the project is on schedule.",
+        "text": "in general"
+      },
+      {
+        "expression": "Oh",
+        "meaning": "Oh (interjeição de surpresa ou atenção)",
+        "usage": "Used to express surprise or to get attention.",
+        "example": "Oh, I didn't realize that.",
+        "text": "Oh"
+      },
+      {
+        "expression": "right?",
+        "meaning": "right? (tag question for confirmation)",
+        "usage": "Used at the end of a statement to seek agreement.",
+        "example": "You're coming tomorrow, right?",
+        "text": "right?"
+      },
+      {
+        "expression": "I understand",
+        "meaning": "eu entendo",
+        "usage": "to show comprehension",
+        "example": "I understand why you are upset.",
+        "text": "I understand"
       }
     ],
     "discourse_markers": [
@@ -862,6 +1310,41 @@
         "usage": "indicates a time following an event.",
         "example": "After the meeting, we went out for dinner.",
         "text": "after"
+      },
+      {
+        "marker": "here",
+        "meaning": "aqui",
+        "usage": "indica o contexto ou local atual",
+        "example": "Here is the document you asked for.",
+        "text": "here"
+      },
+      {
+        "marker": "Right?",
+        "meaning": "right? (tag question)",
+        "usage": "Used to confirm or seek agreement.",
+        "example": "You will finish the report, right?",
+        "text": "Right?"
+      },
+      {
+        "marker": "Like",
+        "meaning": "tipo / como",
+        "usage": "used informally to introduce an example or comparison",
+        "example": "He was like, 'I can't believe it.'",
+        "text": "Like"
+      },
+      {
+        "marker": "Ok",
+        "meaning": "ok / tudo bem",
+        "usage": "to indicate agreement or acknowledgment",
+        "example": "Ok, I'll send the file.",
+        "text": "Ok"
+      },
+      {
+        "marker": "Maybe",
+        "meaning": "talvez",
+        "usage": "to express possibility",
+        "example": "Maybe we should try a different approach.",
+        "text": "Maybe"
       }
     ]
   }
