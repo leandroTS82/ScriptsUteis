@@ -1,4 +1,3 @@
-import argparse
 from pathlib import Path
 from datetime import datetime
 import sys
@@ -8,7 +7,9 @@ import sys
 # ======================================================
 
 VIDEO_EXTENSIONS = {".mp4", ".mkv", ".avi", ".mov", ".wmv"}
+
 DEFAULT_VIDEO_PATH = Path(r"C:\Users\leand\Desktop\wordbank")
+PLAYLISTS_PATH = DEFAULT_VIDEO_PATH / "playlists"
 
 # ======================================================
 # UTIL
@@ -17,12 +18,13 @@ DEFAULT_VIDEO_PATH = Path(r"C:\Users\leand\Desktop\wordbank")
 def log(msg):
     print(msg)
 
-def parse_date(date_str: str) -> datetime:
-    try:
-        return datetime.strptime(date_str, "%d/%m/%Y")
-    except ValueError:
-        log(f"❌ Data inválida: {date_str} (use dd/MM/yyyy)")
-        sys.exit(1)
+def ask_date(label: str) -> datetime:
+    while True:
+        value = input(f"{label} (dd/MM/yyyy): ").strip()
+        try:
+            return datetime.strptime(value, "%d/%m/%Y")
+        except ValueError:
+            log("❌ Data inválida. Use dd/MM/yyyy.")
 
 def normalize_date_for_filename(d: datetime) -> str:
     return d.strftime("%Y%m%d")
@@ -38,23 +40,19 @@ def get_videos_root(path: Path):
 # ======================================================
 
 def main():
-    ap = argparse.ArgumentParser(description="Gera playlist por intervalo de data")
-    ap.add_argument("--from-date", required=True, help="Data inicial dd/MM/yyyy")
-    ap.add_argument("--to-date", required=True, help="Data final dd/MM/yyyy")
+    log("==============================================")
+    log("🎬 GERADOR DE PLAYLIST POR INTERVALO DE DATA")
+    log("==============================================")
 
-    ap.add_argument(
-        "--output-path",
-        default=None,
-        help="Diretório de saída do .m3u (default: pasta do script)"
-    )
-
-    args = ap.parse_args()
-
-    from_date = parse_date(args.from_date)
-    to_date = parse_date(args.to_date)
+    from_date = ask_date("Informe a data INICIAL")
+    to_date = ask_date("Informe a data FINAL")
 
     if from_date > to_date:
         log("❌ Data inicial maior que data final")
+        return
+
+    if not DEFAULT_VIDEO_PATH.exists():
+        log(f"❌ Pasta não encontrada: {DEFAULT_VIDEO_PATH}")
         return
 
     videos = get_videos_root(DEFAULT_VIDEO_PATH)
@@ -78,25 +76,17 @@ def main():
     filtered.sort(key=lambda x: x[0])
 
     # ======================================================
-    # NOME DO ARQUIVO .m3u BASEADO NO PY + PARÂMETROS
+    # NOME DO ARQUIVO .m3u
     # ======================================================
 
     script_name = Path(sys.argv[0]).stem
-
     from_str = normalize_date_for_filename(from_date)
     to_str = normalize_date_for_filename(to_date)
 
     playlist_filename = f"{script_name}_{from_str}_to_{to_str}.m3u"
 
-    output_dir = (
-        Path(args.output_path)
-        if args.output_path
-        else Path(sys.argv[0]).parent
-    )
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    playlist_path = output_dir / playlist_filename
+    PLAYLISTS_PATH.mkdir(parents=True, exist_ok=True)
+    playlist_path = PLAYLISTS_PATH / playlist_filename
 
     # ======================================================
     # GRAVA PLAYLIST
@@ -108,8 +98,12 @@ def main():
             f.write(str(video.resolve()) + "\n")
 
     log("✅ Playlist gerada com sucesso")
-    log(f"📄 Arquivo: {playlist_path.resolve()}")
+    log(f"📄 Arquivo: {playlist_path}")
     log(f"🎬 Total de vídeos: {len(filtered)}")
+
+# ======================================================
+# ENTRYPOINT
+# ======================================================
 
 if __name__ == "__main__":
     main()
