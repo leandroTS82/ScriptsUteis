@@ -1,3 +1,5 @@
+import os
+import sys
 from pathlib import Path
 from datetime import datetime
 import json
@@ -20,11 +22,13 @@ VIDEO_PATHS = [
 ]
 
 HISTORY_VIDEO_PATHS = [
-    Path("./Json_files")
+    Path(r"C:\Users\leand\Desktop\wordbank\Histories")
 ]
 
 TERMS_PATHS = [
-    Path("./Json_files")
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\movies_processed"),
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory\subtitles"),
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"),
 ]
 
 PLAYLIST_OUTPUT_PATH = Path("./playlists")
@@ -33,8 +37,10 @@ PLAYLIST_OUTPUT_PATH = Path("./playlists")
 # GROQ CONFIG (APENAS SE USE_GROQ = True)
 # ======================================================
 
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 from groq_keys_loader import GROQ_KEYS
-
 _groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
@@ -225,7 +231,7 @@ def priority_key(video: Path, term: str, content: str):
 # PLAYLIST
 # ======================================================
 
-def write_playlist(videos, mode, meta):
+def write_playlist(videos, mode, meta, part_index=None):
     PLAYLIST_OUTPUT_PATH.mkdir(parents=True, exist_ok=True)
 
     parts = ["play", mode]
@@ -242,6 +248,9 @@ def write_playlist(videos, mode, meta):
     if meta.get("histories"):
         parts.append("with_histories")
 
+    if part_index is not None:
+        parts.append(f"part_{part_index}")
+
     name = "_".join(parts)
     path = PLAYLIST_OUTPUT_PATH / f"{name}.m3u"
 
@@ -250,11 +259,7 @@ def write_playlist(videos, mode, meta):
         for v in videos:
             f.write(str(v.resolve()) + "\n")
 
-    log("\n==============================================")
-    log(f"✅ Playlist criada")
-    log(f"📄 Arquivo: {path.resolve()}")
-    log(f"🎬 Total de vídeos: {len(videos)}")
-    log("==============================================")
+    log(f"📄 Playlist criada: {path.name} ({len(videos)} vídeos)")
 
 # ======================================================
 # MAIN
@@ -277,53 +282,44 @@ def main():
 
     option = input("Escolha (1/2/3): ").strip()
     selected = []
+    meta = {"histories": include_histories}
+    mode = None
 
     # ==================================================
     # OPÇÃO 1 — DATA ESPECÍFICA
     # ==================================================
     if option == "1":
         d = ask_date("Informe a data")
+        mode = "date"
+        meta["from"] = normalize_date(d)
 
         selected = [
             v for v in videos
             if datetime.fromtimestamp(v.stat().st_mtime).date() == d.date()
         ]
 
-        write_playlist(
-            selected,
-            "date",
-            {"from": normalize_date(d), "histories": include_histories}
-        )
-        return
-
     # ==================================================
     # OPÇÃO 2 — INTERVALO
     # ==================================================
-    if option == "2":
+    elif option == "2":
         d1 = ask_date("Data inicial")
         d2 = ask_date("Data final")
+        mode = "range"
+        meta["from"] = normalize_date(d1)
+        meta["to"] = normalize_date(d2)
 
         selected = [
             v for v in videos
             if d1 <= datetime.fromtimestamp(v.stat().st_mtime) <= d2
         ]
 
-        write_playlist(
-            selected,
-            "range",
-            {
-                "from": normalize_date(d1),
-                "to": normalize_date(d2),
-                "histories": include_histories
-            }
-        )
-        return
-
     # ==================================================
     # OPÇÃO 3 — TERMO / SENTIDO
     # ==================================================
-    if option == "3":
+    elif option == "3":
         term = input("Informe o termo/sentido: ").strip().lower()
+        mode = "term"
+        meta["term"] = term
         candidates = {}
 
         log("\n📄 Analisando JSONs...\n")
@@ -353,14 +349,31 @@ def main():
             key=lambda v: priority_key(v, term, candidates.get(v.stem, ""))
         )
 
-        write_playlist(
-            selected,
-            "term",
-            {"term": term, "histories": include_histories}
-        )
+    else:
+        log("❌ Opção inválida")
         return
 
-    log("❌ Opção inválida")
+    if not selected:
+        log("⚠ Nenhum vídeo encontrado")
+        return
+
+    # ==================================================
+    # PARTICIONAMENTO (NOVA FUNCIONALIDADE)
+    # ==================================================
+
+    if ask_yes_no("Deseja particionar a playlist?"):
+        size = int(input("Quantos vídeos por playlist?: ").strip())
+        parts = [
+            selected[i:i + size]
+            for i in range(0, len(selected), size)
+        ]
+
+        for idx, chunk in enumerate(parts, 1):
+            write_playlist(chunk, mode, meta, part_index=idx)
+    else:
+        write_playlist(selected, mode, meta)
+
+    log("\n✅ Processo finalizado com sucesso")
 
 # ======================================================
 # ENTRYPOINT

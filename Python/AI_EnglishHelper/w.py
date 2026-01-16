@@ -32,9 +32,6 @@ from groq_keys_loader import GROQ_KEYS
 # ================================================================================
 # CONFIG - GROQ MULTI KEYS (ROTATION / RANDOM)
 # ================================================================================
-
-
-
 _groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"

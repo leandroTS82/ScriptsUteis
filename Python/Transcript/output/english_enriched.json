@@ -1,6 +1,6 @@
 {
   "source": "english_extractor",
-  "generated_at": "2026-01-16T10:57:29.283514",
+  "generated_at": "2026-01-16T12:53:39.896219",
   "items": {
     "terms": [
       {
@@ -494,6 +494,48 @@
         "usage": "the act of searching or examining to discover facts",
         "example": "The investigation revealed several inconsistencies.",
         "text": "investigation"
+      },
+      {
+        "text": "notifications",
+        "meaning": "notificações",
+        "usage": "messages or alerts sent to inform users about events or updates",
+        "example": "We need to test the notifications to ensure they reach users."
+      },
+      {
+        "text": "Zorro",
+        "meaning": "Zorro (nome próprio, ferramenta de teste)",
+        "usage": "a software tool used for automation or testing",
+        "example": "I used Zorro to automate the login process."
+      },
+      {
+        "text": "integration tests",
+        "meaning": "testes de integração",
+        "usage": "tests that verify the interaction between different modules or systems",
+        "example": "The integration tests failed due to a missing API endpoint."
+      },
+      {
+        "text": "response",
+        "meaning": "resposta",
+        "usage": "the reply or reaction to a request or message",
+        "example": "I received a quick response from the support team."
+      },
+      {
+        "text": "chat",
+        "meaning": "bate-papo / chat",
+        "usage": "an online messaging platform",
+        "example": "We discussed the issue in the chat."
+      },
+      {
+        "text": "studies",
+        "meaning": "estudos",
+        "usage": "academic or research work",
+        "example": "She completed her studies in computer science."
+      },
+      {
+        "text": "message",
+        "meaning": "mensagem",
+        "usage": "a piece of information sent to someone",
+        "example": "He left a message on my voicemail."
       }
     ],
     "chunks": [
@@ -1094,6 +1136,72 @@
         "usage": "asking for written records",
         "example": "Do you have any documentation of this?",
         "text": "do you have any documentation of this?"
+      },
+      {
+        "text": "finished studies",
+        "meaning": "concluiu estudos",
+        "usage": "indicates completion of academic work",
+        "example": "After months of hard work, she finished studies."
+      },
+      {
+        "text": "using Zorro",
+        "meaning": "usando Zorro",
+        "usage": "indicates the tool used",
+        "example": "I was using Zorro to run the tests."
+      },
+      {
+        "text": "outside for part of the day",
+        "meaning": "fora por parte do dia",
+        "usage": "describes being outside during some time",
+        "example": "I was outside for part of the day, enjoying the sunshine."
+      },
+      {
+        "text": "in the afternoon",
+        "meaning": "à tarde",
+        "usage": "indicates time of day",
+        "example": "We will meet in the afternoon."
+      },
+      {
+        "text": "started the integration tests",
+        "meaning": "iniciou os testes de integração",
+        "usage": "indicates beginning of testing",
+        "example": "She started the integration tests after the build."
+      },
+      {
+        "text": "waited for a response",
+        "meaning": "esperou por uma resposta",
+        "usage": "indicates waiting for reply",
+        "example": "I waited for a response to my email."
+      },
+      {
+        "text": "working on the integration tests",
+        "meaning": "trabalhando nos testes de integração",
+        "usage": "indicates ongoing activity",
+        "example": "He is working on the integration tests right now."
+      },
+      {
+        "text": "decide which tools",
+        "meaning": "decidir quais ferramentas",
+        "usage": "indicates making a choice",
+        "example": "We need to decide which tools to use."
+      },
+      {
+        "text": "send notifications",
+        "meaning": "enviar notificações",
+        "usage": "indicates action of sending alerts",
+        "example": "We will send notifications to all users."
+      },
+      {
+        "text": "sent a message",
+        "meaning": "enviou uma mensagem",
+        "usage": "indicates sending a communication",
+        "example": "She sent a message to the team."
+      },
+      {
+        "text": "in the chat",
+        "meaning": "no chat",
+        "usage": "indicates location of communication",
+        "example": "We discussed the plan in the chat."
       }
     ],
     "expressions": [
@@ -1215,6 +1323,18 @@
         "usage": "to show comprehension",
         "example": "I understand why you are upset.",
         "text": "I understand"
+      },
+      {
+        "text": "I am working on",
+        "meaning": "estou trabalhando em",
+        "usage": "used to describe a current activity or project",
+        "example": "I am working on the new feature."
+      },
+      {
+        "text": "I sent a message",
+        "meaning": "enviei uma mensagem",
+        "usage": "used to describe a past action of sending a communication",
+        "example": "I sent a message to the client."
       }
     ],
     "discourse_markers": [
@@ -1345,6 +1465,18 @@
         "usage": "to express possibility",
         "example": "Maybe we should try a different approach.",
         "text": "Maybe"
+      },
+      {
+        "text": "when",
+        "meaning": "quando",
+        "usage": "introduces a time clause, indicating when something happens",
+        "example": "When I waited for a response, I got bored."
+      },
+      {
+        "text": "yesterday",
+        "meaning": "ontem",
+        "usage": "indicates the day before today, used as a temporal marker",
+        "example": "Yesterday, I finished the project."
       }
     ]
   }

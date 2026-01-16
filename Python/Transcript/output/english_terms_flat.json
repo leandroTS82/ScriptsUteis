@@ -219,6 +219,27 @@
     "term": "investigation"
   },
   {
+    "term": "notifications"
+  },
+  {
+    "term": "Zorro"
+  },
+  {
+    "term": "integration tests"
+  },
+  {
+    "term": "response"
+  },
+  {
+    "term": "chat"
+  },
+  {
+    "term": "studies"
+  },
+  {
+    "term": "message"
+  },
+  {
     "term": "in dev"
   },
   {
@@ -483,6 +504,39 @@
     "term": "do you have any documentation of this?"
   },
   {
+    "term": "finished studies"
+  },
+  {
+    "term": "using Zorro"
+  },
+  {
+    "term": "outside for part of the day"
+  },
+  {
+    "term": "in the afternoon"
+  },
+  {
+    "term": "started the integration tests"
+  },
+  {
+    "term": "waited for a response"
+  },
+  {
+    "term": "working on the integration tests"
+  },
+  {
+    "term": "decide which tools"
+  },
+  {
+    "term": "send notifications"
+  },
+  {
+    "term": "sent a message"
+  },
+  {
+    "term": "in the chat"
+  },
+  {
     "term": "cool"
   },
   {
@@ -534,6 +588,12 @@
     "term": "I understand"
   },
   {
+    "term": "I am working on"
+  },
+  {
+    "term": "I sent a message"
+  },
+  {
     "term": "So"
   },
   {
@@ -574,5 +634,11 @@
   },
   {
     "term": "Ok"
+  },
+  {
+    "term": "when"
+  },
+  {
+    "term": "yesterday"
   }
 ]
