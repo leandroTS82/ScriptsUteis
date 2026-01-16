@@ -9,7 +9,7 @@
     "A introdução deve explicar de forma divertida o que significa a primeira word.",
     "Cada palavra gera um grupo completo em WORD_BANK.",
     "A explicação deve SEMPRE iniciar com: Significa '{tradução}'.",
-    "Gerar exatamente 3 frases: B1, B1 e B2.",
+    "Gerar exatamente 3 frases: A1, A2 e B1.",
     "Para múltiplos grupos: usar transições e finalização.",
     "Nunca adicionar campos extras.",
     "Nunca alterar nomes de campos.",
