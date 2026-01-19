@@ -1,5 +1,3 @@
-import os
-import sys
 from pathlib import Path
 from datetime import datetime
 import json
@@ -18,35 +16,24 @@ VIDEO_EXTENSIONS = {".mp4", ".mkv", ".avi", ".mov", ".wmv"}
 SRT_EXTENSIONS = {".srt"}
 
 VIDEO_PATHS = [
-    Path(r"C:\Users\leand\Desktop\wordbank")
+    Path(r"./01-Vídeos Inglês Leandrinho/wordbank")
 ]
 
 HISTORY_VIDEO_PATHS = [
-    Path(r"C:\Users\leand\Desktop\wordbank\Histories")
+    Path(r"./01-Vídeos Inglês Leandrinho/Histories")
 ]
 
 TERMS_PATHS = [
-    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\movies_processed"),
-    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory\subtitles"),
-    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"),
+    Path("./Json_files")
 ]
 
-PLAYLIST_OUTPUT_PATH = Path(r"C:\Users\leand\Desktop\wordbank\01-smart_playlists")
-
-# ======================================================
-# GROQ CONFIG (APENAS SE USE_GROQ = True)
-# ======================================================
-#Esse trecho é para quando o groq_keys_loader não estiver no path
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if BASE_DIR not in sys.path:
-    sys.path.insert(0, BASE_DIR)
-
+PLAYLIST_OUTPUT_PATH = Path("./01-smart_playlists")
 
 # ======================================================
 # RANDOM PLAYLIST CONFIG (ISOLADO)
 # ======================================================
 
-RANDOM_STATS_JSON = Path(r"C:\Users\leand\Desktop\wordbank\01-smart_playlists\random_playlist_stats.json")
+RANDOM_STATS_JSON = Path("./random_playlist_stats.json")
 RANDOM_PERCENT_USED = 0.30   # 30% itens já usados
 RANDOM_PERCENT_NEW  = 0.70   # 70% itens novos
 
@@ -228,51 +215,6 @@ def _naive_variations(term: str):
     # sem espaços duplicados
     return sorted(v for v in variations if v)
 
-def translate_terms_to_english_if_needed(terms):
-    """
-    Recebe lista de termos (podem estar em PT ou EN).
-    Se USE_GROQ=True, traduz PT → EN mantendo frases.
-    Retorna lista em inglês.
-    """
-    if not terms:
-        return terms
-
-    if not USE_GROQ:
-        return terms  # OFFLINE: não traduz, mantém como está
-
-    try:
-        prompt = f"""
-Translate the following terms to natural English.
-Rules:
-- If a term is already in English, keep it unchanged.
-- Preserve meaning and intent (imperatives, phrases, expressions).
-- Return ONLY a valid JSON array of strings.
-- No markdown, no extra text.
-
-Terms: {json.dumps(terms, ensure_ascii=False)}
-"""
-        raw = groq(prompt).strip()
-
-        start = raw.find("[")
-        end = raw.rfind("]")
-        if start != -1 and end != -1 and end > start:
-            raw = raw[start:end + 1]
-
-        translated = json.loads(raw)
-
-        if isinstance(translated, list):
-            cleaned = []
-            for t in translated:
-                if isinstance(t, str) and t.strip():
-                    cleaned.append(t.strip().lower())
-            return cleaned if cleaned else terms
-
-        return terms
-
-    except Exception:
-        log("      ⚠ Falha ao traduzir termos PT→EN → usando termos originais")
-        return terms
-
 def expand_terms_with_groq(terms):
     """
     Recebe lista base (ex: ["work", "play"]) e retorna lista expandida com:
@@ -295,13 +237,12 @@ You are helping build a study playlist search.
 Given the base terms below, return ONLY a valid JSON array of strings.
 
 Rules:
-    - Return grammatical variations (e.g., work, works, worked, working).
-    - Return common collocations / chunks (e.g., "work out", "at work", "work on", "work hard").
-    - Return useful related expressions/usages (phrasal verbs, fixed phrases).
-    - Return relevant synonyms when they are commonly interchangeable in real usage (e.g., "job", "task", "duty" for "work"; "stand up" ↔ "get up").
-    - Keep items short (1 to 4 words).
-    - Output only JSON (no markdown, no extra text).
-    - Deduplicate and keep it practical for substring search in subtitles and JSON content.
+- Return grammatical variations (e.g., work, works, worked, working).
+- Return common collocations / chunks (e.g., "work out", "at work", "work on", "work hard").
+- Return useful related expressions/usages (phrasal verbs, fixed phrases).
+- Keep items short (1 to 4 words).
+- Output only JSON (no markdown, no extra text).
+- Deduplicate and keep it practical for substring search in subtitles and JSON content.
 
 Base terms: {json.dumps(base_terms, ensure_ascii=False)}
 """
@@ -535,7 +476,7 @@ def main():
     # OPÇÃO 3 — TERMO (COM INTELIGÊNCIA EXTRA + MULTI-TERM)
     # ==================================================
     elif option == "3":
-        raw = input("Informe o termo/sentido: ").strip()
+        raw = input("Informe o termo/sentido: ").strip().lower()
         base_terms = split_terms(raw)
 
         if not base_terms:
@@ -544,13 +485,8 @@ def main():
 
         mode = "termo"
 
-        log("\n🌎 Verificando idioma e traduzindo termos se necessário...")
-        translated_terms = translate_terms_to_english_if_needed(base_terms)
-
-        log(f"📝 Termos após tradução: {', '.join(translated_terms)}")
-
         log("\n🧠 Expandindo termos para tornar a busca mais eficiente...")
-        expanded_terms = expand_terms_with_groq(translated_terms)
+        expanded_terms = expand_terms_with_groq(base_terms)
 
         # feedback amigável (sem poluir demais)
         if expanded_terms:
