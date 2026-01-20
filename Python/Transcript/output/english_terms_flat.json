@@ -240,6 +240,87 @@
     "term": "message"
   },
   {
+    "term": "river"
+  },
+  {
+    "term": "overflowing"
+  },
+  {
+    "term": "rain"
+  },
+  {
+    "term": "flood"
+  },
+  {
+    "term": "Sao Paulo"
+  },
+  {
+    "term": "Tietê River"
+  },
+  {
+    "term": "messy"
+  },
+  {
+    "term": "unpredictable"
+  },
+  {
+    "term": "weather"
+  },
+  {
+    "term": "south of Holland"
+  },
+  {
+    "term": "area"
+  },
+  {
+    "term": "city"
+  },
+  {
+    "term": "crossed"
+  },
+  {
+    "term": "Send Grid"
+  },
+  {
+    "term": "automated tests"
+  },
+  {
+    "term": "refactoring"
+  },
+  {
+    "term": "must-have"
+  },
+  {
+    "term": "getting live"
+  },
+  {
+    "term": "right moment"
+  },
+  {
+    "term": "investigate"
+  },
+  {
+    "term": "worthless"
+  },
+  {
+    "term": "speed"
+  },
+  {
+    "term": "priority"
+  },
+  {
+    "term": "users"
+  },
+  {
+    "term": "focus"
+  },
+  {
+    "term": "side"
+  },
+  {
+    "term": "updates"
+  },
+  {
     "term": "in dev"
   },
   {
@@ -537,6 +618,96 @@
     "term": "in the chat"
   },
   {
+    "term": "too much rain"
+  },
+  {
+    "term": "in the same period"
+  },
+  {
+    "term": "on the same place"
+  },
+  {
+    "term": "used to flood"
+  },
+  {
+    "term": "become a mess"
+  },
+  {
+    "term": "in the south of Holland"
+  },
+  {
+    "term": "little river"
+  },
+  {
+    "term": "not very good"
+  },
+  {
+    "term": "short period"
+  },
+  {
+    "term": "unpredictable weather"
+  },
+  {
+    "term": "it doesn't happen anymore"
+  },
+  {
+    "term": "at the right moment"
+  },
+  {
+    "term": "won't be complicated"
+  },
+  {
+    "term": "worthless to stop"
+  },
+  {
+    "term": "investigate sending mails"
+  },
+  {
+    "term": "speed is becoming real important"
+  },
+  {
+    "term": "have to focus on"
+  },
+  {
+    "term": "must-have before releasing"
+  },
+  {
+    "term": "refactoring and including automated tests"
+  },
+  {
+    "term": "priority now is"
+  },
+  {
+    "term": "releasing to our users"
+  },
+  {
+    "term": "focus on what we already know"
+  },
+  {
+    "term": "go with"
+  },
+  {
+    "term": "consider changing"
+  },
+  {
+    "term": "on my side"
+  },
+  {
+    "term": "give someone updates"
+  },
+  {
+    "term": "some updates"
+  },
+  {
+    "term": "give updates"
+  },
+  {
+    "term": "about it"
+  },
+  {
+    "term": "I'll just give"
+  },
+  {
     "term": "cool"
   },
   {
@@ -594,6 +765,36 @@
     "term": "I sent a message"
   },
   {
+    "term": "Oh no"
+  },
+  {
+    "term": "actually"
+  },
+  {
+    "term": "that's what I was saying"
+  },
+  {
+    "term": "maybe we are going back"
+  },
+  {
+    "term": "is that okay for you"
+  },
+  {
+    "term": "fully agree"
+  },
+  {
+    "term": "in the future"
+  },
+  {
+    "term": "that's it for now"
+  },
+  {
+    "term": "I don't know"
+  },
+  {
+    "term": "not aware of"
+  },
+  {
     "term": "So"
   },
   {
@@ -640,5 +841,29 @@
   },
   {
     "term": "yesterday"
+  },
+  {
+    "term": "Sorry"
+  },
+  {
+    "term": "Hi"
+  },
+  {
+    "term": "And actually"
+  },
+  {
+    "term": "So maybe"
+  },
+  {
+    "term": "So I think"
+  },
+  {
+    "term": "So if it's"
+  },
+  {
+    "term": "Yeah, I agree"
+  },
+  {
+    "term": "Okay, so that's it for now"
   }
 ]

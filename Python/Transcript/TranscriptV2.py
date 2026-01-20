@@ -11,7 +11,7 @@ r"""
 
 python transcriptV2.py "C:\\MeusVideos"
 python transcriptV2.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
-python transcriptV2.py "C:\Users\leand\Desktop\01-ReunioesGravadas\20260116"
+python transcriptV2.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\Com legenda imbutida\20260120"
 """
 
 import whisper

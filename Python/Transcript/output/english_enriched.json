@@ -1,6 +1,6 @@
 {
   "source": "english_extractor",
-  "generated_at": "2026-01-16T12:53:39.896219",
+  "generated_at": "2026-01-20T12:53:33.793390",
   "items": {
     "terms": [
       {
@@ -536,6 +536,195 @@
         "meaning": "mensagem",
         "usage": "a piece of information sent to someone",
         "example": "He left a message on my voicemail."
+      },
+      {
+        "term": "river",
+        "meaning": "rio",
+        "usage": "noun referring to a natural watercourse that flows toward a larger body of water",
+        "example": "The river flooded the town.",
+        "text": "river"
+      },
+      {
+        "term": "overflowing",
+        "meaning": "transbordando",
+        "usage": "adjective describing something that is overflowing",
+        "example": "The overflowing river caused damage.",
+        "text": "overflowing"
+      },
+      {
+        "term": "rain",
+        "meaning": "chuva",
+        "usage": "noun for precipitation falling from the sky",
+        "example": "Heavy rain caused flooding.",
+        "text": "rain"
+      },
+      {
+        "term": "flood",
+        "meaning": "inundação",
+        "usage": "noun for the event of water covering land",
+        "example": "The flood destroyed homes.",
+        "text": "flood"
+      },
+      {
+        "term": "Sao Paulo",
+        "meaning": "São Paulo",
+        "usage": "proper noun for the city in Brazil",
+        "example": "Sao Paulo is a large city in Brazil.",
+        "text": "Sao Paulo"
+      },
+      {
+        "term": "Tietê River",
+        "meaning": "Rio Tietê",
+        "usage": "proper noun for the river that runs through Sao Paulo",
+        "example": "The Tietê River is known for flooding.",
+        "text": "Tietê River"
+      },
+      {
+        "term": "messy",
+        "meaning": "bagunça",
+        "usage": "adjective describing disorder or confusion",
+        "example": "The city became a mess after the flood.",
+        "text": "messy"
+      },
+      {
+        "term": "unpredictable",
+        "meaning": "imprevisível",
+        "usage": "adjective describing something that cannot be predicted",
+        "example": "The weather is unpredictable.",
+        "text": "unpredictable"
+      },
+      {
+        "term": "weather",
+        "meaning": "tempo",
+        "usage": "noun for atmospheric conditions",
+        "example": "The weather was sunny.",
+        "text": "weather"
+      },
+      {
+        "term": "south of Holland",
+        "meaning": "sul da Holanda",
+        "usage": "phrase indicating geographic location in the Netherlands",
+        "example": "We visited the south of Holland.",
+        "text": "south of Holland"
+      },
+      {
+        "term": "area",
+        "meaning": "área",
+        "usage": "noun for a region or part of a place",
+        "example": "Flooded areas were evacuated.",
+        "text": "area"
+      },
+      {
+        "term": "city",
+        "meaning": "cidade",
+        "usage": "noun for a large town or urban area",
+        "example": "The city was damaged.",
+        "text": "city"
+      },
+      {
+        "term": "crossed",
+        "meaning": "cortou",
+        "usage": "past tense of cross, meaning to go across",
+        "example": "The river crossed the city.",
+        "text": "crossed"
+      },
+      {
+        "term": "Send Grid",
+        "meaning": "SendGrid (serviço de envio de e‑mails em nuvem)",
+        "usage": "Plataforma usada para enviar e‑mails em massa.",
+        "example": "We decided to use Send Grid for our email notifications.",
+        "text": "Send Grid"
+      },
+      {
+        "term": "automated tests",
+        "meaning": "testes automatizados",
+        "usage": "Testes que são executados por software sem intervenção humana.",
+        "example": "Automated tests help catch regressions early.",
+        "text": "automated tests"
+      },
+      {
+        "term": "refactoring",
+        "meaning": "refatoração",
+        "usage": "O processo de melhorar o código sem alterar seu comportamento.",
+        "example": "We need to refactor the legacy module before adding new features.",
+        "text": "refactoring"
+      },
+      {
+        "term": "must-have",
+        "meaning": "obrigatório, essencial",
+        "usage": "Algo que é indispensável para o sucesso.",
+        "example": "A backup system is a must‑have for any production environment.",
+        "text": "must-have"
+      },
+      {
+        "term": "getting live",
+        "meaning": "tornar‑se ativo, colocar em produção",
+        "usage": "Processo de disponibilizar o software para usuários finais.",
+        "example": "We are getting live next week after final QA.",
+        "text": "getting live"
+      },
+      {
+        "term": "right moment",
+        "meaning": "momento certo",
+        "usage": "O instante apropriado para agir.",
+        "example": "We should launch the campaign at the right moment.",
+        "text": "right moment"
+      },
+      {
+        "term": "investigate",
+        "meaning": "investigar, analisar",
+        "usage": "Examinar algo para descobrir causas ou soluções.",
+        "example": "We need to investigate the error logs.",
+        "text": "investigate"
+      },
+      {
+        "term": "worthless",
+        "meaning": "sem valor, inútil",
+        "usage": "Algo que não tem utilidade.",
+        "example": "That approach is worthless for our current needs.",
+        "text": "worthless"
+      },
+      {
+        "term": "speed",
+        "meaning": "velocidade",
+        "usage": "A rapidez com que algo acontece.",
+        "example": "The speed of the server is critical for user experience.",
+        "text": "speed"
+      },
+      {
+        "term": "priority",
+        "meaning": "prioridade",
+        "usage": "O nível de importância de uma tarefa.",
+        "example": "Security fixes are top priority.",
+        "text": "priority"
+      },
+      {
+        "term": "users",
+        "meaning": "usuários",
+        "usage": "Pessoas que utilizam o produto.",
+        "example": "We need to improve the user interface for our users.",
+        "text": "users"
+      },
+      {
+        "term": "focus",
+        "meaning": "focar, concentrar",
+        "usage": "Direcionar atenção para algo.",
+        "example": "Let's focus on fixing the critical bugs.",
+        "text": "focus"
+      },
+      {
+        "term": "side",
+        "meaning": "lado, parte",
+        "usage": "Referência a uma perspectiva ou posição.",
+        "example": "From my side, the issue seems resolved.",
+        "text": "side"
+      },
+      {
+        "term": "updates",
+        "meaning": "atualizações",
+        "usage": "noun meaning new information or changes about something.",
+        "example": "He sent me updates on the project.",
+        "text": "updates"
       }
     ],
     "chunks": [
@@ -1202,6 +1391,216 @@
         "meaning": "no chat",
         "usage": "indicates location of communication",
         "example": "We discussed the plan in the chat."
+      },
+      {
+        "chunk": "too much rain",
+        "meaning": "muita chuva",
+        "usage": "collocation indicating excessive rainfall",
+        "example": "Too much rain caused the river to overflow.",
+        "text": "too much rain"
+      },
+      {
+        "chunk": "in the same period",
+        "meaning": "no mesmo período",
+        "usage": "collocation indicating the same timeframe",
+        "example": "They studied in the same period.",
+        "text": "in the same period"
+      },
+      {
+        "chunk": "on the same place",
+        "meaning": "no mesmo lugar",
+        "usage": "collocation indicating the same location",
+        "example": "The event happened on the same place.",
+        "text": "on the same place"
+      },
+      {
+        "chunk": "used to flood",
+        "meaning": "costumava inundar",
+        "usage": "collocation describing habitual past flooding",
+        "example": "The river used to flood the city.",
+        "text": "used to flood"
+      },
+      {
+        "chunk": "become a mess",
+        "meaning": "ficar uma bagunça",
+        "usage": "collocation meaning to become disordered",
+        "example": "The city became a mess after the flood.",
+        "text": "become a mess"
+      },
+      {
+        "chunk": "in the south of Holland",
+        "meaning": "no sul da Holanda",
+        "usage": "collocation indicating location",
+        "example": "We saw windmills in the south of Holland.",
+        "text": "in the south of Holland"
+      },
+      {
+        "chunk": "little river",
+        "meaning": "pequeno rio",
+        "usage": "collocation describing a small river",
+        "example": "A little river runs through the park.",
+        "text": "little river"
+      },
+      {
+        "chunk": "not very good",
+        "meaning": "não muito bom",
+        "usage": "collocation meaning not satisfactory",
+        "example": "The weather was not very good.",
+        "text": "not very good"
+      },
+      {
+        "chunk": "short period",
+        "meaning": "período curto",
+        "usage": "collocation meaning brief time",
+        "example": "He stayed for a short period.",
+        "text": "short period"
+      },
+      {
+        "chunk": "unpredictable weather",
+        "meaning": "tempo imprevisível",
+        "usage": "collocation describing weather that cannot be predicted",
+        "example": "Unpredictable weather can cause problems.",
+        "text": "unpredictable weather"
+      },
+      {
+        "chunk": "it doesn't happen anymore",
+        "meaning": "não acontece mais",
+        "usage": "collocation meaning no longer occurs",
+        "example": "It doesn't happen anymore after the new dam.",
+        "text": "it doesn't happen anymore"
+      },
+      {
+        "chunk": "at the right moment",
+        "meaning": "no momento certo",
+        "usage": "Usado para indicar o instante apropriado.",
+        "example": "We should deploy at the right moment to avoid downtime.",
+        "text": "at the right moment"
+      },
+      {
+        "chunk": "won't be complicated",
+        "meaning": "não será complicado",
+        "usage": "Indica que algo não será difícil.",
+        "example": "The migration won't be complicated if we follow the checklist.",
+        "text": "won't be complicated"
+      },
+      {
+        "chunk": "worthless to stop",
+        "meaning": "inútil parar",
+        "usage": "Expressa que interromper não traz benefício.",
+        "example": "It's worthless to stop the process now.",
+        "text": "worthless to stop"
+      },
+      {
+        "chunk": "investigate sending mails",
+        "meaning": "investigar o envio de e‑mails",
+        "usage": "Analisar como enviar e‑mails.",
+        "example": "We need to investigate sending mails through the new API.",
+        "text": "investigate sending mails"
+      },
+      {
+        "chunk": "speed is becoming real important",
+        "meaning": "a velocidade está se tornando realmente importante",
+        "usage": "Indica crescente importância.",
+        "example": "Speed is becoming real important as users expect instant responses.",
+        "text": "speed is becoming real important"
+      },
+      {
+        "chunk": "have to focus on",
+        "meaning": "precisamos focar em",
+        "usage": "Indica necessidade de atenção.",
+        "example": "We have to focus on the core features first.",
+        "text": "have to focus on"
+      },
+      {
+        "chunk": "must-have before releasing",
+        "meaning": "obrigatório antes de lançar",
+        "usage": "Algo essencial antes do lançamento.",
+        "example": "A security audit is a must‑have before releasing.",
+        "text": "must-have before releasing"
+      },
+      {
+        "chunk": "refactoring and including automated tests",
+        "meaning": "refatoração e inclusão de testes automatizados",
+        "usage": "Combinação de atividades de melhoria de código.",
+        "example": "We plan refactoring and including automated tests next sprint.",
+        "text": "refactoring and including automated tests"
+      },
+      {
+        "chunk": "priority now is",
+        "meaning": "a prioridade agora é",
+        "usage": "Define a tarefa mais importante.",
+        "example": "Priority now is to fix the crash.",
+        "text": "priority now is"
+      },
+      {
+        "chunk": "releasing to our users",
+        "meaning": "lançando para nossos usuários",
+        "usage": "Distribuir a versão final.",
+        "example": "Releasing to our users will happen on Friday.",
+        "text": "releasing to our users"
+      },
+      {
+        "chunk": "focus on what we already know",
+        "meaning": "focar no que já sabemos",
+        "usage": "Concentrar em conhecimento existente.",
+        "example": "Focus on what we already know to speed up development.",
+        "text": "focus on what we already know"
+      },
+      {
+        "chunk": "go with",
+        "meaning": "seguir com",
+        "usage": "Escolher uma opção.",
+        "example": "We should go with the new framework.",
+        "text": "go with"
+      },
+      {
+        "chunk": "consider changing",
+        "meaning": "considerar mudar",
+        "usage": "Pensar em alterar algo.",
+        "example": "We should consider changing the architecture.",
+        "text": "consider changing"
+      },
+      {
+        "chunk": "on my side",
+        "meaning": "do meu lado",
+        "usage": "Referência à minha perspectiva.",
+        "example": "On my side, everything is ready.",
+        "text": "on my side"
+      },
+      {
+        "chunk": "give someone updates",
+        "meaning": "dar atualizações a alguém",
+        "usage": "phrase meaning to provide new information to a person.",
+        "example": "I'll give you updates on the progress.",
+        "text": "give someone updates"
+      },
+      {
+        "chunk": "some updates",
+        "meaning": "algumas atualizações",
+        "usage": "phrase meaning a few pieces of new information.",
+        "example": "I have some updates to share.",
+        "text": "some updates"
+      },
+      {
+        "chunk": "give updates",
+        "meaning": "dar atualizações",
+        "usage": "phrase meaning to provide new information.",
+        "example": "We will give updates every week.",
+        "text": "give updates"
+      },
+      {
+        "chunk": "about it",
+        "meaning": "sobre isso",
+        "usage": "prepositional phrase indicating the topic.",
+        "example": "I have no idea about it.",
+        "text": "about it"
+      },
+      {
+        "chunk": "I'll just give",
+        "meaning": "Eu só vou dar",
+        "usage": "phrase indicating a simple action.",
+        "example": "I'll just give it a try.",
+        "text": "I'll just give"
       }
     ],
     "expressions": [
@@ -1335,6 +1734,83 @@
         "meaning": "enviei uma mensagem",
         "usage": "used to describe a past action of sending a communication",
         "example": "I sent a message to the client."
+      },
+      {
+        "expression": "Oh no",
+        "meaning": "Oh não",
+        "usage": "interjection expressing disappointment or surprise",
+        "example": "Oh no, I left my phone at home.",
+        "text": "Oh no"
+      },
+      {
+        "expression": "actually",
+        "meaning": "na verdade, realmente",
+        "usage": "Usado para enfatizar ou corrigir.",
+        "example": "Actually, I think we should postpone the meeting.",
+        "text": "actually"
+      },
+      {
+        "expression": "that's what I was saying",
+        "meaning": "é o que eu estava dizendo",
+        "usage": "Reafirmação de ideia.",
+        "example": "That's what I was saying about the budget.",
+        "text": "that's what I was saying"
+      },
+      {
+        "expression": "maybe we are going back",
+        "meaning": "talvez estejamos voltando",
+        "usage": "Expressa possibilidade.",
+        "example": "Maybe we are going back to the original design.",
+        "text": "maybe we are going back"
+      },
+      {
+        "expression": "is that okay for you",
+        "meaning": "isso está bom para você?",
+        "usage": "Pergunta de confirmação.",
+        "example": "Is that okay for you to start tomorrow?",
+        "text": "is that okay for you"
+      },
+      {
+        "expression": "fully agree",
+        "meaning": "concordo totalmente",
+        "usage": "Expressa concordância.",
+        "example": "I fully agree with the proposal.",
+        "text": "fully agree"
+      },
+      {
+        "expression": "must-have",
+        "meaning": "obrigatório, essencial",
+        "usage": "Indica necessidade.",
+        "example": "A backup system is a must‑have.",
+        "text": "must-have"
+      },
+      {
+        "expression": "in the future",
+        "meaning": "no futuro",
+        "usage": "Referência a eventos futuros.",
+        "example": "In the future, we will need more storage.",
+        "text": "in the future"
+      },
+      {
+        "expression": "that's it for now",
+        "meaning": "é isso por enquanto",
+        "usage": "Encerramento.",
+        "example": "That's it for now, thanks.",
+        "text": "that's it for now"
+      },
+      {
+        "expression": "I don't know",
+        "meaning": "eu não sei",
+        "usage": "Expressa desconhecimento.",
+        "example": "I don't know the answer.",
+        "text": "I don't know"
+      },
+      {
+        "expression": "not aware of",
+        "meaning": "não estar ciente de",
+        "usage": "idiomatic phrase meaning lacking knowledge about something.",
+        "example": "He was not aware of the change.",
+        "text": "not aware of"
       }
     ],
     "discourse_markers": [
@@ -1477,6 +1953,69 @@
         "meaning": "ontem",
         "usage": "indicates the day before today, used as a temporal marker",
         "example": "Yesterday, I finished the project."
+      },
+      {
+        "marker": "Sorry",
+        "meaning": "Desculpe",
+        "usage": "interjection used to apologize or express regret",
+        "example": "Sorry, I didn't mean to interrupt.",
+        "text": "Sorry"
+      },
+      {
+        "marker": "Hi",
+        "meaning": "Oi",
+        "usage": "greeting used to say hello",
+        "example": "Hi, how are you?",
+        "text": "Hi"
+      },
+      {
+        "marker": "And actually",
+        "meaning": "E na verdade",
+        "usage": "Introduz informação adicional.",
+        "example": "And actually, we have a new update.",
+        "text": "And actually"
+      },
+      {
+        "marker": "So maybe",
+        "meaning": "Então talvez",
+        "usage": "Sugere possibilidade.",
+        "example": "So maybe we should try a different approach.",
+        "text": "So maybe"
+      },
+      {
+        "marker": "So I think",
+        "meaning": "Então eu acho",
+        "usage": "Expressa opinião.",
+        "example": "So I think we should wait.",
+        "text": "So I think"
+      },
+      {
+        "marker": "So if it's",
+        "meaning": "Então se for",
+        "usage": "Condições.",
+        "example": "So if it's Send Grid, we go ahead.",
+        "text": "So if it's"
+      },
+      {
+        "marker": "Yeah, I agree",
+        "meaning": "Sim, eu concordo",
+        "usage": "Confirmação.",
+        "example": "Yeah, I agree with your plan.",
+        "text": "Yeah, I agree"
+      },
+      {
+        "marker": "Okay, so that's it for now",
+        "meaning": "Ok, então é isso por enquanto",
+        "usage": "Encerramento.",
+        "example": "Okay, so that's it for now.",
+        "text": "Okay, so that's it for now"
+      },
+      {
+        "marker": "On my side",
+        "meaning": "Do meu lado",
+        "usage": "Referência à minha perspectiva.",
+        "example": "On my side, everything is ready.",
+        "text": "On my side"
       }
     ]
   }

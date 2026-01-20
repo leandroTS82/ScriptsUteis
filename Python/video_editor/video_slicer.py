@@ -22,20 +22,29 @@ import sys
 USE_INTERNAL_CONFIG = True
 
 # Pode ser PASTA ou CAMINHO COMPLETO DO VÍDEO
-VIDEO_PATH = r"C:\Users\leand\Desktop\01-ReunioesGravadas\20260116"
-VIDEO_NAME = "2026-01-16_09-28-59.mp4"
+VIDEO_PATH = r"C:\dev\scripts\ScriptsUteis\Python\youtube_downloader\downloads"
+VIDEO_NAME = "Priscilla Shirer ｜ Keep Your Eyes Fixed on Jesus.mp4"
 
 TIMES = [
-    "00:07",
-    "01:11",
-    "01:52",
-    "02:12",
-    "02:57",
-    "03:10",
-    "03:45",
-    "03:56",
-    "04:43",
-    "06:17"
+    "00:00",
+    "00:33",
+    "03:02",
+    "05:02",
+    "07:02",
+    "09:02",
+    "11:02",
+    "13:02",
+    "15:02",
+    "17:02",
+    "19:02",
+    "21:02",
+    "23:02",
+    "25:02",
+    "27:02",
+    "29:02",
+    "31:02",
+    "33:02",
+    "35:59"
 ]
 
 # Se ffmpeg/ffprobe não estiver no PATH, informe aqui:
