@@ -1,8 +1,8 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\english_extractor"
-$outputFile    = ".\files\english_extractor.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_Makemovies"
+$outputFile    = ".\files\Pipeline_Makemovies.txt"
 
 $selectedFiles = @()    
 $onlyFolders   = @()

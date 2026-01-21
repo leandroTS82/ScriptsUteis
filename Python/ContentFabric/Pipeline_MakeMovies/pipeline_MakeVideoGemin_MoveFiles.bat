@@ -126,6 +126,12 @@ REM ------------------------------------------------------------
 REM LOG FUNCTION
 REM ------------------------------------------------------------
 
+REM Se sucesso:
+for %%f in (processing_*.json) do ren "%%f" "success_%%~nxf"
+
+REM Se erro:
+for %%f in (processing_*.json) do ren "%%f" "error_%%~nxf"
+
 :log
 echo %*
 echo %*>> "%LOG_FILE%"
