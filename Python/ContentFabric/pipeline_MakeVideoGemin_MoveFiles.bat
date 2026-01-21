@@ -7,6 +7,13 @@ REM PIPELINE BASE — ETAPAS 1, 2 E 3
 REM (Backup + MakeVideoGemini + MoveFiles)
 REM ============================================================
 
+REM -------- PATHS PRINCIPAIS --------
+set AI_HELPER_DIR=C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper
+set CREATE_LATER=%AI_HELPER_DIR%\CreateLater.json
+set TEMP_BACKUP=%AI_HELPER_DIR%\temp_CreateLater.json
+set CREATED_MOVIES_DIR=%AI_HELPER_DIR%\History_Created
+set LOCK_FILE=%AI_HELPER_DIR%\pipeline.lock
+
 REM -------- LOG CONFIG --------
 set LOG_DIR=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\pipeline_upload_videos_Logs
 if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
@@ -14,19 +21,23 @@ if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
 for /f %%i in ('powershell -NoProfile -Command "Get-Date -Format yyyyMMdd_HHmmss"') do set RUN_TS=%%i
 set LOG_FILE=%LOG_DIR%\pipeline_base_%RUN_TS%.txt
 
+REM ============================================================
+REM LOCK CHECK (ANTI-CONCORRÊNCIA)
+REM ============================================================
+
+if exist "%LOCK_FILE%" (
+    echo [LOCK] Pipeline already running. Aborting execution.
+    echo [LOCK] Pipeline already running. Aborting execution.>> "%LOG_FILE%"
+    exit /b 0
+)
+
+echo %DATE% %TIME% > "%LOCK_FILE%"
+
 REM -------- LOG START --------
 call :log ============================================================
 call :log PIPELINE BASE STARTED - %DATE% %TIME%
+call :log LOCK CREATED: %LOCK_FILE%
 call :log ============================================================
-
-REM ------------------------------------------------------------
-REM PATHS
-REM ------------------------------------------------------------
-
-set AI_HELPER_DIR=C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper
-set CREATE_LATER=%AI_HELPER_DIR%\CreateLater.json
-set TEMP_BACKUP=%AI_HELPER_DIR%\temp_CreateLater.json
-set CREATED_MOVIES_DIR=%AI_HELPER_DIR%\History_Created
 
 REM ------------------------------------------------------------
 REM 1 - BACKUP CreateLater.json
@@ -93,9 +104,9 @@ REM ------------------------------------------------------------
 
 call :log ============================================================
 call :log PIPELINE BASE COMPLETED SUCCESSFULLY
-call :log LOG FILE: %LOG_FILE%
 call :log ============================================================
 
+del "%LOCK_FILE%" >nul 2>&1
 exit /b 0
 
 REM ------------------------------------------------------------
@@ -105,8 +116,9 @@ REM ------------------------------------------------------------
 :error
 call :log ============================================================
 call :log PIPELINE BASE FAILED
-call :log Check log file: %LOG_FILE%
 call :log ============================================================
+
+del "%LOCK_FILE%" >nul 2>&1
 pause
 exit /b 1
 
