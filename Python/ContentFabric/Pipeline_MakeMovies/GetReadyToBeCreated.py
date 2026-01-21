@@ -7,16 +7,30 @@ import sys
 # CONFIGURAÇÕES
 # ======================================================
 
-READY_PATH = Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\ReadyToBeCreated")
-AI_HELPER_PATH = Path(r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper")
+PIPELINE_DIR = Path(r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_Makemovies")
+RUNTIME_DIR = PIPELINE_DIR / "_runtime"
+RUNTIME_DIR.mkdir(exist_ok=True)
+
+READY_PATH = Path(
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\ReadyToBeCreated"
+)
+
+AI_HELPER_PATH = Path(
+    r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper"
+)
 
 CREATE_LATER_FILE = AI_HELPER_PATH / "CreateLater.json"
-LOCK_FILE = AI_HELPER_PATH / "pipeline.lock"
+LOCK_FILE = RUNTIME_DIR / "pipeline.lock"
 
-LOG_DIR = Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\pipeline_upload_videos_Logs")
+LOG_ROOT = Path(
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\pipeline_upload_videos_Logs"
+)
+
+RUN_ID = sys.argv[1] if len(sys.argv) > 1 else datetime.now().strftime("%Y%m%d%H%M")
+LOG_DIR = LOG_ROOT / RUN_ID
 LOG_DIR.mkdir(exist_ok=True)
 
-LOG_FILE = LOG_DIR / f"gatekeeper_{datetime.now():%Y%m%d_%H%M%S}.log"
+LOG_FILE = LOG_DIR / "gatekeeper.log"
 
 # ======================================================
 # HELPERS
@@ -41,17 +55,14 @@ def save_json(path: Path, data: dict):
 def main():
     log("START")
 
-    # Lock global
     if LOCK_FILE.exists():
-        log("Pipeline já está em execução (lock ativo)")
+        log("LOCK ativo — abortando execução")
         sys.exit(0)
 
-    # CreateLater deve estar vazio
     if not CREATE_LATER_FILE.exists() or load_json(CREATE_LATER_FILE) != {"pending": []}:
-        log("CreateLater.json não vazio – abortando")
+        log("CreateLater.json não vazio — abortando")
         sys.exit(0)
 
-    # JSONs elegíveis
     candidates = [
         f for f in READY_PATH.iterdir()
         if f.is_file()
@@ -60,12 +71,11 @@ def main():
     ]
 
     if not candidates:
-        log("NOOP – nenhum JSON elegível")
+        log("NOOP — nenhum JSON elegível")
         sys.exit(0)
 
     unified = []
 
-    # Marca processing_
     for f in candidates:
         data = load_json(f)
         unified.extend(data.get("pending", []))
@@ -74,12 +84,11 @@ def main():
     unified = list(dict.fromkeys(unified))
 
     if not unified:
-        log("NOOP – lista unificada vazia")
+        log("NOOP — lista vazia após unificação")
         sys.exit(0)
 
-    # Cria lock AQUI (ponto correto)
     LOCK_FILE.write_text(datetime.now().isoformat(), encoding="utf-8")
-    log("Lock criado pelo gatekeeper")
+    log("LOCK criado")
 
     save_json(CREATE_LATER_FILE, {"pending": unified})
     log(f"CreateLater.json preenchido com {len(unified)} termos")
