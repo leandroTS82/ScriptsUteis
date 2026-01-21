@@ -2,10 +2,9 @@ import json
 from pathlib import Path
 from datetime import datetime
 import sys
-import shutil
 
 # ======================================================
-# CONFIG
+# CONFIGURAÇÕES
 # ======================================================
 
 READY_PATH = Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\ReadyToBeCreated")
@@ -23,15 +22,16 @@ LOG_FILE = LOG_DIR / f"gatekeeper_{datetime.now():%Y%m%d_%H%M%S}.log"
 # HELPERS
 # ======================================================
 
-def log(msg):
-    LOG_FILE.write_text(LOG_FILE.read_text() + f"{datetime.now()} | {msg}\n" if LOG_FILE.exists() else f"{datetime.now()} | {msg}\n")
+def log(msg: str):
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(f"{datetime.now():%Y-%m-%d %H:%M:%S} | {msg}\n")
 
-def load_json(p: Path):
-    with open(p, encoding="utf-8") as f:
+def load_json(path: Path) -> dict:
+    with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def save_json(p: Path, data):
-    with open(p, "w", encoding="utf-8") as f:
+def save_json(path: Path, data: dict):
+    with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 # ======================================================
@@ -41,26 +41,31 @@ def save_json(p: Path, data):
 def main():
     log("START")
 
+    # Lock global
     if LOCK_FILE.exists():
-        log("Pipeline locked – aborting")
+        log("Pipeline já está em execução (lock ativo)")
         sys.exit(0)
 
+    # CreateLater deve estar vazio
     if not CREATE_LATER_FILE.exists() or load_json(CREATE_LATER_FILE) != {"pending": []}:
-        log("CreateLater.json não vazio – aborting")
+        log("CreateLater.json não vazio – abortando")
         sys.exit(0)
 
+    # JSONs elegíveis
     candidates = [
         f for f in READY_PATH.iterdir()
         if f.is_file()
-        and f.suffix == ".json"
+        and f.suffix.lower() == ".json"
         and not f.name.startswith(("processing_", "success_", "error_"))
     ]
 
     if not candidates:
-        log("NOOP – nenhum json elegível")
+        log("NOOP – nenhum JSON elegível")
         sys.exit(0)
 
     unified = []
+
+    # Marca processing_
     for f in candidates:
         data = load_json(f)
         unified.extend(data.get("pending", []))
@@ -69,11 +74,15 @@ def main():
     unified = list(dict.fromkeys(unified))
 
     if not unified:
-        log("NOOP – lista vazia")
+        log("NOOP – lista unificada vazia")
         sys.exit(0)
 
+    # Cria lock AQUI (ponto correto)
+    LOCK_FILE.write_text(datetime.now().isoformat(), encoding="utf-8")
+    log("Lock criado pelo gatekeeper")
+
     save_json(CREATE_LATER_FILE, {"pending": unified})
-    log(f"CreateLater.json preenchido ({len(unified)} termos)")
+    log(f"CreateLater.json preenchido com {len(unified)} termos")
 
     sys.exit(2)
 

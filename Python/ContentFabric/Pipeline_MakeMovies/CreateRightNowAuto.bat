@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 chcp 65001 >nul
 
 REM ==================================================
@@ -7,10 +7,10 @@ REM ORQUESTRADOR PRINCIPAL (SILENCIOSO)
 REM ==================================================
 
 set PYTHON_EXE=C:\Python311\python.exe
-set BASE_DIR=C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper
+set PIPELINE_DIR=C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_Makemovies
 
-set SCRIPT_READY=%BASE_DIR%\GetReadyToBeCreated.py
-set SCRIPT_PIPELINE=C:\dev\scripts\ScriptsUteis\Python\ContentFabric\pipeline_MakeVideoGemin_MoveFiles.bat
+set SCRIPT_READY=%PIPELINE_DIR%\GetReadyToBeCreated.py
+set SCRIPT_PIPELINE=%PIPELINE_DIR%\pipeline_MakeVideoGemin_MoveFiles.bat
 
 set LOG_DIR=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\pipeline_upload_videos_Logs
 if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
