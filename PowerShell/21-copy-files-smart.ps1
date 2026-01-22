@@ -97,7 +97,7 @@ $PathMappings = @(
     # =========================
     @{
         Source = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
-        Destination = "C:\Users\leand\Desktop\ReunioesGravadas"
+        Destination = "C:\Users\leand\Desktop\01-ReunioesGravadas"
         Extensions = @("mp4")
         EndsWith = @("_subbed")
     }
