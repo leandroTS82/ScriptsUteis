@@ -108,7 +108,7 @@ processed = 0
 
 BASE_VIDEO_PATH = (
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory"
+    r"\LTS SP Site - VideosGeradosPorScript\Histories\01-NewHistory"
 )
 
 BASE_AUDIO_PATH = (

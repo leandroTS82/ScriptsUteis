@@ -256,13 +256,15 @@ def generate_pdfs(stories: List[dict]):
         pdf_path = os.path.join(OUTPUT_PDF_DIR, pdf_name)
 
         flow = []
-        counter = 0
 
-        for title, text, image_path in batch:
-            render_story(flow, styles, title, text, image_path)
-            counter += 1
+        for i in range(0, len(batch), STORIES_PER_PAGE):
+            page_stories = batch[i:i + STORIES_PER_PAGE]
 
-            if counter % STORIES_PER_PAGE == 0:
+            for title, text, image_path in page_stories:
+                render_story(flow, styles, title, text, image_path)
+
+            # PageBreak SOMENTE se ainda houver histórias depois
+            if i + STORIES_PER_PAGE < len(batch):
                 flow.append(PageBreak())
 
         doc = SimpleDocTemplate(
@@ -277,7 +279,7 @@ def generate_pdfs(stories: List[dict]):
         doc.build(flow)
         print(f"[OK] PDF gerado: {pdf_name}")
 
-    save_processed_hashes(processed_hashes.union(new_hashes))
+        save_processed_hashes(processed_hashes.union(new_hashes))
 
 
 # =============================================================================
