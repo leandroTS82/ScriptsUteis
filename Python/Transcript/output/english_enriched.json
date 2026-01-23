@@ -1,6 +1,6 @@
 {
   "source": "english_extractor",
-  "generated_at": "2026-01-20T12:53:33.793390",
+  "generated_at": "2026-01-23T09:50:38.744894",
   "items": {
     "terms": [
       {
@@ -725,6 +725,20 @@
         "usage": "noun meaning new information or changes about something.",
         "example": "He sent me updates on the project.",
         "text": "updates"
+      },
+      {
+        "term": "weekend",
+        "meaning": "fim de semana",
+        "explanation": "two days at the end of the week, Saturday and Sunday",
+        "example": "I love to relax during the weekend.",
+        "text": "weekend"
+      },
+      {
+        "term": "Monday",
+        "meaning": "segunda-feira",
+        "explanation": "first day of the work week",
+        "example": "We have a meeting on Monday.",
+        "text": "Monday"
       }
     ],
     "chunks": [
@@ -1601,6 +1615,34 @@
         "usage": "phrase indicating a simple action.",
         "example": "I'll just give it a try.",
         "text": "I'll just give"
+      },
+      {
+        "chunk": "Thank you for",
+        "meaning": "obrigado por / obrigada por",
+        "explanation": "phrase used to express gratitude for something specific",
+        "example": "Thank you for your help.",
+        "text": "Thank you for"
+      },
+      {
+        "chunk": "Have a good weekend",
+        "meaning": "Tenha um bom fim de semana",
+        "explanation": "common wish for someone to enjoy the weekend",
+        "example": "Have a good weekend, and see you next week.",
+        "text": "Have a good weekend"
+      },
+      {
+        "chunk": "see you Monday",
+        "meaning": "até segunda-feira",
+        "explanation": "informal way to say you'll meet again on Monday",
+        "example": "See you Monday for the project review.",
+        "text": "see you Monday"
+      },
+      {
+        "chunk": "Thanks, see you",
+        "meaning": "Obrigado, até logo",
+        "explanation": "combined thanks and farewell",
+        "example": "Thanks, see you later.",
+        "text": "Thanks, see you"
       }
     ],
     "expressions": [
@@ -1811,6 +1853,20 @@
         "usage": "idiomatic phrase meaning lacking knowledge about something.",
         "example": "He was not aware of the change.",
         "text": "not aware of"
+      },
+      {
+        "expression": "Thank you for the update",
+        "meaning": "Obrigado pela atualização",
+        "explanation": "fixed phrase expressing gratitude for new information",
+        "example": "Thank you for the update on the schedule.",
+        "text": "Thank you for the update"
+      },
+      {
+        "expression": "You too",
+        "meaning": "Você também",
+        "explanation": "reply to a wish or greeting, meaning \"me too\"",
+        "example": "Have a great day! You too.",
+        "text": "You too"
       }
     ],
     "discourse_markers": [
@@ -2016,6 +2072,13 @@
         "usage": "Referência à minha perspectiva.",
         "example": "On my side, everything is ready.",
         "text": "On my side"
+      },
+      {
+        "marker": "Great",
+        "meaning": "Ótimo / Excelente",
+        "explanation": "used to express approval or enthusiasm, often as a discourse marker to signal a positive response",
+        "example": "Great, let's get started.",
+        "text": "Great"
       }
     ]
   }

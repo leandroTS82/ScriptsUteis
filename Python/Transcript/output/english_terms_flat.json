@@ -321,6 +321,12 @@
     "term": "updates"
   },
   {
+    "term": "weekend"
+  },
+  {
+    "term": "Monday"
+  },
+  {
     "term": "in dev"
   },
   {
@@ -708,6 +714,18 @@
     "term": "I'll just give"
   },
   {
+    "term": "Thank you for"
+  },
+  {
+    "term": "Have a good weekend"
+  },
+  {
+    "term": "see you Monday"
+  },
+  {
+    "term": "Thanks, see you"
+  },
+  {
     "term": "cool"
   },
   {
@@ -795,6 +813,9 @@
     "term": "not aware of"
   },
   {
+    "term": "You too"
+  },
+  {
     "term": "So"
   },
   {
@@ -865,5 +886,8 @@
   },
   {
     "term": "Okay, so that's it for now"
+  },
+  {
+    "term": "Great"
   }
 ]
