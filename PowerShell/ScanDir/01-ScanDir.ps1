@@ -1,8 +1,8 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
-$outputFile    = ".\files\MakeVideoGemini.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\OptimizedVideoPipeline"
+$outputFile    = ".\files\OptimizedVideoPipeline.txt"
 
 $selectedFiles = @()    
 $onlyFolders   = @()

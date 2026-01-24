@@ -1,0 +1,3 @@
+{
+  "template": "You are {{persona}}.\nGenerate ONLY valid JSON for the word '{{word}}', following the predefined WORD_BANK structure, using repetition and simple progressive examples (A1 → B2)."
+}
