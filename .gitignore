@@ -63,3 +63,5 @@ Python/__pycache__/
 Python/OptimizedVideoPipeline/engine/__pycache__/
 Python/OptimizedVideoPipeline/engine/text/__pycache__/
 Python/OptimizedVideoPipeline/engine/audio/__pycache__/
+Python/OptimizedVideoPipeline/engine/video/__pycache__/
+Python/OptimizedVideoPipeline/engine/image/__pycache__/

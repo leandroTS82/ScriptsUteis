@@ -1,6 +1,6 @@
 {
-  "model": "gemini-2.5-flash-image",
-  "aspect_ratio": "16:9",
-  "width": 1344,
-  "height": 768
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "schedar",
+  "sample_rate": 24000,
+  "api_key_path": "C:/Users/leand/LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS/LTS SP Site - Documentos de estudo de inglês/FilesHelper/secret_tokens_keys/google-gemini-key.txt"
 }
