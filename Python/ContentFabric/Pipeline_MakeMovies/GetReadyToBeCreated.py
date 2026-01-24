@@ -7,7 +7,7 @@ import sys
 # CONFIGURAÇÕES
 # ======================================================
 
-PIPELINE_DIR = Path(r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_Makemovies")
+PIPELINE_DIR = Path(r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_MakeMovies")
 RUNTIME_DIR = PIPELINE_DIR / "_runtime"
 RUNTIME_DIR.mkdir(exist_ok=True)
 

@@ -7,7 +7,7 @@ REM ORQUESTRADOR PRINCIPAL (TOTALMENTE SILENCIOSO)
 REM ==================================================
 
 set PYTHON_EXE=python
-set PIPELINE_DIR=C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_Makemovies
+set PIPELINE_DIR=C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_MakeMovies
 set RUNTIME_DIR=%PIPELINE_DIR%\_runtime
 
 set SCRIPT_READY=%PIPELINE_DIR%\GetReadyToBeCreated.py
