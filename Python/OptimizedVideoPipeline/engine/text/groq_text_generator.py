@@ -4,30 +4,24 @@ from itertools import cycle
 from groq import Groq
 
 from engine.text.groq_keys_loader import GROQ_KEYS
+from engine.project_root import get_project_root
 
-# ============================================================
-# CONFIG
-# ============================================================
+ROOT = get_project_root()
 
-cfg = json.load(open("settings/groq.json", encoding="utf-8"))
+cfg = json.load(open(ROOT / "settings" / "groq.json", encoding="utf-8"))
 
-# Randomização + rotação segura
-_groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
-
-# ============================================================
-# MAIN
-# ============================================================
+_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
 
 def generate_text(word: str) -> dict:
-    key_info = next(_groq_key_cycle)
+    key_info = next(_key_cycle)
     client = Groq(api_key=key_info["key"])
 
     prompt_template = json.load(
-        open("prompts/groq/lesson_prompt.json", encoding="utf-8")
+        open(ROOT / "prompts" / "groq" / "lesson_prompt.json", encoding="utf-8")
     )["template"]
 
     persona = json.load(
-        open("prompts/shared/personality.json", encoding="utf-8")
+        open(ROOT / "prompts" / "shared" / "personality.json", encoding="utf-8")
     )["persona"]
 
     prompt = (
@@ -38,15 +32,8 @@ def generate_text(word: str) -> dict:
 
     response = client.chat.completions.create(
         model=cfg["model"],
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
+        messages=[{"role": "user", "content": prompt}],
         temperature=cfg["temperature"]
     )
 
-    raw = response.choices[0].message.content.strip()
-
-    return json.loads(raw)
+    return json.loads(response.choices[0].message.content.strip())

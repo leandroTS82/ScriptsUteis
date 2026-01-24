@@ -1,5 +1,5 @@
 {
-  "enable_image_ai": true,
-  "fixed_image_path": "./assets/default.gif",
+  "enable_image_ai": false,
+  "fixed_image_path": "./assets/default_bg.png",
   "lock_enabled": true
 }

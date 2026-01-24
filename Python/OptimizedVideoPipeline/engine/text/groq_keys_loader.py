@@ -1,27 +1,11 @@
-"""
-============================================================
- groq_keys_loader.py
-------------------------------------------------------------
- Utilitário reutilizável para carregamento de chaves da Groq.
-============================================================
-"""
-
 import json
 import os
-
-# ============================================================
-# CONFIGURAÇÃO DO PATH DO JSON (FORA DO GIT)
-# ============================================================
 
 GROQ_KEYS_PATH = (
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
     r"\LTS SP Site - Documentos de estudo de inglês"
     r"\FilesHelper\secret_tokens_keys\GroqKeys.json"
 )
-
-# ============================================================
-# FALLBACK INLINE (SEGURANÇA)
-# ============================================================
 
 GROQ_KEYS_FALLBACK = [
     {"name": "lts@gmail.com", "key": "gsk_r***"},
@@ -31,29 +15,15 @@ GROQ_KEYS_FALLBACK = [
     {"name": "MelLuz201811@gmail.com", "key": "gsk_***i"}
 ]
 
-# ============================================================
-# LOADER PRINCIPAL
-# ============================================================
-
 def load_groq_keys():
     if os.path.exists(GROQ_KEYS_PATH):
         try:
             with open(GROQ_KEYS_PATH, "r", encoding="utf-8") as f:
                 keys = json.load(f)
-
-            if isinstance(keys, list) and all(
-                isinstance(k, dict) and "key" in k for k in keys
-            ):
+            if isinstance(keys, list) and all("key" in k for k in keys):
                 return keys
-
         except Exception:
             pass
-
     return GROQ_KEYS_FALLBACK
-
-
-# ============================================================
-# EXPORT PADRÃO
-# ============================================================
 
 GROQ_KEYS = load_groq_keys()

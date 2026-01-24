@@ -60,3 +60,6 @@ Python/files/
 Python/01_groq-project-specialist/engine/__pycache__/
 Python/english_extractor/__pycache__/
 Python/__pycache__/
+Python/OptimizedVideoPipeline/engine/__pycache__/
+Python/OptimizedVideoPipeline/engine/text/__pycache__/
+Python/OptimizedVideoPipeline/engine/audio/__pycache__/

@@ -1,15 +1,32 @@
-import json, io
-from google import genai
+import json
+import io
 from PIL import Image
+from google import genai
+from engine.project_root import get_project_root
 
-cfg = json.load(open("settings/gemini_image.json"))
-genai.configure(api_key=open("secrets/gemini_key.txt").read())
+ROOT = get_project_root()
 
-def generate_image(word):
-    prompt = json.load(open("prompts/gemini/image_prompt.json"))["template"].replace("{{word}}", word)
+cfg = json.load(
+    open(ROOT / "settings" / "gemini_image.json", encoding="utf-8")
+)
+
+genai.configure(
+    api_key=open(
+        ROOT / "secrets" / "gemini_key.txt",
+        encoding="utf-8"
+    ).read().strip()
+)
+
+def generate_image(word: str) -> str:
+    prompt = json.load(
+        open(ROOT / "prompts" / "gemini" / "image_prompt.json", encoding="utf-8")
+    )["template"].replace("{{word}}", word)
+
     model = genai.GenerativeModel(cfg["model"])
-    res = model.generate_content(prompt)
-    img = Image.open(io.BytesIO(res.parts[0].inline_data.data))
-    path = f"media/images/{word}.png"
-    img.save(path)
-    return path
+    response = model.generate_content(prompt)
+
+    img = Image.open(io.BytesIO(response.parts[0].inline_data.data))
+    output = ROOT / "media" / "images" / f"{word}.png"
+    img.save(output)
+
+    return str(output)
