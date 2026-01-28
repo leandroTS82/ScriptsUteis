@@ -6,6 +6,7 @@
 import os
 import zipfile
 import shutil
+import json
 from datetime import datetime
 
 # ------------------------------------------------------------
@@ -14,8 +15,7 @@ from datetime import datetime
 WORDBANK_PATH = r"C:\Users\leand\Desktop\wordbank"
 
 BASE_LTS_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS"
-    r"\LTS SP Site - Documentos de estudo de inglês"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês"
 )
 
 DESTINATION_PATH = os.path.join(
@@ -39,6 +39,7 @@ SOURCES = [
 ]
 
 ALLOWED_EXTENSIONS = {".json", ".srt"}
+VIDEO_EXTENSIONS = {".mp4"}
 
 # ------------------------------------------------------------
 # PREPARACAO
@@ -96,13 +97,33 @@ def has_files(path: str) -> bool:
         for f in os.listdir(path)
     )
 
+
+def collect_video_metadata(source_dir: str) -> dict:
+    files_metadata = []
+
+    for root, _, files in os.walk(source_dir):
+        for file in files:
+            if os.path.splitext(file)[1].lower() not in VIDEO_EXTENSIONS:
+                continue
+
+            full_path = os.path.join(root, file)
+            stat = os.stat(full_path)
+
+            files_metadata.append({
+                "name": file,
+                "created_at": datetime.fromtimestamp(stat.st_ctime).isoformat(),
+                "modified_at": datetime.fromtimestamp(stat.st_mtime).isoformat()
+            })
+
+    return {"files": files_metadata}
+
 # ------------------------------------------------------------
 # EXECUCAO
 # ------------------------------------------------------------
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # -------------------------------
-# 1) ZIP WORDBANK
+# 1) ZIP WORDBANK + METADATA
 # -------------------------------
 print("Compactando wordbank...")
 
@@ -110,7 +131,17 @@ wordbank_zip = os.path.join(
     TRANSFER_PATH, f"wordbank_{timestamp}.zip"
 )
 
+# --- Geração do metadata.json ---
+metadata = collect_video_metadata(WORDBANK_PATH)
+metadata_path = os.path.join(WORDBANK_PATH, "metadata.json")
+
+with open(metadata_path, "w", encoding="utf-8") as f:
+    json.dump(metadata, f, indent=2, ensure_ascii=False)
+
 wordbank_count = zip_directory(WORDBANK_PATH, wordbank_zip)
+
+# Remove metadata.json temporário do diretório
+os.remove(metadata_path)
 
 print(f"ZIP wordbank criado com {wordbank_count} arquivos")
 print(f"Local: {wordbank_zip}")

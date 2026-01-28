@@ -30,6 +30,8 @@ TERMS_PATHS = [
 
 PLAYLIST_OUTPUT_PATH = Path("./01-smart_playlists")
 
+METADATA_PATH = Path("./metadata.json")
+
 # ======================================================
 # RANDOM PLAYLIST CONFIG (ISOLADO)
 # ======================================================
@@ -443,11 +445,12 @@ def weighted_sample(items, weights, k):
     return selected
 
 
-def get_creation_datetime(path: Path) -> datetime:
+def get_modified_datetime(path: Path) -> datetime:
     """
-    Retorna a data/hora de criação do arquivo (Windows).
+    Retorna a data/hora de última modificação do arquivo.
+    Funciona de forma consistente mesmo sem metadata.json.
     """
-    return datetime.fromtimestamp(os.path.getctime(path))
+    return datetime.fromtimestamp(os.path.getmtime(path))
 
 # ======================================================
 # PLAYLIST
@@ -509,10 +512,29 @@ def main():
     if option == "1":
         d = ask_date("Informe a data")
         mode = "data"
-        selected = [
-           v for v in videos
-           if get_creation_datetime(v).date() == d.date()
-     ]
+        if METADATA_PATH.exists():
+            with open(METADATA_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            metadata_dates = {
+                item["name"].lower(): datetime.fromisoformat(
+                    item.get("modified_at") or item.get("created_at")
+                ).date()
+                for item in data.get("files", [])
+                if "name" in item and ("modified_at" in item or "created_at" in item)
+            }
+
+            selected = [
+                v for v in videos
+                if v.name.lower() in metadata_dates
+                and metadata_dates[v.name.lower()] == d.date()
+            ]
+        else:
+            selected = [
+                v for v in videos
+                if get_modified_datetime(v).date() == d.date()
+            ]
+
 
     # ==================================================
     # OPÇÃO 2 — INTERVALO
@@ -521,10 +543,28 @@ def main():
         d1 = ask_date("Data inicial")
         d2 = ask_date("Data final")
         mode = "periodo"
-        selected = [
-              v for v in videos
-              if d1 <= get_creation_datetime(v) <= d2
-         ]
+        if METADATA_PATH.exists():
+            with open(METADATA_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            metadata_dates = {
+                item["name"].lower(): datetime.fromisoformat(
+                    item.get("modified_at") or item.get("created_at")
+                )
+                for item in data.get("files", [])
+                if "name" in item and ("modified_at" in item or "created_at" in item)
+            }
+
+            selected = [
+                v for v in videos
+                if v.name.lower() in metadata_dates
+                and d1 <= metadata_dates[v.name.lower()] <= d2
+            ]
+        else:
+            selected = [
+                v for v in videos
+                if d1 <= get_modified_datetime(v) <= d2
+            ]
 
     # ==================================================
     # OPÇÃO 3 — TERMO (COM INTELIGÊNCIA EXTRA + MULTI-TERM)
