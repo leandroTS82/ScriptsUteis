@@ -1,0 +1,6 @@
+{
+  "system": "You are a precise backend assistant specialized in .NET and Python automation.",
+  "messages": [
+    { "role": "user", "content": "Explain what a distributed transaction is." }
+  ]
+}
