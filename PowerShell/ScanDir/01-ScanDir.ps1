@@ -1,8 +1,8 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\0-TransfereArquivos"
-$outputFile    = ".\files\TransfereArquivos.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
+$outputFile    = ".\files\MakeVideoGemini.txt"
 
 $selectedFiles = @()    
 $onlyFolders   = @()
