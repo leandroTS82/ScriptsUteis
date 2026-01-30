@@ -22,18 +22,14 @@ from tempfile import NamedTemporaryFile
 # CONFIGURAÇÃO
 # ============================================================
 
-VIDEO_PATH = r"C:\Users\leand\Desktop\GijsDemonstration"
+VIDEO_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
 
 VIDEO_ARRAY_NAME = [
-    "01_CreatedTR_00m00s_to_00m18s.mp4",
-    "02_ChangeInZoho_00m00s_to_00m15s.mp4",
-    "03_Updated_In_TR_00m00s_to_00m16s.mp4",
-    "04_ShowDataBAse01_00m00s_to_00m18s.mp4",
-    "04_ShowDataBAse02_00m00s_to_00m30s.mp4",
-    "05_Confitmation_00m00s_to_00m27s.mp4",
+    "2026-01-30_13-38-11.mp4",
+    "2026-01-30_13-48-48.mp4"
 ]
 
-OUTPUT_NAME = "FINAL_JOINED_VIDEO.mp4"
+OUTPUT_NAME = "SendEmailDemonstration.mp4"
 
 FFMPEG_BIN = "ffmpeg"
 

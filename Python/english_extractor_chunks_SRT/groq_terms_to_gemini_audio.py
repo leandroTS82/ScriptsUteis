@@ -19,8 +19,28 @@ from pathlib import Path
 # ==========================================================
 # CONFIGURAÇÕES INLINE
 # ==========================================================
+# ==========================================================
+# GEMINI VOICES DISPONÍVEIS
+# ==========================================================
 
-GEMINI_VOICE = "schedar"
+GEMINI_VOICES = [
+    "schedar",
+    "charon",
+    "kore",
+    "puck",
+    "fenrir"
+]
+
+def get_random_gemini_voice() -> str:
+    """
+    Retorna uma voice aleatória disponível para Gemini TTS
+    """
+    return random.choice(GEMINI_VOICES)
+
+# GEMINI_VOICE = "schedar"
+GEMINI_VOICE = get_random_gemini_voice()
+print(f"🔊 Gemini voice selecionada: {GEMINI_VOICE}")
+
 GEMINI_MAX_RETRIES = 3
 GEMINI_RETRY_DELAY = 10  # segundos
 
@@ -43,7 +63,8 @@ EXECUTION_PRIORITY = "low"   # high | normal | low
 # ==========================================================
 
 INPUT_JSON = Path(
-    r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater2.json"
+    #r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater2.json"
+    r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater\CreateLater_20260130.json"
 )
 
 AUDIO_OUTPUT_DIR = Path(
@@ -64,7 +85,7 @@ TIMEOUT = 60
 
 PROMPTS = {
     "system": (
-        "Your name is Teacher Leandrinho. "
+        "Your are a english Teacher. (dont say your name)"
         "You are a young, energetic, and modern English teacher for Brazilian students, "
         "with the style of a YouTuber and podcast host. "
         "You sound enthusiastic, friendly, motivating, and natural when speaking. "
@@ -176,7 +197,6 @@ def sanitize_filename(text: str) -> str:
     text = re.sub(r"[^a-z0-9\s_-]", "", text)
     return re.sub(r"\s+", "_", text).strip("_")
 
-
 def extract_json_block(text: str) -> str | None:
     match = re.search(r"\{[\s\S]*\}", text)
     return match.group(0) if match else None
@@ -242,7 +262,6 @@ def groq_request(prompt: str) -> dict:
 # ==========================================================
 # GEMINI TTS COM RETRY
 # ==========================================================
-
 def generate_audio_safe(text: str, output_path: Path):
     for attempt in range(1, GEMINI_MAX_RETRIES + 1):
         try:
