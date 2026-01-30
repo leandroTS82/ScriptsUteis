@@ -12,8 +12,17 @@ import random
 import requests
 import unicodedata
 import re
+import time
 from itertools import cycle
 from pathlib import Path
+
+# ==========================================================
+# CONFIGURAÇÕES INLINE (NOVAS)
+# ==========================================================
+
+GEMINI_VOICE = "schedar"   # <<< MUDE A VOZ AQUI
+GEMINI_MAX_RETRIES = 3
+GEMINI_RETRY_DELAY = 4    # segundos (base, com backoff)
 
 # ==========================================================
 # PATHS (MANTIDOS)
@@ -34,6 +43,72 @@ AUDIO_OUTPUT_DIR = Path(
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 TIMEOUT = 60
+
+# ==========================================================
+# PROMPTS (CENTRALIZADOS – CONTEÚDO INTACTO)
+# ==========================================================
+
+PROMPTS = {
+    "system": (
+        "You are a friendly and dynamic English teacher for Brazilian students. "
+        "You speak in a natural, conversational tone, optimized for audio learning and memory retention. "
+        "You always teach step by step, mixing English and Portuguese strategically. "
+        "Return ONLY valid JSON. No extra text."
+    ),
+
+    "user": lambda term: f"""
+Generate ONLY valid JSON.
+Your name is Teacher Leandrinho.
+You are a young teacher like a youtuber and you are teaching the English term "{term}" to a Brazilian student.
+This content will be transformed into AUDIO, so write everything as if you were SPEAKING naturally.
+
+Pedagogical rules:
+- Be clear, friendly, and motivating.
+- Mix Portuguese explanations with English examples.
+- Use short sentences suitable for listening.
+- Encourage repetition and active participation.
+- Focus on memory, real usage, and intuition.
+- Avoid long academic explanations.
+
+Return the following JSON structure exactly:
+
+{{
+  "term": "{term}",
+  "tts_blocks": [
+
+    "Start with a short and engaging introduction in Portuguese explaining why the term '{term}' is useful in real life.",
+
+    "Explain the meaning of '{term}' in simple English, as if speaking to a beginner.",
+
+    "Explain the same meaning again in different English words, reinforcing understanding.",
+
+    "Explique o significado de '{term}' em português, de forma clara, prática e didática.",
+
+    "Explain how natives commonly use '{term}' in daily conversations, including tone and intention.",
+
+    "Explain when '{term}' is commonly used and when it should NOT be used, in Portuguese.",
+
+    "Explain which verb tense or grammatical structure '{term}' usually appears with, using Portuguese explanations and English examples.",
+
+    "Give two short example sentences using '{term}'. Pause mentally between them to allow repetition.",
+
+    "Invite the student to repeat the sentences aloud using '{term}', encouraging memory retention.",
+
+    "Create a short and natural dialogue between two people using '{term}', with simple English.",
+
+    "Give similar words or expressions to '{term}' in English, explaining small differences briefly in Portuguese.",
+
+    "Give opposite or contrasting words or expressions to '{term}', with short explanations.",
+
+    "Provide a memorable association, analogy, or mental image to help the student never forget '{term}'.",
+
+    "Summarize everything briefly in English, reinforcing the core meaning and usage of '{term}'.",
+
+    "Finish by asking the student a simple question in English using '{term}' to test understanding."
+  ]
+}}
+"""
+}
 
 # ==========================================================
 # IMPORTS DO ECOSSISTEMA
@@ -72,9 +147,6 @@ def sanitize_filename(text: str) -> str:
 
 
 def extract_json_block(text: str) -> str | None:
-    """
-    Extrai o primeiro bloco JSON válido do texto.
-    """
     match = re.search(r"\{[\s\S]*\}", text)
     return match.group(0) if match else None
 
@@ -95,13 +167,7 @@ def groq_request(prompt: str) -> dict:
         json={
             "model": GROQ_MODEL,
             "messages": [
-                {
-                    "role": "system",
-                    "content": (
-                        "You are an young English teacher focused on memory retention. "
-                        "Return ONLY valid JSON."
-                    )
-                },
+                {"role": "system", "content": PROMPTS["system"]},
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.4
@@ -113,28 +179,31 @@ def groq_request(prompt: str) -> dict:
     return r.json()
 
 
-def build_prompt(term: str) -> str:
-    return f"""
-Generate ONLY valid JSON:
+# ==========================================================
+# GEMINI TTS COM RETRY / RATE LIMIT
+# ==========================================================
 
-{{
-  "term": "{term}",
-  "tts_blocks": [
-    "Explain the meaning of '{term}' in English, clearly and simply.",
-    "Repeat the explanation of '{term}' in English using different words.",
-    "Explique o significado de '{term}' em português.",
-    "Give a memorable native and comum usage tip so this term is never forgotten.",
-    "Me de uma alusão do uso comum nativo para que este termo nunca seja esquecido.",
-    "Short example sentence using '{term}'.",
-    "Another short example sentence using '{term}'.",
-    "Use '{term}' in a short dialog between two people.",
-    "give the similar words or phrases to '{term}' in English.",
-    "give the opposite words or phrases to '{term}' in English.",
-    "Provide a brief summary of everything above in English."
-    "finish with a question to the student to test their understanding of '{term}'."
-  ]
-}}
-"""
+def generate_audio_safe(text: str, output_path: Path):
+    for attempt in range(1, GEMINI_MAX_RETRIES + 1):
+        try:
+            generate_audio(
+                text=text,
+                output_path=str(output_path),
+                voice=GEMINI_VOICE
+            )
+
+            if output_path.exists():
+                return
+
+            raise RuntimeError("Arquivo de áudio não gerado")
+
+        except Exception as e:
+            if attempt >= GEMINI_MAX_RETRIES:
+                raise
+
+            wait = GEMINI_RETRY_DELAY * attempt
+            print(f"⏳ Gemini falhou (tentativa {attempt}). Aguardando {wait}s...")
+            time.sleep(wait)
 
 
 # ==========================================================
@@ -143,8 +212,19 @@ Generate ONLY valid JSON:
 
 def main():
 
-    with open(INPUT_JSON, "r", encoding="utf-8") as f:
-        terms = json.load(f).get("pending", [])
+    # ------------------------------------------------------
+    # MODO FRASE VIA ARGUMENTO
+    # ------------------------------------------------------
+    if len(sys.argv) > 1:
+        terms = [" ".join(sys.argv[1:]).strip()]
+        print("🟦 Modo FRASE manual ativado\n")
+    else:
+        with open(INPUT_JSON, "r", encoding="utf-8") as f:
+            terms = json.load(f).get("pending", [])
+
+    if not terms:
+        print("ℹ Nenhum termo para processar.")
+        return
 
     AUDIO_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)
@@ -155,7 +235,7 @@ def main():
         print(f"[{idx}/{len(terms)}] 🔹 {term}")
 
         try:
-            response = groq_request(build_prompt(term))
+            response = groq_request(PROMPTS["user"](term))
             raw = response["choices"][0]["message"]["content"]
 
             json_text = extract_json_block(raw)
@@ -177,17 +257,7 @@ def main():
             safe_name = sanitize_filename(term)
             audio_path = AUDIO_OUTPUT_DIR / f"{safe_name}.wav"
 
-            # ----------------------------
-            # GEMINI (VALIDADO)
-            # ----------------------------
-            generate_audio(
-                text=final_tts,
-                output_path=str(audio_path),
-                voice="schedar"
-            )
-
-            if not audio_path.exists():
-                raise RuntimeError("Gemini não gerou áudio")
+            generate_audio_safe(final_tts, audio_path)
 
             data["audio_file"] = str(audio_path)
             results.append(data)

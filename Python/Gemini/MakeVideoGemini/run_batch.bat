@@ -19,7 +19,7 @@ REM Caminho do Python (usa o do PATH)
 set PYTHON_CMD=python
 
 REM Caminho do script
-set SCRIPT_PATH=C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\run_batch2.py
+set SCRIPT_PATH=C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\run_batch.py
 
 REM Verificação do arquivo
 if not exist "%SCRIPT_PATH%" (
