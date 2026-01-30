@@ -17,27 +17,27 @@ from itertools import cycle
 from pathlib import Path
 
 # ==========================================================
-# CONFIGURAÇÕES INLINE (NOVAS)
+# CONFIGURAÇÕES INLINE
 # ==========================================================
 
-GEMINI_VOICE = "schedar"   # <<< MUDE A VOZ AQUI
+GEMINI_VOICE = "schedar"
 GEMINI_MAX_RETRIES = 3
-GEMINI_RETRY_DELAY = 4    # segundos (base, com backoff)
+GEMINI_RETRY_DELAY = 10  # segundos
 
 # ==========================================================
-# PATHS (MANTIDOS)
+# PATHS (MANTIDOS + NOVO JSON DIR)
 # ==========================================================
 
 INPUT_JSON = Path(
     r"C:\dev\scripts\ScriptsUteis\Python\english_extractor_chunks_SRT\terms\pending_terms.json"
 )
 
-OUTPUT_JSON = Path(
-    r"C:\dev\scripts\ScriptsUteis\Python\english_extractor_chunks_SRT\terms\terms_audio_payload.json"
-)
-
 AUDIO_OUTPUT_DIR = Path(
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\NewAudios_Gemini"
+)
+
+JSON_OUTPUT_DIR = Path(
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\NewAudios_Gemini\Json"
 )
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
@@ -45,12 +45,13 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 TIMEOUT = 60
 
 # ==========================================================
-# PROMPTS (CENTRALIZADOS – CONTEÚDO INTACTO)
+# PROMPTS (NOVO – PEDAGÓGICO)
 # ==========================================================
 
 PROMPTS = {
     "system": (
-        "You are a friendly and dynamic English teacher for Brazilian students. "
+        "Your name is Teacher Leandrinho.",
+        "You are a friendly and dynamic English teacher for Brazilian students. (You are a young teacher like a youtuber)"
         "You speak in a natural, conversational tone, optimized for audio learning and memory retention. "
         "You always teach step by step, mixing English and Portuguese strategically. "
         "Return ONLY valid JSON. No extra text."
@@ -58,8 +59,8 @@ PROMPTS = {
 
     "user": lambda term: f"""
 Generate ONLY valid JSON.
-Your name is Teacher Leandrinho.
-You are a young teacher like a youtuber and you are teaching the English term "{term}" to a Brazilian student.
+
+You are teaching the English term "{term}" to a Brazilian student.
 This content will be transformed into AUDIO, so write everything as if you were SPEAKING naturally.
 
 Pedagogical rules:
@@ -75,36 +76,23 @@ Return the following JSON structure exactly:
 {{
   "term": "{term}",
   "tts_blocks": [
-
     "Start with a short and engaging introduction in Portuguese explaining why the term '{term}' is useful in real life.",
-
     "Explain the meaning of '{term}' in simple English, as if speaking to a beginner.",
-
     "Explain the same meaning again in different English words, reinforcing understanding.",
-
     "Explique o significado de '{term}' em português, de forma clara, prática e didática.",
-
     "Explain how natives commonly use '{term}' in daily conversations, including tone and intention.",
-
     "Explain when '{term}' is commonly used and when it should NOT be used, in Portuguese.",
-
     "Explain which verb tense or grammatical structure '{term}' usually appears with, using Portuguese explanations and English examples.",
-
     "Give two short example sentences using '{term}'. Pause mentally between them to allow repetition.",
-
     "Invite the student to repeat the sentences aloud using '{term}', encouraging memory retention.",
-
     "Create a short and natural dialogue between two people using '{term}', with simple English.",
-
     "Give similar words or expressions to '{term}' in English, explaining small differences briefly in Portuguese.",
-
     "Give opposite or contrasting words or expressions to '{term}', with short explanations.",
-
     "Provide a memorable association, analogy, or mental image to help the student never forget '{term}'.",
-
     "Summarize everything briefly in English, reinforcing the core meaning and usage of '{term}'.",
-
-    "Finish by asking the student a simple question in English using '{term}' to test understanding."
+    "Finish by asking the student a simple question in English using '{term}' to test understanding.",
+    
+    "Say goodbye as if you were a YouTuber."
   ]
 }}
 """
@@ -180,7 +168,7 @@ def groq_request(prompt: str) -> dict:
 
 
 # ==========================================================
-# GEMINI TTS COM RETRY / RATE LIMIT
+# GEMINI TTS COM RETRY
 # ==========================================================
 
 def generate_audio_safe(text: str, output_path: Path):
@@ -191,18 +179,15 @@ def generate_audio_safe(text: str, output_path: Path):
                 output_path=str(output_path),
                 voice=GEMINI_VOICE
             )
-
             if output_path.exists():
                 return
+            raise RuntimeError("Áudio não gerado")
 
-            raise RuntimeError("Arquivo de áudio não gerado")
-
-        except Exception as e:
+        except Exception:
             if attempt >= GEMINI_MAX_RETRIES:
                 raise
-
             wait = GEMINI_RETRY_DELAY * attempt
-            print(f"⏳ Gemini falhou (tentativa {attempt}). Aguardando {wait}s...")
+            print(f"⏳ Retry Gemini ({attempt}) — aguardando {wait}s")
             time.sleep(wait)
 
 
@@ -212,9 +197,6 @@ def generate_audio_safe(text: str, output_path: Path):
 
 def main():
 
-    # ------------------------------------------------------
-    # MODO FRASE VIA ARGUMENTO
-    # ------------------------------------------------------
     if len(sys.argv) > 1:
         terms = [" ".join(sys.argv[1:]).strip()]
         print("🟦 Modo FRASE manual ativado\n")
@@ -227,9 +209,7 @@ def main():
         return
 
     AUDIO_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-
-    results = []
+    JSON_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     for idx, term in enumerate(terms, start=1):
         print(f"[{idx}/{len(terms)}] 🔹 {term}")
@@ -240,38 +220,39 @@ def main():
 
             json_text = extract_json_block(raw)
             if not json_text:
-                raise ValueError("JSON não encontrado na resposta do Groq")
+                raise ValueError("JSON inválido do Groq")
 
             data = json.loads(json_text)
+
+            safe_name = sanitize_filename(term)
+
+            # ----------------------------
+            # Salvar JSON estruturado
+            # ----------------------------
+            json_path = JSON_OUTPUT_DIR / f"{safe_name}.json"
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
 
             # ----------------------------
             # TTS
             # ----------------------------
             tts_lines = []
-            for t in data["tts_blocks"]:
-                tts_lines.append(t)
+            for block in data["tts_blocks"]:
+                tts_lines.append(block)
                 tts_lines.append('<break time="0.6s"/>')
 
             final_tts = "\n".join(tts_lines)
 
-            safe_name = sanitize_filename(term)
             audio_path = AUDIO_OUTPUT_DIR / f"{safe_name}.wav"
-
             generate_audio_safe(final_tts, audio_path)
-
-            data["audio_file"] = str(audio_path)
-            results.append(data)
 
         except Exception as e:
             print(f"⛔ Erro ao processar '{term}': {e}")
             print("➡ Termo ignorado, batch continua.\n")
 
-    with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-
     print("\n✅ Processo finalizado")
     print("🎧 Áudios:", AUDIO_OUTPUT_DIR)
-    print("📄 JSON:", OUTPUT_JSON)
+    print("📄 JSONs :", JSON_OUTPUT_DIR)
 
 
 if __name__ == "__main__":
