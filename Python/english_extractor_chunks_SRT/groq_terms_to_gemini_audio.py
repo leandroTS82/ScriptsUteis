@@ -25,19 +25,33 @@ GEMINI_MAX_RETRIES = 3
 GEMINI_RETRY_DELAY = 10  # segundos
 
 # ==========================================================
+# CONTROLE DE EXECUÇÃO / PRIORIDADE
+# ==========================================================
+
+# Delay entre um termo e outro (em segundos)
+DELAY_BETWEEN_TERMS = 15   # ex: 15 = espera 15s entre cada termo
+
+# Prioridade de execução:
+# "high"    -> sem delay
+# "normal"  -> usa DELAY_BETWEEN_TERMS
+# "low"     -> delay dobrado
+EXECUTION_PRIORITY = "low"   # high | normal | low
+
+
+# ==========================================================
 # PATHS (MANTIDOS + NOVO JSON DIR)
 # ==========================================================
 
 INPUT_JSON = Path(
-    r"C:\dev\scripts\ScriptsUteis\Python\english_extractor_chunks_SRT\terms\pending_terms.json"
+    r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater2.json"
 )
 
 AUDIO_OUTPUT_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\NewAudios_Gemini"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - EnglishAudioLessons"
 )
 
 JSON_OUTPUT_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\NewAudios_Gemini\Json"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - EnglishAudioLessons\Json"
 )
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
@@ -50,49 +64,78 @@ TIMEOUT = 60
 
 PROMPTS = {
     "system": (
-        "Your name is Teacher Leandrinho.",
-        "You are a friendly and dynamic English teacher for Brazilian students. (You are a young teacher like a youtuber)"
-        "You speak in a natural, conversational tone, optimized for audio learning and memory retention. "
-        "You always teach step by step, mixing English and Portuguese strategically. "
+        "Your name is Teacher Leandrinho. "
+        "You are a young, energetic, and modern English teacher for Brazilian students, "
+        "with the style of a YouTuber and podcast host. "
+        "You sound enthusiastic, friendly, motivating, and natural when speaking. "
+        "Your teaching is optimized for AUDIO learning, memory retention, and real-life usage. "
+        "You teach step by step, always helping intermediate (B1) students gain confidence. "
+        "You strategically mix English with Portuguese to support learning without breaking flow. "
+        "You explain things simply, clearly, and practically — never academically. "
+        "You always sound like you are talking directly to the student. "
         "Return ONLY valid JSON. No extra text."
     ),
 
     "user": lambda term: f"""
 Generate ONLY valid JSON.
 
-You are teaching the English term "{term}" to a Brazilian student.
-This content will be transformed into AUDIO, so write everything as if you were SPEAKING naturally.
+You are teaching the English term "{term}" to a Brazilian student (level B1).
+This content will be transformed into AUDIO (podcast / YouTube style),
+so everything must sound NATURAL, SPOKEN, and ENGAGING.
+
+General tone and style:
+- Sound like a young YouTuber or podcast host.
+- Be animated, positive, and modern.
+- Speak directly to the student.
+- Use short, clear sentences.
+- Encourage confidence, repetition, and intuition.
+- Focus on how people REALLY speak English.
 
 Pedagogical rules:
-- Be clear, friendly, and motivating.
-- Mix Portuguese explanations with English examples.
-- Use short sentences suitable for listening.
-- Encourage repetition and active participation.
-- Focus on memory, real usage, and intuition.
-- Avoid long academic explanations.
+- Start with a clear presentation.
+- Always help after English sentences with short explanations in Portuguese.
+- Mix Portuguese explanations with English examples smoothly.
+- Avoid long or academic explanations.
+- Reinforce meaning through repetition and variation.
 
 Return the following JSON structure exactly:
 
 {{
   "term": "{term}",
   "tts_blocks": [
-    "Start with a short and engaging introduction in Portuguese explaining why the term '{term}' is useful in real life.",
-    "Explain the meaning of '{term}' in simple English, as if speaking to a beginner.",
-    "Explain the same meaning again in different English words, reinforcing understanding.",
-    "Explique o significado de '{term}' em português, de forma clara, prática e didática.",
-    "Explain how natives commonly use '{term}' in daily conversations, including tone and intention.",
-    "Explain when '{term}' is commonly used and when it should NOT be used, in Portuguese.",
-    "Explain which verb tense or grammatical structure '{term}' usually appears with, using Portuguese explanations and English examples.",
-    "Give two short example sentences using '{term}'. Pause mentally between them to allow repetition.",
-    "Invite the student to repeat the sentences aloud using '{term}', encouraging memory retention.",
-    "Create a short and natural dialogue between two people using '{term}', with simple English.",
-    "Give similar words or expressions to '{term}' in English, explaining small differences briefly in Portuguese.",
-    "Give opposite or contrasting words or expressions to '{term}', with short explanations.",
-    "Provide a memorable association, analogy, or mental image to help the student never forget '{term}'.",
-    "Summarize everything briefly in English, reinforcing the core meaning and usage of '{term}'.",
-    "Finish by asking the student a simple question in English using '{term}' to test understanding.",
+    "Start with an energetic and friendly presentation, like a YouTuber, introducing the term '{term}' and why it is useful in real life.",
     
-    "Say goodbye as if you were a YouTuber."
+    "Give a short and clear SUMMARY in Portuguese explaining what the student will learn about '{term}'.",
+    
+    "Explain the meaning of '{term}' in simple, spoken English. After that, add a short help in Portuguese reinforcing the idea.",
+    
+    "Explain the same meaning again using different English words. Then briefly explain in Portuguese to reinforce understanding.",
+    
+    "Explique o significado de '{term}' em português, de forma prática, direta e sem complicação.",
+    
+    "Explain how native speakers commonly use '{term}' in daily conversations, focusing on intention and natural tone. Add a short explanation in Portuguese.",
+    
+    "Explain when '{term}' is commonly used and when it should NOT be used, in Portuguese, with practical examples.",
+    
+    "Explain which verb tense or grammatical structure '{term}' usually appears with. Use English examples and explain them briefly in Portuguese.",
+    
+    "Give two short and natural example sentences using '{term}' in English. After each sentence, explain its meaning in Portuguese.",
+    
+    "Invite the student to repeat the sentences aloud. Motivate them like a coach or YouTuber, focusing on confidence and memory.",
+    
+    "Create a short and natural dialogue between two people using '{term}'. Keep the English simple and add a brief explanation in Portuguese after the dialogue.",
+    
+    "Give similar words or expressions to '{term}' in English. Briefly explain the differences in Portuguese.",
+    
+    "Give opposite or contrasting words or expressions to '{term}', with short explanations in Portuguese.",
+    
+    "Create a memorable association, analogy, or mental image to help the student never forget '{term}'. Explain it in Portuguese in a fun way.",
+    
+    "Summarize everything briefly in English, reinforcing the core meaning and usage of '{term}'. Then add a quick summary in Portuguese.",
+    
+    "Finish by asking the student a simple and friendly question in English using '{term}', encouraging them to answer out loud.",
+    
+    "Say goodbye in a fun, motivating YouTuber style, encouraging the student to keep practicing English."
   ]
 }}
 """
@@ -137,6 +180,35 @@ def sanitize_filename(text: str) -> str:
 def extract_json_block(text: str) -> str | None:
     match = re.search(r"\{[\s\S]*\}", text)
     return match.group(0) if match else None
+
+def get_delay_by_priority() -> int:
+    if EXECUTION_PRIORITY == "high":
+        return 0
+    if EXECUTION_PRIORITY == "low":
+        return DELAY_BETWEEN_TERMS * 2
+    return DELAY_BETWEEN_TERMS
+
+def load_terms():
+    with open(INPUT_JSON, "r", encoding="utf-8") as f:
+        raw = json.load(f)
+
+    normalized = []
+    for item in raw.get("pending", []):
+        if isinstance(item, str):
+            normalized.append({
+                "term": item,
+                "status": "pending"
+            })
+        elif isinstance(item, dict):
+            normalized.append(item)
+
+    raw["pending"] = normalized
+    return raw
+
+
+def save_terms(data):
+    with open(INPUT_JSON, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 # ==========================================================
@@ -198,11 +270,19 @@ def generate_audio_safe(text: str, output_path: Path):
 def main():
 
     if len(sys.argv) > 1:
-        terms = [" ".join(sys.argv[1:]).strip()]
         print("🟦 Modo FRASE manual ativado\n")
+        data = {
+            "pending": [
+                {
+                    "term": " ".join(sys.argv[1:]).strip(),
+                    "status": "pending"
+                }
+            ]
+        }
     else:
-        with open(INPUT_JSON, "r", encoding="utf-8") as f:
-            terms = json.load(f).get("pending", [])
+        data = load_terms()
+
+    terms = [t for t in data["pending"] if t.get("status") == "pending"]
 
     if not terms:
         print("ℹ Nenhum termo para processar.")
@@ -211,9 +291,11 @@ def main():
     AUDIO_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     JSON_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    for idx, term in enumerate(terms, start=1):
+    for idx, item in enumerate(terms, start=1):
+        term = item["term"]
         print(f"[{idx}/{len(terms)}] 🔹 {term}")
-
+        item["status"] = "processing"
+        save_terms(data)
         try:
             response = groq_request(PROMPTS["user"](term))
             raw = response["choices"][0]["message"]["content"]
@@ -245,10 +327,23 @@ def main():
 
             audio_path = AUDIO_OUTPUT_DIR / f"{safe_name}.wav"
             generate_audio_safe(final_tts, audio_path)
+            item["status"] = "done"
 
         except Exception as e:
+            item["status"] = "error"
             print(f"⛔ Erro ao processar '{term}': {e}")
             print("➡ Termo ignorado, batch continua.\n")
+        
+        save_terms(data)    
+        
+        # ----------------------------
+        # DELAY ENTRE TERMOS (CONTROLADO POR PRIORIDADE)
+        # ----------------------------
+        delay = get_delay_by_priority()
+        if delay > 0 and idx < len(terms):
+            print(f"⏸️ Aguardando {delay}s antes do próximo termo...")
+            time.sleep(delay)
+
 
     print("\n✅ Processo finalizado")
     print("🎧 Áudios:", AUDIO_OUTPUT_DIR)
