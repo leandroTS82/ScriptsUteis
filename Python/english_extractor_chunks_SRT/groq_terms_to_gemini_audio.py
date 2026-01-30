@@ -69,7 +69,7 @@ PROMPTS = {
         "with the style of a YouTuber and podcast host. "
         "You sound enthusiastic, friendly, motivating, and natural when speaking. "
         "Your teaching is optimized for AUDIO learning, memory retention, and real-life usage. "
-        "You teach step by step, always helping intermediate (B1) students gain confidence. "
+        "You teach step by step, always helping intermediate (C1) students gain confidence. "
         "You strategically mix English with Portuguese to support learning without breaking flow. "
         "You explain things simply, clearly, and practically — never academically. "
         "You always sound like you are talking directly to the student. "
@@ -92,7 +92,7 @@ General tone and style:
 - Focus on how people REALLY speak English.
 
 Pedagogical rules:
-- Start with a clear presentation.
+- Start with a clear presentation (em português).
 - Always help after English sentences with short explanations in Portuguese.
 - Mix Portuguese explanations with English examples smoothly.
 - Avoid long or academic explanations.
@@ -103,23 +103,23 @@ Return the following JSON structure exactly:
 {{
   "term": "{term}",
   "tts_blocks": [
-    "Start with an energetic and friendly presentation, like a YouTuber, introducing the term '{term}' and why it is useful in real life.",
+    "Start with an energetic and friendly presentation (em português), like a YouTuber, introducing the term '{term}' and why it is useful in real life.",
     
     "Give a short and clear SUMMARY in Portuguese explaining what the student will learn about '{term}'.",
     
-    "Explain the meaning of '{term}' in simple, spoken English. After that, add a short help in Portuguese reinforcing the idea.",
+    "Explain the meaning of '{term}' in simple (short, quickly), spoken English. After that, add a short help in Portuguese reinforcing the idea.",
     
     "Explain the same meaning again using different English words. Then briefly explain in Portuguese to reinforce understanding.",
     
     "Explique o significado de '{term}' em português, de forma prática, direta e sem complicação.",
     
-    "Explain how native speakers commonly use '{term}' in daily conversations, focusing on intention and natural tone. Add a short explanation in Portuguese.",
+    "Explain (short) how native speakers commonly use '{term}' in daily conversations, focusing on intention and natural tone. Add a short explanation in Portuguese.",
     
-    "Explain when '{term}' is commonly used and when it should NOT be used, in Portuguese, with practical examples.",
+    "Explain when '{term}' is commonly used and when it should NOT be used, in Portuguese, with practical examples (short).",
     
-    "Explain which verb tense or grammatical structure '{term}' usually appears with. Use English examples and explain them briefly in Portuguese.",
+    "Explain which verb tense or grammatical structure '{term}' usually appears with. Use English examples (short) and explain them briefly in Portuguese.",
     
-    "Give two short and natural example sentences using '{term}' in English. After each sentence, explain its meaning in Portuguese.",
+    "Give two short and natural example (short) sentences using '{term}' in English. After each sentence, explain its meaning in Portuguese.",
     
     "Invite the student to repeat the sentences aloud. Motivate them like a coach or YouTuber, focusing on confidence and memory.",
     
@@ -294,8 +294,13 @@ def main():
     for idx, item in enumerate(terms, start=1):
         term = item["term"]
         print(f"[{idx}/{len(terms)}] 🔹 {term}")
+
+        # ----------------------------
+        # Marca como PROCESSING
+        # ----------------------------
         item["status"] = "processing"
         save_terms(data)
+
         try:
             response = groq_request(PROMPTS["user"](term))
             raw = response["choices"][0]["message"]["content"]
@@ -304,22 +309,22 @@ def main():
             if not json_text:
                 raise ValueError("JSON inválido do Groq")
 
-            data = json.loads(json_text)
+            groq_payload = json.loads(json_text)
 
             safe_name = sanitize_filename(term)
 
             # ----------------------------
-            # Salvar JSON estruturado
+            # Salvar JSON estruturado (conteúdo Groq)
             # ----------------------------
             json_path = JSON_OUTPUT_DIR / f"{safe_name}.json"
             with open(json_path, "w", encoding="utf-8") as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
+                json.dump(groq_payload, f, ensure_ascii=False, indent=2)
 
             # ----------------------------
             # TTS
             # ----------------------------
             tts_lines = []
-            for block in data["tts_blocks"]:
+            for block in groq_payload["tts_blocks"]:
                 tts_lines.append(block)
                 tts_lines.append('<break time="0.6s"/>')
 
@@ -327,17 +332,28 @@ def main():
 
             audio_path = AUDIO_OUTPUT_DIR / f"{safe_name}.wav"
             generate_audio_safe(final_tts, audio_path)
+
+            # ----------------------------
+            # Marca como DONE
+            # ----------------------------
             item["status"] = "done"
 
         except Exception as e:
+            # ----------------------------
+            # Marca como ERROR
+            # ----------------------------
             item["status"] = "error"
             print(f"⛔ Erro ao processar '{term}': {e}")
             print("➡ Termo ignorado, batch continua.\n")
-        
-        save_terms(data)    
-        
+
+        finally:
+            # ----------------------------
+            # Persistência garantida
+            # ----------------------------
+            save_terms(data)
+
         # ----------------------------
-        # DELAY ENTRE TERMOS (CONTROLADO POR PRIORIDADE)
+        # DELAY ENTRE TERMOS
         # ----------------------------
         delay = get_delay_by_priority()
         if delay > 0 and idx < len(terms):
@@ -345,9 +361,9 @@ def main():
             time.sleep(delay)
 
 
-    print("\n✅ Processo finalizado")
-    print("🎧 Áudios:", AUDIO_OUTPUT_DIR)
-    print("📄 JSONs :", JSON_OUTPUT_DIR)
+        print("\n✅ Processo finalizado")
+        print("🎧 Áudios:", AUDIO_OUTPUT_DIR)
+        print("📄 JSONs :", JSON_OUTPUT_DIR)
 
 
 if __name__ == "__main__":
