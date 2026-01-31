@@ -2,31 +2,31 @@
   "pending": [
     {
       "term": "beauty shop",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "beauty parlor",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "feeling myself",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "got the message",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "grounding is something",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "rare today",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "rise up like",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "crash like",
@@ -50,7 +50,7 @@
     },
     {
       "term": "longevity important",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "success",
@@ -58,7 +58,7 @@
     },
     {
       "term": "many people",
-      "status": "pending"
+      "status": "done"
     },
     {
       "term": "corporate America",
@@ -86,11 +86,11 @@
     },
     {
       "term": "how did you",
-      "status": "pending"
+      "status": "processing"
     },
     {
       "term": "make it",
-      "status": "pending"
+      "status": "processing"
     },
     {
       "term": "grace of God",
