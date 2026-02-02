@@ -41,6 +41,12 @@ def log(msg: str):
         f.write(f"{datetime.now():%Y-%m-%d %H:%M:%S} | {msg}\n")
 
 def load_json(path: Path) -> dict:
+    if not path.exists():
+        raise FileNotFoundError("Arquivo não encontrado")
+
+    if path.stat().st_size == 0:
+        raise ValueError("Arquivo JSON vazio")
+
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -52,17 +58,36 @@ def save_json(path: Path, data: dict):
 # MAIN
 # ======================================================
 
-def main():
+def main() -> bool:
     log("START")
 
+    # --------------------------------------------------
+    # LOCK
+    # --------------------------------------------------
     if LOCK_FILE.exists():
         log("LOCK ativo — abortando execução")
-        sys.exit(0)
+        return False
 
-    if not CREATE_LATER_FILE.exists() or load_json(CREATE_LATER_FILE) != {"pending": []}:
+    # --------------------------------------------------
+    # CreateLater.json deve existir e estar vazio
+    # --------------------------------------------------
+    if not CREATE_LATER_FILE.exists():
+        log("CreateLater.json não existe — abortando")
+        return False
+
+    try:
+        create_later = load_json(CREATE_LATER_FILE)
+    except Exception as e:
+        log(f"Erro ao ler CreateLater.json: {e}")
+        return False
+
+    if create_later.get("pending"):
         log("CreateLater.json não vazio — abortando")
-        sys.exit(0)
+        return False
 
+    # --------------------------------------------------
+    # Coleta candidatos
+    # --------------------------------------------------
     candidates = [
         f for f in READY_PATH.iterdir()
         if f.is_file()
@@ -72,28 +97,60 @@ def main():
 
     if not candidates:
         log("NOOP — nenhum JSON elegível")
-        sys.exit(0)
+        return False
 
-    unified = []
+    unified: list[str] = []
 
+    # --------------------------------------------------
+    # Processa arquivos individualmente (à prova de erro)
+    # --------------------------------------------------
     for f in candidates:
-        data = load_json(f)
-        unified.extend(data.get("pending", []))
-        f.rename(f.parent / f"processing_{f.name}")
+        try:
+            data = load_json(f)
 
+            if not isinstance(data, dict):
+                raise ValueError("JSON não é um objeto")
+
+            pending = data.get("pending")
+            if not isinstance(pending, list):
+                raise ValueError("Campo 'pending' inválido ou ausente")
+
+            unified.extend(pending)
+
+            f.rename(f.parent / f"processing_{f.name}")
+            log(f"OK → {f.name} ({len(pending)} termos)")
+
+        except Exception as e:
+            log(f"ERRO → {f.name}: {e}")
+            f.rename(f.parent / f"error_{f.name}")
+
+    # --------------------------------------------------
+    # Normalização
+    # --------------------------------------------------
     unified = list(dict.fromkeys(unified))
 
     if not unified:
         log("NOOP — lista vazia após unificação")
-        sys.exit(0)
+        return False
 
+    # --------------------------------------------------
+    # LOCK + persistência
+    # --------------------------------------------------
     LOCK_FILE.write_text(datetime.now().isoformat(), encoding="utf-8")
     log("LOCK criado")
 
     save_json(CREATE_LATER_FILE, {"pending": unified})
     log(f"CreateLater.json preenchido com {len(unified)} termos")
 
-    sys.exit(2)
+    return True
+
+# ======================================================
+# ENTRYPOINT
+# ======================================================
 
 if __name__ == "__main__":
-    main()
+    ok = main()
+
+    # 0 = execução válida / noop controlado
+    # 2 = pipeline liberado (há trabalho a fazer)
+    sys.exit(2 if ok else 0)

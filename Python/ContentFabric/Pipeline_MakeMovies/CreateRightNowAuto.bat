@@ -24,8 +24,11 @@ set LOG_FILE=%LOG_DIR%\orchestrator.log
 "%PYTHON_EXE%" "%SCRIPT_READY%" "%RUN_ID%" >>"%LOG_FILE%" 2>&1
 set READY_EXIT=%ERRORLEVEL%
 
-if %READY_EXIT%==2 (
+if "!READY_EXIT!"=="2" (
+    echo [%DATE% %TIME%] Gatekeeper liberou pipeline >>"%LOG_FILE%"
     call "%SCRIPT_PIPELINE%" "%RUN_ID%" >>"%LOG_FILE%" 2>&1
+) else (
+    echo [%DATE% %TIME%] Gatekeeper bloqueou pipeline (exit=!READY_EXIT!) >>"%LOG_FILE%"
 )
 
 exit /b 0
