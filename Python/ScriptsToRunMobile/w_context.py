@@ -38,22 +38,28 @@ FINAL_STORY_SIZE = "short"  # short | medium | long
 # ================================================================================
 
 PROMPTS = {
-    "correct_and_translate": """
-You are an young, friendly and modern English teacher.
 
-Rules:
-- Translate PT → EN when needed.
-- Correct grammar and spelling.
-- Output ONLY final English.
+    "correct_and_translate": """
+You are a young, friendly and modern English teacher.
+
+TASK:
+- Detect if the input is Portuguese or incorrect English.
+- Translate PT → EN only when needed.
+- Correct grammar and spelling when needed.
+
+RULES:
+- If input is already correct English, keep meaning unchanged.
+- Output ONLY valid JSON.
+- Do NOT add explanations outside JSON.
 
 Return JSON:
-{{
+{
   "original": "{input}",
-  "corrected": "final English",
+  "corrected": "final English sentence",
   "had_error": true,
   "was_translated": true,
-  "reason": "short explanation"
-}}
+  "reason": "very short explanation (max 15 words)"
+}
 """,
 
     "wordbank_accumulative": """
@@ -63,47 +69,44 @@ CURRENT TERM:
 PREVIOUS CONTEXT TERMS:
 {context_terms}
 
-Create JSON:
-{{
-  "definition_pt": "Me de a tradução para pt, em seguda Explique SOMENTE o significado do termo atual em português. sinonymous (in english) e comom usages, uso comum no português com um unico exemplo.",
+TASK:
+Create a progressive learning entry for the CURRENT TERM only.
+
+GLOBAL RULES:
+- When people appear, ONLY use these characters:
+  Leandro (father), Grace (mother), Geovanna, Vinnicius, Lucas, Melissa (children).
+- Do NOT invent new names.
+
+Return JSON:
+{
+  "definition_pt": "Tradução do termo + explicação clara em português. Inclua sinônimos em inglês e 1 uso comum em PT.",
   "examples": [
-    {{"level":"A1","phrase":"Rhyming English line + translate in pt"}},
-    {{"level":"A2","phrase":"Rhyming English line + translate in pt"}},
-    {{"level":"B1","phrase":"Rhyming English line + translate in pt"}}
+    {
+      "level": "A1",
+      "en": "Very simple English sentence using '{term}'.",
+      "pt": "Tradução simples."
+    },
+    {
+      "level": "A2",
+      "en": "Slightly longer sentence using '{term}' and context.",
+      "pt": "Tradução resumida."
+    },
+    {
+      "level": "B1",
+      "en": "More complete sentence using '{term}' naturally.",
+      "pt": "Tradução curta."
+    }
   ]
-}}
+}
 
 RULES:
+- NO rhymes.
 - Definition MUST NOT mention previous terms.
-- ALL examples must include "{term}".
-- Examples SHOULD reuse at least ONE previous context term if natural.
-- ALL examples in English.
-""",
-
-    "wordbank_song": """
-CURRENT TERM:
-"{term}"
-
-PREVIOUS CONTEXT TERMS:
-{context_terms}
-
-Create JSON:
-{{
-  "definition_pt": "Me de a tradução para pt, em seguda Explique SOMENTE o significado do termo atual em português. sinonymous  (in english) e comom usages, uso comum no português com um unico exemplo.",
-  "examples": [
-    {{"level":"A1","phrase":"Rhyming English line + translate in pt"}},
-    {{"level":"A2","phrase":"Rhyming English line + translate in pt"}},
-    {{"level":"B1","phrase":"Rhyming English line + translate in pt"}}
-  ]
-}}
-
-RULES:
-- Definition MUST NOT mention previous terms.
-- ALL examples must include "{term}".
-- ALL examples must RHYME with each other.
-- Rhythm should feel like a simple song.
-- Context terms may appear if natural.
-- English is main use.
+- ALL examples MUST include "{term}".
+- Each example MUST be longer than the previous.
+- Each English example MUST be under 200 characters.
+- PT translation is secondary: short and simple.
+- MAY reuse ONE previous context term if natural.
 """,
 
     "narrative_step": """
@@ -113,14 +116,65 @@ STORY SO FAR:
 NEW TERM:
 "{term}"
 
-Write 1 natural English sentences that CONTINUE the story
-and clearly integrate the new term.
+TASK:
+Continue the story naturally by adding ONE new sentence.
+
+GLOBAL RULES:
+- When people appear, ONLY use these characters:
+  Leandro (father), Grace (mother), Geovanna, Vinnicius, Lucas, Melissa (children).
+- Do NOT invent new names.
 
 Return JSON:
-{{
-  "sentences": ["...", "..."]
-  "translate_pt": ["...","..."]
-}}
+{
+  "sentence_en": "One clear, simple English sentence that continues the story and uses '{term}'.",
+  "sentence_pt": "Tradução simples para apoio ao aprendizado."
+}
+
+RULES:
+- Do NOT summarize or conclude the story.
+- Do NOT restart the story.
+- The new sentence MUST connect logically to the previous ones.
+- Keep tone positive, simple, and educational.
+""",
+
+    "wordbank_song": """
+CURRENT TERM:
+"{term}"
+
+PREVIOUS CONTEXT TERMS:
+{context_terms}
+
+TASK:
+Create a small educational song entry using the CURRENT TERM.
+
+GLOBAL RULES:
+- When people appear, ONLY use these characters:
+  Leandro (father), Grace (mother), Geovanna, Vinnicius, Lucas, Melissa (children).
+- Do NOT invent new names.
+
+Return JSON:
+{
+  "definition_pt": "Tradução e explicação clara do termo em português.",
+  "song": {
+    "lyrics_en": [
+      "Rhyming line using '{term}'",
+      "Another rhyming line using '{term}'",
+      "Third rhyming line using '{term}'"
+    ],
+    "lyrics_pt": [
+      "Tradução da linha 1",
+      "Tradução da linha 2",
+      "Tradução da linha 3"
+    ]
+  }
+}
+
+RULES:
+- ALL English lines MUST rhyme.
+- Rhythm must feel like a simple song.
+- ALL lines MUST include "{term}".
+- MAY include context terms if natural.
+- English is primary; PT is supportive.
 """
 }
 
