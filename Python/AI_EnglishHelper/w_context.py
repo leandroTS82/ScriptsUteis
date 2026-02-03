@@ -1,7 +1,7 @@
 """
 ====================================================================================
  Script: w_context.py (Groq Only)
- Versão: V3.6 — Contexto validado + Narrativa real
+ Versão: V3.7 — Modo Canção (Rimas) adicionado
 ====================================================================================
 """
 
@@ -38,22 +38,28 @@ FINAL_STORY_SIZE = "short"  # short | medium | long
 # ================================================================================
 
 PROMPTS = {
-    "correct_and_translate": """
-You are an English teacher.
 
-Rules:
-- Translate PT → EN when needed.
-- Correct grammar and spelling.
-- Output ONLY final English.
+    "correct_and_translate": """
+You are a young, friendly and modern English teacher.
+
+TASK:
+- Detect if the input is Portuguese or incorrect English.
+- Translate PT → EN only when needed.
+- Correct grammar and spelling when needed.
+
+RULES:
+- If input is already correct English, keep meaning unchanged.
+- Output ONLY valid JSON.
+- Do NOT add explanations outside JSON.
 
 Return JSON:
-{{
+{
   "original": "{input}",
-  "corrected": "final English",
+  "corrected": "final English sentence",
   "had_error": true,
   "was_translated": true,
-  "reason": "short explanation"
-}}
+  "reason": "very short explanation (max 15 words)"
+}
 """,
 
     "wordbank_accumulative": """
@@ -63,21 +69,44 @@ CURRENT TERM:
 PREVIOUS CONTEXT TERMS:
 {context_terms}
 
-Create JSON:
-{{
-  "definition_pt": "Explique SOMENTE o significado do termo atual em português.",
+TASK:
+Create a progressive learning entry for the CURRENT TERM only.
+
+GLOBAL RULES:
+- When people appear, ONLY use these characters:
+  Leandro (father), Grace (mother), Geovanna, Vinnicius, Lucas, Melissa (children).
+- Do NOT invent new names.
+
+Return JSON:
+{
+  "definition_pt": "Tradução do termo + explicação clara em português. Inclua sinônimos em inglês e 1 uso comum em PT.",
   "examples": [
-    {{"level":"A1","phrase":"English sentence"}},
-    {{"level":"A2","phrase":"English sentence"}},
-    {{"level":"B1","phrase":"English sentence"}}
+    {
+      "level": "A1",
+      "en": "Very simple English sentence using '{term}'.",
+      "pt": "Tradução simples."
+    },
+    {
+      "level": "A2",
+      "en": "Slightly longer sentence using '{term}' and context.",
+      "pt": "Tradução resumida."
+    },
+    {
+      "level": "B1",
+      "en": "More complete sentence using '{term}' naturally.",
+      "pt": "Tradução curta."
+    }
   ]
-}}
+}
 
 RULES:
+- NO rhymes.
 - Definition MUST NOT mention previous terms.
-- ALL examples must include "{term}".
-- Examples SHOULD reuse at least ONE previous context term if natural.
-- ALL examples in English.
+- ALL examples MUST include "{term}".
+- Each example MUST be longer than the previous.
+- Each English example MUST be under 200 characters.
+- PT translation is secondary: short and simple.
+- MAY reuse ONE previous context term if natural.
 """,
 
     "narrative_step": """
@@ -87,13 +116,65 @@ STORY SO FAR:
 NEW TERM:
 "{term}"
 
-Write 2–3 natural English sentences that CONTINUE the story
-and clearly integrate the new term.
+TASK:
+Continue the story naturally by adding ONE new sentence.
+
+GLOBAL RULES:
+- When people appear, ONLY use these characters:
+  Leandro (father), Grace (mother), Geovanna, Vinnicius, Lucas, Melissa (children).
+- Do NOT invent new names.
 
 Return JSON:
-{{
-  "sentences": ["...", "..."]
-}}
+{
+  "sentence_en": "One clear, simple English sentence that continues the story and uses '{term}'.",
+  "sentence_pt": "Tradução simples para apoio ao aprendizado."
+}
+
+RULES:
+- Do NOT summarize or conclude the story.
+- Do NOT restart the story.
+- The new sentence MUST connect logically to the previous ones.
+- Keep tone positive, simple, and educational.
+""",
+
+    "wordbank_song": """
+CURRENT TERM:
+"{term}"
+
+PREVIOUS CONTEXT TERMS:
+{context_terms}
+
+TASK:
+Create a small educational song entry using the CURRENT TERM.
+
+GLOBAL RULES:
+- When people appear, ONLY use these characters:
+  Leandro (father), Grace (mother), Geovanna, Vinnicius, Lucas, Melissa (children).
+- Do NOT invent new names.
+
+Return JSON:
+{
+  "definition_pt": "Tradução e explicação clara do termo em português.",
+  "song": {
+    "lyrics_en": [
+      "Rhyming line using '{term}'",
+      "Another rhyming line using '{term}'",
+      "Third rhyming line using '{term}'"
+    ],
+    "lyrics_pt": [
+      "Tradução da linha 1",
+      "Tradução da linha 2",
+      "Tradução da linha 3"
+    ]
+  }
+}
+
+RULES:
+- ALL English lines MUST rhyme.
+- Rhythm must feel like a simple song.
+- ALL lines MUST include "{term}".
+- MAY include context terms if natural.
+- English is primary; PT is supportive.
 """
 }
 
@@ -157,9 +238,15 @@ def main():
     print(f"{C_BOLD}Selecione o modo:{C_RESET}")
     print("1 - Acumulativo")
     print("2 - Narrativa")
+    print("3 - Canção (rimas)")
 
-    mode = input("Opção: ").strip()
-    mode = "narrative" if mode == "2" else "accumulative"
+    opt = input("Opção: ").strip()
+    if opt == "2":
+        mode = "narrative"
+    elif opt == "3":
+        mode = "song"
+    else:
+        mode = "accumulative"
 
     ctx = {
         "mode": mode,
@@ -181,19 +268,24 @@ def main():
                 print(f"{C_YELLOW}🗑️ Contexto vazio. Encerrando.{C_RESET}")
                 return
 
-            if mode == "accumulative":
+            if mode == "narrative":
                 story = groq_text(
-                    f"Use ALL these terms in a {FINAL_STORY_SIZE} positive story: "
-                    f"{', '.join(ctx['inputs'])}. Themes: {', '.join(STORY_THEMES)}"
+                    f"Refine this story into a {FINAL_STORY_SIZE} coherent narrative:\n"
+                    + "\n".join(ctx["timeline"])
+                )
+            elif mode == "song":
+                story = groq_text(
+                    f"Create a {FINAL_STORY_SIZE} rhyming song using ALL these terms:\n"
+                    f"{', '.join(ctx['inputs'])}\nThemes: {', '.join(STORY_THEMES)}"
                 )
             else:
                 story = groq_text(
-                    f"Refine this story into a coherent {FINAL_STORY_SIZE} narrative:\n"
-                    + "\n".join(ctx["timeline"])
+                    f"Use ALL these terms in a {FINAL_STORY_SIZE} positive story:\n"
+                    f"{', '.join(ctx['inputs'])}\nThemes: {', '.join(STORY_THEMES)}"
                 )
 
             title = groq_text(
-                f"Create a short inspiring title (max 6 words) for this story:\n{story}"
+                f"Create a short inspiring title (max 6 words) for this text:\n{story}"
             )
 
             fname = re.sub(r"[^\w\s-]", "", title).replace(" ", "_")[:60] + ".json"
@@ -208,7 +300,7 @@ def main():
             if os.path.exists(TMP_CONTEXT):
                 os.remove(TMP_CONTEXT)
 
-            print(f"\n{C_GREEN}✨ História final:{C_RESET}\n{story}")
+            print(f"\n{C_GREEN}✨ Resultado final:{C_RESET}\n{story}")
             print(f"\n{C_CYAN}📌 Título:{C_RESET} {title}")
             print(f"{C_CYAN}📂 Arquivo:{C_RESET} {path}")
             return
@@ -232,9 +324,21 @@ def main():
         else:
             print(f"{C_GREEN}✅ Frase correta.{C_RESET}")
 
-        if mode == "accumulative":
+        if mode == "narrative":
+            step = groq_json(
+                PROMPTS["narrative_step"].format(
+                    term=term,
+                    timeline="\n".join(ctx["timeline"])
+                )
+            )
+            for s in step["sentences"]:
+                print(f"{C_BLUE}📖 {s}{C_RESET}")
+                ctx["timeline"].append(s)
+
+        else:
+            key = "wordbank_song" if mode == "song" else "wordbank_accumulative"
             wb = groq_json(
-                PROMPTS["wordbank_accumulative"].format(
+                PROMPTS[key].format(
                     term=term,
                     context_terms=", ".join(ctx["inputs"])
                 )
@@ -250,17 +354,6 @@ def main():
                 "definition_pt": wb["definition_pt"],
                 "examples": wb["examples"]
             })
-
-        else:
-            step = groq_json(
-                PROMPTS["narrative_step"].format(
-                    term=term,
-                    timeline="\n".join(ctx["timeline"])
-                )
-            )
-            for s in step["sentences"]:
-                print(f"{C_BLUE}📖 {s}{C_RESET}")
-                ctx["timeline"].append(s)
 
         ctx["inputs"].append(term)
 
