@@ -29,7 +29,7 @@ VIDEO_ARRAY_NAME = [
     "2026-01-30_13-48-48.mp4"
 ]
 
-OUTPUT_NAME = "FINAL_JOINED_VIDEO.mp4"
+OUTPUT_NAME = "SendEmailDemonstration.mp4"
 
 FFMPEG_BIN = "ffmpeg"
 

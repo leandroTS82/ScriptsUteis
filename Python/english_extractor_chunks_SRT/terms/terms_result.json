@@ -1,0 +1,4931 @@
+[
+  {
+    "term": "I had my mother",
+    "meaning_pt": "Eu tinha minha mãe",
+    "examples": [
+      "I had my mother with me during the trip.",
+      "I had my mother as my guide."
+    ]
+  },
+  {
+    "term": "I had my father",
+    "meaning_pt": "Eu tinha meu pai",
+    "examples": [
+      "I had my father at the ceremony, and he gave a speech.",
+      "I had my father as a mentor when I was young."
+    ]
+  },
+  {
+    "term": "I probably wouldn't",
+    "meaning_pt": "Eu provavelmente não faria / eu provavelmente não iria",
+    "examples": [
+      "I probably wouldn't go to the party if I had to work. (Eu provavelmente não iria à festa se tivesse que trabalhar.)",
+      "I probably wouldn't eat that if it were too spicy. (Eu provavelmente não comeria isso se fosse muito picante.)"
+    ]
+  },
+  {
+    "term": "I forgive you",
+    "meaning_pt": "Eu te perdoo",
+    "examples": [
+      "I forgive you for the mistake you made.",
+      "She said, \"I forgive you,\" and smiled."
+    ]
+  },
+  {
+    "term": "God removed you",
+    "meaning_pt": "Deus te retirou / Deus te tirou",
+    "examples": [
+      "I felt like God removed you from my life when you left the team.",
+      "She whispered, 'God removed you from my thoughts,' as she walked away."
+    ]
+  },
+  {
+    "term": "crackhead",
+    "meaning_pt": "pessoa que é viciada em crack, termo pejorativo",
+    "examples": [
+      "The city council is concerned about the growing number of crackheads in the downtown area.",
+      "He tried to help his brother, but the crackhead's addiction made it difficult to find a solution."
+    ]
+  },
+  {
+    "term": "TD Jake",
+    "meaning_pt": "Touchdown de Jake (quando o jogador Jake marca um touchdown)",
+    "examples": [
+      "Jake scored a TD in the fourth quarter, giving his team the lead.",
+      "The announcer shouted, \"TD Jake!\" as the ball crossed the goal line."
+    ]
+  },
+  {
+    "term": "Next Chapter",
+    "meaning_pt": "Próximo Capítulo (literal) ou Próximo Passo/Etapa (figurativo)",
+    "examples": [
+      "She decided to start a new life in the next chapter of her career.",
+      "The book's next chapter delves deeper into the mystery."
+    ]
+  },
+  {
+    "term": "very excited",
+    "meaning_pt": "muito empolgado, extremamente animado",
+    "examples": [
+      "I was very excited to see my favorite band perform live.",
+      "She was very excited about starting her new job."
+    ]
+  },
+  {
+    "term": "guest that I'm",
+    "meaning_pt": "hospede que eu sou / convidado que sou",
+    "examples": [
+      "I am a guest that I'm looking forward to meeting at the event.",
+      "She told me I am a guest that I'm welcome to stay for the night."
+    ]
+  },
+  {
+    "term": "powerful man",
+    "meaning_pt": "homem poderoso",
+    "examples": [
+      "The powerful man in the boardroom made the final decision.",
+      "She admired the powerful man who fought for justice."
+    ]
+  },
+  {
+    "term": "popular actor",
+    "meaning_pt": "ator popular",
+    "examples": [
+      "The popular actor starred in the blockbuster movie last year.",
+      "She admired the popular actor for his philanthropic work."
+    ]
+  },
+  {
+    "term": "highest grossing",
+    "meaning_pt": "que gera o maior lucro ou receita total",
+    "examples": [
+      "The movie was the highest grossing film of the year.",
+      "She became the highest grossing author in her genre."
+    ]
+  },
+  {
+    "term": "iconic singer",
+    "meaning_pt": "cantor(a) icônico(a)",
+    "examples": [
+      "Madonna is often referred to as an iconic singer in the pop music scene.",
+      "Quando ouvimos a voz de Freddie Mercury, percebemos por que ele é considerado um cantor icônico."
+    ]
+  },
+  {
+    "term": "platinum selling",
+    "meaning_pt": "que vendeu platina (geralmente indicando vendas superiores a 1 milhão de unidades)",
+    "examples": [
+      "The album was platinum selling, earning it a prestigious award.",
+      "Their latest product line has become a platinum selling success in the market."
+    ]
+  },
+  {
+    "term": "awardwinning R&B",
+    "meaning_pt": "R&B premiado",
+    "examples": [
+      "The awardwinning R&B artist released a new album that topped the charts.",
+      "Her awardwinning R&B performance earned her a spot on the international music festival lineup."
+    ]
+  },
+  {
+    "term": "accomplished producer",
+    "meaning_pt": "produtor experiente e habilidoso, reconhecido por sua competência e sucesso em projetos de produção",
+    "examples": [
+      "She is an accomplished producer, having directed several award-winning films.",
+      "His reputation as an accomplished producer made him the first choice for the high-profile television series."
+    ]
+  },
+  {
+    "term": "successful entrepreneur",
+    "meaning_pt": "empreendedor bem-sucedido",
+    "examples": [
+      "After years of hard work, she became a successful entrepreneur, launching her own tech startup.",
+      "His reputation as a successful entrepreneur grew after his company was acquired by a Fortune 500 firm."
+    ]
+  },
+  {
+    "term": "New York Times",
+    "meaning_pt": "Jornal de notícias dos Estados Unidos, conhecido como The New York Times",
+    "examples": [
+      "I read the New York Times every morning to stay updated on global events.",
+      "The New York Times won the Pulitzer Prize for investigative journalism in 2023."
+    ]
+  },
+  {
+    "term": "bestselling author",
+    "meaning_pt": "autor de best-sellers (autor de livros mais vendidos)",
+    "examples": [
+      "She is a bestselling author of mystery novels.",
+      "The publisher announced that the bestselling author will release a new book next month."
+    ]
+  },
+  {
+    "term": "devoted father",
+    "meaning_pt": "pai dedicado",
+    "examples": [
+      "He was a devoted father, always making time for his children.",
+      "The community admired her devoted father for his unwavering support."
+    ]
+  },
+  {
+    "term": "true global superstar",
+    "meaning_pt": "superestrela global de verdade",
+    "examples": [
+      "Taylor Swift is a true global superstar.",
+      "The concert drew fans from around the world, proving he's a true global superstar."
+    ]
+  },
+  {
+    "term": "welcome Tyrese",
+    "meaning_pt": "receber ou acolher alguém chamado Tyrese",
+    "examples": [
+      "Welcome Tyrese, we’re glad you could join us!",
+      "When Tyrese arrived, we gave him a warm welcome."
+    ]
+  },
+  {
+    "term": "uncomfortable part",
+    "meaning_pt": "parte desconfortável ou que causa desconforto",
+    "examples": [
+      "The uncomfortable part of the meeting was the discussion about layoffs.",
+      "She avoided the uncomfortable part of the conversation by changing the subject."
+    ]
+  },
+  {
+    "term": "Wikipedia page",
+    "meaning_pt": "página da Wikipedia",
+    "examples": [
+      "I found a Wikipedia page that explains the history of the Eiffel Tower.",
+      "She cited a Wikipedia page as a starting point for her research."
+    ]
+  },
+  {
+    "term": "not worthy",
+    "meaning_pt": "não digno, não merecedor",
+    "examples": [
+      "He was not worthy of the award, despite his hard work.",
+      "The evidence presented was not worthy of consideration by the jury."
+    ]
+  },
+  {
+    "term": "Got so much",
+    "meaning_pt": "Recebido muito (informal, indicando que alguém obteve ou recebeu uma grande quantidade de algo)",
+    "examples": [
+      "I got so much homework this week that I couldn't sleep.",
+      "She got so much praise for her presentation that she felt proud."
+    ]
+  },
+  {
+    "term": "mountain tops",
+    "meaning_pt": "picos de montanhas",
+    "examples": [
+      "The hikers reached the mountain tops after a long climb.",
+      "From the mountain tops, the view of the valley was breathtaking."
+    ]
+  },
+  {
+    "term": "life, about family",
+    "meaning_pt": "refere-se a uma vida centrada nas relações e responsabilidades familiares",
+    "examples": [
+      "Her life is about family, and she spends most of her free time with her children.",
+      "He said that his life is about family, so he always puts their needs first."
+    ]
+  },
+  {
+    "term": "self, and the",
+    "meaning_pt": "A combinação de 'self' (eu mesmo) e 'and the' (e o/ a/ os/ as). Não forma uma expressão idiomática em inglês, mas pode aparecer em frases onde 'self' é usado seguido por 'and the' para introduzir outra cláusula.",
+    "examples": [
+      "He blamed self, and the situation worsened.",
+      "She praised self, and the team celebrated."
+    ]
+  },
+  {
+    "term": "recreating yourself",
+    "meaning_pt": "recriar-se, reinventar-se, reconstruir a própria identidade ou vida",
+    "examples": [
+      "After the accident, he spent months recreating himself, learning new skills and redefining his goals.",
+      "She is recreating herself through art, turning her past traumas into powerful paintings."
+    ]
+  },
+  {
+    "term": "great next chapter",
+    "meaning_pt": "um grande próximo capítulo",
+    "examples": [
+      "We are excited about the great next chapter in our company's expansion.",
+      "She looked forward to the great next chapter of her life after graduation."
+    ]
+  },
+  {
+    "term": "turn the page",
+    "meaning_pt": "virar a página",
+    "examples": [
+      "After the argument, she decided to turn the page and start fresh.",
+      "The novel was so gripping that I couldn't wait to turn the page."
+    ]
+  },
+  {
+    "term": "author to R&B",
+    "meaning_pt": "autor que escreve músicas do gênero R&B",
+    "examples": [
+      "The author to R&B has released several hit singles.",
+      "She is an author to R&B, known for her soulful storytelling."
+    ]
+  },
+  {
+    "term": "action actor",
+    "meaning_pt": "Pessoa que executa ações ou desempenha papéis de ação, especialmente em contextos de cinema, teatro ou programação, onde o indivíduo realiza atividades práticas ou desempenha funções de ação.",
+    "examples": [
+      "The action actor in the movie performed all the stunts without a stunt double.",
+      "In the software architecture, the action actor is responsible for initiating and executing the core business processes."
+    ]
+  },
+  {
+    "term": "chameleon that",
+    "meaning_pt": "pessoa que muda de comportamento, atitude ou aparência para se adaptar a diferentes situações ou pessoas",
+    "examples": [
+      "He's a chameleon that can blend into any social setting without anyone noticing.",
+      "She is a chameleon that changes her style and opinions depending on who she's talking to."
+    ]
+  },
+  {
+    "term": "blind faith",
+    "meaning_pt": "fé cega, confiança absoluta sem questionamento ou evidência",
+    "examples": [
+      "She followed the instructions with blind faith, even though she had no idea what she was doing.",
+      "The politician's promises were accepted by the public with blind faith, despite the lack of evidence."
+    ]
+  },
+  {
+    "term": "not the son",
+    "meaning_pt": "não o filho",
+    "examples": [
+      "He is not the son, but the brother of the king.",
+      "She clarified that she was not the son, but the daughter of the family."
+    ]
+  },
+  {
+    "term": "Anita Baker",
+    "meaning_pt": "cantora americana de soul e R&B",
+    "examples": [
+      "Anita Baker's album 'Rapture' became a classic in the 1980s.",
+      "Many aspiring singers cite Anita Baker as a major influence on their vocal style."
+    ]
+  },
+  {
+    "term": "Gladis Knight",
+    "meaning_pt": "Nome próprio (pessoa ou personagem fictício)",
+    "examples": [
+      "Gladis Knight was a renowned scholar in medieval literature.",
+      "During the conference, Gladis Knight presented her latest research on linguistic evolution."
+    ]
+  },
+  {
+    "term": "Will Smith",
+    "meaning_pt": "Will Smith é um ator, rapper e produtor norte‑americano, conhecido por papéis em filmes como \"Men in Black\", \"The Pursuit of Happyness\" e \"Independence Day\".",
+    "examples": [
+      "Will Smith starred in the 1997 film \"Independence Day\".",
+      "Many people admire Will Smith for his versatility as both an actor and a musician."
+    ]
+  },
+  {
+    "term": "Denzel is not",
+    "meaning_pt": "Denzel não é / Denzel não está",
+    "examples": [
+      "Denzel is not a fan of spicy food.",
+      "Denzel is not here."
+    ]
+  },
+  {
+    "term": "blindsided about",
+    "meaning_pt": "surpreendido de forma inesperada e sem aviso prévio sobre algo",
+    "examples": [
+      "I was blindsided about the sudden change in policy.",
+      "She was blindsided about the fact that her friend had moved away."
+    ]
+  },
+  {
+    "term": "heads up",
+    "meaning_pt": "aviso prévio, alerta, aviso de algo que está por acontecer",
+    "examples": [
+      "Heads up! The train is about to leave the platform.",
+      "I just wanted to give you a heads up that the meeting has been moved to 3 PM."
+    ]
+  },
+  {
+    "term": "first in my",
+    "meaning_pt": "primeiro em meu / primeiro na minha",
+    "examples": [
+      "This is the first in my list of priorities.",
+      "He was the first in my class to finish the exam."
+    ]
+  },
+  {
+    "term": "only pressure",
+    "meaning_pt": "apenas pressão (o único fator de pressão ou a única pressão que se aplica)",
+    "examples": [
+      "The athlete's performance was only pressure from the crowd.",
+      "In the experiment, the only pressure applied was atmospheric pressure."
+    ]
+  },
+  {
+    "term": "scary",
+    "meaning_pt": "assustador, temível",
+    "examples": [
+      "The horror movie was so scary that I couldn't sleep.",
+      "She found the abandoned house scary and decided to leave."
+    ]
+  },
+  {
+    "term": "Charleston, South Carolina",
+    "meaning_pt": "Cidade histórica no estado da Carolina do Sul, nos Estados Unidos",
+    "examples": [
+      "Charleston, South Carolina, is known for its well-preserved architecture and rich history.",
+      "Many tourists visit Charleston, South Carolina, to explore its historic district and enjoy local cuisine."
+    ]
+  },
+  {
+    "term": "wedding",
+    "meaning_pt": "casamento",
+    "examples": [
+      "They are planning their wedding next month.",
+      "The wedding ceremony was held at the church."
+    ]
+  },
+  {
+    "term": "pretty tough time",
+    "meaning_pt": "um período difícil ou complicado",
+    "examples": [
+      "After losing his job, he went through a pretty tough time before finding a new one.",
+      "The company faced a pretty tough time during the recession, but they managed to survive."
+    ]
+  },
+  {
+    "term": "lost your father",
+    "meaning_pt": "ter a perda do pai (falecimento do pai)",
+    "examples": [
+      "I was devastated when I lost my father last year.",
+      "After losing his father, he struggled to find his own identity."
+    ]
+  },
+  {
+    "term": "minister to you",
+    "meaning_pt": "servir a você, atender às suas necessidades",
+    "examples": [
+      "The royal court was sworn to minister to you, ensuring your every request was fulfilled.",
+      "In the novel, the loyal servant vowed to minister to you, offering comfort and support during difficult times."
+    ]
+  },
+  {
+    "term": "Coke or Pepsi",
+    "meaning_pt": "Coca-Cola ou Pepsi",
+    "examples": [
+      "Would you like Coke or Pepsi with your dinner?",
+      "She asked if we preferred Coke or Pepsi for the party."
+    ]
+  },
+  {
+    "term": "career that was",
+    "meaning_pt": "carreira que existiu no passado",
+    "examples": [
+      "She had a career that was highly respected before she decided to retire.",
+      "The company had a career that was once thriving but has since declined."
+    ]
+  },
+  {
+    "term": "Grammys doesn't",
+    "meaning_pt": "Os Grammys não",
+    "examples": [
+      "Grammys doesn't matter to me.",
+      "Grammys doesn't guarantee success."
+    ]
+  },
+  {
+    "term": "homogeneous connection",
+    "meaning_pt": "conexão homogênea (ou conexão uniforme) – refere-se a uma ligação ou relação entre elementos que são semelhantes ou consistentes em composição, estrutura ou características.",
+    "examples": [
+      "The network's homogeneous connection ensures that all nodes communicate with the same protocol.",
+      "In the study, researchers observed a homogeneous connection between the two species, indicating similar evolutionary paths."
+    ]
+  },
+  {
+    "term": "past and the",
+    "meaning_pt": "passado e o",
+    "examples": [
+      "The past and the future are often discussed together.",
+      "The past and the present can influence each other."
+    ]
+  },
+  {
+    "term": "future",
+    "meaning_pt": "futuro (substantivo) ou futuro (adjetivo)",
+    "examples": [
+      "I will finish my degree in the future.",
+      "The future of technology looks promising."
+    ]
+  },
+  {
+    "term": "scientific way",
+    "meaning_pt": "maneira científica",
+    "examples": [
+      "She approached the problem with a scientific way, gathering data before forming a hypothesis.",
+      "The project was completed using a scientific way, following rigorous experimental protocols."
+    ]
+  },
+  {
+    "term": "boom boom boom",
+    "meaning_pt": "som de explosão ou batida forte, usado para indicar algo impactante ou em tom de brincadeira.",
+    "examples": [
+      "The fireworks made a boom boom boom that echoed across the valley.",
+      "She laughed and said, \"Boom boom boom!\" as if the joke was explosive."
+    ]
+  },
+  {
+    "term": "can't get rid",
+    "meaning_pt": "não conseguir se livrar",
+    "examples": [
+      "I can't get rid of this feeling that something is wrong.",
+      "She can't get rid of the memory of that accident."
+    ]
+  },
+  {
+    "term": "upbringing and training",
+    "meaning_pt": "educação e formação",
+    "examples": [
+      "Her upbringing and training prepared her well for the job.",
+      "The program focuses on the child's upbringing and training in social skills."
+    ]
+  },
+  {
+    "term": "survive in the",
+    "meaning_pt": "sobrevivir em",
+    "examples": [
+      "We must survive in the harsh desert if we want to reach the oasis.",
+      "They survived in the city during the siege, relying on hidden supplies."
+    ]
+  },
+  {
+    "term": "Hollywood scene",
+    "meaning_pt": "Cena de Hollywood, referindo-se a uma cena típica de filmes produzidos em Hollywood, muitas vezes glamourosa, dramática ou estilizada.",
+    "examples": [
+      "The director wanted a classic Hollywood scene with a dramatic sunset and a slow-motion car chase.",
+      "During the rehearsal, the actors practiced the Hollywood scene where the hero saves the day in a grand, cinematic way."
+    ]
+  },
+  {
+    "term": "All of them",
+    "meaning_pt": "Todos eles",
+    "examples": [
+      "All of them were invited to the party.",
+      "All of them have completed the assignment."
+    ]
+  },
+  {
+    "term": "You didn't leave",
+    "meaning_pt": "Você não saiu",
+    "examples": [
+      "You didn't leave the room, did you?",
+      "I thought you left, but you didn't leave."
+    ]
+  },
+  {
+    "term": "guy on the bus",
+    "meaning_pt": "um homem que está em um ônibus (passageiro masculino)",
+    "examples": [
+      "I saw a guy on the bus who was reading a newspaper.",
+      "The guy on the bus kept talking loudly."
+    ]
+  },
+  {
+    "term": "He's still there",
+    "meaning_pt": "Ele ainda está lá",
+    "examples": [
+      "After the storm, he was still there, waiting for us to come back.",
+      "Even though everyone else left, he's still there, holding the door open."
+    ]
+  },
+  {
+    "term": "A lot of people",
+    "meaning_pt": "Muitas pessoas",
+    "examples": [
+      "A lot of people attended the concert last night.",
+      "A lot of people think that learning a second language is beneficial."
+    ]
+  },
+  {
+    "term": "You get it",
+    "meaning_pt": "Você entende / Você pega a ideia",
+    "examples": [
+      "I was explaining the concept, and when he nodded, I knew he got it.",
+      "She said, 'You get it,' after showing me how to solve the equation."
+    ]
+  },
+  {
+    "term": "when you find yourself",
+    "meaning_pt": "quando você se encontrar",
+    "examples": [
+      "When you find yourself in a difficult situation, take a moment to breathe.",
+      "She said, \"When you find yourself at the crossroads, choose the path that feels right.\""
+    ]
+  },
+  {
+    "term": "does the talking",
+    "meaning_pt": "fazer a conversa, falar, falar em nome de alguém",
+    "examples": [
+      "She was the quiet one, but she does the talking when it comes to negotiations.",
+      "During the meeting, he did the talking while his colleague took notes."
+    ]
+  },
+  {
+    "term": "drive the car",
+    "meaning_pt": "conduzir o carro",
+    "examples": [
+      "I need to drive the car to the office today.",
+      "She learned how to drive the car after taking lessons."
+    ]
+  },
+  {
+    "term": "guy from Philly",
+    "meaning_pt": "pessoa de Filadélfia",
+    "examples": [
+      "The guy from Philly always orders a cheesesteak at the local deli.",
+      "When we met at the conference, the guy from Philly introduced himself as a software engineer."
+    ]
+  },
+  {
+    "term": "guy from Hollywood",
+    "meaning_pt": "homem de Hollywood",
+    "examples": [
+      "The guy from Hollywood was invited to the local film festival.",
+      "I met a guy from Hollywood at the charity gala."
+    ]
+  },
+  {
+    "term": "the writer",
+    "meaning_pt": "o escritor",
+    "examples": [
+      "The writer signed the contract before the meeting.",
+      "She is the writer of the best-selling novel."
+    ]
+  },
+  {
+    "term": "manage that",
+    "meaning_pt": "gerir isso / conseguir lidar com isso",
+    "examples": [
+      "I don't know how to manage that project, so I'm asking for help.",
+      "She said she could manage that situation even under pressure."
+    ]
+  },
+  {
+    "term": "black octopus",
+    "meaning_pt": "polvo preto",
+    "examples": [
+      "The black octopus was spotted near the coral reef.",
+      "Scientists studied the black octopus to understand its unique camouflage."
+    ]
+  },
+  {
+    "term": "my arms",
+    "meaning_pt": "meus braços",
+    "examples": [
+      "I lifted the heavy box with my arms.",
+      "She wrapped her arms around her friend."
+    ]
+  },
+  {
+    "term": "in 30 different places",
+    "meaning_pt": "em 30 lugares diferentes",
+    "examples": [
+      "She visited the museum in 30 different places across the city.",
+      "The company launched its new product in 30 different places to test market reception."
+    ]
+  },
+  {
+    "term": "working at the same time",
+    "meaning_pt": "trabalhando simultaneamente, realizando duas ou mais atividades ao mesmo tempo",
+    "examples": [
+      "She was working at the same time on her report and preparing the presentation.",
+      "While working at the same time on the project, he also answered emails from clients."
+    ]
+  },
+  {
+    "term": "At the same time",
+    "meaning_pt": "Ao mesmo tempo",
+    "examples": [
+      "She was studying for her exams while working part-time at the same time.",
+      "He tried to finish the project and answer emails at the same time."
+    ]
+  },
+  {
+    "term": "I'm the head",
+    "meaning_pt": "Eu sou o chefe / eu sou o líder",
+    "examples": [
+      "I'm the head of the department, so I make the final decisions.",
+      "When we started the project, I was the head, and I set the initial goals."
+    ]
+  },
+  {
+    "term": "I'm the heart",
+    "meaning_pt": "Sou o coração",
+    "examples": [
+      "I'm the heart of the team, keeping everyone motivated and focused.",
+      "In the song, I'm the heart that beats with every lyric."
+    ]
+  },
+  {
+    "term": "arms is just everywhere",
+    "meaning_pt": "Armas estão em todos os lugares",
+    "examples": [
+      "After the conflict, it seemed that arms is just everywhere, making it hard to feel safe.",
+      "In the bustling market, arms is just everywhere, from street vendors to security guards."
+    ]
+  },
+  {
+    "term": "trying to achieve things",
+    "meaning_pt": "tentar alcançar coisas / fazer esforços para conseguir objetivos",
+    "examples": [
+      "She is trying to achieve things by setting small, realistic goals.",
+      "Despite obstacles, he keeps trying to achieve things that once seemed impossible."
+    ]
+  },
+  {
+    "term": "real time",
+    "meaning_pt": "tempo real",
+    "examples": [
+      "The system processes data in real time.",
+      "The live broadcast is happening in real time."
+    ]
+  },
+  {
+    "term": "each project",
+    "meaning_pt": "cada projeto",
+    "examples": [
+      "Each project requires a detailed plan before it can begin.",
+      "The team reviewed each project to ensure compliance with the new regulations."
+    ]
+  },
+  {
+    "term": "different levels",
+    "meaning_pt": "níveis diferentes",
+    "examples": [
+      "The course offers different levels of difficulty for beginners, intermediate, and advanced students.",
+      "There are different levels of support available, ranging from basic assistance to full technical support."
+    ]
+  },
+  {
+    "term": "of any of them",
+    "meaning_pt": "de qualquer um deles",
+    "examples": [
+      "I could choose of any of them, but I decided to go with the first option.",
+      "She asked if I could help with any of them, and I said I could help with any of them."
+    ]
+  },
+  {
+    "term": "what a blessing",
+    "meaning_pt": "o que uma bênção",
+    "examples": [
+      "I just got a promotion at work, what a blessing!",
+      "After the storm passed, the clear skies were a blessing."
+    ]
+  },
+  {
+    "term": "singer has helped",
+    "meaning_pt": "cantor tem ajudado",
+    "examples": [
+      "The singer has helped many people with his charity work.",
+      "Since the concert, the singer has helped raise funds for the hospital."
+    ]
+  },
+  {
+    "term": "set up the success",
+    "meaning_pt": "preparar ou organizar o sucesso",
+    "examples": [
+      "We need to set up the success of the project by planning carefully.",
+      "They set up the success of the new product by targeting the right market."
+    ]
+  },
+  {
+    "term": "the actor",
+    "meaning_pt": "o ator",
+    "examples": [
+      "The actor delivered a powerful performance in the new film.",
+      "The actor was praised for his role in the award-winning play."
+    ]
+  },
+  {
+    "term": "the entrepreneur",
+    "meaning_pt": "o empreendedor",
+    "examples": [
+      "The entrepreneur launched a startup that revolutionized the tech industry.",
+      "She is known as a visionary entrepreneur who turned a small idea into a global brand."
+    ]
+  },
+  {
+    "term": "the coat kid",
+    "meaning_pt": "a criança que usa casaco (ou o garoto que sempre tem um casaco)",
+    "examples": [
+      "The coat kid was the first to arrive at the playground.",
+      "Everyone laughed at the coat kid because he was wearing a bright red coat in the summer."
+    ]
+  },
+  {
+    "term": "back of the bus",
+    "meaning_pt": "parte traseira do ônibus",
+    "examples": [
+      "We were sitting in the back of the bus when the accident happened.",
+      "The back of the bus is usually where the luggage is stored."
+    ]
+  },
+  {
+    "term": "riding the wave",
+    "meaning_pt": "aproveitar uma tendência ou oportunidade, seguir o fluxo de algo",
+    "examples": [
+      "She decided to ride the wave of popularity and released a new album.",
+      "We should ride the wave of digital transformation to stay competitive."
+    ]
+  },
+  {
+    "term": "I started this",
+    "meaning_pt": "Eu comecei isso / Eu iniciei isso",
+    "examples": [
+      "I started this project last year, and it has grown into a huge success.",
+      "I started this conversation because I wanted to clarify the details."
+    ]
+  },
+  {
+    "term": "driven by God",
+    "meaning_pt": "movido por Deus, guiado por Deus, impulsionado por Deus",
+    "examples": [
+      "She pursued her career with a sense of purpose, believing she was driven by God.",
+      "The community's efforts to help the homeless were driven by God, reflecting their deep faith."
+    ]
+  },
+  {
+    "term": "talk at the same time",
+    "meaning_pt": "falar ao mesmo tempo",
+    "examples": [
+      "They started to talk at the same time, causing confusion.",
+      "When the group chat was active, everyone talked at the same time."
+    ]
+  },
+  {
+    "term": "depends on who",
+    "meaning_pt": "depende de quem",
+    "examples": [
+      "The outcome of the meeting depends on who attends.",
+      "The success of the project depends on who leads it."
+    ]
+  },
+  {
+    "term": "what tone of voice",
+    "meaning_pt": "qual tom de voz",
+    "examples": [
+      "She asked, 'What tone of voice should I use when speaking to the manager?'",
+      "The coach explained that the tone of voice can change the meaning of a sentence."
+    ]
+  },
+  {
+    "term": "what environment",
+    "meaning_pt": "qual ambiente",
+    "examples": [
+      "What environment do you prefer for studying?",
+      "I need to know what environment the software will run in."
+    ]
+  },
+  {
+    "term": "manage those people",
+    "meaning_pt": "gerenciar essas pessoas",
+    "examples": [
+      "The new manager will manage those people who work in the sales department.",
+      "If you manage those people well, the project will be completed on time."
+    ]
+  },
+  {
+    "term": "wretched man",
+    "meaning_pt": "homem miserável, desgraçado, lamentável",
+    "examples": [
+      "He was a wretched man, always complaining about his misfortunes.",
+      "The novel portrays a wretched man who has lost everything."
+    ]
+  },
+  {
+    "term": "deliver me",
+    "meaning_pt": "entregue-me / livre-me",
+    "examples": [
+      "Please deliver me the package to the front desk.",
+      "I pray that God will deliver me from this difficult situation."
+    ]
+  },
+  {
+    "term": "body of this death",
+    "meaning_pt": "corpo desta morte (o cadáver que está associado ou que causou essa morte)",
+    "examples": [
+      "The forensic team examined the body of this death to determine the cause.",
+      "The investigators were unable to identify the body of this death until the next day."
+    ]
+  },
+  {
+    "term": "this sin",
+    "meaning_pt": "este pecado",
+    "examples": [
+      "This sin cannot be forgiven.",
+      "He confessed this sin to the priest."
+    ]
+  },
+  {
+    "term": "people live with you",
+    "meaning_pt": "pessoas que vivem com você",
+    "examples": [
+      "I have a roommate, so people live with you in the apartment.",
+      "When you move into a new house, people live with you might include family members or friends."
+    ]
+  },
+  {
+    "term": "in a mansion",
+    "meaning_pt": "em uma mansão",
+    "examples": [
+      "She spent her childhood in a mansion overlooking the sea.",
+      "The novel describes a mysterious family that lives in a mansion on the hill."
+    ]
+  },
+  {
+    "term": "eating something",
+    "meaning_pt": "comendo algo",
+    "examples": [
+      "She was eating something when I called her.",
+      "I heard someone eating something in the kitchen."
+    ]
+  },
+  {
+    "term": "neckbones",
+    "meaning_pt": "ossos do pescoço (vertebra cervical)",
+    "examples": [
+      "The doctor examined the patient's neckbones to check for any fractures.",
+      "During the anatomy class, students learned how the neckbones support the head."
+    ]
+  },
+  {
+    "term": "neckbones in a mansion",
+    "meaning_pt": "ossos do pescoço em uma mansão",
+    "examples": [
+      "The ghostly neckbones in a mansion were a chilling sight.",
+      "I could hear the rattling of neckbones in a mansion at night."
+    ]
+  },
+  {
+    "term": "chitlins on China",
+    "meaning_pt": "Chitlins servidos em um prato típico da culinária chinesa ou, de forma mais geral, a ideia de servir chitlins em um contexto chinês.",
+    "examples": [
+      "I tried chitlins on China for the first time last night and it was surprisingly delicious.",
+      "The chef surprised everyone by serving chitlins on China with a sweet and spicy sauce."
+    ]
+  },
+  {
+    "term": "ever feel that way",
+    "meaning_pt": "sentir-se assim em algum momento",
+    "examples": [
+      "Have you ever felt that way about your job?",
+      "I never thought I would ever feel that way again."
+    ]
+  },
+  {
+    "term": "dig deep within me",
+    "meaning_pt": "cavar profundamente dentro de mim",
+    "examples": [
+      "I dig deep within me to find the courage to speak up.",
+      "She digs deep within herself to remember the lessons of her past."
+    ]
+  },
+  {
+    "term": "things that I have",
+    "meaning_pt": "coisas que eu tenho",
+    "examples": [
+      "I keep a list of things that I have bought this month.",
+      "The drawer contains all the things that I have collected over the years."
+    ]
+  },
+  {
+    "term": "someone makes it clear",
+    "meaning_pt": "alguém deixa claro, esclarece",
+    "examples": [
+      "The teacher made it clear that the exam would cover all the chapters.",
+      "During the meeting, the manager made it clear that the project deadline was non-negotiable."
+    ]
+  },
+  {
+    "term": "mind for myself",
+    "meaning_pt": "ter a própria mente, pensar por si mesmo, ter autonomia de pensamento",
+    "examples": [
+      "I have a mind for myself, so I make my own decisions.",
+      "She always says, 'I have a mind for myself,' when people try to influence her."
+    ]
+  },
+  {
+    "term": "appetite, the determination",
+    "meaning_pt": "apetite, a determinação",
+    "examples": [
+      "His appetite, the determination to succeed, drove him to study hard.",
+      "The appetite, the determination, and the courage are essential."
+    ]
+  },
+  {
+    "term": "self-t talk",
+    "meaning_pt": "auto-conversa, o diálogo interno que uma pessoa mantém consigo mesma para motivar, orientar ou avaliar suas ações e pensamentos.",
+    "examples": [
+      "Antes de entrar no palco, ele praticou self-t talk para reduzir a ansiedade.",
+      "O coach ensinou técnicas de self-t talk para melhorar a confiança dos atletas."
+    ]
+  },
+  {
+    "term": "self motivation",
+    "meaning_pt": "motivação própria ou auto motivação",
+    "examples": [
+      "She relied on her self motivation to finish the marathon.",
+      "His self motivation helped him learn a new language without a tutor."
+    ]
+  },
+  {
+    "term": "speaking over yourself",
+    "meaning_pt": "falar acima de si mesmo, ou seja, falar de forma que se sobrepõe à própria voz ou opinião, muitas vezes de maneira dominante ou desrespeitosa",
+    "examples": [
+      "During the meeting, he kept speaking over himself, interrupting everyone else.",
+      "She realized she was speaking over herself when she tried to explain her own feelings to her friend."
+    ]
+  },
+  {
+    "term": "pouring over yourself",
+    "meaning_pt": "verificar ou examinar a si mesmo com atenção, ou cobrir-se com algo (geralmente líquido) de forma intensa",
+    "examples": [
+      "After the long hike, she was pouring over herself with a warm shower to wash away the sweat.",
+      "He spent the afternoon pouring over himself, reflecting on his actions and trying to understand his own motivations."
+    ]
+  },
+  {
+    "term": "say this",
+    "meaning_pt": "dizer isso",
+    "examples": [
+      "If you want to emphasize the point, you could say this: 'We need to act now.'",
+      "When explaining the concept, he said this: 'It’s all about perspective.'"
+    ]
+  },
+  {
+    "term": "struggling with how",
+    "meaning_pt": "enfrentando dificuldade em saber como",
+    "examples": [
+      "I'm struggling with how to start my essay.",
+      "She was struggling with how to explain the concept."
+    ]
+  },
+  {
+    "term": "selfish starts with",
+    "meaning_pt": "a palavra 'selfish' começa com a letra S",
+    "examples": [
+      "The word selfish starts with S.",
+      "The word selfish starts with the letter S."
+    ]
+  },
+  {
+    "term": "being selfish a negative",
+    "meaning_pt": "Ser egoísta é considerado um traço negativo",
+    "examples": [
+      "Being selfish is a negative trait that can harm relationships.",
+      "People often view being selfish as a negative behavior in the workplace."
+    ]
+  },
+  {
+    "term": "we're depleted",
+    "meaning_pt": "estamos esgotados / exaustos",
+    "examples": [
+      "After the long hike, we're depleted and need to rest.",
+      "The team is depleted after several key players were injured."
+    ]
+  },
+  {
+    "term": "we're tired",
+    "meaning_pt": "estamos cansados",
+    "examples": [
+      "After the long hike, we're tired and ready to rest.",
+      "We're tired of waiting for the bus, so we decided to walk."
+    ]
+  },
+  {
+    "term": "we're sick",
+    "meaning_pt": "estamos doentes",
+    "examples": [
+      "We’re sick, so we’re staying home from work.",
+      "We’re sick with a stomach bug and can’t eat."
+    ]
+  },
+  {
+    "term": "we're wiped out",
+    "meaning_pt": "estamos exaustos / esgotados / sem forças",
+    "examples": [
+      "After the marathon, we’re wiped out and just want to lie down.",
+      "The team was wiped out after the long match and couldn't play well."
+    ]
+  },
+  {
+    "term": "nothing left for ourselves",
+    "meaning_pt": "nada restou para nós mesmos; não há mais nada que possamos fazer ou ter para nós mesmos",
+    "examples": [
+      "After the storm, there was nothing left for ourselves in the ruined house.",
+      "When the company closed, there was nothing left for ourselves to rely on."
+    ]
+  },
+  {
+    "term": "Unappreciated",
+    "meaning_pt": "Não apreciado, não valorizado",
+    "examples": [
+      "She worked tirelessly on the project, but her efforts remained unappreciated by her boss.",
+      "Despite his sacrifices, his contributions were unappreciated by the community."
+    ]
+  },
+  {
+    "term": "care to notice",
+    "meaning_pt": "prestar atenção a algo, observar com cuidado",
+    "examples": [
+      "I didn't care to notice the small typo in the email.",
+      "She didn't care to notice the subtle change in his tone."
+    ]
+  },
+  {
+    "term": "don't care",
+    "meaning_pt": "não se importar, não dar importância",
+    "examples": [
+      "I don't care what you think, I will do it my way.",
+      "She didn't care about the criticism and kept working."
+    ]
+  },
+  {
+    "term": "allowed myself to be",
+    "meaning_pt": "permiti-me ser",
+    "examples": [
+      "I allowed myself to be happy for a moment, even though I knew it was temporary.",
+      "She allowed herself to be vulnerable during the therapy session, which helped her heal."
+    ]
+  },
+  {
+    "term": "focus on me",
+    "meaning_pt": "focar em mim / concentrar-se em mim",
+    "examples": [
+      "She asked the teacher to focus on me during the presentation.",
+      "If you want to succeed, you need to focus on me and not get distracted by others."
+    ]
+  },
+  {
+    "term": "give you emotional access",
+    "meaning_pt": "dar acesso emocional a você",
+    "examples": [
+      "She gave me emotional access to her childhood memories, allowing me to understand her better.",
+      "The therapist gave him emotional access to his suppressed feelings, helping him heal."
+    ]
+  },
+  {
+    "term": "you are how",
+    "meaning_pt": "você é como",
+    "examples": [
+      "You are how you think, so keep your thoughts positive.",
+      "You are how you feel, so take care of your mental health."
+    ]
+  },
+  {
+    "term": "I met you",
+    "meaning_pt": "Eu te encontrei / Eu te vi",
+    "examples": [
+      "I met you at the conference last year.",
+      "I met you for the first time at the coffee shop."
+    ]
+  },
+  {
+    "term": "live with that",
+    "meaning_pt": "aceitar ou conviver com essa situação",
+    "examples": [
+      "I can't change my past, so I have to live with that.",
+      "She decided to live with that decision even though it was difficult."
+    ]
+  },
+  {
+    "term": "volatile home",
+    "meaning_pt": "casa instável ou lar volátil",
+    "examples": [
+      "The family's volatile home made it difficult for the children to focus on school.",
+      "After the divorce, the volatile home environment led to increased stress."
+    ]
+  },
+  {
+    "term": "still in there",
+    "meaning_pt": "ainda está lá / ainda está presente",
+    "examples": [
+      "I thought the package was lost, but it's still in there in the box.",
+      "Even after the storm, the lights are still in there, shining bright."
+    ]
+  },
+  {
+    "term": "money didn't take",
+    "meaning_pt": "A expressão não é comum em inglês e pode ser interpretada como 'o dinheiro não tomou' ou 'o dinheiro não tirou'. Em português, pode significar que o dinheiro não conseguiu remover algo, não resolveu um problema ou não influenciou uma situação.",
+    "examples": [
+      "I thought money would take care of everything, but money didn't take away my worries.",
+      "She tried to buy happiness, but money didn't take her."
+    ]
+  },
+  {
+    "term": "movies didn't take",
+    "meaning_pt": "expressão que indica que os filmes não tiveram efeito, não foram bem-sucedidos ou não foram aceitos",
+    "examples": [
+      "The new release was expected to be a hit, but movies didn't take off in the international market.",
+      "After the premiere, critics said that movies didn't take the audience seriously."
+    ]
+  },
+  {
+    "term": "books didn't take",
+    "meaning_pt": "Expressão incompleta que pode significar 'os livros não aceitaram' ou 'os livros não pegaram' algo, dependendo do contexto.",
+    "examples": [
+      "The books didn't take the new format, so we had to redesign them.",
+      "When the author revised the manuscript, the books didn't take the changes immediately."
+    ]
+  },
+  {
+    "term": "bottled up somewhere",
+    "meaning_pt": "reprimido, guardado em algum lugar, não expressado",
+    "examples": [
+      "She has been bottling up her anger somewhere inside for years.",
+      "He tried to bottle up his disappointment somewhere, but it eventually broke out."
+    ]
+  },
+  {
+    "term": "unresolved issue",
+    "meaning_pt": "problema não resolvido, questão pendente",
+    "examples": [
+      "The unresolved issue between the two companies was finally settled after months of negotiation.",
+      "She kept a list of unresolved issues to discuss at the next team meeting."
+    ]
+  },
+  {
+    "term": "relate to an",
+    "meaning_pt": "relacionar a",
+    "examples": [
+      "I relate to an experience that many people have had.",
+      "She could relate to an article about overcoming challenges."
+    ]
+  },
+  {
+    "term": "recognize that you",
+    "meaning_pt": "reconhecer que você",
+    "examples": [
+      "I realized I had to recognize that you were right about the plan.",
+      "She finally recognized that you were feeling overwhelmed."
+    ]
+  },
+  {
+    "term": "orphan",
+    "meaning_pt": "órfão, pessoa que perdeu ambos os pais",
+    "examples": [
+      "The orphan was taken in by a kind family.",
+      "She grew up as an orphan in a small town."
+    ]
+  },
+  {
+    "term": "the idea of",
+    "meaning_pt": "a ideia de, o conceito de",
+    "examples": [
+      "I don't understand the idea of this concept.",
+      "The idea of a new project is exciting."
+    ]
+  },
+  {
+    "term": "being an orphan",
+    "meaning_pt": "ser órfão (ter ambos os pais falecidos)",
+    "examples": [
+      "After the war, many children were left being an orphan, struggling to find a new family.",
+      "She grew up being an orphan, which shaped her resilience and independence."
+    ]
+  },
+  {
+    "term": "seen on television",
+    "meaning_pt": "visto na televisão",
+    "examples": [
+      "The new documentary, seen on television last night, captivated audiences worldwide.",
+      "The commercial, seen on television during the game, promised a free vacation for the first 100 callers."
+    ]
+  },
+  {
+    "term": "documentaries specifically",
+    "meaning_pt": "documentários especificamente",
+    "examples": [
+      "I prefer watching documentaries specifically about wildlife rather than general documentaries.",
+      "The film festival showcased a selection of documentaries specifically focused on climate change."
+    ]
+  },
+  {
+    "term": "throughout Africa",
+    "meaning_pt": "ao longo da África / em toda a África",
+    "examples": [
+      "The ancient trade routes connected cities throughout Africa.",
+      "Wildlife conservation efforts are expanding throughout Africa."
+    ]
+  },
+  {
+    "term": "orphan because",
+    "meaning_pt": "filho órfão por causa de",
+    "examples": [
+      "He became an orphan because his parents died in the accident.",
+      "The child was orphaned because of the devastating earthquake."
+    ]
+  },
+  {
+    "term": "mother and father",
+    "meaning_pt": "mãe e pai",
+    "examples": [
+      "The mother and father of the child are both present at the school event.",
+      "She grew up in a loving home with her mother and father."
+    ]
+  },
+  {
+    "term": "died of HIV",
+    "meaning_pt": "morreu de HIV",
+    "examples": [
+      "He died of HIV at the age of 38.",
+      "She had been living with HIV for years before she died of HIV."
+    ]
+  },
+  {
+    "term": "HIV AIDS",
+    "meaning_pt": "Infecção pelo vírus da imunodeficiência humana que pode evoluir para a AIDS",
+    "examples": [
+      "HIV/AIDS is a chronic condition that requires lifelong treatment.",
+      "The patient was informed that HIV/AIDS can be managed with antiretroviral therapy."
+    ]
+  },
+  {
+    "term": "bad guys came",
+    "meaning_pt": "os vilões chegaram",
+    "examples": [
+      "When the bad guys came, the city was in chaos.",
+      "The bad guys came out of the shadows and started the attack."
+    ]
+  },
+  {
+    "term": "killed a bunch",
+    "meaning_pt": "mataram vários (de forma informal)",
+    "examples": [
+      "The gang killed a bunch of rival gang members in the alley.",
+      "After the battle, the army killed a bunch of enemy soldiers before retreating."
+    ]
+  },
+  {
+    "term": "foundations raising kids",
+    "meaning_pt": "fundamentos para criar crianças",
+    "examples": [
+      "The foundations raising kids include consistent routines and open communication.",
+      "Parents should focus on the foundations raising kids before introducing advanced parenting techniques."
+    ]
+  },
+  {
+    "term": "delivered my father's",
+    "meaning_pt": "entregar algo que pertence ao pai (geralmente usado como parte de uma frase completa)",
+    "examples": [
+      "I delivered my father's letter to the post office.",
+      "She delivered my father's message to the team."
+    ]
+  },
+  {
+    "term": "put my father's",
+    "meaning_pt": "colocar algo que pertence ao meu pai, como o nome ou um objeto",
+    "examples": [
+      "I need to put my father's name on the form before submitting it.",
+      "She carefully put my father's watch on the shelf in the study."
+    ]
+  },
+  {
+    "term": "next to my mother's",
+    "meaning_pt": "próximo à minha mãe (ou ao lado da minha mãe)",
+    "examples": [
+      "I sat next to my mother's in the classroom, hoping to hear her voice.",
+      "During the ceremony, she stood next to my mother's, holding her hand tightly."
+    ]
+  },
+  {
+    "term": "lived under the",
+    "meaning_pt": "vivido sob o / sob a (referindo-se a uma condição, regime ou situação específica)",
+    "examples": [
+      "He lived under the dictatorship for ten years before the country finally became democratic.",
+      "During the heavy rain, the family had to live under the bridge until the floodwaters receded."
+    ]
+  },
+  {
+    "term": "same roof",
+    "meaning_pt": "sob o mesmo teto",
+    "examples": [
+      "They decided to live together under the same roof to save on rent.",
+      "After the accident, the whole family was forced to share the same roof for a few months."
+    ]
+  },
+  {
+    "term": "never even made",
+    "meaning_pt": "nunca sequer fez",
+    "examples": [
+      "He never even made an attempt to apologize.",
+      "They never even made a decision about the project."
+    ]
+  },
+  {
+    "term": "living in Atlanta",
+    "meaning_pt": "vivendo em Atlanta",
+    "examples": [
+      "I have been living in Atlanta for three years and I love the diversity of the city.",
+      "After moving to Atlanta, she started living in a cozy apartment near the river."
+    ]
+  },
+  {
+    "term": "first time living",
+    "meaning_pt": "primeira experiência de viver",
+    "examples": [
+      "It was my first time living abroad, and I felt both nervous and excited.",
+      "She felt like a new person in her first time living in the city."
+    ]
+  },
+  {
+    "term": "bit of a junkie",
+    "meaning_pt": "um pouco de viciado, alguém que tem uma dependência moderada",
+    "examples": [
+      "He's a bit of a junkie when it comes to coffee, drinking at least five cups a day.",
+      "She was a bit of a junkie for video games, spending hours on the console every weekend."
+    ]
+  },
+  {
+    "term": "sense of humor",
+    "meaning_pt": "sentido de humor, capacidade de perceber e apreciar o humor ou a comédia",
+    "examples": [
+      "She has a great sense of humor, always making everyone laugh.",
+      "His sense of humor helped him get through the stressful situation."
+    ]
+  },
+  {
+    "term": "baby boy",
+    "meaning_pt": "menino bebê",
+    "examples": [
+      "She was overjoyed when she finally met her baby boy.",
+      "The baby boy giggled when his mother sang a lullaby."
+    ]
+  },
+  {
+    "term": "mother died on",
+    "meaning_pt": "mãe morreu em",
+    "examples": [
+      "My mother died on March 5th, 1998.",
+      "She mentioned that her mother died on a rainy Sunday."
+    ]
+  },
+  {
+    "term": "Valentine's Day",
+    "meaning_pt": "Dia de São Valentim, dia comemorado em 14 de fevereiro, dedicado ao amor romântico e à amizade, onde se trocam cartões, presentes e demonstrações de carinho.",
+    "examples": [
+      "I sent her a bouquet of roses on Valentine's Day.",
+      "They celebrated Valentine's Day with a candlelit dinner."
+    ]
+  },
+  {
+    "term": "R&B singer",
+    "meaning_pt": "cantor(a) de R&B (Rhythm and Blues)",
+    "examples": [
+      "The new R&B singer released her debut album last month.",
+      "She was praised for her soulful voice as an R&B singer."
+    ]
+  },
+  {
+    "term": "booked to do",
+    "meaning_pt": "já reservado ou marcado para fazer",
+    "examples": [
+      "I am booked to do the presentation tomorrow.",
+      "She is booked to do the interview next week."
+    ]
+  },
+  {
+    "term": "likely going to",
+    "meaning_pt": "provavelmente vai",
+    "examples": [
+      "It looks like it’s likely going to rain this afternoon.",
+      "She said she’s likely going to accept the job offer."
+    ]
+  },
+  {
+    "term": "always have my",
+    "meaning_pt": "ter sempre comigo / estar sempre ao meu lado",
+    "examples": [
+      "I always have my phone with me when I travel.",
+      "She always has my back, no matter what."
+    ]
+  },
+  {
+    "term": "mother and father's",
+    "meaning_pt": "da mãe e do pai",
+    "examples": [
+      "The mother and father's guidance helped her succeed.",
+      "She inherited the mother and father's love for music."
+    ]
+  },
+  {
+    "term": "ashes in the",
+    "meaning_pt": "cinzas em",
+    "examples": [
+      "The ashes in the fireplace were cold and gray.",
+      "She carefully placed the ashes in the box before disposing of them."
+    ]
+  },
+  {
+    "term": "room with me",
+    "meaning_pt": "quarto comigo",
+    "examples": [
+      "Would you like to room with me for the weekend?",
+      "I’m happy to room with you if you need a place to stay."
+    ]
+  },
+  {
+    "term": "want them to",
+    "meaning_pt": "querer que eles façam algo",
+    "examples": [
+      "I want them to finish their homework before dinner.",
+      "She wants them to understand the importance of punctuality."
+    ]
+  },
+  {
+    "term": "know how proud",
+    "meaning_pt": "saber o quão orgulhoso",
+    "examples": [
+      "I know how proud he was when he got the award.",
+      "She knows how proud her parents are of her achievements."
+    ]
+  },
+  {
+    "term": "talk to them",
+    "meaning_pt": "conversar com eles",
+    "examples": [
+      "I need to talk to them about the project deadline.",
+      "She decided to talk to them before making any decisions."
+    ]
+  },
+  {
+    "term": "form of therapy",
+    "meaning_pt": "forma de terapia",
+    "examples": [
+      "She is exploring a form of therapy that focuses on mindfulness.",
+      "The clinic offers several forms of therapy, including cognitive-behavioral and art therapy."
+    ]
+  },
+  {
+    "term": "pulling up right",
+    "meaning_pt": "puxar corretamente (mantendo a forma adequada)",
+    "examples": [
+      "During the pull‑up exercise, he was pulling up right, keeping his shoulders back and core tight.",
+      "She was pulling up right, ensuring the bar was lifted with proper form and without swinging."
+    ]
+  },
+  {
+    "term": "just cover me",
+    "meaning_pt": "apenas me cubra / apenas me proteja",
+    "examples": [
+      "When the rain started, I told my friend to just cover me with a blanket.",
+      "During the performance, the audience shouted, 'Just cover me!' meaning they wanted the stage lights to be turned off."
+    ]
+  },
+  {
+    "term": "praying mama",
+    "meaning_pt": "mãe que ora ou que reza",
+    "examples": [
+      "The praying mama whispered a prayer before the meal.",
+      "She was a praying mama, always offering blessings to her family."
+    ]
+  },
+  {
+    "term": "pray for me",
+    "meaning_pt": "rezar por mim",
+    "examples": [
+      "When I was ill, my friends prayed for me and I felt comforted.",
+      "She asked her family to pray for me before the big presentation."
+    ]
+  },
+  {
+    "term": "big appetite for",
+    "meaning_pt": "grande apetite por, grande desejo ou entusiasmo por algo",
+    "examples": [
+      "She has a big appetite for adventure, always seeking new experiences.",
+      "The company has a big appetite for innovation, constantly investing in research and development."
+    ]
+  },
+  {
+    "term": "success never driven",
+    "meaning_pt": "sucesso que nunca é impulsionado ou conduzido por motivação externa",
+    "examples": [
+      "He achieved success never driven by fame, focusing solely on his craft.",
+      "She found success never driven by money, valuing creativity above profit."
+    ]
+  },
+  {
+    "term": "driven by impact",
+    "meaning_pt": "impulsionado por impacto",
+    "examples": [
+      "The company's new marketing strategy is driven by impact, focusing on measurable results rather than just impressions.",
+      "Her career choices have always been driven by impact, aiming to make a tangible difference in the community."
+    ]
+  },
+  {
+    "term": "specific prayers",
+    "meaning_pt": "orações específicas",
+    "examples": [
+      "She wrote down specific prayers to ask for guidance before the exam.",
+      "The guide explained how to perform specific prayers during the pilgrimage."
+    ]
+  },
+  {
+    "term": "God can specifically",
+    "meaning_pt": "Deus pode especificamente (indica que Deus tem a capacidade específica de fazer algo)",
+    "examples": [
+      "God can specifically grant you the strength you need.",
+      "God can specifically intervene in your life."
+    ]
+  },
+  {
+    "term": "bless you and",
+    "meaning_pt": "bênção a você e",
+    "examples": [
+      "Bless you and have a great day!",
+      "Bless you and stay healthy."
+    ]
+  },
+  {
+    "term": "cover you for",
+    "meaning_pt": "cobrir por alguém, substituir ou assumir a responsabilidade de alguém",
+    "examples": [
+      "I’ll cover you for the meeting tomorrow if you’re not feeling well.",
+      "He covered me for the shift, so I didn’t have to work late."
+    ]
+  },
+  {
+    "term": "vulnerable about",
+    "meaning_pt": "sentir-se vulnerável em relação a algo, exposto a riscos ou críticas sobre determinado assunto",
+    "examples": [
+      "She felt vulnerable about her new job, worried that she might not meet expectations.",
+      "He was vulnerable about his health, fearing that the diagnosis would change how people treated him."
+    ]
+  },
+  {
+    "term": "take me into",
+    "meaning_pt": "levantar-me para dentro de algo, incluir-me ou introduzir-me em um lugar, situação ou experiência",
+    "examples": [
+      "She promised to take me into the family business when I turned twenty.",
+      "The museum guide will take me into the ancient gallery for a special tour."
+    ]
+  },
+  {
+    "term": "these levels and",
+    "meaning_pt": "esses níveis e",
+    "examples": [
+      "These levels and the corresponding challenges must be addressed before proceeding.",
+      "The report highlighted these levels and their associated risks in detail."
+    ]
+  },
+  {
+    "term": "stratosphere in my",
+    "meaning_pt": "estratosfera em meu (expressão incompleta, normalmente usada para indicar algo elevado ou distante)",
+    "examples": [
+      "The stratosphere in my imagination is a place where dreams soar.",
+      "She described the stratosphere in my mind as a realm of endless possibilities."
+    ]
+  },
+  {
+    "term": "career and I",
+    "meaning_pt": "carreira e eu (a relação entre a carreira e a pessoa)",
+    "examples": [
+      "Career and I have always been intertwined.",
+      "Career and I are both important aspects of my life."
+    ]
+  },
+  {
+    "term": "surround myself with",
+    "meaning_pt": "cercar-me de pessoas, objetos ou influências que me apoiam ou inspiram",
+    "examples": [
+      "I surround myself with positive influences to stay motivated.",
+      "She surrounds herself with beautiful art to inspire her creativity."
+    ]
+  },
+  {
+    "term": "people to cover",
+    "meaning_pt": "pessoas para cobrir (por exemplo, um turno, evento ou responsabilidade)",
+    "examples": [
+      "We need people to cover the shift while the regular staff is on leave.",
+      "The event organizers are looking for people to cover the presentation in case the speaker is unavailable."
+    ]
+  },
+  {
+    "term": "spiritually with the",
+    "meaning_pt": "espiritualmente com o/ a",
+    "examples": [
+      "She prayed spiritually with the guidance of her mentor.",
+      "They gathered spiritually with the intention of healing the community."
+    ]
+  },
+  {
+    "term": "wisdom and knowledge",
+    "meaning_pt": "sabedoria e conhecimento",
+    "examples": [
+      "The philosopher emphasized that wisdom and knowledge are essential for a fulfilling life.",
+      "Her research combined wisdom and knowledge to develop innovative solutions."
+    ]
+  },
+  {
+    "term": "blueprint and pour",
+    "meaning_pt": "plano (blueprint) e concretagem (pour) – refere‑se ao processo de planejar uma obra e, em seguida, despejar concreto no local",
+    "examples": [
+      "The contractor reviewed the blueprint and poured the foundation the next morning.",
+      "Before the pour, the architect signed off on the final blueprint to ensure accuracy."
+    ]
+  },
+  {
+    "term": "talk about the",
+    "meaning_pt": "falar sobre o",
+    "examples": [
+      "We need to talk about the project before the deadline.",
+      "Let's talk about the upcoming meeting and its agenda."
+    ]
+  },
+  {
+    "term": "moments where you",
+    "meaning_pt": "momentos em que você",
+    "examples": [
+      "I cherish the moments where you laugh at my jokes.",
+      "She writes in her journal about the moments where you feel most alive."
+    ]
+  },
+  {
+    "term": "almost wanted to",
+    "meaning_pt": "quase queria fazer algo",
+    "examples": [
+      "I almost wanted to quit my job, but I decided to stay.",
+      "She almost wanted to call her friend, but she chose to keep it to herself."
+    ]
+  },
+  {
+    "term": "give up",
+    "meaning_pt": "desistir",
+    "examples": [
+      "I decided to give up smoking after the doctor's advice.",
+      "She gave up her seat for the elderly passenger on the bus."
+    ]
+  },
+  {
+    "term": "push through the",
+    "meaning_pt": "puxar através de, superar ou continuar apesar de algo",
+    "examples": [
+      "We had to push through the rain to finish the marathon.",
+      "She pushed through the pain to finish the exam."
+    ]
+  },
+  {
+    "term": "trauma and stress",
+    "meaning_pt": "trauma e estresse",
+    "examples": [
+      "After the accident, he suffered trauma and stress.",
+      "The company offers counseling for employees dealing with trauma and stress."
+    ]
+  },
+  {
+    "term": "social media attacks",
+    "meaning_pt": "ataques nas redes sociais",
+    "examples": [
+      "The company launched a counter-campaign after a series of social media attacks targeting its brand.",
+      "Social media attacks can spread misinformation quickly, influencing public opinion."
+    ]
+  },
+  {
+    "term": "talk about how",
+    "meaning_pt": "falar sobre de que maneira",
+    "examples": [
+      "We need to talk about how we can improve the project.",
+      "Can we talk about how the new policy will affect us?"
+    ]
+  },
+  {
+    "term": "you got through",
+    "meaning_pt": "você conseguiu superar, passar por, ou terminar algo difícil",
+    "examples": [
+      "After months of hard work, you finally got through the exam.",
+      "I know it was tough, but you got through the whole project on time."
+    ]
+  },
+  {
+    "term": "survivors remorse",
+    "meaning_pt": "remorso de sobreviventes",
+    "examples": [
+      "After the accident, the survivors remorse set in as they realized the lives lost.",
+      "She struggled with survivors remorse, feeling guilty for living while others died."
+    ]
+  },
+  {
+    "term": "break it all down",
+    "meaning_pt": "analisar ou explicar algo em detalhes, dividindo-o em partes menores",
+    "examples": [
+      "Let's break it all down so everyone can understand the process.",
+      "She broke the problem down into manageable steps to solve it efficiently."
+    ]
+  },
+  {
+    "term": "net worth",
+    "meaning_pt": "patrimônio líquido",
+    "examples": [
+      "Her net worth increased significantly after the company’s IPO.",
+      "The financial advisor helped him calculate his net worth to plan for retirement."
+    ]
+  },
+  {
+    "term": "shiny building",
+    "meaning_pt": "edifício brilhante ou reluzente",
+    "examples": [
+      "The new corporate headquarters is a shiny building that reflects the city skyline.",
+      "During the festival, the shiny building at the center of the square attracted many visitors."
+    ]
+  },
+  {
+    "term": "big red bow",
+    "meaning_pt": "grande laço vermelho",
+    "examples": [
+      "She tied a big red bow around the gift box to make it look festive.",
+      "The bride wore a big red bow in her hair as part of her wedding dress."
+    ]
+  },
+  {
+    "term": "overwhelming sense",
+    "meaning_pt": "sensação avassaladora, sensação esmagadora",
+    "examples": [
+      "The overwhelming sense of gratitude filled the room as the volunteers thanked the donors.",
+      "She felt an overwhelming sense of dread as the storm approached the coast."
+    ]
+  },
+  {
+    "term": "achieve it",
+    "meaning_pt": "conseguir, atingir",
+    "examples": [
+      "If you work hard and stay focused, you can achieve it.",
+      "She set a goal to finish the marathon and ultimately achieved it."
+    ]
+  },
+  {
+    "term": "life spite adversity",
+    "meaning_pt": "vida apesar da adversidade",
+    "examples": [
+      "She lived a life spite adversity, never giving up.",
+      "His life spite adversity inspired many people to keep going."
+    ]
+  },
+  {
+    "term": "adversity",
+    "meaning_pt": "adversidade, dificuldade, situação desfavorável",
+    "examples": [
+      "She faced adversity with courage and determination.",
+      "The company's success was built on overcoming adversity."
+    ]
+  },
+  {
+    "term": "tension",
+    "meaning_pt": "tensão",
+    "examples": [
+      "The tension in the room was palpable as the two rivals faced each other.",
+      "She felt a sudden tension in her shoulders after the long meeting."
+    ]
+  },
+  {
+    "term": "muscles",
+    "meaning_pt": "músculos",
+    "examples": [
+      "The muscles in your arms help you lift weights.",
+      "Muscles fatigue after a long run."
+    ]
+  },
+  {
+    "term": "obstacles",
+    "meaning_pt": "obstáculos",
+    "examples": [
+      "The project faced several obstacles that delayed its completion.",
+      "She overcame many obstacles to achieve her dream of becoming a doctor."
+    ]
+  },
+  {
+    "term": "invisible",
+    "meaning_pt": "invisível, que não pode ser visto",
+    "examples": [
+      "The magician made the rabbit disappear, leaving only an invisible trail behind.",
+      "She felt invisible in the crowded room, as if no one noticed her presence."
+    ]
+  },
+  {
+    "term": "screamed out",
+    "meaning_pt": "gritou (para) / gritou em voz alta",
+    "examples": [
+      "When the fire alarm sounded, the children screamed out for their parents.",
+      "He screamed out, \"I can't believe this is happening!\""
+    ]
+  },
+  {
+    "term": "Facebook",
+    "meaning_pt": "Rede social online que permite compartilhar conteúdo, conectar pessoas e interagir com amigos e seguidores.",
+    "examples": [
+      "I posted a photo on Facebook to share my vacation memories.",
+      "She uses Facebook to keep in touch with her family and friends."
+    ]
+  },
+  {
+    "term": "social media",
+    "meaning_pt": "mídias sociais, plataformas digitais que permitem a criação e compartilhamento de conteúdo entre usuários",
+    "examples": [
+      "She spends hours scrolling through social media to keep up with friends.",
+      "The company launched a new marketing campaign targeting social media users."
+    ]
+  },
+  {
+    "term": "wife and I",
+    "meaning_pt": "minha esposa e eu",
+    "examples": [
+      "My wife and I went to the museum last weekend.",
+      "We have been married for ten years, and my wife and I still enjoy traveling together."
+    ]
+  },
+  {
+    "term": "marriage",
+    "meaning_pt": "casamento",
+    "examples": [
+      "They celebrated their marriage with a grand ceremony.",
+      "The couple's marriage was celebrated by friends and family."
+    ]
+  },
+  {
+    "term": "God gives us",
+    "meaning_pt": "Deus nos dá",
+    "examples": [
+      "God gives us the strength to overcome challenges.",
+      "When we pray, God gives us peace and guidance."
+    ]
+  },
+  {
+    "term": "surrogate fathers",
+    "meaning_pt": "pais substitutos (pessoas que assumem o papel de pai em situações de adoção, gestação de substituição ou outras formas de cuidado parental)",
+    "examples": [
+      "The couple decided to hire surrogate fathers to raise their children after the adoption process.",
+      "Surrogate fathers often provide emotional support and guidance to children who have lost their biological parents."
+    ]
+  },
+  {
+    "term": "surrogate mothers",
+    "meaning_pt": "mães substitutas, que carregam e dão à luz a um bebê para outra pessoa ou casal",
+    "examples": [
+      "The couple decided to use a surrogate mother to have a child.",
+      "Surrogate mothers often face complex legal and emotional challenges."
+    ]
+  },
+  {
+    "term": "replace what we didn't",
+    "meaning_pt": "substituir o que não fizemos",
+    "examples": [
+      "We should replace what we didn't finish before the deadline.",
+      "If the old parts are broken, we need to replace what we didn't repair."
+    ]
+  },
+  {
+    "term": "chapter number four",
+    "meaning_pt": "capítulo número quatro",
+    "examples": [
+      "The reader eagerly turned to chapter number four to find out what happened next.",
+      "In the syllabus, chapter number four covers the fundamentals of grammar."
+    ]
+  },
+  {
+    "term": "finding the right partner",
+    "meaning_pt": "encontrar o parceiro certo",
+    "examples": [
+      "Finding the right partner for a business venture can make all the difference in the company's success.",
+      "She spent years searching for the right partner before finally meeting someone who shared her values and goals."
+    ]
+  },
+  {
+    "term": "YouTube",
+    "meaning_pt": "Plataforma de compartilhamento de vídeos",
+    "examples": [
+      "I watched a tutorial on YouTube to learn how to bake bread.",
+      "She posted her latest vlog on YouTube and gained thousands of new subscribers."
+    ]
+  },
+  {
+    "term": "transparency",
+    "meaning_pt": "transparência, clareza e abertura em ações, decisões ou informações",
+    "examples": [
+      "The company values transparency and regularly publishes its financial reports.",
+      "She appreciated the transparency of the process, which helped build trust among the team."
+    ]
+  },
+  {
+    "term": "unpacked that conversation",
+    "meaning_pt": "analisar detalhadamente a conversa, explorar todos os detalhes e nuances",
+    "examples": [
+      "After the meeting, we unpacked that conversation to understand each other's perspectives.",
+      "The therapist helped us unpack that conversation so we could address the underlying issues."
+    ]
+  },
+  {
+    "term": "dialogue",
+    "meaning_pt": "diálogo",
+    "examples": [
+      "They had a long dialogue about their future.",
+      "The play's dialogue is witty."
+    ]
+  },
+  {
+    "term": "working functioning dynamics",
+    "meaning_pt": "Dinâmica do funcionamento, ou seja, a forma como os processos e componentes interagem para manter o funcionamento de um sistema.",
+    "examples": [
+      "The working functioning dynamics of the engine were studied to improve efficiency.",
+      "Compreender as dinâmicas do funcionamento é essencial para diagnosticar falhas no sistema."
+    ]
+  },
+  {
+    "term": "alpha strong dominant",
+    "meaning_pt": "Alfa forte dominante (característica de liderança dominante e forte)",
+    "examples": [
+      "He is an alpha strong dominant in the office, always taking charge of projects.",
+      "The alpha strong dominant behavior can be intimidating to newcomers."
+    ]
+  },
+  {
+    "term": "man of God",
+    "meaning_pt": "homem de Deus",
+    "examples": [
+      "He is a man of God, devoted to his faith and always helping those in need.",
+      "The community respected him as a man of God, trusting his wisdom in times of crisis."
+    ]
+  },
+  {
+    "term": "queen is speaking",
+    "meaning_pt": "a rainha está falando",
+    "examples": [
+      "The queen is speaking to the crowd about the new reforms.",
+      "When the queen is speaking, everyone listens attentively."
+    ]
+  },
+  {
+    "term": "leather and lace",
+    "meaning_pt": "couro e renda (expressão que descreve a combinação de couro e renda em roupas ou acessórios)",
+    "examples": [
+      "The designer showcased a stunning dress made of leather and lace at the fashion show.",
+      "She added a touch of elegance to her outfit with a leather and lace belt."
+    ]
+  },
+  {
+    "term": "don't let lace fool",
+    "meaning_pt": "Não se deixe enganar pela aparência delicada da renda",
+    "examples": [
+      "Even though the dress is made of lace, don't let lace fool you; it's actually quite fragile.",
+      "She wore a beautiful lace jacket, but don't let lace fool you—its lining is very thick."
+    ]
+  },
+  {
+    "term": "health malady",
+    "meaning_pt": "doença que afeta a saúde",
+    "examples": [
+      "The health malady has spread across the city, causing widespread concern.",
+      "She was diagnosed with a health malady that required immediate treatment."
+    ]
+  },
+  {
+    "term": "heart attack",
+    "meaning_pt": "ataque cardíaco",
+    "examples": [
+      "He collapsed during the meeting, and it turned out to be a heart attack.",
+      "If you experience chest pain, don't ignore it; it could be a heart attack."
+    ]
+  },
+  {
+    "term": "never left my side",
+    "meaning_pt": "nunca deixou meu lado (expressão que indica que alguém sempre esteve presente e apoiou a pessoa)",
+    "examples": [
+      "She was there for me through the hardest times, never left my side.",
+      "No matter how far apart we were, he never left my side in my thoughts."
+    ]
+  },
+  {
+    "term": "staring at me",
+    "meaning_pt": "olhando fixamente para mim",
+    "examples": [
+      "He was staring at me during the meeting.",
+      "I felt uncomfortable when someone was staring at me in the hallway."
+    ]
+  },
+  {
+    "term": "tenacity",
+    "meaning_pt": "persistência, determinação e firmeza em manter uma posição ou continuar a perseguir um objetivo",
+    "examples": [
+      "Her tenacity in learning the new language helped her pass the exam with flying colors.",
+      "The team's tenacity during the final minutes of the game secured their victory."
+    ]
+  },
+  {
+    "term": "knee surgery",
+    "meaning_pt": "cirurgia no joelho",
+    "examples": [
+      "She had knee surgery last month to repair a torn ligament.",
+      "The doctor explained that knee surgery could improve her mobility and reduce pain."
+    ]
+  },
+  {
+    "term": "cane or walker",
+    "meaning_pt": "Cane ou walker são dispositivos de apoio para a locomoção, usados para melhorar o equilíbrio e reduzir a dor ao caminhar.",
+    "examples": [
+      "After his surgery, he used a cane or walker to get around the house safely.",
+      "The physical therapist recommended a cane or walker to help her recover her strength."
+    ]
+  },
+  {
+    "term": "foxhole",
+    "meaning_pt": "buraco de proteção usado em combate, geralmente escavado no solo para proteger soldados de fogo inimigo",
+    "examples": [
+      "The soldiers dug a foxhole behind the trench to shield themselves from the enemy fire.",
+      "During the night, the infantry moved silently into the foxhole to rest before the next assault."
+    ]
+  },
+  {
+    "term": "hell breaks loose",
+    "meaning_pt": "quando o caos, a confusão ou a destruição se espalha rapidamente, as coisas saem do controle",
+    "examples": [
+      "When the power outage hit the city, hell broke loose as people fought for supplies.",
+      "The sudden announcement caused hell to break loose in the office, with everyone scrambling to adjust."
+    ]
+  },
+  {
+    "term": "back to back",
+    "meaning_pt": "em sequência, consecutivamente",
+    "examples": [
+      "The team won three games back to back.",
+      "She gave two presentations back to back without a break."
+    ]
+  },
+  {
+    "term": "vulnerability",
+    "meaning_pt": "fraqueza, vulnerabilidade, exposição a riscos ou ataques",
+    "examples": [
+      "The software’s vulnerability allowed attackers to gain unauthorized access.",
+      "She felt a deep vulnerability after the loss of her job."
+    ]
+  },
+  {
+    "term": "baggage",
+    "meaning_pt": "bagagem, peso emocional, fardo",
+    "examples": [
+      "She had to check her baggage at the airport before boarding the flight.",
+      "The trauma from his past became a heavy baggage that he carried into every new relationship."
+    ]
+  },
+  {
+    "term": "wealthy successful people",
+    "meaning_pt": "pessoas ricas e bem-sucedidas",
+    "examples": [
+      "Wealthy successful people often invest in real estate to diversify their assets.",
+      "The conference attracted wealthy successful people from various industries."
+    ]
+  },
+  {
+    "term": "Ivy League schools",
+    "meaning_pt": "Escolas da Ivy League, um grupo de universidades de elite nos Estados Unidos, conhecidas por sua tradição acadêmica, prestígio e seletividade.",
+    "examples": [
+      "She dreamed of attending an Ivy League school to pursue her degree in economics.",
+      "The Ivy League schools often have rigorous admissions processes that attract top students worldwide."
+    ]
+  },
+  {
+    "term": "private schools",
+    "meaning_pt": "escolas particulares",
+    "examples": [
+      "Many families choose private schools for their children because they offer smaller class sizes and specialized programs.",
+      "The private schools in this district have a reputation for high academic standards and excellent extracurricular activities."
+    ]
+  },
+  {
+    "term": "trauma knocks on door",
+    "meaning_pt": "O trauma bate à porta (metáfora que indica que o trauma está presente ou prestes a surgir)",
+    "examples": [
+      "After the accident, the trauma knocks on door, reminding her of the pain she had tried to forget.",
+      "He felt the trauma knocks on door as he walked through the old house, and his heart raced."
+    ]
+  },
+  {
+    "term": "trauma mixed together",
+    "meaning_pt": "Trauma misturado ou combinado",
+    "examples": [
+      "The trauma mixed together in the patient's memories made it difficult to treat.",
+      "She struggled to separate the trauma mixed together from her everyday life."
+    ]
+  },
+  {
+    "term": "key and a lock",
+    "meaning_pt": "chave e uma fechadura",
+    "examples": [
+      "The key and a lock are essential for securing the door.",
+      "She found the key and a lock that matched the old chest."
+    ]
+  },
+  {
+    "term": "Vietnam War",
+    "meaning_pt": "Guerra do Vietnã",
+    "examples": [
+      "The Vietnam War had a profound impact on U.S. foreign policy.",
+      "Many veterans returned from the Vietnam War with lasting injuries."
+    ]
+  },
+  {
+    "term": "good question",
+    "meaning_pt": "boa pergunta",
+    "examples": [
+      "You asked a good question.",
+      "I think that's a good question."
+    ]
+  },
+  {
+    "term": "coming from this place",
+    "meaning_pt": "vir de este lugar / originar-se deste local",
+    "examples": [
+      "She was coming from this place, so she knew the best routes.",
+      "The rumor is coming from this place, but we need more evidence."
+    ]
+  },
+  {
+    "term": "child support",
+    "meaning_pt": "apoio financeiro que um pai ou mãe deve pagar para sustentar o filho após a separação ou divórcio",
+    "examples": [
+      "The court ordered him to pay child support for his two children.",
+      "She received a letter reminding her that she was still required to provide child support."
+    ]
+  },
+  {
+    "term": "baby mama drama",
+    "meaning_pt": "drama envolvendo a mãe biológica de um filho, geralmente relacionado a conflitos ou discussões entre pais e a mãe do filho",
+    "examples": [
+      "The baby mama drama erupted after he announced his new girlfriend.",
+      "She couldn't handle the baby mama drama and decided to move out."
+    ]
+  },
+  {
+    "term": "poster child",
+    "meaning_pt": "figura emblemática, modelo de exemplo ou símbolo de algo",
+    "examples": [
+      "She became the poster child for the new environmental campaign.",
+      "The young athlete is the poster child for perseverance and hard work."
+    ]
+  },
+  {
+    "term": "family law",
+    "meaning_pt": "Direito de família",
+    "examples": [
+      "The family law court handled the divorce proceedings.",
+      "She specializes in family law and has helped many clients with custody disputes."
+    ]
+  },
+  {
+    "term": "court system",
+    "meaning_pt": "sistema judiciário",
+    "examples": [
+      "The court system in the United States is divided into federal and state courts.",
+      "She is studying law to understand how the court system works."
+    ]
+  },
+  {
+    "term": "preset menu",
+    "meaning_pt": "menu pré-definido ou pré-configurado",
+    "examples": [
+      "The software offers a preset menu for quick access to common settings.",
+      "She selected the preset menu to streamline the presentation."
+    ]
+  },
+  {
+    "term": "spiritual reality",
+    "meaning_pt": "realidade espiritual, aquilo que existe além do mundo físico e que está relacionado à alma ou ao divino",
+    "examples": [
+      "He believes that the afterlife is a spiritual reality beyond our physical world.",
+      "The meditation practice helps one connect with the spiritual reality that underlies all existence."
+    ]
+  },
+  {
+    "term": "voice of velvet",
+    "meaning_pt": "voz de veludo, voz suave e sedosa que transmite conforto e delicadeza",
+    "examples": [
+      "Her voice of velvet soothed the anxious children.",
+      "The singer's voice of velvet captivated the audience."
+    ]
+  },
+  {
+    "term": "always be friends",
+    "meaning_pt": "ser sempre amigos",
+    "examples": [
+      "Even after the argument, they decided to always be friends.",
+      "She promised to always be friends with her classmates, no matter what."
+    ]
+  },
+  {
+    "term": "dialysis machine",
+    "meaning_pt": "máquina de diálise",
+    "examples": [
+      "The patient was connected to the dialysis machine to remove waste products from his blood.",
+      "The technician explained how the dialysis machine filters the blood before returning it to the patient."
+    ]
+  },
+  {
+    "term": "connection feeling",
+    "meaning_pt": "sentimento de conexão",
+    "examples": [
+      "I had a connection feeling when we met for the first time.",
+      "She described the connection feeling she experienced during the meditation session."
+    ]
+  },
+  {
+    "term": "grown up without it",
+    "meaning_pt": "crescer sem isso",
+    "examples": [
+      "I grew up without a stable family structure, which shaped my resilience.",
+      "She grew up without access to quality education, yet she became a successful engineer."
+    ]
+  },
+  {
+    "term": "not connected to job",
+    "meaning_pt": "não relacionado ao trabalho",
+    "examples": [
+      "The issue is not connected to job, so it won't affect your performance.",
+      "She was told that her personal life is not connected to job, so she can keep it private."
+    ]
+  },
+  {
+    "term": "self sabotaging",
+    "meaning_pt": "auto-sabotador, que se prejudica a si mesmo",
+    "examples": [
+      "She is self sabotaging by constantly doubting her abilities.",
+      "His self sabotaging behavior prevented him from achieving his goals."
+    ]
+  },
+  {
+    "term": "inner conflict",
+    "meaning_pt": "conflito interno, conflito interior que ocorre dentro de uma pessoa, geralmente entre desejos, valores ou decisões",
+    "examples": [
+      "She struggled with an inner conflict between staying in her comfortable job and pursuing her passion.",
+      "The protagonist's inner conflict was evident as he wrestled with loyalty to his family versus his own moral convictions."
+    ]
+  },
+  {
+    "term": "talk to the guy",
+    "meaning_pt": "conversar com o cara",
+    "examples": [
+      "I need to talk to the guy who works in HR.",
+      "She asked me to talk to the guy about the project."
+    ]
+  },
+  {
+    "term": "marries all nine",
+    "meaning_pt": "significa que algo combina ou se encaixa perfeitamente em todas as nove categorias, itens ou elementos de um conjunto.",
+    "examples": [
+      "The new software marries all nine features of the system, providing a seamless user experience.",
+      "Her design marries all nine elements of classic elegance, making the room feel timeless."
+    ]
+  },
+  {
+    "term": "take off the mask",
+    "meaning_pt": "tirar a máscara",
+    "examples": [
+      "She decided to take off the mask before the ceremony.",
+      "The actor had to take off the mask to reveal his true emotions."
+    ]
+  },
+  {
+    "term": "language to explain",
+    "meaning_pt": "linguagem para explicar",
+    "examples": [
+      "The teacher used a simple language to explain the complex concept.",
+      "In the presentation, she chose a clear language to explain the data trends."
+    ]
+  },
+  {
+    "term": "therapy gives language",
+    "meaning_pt": "A terapia fornece linguagem ou ajuda no desenvolvimento da linguagem",
+    "examples": [
+      "The speech therapist used games to help the child learn new words, showing that therapy gives language.",
+      "In the study, researchers found that early intervention therapy gives language to children with developmental delays."
+    ]
+  },
+  {
+    "term": "verbalize my feelings",
+    "meaning_pt": "expressar verbalmente meus sentimentos",
+    "examples": [
+      "I decided to verbalize my feelings to my friend instead of keeping them to myself.",
+      "During the therapy session, she learned how to verbalize her feelings more clearly."
+    ]
+  },
+  {
+    "term": "inspired by",
+    "meaning_pt": "inspirado por",
+    "examples": [
+      "The novel was inspired by the author's childhood memories.",
+      "Her artwork was inspired by the vibrant colors of the city."
+    ]
+  },
+  {
+    "term": "level of regard",
+    "meaning_pt": "nível de consideração ou respeito",
+    "examples": [
+      "The level of regard the community has for her is evident in the way they greet her every morning.",
+      "His level of regard for the environment motivated him to adopt sustainable practices."
+    ]
+  },
+  {
+    "term": "nurturing and like",
+    "meaning_pt": "nutrir e gostar",
+    "examples": [
+      "She is nurturing and likes the children, always making sure they feel safe.",
+      "The teacher is nurturing and likes to give extra help to students who need it."
+    ]
+  },
+  {
+    "term": "front row alert",
+    "meaning_pt": "Alerta de primeira fila",
+    "examples": [
+      "Front row alert! The concert is about to start, so grab your seats.",
+      "The coach shouted, 'Front row alert,' as the players lined up for the kickoff."
+    ]
+  },
+  {
+    "term": "never feel like",
+    "meaning_pt": "nunca sentir vontade de",
+    "examples": [
+      "I never feel like eating dessert after dinner.",
+      "She never feels like going out on weekends."
+    ]
+  },
+  {
+    "term": "may not always be",
+    "meaning_pt": "pode não ser sempre",
+    "examples": [
+      "The results may not always be accurate in extreme conditions.",
+      "Sometimes the solution may not always be the best approach."
+    ]
+  },
+  {
+    "term": "I may outgrow it",
+    "meaning_pt": "Eu posso superar isso / deixar de precisar disso",
+    "examples": [
+      "I’ve been wearing this old jacket for years, but I may outgrow it soon.",
+      "She says she’s learning a new skill, but she may outgrow it as she gains experience."
+    ]
+  },
+  {
+    "term": "you will always be",
+    "meaning_pt": "você sempre será",
+    "examples": [
+      "No matter what happens, you will always be my best friend.",
+      "Even after you leave, you will always be remembered with love."
+    ]
+  },
+  {
+    "term": "God can do",
+    "meaning_pt": "Deus pode fazer",
+    "examples": [
+      "God can do anything, but we must trust in His plan.",
+      "When we face challenges, we remember that God can do miracles."
+    ]
+  },
+  {
+    "term": "opposites attract",
+    "meaning_pt": "os opostos se atraem",
+    "examples": [
+      "The theory of opposites attract suggests that people with contrasting personalities often find each other appealing.",
+      "In many romantic stories, opposites attract, leading to unexpected relationships."
+    ]
+  },
+  {
+    "term": "the very thing",
+    "meaning_pt": "a própria coisa, aquilo que é exatamente o que se está procurando ou discutindo",
+    "examples": [
+      "He was looking for the very thing that would solve the problem.",
+      "She was searching for the very thing that made her happy."
+    ]
+  },
+  {
+    "term": "later repels you",
+    "meaning_pt": "significa que, depois de um evento ou ação, alguém ou algo te afasta ou rejeita",
+    "examples": [
+      "After the meeting, he later repels you with a cold stare.",
+      "She promised to help, but later repels you when you ask for assistance again."
+    ]
+  },
+  {
+    "term": "your excitement starts",
+    "meaning_pt": "sua empolgação começa",
+    "examples": [
+      "Your excitement starts when you see the surprise gift.",
+      "Your excitement starts as soon as the concert begins."
+    ]
+  },
+  {
+    "term": "make it over",
+    "meaning_pt": "conseguir superar ou fazer de novo",
+    "examples": [
+      "I made it over the hurdle during the race.",
+      "She made it over the exam after studying hard."
+    ]
+  },
+  {
+    "term": "turns of life",
+    "meaning_pt": "variações, fases ou mudanças na vida",
+    "examples": [
+      "She has seen many turns of life, from humble beginnings to great success.",
+      "The novel explores the turns of life that shape the protagonist's character."
+    ]
+  },
+  {
+    "term": "midlife crisis",
+    "meaning_pt": "crise de meia-idade, um período de questionamento e insatisfação que pode ocorrer na fase intermediária da vida adulta",
+    "examples": [
+      "After his 40th birthday, John experienced a midlife crisis and decided to quit his job to travel the world.",
+      "The novel explores how a midlife crisis can lead to unexpected changes in relationships and personal goals."
+    ]
+  },
+  {
+    "term": "side effects",
+    "meaning_pt": "efeitos colaterais",
+    "examples": [
+      "The medication can cause side effects such as nausea and dizziness.",
+      "She reported several side effects after starting the new treatment."
+    ]
+  },
+  {
+    "term": "the only person",
+    "meaning_pt": "a única pessoa",
+    "examples": [
+      "He is the only person who can help us with this problem.",
+      "I met the only person who knew the secret behind the old house."
+    ]
+  },
+  {
+    "term": "intimately with you",
+    "meaning_pt": "em íntima relação com você",
+    "examples": [
+      "I feel intimately with you when we share our secrets.",
+      "She looked at him intimately with you, as if they were the only two people in the room."
+    ]
+  },
+  {
+    "term": "every single day",
+    "meaning_pt": "todos os dias, diariamente",
+    "examples": [
+      "I go to the gym every single day to stay fit.",
+      "She checks her email every single day to keep up with work."
+    ]
+  },
+  {
+    "term": "expresses itself",
+    "meaning_pt": "expressa-se",
+    "examples": [
+      "The painting expresses itself through bold colors.",
+      "The silence expresses itself in the quiet room."
+    ]
+  },
+  {
+    "term": "fear and tears",
+    "meaning_pt": "medo e lágrimas",
+    "examples": [
+      "The horror movie made the audience feel fear and tears.",
+      "She cried, her fear and tears mixing into a single emotion."
+    ]
+  },
+  {
+    "term": "can you afford",
+    "meaning_pt": "poderia pagar, tem condições financeiras de comprar ou fazer algo",
+    "examples": [
+      "Can you afford to buy a new car?",
+      "I don't know if I can afford to take a vacation this year."
+    ]
+  },
+  {
+    "term": "still be respected",
+    "meaning_pt": "continuar a ser respeitado",
+    "examples": [
+      "Even after the scandal, the veteran actor still be respected by his peers.",
+      "The old building still be respected for its architectural beauty."
+    ]
+  },
+  {
+    "term": "I just want",
+    "meaning_pt": "Eu só quero",
+    "examples": [
+      "I just want to finish my homework before dinner.",
+      "She said, 'I just want to be happy.'"
+    ]
+  },
+  {
+    "term": "I want you",
+    "meaning_pt": "Eu quero você",
+    "examples": [
+      "I want you to help me with this project.",
+      "I want you to know how much I appreciate your support."
+    ]
+  },
+  {
+    "term": "how often I",
+    "meaning_pt": "Com que frequência eu ...?",
+    "examples": [
+      "I wonder how often I should take breaks during long study sessions.",
+      "She asked me how often I visit my grandparents."
+    ]
+  },
+  {
+    "term": "you have literally",
+    "meaning_pt": "Você tem literalmente (expressão usada para enfatizar que algo é real ou verdadeiro, muitas vezes usada de forma figurada)",
+    "examples": [
+      "You have literally never seen a comet before, so you'll be amazed by the light show.",
+      "I told him you have literally no idea how much this project costs, and he was shocked."
+    ]
+  },
+  {
+    "term": "God has been",
+    "meaning_pt": "Deus tem sido (ou Deus esteve)",
+    "examples": [
+      "God has been a guiding force in my life.",
+      "God has been praised for centuries."
+    ]
+  },
+  {
+    "term": "you have been",
+    "meaning_pt": "você tem sido / você tem estado",
+    "examples": [
+      "You have been working hard all week, so you deserve a break.",
+      "You have been a great friend to me, and I appreciate your support."
+    ]
+  },
+  {
+    "term": "the messages that",
+    "meaning_pt": "as mensagens que",
+    "examples": [
+      "The messages that were sent yesterday were delayed.",
+      "I read the messages that you left me."
+    ]
+  },
+  {
+    "term": "when you get",
+    "meaning_pt": "quando você obtém / quando você recebe",
+    "examples": [
+      "When you get the email, let me know.",
+      "When you get a chance, we can discuss the project."
+    ]
+  },
+  {
+    "term": "you probably have",
+    "meaning_pt": "você provavelmente tem",
+    "examples": [
+      "You probably have a lot of work to finish before the deadline.",
+      "You probably have heard about the new policy changes at the office."
+    ]
+  },
+  {
+    "term": "channeling in real",
+    "meaning_pt": "Canalização em tempo real",
+    "examples": [
+      "The wizard's spell required channeling in real to maintain the barrier.",
+      "During the meditation, she focused on channeling in real to feel the energy."
+    ]
+  },
+  {
+    "term": "everybody in the",
+    "meaning_pt": "todos no / todos dentro do",
+    "examples": [
+      "Everybody in the room was excited about the surprise party.",
+      "Everybody in the class needs to submit the assignment by Friday."
+    ]
+  },
+  {
+    "term": "you have allowed",
+    "meaning_pt": "você tem permitido / você permitiu",
+    "examples": [
+      "You have allowed the project to proceed without any additional funding.",
+      "You have allowed them to stay in the house for the weekend."
+    ]
+  },
+  {
+    "term": "display the fullness",
+    "meaning_pt": "exibir a plenitude ou mostrar tudo de forma completa",
+    "examples": [
+      "The artist decided to display the fullness of the landscape by painting every detail.",
+      "During the presentation, she displayed the fullness of her research findings with a comprehensive slide deck."
+    ]
+  },
+  {
+    "term": "the good the",
+    "meaning_pt": "o bom (ou o bem), embora a frase seja incompleta e não tenha sentido completo em inglês",
+    "examples": [
+      "\"The good the\" appears in the title of the famous Western film \"The Good, the Bad and the Ugly\".",
+      "\"The good the\" can be used as a fragment to refer to the positive aspects of a situation."
+    ]
+  },
+  {
+    "term": "the challenges the",
+    "meaning_pt": "os desafios que",
+    "examples": [
+      "The challenges the team faces are many.",
+      "The challenges the project encountered were significant."
+    ]
+  },
+  {
+    "term": "even your daughter",
+    "meaning_pt": "até mesmo sua filha",
+    "examples": [
+      "He said the movie was so boring, even your daughter would be disappointed.",
+      "She promised to finish the project on time, even your daughter would be impressed."
+    ]
+  },
+  {
+    "term": "you have reinvented",
+    "meaning_pt": "você reinventou",
+    "examples": [
+      "You have reinvented the wheel by creating a brand-new design for the classic bicycle.",
+      "After the company faced setbacks, the CEO has reinvented the business model to focus on sustainability."
+    ]
+  },
+  {
+    "term": "material possessions",
+    "meaning_pt": "posse material, bens materiais",
+    "examples": [
+      "He values material possessions over experiences.",
+      "Many people equate success with material possessions."
+    ]
+  },
+  {
+    "term": "are they all",
+    "meaning_pt": "todos eles são",
+    "examples": [
+      "Are they all finished with their homework?",
+      "Are they all going to the party tonight?"
+    ]
+  },
+  {
+    "term": "when I speak",
+    "meaning_pt": "quando eu falo",
+    "examples": [
+      "When I speak, I try to be clear and concise.",
+      "She said that when I speak, I should always listen first."
+    ]
+  },
+  {
+    "term": "by a show",
+    "meaning_pt": "por meio de um show ou espetáculo",
+    "examples": [
+      "The new product was launched by a show.",
+      "The charity event was organized by a show."
+    ]
+  },
+  {
+    "term": "can anybody in",
+    "meaning_pt": "pode alguém entrar? (expressão informal usada para pedir que alguém entre ou se junte a um grupo)",
+    "examples": [
+      "Can anybody in? The meeting is starting now.",
+      "If you want to join the game, can anybody in?"
+    ]
+  },
+  {
+    "term": "behind the cameras",
+    "meaning_pt": "por trás das câmeras (nos bastidores)",
+    "examples": [
+      "The director was behind the cameras during the shoot, ensuring every angle was perfect.",
+      "She loves being behind the cameras, capturing the action without being in front of the lens."
+    ]
+  },
+  {
+    "term": "the net worth",
+    "meaning_pt": "o patrimônio líquido (valor líquido de ativos menos dívidas)",
+    "examples": [
+      "The company's net worth has increased significantly after the merger.",
+      "She calculated her net worth by subtracting her debts from her total assets."
+    ]
+  },
+  {
+    "term": "when he was",
+    "meaning_pt": "quando ele estava",
+    "examples": [
+      "When he was young, he loved to play soccer.",
+      "I remember that when he was in college, he studied engineering."
+    ]
+  },
+  {
+    "term": "square footage",
+    "meaning_pt": "metragem (área medida em pés quadrados)",
+    "examples": [
+      "The house has 2,000 square footage of living space.",
+      "She calculated the square footage of the room before buying new carpet."
+    ]
+  },
+  {
+    "term": "the rim size",
+    "meaning_pt": "tamanho do aro (diâmetro do aro de uma roda)",
+    "examples": [
+      "The rim size of this tire is 17 inches.",
+      "Make sure the rim size matches the tire width."
+    ]
+  },
+  {
+    "term": "the brand of",
+    "meaning_pt": "a marca de",
+    "examples": [
+      "The brand of the product is known worldwide for its quality.",
+      "She proudly introduced the brand of the new line of eco-friendly clothing."
+    ]
+  },
+  {
+    "term": "we are not",
+    "meaning_pt": "não somos",
+    "examples": [
+      "We are not ready for the exam yet.",
+      "We are not going to the party tonight."
+    ]
+  },
+  {
+    "term": "our net worth",
+    "meaning_pt": "valor líquido que possuímos",
+    "examples": [
+      "Our net worth has increased significantly since we started investing.",
+      "She asked me to calculate our net worth before we decided on the property."
+    ]
+  },
+  {
+    "term": "what we drive",
+    "meaning_pt": "o que dirigimos / o que conduzimos",
+    "examples": [
+      "What we drive often reflects our personality and priorities.",
+      "The safety of what we drive is paramount for everyone on the road."
+    ]
+  },
+  {
+    "term": "the square footage",
+    "meaning_pt": "a área total de um espaço em metros quadrados ou pés quadrados, geralmente usada para descrever a dimensão de uma casa ou edifício",
+    "examples": [
+      "The realtor highlighted the square footage of the living room to show how spacious it was.",
+      "She calculated the square footage of the new office space before signing the lease."
+    ]
+  },
+  {
+    "term": "we are here",
+    "meaning_pt": "nós estamos aqui",
+    "examples": [
+      "We are here to help you with your questions.",
+      "We are here to celebrate your success."
+    ]
+  },
+  {
+    "term": "give people permission",
+    "meaning_pt": "dar permissão a pessoas",
+    "examples": [
+      "The manager will give people permission to use the conference room after hours.",
+      "Parents often give people permission to borrow their car for a weekend trip."
+    ]
+  },
+  {
+    "term": "pull them up",
+    "meaning_pt": "levantar alguém (para cima) ou trazer alguém para uma posição mais alta",
+    "examples": [
+      "The coach pulled him up to the top of the hill before the race began.",
+      "The teacher pulled the student up to the front of the class to give a presentation."
+    ]
+  },
+  {
+    "term": "pour into them",
+    "meaning_pt": "verter em eles",
+    "examples": [
+      "She poured the wine into them and served it to the guests.",
+      "The artist poured the paint into them before starting the mural."
+    ]
+  },
+  {
+    "term": "activate something",
+    "meaning_pt": "ativar algo",
+    "examples": [
+      "Please activate the new software by entering the license key.",
+      "The teacher will activate the discussion by asking a provocative question."
+    ]
+  },
+  {
+    "term": "could give them",
+    "meaning_pt": "poderia dar a eles / poderia lhes dar",
+    "examples": [
+      "I could give them a chance to prove themselves.",
+      "She could give them a warning before the meeting."
+    ]
+  },
+  {
+    "term": "to pour into",
+    "meaning_pt": "verbo que indica a ação de derramar ou colocar líquido ou substância de um recipiente para outro",
+    "examples": [
+      "She poured the coffee into the mug.",
+      "He poured the paint into a large bucket."
+    ]
+  },
+  {
+    "term": "I'mma get out",
+    "meaning_pt": "Vou sair / Vou me retirar",
+    "examples": [
+      "I'mma get out of this meeting before it ends.",
+      "When the police arrive, I'mma get out of the house."
+    ]
+  },
+  {
+    "term": "Bishop TD DD",
+    "meaning_pt": "Bispo com títulos acadêmicos de Doutor em Teologia (TD) e Doutor em Divindade (DD)",
+    "examples": [
+      "O Bispo TD DD liderou a cerimônia de batismo na catedral.",
+      "Durante a conferência, o Bispo TD DD apresentou um discurso sobre a importância da fé na sociedade."
+    ]
+  },
+  {
+    "term": "prison ministry",
+    "meaning_pt": "Ministério de Prisão – programa ou organização que oferece apoio espiritual, educacional e social a presos, visando à reabilitação e reintegração na sociedade.",
+    "examples": [
+      "The prison ministry provides counseling and Bible study to inmates.",
+      "Many volunteers from the local church run a prison ministry to help rehabilitate former offenders."
+    ]
+  },
+  {
+    "term": "God has done",
+    "meaning_pt": "Deus fez (ou já fez)",
+    "examples": [
+      "God has done great things for us.",
+      "God has done what He promised."
+    ]
+  },
+  {
+    "term": "the real message",
+    "meaning_pt": "a mensagem real, a mensagem verdadeira ou a mensagem principal que se quer transmitir",
+    "examples": [
+      "The real message of the speech was about hope, not about politics.",
+      "She tried to hide the real message behind a layer of sarcasm."
+    ]
+  },
+  {
+    "term": "God can do so",
+    "meaning_pt": "Deus pode fazer isso",
+    "examples": [
+      "God can do so, but we must trust in His plan.",
+      "If we pray, God can do so and bring peace to our hearts."
+    ]
+  },
+  {
+    "term": "everybody is eligible",
+    "meaning_pt": "todos são elegíveis",
+    "examples": [
+      "Everybody is eligible to apply for the scholarship as long as they meet the academic requirements.",
+      "The new policy states that everybody is eligible for a free health check-up during the first week of the year."
+    ]
+  },
+  {
+    "term": "if he could",
+    "meaning_pt": "se ele pudesse",
+    "examples": [
+      "If he could finish the project on time, he would be praised by his boss.",
+      "She wondered if he could help them move into their new house."
+    ]
+  },
+  {
+    "term": "truth before God",
+    "meaning_pt": "verdade diante de Deus",
+    "examples": [
+      "He spoke the truth before God, confessing his sins.",
+      "The testimony was given truth before God, seeking divine judgment."
+    ]
+  },
+  {
+    "term": "grandmothers and great",
+    "meaning_pt": "avós e bisavós (avós com um grau de ancestralidade adicional)",
+    "examples": [
+      "My grandmothers and great-grandmothers are very kind.",
+      "The family tree includes grandmothers and great-grandmothers from both sides."
+    ]
+  },
+  {
+    "term": "make cornbread without",
+    "meaning_pt": "fazer pão de milho sem",
+    "examples": [
+      "I can make cornbread without butter.",
+      "She wants to make cornbread without eggs."
+    ]
+  },
+  {
+    "term": "powdered milk and",
+    "meaning_pt": "leite em pó e",
+    "examples": [
+      "I added powdered milk and sugar to the recipe.",
+      "She used powdered milk and cocoa powder for the dessert."
+    ]
+  },
+  {
+    "term": "worked my butt off",
+    "meaning_pt": "trabalhei muito, fiz um esforço enorme",
+    "examples": [
+      "I worked my butt off on the project, and it finally got approved.",
+      "She worked her butt off to finish the marathon in record time."
+    ]
+  },
+  {
+    "term": "last divorce",
+    "meaning_pt": "último divórcio, a última separação legal entre duas pessoas casadas",
+    "examples": [
+      "She filed for the last divorce after fifteen years of marriage.",
+      "The last divorce in the family was a quiet, amicable settlement."
+    ]
+  },
+  {
+    "term": "4 and 1/2 years",
+    "meaning_pt": "4 anos e meio",
+    "examples": [
+      "She worked at the company for 4 and 1/2 years before moving to a new role.",
+      "The project will take 4 and 1/2 years to complete."
+    ]
+  },
+  {
+    "term": "lost all appeals",
+    "meaning_pt": "perdeu todos os recursos (no contexto jurídico) ou perdeu todo apelo (no contexto de atratividade)",
+    "examples": [
+      "After the verdict, he lost all appeals and had to accept the sentence.",
+      "She tried to appeal the decision, but she lost all appeals before the deadline."
+    ]
+  },
+  {
+    "term": "cough up almost",
+    "meaning_pt": "cantar quase (algo) ao tossir; expulsar quase algo ao tossir",
+    "examples": [
+      "He tried to cough up almost a whole teaspoon of vomit.",
+      "She could not cough up almost any mucus, so the doctor prescribed a decongestant."
+    ]
+  },
+  {
+    "term": "financially depleted",
+    "meaning_pt": "financiarmente esgotado, sem recursos financeiros",
+    "examples": [
+      "After the failed venture, the company was financially depleted.",
+      "She felt financially depleted after the unexpected medical expenses."
+    ]
+  },
+  {
+    "term": "smoking",
+    "meaning_pt": "fumar",
+    "examples": [
+      "She decided to quit smoking after her doctor warned about the health risks.",
+      "The hotel has a strict no-smoking policy in all rooms."
+    ]
+  },
+  {
+    "term": "batteries are burning",
+    "meaning_pt": "baterias estão queimando",
+    "examples": [
+      "The batteries are burning, so we need to replace them before the fire spreads.",
+      "I noticed the batteries are burning and the room filled with a strong, acrid smell."
+    ]
+  },
+  {
+    "term": "misunderstood",
+    "meaning_pt": "ser mal interpretado ou não compreendido corretamente",
+    "examples": [
+      "She felt misunderstood by her friends, as they never listened to her concerns.",
+      "The teacher was misunderstood by the students, leading to confusion about the assignment."
+    ]
+  },
+  {
+    "term": "value my time",
+    "meaning_pt": "dar valor ao meu tempo",
+    "examples": [
+      "I refuse to take on any more projects until I can value my time and set clear boundaries.",
+      "She decided to start her own business because she wanted to value her time and earn a living doing what she loves."
+    ]
+  },
+  {
+    "term": "mental health",
+    "meaning_pt": "Saúde mental, que se refere ao bem-estar psicológico e emocional de uma pessoa, incluindo sua capacidade de lidar com o estresse, manter relacionamentos saudáveis e funcionar de forma eficaz no dia a dia.",
+    "examples": [
+      "She started therapy to improve her mental health.",
+      "Regular exercise can have a positive impact on mental health."
+    ]
+  },
+  {
+    "term": "personal space",
+    "meaning_pt": "espaço pessoal",
+    "examples": [
+      "She felt uncomfortable when the stranger entered her personal space.",
+      "The therapist explained how respecting personal space can improve communication."
+    ]
+  },
+  {
+    "term": "intentional about",
+    "meaning_pt": "intencional em relação a",
+    "examples": [
+      "He was intentional about his actions, making sure every step was planned.",
+      "She was intentional about the way she spoke, choosing her words carefully."
+    ]
+  },
+  {
+    "term": "life-changing moments",
+    "meaning_pt": "momentos que mudam a vida",
+    "examples": [
+      "Graduating from college was a life-changing moment for her.",
+      "The day he met his future partner was a life-changing moment."
+    ]
+  },
+  {
+    "term": "smoke clears",
+    "meaning_pt": "A expressão \"smoke clears\" significa que a situação fica clara após um período de confusão ou perigo, como se a fumaça se dissipasse, revelando o que está acontecendo.",
+    "examples": [
+      "After the argument, the smoke cleared and everyone could see the real issue.",
+      "The smoke cleared when the police arrived and explained the situation."
+    ]
+  },
+  {
+    "term": "protecting me",
+    "meaning_pt": "proteger-me, cuidar de mim",
+    "examples": [
+      "I felt safe when my friend was protecting me from the storm.",
+      "The guardian angel was protecting me during the night."
+    ]
+  },
+  {
+    "term": "living on edge",
+    "meaning_pt": "viver à beira, viver de forma arriscada ou em constante tensão",
+    "examples": [
+      "He decided to quit his stable job and start his own business, living on edge but feeling more fulfilled.",
+      "The movie’s protagonist is always living on edge, taking risks that others would avoid."
+    ]
+  },
+  {
+    "term": "chapter number seven",
+    "meaning_pt": "capítulo número sete",
+    "examples": [
+      "The plot thickens in chapter number seven as the protagonist discovers a hidden clue.",
+      "In chapter number seven, the author explains the main theme of the novel."
+    ]
+  },
+  {
+    "term": "life after divorce",
+    "meaning_pt": "vida após o divórcio",
+    "examples": [
+      "After the divorce, she found a new sense of freedom.",
+      "Life after divorce can be challenging but also full of new opportunities."
+    ]
+  },
+  {
+    "term": "current relationships",
+    "meaning_pt": "relações atuais",
+    "examples": [
+      "The study examined how current relationships between the two countries affect trade policies.",
+      "She is focusing on her current relationships with colleagues to improve teamwork."
+    ]
+  },
+  {
+    "term": "point of reference",
+    "meaning_pt": "ponto de referência, ponto de apoio, ponto de comparação",
+    "examples": [
+      "The map uses the mountain peak as a point of reference for navigation.",
+      "In scientific studies, a control group serves as a point of reference for measuring the effects of the treatment."
+    ]
+  },
+  {
+    "term": "hope of finding",
+    "meaning_pt": "esperança de encontrar",
+    "examples": [
+      "I have hope of finding a solution to this problem.",
+      "She held hope of finding her lost keys in the old attic."
+    ]
+  },
+  {
+    "term": "little boy",
+    "meaning_pt": "menino pequeno",
+    "examples": [
+      "The little boy was playing with his toy cars in the park.",
+      "She gave the little boy a cookie after he finished his homework."
+    ]
+  },
+  {
+    "term": "fast driving",
+    "meaning_pt": "condução rápida",
+    "examples": [
+      "He was caught by the police for fast driving on the highway.",
+      "Fast driving can be dangerous if you don't pay attention to traffic signals."
+    ]
+  },
+  {
+    "term": "trauma bonding",
+    "meaning_pt": "Ligação emocional intensa que se desenvolve entre uma vítima e um agressor, muitas vezes em situações de abuso, onde a vítima sente apego e dependência, apesar do perigo ou sofrimento.",
+    "examples": [
+      "The victim's trauma bonding made it hard for her to leave the abusive relationship.",
+      "After years of manipulation, the trauma bonding kept him tied to his former partner."
+    ]
+  },
+  {
+    "term": "unpack",
+    "meaning_pt": "desembalar, abrir e organizar o conteúdo de algo, especialmente malas ou caixas",
+    "examples": [
+      "After the trip, she spent the whole afternoon unpacking her suitcase.",
+      "The teacher asked the students to unpack the complex concept into simpler parts."
+    ]
+  },
+  {
+    "term": "judge you with baggage",
+    "meaning_pt": "julgar alguém levando em conta sua bagagem emocional ou experiências passadas",
+    "examples": [
+      "I don't want you to judge me with baggage; I've learned from my mistakes.",
+      "He tends to judge people with baggage, assuming they are always negative."
+    ]
+  },
+  {
+    "term": "Yeah",
+    "meaning_pt": "Sim, concordo ou expressão de aprovação",
+    "examples": [
+      "Yeah, I think that's a good idea.",
+      "She nodded and said, 'Yeah, let's go.'"
+    ]
+  },
+  {
+    "term": "what do we do",
+    "meaning_pt": "o que fazemos / o que devemos fazer",
+    "examples": [
+      "What do we do if the train is delayed?",
+      "What do we do when the power goes out?"
+    ]
+  },
+  {
+    "term": "where we are",
+    "meaning_pt": "onde estamos",
+    "examples": [
+      "We need to find out where we are before we can start the project.",
+      "In the novel, the characters discover where we are in the history of the city."
+    ]
+  },
+  {
+    "term": "what we have",
+    "meaning_pt": "o que temos",
+    "examples": [
+      "We need to figure out what we have to do next.",
+      "She asked me what we have left in the pantry."
+    ]
+  },
+  {
+    "term": "guess what",
+    "meaning_pt": "adivinhe o que",
+    "examples": [
+      "Guess what? I got a promotion at work!",
+      "Guess what? The concert tickets are on sale now."
+    ]
+  },
+  {
+    "term": "ultimately have made",
+    "meaning_pt": "no final, ter feito",
+    "examples": [
+      "Ultimately, we have made a decision to move forward with the project.",
+      "After many discussions, the committee ultimately has made a choice on the new policy."
+    ]
+  },
+  {
+    "term": "each other better",
+    "meaning_pt": "para cada um melhor, de forma a melhorar a situação do outro",
+    "examples": [
+      "We should help each other better so that everyone can succeed.",
+      "By sharing resources, we can support each other better in challenging times."
+    ]
+  },
+  {
+    "term": "supposed to be",
+    "meaning_pt": "deveria ser, suposto ser, esperado que seja",
+    "examples": [
+      "I was supposed to be at the meeting, but I got stuck in traffic.",
+      "She is supposed to be the best player on the team, but she hasn't played in months."
+    ]
+  },
+  {
+    "term": "in each other's life",
+    "meaning_pt": "em cada um(a) da vida do outro",
+    "examples": [
+      "They have been in each other's life for over a decade.",
+      "She knows that he will always be in each other's life as a source of support."
+    ]
+  },
+  {
+    "term": "just this period",
+    "meaning_pt": "apenas este período",
+    "examples": [
+      "She will be on vacation just this period, so we need to reschedule the meeting.",
+      "The company will only offer discounts just this period, so act now."
+    ]
+  },
+  {
+    "term": "here to prepare",
+    "meaning_pt": "estar aqui para preparar",
+    "examples": [
+      "I'm here to prepare the presentation for tomorrow's meeting.",
+      "She is here to prepare the meal for the guests."
+    ]
+  },
+  {
+    "term": "ourselves for who else",
+    "meaning_pt": "para nós mesmos, para quem mais?",
+    "examples": [
+      "We are doing this for ourselves, for who else?",
+      "I am studying for myself, for who else?"
+    ]
+  },
+  {
+    "term": "supposed to be here",
+    "meaning_pt": "suposto estar aqui, esperado estar aqui",
+    "examples": [
+      "She was supposed to be here at 9:00, but she was late.",
+      "The documents are supposed to be here in the file cabinet, but I can't find them."
+    ]
+  },
+  {
+    "term": "did we go through",
+    "meaning_pt": "Você se lembra se passamos por isso / você lembra se discutimos isso antes?",
+    "examples": [
+      "Did we go through the budget report before the meeting?",
+      "I think we went through the safety procedures yesterday; did we go through them again?"
+    ]
+  },
+  {
+    "term": "live unraveling",
+    "meaning_pt": "desdobramento ao vivo ou desenrolar ao vivo",
+    "examples": [
+      "The live unraveling of the plot kept the audience on the edge of their seats.",
+      "During the conference, the live unraveling of the new product features was broadcast to thousands of viewers."
+    ]
+  },
+  {
+    "term": "parenting issues",
+    "meaning_pt": "problemas relacionados à criação de filhos",
+    "examples": [
+      "The couple struggled with parenting issues after their first child was born.",
+      "Counseling helped them address the parenting issues that were affecting their family dynamics."
+    ]
+  },
+  {
+    "term": "triggers and boundaries",
+    "meaning_pt": "gatilhos e limites",
+    "examples": [
+      "She set clear triggers and boundaries to protect her emotional well-being.",
+      "The therapist helped him identify triggers and boundaries to manage his anxiety."
+    ]
+  },
+  {
+    "term": "trauma",
+    "meaning_pt": "lesão emocional ou física que causa sofrimento psicológico prolongado",
+    "examples": [
+      "After the car accident, she experienced trauma that made it difficult to drive again.",
+      "The documentary highlighted the trauma that refugees often endure during their journey."
+    ]
+  },
+  {
+    "term": "nobody ever talks",
+    "meaning_pt": "nenhum indivíduo fala (sobre isso)",
+    "examples": [
+      "Nobody ever talks about the hidden costs of the project.",
+      "Nobody ever talks about the risks involved in that investment."
+    ]
+  },
+  {
+    "term": "makes me feel",
+    "meaning_pt": "faz-me sentir",
+    "examples": [
+      "The music makes me feel alive and energized.",
+      "Seeing the sunset makes me feel calm and peaceful."
+    ]
+  },
+  {
+    "term": "moving and operating",
+    "meaning_pt": "movendo e operando",
+    "examples": [
+      "She was moving and operating the heavy machinery during the construction.",
+      "The technician was moving and operating the equipment with great precision."
+    ]
+  },
+  {
+    "term": "comforts and discomforts",
+    "meaning_pt": "confortos e desconfortos",
+    "examples": [
+      "The new policy brings many comforts and discomforts to the employees.",
+      "She found comfort in the familiar surroundings, but also discomforts in the new routine."
+    ]
+  },
+  {
+    "term": "marrying your nurse",
+    "meaning_pt": "casar-se com a sua enfermeira",
+    "examples": [
+      "After years of working together, they decided to marry your nurse and start a family.",
+      "He couldn't resist the idea of marrying your nurse, hoping it would bring stability to his life."
+    ]
+  },
+  {
+    "term": "walk off tearing up",
+    "meaning_pt": "sair ou caminhar embora chorando",
+    "examples": [
+      "I walked off tearing up after hearing the news.",
+      "She walked off tearing up, unable to hold her emotions."
+    ]
+  },
+  {
+    "term": "determining which one",
+    "meaning_pt": "determinar qual",
+    "examples": [
+      "We are determining which one to choose for the project.",
+      "Determining which one is the best approach requires careful analysis."
+    ]
+  },
+  {
+    "term": "a lot of prayer",
+    "meaning_pt": "muita oração",
+    "examples": [
+      "After the accident, a lot of prayer was offered by the community.",
+      "She found comfort in a lot of prayer during her recovery."
+    ]
+  },
+  {
+    "term": "discernment",
+    "meaning_pt": "capacidade de perceber ou distinguir com clareza, juízo crítico e sensibilidade",
+    "examples": [
+      "Her discernment allowed her to spot the subtle differences between the two proposals.",
+      "The detective's discernment was key to solving the complex case."
+    ]
+  },
+  {
+    "term": "took every",
+    "meaning_pt": "tomou todas as / pegou cada (geralmente seguido por um substantivo, como oportunidades, precauções, chances, etc.)",
+    "examples": [
+      "He took every chance to improve his skills.",
+      "She took every precaution to ensure safety."
+    ]
+  },
+  {
+    "term": "including my grandmother",
+    "meaning_pt": "incluindo minha avó",
+    "examples": [
+      "The family reunion was a joyous event, including my grandmother who brought her famous pies.",
+      "The donation drive was successful, including my grandmother who contributed a generous amount."
+    ]
+  },
+  {
+    "term": "smoke because nobody knows",
+    "meaning_pt": "fumar porque ninguém sabe / porque ninguém percebe",
+    "examples": [
+      "He decided to smoke because nobody knows, so he went to the back of the office.",
+      "She smoked in the hallway because nobody knows, hoping no one would notice."
+    ]
+  },
+  {
+    "term": "woman like a woman",
+    "meaning_pt": "mulher que se comporta de maneira típica ou tradicionalmente feminina",
+    "examples": [
+      "She always dresses in a way that makes her look like a woman.",
+      "He said that she was a woman like a woman, not a man in disguise."
+    ]
+  },
+  {
+    "term": "house burns down",
+    "meaning_pt": "a casa queima/destrói-se",
+    "examples": [
+      "The old farmhouse finally house burns down after the storm.",
+      "When the fire department arrived, they found that the house burns down."
+    ]
+  },
+  {
+    "term": "kids in it",
+    "meaning_pt": "crianças dentro dele",
+    "examples": [
+      "There are kids in it.",
+      "Kids in it often need supervision."
+    ]
+  },
+  {
+    "term": "can't afford to marry",
+    "meaning_pt": "não pode pagar para se casar / não tem condições financeiras de se casar",
+    "examples": [
+      "I can't afford to marry right now because I need to pay off my student loans.",
+      "She said she can't afford to marry until she saves enough for a down payment."
+    ]
+  },
+  {
+    "term": "for a reason",
+    "meaning_pt": "por alguma razão, por algum motivo",
+    "examples": [
+      "She left early for a reason, but she didn't tell us what it was.",
+      "He was late for a reason, and he apologized for the inconvenience."
+    ]
+  },
+  {
+    "term": "for a lifetime",
+    "meaning_pt": "por toda a vida",
+    "examples": [
+      "She promised to love him for a lifetime.",
+      "The charity will provide shelter for a lifetime to the homeless."
+    ]
+  },
+  {
+    "term": "figure that out",
+    "meaning_pt": "entender, descobrir ou resolver algo",
+    "examples": [
+      "I need to figure that out before the meeting tomorrow.",
+      "She finally figured that out after hours of research."
+    ]
+  },
+  {
+    "term": "getting older",
+    "meaning_pt": "envelhecendo, ficando mais velho",
+    "examples": [
+      "As people are getting older, they often need more support at home.",
+      "Getting older can bring new perspectives and wisdom."
+    ]
+  },
+  {
+    "term": "running out of time",
+    "meaning_pt": "ficar sem tempo / não ter mais tempo suficiente",
+    "examples": [
+      "We were running out of time, so we had to finish the project quickly.",
+      "She realized she was running out of time to submit the application."
+    ]
+  },
+  {
+    "term": "expiration date on loyalty",
+    "meaning_pt": "data de expiração em programas de fidelidade (ou data de validade dos pontos de fidelidade)",
+    "examples": [
+      "The expiration date on loyalty points is typically one year from the date of accrual.",
+      "Customers should check the expiration date on loyalty to ensure they use their points before they become void."
+    ]
+  },
+  {
+    "term": "hold on",
+    "meaning_pt": "ficar firme, aguardar, segurar, ficar em pé",
+    "examples": [
+      "Hold on, I'm coming!",
+      "Can you hold on a moment while I check the schedule?"
+    ]
+  },
+  {
+    "term": "relationship is at capacity",
+    "meaning_pt": "relacionamento está no limite de capacidade",
+    "examples": [
+      "The relationship is at capacity, so we need to find a new partner.",
+      "When the relationship is at capacity, it can no longer accommodate new members."
+    ]
+  },
+  {
+    "term": "hit a wall",
+    "meaning_pt": "encontrar uma barreira, ficar estagnado, não conseguir avançar",
+    "examples": [
+      "After months of trying to solve the problem, she finally hit a wall and had to ask for help.",
+      "The project hit a wall when the funding was suddenly cut."
+    ]
+  },
+  {
+    "term": "makes sense to proceed",
+    "meaning_pt": "faz sentido prosseguir",
+    "examples": [
+      "After reviewing the data, it makes sense to proceed with the next phase of the project.",
+      "Given the budget constraints, it makes sense to proceed cautiously with the new marketing campaign."
+    ]
+  },
+  {
+    "term": "checklist",
+    "meaning_pt": "lista de verificação",
+    "examples": [
+      "Before leaving the house, she made a checklist of items to bring.",
+      "The project manager used a checklist to ensure all tasks were completed."
+    ]
+  },
+  {
+    "term": "what she looked like",
+    "meaning_pt": "como ela parecia",
+    "examples": [
+      "I couldn't remember what she looked like.",
+      "Do you remember what she looked like when she was a child?"
+    ]
+  },
+  {
+    "term": "men have checklist too",
+    "meaning_pt": "os homens também têm uma lista de verificação",
+    "examples": [
+      "Just like women, men have checklist too when planning a vacation.",
+      "In the workplace, men have checklist too to ensure all tasks are completed."
+    ]
+  },
+  {
+    "term": "majority of those checklist",
+    "meaning_pt": "maioria desses checklists",
+    "examples": [
+      "The majority of those checklist items were completed before the deadline.",
+      "She reviewed the majority of those checklist and found a few errors."
+    ]
+  },
+  {
+    "term": "God in the equation",
+    "meaning_pt": "A expressão usada para indicar que fatores humanos, decisões ou influências não mensuráveis (como fé, intuição ou intervenção divina) desempenham um papel significativo em resultados ou processos que, de outra forma, seriam considerados puramente lógicos ou científicos.",
+    "examples": [
+      "When we consider the success of the project, we can't ignore the 'God in the equation'—unexpected support from a key stakeholder made all the difference.",
+      "In many scientific debates, people argue about the data, but the 'God in the equation' reminds us that human judgment and values ultimately shape our conclusions."
+    ]
+  },
+  {
+    "term": "send you something",
+    "meaning_pt": "enviar algo para você",
+    "examples": [
+      "I will send you something as a thank you gift.",
+      "She promised to send you something after the meeting."
+    ]
+  },
+  {
+    "term": "doesn't look",
+    "meaning_pt": "não parece; não tem aparência de",
+    "examples": [
+      "She doesn't look happy with the decision.",
+      "It doesn't look like it's going to rain today."
+    ]
+  },
+  {
+    "term": "doesn't walk",
+    "meaning_pt": "não caminha, não anda",
+    "examples": [
+      "She doesn't walk to work because she prefers to take the bus.",
+      "The dog doesn't walk on the leash during the storm."
+    ]
+  },
+  {
+    "term": "doesn't talk",
+    "meaning_pt": "não fala",
+    "examples": [
+      "He doesn't talk much at family gatherings.",
+      "She doesn't talk about her past experiences."
+    ]
+  },
+  {
+    "term": "5 years",
+    "meaning_pt": "cinco anos",
+    "examples": [
+      "I have lived in this city for 5 years.",
+      "She will graduate in 5 years."
+    ]
+  },
+  {
+    "term": "Chapter number eight",
+    "meaning_pt": "Capítulo número oito",
+    "examples": [
+      "The novel's Chapter number eight reveals the protagonist's hidden past.",
+      "In the textbook, Chapter number eight covers advanced grammar concepts."
+    ]
+  },
+  {
+    "term": "really a business",
+    "meaning_pt": "expressão que indica que algo é realmente uma atividade comercial ou que alguém está envolvido em um negócio, muitas vezes com conotação de seriedade ou profissionalismo",
+    "examples": [
+      "She said she was just helping out, but really a business is running behind the scenes.",
+      "The startup is really a business, not just a hobby."
+    ]
+  },
+  {
+    "term": "TV film whatever",
+    "meaning_pt": "filme de TV (filme feito para exibição na televisão)",
+    "examples": [
+      "The network aired a TV film about the historic battle last night.",
+      "She prefers watching TV films over theatrical releases because they are more accessible."
+    ]
+  },
+  {
+    "term": "look back at it",
+    "meaning_pt": "olhar para trás e refletir sobre algo",
+    "examples": [
+      "After the project was finished, we looked back at it to see what could have been improved.",
+      "When she looked back at it, she realized how much she had grown."
+    ]
+  },
+  {
+    "term": "look like me",
+    "meaning_pt": "parecer comigo / ser parecido com eu",
+    "examples": [
+      "Do you look like me? I think you have the same eyes.",
+      "She looks like me when she smiles, so people often ask if we are related."
+    ]
+  },
+  {
+    "term": "perform like me",
+    "meaning_pt": "fazer ou executar da mesma forma que eu faço",
+    "examples": [
+      "If you want to win this game, perform like me and stay focused.",
+      "She asked her friend to perform like me during the presentation."
+    ]
+  },
+  {
+    "term": "whole time",
+    "meaning_pt": "todo o tempo, durante todo o período",
+    "examples": [
+      "I have been studying English whole time.",
+      "She worked at the company whole time, from 1990 to 2005."
+    ]
+  },
+  {
+    "term": "gray area",
+    "meaning_pt": "área cinzenta, zona de incerteza ou ambiguidade",
+    "examples": [
+      "The legality of that practice is a gray area, so we need to consult a lawyer.",
+      "When it comes to data privacy, the rules are often a gray area that varies by jurisdiction."
+    ]
+  },
+  {
+    "term": "creative project",
+    "meaning_pt": "projeto criativo",
+    "examples": [
+      "She started a creative project to design a series of handmade cards for the charity event.",
+      "The school encourages students to pursue creative projects that showcase their artistic talents."
+    ]
+  },
+  {
+    "term": "keep my word",
+    "meaning_pt": "cumprir a palavra que se deu, manter a promessa",
+    "examples": [
+      "She promised to help me, and she kept her word by arriving on time.",
+      "If you keep your word, people will trust you more."
+    ]
+  },
+  {
+    "term": "tell his story",
+    "meaning_pt": "contar a sua história",
+    "examples": [
+      "She asked him to tell his story about growing up in the countryside.",
+      "During the interview, the journalist encouraged him to tell his story in his own words."
+    ]
+  },
+  {
+    "term": "good man",
+    "meaning_pt": "homem bom",
+    "examples": [
+      "He is a good man who always helps others.",
+      "I met a good man at the community center who volunteers every weekend."
+    ]
+  },
+  {
+    "term": "famous incidentally",
+    "meaning_pt": "famoso incidentalmente (ou seja, ganhou fama por acaso ou como consequência de algo não planejado)",
+    "examples": [
+      "He became famous incidentally when his photo was shared on social media.",
+      "The actor was famous incidentally after a viral video of him singing in a subway station."
+    ]
+  },
+  {
+    "term": "wearing white suits",
+    "meaning_pt": "vestindo ternos brancos",
+    "examples": [
+      "At the wedding, the groom was wearing white suits to match the bride's dress.",
+      "The fashion show featured models wearing white suits in a minimalist style."
+    ]
+  },
+  {
+    "term": "white jacket",
+    "meaning_pt": "jaqueta branca",
+    "examples": [
+      "She wore a white jacket to the conference.",
+      "The white jacket was left on the chair."
+    ]
+  },
+  {
+    "term": "cowboy hat",
+    "meaning_pt": "chapéu de cowboy",
+    "examples": [
+      "The cowboy hat is a staple of Western fashion.",
+      "She wore a cowboy hat to the rodeo to complete her outfit."
+    ]
+  },
+  {
+    "term": "wheelchair gospel",
+    "meaning_pt": "fé que enfatiza o papel e as experiências de pessoas com deficiência, especialmente usuários de cadeira de rodas, na fé cristã.",
+    "examples": [
+      "The wheelchair gospel has gained attention in recent conferences.",
+      "She delivered a powerful sermon on the wheelchair gospel, inspiring many."
+    ]
+  },
+  {
+    "term": "inner ingredients",
+    "meaning_pt": "ingredientes internos",
+    "examples": [
+      "The inner ingredients of this sauce are simple yet flavorful.",
+      "She examined the inner ingredients of the machine to troubleshoot the issue."
+    ]
+  },
+  {
+    "term": "in a word",
+    "meaning_pt": "em poucas palavras, resumindo",
+    "examples": [
+      "In a word, the movie was disappointing.",
+      "In a word, the project was a success."
+    ]
+  },
+  {
+    "term": "private or personal",
+    "meaning_pt": "privado ou pessoal",
+    "examples": [
+      "She prefers to keep her personal life private.",
+      "The private meeting was held in a quiet room."
+    ]
+  },
+  {
+    "term": "charm",
+    "meaning_pt": "encanto, charme, atrativo",
+    "examples": [
+      "Her smile had a natural charm that made everyone feel at ease.",
+      "The old house had a certain charm that attracted many tourists."
+    ]
+  },
+  {
+    "term": "charismatic",
+    "meaning_pt": "carismático",
+    "examples": [
+      "She was a charismatic speaker who inspired everyone in the room.",
+      "His charismatic leadership style helped the company grow rapidly."
+    ]
+  },
+  {
+    "term": "terminal illness",
+    "meaning_pt": "doença terminal, doença que leva à morte",
+    "examples": [
+      "The doctor explained that the patient's terminal illness would likely progress over the next year.",
+      "She found comfort in the support of her family during her terminal illness."
+    ]
+  },
+  {
+    "term": "go out of way",
+    "meaning_pt": "fazer um esforço extra, ir além do necessário para ajudar ou agradar alguém",
+    "examples": [
+      "She went out of her way to help the new student find her classes.",
+      "He always goes out of his way to make sure everyone at the party feels welcome."
+    ]
+  },
+  {
+    "term": "feel sorry",
+    "meaning_pt": "sentir pena, sentir remorso",
+    "examples": [
+      "I feel sorry for the inconvenience caused.",
+      "She felt sorry for her mistake and apologized."
+    ]
+  },
+  {
+    "term": "give perspective",
+    "meaning_pt": "dar perspectiva, oferecer uma visão mais ampla ou contextualizada sobre algo",
+    "examples": [
+      "The documentary gave perspective on the historical events, helping viewers understand the broader context.",
+      "Her comments gave perspective to the discussion, highlighting factors that had been overlooked."
+    ]
+  },
+  {
+    "term": "quadriplegic",
+    "meaning_pt": "paralisado de quatro membros, que sofre de quadriplégia",
+    "examples": [
+      "After the accident, he became a quadriplegic and required a wheelchair for mobility.",
+      "The hospital provides specialized care for quadriplegic patients to manage their daily needs."
+    ]
+  },
+  {
+    "term": "paralyzed from neck down",
+    "meaning_pt": "paralisado(a) da região do pescoço para baixo",
+    "examples": [
+      "He was paralyzed from the neck down after the accident.",
+      "The doctor explained that the injury would leave him paralyzed from the neck down for the rest of his life."
+    ]
+  },
+  {
+    "term": "never wanted you",
+    "meaning_pt": "nunca quis você / nunca desejei você",
+    "examples": [
+      "I realized that I never wanted you in my life, so I decided to move on.",
+      "She told him that she never wanted you to be part of her future plans."
+    ]
+  },
+  {
+    "term": "found strength",
+    "meaning_pt": "encontrar força",
+    "examples": [
+      "After the loss, she found strength to keep going.",
+      "He found strength in his community."
+    ]
+  },
+  {
+    "term": "God kept alive",
+    "meaning_pt": "Deus manteve vivo",
+    "examples": [
+      "God kept the flame alive despite the wind.",
+      "God kept the hope alive in the hearts of the people."
+    ]
+  },
+  {
+    "term": "fraternity",
+    "meaning_pt": "fraternidade (conjunto de pessoas que compartilham interesses, valores ou atividades, especialmente em universidades), irmandade, fraternidade",
+    "examples": [
+      "She joined a fraternity to meet new friends and participate in community service.",
+      "The fraternity's annual charity event raised thousands of dollars for local hospitals."
+    ]
+  },
+  {
+    "term": "talented actors",
+    "meaning_pt": "atores talentosos",
+    "examples": [
+      "The film showcased several talented actors who brought depth to their characters.",
+      "During the audition, the director was impressed by the talented actors who delivered powerful monologues."
+    ]
+  },
+  {
+    "term": "beefing at each other",
+    "meaning_pt": "estar brigando, discutindo ou trocando ofensas entre si, geralmente de forma constante e irritante",
+    "examples": [
+      "The two coworkers have been beefing at each other all week, making the office atmosphere tense.",
+      "After the argument, the siblings kept beefing at each other, refusing to talk for days."
+    ]
+  },
+  {
+    "term": "great fraternity",
+    "meaning_pt": "grande fraternidade, ou irmandade de grande importância ou tamanho, geralmente referindo-se a um grupo unido por laços de amizade, solidariedade ou crenças comuns",
+    "examples": [
+      "The great fraternity of the university welcomed new members with a grand ceremony.",
+      "She felt a deep sense of belonging within the great fraternity of her community."
+    ]
+  },
+  {
+    "term": "lost 60 lbs",
+    "meaning_pt": "perdeu 60 libras (de peso)",
+    "examples": [
+      "I lost 60 lbs after a strict diet and regular exercise.",
+      "She lost 60 lbs in just six months, thanks to a balanced meal plan."
+    ]
+  },
+  {
+    "term": "weight loss",
+    "meaning_pt": "perda de peso",
+    "examples": [
+      "I have been focusing on healthy eating to achieve weight loss.",
+      "Weight loss can improve cardiovascular health."
+    ]
+  },
+  {
+    "term": "movie role",
+    "meaning_pt": "papel em um filme",
+    "examples": [
+      "She landed a supporting movie role in the new action thriller.",
+      "O ator recebeu um papel principal no filme de drama."
+    ]
+  },
+  {
+    "term": "wrestler",
+    "meaning_pt": "lutador de luta livre (profissional ou amador)",
+    "examples": [
+      "The wrestler performed a spectacular slam during the championship match.",
+      "She trained as a wrestler for several years before becoming a coach."
+    ]
+  },
+  {
+    "term": "gain weight",
+    "meaning_pt": "ganhar peso",
+    "examples": [
+      "After the holidays, she decided to start exercising to avoid gaining weight.",
+      "The doctor advised him to monitor his diet to prevent gaining weight."
+    ]
+  },
+  {
+    "term": "gym",
+    "meaning_pt": "academia (local onde se pratica exercícios físicos)",
+    "examples": [
+      "I go to the gym every morning to work out.",
+      "She bought new workout clothes for the gym."
+    ]
+  },
+  {
+    "term": "baby boy days",
+    "meaning_pt": "dias em que se era um bebê menino, período da infância de um menino",
+    "examples": [
+      "I still remember my baby boy days, when I could stay up all night playing with my toys.",
+      "Her parents often reminisced about her baby boy days, recalling how she used to laugh at everything."
+    ]
+  },
+  {
+    "term": "air is fresh",
+    "meaning_pt": "o ar está fresco",
+    "examples": [
+      "After the storm, the air is fresh and smells like rain.",
+      "We can hear the birds chirping because the air is fresh."
+    ]
+  },
+  {
+    "term": "five people",
+    "meaning_pt": "cinco pessoas",
+    "examples": [
+      "Five people gathered at the park for a picnic.",
+      "I invited five people to the party, but only three showed up."
+    ]
+  },
+  {
+    "term": "life and career",
+    "meaning_pt": "refere-se ao conjunto de experiências e trajetória profissional e pessoal de uma pessoa, incluindo tanto a vida pessoal quanto a profissional.",
+    "examples": [
+      "She managed to balance her life and career by setting clear boundaries between work and home.",
+      "His life and career were both dedicated to education, inspiring countless students."
+    ]
+  },
+  {
+    "term": "profound statement",
+    "meaning_pt": "declaração profunda, afirmação profunda",
+    "examples": [
+      "Her words were a profound statement about the nature of love.",
+      "The professor's lecture was a profound statement on the importance of scientific inquiry."
+    ]
+  },
+  {
+    "term": "fragile",
+    "meaning_pt": "frágil, delicado, que pode quebrar facilmente",
+    "examples": [
+      "The antique vase is fragile, so handle it with care.",
+      "Her emotions were fragile after the loss, and she needed support."
+    ]
+  },
+  {
+    "term": "processing divorce",
+    "meaning_pt": "processo de divórcio",
+    "examples": [
+      "She is currently processing divorce after 10 years of marriage.",
+      "The lawyer explained the steps involved in processing divorce."
+    ]
+  },
+  {
+    "term": "financial",
+    "meaning_pt": "relativo a finanças, dinheiro ou recursos econômicos",
+    "examples": [
+      "The company released its financial report last week.",
+      "She is studying to become a financial analyst."
+    ]
+  },
+  {
+    "term": "legal",
+    "meaning_pt": "relativo à lei, jurídico, legal",
+    "examples": [
+      "The company hired a legal team to review the contract.",
+      "She was arrested for a legal violation of the traffic laws."
+    ]
+  },
+  {
+    "term": "could only I",
+    "meaning_pt": "eu só poderia / eu apenas poderia",
+    "examples": [
+      "Could only I have the courage to speak up in front of everyone?",
+      "She wondered, could only I find the strength to finish this task?"
+    ]
+  },
+  {
+    "term": "I feel like",
+    "meaning_pt": "Sinto que / Tenho vontade de",
+    "examples": [
+      "I feel like going for a walk after dinner.",
+      "I feel like trying a new recipe tonight."
+    ]
+  },
+  {
+    "term": "how do you",
+    "meaning_pt": "como você",
+    "examples": [
+      "How do you do? (Como você está?)",
+      "How do you feel about the new policy?",
+      "How do you know the answer?"
+    ]
+  },
+  {
+    "term": "what do you",
+    "meaning_pt": "o que você",
+    "examples": [
+      "What do you think about this idea?",
+      "What do you do for a living?"
+    ]
+  },
+  {
+    "term": "call those things",
+    "meaning_pt": "chamar esses objetos ou coisas",
+    "examples": [
+      "I don't know what to call those things on my desk, but they look like small tools.",
+      "When you refer to them, you can say 'call those things' to describe the items."
+    ]
+  },
+  {
+    "term": "slingshot right",
+    "meaning_pt": "lançar com um estilingue para a direita",
+    "examples": [
+      "He slingshot right across the field, hitting the target.",
+      "She slingshot right toward the goal, surprising everyone."
+    ]
+  },
+  {
+    "term": "stick and two",
+    "meaning_pt": "Termo que pode se referir a 'stick and two', que pode significar 'um bastão e dois objetos', usado em contextos que descrevem algo composto por um bastão e dois itens adicionais.",
+    "examples": [
+      "Para montar o brinquedo, você precisará de um stick and two.",
+      "Ele usou um stick and two para prender as cordas."
+    ]
+  },
+  {
+    "term": "rubber band",
+    "meaning_pt": "elástico, fita elástica",
+    "examples": [
+      "She used a rubber band to hold the papers together.",
+      "The rubber band snapped when he tried to stretch it too far."
+    ]
+  },
+  {
+    "term": "stressed",
+    "meaning_pt": "estressado, sob pressão",
+    "examples": [
+      "I feel really stressed after the exam.",
+      "She looked stressed during the meeting."
+    ]
+  },
+  {
+    "term": "on edge",
+    "meaning_pt": "em estado de tensão ou nervosismo, ansioso, nervoso",
+    "examples": [
+      "She was on edge after hearing the bad news.",
+      "The audience sat on edge, waiting for the performance to begin."
+    ]
+  },
+  {
+    "term": "anxiety",
+    "meaning_pt": "ansiedade",
+    "examples": [
+      "She felt a wave of anxiety before the exam.",
+      "The doctor prescribed medication to help manage his anxiety."
+    ]
+  },
+  {
+    "term": "unsure",
+    "meaning_pt": "incerto, sem certeza",
+    "examples": [
+      "I am unsure whether I should take the job offer.",
+      "She looked unsure when asked about her plans for the weekend."
+    ]
+  },
+  {
+    "term": "praying",
+    "meaning_pt": "oração, ato de rezar",
+    "examples": [
+      "She spent the evening praying for her sick friend.",
+      "The soldiers gathered together, praying for safety before the battle."
+    ]
+  },
+  {
+    "term": "certain",
+    "meaning_pt": "certo, determinado, específico",
+    "examples": [
+      "I am certain that we will win the match.",
+      "She has a certain charm that makes everyone smile."
+    ]
+  },
+  {
+    "term": "inspired",
+    "meaning_pt": "inspirado",
+    "examples": [
+      "She was inspired by the artist's work.",
+      "He felt inspired to write a novel."
+    ]
+  },
+  {
+    "term": "motivated",
+    "meaning_pt": "motivado(a)",
+    "examples": [
+      "She was motivated to finish the project before the deadline.",
+      "The coach motivated the team with an inspiring speech."
+    ]
+  },
+  {
+    "term": "cocktail of",
+    "meaning_pt": "mistura de, combinação de",
+    "examples": [
+      "The dish is a cocktail of flavors, blending sweet and savory notes.",
+      "She presented a cocktail of emotions, ranging from excitement to nervousness."
+    ]
+  },
+  {
+    "term": "different things",
+    "meaning_pt": "coisas diferentes",
+    "examples": [
+      "I have a lot of different things to do today.",
+      "She collects different things from all over the world."
+    ]
+  },
+  {
+    "term": "inside of",
+    "meaning_pt": "dentro de",
+    "examples": [
+      "The cat is inside of the box.",
+      "She looked inside of the envelope to find the letter."
+    ]
+  },
+  {
+    "term": "rubber band is",
+    "meaning_pt": "elástico, fita elástica",
+    "examples": [
+      "The rubber band is used to keep the papers together.",
+      "She stretched the rubber band until it snapped."
+    ]
+  },
+  {
+    "term": "Jesus stretching",
+    "meaning_pt": "Jesus esticando-se",
+    "examples": [
+      "After the long hike, Jesus stretching was the perfect way to relax his muscles.",
+      "In the video, Jesus stretching became a popular meme among fans of the show."
+    ]
+  },
+  {
+    "term": "going to get",
+    "meaning_pt": "ir a conseguir, estar prestes a obter",
+    "examples": [
+      "I am going to get a new phone next week.",
+      "She is going to get a promotion after the project is finished."
+    ]
+  },
+  {
+    "term": "level that",
+    "meaning_pt": "nível que (usado para indicar o padrão ou padrão exigido, por exemplo: \"o nível que você precisa alcançar\")",
+    "examples": [
+      "The level that you need to pass the exam is 80%.",
+      "She set a level that everyone should aspire to."
+    ]
+  },
+  {
+    "term": "prayer for",
+    "meaning_pt": "oração por / oração para",
+    "examples": [
+      "She offered a prayer for her sick friend.",
+      "They gathered to say a prayer for peace in the world."
+    ]
+  },
+  {
+    "term": "heart has",
+    "meaning_pt": "o coração tem",
+    "examples": [
+      "The heart has a rhythm that keeps the body alive.",
+      "The heart has been known to beat faster during stress."
+    ]
+  },
+  {
+    "term": "desiring",
+    "meaning_pt": "sentindo desejo, desejando",
+    "examples": [
+      "He was desiring a quiet evening at home.",
+      "She was desiring to learn more about the topic."
+    ]
+  },
+  {
+    "term": "level of depletion",
+    "meaning_pt": "nível de depleção",
+    "examples": [
+      "The level of depletion in the aquifer is alarming.",
+      "The level of depletion of the forest resources has increased."
+    ]
+  },
+  {
+    "term": "mentally",
+    "meaning_pt": "mentalmente, em termos mentais",
+    "examples": [
+      "She was mentally exhausted after the long meeting.",
+      "The game is mentally challenging, requiring strategic thinking."
+    ]
+  },
+  {
+    "term": "emotionally",
+    "meaning_pt": "Emocionalmente, relativo às emoções ou afetos",
+    "examples": [
+      "She reacted emotionally to the news.",
+      "He was emotionally invested in the project."
+    ]
+  },
+  {
+    "term": "financially",
+    "meaning_pt": "financeiramente, em termos financeiros",
+    "examples": [
+      "She decided to invest financially in the new startup.",
+      "The company is financially stable despite the market downturn."
+    ]
+  },
+  {
+    "term": "psychologically",
+    "meaning_pt": "em termos psicológicos, do ponto de vista psicológico",
+    "examples": [
+      "The therapy helped her recover psychologically after the accident.",
+      "He was psychologically prepared for the challenges of the new job."
+    ]
+  },
+  {
+    "term": "exact place",
+    "meaning_pt": "local exato, lugar preciso",
+    "examples": [
+      "I couldn't find the exact place where the meeting was scheduled.",
+      "She pointed to the exact place on the map where the treasure was buried."
+    ]
+  },
+  {
+    "term": "10 years",
+    "meaning_pt": "dez anos",
+    "examples": [
+      "She has been working at the company for 10 years.",
+      "The project will take 10 years to complete."
+    ]
+  },
+  {
+    "term": "success look",
+    "meaning_pt": "olhar que transmite sucesso ou confiança",
+    "examples": [
+      "She gave a success look after finishing the presentation.",
+      "His success look made everyone believe he had the answer."
+    ]
+  },
+  {
+    "term": "impact",
+    "meaning_pt": "impacto, efeito, colisão",
+    "examples": [
+      "The impact of the new policy was felt across the entire organization.",
+      "She was shocked by the impact of the news on her personal life."
+    ]
+  },
+  {
+    "term": "motivated by",
+    "meaning_pt": "impulsionado por, motivado por",
+    "examples": [
+      "She was motivated by a desire to help others.",
+      "The project was motivated by the need for sustainable solutions."
+    ]
+  },
+  {
+    "term": "nothing else",
+    "meaning_pt": "nenhuma outra coisa, nada além disso",
+    "examples": [
+      "I have nothing else to add.",
+      "She said she had nothing else to say."
+    ]
+  },
+  {
+    "term": "before I take",
+    "meaning_pt": "antes de eu tomar / antes de eu pegar",
+    "examples": [
+      "Before I take a break, I always check my emails.",
+      "She told me to wait before I take the medicine."
+    ]
+  },
+  {
+    "term": "last breath",
+    "meaning_pt": "último suspiro",
+    "examples": [
+      "He took his last breath as the lights went out.",
+      "The song ends with a quiet, emotional last breath."
+    ]
+  },
+  {
+    "term": "getting all",
+    "meaning_pt": "obter tudo ou conseguir tudo, geralmente usado para indicar que alguém está conseguindo ou alcançando tudo o que deseja ou precisa",
+    "examples": [
+      "She was getting all the praise for her hard work.",
+      "If you keep practicing, you'll be getting all the skills you need for the job."
+    ]
+  },
+  {
+    "term": "visions and",
+    "meaning_pt": "visões e (fragmento que indica que algo está sendo ligado a outra ideia ou substantivo)",
+    "examples": [
+      "The artist's visions and ideas were groundbreaking.",
+      "His visions and plans for the future were ambitious."
+    ]
+  },
+  {
+    "term": "ideas out",
+    "meaning_pt": "ideias fora da caixa",
+    "examples": [
+      "Let’s get our ideas out and share them with the team.",
+      "We need to put our ideas out to the world so others can benefit."
+    ]
+  },
+  {
+    "term": "belong to",
+    "meaning_pt": "pertencer a",
+    "examples": [
+      "The keys belong to the office manager.",
+      "These books belong to the library."
+    ]
+  },
+  {
+    "term": "mine",
+    "meaning_pt": "pronomes possessivos (meu/minha) ou substantivo (mina, mina de carvão)",
+    "examples": [
+      "This is my book.",
+      "The mine was closed due to safety concerns."
+    ]
+  },
+  {
+    "term": "assignments",
+    "meaning_pt": "tarefas ou trabalhos atribuídos",
+    "examples": [
+      "The teacher gave us several assignments to complete over the weekend.",
+      "She struggled to keep up with her assignments in the new course."
+    ]
+  },
+  {
+    "term": "empty myself",
+    "meaning_pt": "esvaziar a mim mesmo, remover algo interno (como medo, ansiedade, pensamentos) ou deixar de sentir algo",
+    "examples": [
+      "I need to empty myself of all the stress before the meeting.",
+      "She tried to empty herself of doubt by focusing on her strengths."
+    ]
+  },
+  {
+    "term": "create for",
+    "meaning_pt": "criar para (fazer algo destinado a alguém ou a algo)",
+    "examples": [
+      "I will create a presentation for the upcoming meeting.",
+      "She created a playlist for her friends' road trip."
+    ]
+  },
+  {
+    "term": "world",
+    "meaning_pt": "mundo",
+    "examples": [
+      "The world is full of wonders.",
+      "She traveled around the world."
+    ]
+  },
+  {
+    "term": "open a movie",
+    "meaning_pt": "abrir um filme (iniciar a reprodução ou acessar o arquivo de vídeo)",
+    "examples": [
+      "I need to open a movie before the meeting starts.",
+      "She asked me to open a movie for the kids to watch."
+    ]
+  },
+  {
+    "term": "studio here",
+    "meaning_pt": "estúdio aqui",
+    "examples": [
+      "The studio here has state-of-the-art equipment for recording.",
+      "If you need a quiet place to work, the studio here is perfect."
+    ]
+  },
+  {
+    "term": "Atlanta",
+    "meaning_pt": "cidade dos Estados Unidos, capital do estado da Geórgia",
+    "examples": [
+      "I visited Atlanta last summer and loved the vibrant music scene.",
+      "The company headquarters is located in Atlanta, a major business hub."
+    ]
+  },
+  {
+    "term": "one and only",
+    "meaning_pt": "o único e exclusivo",
+    "examples": [
+      "She is the one and only person who can help us.",
+      "He is my one and only friend."
+    ]
+  },
+  {
+    "term": "open to",
+    "meaning_pt": "aberto a, disposto a",
+    "examples": [
+      "She is open to new ideas and suggestions.",
+      "The company is open to hiring interns for the summer."
+    ]
+  },
+  {
+    "term": "public",
+    "meaning_pt": "público, de domínio público, que pertence ou é destinado ao público em geral",
+    "examples": [
+      "The public park is open to everyone.",
+      "She gave a public speech at the conference."
+    ]
+  },
+  {
+    "term": "charitable front",
+    "meaning_pt": "fórum de fachada caritativa",
+    "examples": [
+      "The organization was just a charitable front for money laundering.",
+      "Many people donated to the charitable front, unaware it was a scam."
+    ]
+  },
+  {
+    "term": "giving and",
+    "meaning_pt": "dar e receber (parte de uma expressão completa, como \"giving and receiving\")",
+    "examples": [
+      "Giving and receiving are both essential skills in a healthy relationship.",
+      "When you give and receive feedback, you foster growth and improvement."
+    ]
+  },
+  {
+    "term": "temporary",
+    "meaning_pt": "temporário, que dura por um curto período",
+    "examples": [
+      "She was hired on a temporary basis while the permanent employee was on leave.",
+      "The temporary bridge was built to replace the old one during repairs."
+    ]
+  },
+  {
+    "term": "in place",
+    "meaning_pt": "em seu lugar, em posição, pronto",
+    "examples": [
+      "The book is in place on the shelf.",
+      "Everything is in place for the ceremony."
+    ]
+  },
+  {
+    "term": "prison inmates",
+    "meaning_pt": "prisioneiros de prisão",
+    "examples": [
+      "The prison inmates were given a strict schedule for the day.",
+      "During the inspection, the guard checked the records of all prison inmates."
+    ]
+  },
+  {
+    "term": "teach them",
+    "meaning_pt": "ensinar a eles",
+    "examples": [
+      "The teacher will teach them how to solve algebraic equations.",
+      "We need to teach them the importance of respecting others."
+    ]
+  },
+  {
+    "term": "winging it",
+    "meaning_pt": "improvisar, fazer algo sem preparação ou planejamento prévio",
+    "examples": [
+      "I had to wing it during the presentation because I forgot my notes.",
+      "She was winging it in the kitchen, but the meal turned out surprisingly good."
+    ]
+  },
+  {
+    "term": "capable of",
+    "meaning_pt": "capaz de, que tem a capacidade de",
+    "examples": [
+      "She is capable of solving complex problems.",
+      "He is capable of learning a new language quickly."
+    ]
+  },
+  {
+    "term": "self-sufficient",
+    "meaning_pt": "autossuficiente, que consegue sustentar-se sem depender de outros",
+    "examples": [
+      "He grew up in a self-sufficient community where everyone shared resources.",
+      "The new policy aims to make the city self-sufficient in renewable energy."
+    ]
+  },
+  {
+    "term": "independent of",
+    "meaning_pt": "independente de",
+    "examples": [
+      "She made her decision independent of anyone else's advice.",
+      "The outcome of the experiment was independent of the initial conditions."
+    ]
+  },
+  {
+    "term": "Bitcoin",
+    "meaning_pt": "moeda digital descentralizada",
+    "examples": [
+      "I bought a few bitcoins last week to invest in cryptocurrency.",
+      "The price of Bitcoin fluctuates wildly during market hours."
+    ]
+  },
+  {
+    "term": "re-entry program",
+    "meaning_pt": "programa de reintegração",
+    "examples": [
+      "The state launched a new re-entry program to help former inmates find jobs and housing.",
+      "She enrolled in a re-entry program that offered counseling and job training after her release."
+    ]
+  },
+  {
+    "term": "over 40,000",
+    "meaning_pt": "mais de 40.000",
+    "examples": [
+      "There are over 40,000 people in the crowd.",
+      "The company has over 40,000 employees."
+    ]
+  },
+  {
+    "term": "formerly incarcerated",
+    "meaning_pt": "ex-prisioneiro, que já esteve preso",
+    "examples": [
+      "The formerly incarcerated individual found it challenging to secure stable employment.",
+      "Programs aimed at the formerly incarcerated often focus on education and job training."
+    ]
+  },
+  {
+    "term": "family reunification",
+    "meaning_pt": "reunião familiar, reunificação de membros da família",
+    "examples": [
+      "The family reunification process can take several months to complete.",
+      "After the war, many refugees were able to achieve family reunification with their loved ones."
+    ]
+  },
+  {
+    "term": "anger management",
+    "meaning_pt": "gerenciamento da raiva ou controle da raiva",
+    "examples": [
+      "After attending a workshop on anger management, he was able to handle stressful situations more calmly.",
+      "The therapist recommended a series of anger management exercises to help her cope with workplace conflicts."
+    ]
+  },
+  {
+    "term": "recetivism",
+    "meaning_pt": "recetivismo: prática de prescrever ou recomendar algo, especialmente em contextos médicos ou legais.",
+    "examples": [
+      "The physician's recetivism was evident when he prescribed a new medication for the patient.",
+      "In the courtroom, the lawyer's recetivism was questioned when he suggested an unconventional remedy."
+    ]
+  },
+  {
+    "term": "two-year process",
+    "meaning_pt": "processo de dois anos",
+    "examples": [
+      "The construction of the new bridge was a two-year process that required careful planning.",
+      "She completed her degree through a two-year process of intensive study and practical training."
+    ]
+  },
+  {
+    "term": "talking to",
+    "meaning_pt": "conversar com, falar com",
+    "examples": [
+      "I was talking to my friend about the new movie.",
+      "She was talking to the teacher when I entered the classroom."
+    ]
+  },
+  {
+    "term": "right guy",
+    "meaning_pt": "pessoa certa, o homem certo",
+    "examples": [
+      "I think he's the right guy to lead this project.",
+      "She finally found the right guy who understands her passions."
+    ]
+  },
+  {
+    "term": "show me",
+    "meaning_pt": "mostrar-me",
+    "examples": [
+      "Could you show me how to use this software?",
+      "Show me the evidence before you make a claim."
+    ]
+  },
+  {
+    "term": "use a phone",
+    "meaning_pt": "usar um telefone (celular)",
+    "examples": [
+      "She asked me to use a phone to call her friend.",
+      "During the meeting, he was not allowed to use a phone."
+    ]
+  },
+  {
+    "term": "payoneses",
+    "meaning_pt": "pessoas que usam ou trabalham com a plataforma de pagamentos Payoneer",
+    "examples": [
+      "Os payoneses precisam verificar suas contas para receber pagamentos internacionais.",
+      "Os payoneses têm acesso a cartões de débito vinculados à sua conta Payoneer."
+    ]
+  },
+  {
+    "term": "Apple phones",
+    "meaning_pt": "telefones da Apple",
+    "examples": [
+      "Apple phones are known for their sleek design and high performance.",
+      "Many people prefer Apple phones because of their user-friendly interface."
+    ]
+  },
+  {
+    "term": "simple things",
+    "meaning_pt": "coisas simples",
+    "examples": [
+      "I enjoy the simple things in life, like a cup of coffee in the morning.",
+      "She found joy in the simple things, such as listening to birds outside her window."
+    ]
+  },
+  {
+    "term": "married",
+    "meaning_pt": "casado, casada",
+    "examples": [
+      "She has been married for ten years.",
+      "They are married and have two children."
+    ]
+  },
+  {
+    "term": "divorced",
+    "meaning_pt": "divorciado, que passou por divórcio",
+    "examples": [
+      "After the divorce, she moved to a new city.",
+      "They have been divorced for five years."
+    ]
+  },
+  {
+    "term": "remarried",
+    "meaning_pt": "casado novamente",
+    "examples": [
+      "After the divorce, she remarried a year later.",
+      "He remarried his high school sweetheart after their first marriage ended."
+    ]
+  },
+  {
+    "term": "world was",
+    "meaning_pt": "o mundo era / o mundo estava",
+    "examples": [
+      "The world was a different place back then.",
+      "When I was young, the world was full of wonder."
+    ]
+  },
+  {
+    "term": "changing so fast",
+    "meaning_pt": "mudando tão rapidamente",
+    "examples": [
+      "The technology in this field is changing so fast that it's hard to keep up.",
+      "The fashion trends are changing so fast that yesterday's styles are already out of date."
+    ]
+  },
+  {
+    "term": "midst of",
+    "meaning_pt": "no meio de, em meio a",
+    "examples": [
+      "She found herself in the midst of a heated debate.",
+      "The city was in the midst of a massive snowstorm."
+    ]
+  },
+  {
+    "term": "pray you find",
+    "meaning_pt": "rezo para que você encontre / espero que você encontre",
+    "examples": [
+      "I pray you find the information you need in this report.",
+      "Pray you find the enclosed documents helpful for your research."
+    ]
+  },
+  {
+    "term": "everything that",
+    "meaning_pt": "tudo que",
+    "examples": [
+      "I want to know everything that happened during the meeting.",
+      "She read every book that was available in the library."
+    ]
+  },
+  {
+    "term": "God has",
+    "meaning_pt": "Deus tem / Deus possui",
+    "examples": [
+      "God has many blessings.",
+      "God has made us."
+    ]
+  },
+  {
+    "term": "gives you",
+    "meaning_pt": "concede a você / dá a você",
+    "examples": [
+      "This app gives you instant feedback on your writing.",
+      "The teacher gives you a lot of homework to complete."
+    ]
+  },
+  {
+    "term": "peace",
+    "meaning_pt": "paz",
+    "examples": [
+      "After the long conflict, the two nations finally signed a peace treaty.",
+      "She found peace in the quiet of the forest."
+    ]
+  },
+  {
+    "term": "joy",
+    "meaning_pt": "alegria, felicidade",
+    "examples": [
+      "She felt a deep joy when she saw her family again.",
+      "The children ran around the park with pure joy."
+    ]
+  },
+  {
+    "term": "wholeness",
+    "meaning_pt": "integridade, totalidade, estado completo",
+    "examples": [
+      "The concept of wholeness emphasizes the importance of seeing the whole picture rather than focusing on isolated parts.",
+      "She felt a sense of wholeness after completing the project, knowing all the pieces fit together perfectly."
+    ]
+  },
+  {
+    "term": "dance in the rain",
+    "meaning_pt": "dançar na chuva",
+    "examples": [
+      "She decided to dance in the rain, feeling the droplets kiss her skin.",
+      "The movie's climax shows the protagonist dancing in the rain, symbolizing freedom."
+    ]
+  },
+  {
+    "term": "happy man",
+    "meaning_pt": "homem feliz",
+    "examples": [
+      "The happy man laughed at the joke.",
+      "She saw a happy man walking down the street."
+    ]
+  },
+  {
+    "term": "amazing",
+    "meaning_pt": "incrível, maravilhoso",
+    "examples": [
+      "The view from the top of the mountain was amazing.",
+      "She performed an amazing piano solo that left everyone in awe."
+    ]
+  },
+  {
+    "term": "powerful",
+    "meaning_pt": "poderoso, forte, influente",
+    "examples": [
+      "The powerful storm caused widespread damage.",
+      "She delivered a powerful speech that moved everyone."
+    ]
+  },
+  {
+    "term": "real",
+    "meaning_pt": "verdadeiro, real, que existe na realidade",
+    "examples": [
+      "The real cost of the project was much higher than expected.",
+      "She was surprised to learn that the rumors were not real."
+    ]
+  },
+  {
+    "term": "honor",
+    "meaning_pt": "honra (respeito, dignidade, integridade, reconhecimento de mérito)",
+    "examples": [
+      "He received a medal for his honor in service to the community.",
+      "She always acts with honor, even when no one is watching."
+    ]
+  },
+  {
+    "term": "give me",
+    "meaning_pt": "dar-me, me dê",
+    "examples": [
+      "Give me a moment to finish this task.",
+      "Could you give me your phone number?"
+    ]
+  },
+  {
+    "term": "hug",
+    "meaning_pt": "abraço",
+    "examples": [
+      "She gave me a warm hug after the long day.",
+      "They shared a hug to celebrate their reunion."
+    ]
+  },
+  {
+    "term": "beyond life",
+    "meaning_pt": "que vai além da vida, transcende a existência terrena",
+    "examples": [
+      "He believed that the soul goes beyond life and continues in another realm.",
+      "The concept of beyond life is central to many religions and philosophical traditions."
+    ]
+  },
+  {
+    "term": "life changed",
+    "meaning_pt": "a vida mudou",
+    "examples": [
+      "After the accident, my life changed completely.",
+      "When she moved to a new city, her life changed for the better."
+    ]
+  },
+  {
+    "term": "so many",
+    "meaning_pt": "tanta(s), muitos",
+    "examples": [
+      "I have so many books on my shelf.",
+      "She has so many friends that she can't keep track of them all."
+    ]
+  },
+  {
+    "term": "subscribe",
+    "meaning_pt": "inscrever-se, subscrever, aderir a um serviço ou conteúdo",
+    "examples": [
+      "I decided to subscribe to the newsletter to receive updates.",
+      "She will subscribe to the streaming service for the new season."
+    ]
+  },
+  {
+    "term": "future episodes",
+    "meaning_pt": "episódios futuros",
+    "examples": [
+      "We will release future episodes next month.",
+      "Future episodes will explore new themes."
+    ]
+  },
+  {
+    "term": "life isn't",
+    "meaning_pt": "a vida não é",
+    "examples": [
+      "Life isn't always easy, but it can be rewarding.",
+      "Life isn't just about working; it's also about enjoying moments with loved ones."
+    ]
+  },
+  {
+    "term": "how you begin",
+    "meaning_pt": "como você começa",
+    "examples": [
+      "How you begin a conversation can set the tone for the rest of the interaction.",
+      "The way you begin a project determines its success and the quality of the final outcome."
+    ]
+  },
+  {
+    "term": "how you finish",
+    "meaning_pt": "como você termina ou conclui algo",
+    "examples": [
+      "I’m curious to see how you finish the project after all the setbacks.",
+      "The teacher asked the students to write a paragraph about how they finish their homework on time."
+    ]
+  },
+  {
+    "term": "finish strong",
+    "meaning_pt": "terminar com força, concluir de forma poderosa",
+    "examples": [
+      "She trained hard all season to finish strong in the championship.",
+      "Despite the setbacks, he managed to finish strong and secure the top spot."
+    ]
+  },
+  {
+    "term": "start your",
+    "meaning_pt": "começar seu / iniciar seu",
+    "examples": [
+      "Start your day with a healthy breakfast.",
+      "Start your project by outlining the main objectives."
+    ]
+  },
+  {
+    "term": "I want to",
+    "meaning_pt": "eu quero",
+    "examples": [
+      "I want to learn Spanish.",
+      "I want to go to the beach this weekend."
+    ]
+  },
+  {
+    "term": "I want to open",
+    "meaning_pt": "Eu quero abrir",
+    "examples": [
+      "I want to open the door before the guests arrive.",
+      "She said, 'I want to open a new business in the city.'"
+    ]
+  },
+  {
+    "term": "I want to put",
+    "meaning_pt": "Quero colocar",
+    "examples": [
+      "I want to put the book on the shelf.",
+      "I want to put my keys in my bag."
+    ]
+  },
+  {
+    "term": "I want to teach",
+    "meaning_pt": "Quero ensinar",
+    "examples": [
+      "I want to teach my students about the solar system.",
+      "She said she wants to teach others how to cook healthy meals."
+    ]
+  },
+  {
+    "term": "I want to create",
+    "meaning_pt": "Quero criar",
+    "examples": [
+      "I want to create a new app that helps people learn languages.",
+      "I want to create a beautiful garden in my backyard."
+    ]
+  }
+]
