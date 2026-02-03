@@ -6,6 +6,17 @@ import sys
 from datetime import datetime
 
 BATCH_FILE = r"C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\CreateLater.json"
+# ============================================================
+# PATHS DE DESTINO PARA VERIFICAR REDUNDÂNCIA
+# ============================================================
+
+VIDEO_OUTPUT_PATHS = [
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\VideosSemJson",
+    r"C:\Users\leand\Desktop\wordbank",
+]
+
 MAIN_SCRIPT = "main.py"
 
 
@@ -24,6 +35,33 @@ def save_pending(pending_list):
     with open(BATCH_FILE, "w", encoding="utf-8") as f:
         json.dump({"pending": pending_list}, f, indent=2, ensure_ascii=False)
 
+def normalize_term(term: str) -> str:
+    """
+    Normaliza o termo para comparação com nomes de arquivos/pastas.
+    Ex: 'no matter' -> 'no_matter'
+    """
+    return term.strip().lower().replace(" ", "_")
+
+
+VIDEO_EXTENSIONS = {".mp4", ".mov", ".mkv", ".avi", ".webm"}
+
+def term_already_generated(term: str) -> bool:
+    normalized = normalize_term(term)
+
+    for base_path in VIDEO_OUTPUT_PATHS:
+        if not os.path.exists(base_path):
+            continue
+
+        for root, _, files in os.walk(base_path):
+            for file in files:
+                name, ext = os.path.splitext(file.lower())
+
+                if name == normalized and ext in VIDEO_EXTENSIONS:
+                    print(f" 🔁 JÁ EXISTE → '{term}' encontrado em:")
+                    print(f"    {os.path.join(root, file)}")
+                    return True
+
+    return False
 
 def run_word(word):
     print("\n Iniciando geração para:", word)
@@ -68,6 +106,13 @@ def run_batch():
     still_pending = []
 
     for word in pending:
+        # --------------------------------------------
+        # VERIFICAÇÃO DE REDUNDÂNCIA (ANTI-CUSTO)
+        # --------------------------------------------
+        if term_already_generated(word):
+            print(f" ⏭️  Pulando '{word}' (já processado anteriormente)\n")
+            continue
+
         ok = run_word(word)
 
         if ok:
