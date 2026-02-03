@@ -2,10 +2,14 @@
 # allsetra-platform-backend"
 
 $rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
-$outputFile    = ".\files\allsetra-platform-backend.txt"
+$outputFile = ".\files\allsetra-platform-backend_260203_uploadDocuments.txt"
 
-$selectedFiles = @()    
-$onlyFolders   = @()
+#$selectedFiles = @()    
+$selectedFiles = @("AppHost.cs", "IBlobService.cs", "TheftReportDocument.cs", "BlobService.cs", "ServiceCollectionExtensions.cs", 
+"program.cs","TheftReportsController.cs","TheftReportDocumentsController.cs","UploadTheftReportDocumentCommand.cs","UploadTheftReportDocumentCommandHandler.cs", "ICommandDispatcher.cs", "CommandDispatcher.cs",
+"ServiceCollectionExtensions.cs", "ServiceCollection.cs"
+)    
+$onlyFolders = @()
 
 # Descricao do conteudo do arquivo de saída
 $outputDescription = @"
@@ -13,14 +17,14 @@ $outputDescription = @"
 
 # Exclusões por nome/pasta
 $exceptions = @(
-    "node_modules","bin",".idea",".github","Properties","obj",".git",".vs",
-    "dist","Migrations","Class1.cs","certificates","Resources","Usings.cs","data"
+    "node_modules", "bin", ".idea", ".github", "Properties", "obj", ".git", ".vs",
+    "dist", "Migrations", "Class1.cs", "certificates", "Resources", "Usings.cs", "data"
 )
 
 # Extensões a ignorar
 $exceptionsExtensions = @(
-    ".png",".jpg",".jpeg",".gif",".ico",".exe",".dll",".pdb",".zip",".rar",".7z",
-    ".db",".mdf",".ldf",".pdf",".mp4",".http",".user",".csproj",".sln"
+    ".png", ".jpg", ".jpeg", ".gif", ".ico", ".exe", ".dll", ".pdb", ".zip", ".rar", ".7z",
+    ".db", ".mdf", ".ldf", ".pdf", ".mp4", ".http", ".user", ".csproj", ".sln"
 )
 
 $showFiles = $true
@@ -28,7 +32,7 @@ $showFiles = $true
 # --------- Helpers ---------
 
 function Should-ExcludePath {
-    param([string]$path,[string[]]$terms)
+    param([string]$path, [string[]]$terms)
     foreach ($t in $terms) {
         if ($path -like "*$t*") { return $true }
     }
@@ -123,8 +127,8 @@ function List-FolderContent {
     $indent = ("|   " * $indentLevel)
 
     $dirs = Get-ChildItem -Path $path -Directory -ErrorAction SilentlyContinue |
-            Where-Object { -not (Should-ExcludePath -path $_.FullName -terms $exceptions) } |
-            Sort-Object Name
+    Where-Object { -not (Should-ExcludePath -path $_.FullName -terms $exceptions) } |
+    Sort-Object Name
 
     foreach ($dir in $dirs) {
 
@@ -139,12 +143,12 @@ function List-FolderContent {
 
     if ($showFiles) {
         $files = Get-ChildItem -Path $path -File -ErrorAction SilentlyContinue |
-                 Where-Object {
-                    -not (Should-ExcludePath -path $_.FullName -terms $exceptions) -and
-                    (-not ($exceptionsExtensions -contains $_.Extension.ToLower())) -and
-                    (Should-IncludePath -path $_.FullName -onlyFolders $onlyFolders -onlyExtensions $onlyExtensions -selectedFiles $selectedFiles)
-                 } |
-                 Sort-Object Name
+        Where-Object {
+            -not (Should-ExcludePath -path $_.FullName -terms $exceptions) -and
+            (-not ($exceptionsExtensions -contains $_.Extension.ToLower())) -and
+            (Should-IncludePath -path $_.FullName -onlyFolders $onlyFolders -onlyExtensions $onlyExtensions -selectedFiles $selectedFiles)
+        } |
+        Sort-Object Name
 
         foreach ($file in $files) {
             Add-Content -Path $outputFile -Value "$indent|-- $($file.Name)"
@@ -153,9 +157,9 @@ function List-FolderContent {
 }
 
 function Get-RelativePathSafe {
-    param([string]$root,[string]$full)
+    param([string]$root, [string]$full)
     if ($full.StartsWith($root, [System.StringComparison]::OrdinalIgnoreCase)) {
-        return $full.Substring($root.Length).TrimStart('\','/')
+        return $full.Substring($root.Length).TrimStart('\', '/')
     }
     return $full
 }
