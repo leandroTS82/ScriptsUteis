@@ -18,6 +18,7 @@ echo  7  - Sync Wordbank + JSONs (zip)
 echo  8  - Sync Audios para ZIP
 echo  9  - Listar Videos Gerados
 echo  10 - Corrigir JSON (tag)
+echo  11 - Cria novos vídeos (Leandrinho) manualmente
 echo.
 echo  Digite o numero da opcao
 echo  ou digite "s" para sair
@@ -27,6 +28,7 @@ set /p OPCAO=Escolha:
 if /i "%OPCAO%"=="s" goto SAIR
 
 REM === SEMPRE DO MAIOR PARA O MENOR ===
+if "%OPCAO%"=="11" goto OP11
 if "%OPCAO%"=="10" goto OP10
 if "%OPCAO%"=="9"  goto OP9
 if "%OPCAO%"=="8"  goto OP8
@@ -100,6 +102,12 @@ goto MENU
 :OP10
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric"
 python fix_video_json_tags.py
+pause
+goto MENU
+
+:OP11
+cd /d "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
+python run_batch.py
 pause
 goto MENU
 

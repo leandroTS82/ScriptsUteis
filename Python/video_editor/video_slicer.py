@@ -45,22 +45,17 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_PATH = r"C:\dev\scripts\ScriptsUteis\Python\youtube_downloader\downloads"
-VIDEO_NAME = "Priscilla Shirer ｜ Keep Your Eyes Fixed on Jesus.mp4"
+VIDEO_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
+VIDEO_NAME = "2026-02-04_09-26-07.mp4"
 
 # 🔹 Nome lógico global do vídeo
-GLOBAL_VIDEO_NAME = "Batata"
+GLOBAL_VIDEO_NAME = "Vini sobre hrs"
 
 SEGMENTS = [
     {
-        "start": "00:00",
-        "end": "00:10",
-        "name": "introducao"
-    },
-    {
-        "start": "01:10",
-        "end": "01:15",
-        "name": "xxxx"
+        "start": "04:30",
+        "end": "04:57",
+        "name": "Next meeting"
     }
 ]
 
