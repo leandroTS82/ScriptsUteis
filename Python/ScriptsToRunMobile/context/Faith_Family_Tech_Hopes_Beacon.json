@@ -1,0 +1,74 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "even though",
+    "hard work",
+    "I have a dog."
+  ],
+  "transcripts": [
+    {
+      "term": "even though",
+      "definition_pt": {
+        "definition": "Expressão usada para introduzir uma informação que contrasta com a afirmação anterior.",
+        "synonyms_en": [
+          "although",
+          "though"
+        ],
+        "usage_pt": "Mesmo que chova, vamos ao parque."
+      },
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Even though it's cold, I walk with bold. (Mesmo que esteja frio, eu caminho com coragem.)"
+        },
+        {
+          "level": "A2",
+          "phrase": "Even though the night is long today, I sing a bright song. (Mesmo que a noite seja longa hoje, eu canto uma canção brilhante.)"
+        },
+        {
+          "level": "B1",
+          "phrase": "Even though the road is steep, I keep my heart deep. (Mesmo que a estrada seja íngreme, eu mantenho meu coração profundo.)"
+        }
+      ]
+    },
+    {
+      "term": "hard work",
+      "definition_pt": "Trabalho duro: esforço consistente e dedicado para alcançar objetivos, exigindo disciplina e perseverança. Synonyms (in English): diligence, industry, effort, perseverance, exertion. Uso comum em português: *O sucesso não vem sem trabalho duro; quem se dedica sempre alcança mais.*",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Even though the day may be gray, hard work lights the way. — Mesmo que o dia esteja cinza, o trabalho duro ilumina o caminho."
+        },
+        {
+          "level": "A2",
+          "phrase": "Even though the doubts may loom, hard work crafts a brighter bloom. — Mesmo que as dúvidas pairem, o trabalho duro cria um florescimento mais brilhante."
+        },
+        {
+          "level": "B1",
+          "phrase": "Even though the path winds in night, hard work carves the stars with light. — Mesmo que o caminho se enrole na noite, o trabalho duro esculpe as estrelas com luz."
+        }
+      ]
+    },
+    {
+      "term": "I have a dog.",
+      "definition_pt": "Tradução: Eu tenho um cachorro. Significado: Esta frase indica que a pessoa possui um cão. Sinônimos em inglês: I own a dog, I possess a dog, My dog. Usos comuns em português: usada para falar sobre a posse de um animal de estimação. Exemplo: Eu tenho um cachorro que gosta de brincar.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "I have a dog, even though the work is a slog. Eu tenho um cachorro, mesmo que o trabalho seja cansativo."
+        },
+        {
+          "level": "A2",
+          "phrase": "I have a dog, my hard work is a slog. Eu tenho um cachorro, meu trabalho duro é cansativo."
+        },
+        {
+          "level": "B1",
+          "phrase": "I have a dog, even though it may be a slog, I love it. Eu tenho um cachorro, mesmo que seja cansativo, eu o amo."
+        }
+      ]
+    }
+  ],
+  "timeline": [],
+  "final_story": "Even though the world outside seemed chaotic, the Johnson family gathered around their kitchen table each evening, their faith steady as a lighthouse in the storm. Mom, a software engineer, had spent the last year building a smart home app that could adjust lighting, temperature, and even play calming music with the touch of a button. Dad, a teacher, used the same app to remind the kids to do their homework and to celebrate their small victories. Their little sister, Lily, would always joke, “I have a dog, and he’s the only one who doesn’t use the app!”—and she was right; her golden retriever, Scout, could not resist the smell of freshly cut grass or a squeaky ball, not a screen.\n\nThe family’s faith guided their decisions. They prayed before each meal and each new feature launch, trusting that the technology they built would bring more joy than harm. Dad said, “Faith is the invisible code we write into everything we do, the version that never updates.” The children nodded, their eyes bright with the idea that even the smallest act could be powerful.\n\nThe project did not come easy. There were nights of debugging, of tweaking algorithms, and of learning how to let a machine learn the rhythm of a family’s life. It required hard work, but each milestone felt like a blessing. When Scout, the family dog, would sit beside the laptop while the kids studied, the screen flickered softly, and the whole room warmed with the glow of shared purpose.\n\nWhen the app finally launched, the Johnsons received a flood of messages from friends and neighbors. “It’s amazing how this tech helps your family stay connected,” one text read. The family felt their faith affirmed: their tools, their hard work, and their love were all part of a greater plan.\n\nThey celebrated with a small backyard barbecue, the sun setting over the garden, Scout happily chasing a frisbee. Dad lifted his mug and said, “Even though the world keeps evolving, it’s our family’s faith, love, and the simple joy of having a dog that keeps us grounded.” The story of the Johnsons became a reminder that with faith, family, and technology working together, every challenge could turn into a story of hope and joy.",
+  "title": "Faith, Family, Tech: Hope’s Beacon"
+}

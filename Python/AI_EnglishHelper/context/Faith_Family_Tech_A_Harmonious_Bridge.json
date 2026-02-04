@@ -1,0 +1,54 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "to hear",
+    "glad"
+  ],
+  "transcripts": [
+    {
+      "term": "to hear",
+      "definition_pt": "Ouvir: perceber sons com os ouvidos.",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I hear a bird singing.",
+          "pt": "Eu ouço um pássaro cantando."
+        },
+        {
+          "level": "A2",
+          "en": "She hears the music from the neighbor's house.",
+          "pt": "Ela ouve a música da casa do vizinho."
+        },
+        {
+          "level": "B1",
+          "en": "He heard the news about the new law while driving.",
+          "pt": "Ele ouviu as notícias sobre a nova lei enquanto dirigia."
+        }
+      ]
+    },
+    {
+      "term": "glad",
+      "definition_pt": "Feliz, contente ou satisfeito.",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I am glad you came.",
+          "pt": "Estou feliz que você veio."
+        },
+        {
+          "level": "A2",
+          "en": "She was glad to help.",
+          "pt": "Ela estava feliz em ajudar."
+        },
+        {
+          "level": "B1",
+          "en": "We were glad to hear that the project succeeded.",
+          "pt": "Ficamos felizes em saber que o projeto teve sucesso."
+        }
+      ]
+    }
+  ],
+  "timeline": [],
+  "final_story": "On a rainy Sunday, Maya’s family gathered in the living room for their weekly virtual Bible study. Her grandmother, who lived across the state, had just installed a new smart speaker, so the whole house was ready to **to hear** the pastor’s sermon as if he were right there in the kitchen.\n\nMaya’s father, who had spent the last decade working in tech, set up a screen that displayed the live stream and a chat window where questions could be typed. When the pastor spoke about the power of community, Maya’s heart fluttered. “We are all connected, no matter how far we are,” he said. “Faith is a bridge, not a fence.”\n\nThe family was **glad** to see how technology could turn distance into an opportunity to share in each other’s lives. The grandmother laughed as a funny meme popped up on the screen, and the kids giggled, their eyes bright with the simple joy of being together—even if only through a screen.\n\nAt the end of the session, Maya’s mother turned to the camera and said, “We’re so blessed to hear words that nourish our souls. Thank you, God, for giving us the tools to keep our faith alive.” The family clapped and sang the closing hymn, their voices harmonizing over the Wi‑Fi, proving that faith, family, and technology could coexist in a chorus of hope.",
+  "title": "Faith, Family, Tech: A Harmonious Bridge"
+}

@@ -1,0 +1,27 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "Run away"
+  ],
+  "transcripts": [
+    {
+      "term": "Run away",
+      "definition_pt": "Tradução: *fugir*.\n\nSignificado: Refere‑se a deixar rapidamente um local ou situação considerada perigosa, ameaçadora ou desconfortável.\n\nSinônimos (em inglês): escape, flee, get out.\n\nUso comum em português: \"Ele decidiu fugir da cidade quando o desastre chegou.\"",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Run away, don't delay! – Fuja, não demore!"
+        },
+        {
+          "level": "A2",
+          "phrase": "Run away, escape the gray. – Fugir, escapar do cinza."
+        },
+        {
+          "level": "B1",
+          "phrase": "Run away, let your dreams stay. – Fugir, deixar seus sonhos permanecerem."
+        }
+      ]
+    }
+  ],
+  "timeline": []
+}

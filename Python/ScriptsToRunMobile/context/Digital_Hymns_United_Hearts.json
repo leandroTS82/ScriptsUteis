@@ -1,0 +1,48 @@
+{
+  "mode": "song",
+  "inputs": [
+    "rehearsing",
+    "praise"
+  ],
+  "transcripts": [
+    {
+      "term": "rehearsing",
+      "definition_pt": "Rehearsing significa praticar ou ensaiar repetidamente algo, normalmente uma apresentação artística, antes de apresentá‑lo ao público. Em português pode ser traduzido por **ensaiando** ou **praticando**. É usado quando alguém treina um trecho musical, uma fala, uma peça de teatro, etc. Sinônimos: ensaiar, praticar, treinar. Exemplo: *Ela está rehearsing para o grande concerto*.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "I'm rehearsing, singing my song.\nEstou ensaiando, cantando minha música."
+        },
+        {
+          "level": "A2",
+          "phrase": "I'm rehearsing, humming the same song.\nEstou ensaiando, cantando a mesma música."
+        },
+        {
+          "level": "B1",
+          "phrase": "I'm rehearsing, dancing to the same song.\nEstou ensaiando, dançando ao mesmo ritmo."
+        }
+      ]
+    },
+    {
+      "term": "praise",
+      "definition_pt": "O termo **praise** refere‑se ao ato de elogiar, reconhecer ou expressar admiração por alguém ou algo. Em português pode ser traduzido como *elogiar*, *reconhecer* ou *admirar*. É usado em contextos onde se valoriza um desempenho, qualidade ou caráter positivo, como: *She gave a heartfelt praise to her teammate.* (Ela ofereceu um elogio sincero ao seu companheiro de equipe). Synonyms: *compliment, acclaim, laud*. Uso comum: \"Praise the good work\" → \"Elogie o bom trabalho\".",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "I will praise the sunrise today. / Eu elogio o nascer do sol hoje."
+        },
+        {
+          "level": "A2",
+          "phrase": "In the quiet, we praise the night today. / No silêncio, elogiamo a noite hoje."
+        },
+        {
+          "level": "B1",
+          "phrase": "Let the choir praise, singing loud today. / Deixe o coral elogiar, cantando alto hoje."
+        }
+      ]
+    }
+  ],
+  "timeline": [],
+  "final_story": "**“Digital Praise”**\n\n(Verse)  \nWe’re **rehearsing** all the hymns we’ll bring,  \nWith glowing screens that shine like spring.  \nFaith in every note we play,  \nFamily gathers in a tech‑lit bay.  \n\n(Bridge)  \nWith each chorus, hearts ignite,  \nPraising God in pure delight.  \nThe internet keeps us all in line—  \nFaith, family, tech, a perfect rhyme.  \n\n(Outro)  \nSo lift your voice, let love ascend,  \nIn every click, our faith will mend.  \nTogether we’re a choir so bright,  \nRehearsing, praising, shining light.",
+  "title": "Digital Hymns, United Hearts"
+}

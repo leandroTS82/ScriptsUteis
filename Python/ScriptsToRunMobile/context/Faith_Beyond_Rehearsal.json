@@ -1,0 +1,124 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "stop rehearsing",
+    "Start responding.",
+    "Instead of just practicing",
+    "even",
+    "even though",
+    "Even though, instead of just practicing"
+  ],
+  "transcripts": [
+    {
+      "term": "stop rehearsing",
+      "definition_pt": "Significa parar de ensaiar ou praticar algo, geralmente em preparação para uma apresentação ou atividade.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "It is time to stop rehearsing and go to bed."
+        },
+        {
+          "level": "A2",
+          "phrase": "We will stop rehearsing so we can be ready for the real performance."
+        },
+        {
+          "level": "B1",
+          "phrase": "Instead of just practicing, it's important to stop rehearsing and start performing."
+        }
+      ]
+    },
+    {
+      "term": "Start responding.",
+      "definition_pt": "Significa iniciar a resposta a uma pergunta, instrução ou solicitação, ou seja, começar a responder.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Remember: stop rehearsing and Start responding."
+        },
+        {
+          "level": "A2",
+          "phrase": "During the interview, the manager told the candidate, 'stop rehearsing and Start responding.'"
+        },
+        {
+          "level": "B1",
+          "phrase": "After the practice session, the coach reminded the players: 'stop rehearsing and Start responding to the coach’s instructions.'"
+        }
+      ]
+    },
+    {
+      "term": "Instead of just practicing",
+      "definition_pt": "Indica que, em vez de fazer apenas a prática, é necessário realizar uma ação adicional, como aplicar, avaliar ou responder.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Instead of just practicing, stop rehearsing and start answering questions."
+        },
+        {
+          "level": "A2",
+          "phrase": "Instead of just practicing, you should think about how to use what you learned in a real situation."
+        },
+        {
+          "level": "B1",
+          "phrase": "Instead of just practicing, try to explain the concept to someone else to deepen your understanding."
+        }
+      ]
+    },
+    {
+      "term": "even",
+      "definition_pt": "Advérbio que indica algo inesperado, surpreendente ou que acrescenta ênfase a uma afirmação, normalmente usado para reforçar uma ideia.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Even the cat likes milk."
+        },
+        {
+          "level": "A2",
+          "phrase": "Even when I stop rehearsing, I can still play the piano."
+        },
+        {
+          "level": "B1",
+          "phrase": "Even instead of just practicing, I need to start responding to questions."
+        }
+      ]
+    },
+    {
+      "term": "even though",
+      "definition_pt": "Expressa uma concessão, indicando que algo acontece apesar de outra condição ou situação contrária.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Even though I am tired, I will stop rehearsing the song."
+        },
+        {
+          "level": "A2",
+          "phrase": "Even though the test was hard, she started responding to all questions."
+        },
+        {
+          "level": "B1",
+          "phrase": "Even though instead of just practicing, I still find it hard to remember the lyrics."
+        }
+      ]
+    },
+    {
+      "term": "Even though, instead of just practicing",
+      "definition_pt": "A expressão \"Even though, instead of just practicing\" indica que, apesar de algo, escolhemos fazer algo diferente do que simplesmente praticar. Ela introduz uma ideia de contraste e escolha de ação alternativa.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Even though, instead of just practicing, I sang in the shower."
+        },
+        {
+          "level": "A2",
+          "phrase": "Even though, instead of just practicing, we should try speaking with a native friend."
+        },
+        {
+          "level": "B1",
+          "phrase": "Even though, instead of just practicing, I joined a conversation club to improve my fluency."
+        }
+      ]
+    }
+  ],
+  "timeline": [],
+  "final_story": "\"stop rehearsing,\" whispered Maya to her son as he stared at the screen. He had been rehearsing his prayer recitation for the family video call, but Maya believed that faith is more than repetition. She told him, \"Start responding.\"\n\nThey had recently adopted the new AI assistant to connect their family across the city. Instead of just practicing the lines, they let the assistant ask spontaneous questions. The child answered with a genuine heart, his words echoing the family's faith. He was even smiling as the robot listened.\n\nEven though the technology was new, the family trusted it would bring them closer. even though their grandparents lived in a quiet town, the video call made them feel the same love as if they were side by side. instead of just practicing, the grandson answered from his heart, and the screen shimmered with laughter.",
+  "title": "Faith Beyond Rehearsal"
+}

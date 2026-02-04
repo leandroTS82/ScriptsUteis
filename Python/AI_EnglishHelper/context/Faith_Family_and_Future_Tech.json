@@ -1,0 +1,76 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "glad",
+    "for that purpose",
+    "And you?"
+  ],
+  "transcripts": [
+    {
+      "term": "glad",
+      "definition_pt": "Adjetivo que expressa alegria ou satisfação; alguém que está contente ou satisfeito.",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I am glad to see you.",
+          "pt": "Estou feliz em te ver."
+        },
+        {
+          "level": "A2",
+          "en": "She was glad when she got the job offer.",
+          "pt": "Ela ficou contente quando recebeu a oferta de emprego."
+        },
+        {
+          "level": "B1",
+          "en": "We were glad that the rain stopped during our picnic.",
+          "pt": "Ficamos felizes que a chuva parou durante o nosso piquenique."
+        }
+      ]
+    },
+    {
+      "term": "for that purpose",
+      "definition_pt": "Usado para indicar o motivo ou objetivo de uma ação; indica que algo é feito para alcançar um propósito específico.",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I will bring a map for that purpose.",
+          "pt": "Eu trarei um mapa para esse fim."
+        },
+        {
+          "level": "A2",
+          "en": "You can use this tool for that purpose.",
+          "pt": "Você pode usar esta ferramenta para esse fim."
+        },
+        {
+          "level": "B1",
+          "en": "I saved the document for that purpose.",
+          "pt": "Eu salvei o documento para esse propósito."
+        }
+      ]
+    },
+    {
+      "term": "And you?",
+      "definition_pt": "Expressão usada para devolver ou continuar uma pergunta ou comentário, perguntando o que a outra pessoa pensa ou faz. Equivale a \"E você?\".",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I like coffee. And you?",
+          "pt": "Eu gosto de café. E você?"
+        },
+        {
+          "level": "A2",
+          "en": "I finished my homework. And you?",
+          "pt": "Eu terminei meu dever de casa. E você?"
+        },
+        {
+          "level": "B1",
+          "en": "I have been working a lot lately. And you?",
+          "pt": "Eu tenho trabalhado muito ultimamente. E você?"
+        }
+      ]
+    }
+  ],
+  "timeline": [],
+  "final_story": "On a rainy Thursday, the Johnson family gathered around a sleek smart speaker in the living room. Their father, an engineer, had spent the last week building a small robot that could help with chores—“just to keep the kids busy while we pray,” he said, smiling at his wife and two kids.\n\nWhen the robot finally whirred to life, the youngest, Lily, squealed. “I’m so glad!” she exclaimed. “It’s like a little helper from the future!”\n\nTheir mother, a devout woman, nodded and whispered, “This is a blessing. We’re using technology to ease our burdens, so we can focus more on faith, family, and each other.”\n\nThe father turned to Lily and asked, “And you?” He meant to invite her to share her feelings. Lily grinned and answered, “I want to learn to program so I can help build more helpful things for our family.”\n\nTogether, they set a goal: the robot would clean up after dinner for that purpose, freeing up the family to share stories, sing songs, and read a passage from the Bible. Each evening, after dinner, they would gather around the table, the robot humming in the corner, and talk about how technology could be a tool for love, not a distraction.\n\nIn the glow of the screen, the Johnsons felt their faith strengthened by the evidence that caring and curiosity could coexist. Their hearts were full of gratitude, and their smiles were bright. The family’s faith in each other and in the future had never felt so hopeful.",
+  "title": "Faith, Family, and Future Tech"
+}

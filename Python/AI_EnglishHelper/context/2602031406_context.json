@@ -1,0 +1,50 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "glad",
+    "to hear"
+  ],
+  "transcripts": [
+    {
+      "definition_pt": "Sentindo prazer ou satisfação por algo.",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I am glad to see you.",
+          "pt": "Eu fico feliz em te ver."
+        },
+        {
+          "level": "A2",
+          "en": "Grace is glad when the sun comes out.",
+          "pt": "Grace fica feliz quando o sol aparece."
+        },
+        {
+          "level": "B1",
+          "en": "Leandro is glad that Melissa is happy with her new drawing.",
+          "pt": "Leandro fica feliz porque Melissa está contente com seu novo desenho."
+        }
+      ]
+    },
+    {
+      "definition_pt": "Ouvir algo ou alguém com os ouvidos.",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I hear the music.",
+          "pt": "Eu ouço a música."
+        },
+        {
+          "level": "A2",
+          "en": "Leandro can hear the phone ring.",
+          "pt": "Leandro ouve o telefone tocar."
+        },
+        {
+          "level": "B1",
+          "en": "Grace is glad to hear that the children are home safely.",
+          "pt": "Grace está feliz em ouvir que as crianças chegaram em casa em segurança."
+        }
+      ]
+    }
+  ],
+  "timeline": []
+}

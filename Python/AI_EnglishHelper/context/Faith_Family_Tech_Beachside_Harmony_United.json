@@ -1,0 +1,67 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "the bottom line is that",
+    "I enjoy spending time with my family.",
+    "Go to the beach."
+  ],
+  "transcripts": [
+    {
+      "term": "the bottom line is that",
+      "definition_pt": "Expressão usada para indicar a conclusão ou o ponto mais importante de uma discussão.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "The bottom line is that we should clean up the kitchen."
+        },
+        {
+          "level": "A2",
+          "phrase": "The bottom line is that you need to finish your homework before going out."
+        },
+        {
+          "level": "B1",
+          "phrase": "The bottom line is that the company will have to cut costs to survive the recession."
+        }
+      ]
+    },
+    {
+      "term": "I enjoy spending time with my family.",
+      "definition_pt": "Expressa a ideia de que a pessoa aprecia passar tempo com seus familiares, demonstrando carinho e valorização desse vínculo.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "The bottom line is that I enjoy spending time with my family."
+        },
+        {
+          "level": "A2",
+          "phrase": "The bottom line is that I enjoy spending time with my family during the holidays."
+        },
+        {
+          "level": "B1",
+          "phrase": "The bottom line is that I enjoy spending time with my family, especially when we have dinner together."
+        }
+      ]
+    },
+    {
+      "term": "Go to the beach.",
+      "definition_pt": "A frase 'Go to the beach.' significa que a pessoa quer ir à praia para se divertir ou relaxar.",
+      "examples": [
+        {
+          "level": "A1",
+          "phrase": "Let's Go to the beach."
+        },
+        {
+          "level": "A2",
+          "phrase": "My family loves to Go to the beach."
+        },
+        {
+          "level": "B1",
+          "phrase": "After the picnic, my family and I decided to Go to the beach."
+        }
+      ]
+    }
+  ],
+  "timeline": [],
+  "final_story": "In the warm glow of the late afternoon, Mark checked his smart‑watch, and the gentle chime of the “family reminder” pinged: **“Go to the beach..”** He laughed, because the family app had just sent an invite for a quick seaside adventure. **“I enjoy spending time with my family.”** he told his daughter, as they packed beach towels and a portable speaker.\n\nTheir faith was a quiet, steady presence, like the tide. They sang a short prayer together, trusting in God’s guidance even as the waves crashed. The kids set up a high‑tech solar‑powered cooler, and Mark used an app to track the sun’s angle, ensuring their ice would stay fresh. The technology made their day smoother, but the love in their hearts kept it real.\n\nLater, they built a sandcastle that looked like a small chapel, complete with a tiny flag of their family’s crest. The kids giggled and pointed, their laughter echoing the rhythm of the waves. When the sun began to dip, the family gathered around a digital lantern, projecting soft light onto the shoreline, creating a glow that felt like a blessing from above.\n\n**The bottom line is that** faith, family, and technology can harmonize. Their day was simple yet profound; the technology simply served to enhance their connection, not replace it. They returned home with sand in their shoes and hearts full, knowing that every moment spent together was a small miracle.",
+  "title": "**Faith, Family, Tech: Beachside Harmony United**"
+}
