@@ -7,7 +7,7 @@ REM CONFIGURAÇÃO
 REM Informe o caminho COMPLETO do arquivo .py
 REM =====================================================
 
-set PY_SCRIPT_PATH=C:\Dev\GitLTS\ScriptsUteis\Python\AI_EnglishHelper\e.py
+set PY_SCRIPT_PATH=C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper\e.py
 
 REM =====================================================
 REM EXECUÇÃO
