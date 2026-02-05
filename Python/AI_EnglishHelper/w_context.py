@@ -34,7 +34,7 @@ STORY_THEMES = ["faith", "family", "technology"]
 FINAL_STORY_SIZE = "short"
 
 # ================================================================================
-# PROMPTS – COMMON
+# PROMPTS – COMMON  ✅ CORRIGIDO (ESCAPE DE JSON)
 # ================================================================================
 
 PROMPTS_COMMON = {
@@ -43,9 +43,18 @@ You are an English teacher.
 
 Input: "{input}"
 
-Return ONLY valid JSON in this format:
+Tasks:
+1. Check if the input is correct English.
+2. If it is wrong, explain briefly what is wrong and provide the correct form.
+3. If it is correct, say it is correct.
+4. Always provide the Brazilian Portuguese translation.
+
+Return ONLY valid JSON:
 {{
-  "corrected": "corrected English sentence or term",
+  "is_correct": true_or_false,
+  "corrected": "correct English sentence or term",
+  "error_explanation_en": "short explanation in English (empty if correct)",
+  "error_explanation_pt": "short explanation in Brazilian Portuguese (empty if correct)",
   "translation_pt": "Brazilian Portuguese translation"
 }}
 """
@@ -72,10 +81,6 @@ Rules:
 - Examples should gradually become richer as more terms are learned.
 - Each example must stay under 200 characters.
 - Focus on real, everyday usage.
-- Translations are secondary: keep them simple and direct.
-
-Use the following people when referring to individuals:
-Leandro (me), Grace (my wife), Geovanna, Vinnicius, Lucas, Melissa (my children).
 
 Return ONLY valid JSON:
 {{
@@ -119,10 +124,6 @@ Rules:
 - Add ONLY one new sentence to continue the story.
 - The sentence must use the new term naturally.
 - Keep the language simple and coherent.
-- Use the same protagonists consistently:
-  Leandro, Grace, Geovanna, Vinnicius, Lucas, Melissa.
-- Do NOT summarize or restart the story.
-- This sentence is part of an ongoing narrative.
 
 Return ONLY valid JSON:
 {{
@@ -138,35 +139,24 @@ Return ONLY valid JSON:
 
 PROMPTS_SONG = {
     "wordbank": """
-You are an English teacher creating a short rhyming song.
+You are an English teacher building a song progressively.
 
 Current term:
 "{term}"
 
-Previously learned terms:
+Previously created lines:
 {context_terms}
 
 Rules:
-- Create short rhyming lines.
-- Use emotional and musical language.
-- Use the same protagonists when people are mentioned:
-  Leandro, Grace, Geovanna, Vinnicius, Lucas, Melissa.
-- Group lines into short verses.
-- Provide a translation per verse (not line by line).
+- Create ONLY ONE short rhyming line (max 80 characters).
+- The line must include the current term.
+- Keep it musical and emotional.
+- Do NOT repeat previous lines.
 
 Return ONLY valid JSON:
 {{
-  "definition_pt": "brief explanation in Brazilian Portuguese",
-  "verses": [
-    {{
-      "lyrics_en": "short rhyming verse",
-      "lyrics_pt": "Brazilian Portuguese translation of the verse"
-    }},
-    {{
-      "lyrics_en": "another rhyming verse",
-      "lyrics_pt": "Brazilian Portuguese translation of the verse"
-    }}
-  ]
+  "line_en": "single rhyming line",
+  "line_pt": "Brazilian Portuguese translation of the line"
 }}
 """
 }
@@ -268,16 +258,13 @@ def main():
                 print(f"{C_YELLOW}🗑️ Contexto vazio. Encerrando.{C_RESET}")
                 return
 
-            story_prompt = (
-                f"Create a {FINAL_STORY_SIZE} rhyming song using ALL these terms:\n"
-                if mode == "song"
-                else f"Use ALL these terms in a {FINAL_STORY_SIZE} positive story:\n"
-            )
-
-            story = groq_text(
-                story_prompt +
-                f"{', '.join(ctx['inputs'])}\nThemes: {', '.join(STORY_THEMES)}"
-            )
+            if mode == "song":
+                story = "\n".join(ctx["timeline"])
+            else:
+                story = groq_text(
+                    f"Use ALL these terms in ONE short paragraph, positive and clear:\n"
+                    f"{', '.join(ctx['inputs'])}\nThemes: {', '.join(STORY_THEMES)}"
+                )
 
             title = groq_text(
                 f"Create a short inspiring title (max 6 words) for this text:\n{story}"
@@ -312,10 +299,19 @@ def main():
             print(f"{C_RED}⚠️ Termo inválido, ignorado.{C_RESET}")
             continue
 
-        print(f"{C_GREEN}✅ Frase correta.{C_RESET}")
+        if result.get("is_correct"):
+            print(f"{C_GREEN}✅ Correto.{C_RESET}")
+        else:
+            print(f"{C_YELLOW}❌ Incorreto.{C_RESET}")
+            print(f"{C_BLUE}✔ Correto:{C_RESET} {term}")
+            print(f"{C_CYAN}ℹ️ EN:{C_RESET} {result.get('error_explanation_en')}")
+            print(f"{C_CYAN}ℹ️ PT:{C_RESET} {result.get('error_explanation_pt')}")
+
+        if result.get("translation_pt"):
+            print(f"{C_CYAN}🌍 Tradução PT:{C_RESET} {result.get('translation_pt')}")
 
         # -------------------------------
-        # NARRATIVA
+        # MODOS
         # -------------------------------
         if mode == "narrative":
             step = groq_json(
@@ -324,47 +320,39 @@ def main():
                     timeline="\n".join(ctx["timeline"])
                 )
             )
-
             print(f"{C_BLUE}📖 {step['sentence_en']}{C_RESET}")
             print(f"{C_CYAN}   ↳ {step['sentence_pt']}{C_RESET}")
-
             ctx["timeline"].append(step["sentence_en"])
 
-        # -------------------------------
-        # ACUMULATIVO / CANÇÃO
-        # -------------------------------
+        elif mode == "song":
+            wb = groq_json(
+                PROMPTS_SONG["wordbank"].format(
+                    term=term,
+                    context_terms="\n".join(ctx["timeline"])
+                )
+            )
+            print(f"\n{C_BLUE}🎵 Linha criada:{C_RESET}")
+            print(f"♪ {wb['line_en']}")
+            print(f"{C_CYAN}  {wb['line_pt']}{C_RESET}")
+            ctx["timeline"].append(wb["line_en"])
+
         else:
-            if mode == "song":
-                wb = groq_json(
-                    PROMPTS_SONG["wordbank"].format(
-                        term=term,
-                        context_terms=", ".join(ctx["inputs"])
-                    )
+            wb = groq_json(
+                PROMPTS_ACCUMULATIVE["wordbank"].format(
+                    term=term,
+                    context_terms=", ".join(ctx["inputs"])
                 )
-                print(f"\n{C_BLUE}🎵 Definição PT:{C_RESET} {wb['definition_pt']}")
-                for v in wb["verses"]:
-                    print(f"♪ {v['lyrics_en']}")
-                    print(f"{C_CYAN}  {v['lyrics_pt']}{C_RESET}")
-            else:
-                wb = groq_json(
-                    PROMPTS_ACCUMULATIVE["wordbank"].format(
-                        term=term,
-                        context_terms=", ".join(ctx["inputs"])
-                    )
-                )
+            )
+            print(f"\n{C_BLUE}📘 {wb['definition_pt']}{C_RESET}")
+            for ex in wb["examples"]:
+                print(f" ➜ ({ex['level']}) {ex['en']}")
+                print(f"     {C_CYAN}{ex['pt']}{C_RESET}")
 
-                print(f"\n{C_BLUE}📘 Definição PT:{C_RESET} {wb['definition_pt']}")
-                print(f"{C_BLUE}🧩 Exemplos:{C_RESET}")
-
-                for ex in wb["examples"]:
-                    print(f" ➜ ({ex['level']}) {ex['en']}")
-                    print(f"     {C_CYAN}{ex['pt']}{C_RESET}")
-
-                ctx["transcripts"].append({
-                    "term": term,
-                    "definition_pt": wb["definition_pt"],
-                    "examples": wb["examples"]
-                })
+            ctx["transcripts"].append({
+                "term": term,
+                "definition_pt": wb["definition_pt"],
+                "examples": wb["examples"]
+            })
 
         ctx["inputs"].append(term)
 
