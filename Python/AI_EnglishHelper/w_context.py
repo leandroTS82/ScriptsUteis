@@ -34,10 +34,6 @@ STORY_THEMES = ["faith", "family", "technology"]
 FINAL_STORY_SIZE = "short"
 
 # ================================================================================
-# PROMPTS (JÁ CORRIGIDOS – NÃO MEXER)
-# ================================================================================
-
-# ================================================================================
 # PROMPTS – COMMON
 # ================================================================================
 
@@ -272,16 +268,16 @@ def main():
                 print(f"{C_YELLOW}🗑️ Contexto vazio. Encerrando.{C_RESET}")
                 return
 
-            if mode == "song":
-                story = groq_text(
-                    f"Create a {FINAL_STORY_SIZE} rhyming song using ALL these terms:\n"
-                    f"{', '.join(ctx['inputs'])}\nThemes: {', '.join(STORY_THEMES)}"
-                )
-            else:
-                story = groq_text(
-                    f"Use ALL these terms in a {FINAL_STORY_SIZE} positive story:\n"
-                    f"{', '.join(ctx['inputs'])}\nThemes: {', '.join(STORY_THEMES)}"
-                )
+            story_prompt = (
+                f"Create a {FINAL_STORY_SIZE} rhyming song using ALL these terms:\n"
+                if mode == "song"
+                else f"Use ALL these terms in a {FINAL_STORY_SIZE} positive story:\n"
+            )
+
+            story = groq_text(
+                story_prompt +
+                f"{', '.join(ctx['inputs'])}\nThemes: {', '.join(STORY_THEMES)}"
+            )
 
             title = groq_text(
                 f"Create a short inspiring title (max 6 words) for this text:\n{story}"
@@ -308,7 +304,7 @@ def main():
         # CORREÇÃO / TRADUÇÃO
         # -------------------------------
         result = groq_json(
-            PROMPTS["correct_and_translate"].format(input=text)
+            PROMPTS_COMMON["correct_and_translate"].format(input=text)
         )
 
         term = result.get("corrected", "").strip()
@@ -323,7 +319,7 @@ def main():
         # -------------------------------
         if mode == "narrative":
             step = groq_json(
-                PROMPTS["narrative_step"].format(
+                PROMPTS_NARRATIVE["step"].format(
                     term=term,
                     timeline="\n".join(ctx["timeline"])
                 )
@@ -338,26 +334,37 @@ def main():
         # ACUMULATIVO / CANÇÃO
         # -------------------------------
         else:
-            key = "wordbank_song" if mode == "song" else "wordbank_accumulative"
-            wb = groq_json(
-                PROMPTS[key].format(
-                    term=term,
-                    context_terms=", ".join(ctx["inputs"])
+            if mode == "song":
+                wb = groq_json(
+                    PROMPTS_SONG["wordbank"].format(
+                        term=term,
+                        context_terms=", ".join(ctx["inputs"])
+                    )
                 )
-            )
+                print(f"\n{C_BLUE}🎵 Definição PT:{C_RESET} {wb['definition_pt']}")
+                for v in wb["verses"]:
+                    print(f"♪ {v['lyrics_en']}")
+                    print(f"{C_CYAN}  {v['lyrics_pt']}{C_RESET}")
+            else:
+                wb = groq_json(
+                    PROMPTS_ACCUMULATIVE["wordbank"].format(
+                        term=term,
+                        context_terms=", ".join(ctx["inputs"])
+                    )
+                )
 
-            print(f"\n{C_BLUE}📘 Definição PT:{C_RESET} {wb['definition_pt']}")
-            print(f"{C_BLUE}🧩 Exemplos:{C_RESET}")
+                print(f"\n{C_BLUE}📘 Definição PT:{C_RESET} {wb['definition_pt']}")
+                print(f"{C_BLUE}🧩 Exemplos:{C_RESET}")
 
-            for ex in wb["examples"]:
-                print(f" ➜ ({ex['level']}) {ex['en']}")
-                print(f"     {C_CYAN}{ex['pt']}{C_RESET}")
+                for ex in wb["examples"]:
+                    print(f" ➜ ({ex['level']}) {ex['en']}")
+                    print(f"     {C_CYAN}{ex['pt']}{C_RESET}")
 
-            ctx["transcripts"].append({
-                "term": term,
-                "definition_pt": wb["definition_pt"],
-                "examples": wb["examples"]
-            })
+                ctx["transcripts"].append({
+                    "term": term,
+                    "definition_pt": wb["definition_pt"],
+                    "examples": wb["examples"]
+                })
 
         ctx["inputs"].append(term)
 
