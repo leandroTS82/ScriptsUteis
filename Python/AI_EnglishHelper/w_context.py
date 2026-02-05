@@ -183,7 +183,7 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 # CONTEXT PATH
 # ================================================================================
 
-CONTEXT_DIR = "./context"
+CONTEXT_DIR = "./01_wContext"
 os.makedirs(CONTEXT_DIR, exist_ok=True)
 
 TMP_CONTEXT = os.path.join(
