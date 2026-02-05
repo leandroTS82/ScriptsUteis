@@ -1,0 +1,50 @@
+{
+  "mode": "accumulative",
+  "inputs": [
+    "to hear",
+    "glad"
+  ],
+  "transcripts": [
+    {
+      "definition_pt": "ouvir (ver os sons)",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I want to *to hear* the song.",
+          "pt": "Eu quero ouvir a música."
+        },
+        {
+          "level": "A2",
+          "en": "Vinnicius says he will *to hear* the announcement after he *to see* it.",
+          "pt": "Vinnicius diz que vai ouvir o anúncio depois que viu."
+        },
+        {
+          "level": "B1",
+          "en": "Leandro says he wants to *to hear* about Grace's day, so he will listen while she *to talk*.",
+          "pt": "Leandro diz que quer ouvir sobre o dia de Grace, então ele ouvirá enquanto ela fala."
+        }
+      ]
+    },
+    {
+      "definition_pt": "Feliz ou contente; que sente alegria.",
+      "examples": [
+        {
+          "level": "A1",
+          "en": "I am glad to see Leandro.",
+          "pt": "Estou feliz em ver Leandro."
+        },
+        {
+          "level": "A2",
+          "en": "I am glad to hear Grace is coming.",
+          "pt": "Estou feliz em ouvir que Grace está vindo."
+        },
+        {
+          "level": "B1",
+          "en": "I am glad that when Vinnicius calls, we can hear his jokes again.",
+          "pt": "Estou feliz que, quando o Vinnicius liga, possamos ouvir suas piadas novamente."
+        }
+      ]
+    }
+  ],
+  "timeline": []
+}

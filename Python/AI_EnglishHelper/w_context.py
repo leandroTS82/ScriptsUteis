@@ -37,8 +37,11 @@ FINAL_STORY_SIZE = "short"
 # PROMPTS (JÁ CORRIGIDOS – NÃO MEXER)
 # ================================================================================
 
-PROMPTS = {
+# ================================================================================
+# PROMPTS – COMMON
+# ================================================================================
 
+PROMPTS_COMMON = {
     "correct_and_translate": """
 You are an English teacher.
 
@@ -49,72 +52,125 @@ Return ONLY valid JSON in this format:
   "corrected": "corrected English sentence or term",
   "translation_pt": "Brazilian Portuguese translation"
 }}
-""",
+"""
+}
 
-    "wordbank_accumulative": """
-You are an English teacher.
+# ================================================================================
+# PROMPTS – ACCUMULATIVE MODE
+# ================================================================================
 
-Term: "{term}"
-Previous terms: {context_terms}
+PROMPTS_ACCUMULATIVE = {
+    "wordbank": """
+You are an English teacher building a cumulative learning wordbank.
+
+Current term:
+"{term}"
+
+Previously learned terms (reuse naturally when appropriate):
+{context_terms}
+
+Rules:
+- Examples must NOT rhyme.
+- ALL examples must include the current term.
+- At least one example should naturally reuse one or more previous terms.
+- Examples should gradually become richer as more terms are learned.
+- Each example must stay under 200 characters.
+- Focus on real, everyday usage.
+- Translations are secondary: keep them simple and direct.
+
+Use the following people when referring to individuals:
+Leandro (me), Grace (my wife), Geovanna, Vinnicius, Lucas, Melissa (my children).
 
 Return ONLY valid JSON:
 {{
-  "definition_pt": "definition in Brazilian Portuguese",
+  "definition_pt": "short and clear definition in Brazilian Portuguese",
   "examples": [
     {{
       "level": "A1",
-      "en": "example sentence",
-      "pt": "translation"
+      "en": "simple sentence",
+      "pt": "simple translation"
     }},
     {{
       "level": "A2",
-      "en": "example sentence",
-      "pt": "translation"
+      "en": "slightly richer sentence",
+      "pt": "simple translation"
     }},
     {{
       "level": "B1",
-      "en": "example sentence",
-      "pt": "translation"
+      "en": "contextual sentence reusing previous terms if possible",
+      "pt": "simple translation"
     }}
   ]
 }}
-""",
+"""
+}
 
-    "wordbank_song": """
-You are an English teacher helping create lyrics.
+# ================================================================================
+# PROMPTS – NARRATIVE MODE
+# ================================================================================
 
-Term: "{term}"
-Previous terms: {context_terms}
+PROMPTS_NARRATIVE = {
+    "step": """
+You are progressively building a simple and coherent story.
 
-Return ONLY valid JSON:
-{{
-  "definition_pt": "definition in Brazilian Portuguese",
-  "examples": [
-    {{
-      "level": "simple",
-      "en": "short lyrical sentence",
-      "pt": "translation"
-    }},
-    {{
-      "level": "medium",
-      "en": "rhythmic sentence",
-      "pt": "translation"
-    }}
-  ]
-}}
-""",
+New term:
+"{term}"
 
-    "narrative_step": """
-You are building a progressive short story.
-
-New term: "{term}"
 Story so far:
 {timeline}
 
+Rules:
+- Add ONLY one new sentence to continue the story.
+- The sentence must use the new term naturally.
+- Keep the language simple and coherent.
+- Use the same protagonists consistently:
+  Leandro, Grace, Geovanna, Vinnicius, Lucas, Melissa.
+- Do NOT summarize or restart the story.
+- This sentence is part of an ongoing narrative.
+
 Return ONLY valid JSON:
 {{
-  "sentence_en": "next sentence continuing the story using the term",
+  "sentence_en": "next sentence of the story",
   "sentence_pt": "Brazilian Portuguese translation"
+}}
+"""
+}
+
+# ================================================================================
+# PROMPTS – SONG MODE
+# ================================================================================
+
+PROMPTS_SONG = {
+    "wordbank": """
+You are an English teacher creating a short rhyming song.
+
+Current term:
+"{term}"
+
+Previously learned terms:
+{context_terms}
+
+Rules:
+- Create short rhyming lines.
+- Use emotional and musical language.
+- Use the same protagonists when people are mentioned:
+  Leandro, Grace, Geovanna, Vinnicius, Lucas, Melissa.
+- Group lines into short verses.
+- Provide a translation per verse (not line by line).
+
+Return ONLY valid JSON:
+{{
+  "definition_pt": "brief explanation in Brazilian Portuguese",
+  "verses": [
+    {{
+      "lyrics_en": "short rhyming verse",
+      "lyrics_pt": "Brazilian Portuguese translation of the verse"
+    }},
+    {{
+      "lyrics_en": "another rhyming verse",
+      "lyrics_pt": "Brazilian Portuguese translation of the verse"
+    }}
+  ]
 }}
 """
 }

@@ -2,13 +2,9 @@
 # allsetra-platform-backend"
 
 $rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
-$outputFile = ".\files\allsetra-platform-backend_260203_uploadDocuments.txt"
+$outputFile = ".\files\allsetra-platform-backend.txt"
 
-#$selectedFiles = @()    
-$selectedFiles = @("AppHost.cs", "IBlobService.cs", "TheftReportDocument.cs", "BlobService.cs", "ServiceCollectionExtensions.cs", 
-"program.cs","TheftReportsController.cs","TheftReportDocumentsController.cs","UploadTheftReportDocumentCommand.cs","UploadTheftReportDocumentCommandHandler.cs", "ICommandDispatcher.cs", "CommandDispatcher.cs",
-"ServiceCollectionExtensions.cs", "ServiceCollection.cs"
-)    
+$selectedFiles = @() 
 $onlyFolders = @()
 
 # Descricao do conteudo do arquivo de saída
