@@ -20,6 +20,34 @@ PRIMARY_SUB_LANG = "en"
 FALLBACK_SUB_LANG = "pt"
 
 # ======================================================
+# UTILS – TEMPO
+# ======================================================
+def parse_time_input(value: str) -> int:
+    """
+    Aceita:
+      - segundos: 120
+      - MM:SS    : 02:00
+      - HH:MM:SS : 01:02:03
+    Retorna segundos (int)
+    """
+    value = value.strip()
+
+    # apenas segundos
+    if value.isdigit():
+        return int(value)
+
+    parts = value.split(":")
+    if len(parts) == 2:       # MM:SS
+        m, s = parts
+        return int(m) * 60 + int(s)
+
+    if len(parts) == 3:       # HH:MM:SS
+        h, m, s = parts
+        return int(h) * 3600 + int(m) * 60 + int(s)
+
+    raise ValueError("Formato de tempo inválido")
+
+# ======================================================
 # UTILS – SRT
 # ======================================================
 def parse_srt_time(t: str) -> timedelta:
@@ -57,8 +85,7 @@ def trim_srt(srt_path: Path, t_ini: int, t_end: int):
         if len(lines) < 3:
             continue
 
-        time_line = lines[1]
-        match = re.match(r"(.*) --> (.*)", time_line)
+        match = re.match(r"(.*) --> (.*)", lines[1])
         if not match:
             continue
 
@@ -68,13 +95,14 @@ def trim_srt(srt_path: Path, t_ini: int, t_end: int):
         if t2 < start or t1 > end:
             continue
 
-        # clamp
         t1 = max(t1, start) - start
         t2 = min(t2, end) - start
 
-        new_time_line = f"{format_srt_time(t1)} --> {format_srt_time(t2)}"
-        new_block = [str(index), new_time_line] + lines[2:]
-        new_blocks.append("\n".join(new_block))
+        new_blocks.append("\n".join([
+            str(index),
+            f"{format_srt_time(t1)} --> {format_srt_time(t2)}",
+            *lines[2:]
+        ]))
         index += 1
 
     srt_path.write_text("\n\n".join(new_blocks), encoding="utf-8")
@@ -171,9 +199,6 @@ def download_youtube(
     command.append(url)
     subprocess.run(command, check=True)
 
-    # =====================================
-    # ✂️ RECORTE REAL DA LEGENDA
-    # =====================================
     if download_subs and partition:
         for srt in output_dir.glob(f"{custom_name or '*'}*.srt"):
             trim_srt(srt, t_ini, t_end)
@@ -189,8 +214,13 @@ if __name__ == "__main__":
     t_ini = t_end = None
 
     if partition:
-        t_ini = int(input("t_ini (segundos): "))
-        t_end = int(input("t_end (segundos): "))
+        try:
+            t_ini = parse_time_input(input("t_ini (segundos ou HH:MM:SS): "))
+            t_end = parse_time_input(input("t_end (segundos ou HH:MM:SS): "))
+            if t_end <= t_ini:
+                raise ValueError
+        except ValueError:
+            sys.exit("❌ Tempo inválido")
 
     name_input = input("Nome do arquivo (ou 'n' para usar o padrão): ").strip()
     custom_name = None if name_input.lower() == "n" else name_input
