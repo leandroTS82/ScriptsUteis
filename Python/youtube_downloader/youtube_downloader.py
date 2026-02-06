@@ -1,31 +1,143 @@
 import subprocess
 import sys
+import json
+import re
 from pathlib import Path
+from datetime import timedelta
 
 # ======================================================
-# CONFIGURAÇÕES
+# CONSTANTES
 # ======================================================
-OUTPUT_DIR = Path("./downloads")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+DEFAULT_OUTPUT_DIR = Path("./downloads")
+CONFIG_FILE = Path("./output_dirs.json")
 
 NODE_PATH = r"C:\Program Files\nodejs\node.exe"
 
 FORMAT = "bv*[protocol!=m3u8][ext=mp4]+ba[ext=m4a]/b[ext=mp4]/b"
 MERGE_FORMAT = "mp4"
 
-# idiomas preferidos de legenda (ordem importa)
-SUB_LANGS = ["en", "pt", "pt-BR"]
+PRIMARY_SUB_LANG = "en"
+FALLBACK_SUB_LANG = "pt"
+
+# ======================================================
+# UTILS – SRT
+# ======================================================
+def parse_srt_time(t: str) -> timedelta:
+    h, m, s_ms = t.split(":")
+    s, ms = s_ms.split(",")
+    return timedelta(
+        hours=int(h),
+        minutes=int(m),
+        seconds=int(s),
+        milliseconds=int(ms)
+    )
+
+
+def format_srt_time(td: timedelta) -> str:
+    total_ms = int(td.total_seconds() * 1000)
+    ms = total_ms % 1000
+    total_s = total_ms // 1000
+    s = total_s % 60
+    total_m = total_s // 60
+    m = total_m % 60
+    h = total_m // 60
+    return f"{h:02}:{m:02}:{s:02},{ms:03}"
+
+
+def trim_srt(srt_path: Path, t_ini: int, t_end: int):
+    start = timedelta(seconds=t_ini)
+    end = timedelta(seconds=t_end)
+
+    blocks = srt_path.read_text(encoding="utf-8").split("\n\n")
+    new_blocks = []
+    index = 1
+
+    for block in blocks:
+        lines = block.strip().splitlines()
+        if len(lines) < 3:
+            continue
+
+        time_line = lines[1]
+        match = re.match(r"(.*) --> (.*)", time_line)
+        if not match:
+            continue
+
+        t1 = parse_srt_time(match.group(1))
+        t2 = parse_srt_time(match.group(2))
+
+        if t2 < start or t1 > end:
+            continue
+
+        # clamp
+        t1 = max(t1, start) - start
+        t2 = min(t2, end) - start
+
+        new_time_line = f"{format_srt_time(t1)} --> {format_srt_time(t2)}"
+        new_block = [str(index), new_time_line] + lines[2:]
+        new_blocks.append("\n".join(new_block))
+        index += 1
+
+    srt_path.write_text("\n\n".join(new_blocks), encoding="utf-8")
+
+# ======================================================
+# OUTPUT DIR MANAGEMENT
+# ======================================================
+def load_saved_dirs():
+    if not CONFIG_FILE.exists():
+        return []
+    with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+        return json.load(f).get("paths", [])
+
+
+def save_dir(path: Path):
+    paths = load_saved_dirs()
+    p = str(path.resolve())
+    if p not in paths:
+        paths.append(p)
+        CONFIG_FILE.write_text(
+            json.dumps({"paths": paths}, indent=2, ensure_ascii=False),
+            encoding="utf-8"
+        )
+
+
+def choose_output_dir() -> Path:
+    print("\nEscolha o diretório de saída:")
+    print("1 - Usar diretório padrão (./downloads)")
+    print("2 - Informar novo diretório (salvar)")
+    print("3 - Escolher diretório salvo")
+
+    opt = input("Opção (1/2/3): ").strip()
+
+    if opt == "1":
+        DEFAULT_OUTPUT_DIR.mkdir(exist_ok=True)
+        return DEFAULT_OUTPUT_DIR
+
+    if opt == "2":
+        p = Path(input("Informe o caminho completo: ").strip())
+        p.mkdir(parents=True, exist_ok=True)
+        save_dir(p)
+        return p
+
+    if opt == "3":
+        paths = load_saved_dirs()
+        for i, p in enumerate(paths, 1):
+            print(f"{i} - {p}")
+        idx = int(input("Escolha o número: ").strip())
+        return Path(paths[idx - 1])
+
+    sys.exit("❌ Opção inválida")
 
 # ======================================================
 # CORE
 # ======================================================
 def download_youtube(
     url: str,
-    partition: bool = False,
-    t_ini: int | None = None,
-    t_end: int | None = None,
-    custom_name: str | None = None,
-    download_subs: bool = False,
+    output_dir: Path,
+    partition: bool,
+    t_ini: int | None,
+    t_end: int | None,
+    custom_name: str | None,
+    download_subs: bool
 ):
     output_template = "%(title).200s.%(ext)s"
     if custom_name:
@@ -33,99 +145,61 @@ def download_youtube(
 
     command = [
         sys.executable, "-m", "yt_dlp",
-
-        # 🔑 JS runtime explícito
         "--js-runtimes", f"node:{NODE_PATH}",
-
-        # 🛡️ Evita SABR quebrado
         "--extractor-args", "youtube:player_client=android",
-
-        # 🎥 Vídeo
         "-f", FORMAT,
         "--merge-output-format", MERGE_FORMAT,
-
-        # 🧹 Estabilidade
+        "--ignore-errors",
         "--no-playlist",
         "--force-overwrites",
         "--no-part",
-
-        # 📝 Output
-        "-o", str(OUTPUT_DIR / output_template),
+        "-o", str(output_dir / output_template),
     ]
 
-    # ==============================
-    # 📄 Legendas (opcional)
-    # ==============================
     if download_subs:
-        command.extend([
-            "--write-subs",                 # tenta legenda manual
-            "--write-auto-subs",            # fallback automática
-            "--sub-langs", ",".join(SUB_LANGS),
+        command += [
+            "--write-subs",
+            "--write-auto-subs",
+            "--sub-langs", f"{PRIMARY_SUB_LANG},{FALLBACK_SUB_LANG}",
             "--sub-format", "srt",
             "--convert-subs", "srt",
-        ])
+        ]
 
-    # ==============================
-    # ✂️ Corte do vídeo
-    # ==============================
-    if partition and t_ini is not None and t_end is not None:
-        command.extend([
-            "--download-sections",
-            f"*{t_ini}-{t_end}"
-        ])
+    if partition:
+        command += ["--download-sections", f"*{t_ini}-{t_end}"]
 
     command.append(url)
-
-    print("==============================================")
-    print("▶ Iniciando download do YouTube")
-    print(f"▶ URL: {url}")
-    if partition:
-        print(f"▶ Trecho: {t_ini}s → {t_end}s")
-    if download_subs:
-        print(f"▶ Legendas: {', '.join(SUB_LANGS)} (manual > auto)")
-    print(f"▶ Saída: {OUTPUT_DIR.resolve()}")
-    print("==============================================")
-
     subprocess.run(command, check=True)
 
-    print("==============================================")
-    print("✔ Download concluído com sucesso")
-    print("==============================================")
+    # =====================================
+    # ✂️ RECORTE REAL DA LEGENDA
+    # =====================================
+    if download_subs and partition:
+        for srt in output_dir.glob(f"{custom_name or '*'}*.srt"):
+            trim_srt(srt, t_ini, t_end)
 
 # ======================================================
 # MAIN
 # ======================================================
 if __name__ == "__main__":
     url = input("Informe a URL do YouTube: ").strip()
+    output_dir = choose_output_dir()
 
-    if not url.startswith("http"):
-        print("❌ URL inválida.")
-        sys.exit(1)
-
-    partition = input("Deseja particionar? (s/n): ").strip().lower() == "s"
-
+    partition = input("Deseja particionar o vídeo? (s/n): ").strip().lower() == "s"
     t_ini = t_end = None
-    if partition:
-        try:
-            t_ini = int(input("t_ini (em segundos): ").strip())
-            t_end = int(input("t_end (em segundos): ").strip())
-            if t_end <= t_ini:
-                raise ValueError
-        except ValueError:
-            print("❌ Tempos inválidos.")
-            sys.exit(1)
 
-    custom_name = None
-    if input("Deseja nomear o arquivo? (s/n): ").strip().lower() == "s":
-        custom_name = input("Informe o nome do arquivo: ").strip()
-        if not custom_name:
-            print("❌ Nome inválido.")
-            sys.exit(1)
+    if partition:
+        t_ini = int(input("t_ini (segundos): "))
+        t_end = int(input("t_end (segundos): "))
+
+    name_input = input("Nome do arquivo (ou 'n' para usar o padrão): ").strip()
+    custom_name = None if name_input.lower() == "n" else name_input
 
     download_subs = input("Deseja baixar a legenda? (s/n): ").strip().lower() == "s"
 
     download_youtube(
         url=url,
+        output_dir=output_dir,
         partition=partition,
         t_ini=t_ini,
         t_end=t_end,
