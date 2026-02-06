@@ -1,24 +1,7 @@
-import sys
 import subprocess
-import re
+import sys
 from pathlib import Path
 from datetime import timedelta
-
-# ======================================================
-# AUTO-INSTALL yt-dlp (ANDROID SAFE)
-# ======================================================
-def ensure_package(package_name, import_name=None):
-    module = import_name or package_name
-    try:
-        __import__(module)
-    except ImportError:
-        print(f"📦 '{package_name}' não encontrado. Instalando...")
-        subprocess.check_call([
-            sys.executable, "-m", "pip", "install", "-U", package_name
-        ])
-        print(f"✅ '{package_name}' instalado com sucesso.")
-
-ensure_package("yt-dlp", "yt_dlp")
 
 # ======================================================
 # CONFIG ANDROID
@@ -26,12 +9,39 @@ ensure_package("yt-dlp", "yt_dlp")
 OUTPUT_DIR = Path("/storage/emulated/0/Download/youtube_clips")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-FORMAT = "18/best"  # MP4 360p (mais estável no Android)
+FORMAT = "18/best"  # MP4 estável no Android
 PRIMARY_SUB_LANG = "pt"
 FALLBACK_SUB_LANG = "en"
 
 COOKIES_FILE = Path("/storage/emulated/0/Download/cookies.txt")
 USE_COOKIES = COOKIES_FILE.exists()
+
+# ======================================================
+# UTILS – TEMPO FLEXÍVEL
+# ======================================================
+def parse_time_input(value: str) -> int:
+    """
+    Aceita:
+      - segundos: 120
+      - MM:SS    : 02:00
+      - HH:MM:SS : 01:02:03
+    Retorna segundos (int)
+    """
+    value = value.strip()
+
+    if value.isdigit():
+        return int(value)
+
+    parts = value.split(":")
+    if len(parts) == 2:
+        m, s = parts
+        return int(m) * 60 + int(s)
+
+    if len(parts) == 3:
+        h, m, s = parts
+        return int(h) * 3600 + int(m) * 60 + int(s)
+
+    raise ValueError("Formato de tempo inválido")
 
 # ======================================================
 # SRT UTILS
@@ -103,12 +113,15 @@ partition = input("Deseja cortar? (s/n): ").strip().lower() == "s"
 t_ini = t_end = None
 
 if partition:
-    t_ini = int(input("t_ini (segundos): "))
-    t_end = int(input("t_end (segundos): "))
-    if t_end <= t_ini:
-        sys.exit("❌ t_end deve ser maior que t_ini")
+    try:
+        t_ini = parse_time_input(input("t_ini (segundos ou HH:MM:SS): "))
+        t_end = parse_time_input(input("t_end (segundos ou HH:MM:SS): "))
+        if t_end <= t_ini:
+            raise ValueError
+    except ValueError:
+        sys.exit("❌ Tempo inválido")
 
-name_input = input("Nome do arquivo (ou 'n' para padrão): ").strip()
+name_input = input("Nome do arquivo (ou 'n'): ").strip()
 custom_name = None if name_input.lower() == "n" else name_input
 
 output_tpl = "%(title)s.%(ext)s"
@@ -146,11 +159,11 @@ print("\n▶ Iniciando download...\n")
 subprocess.run(cmd, check=True)
 
 # ======================================================
-# RECORTE REAL DA LEGENDA
+# CORTE REAL DA LEGENDA
 # ======================================================
 if partition:
     for srt in OUTPUT_DIR.glob("*.srt"):
         trim_srt(srt, t_ini, t_end)
 
-print("\n✔ Concluído com sucesso")
+print("\n✔ Concluído")
 print(f"📁 Arquivos em: {OUTPUT_DIR}")
