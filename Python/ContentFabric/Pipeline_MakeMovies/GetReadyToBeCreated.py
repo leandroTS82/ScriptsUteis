@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 import sys
+import re
 
 # ======================================================
 # CONFIGURAÇÕES
@@ -40,6 +41,7 @@ def log(msg: str):
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(f"{datetime.now():%Y-%m-%d %H:%M:%S} | {msg}\n")
 
+
 def load_json(path: Path) -> dict:
     if not path.exists():
         raise FileNotFoundError("Arquivo não encontrado")
@@ -50,9 +52,19 @@ def load_json(path: Path) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+
 def save_json(path: Path, data: dict):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def safe_filename(name: str) -> str:
+    """
+    Remove caracteres inválidos para Windows:
+    < > : " / \ | ? *
+    """
+    return re.sub(r'[<>:"/\\|?*]', "_", name)
+
 
 # ======================================================
 # MAIN
@@ -105,6 +117,8 @@ def main() -> bool:
     # Processa arquivos individualmente (à prova de erro)
     # --------------------------------------------------
     for f in candidates:
+        safe_name = safe_filename(f.name)
+
         try:
             data = load_json(f)
 
@@ -117,12 +131,20 @@ def main() -> bool:
 
             unified.extend(pending)
 
-            f.rename(f.parent / f"processing_{f.name}")
+            target = f.parent / f"processing_{safe_name}"
+            f.rename(target)
+
             log(f"OK → {f.name} ({len(pending)} termos)")
 
         except Exception as e:
             log(f"ERRO → {f.name}: {e}")
-            f.rename(f.parent / f"error_{f.name}")
+
+            try:
+                error_target = f.parent / f"error_{safe_name}"
+                if f.exists():
+                    f.rename(error_target)
+            except Exception as rename_error:
+                log(f"ERRO CRÍTICO AO RENOMEAR {f.name}: {rename_error}")
 
     # --------------------------------------------------
     # Normalização
@@ -143,6 +165,7 @@ def main() -> bool:
     log(f"CreateLater.json preenchido com {len(unified)} termos")
 
     return True
+
 
 # ======================================================
 # ENTRYPOINT
