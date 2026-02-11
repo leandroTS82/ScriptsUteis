@@ -92,7 +92,7 @@ def get_video_duration(video):
          "-of", "default=nokey=1:noprint_wrappers=1", str(video)],
         capture_output=True, text=True
     )
-    return int(float(r.stdout.strip())) + 1
+    return int(float(r.stdout.strip())) + 3
 
 def play_video(video, duration):
     log(f"▶ Reproduzindo: {video.name}")
