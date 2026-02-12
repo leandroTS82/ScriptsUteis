@@ -2,7 +2,7 @@
 ====================================================================================
  EKF_DevInterviewEngine.py
  Dev Interview Training Engine (Groq Only)
- Versão: V3.0 - Navegação com voltar + limpar tela
+ Versão: V4.0 - Study Tracking + Smart Interview + Review Mode
 ====================================================================================
 """
 
@@ -28,6 +28,7 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
 STATS_FILE = os.path.join(os.path.dirname(__file__), "interview_stats.json")
+STUDY_FILE = os.path.join(os.path.dirname(__file__), "study_history.json")
 
 # =============================================================================
 # UTIL
@@ -40,7 +41,7 @@ def wait_enter():
     input("\nPress ENTER to continue...")
 
 # =============================================================================
-# GROQ ROTATION
+# GROQ
 # =============================================================================
 
 _groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
@@ -75,57 +76,66 @@ def groq_json(prompt: str) -> dict:
     return json.loads(raw_json)
 
 # =============================================================================
+# FILE HANDLERS
+# =============================================================================
+
+def load_json(path, default):
+    if not os.path.exists(path):
+        return default
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_json(path, data):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+# =============================================================================
 # PROMPTS
 # =============================================================================
 
-def build_study_prompt(area: str, level: str) -> str:
+def build_study_prompt(area: str, level: str):
     return f"""
-You are a senior backend architect teaching a developer preparing for interviews.
+You are a senior backend architect teaching for interviews.
 
 Topic: {area}
-Target level: {level}
-
-Return ONLY JSON:
-
-{{
-  "overview": "clear explanation",
-  "key_concepts": ["...", "...", "..."],
-  "real_world_examples": ["...", "..."],
-  "common_mistakes": ["...", "..."],
-  "interview_questions": ["...", "...", "..."]
-}}
-"""
-
-def build_question_prompt(level: str, area: str) -> str:
-    return f"""
-You are a senior technical interviewer.
-
-Generate ONE technical interview question.
-
-Area focus: {area}
 Level: {level}
 
 Return ONLY JSON:
 
 {{
-  "question": "...",
-  "area": "{area}",
-  "difficulty": "{level}"
+  "overview": "...",
+  "key_concepts": ["...", "..."],
+  "real_world_examples": ["...", "..."],
+  "common_mistakes": ["...", "..."]
 }}
 """
 
-def build_evaluation_prompt(question: str, answer: str) -> str:
+def build_question_prompt(level: str, area: str, study_context: str):
     return f"""
-Evaluate this Senior Backend Engineer answer.
+You are a senior interviewer.
 
-Question:
-"{question}"
+Area: {area}
+Level: {level}
 
-Answer:
-"{answer}"
+Recent study context:
+{study_context}
+
+Prioritize topics related to study context but you are not limited to them.
 
 Return ONLY JSON:
+{{
+  "question": "..."
+}}
+"""
 
+def build_evaluation_prompt(question: str, answer: str):
+    return f"""
+Evaluate this answer:
+
+Question: "{question}"
+Answer: "{answer}"
+
+Return ONLY JSON:
 {{
   "technical_score": 0,
   "clarity_score": 0,
@@ -136,29 +146,6 @@ Return ONLY JSON:
   "improved_answer_example": "..."
 }}
 """
-
-# =============================================================================
-# STATS
-# =============================================================================
-
-def load_stats():
-    if not os.path.exists(STATS_FILE):
-        return {"sessions": [], "total_xp": 0}
-
-    with open(STATS_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-def save_stats(data):
-    with open(STATS_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-
-def calculate_xp(result: dict) -> int:
-    total = (
-        result["technical_score"] +
-        result["clarity_score"] +
-        result["architecture_score"]
-    )
-    return int(total * 2)
 
 # =============================================================================
 # MENU HELPERS
@@ -180,9 +167,7 @@ def select_level():
         if cmd == "v":
             return None
 
-        level_map = {"1": "mid", "2": "senior", "3": "architect"}
-        if cmd in level_map:
-            return level_map[cmd]
+        return {"1": "mid", "2": "senior", "3": "architect"}.get(cmd)
 
 def select_area():
     while True:
@@ -203,17 +188,14 @@ def select_area():
         if cmd == "v":
             return None
 
-        area_map = {
+        return {
             "1": "Microservices",
             "2": "Event-Driven Architecture",
             "3": "Azure",
             "4": "AWS",
             "5": "System Design",
             "6": "Payments Architecture"
-        }
-
-        if cmd in area_map:
-            return area_map[cmd]
+        }.get(cmd)
 
 # =============================================================================
 # STUDY MODE
@@ -240,17 +222,20 @@ def run_study_mode():
     for c in study_data["key_concepts"]:
         print(f" - {c}")
 
-    print("\nReal World Examples:")
-    for e in study_data["real_world_examples"]:
-        print(f" - {e}")
-
     print("\nCommon Mistakes:")
     for m in study_data["common_mistakes"]:
         print(f" - {m}")
 
-    print("\nInterview Questions:")
-    for q in study_data["interview_questions"]:
-        print(f" - {q}")
+    history = load_json(STUDY_FILE, {"studies": []})
+
+    history["studies"].append({
+        "date": datetime.now().isoformat(),
+        "area": area,
+        "level": level,
+        "overview": study_data["overview"]
+    })
+
+    save_json(STUDY_FILE, history)
 
     wait_enter()
 
@@ -267,15 +252,23 @@ def run_interview():
     if not area:
         return
 
+    studies = load_json(STUDY_FILE, {"studies": []})["studies"]
+
+    study_context = ""
+    if studies:
+        recent = studies[-3:]
+        for s in recent:
+            study_context += f"{s['area']} ({s['level']}): {s['overview'][:150]}...\n"
+
     clear_screen()
     print("🧠 Generating question...\n")
 
-    question_data = groq_json(build_question_prompt(level, area))
+    question_data = groq_json(build_question_prompt(level, area, study_context))
     question = question_data["question"]
 
     print("=== INTERVIEW QUESTION ===\n")
     print(question)
-    print("\nType your answer below:\n")
+    print("\nType your answer:\n")
 
     answer = input("> ")
 
@@ -283,14 +276,12 @@ def run_interview():
     print("📊 Evaluating...\n")
 
     evaluation = groq_json(build_evaluation_prompt(question, answer))
-    xp = calculate_xp(evaluation)
 
     print("=== RESULT ===\n")
     print(f"Technical: {evaluation['technical_score']}/10")
     print(f"Clarity: {evaluation['clarity_score']}/10")
     print(f"Architecture: {evaluation['architecture_score']}/10")
     print(f"English: {evaluation['english_level']}")
-    print(f"\nXP Gained: {xp}")
 
     print("\nStrengths:")
     print(evaluation["strengths"])
@@ -298,25 +289,47 @@ def run_interview():
     print("\nImprovements:")
     print(evaluation["improvements"])
 
-    print("\nImproved Example:")
-    print(evaluation["improved_answer_example"])
-
-    stats = load_stats()
-    stats["sessions"].append({
-        "date": datetime.now().isoformat(),
-        "area": area,
-        "level": level,
-        "xp": xp
-    })
-    stats["total_xp"] += xp
-    save_stats(stats)
-
-    print(f"\n🔥 Total XP: {stats['total_xp']}")
-
     wait_enter()
 
 # =============================================================================
-# MAIN MENU
+# REVIEW MODE
+# =============================================================================
+
+def run_review_mode():
+    history = load_json(STUDY_FILE, {"studies": []})["studies"]
+
+    if not history:
+        print("No study history found.")
+        wait_enter()
+        return
+
+    while True:
+        clear_screen()
+        print("=== STUDY HISTORY ===\n")
+
+        for i, h in enumerate(history):
+            preview = h["overview"][:60].replace("\n", " ") + "..."
+            print(f"{i+1} - {h['area']} | {h['level']} - {preview}")
+
+        print("\nDigite número | v = voltar | s = sair")
+
+        cmd = input("Option: ").strip().lower()
+
+        if cmd == "s":
+            sys.exit()
+        if cmd == "v":
+            return
+
+        if cmd.isdigit():
+            index = int(cmd) - 1
+            if 0 <= index < len(history):
+                clear_screen()
+                print("=== FULL STUDY ===\n")
+                print(history[index]["overview"])
+                wait_enter()
+
+# =============================================================================
+# MAIN
 # =============================================================================
 
 def main():
@@ -325,6 +338,7 @@ def main():
         print("=== EKF DEV INTERVIEW ENGINE ===\n")
         print("1 - Interview Mode")
         print("2 - Study Mode")
+        print("3 - Review Study History")
         print("\nDigite número | s = sair")
 
         cmd = input("Option: ").strip().lower()
@@ -335,6 +349,8 @@ def main():
             run_interview()
         if cmd == "2":
             run_study_mode()
+        if cmd == "3":
+            run_review_mode()
 
 if __name__ == "__main__":
     main()
