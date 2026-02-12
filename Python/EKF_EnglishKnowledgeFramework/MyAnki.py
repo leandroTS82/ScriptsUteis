@@ -18,8 +18,8 @@ from itertools import cycle
 # CONFIGURAÇÕES
 # ============================================================
 
-BASE_TERMS_DIR = r"C:\Users\leand\Desktop\EnglishKnowledgeFramework\BaseTerms"
-VOCAB_DB_FILE = "./vocab_bank.json"
+BASE_TERMS_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\BaseTerms"
+VOCAB_DB_FILE = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\vocab_bank.json"
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
