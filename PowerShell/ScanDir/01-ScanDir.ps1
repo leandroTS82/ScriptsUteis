@@ -1,10 +1,10 @@
 # allsetra-admin-portal-backend
 # allsetra-platform-backend"
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python"
-$outputFile = ".\files\Estrutura_Python.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\EKF_EnglishKnowledgeFramework"
+$outputFile = ".\files\EKF_EnglishKnowledgeFramework.txt"
 
-$selectedFiles = @("doc.py",  "gemini_image_generator.py","gemini_image.json", "image_prompt.json" ) 
+$selectedFiles = @("w.py", "w_context.py", "MyAnki.py", "groq_keys_loader.py") 
 $onlyFolders = @()
 
 # Descricao do conteudo do arquivo de saída
