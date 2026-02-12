@@ -67,3 +67,6 @@ Python/OptimizedVideoPipeline/engine/video/__pycache__/
 Python/OptimizedVideoPipeline/engine/image/__pycache__/
 Python/AI_EnglishHelper/context/
 Python/AI_EnglishHelper/01_wContext/
+Python/EKF_EnglishKnowledgeFramework/_web_pdfs/
+Python/EKF_EnglishKnowledgeFramework/index.html
+Python/EKF_EnglishKnowledgeFramework/01_wContext/
