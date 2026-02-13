@@ -5,21 +5,42 @@ setlocal
 :MENU
 cls
 echo ==================================================
-echo        CONTENT FABRIC - MENU PRINCIPAL
+echo            CONTENT FABRIC - MENU
 echo ==================================================
 echo.
-echo  1  - Gerar Videos (Groq)
-echo  2  - Upload para YouTube
-echo  3  - Sincronizar JSONs faltantes
-echo  4  - Limpar filmes processados
-echo  5  - Mover arquivos
-echo  6  - Copiar arquivos inteligente
-echo  7  - Sync Wordbank + JSONs (zip)
-echo  8  - Sync Audios para ZIP
-echo  9  - Listar Videos Gerados
-echo  10 - Corrigir JSON (tag)
-echo  11 - Cria novos vídeos (Leandrinho) manualmente
+
+echo ================================
+echo  FASE 1 - CRIACAO DE CONTEUDO
+echo ================================
+echo  12 - Consolidar BaseTerms (Preparar novos conteudos)
+echo  11 - Criar Videos (Leandrinho)
+echo   5 - Mover arquivos para Sanitizacao
 echo.
+
+echo ================================
+echo  FASE 2 - SANITIZACAO (Pre-Youtube)
+echo ================================
+echo   9 - Listar Videos na pasta de sanitizacao
+echo   3 - Sincronizar JSONs faltantes
+echo   4 - Limpar filmes processados
+echo  10 - Corrigir JSON (tag)
+echo   1 - Ajustar contrato YouTube (Groq)
+echo.
+
+echo ================================
+echo  FASE 3 - PUBLICACAO
+echo ================================
+echo   2 - Upload para YouTube
+echo.
+
+echo ================================
+echo  FASE 4 - DISTRIBUICAO
+echo ================================
+echo   6 - Copiar arquivos inteligente
+echo   7 - Sync Wordbank + JSONs (zip)
+echo   8 - Sync Audios para ZIP
+echo.
+
 echo  Digite o numero da opcao
 echo  ou digite "s" para sair
 echo.
@@ -27,7 +48,8 @@ set /p OPCAO=Escolha:
 
 if /i "%OPCAO%"=="s" goto SAIR
 
-REM === SEMPRE DO MAIOR PARA O MENOR ===
+REM 
+if "%OPCAO%"=="12" goto OP12
 if "%OPCAO%"=="11" goto OP11
 if "%OPCAO%"=="10" goto OP10
 if "%OPCAO%"=="9"  goto OP9
@@ -110,6 +132,13 @@ cd /d "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
 python run_batch.py
 pause
 goto MENU
+
+:OP12
+cd /d "C:\dev\scripts\ScriptsUteis\Python\EKF_EnglishKnowledgeFramework"
+python consolidate_base_terms.py
+pause
+goto MENU
+
 
 :SAIR
 echo.
