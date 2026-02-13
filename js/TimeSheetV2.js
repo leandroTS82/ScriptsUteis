@@ -1,28 +1,28 @@
 (function () {
     const CONFIGS = [
-        {
-            day: "06",
-            month: "02",
-            year: "2026",
-            period: "morning",
-            description: `
-Consolidation of multiple PRs into a single stable PR (#41) after the automated review failed.
-Included the delay feature for notification sending, as requested.
-Performed the definitive removal of HasData for FAQ, StepDefinition, and StepDefinitionTranslation, replacing them with SQL insert scripts for data loading.
-            `
-        },
-        {
-            day: "06",
-            month: "02",
-            year: "2026",
-            period: "afternoon",
-            description: `
-Inserted SQL scripts into the database to support the DEV environment.
-Validated the migration and reviewed Azure Blob Storage configuration for document upload.
-Identified instability in the DEV environment after deployment; alignment made to resume the analysis on Monday, respecting the team's resting period.
-            `
-        }
-    ];
+    {
+        day: "09",
+        month: "02",
+        year: "2026",
+        period: "morning",
+        description: `
+Full validation of post-deploy flows: Theft Report creation, Zoho integration, Event Hub and Service Bus processing, status transitions, and correct email delivery with configured delay.
+Document upload testing in DEV (via console), confirming proper behavior after adjustments.
+Analysis of BE unavailability incident in DEV, including review of logs.
+        `
+    },
+    {
+        day: "09",
+        month: "02",
+        year: "2026",
+        period: "afternoon",
+        description: `
+Work on ClickUp tickets, including clarification of status/step mapping and contacting Gijs for validation.
+Creation of a detailed mapping spreadsheet (Zoho statuses × portal steps), including ordering, visibility, and adjustment points, shared with the team.
+Continuous communication with Vini and Paulo during testing and environment stabilization.
+        `
+    }
+];
 
     // =====================================================
     // ⚙️ CONFIGURAÇÃO FIXA

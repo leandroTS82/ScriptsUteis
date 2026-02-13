@@ -9,7 +9,7 @@ REM CONFIGURAÇÃO
 REM Informe o caminho COMPLETO do arquivo .py
 REM =====================================================
 
-set PY_SCRIPT_PATH=C:\dev\scripts\ScriptsUteis\Python\EKF_EnglishKnowledgeFramework\run_f.py
+set PY_SCRIPT_PATH=./run_f.py
 
 REM =====================================================
 REM EXECUÇÃO
