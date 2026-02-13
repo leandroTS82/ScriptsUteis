@@ -2,142 +2,208 @@
 chcp 65001 >nul
 setlocal
 
+:: ==================================================
+:: MENU PRINCIPAL (ABAS)
+:: ==================================================
 :MENU
 cls
 echo ==================================================
-echo            CONTENT FABRIC - MENU
+echo            CONTENT FABRIC
 echo ==================================================
 echo.
-
-echo ================================
-echo  FASE 1 - CRIACAO DE CONTEUDO
-echo ================================
-echo  12 - Consolidar BaseTerms (Preparar novos conteudos)
-echo  11 - Criar Videos (Leandrinho)
-echo   5 - Mover arquivos para Sanitizacao
+echo  1 - Criacao de Conteudo
+echo  2 - Sanitizacao (Pre-Youtube)
+echo  3 - Publicacao (YouTube)
+echo  4 - Distribuicao / Consumo
 echo.
-
-echo ================================
-echo  FASE 2 - SANITIZACAO (Pre-Youtube)
-echo ================================
-echo   9 - Listar Videos na pasta de sanitizacao
-echo   3 - Sincronizar JSONs faltantes
-echo   4 - Limpar filmes processados
-echo  10 - Corrigir JSON (tag)
-echo   1 - Ajustar contrato YouTube (Groq)
+echo  s - Sair
 echo.
+set /p OP=Escolha a aba: 
 
-echo ================================
-echo  FASE 3 - PUBLICACAO
-echo ================================
-echo   2 - Upload para YouTube
-echo.
+if "%OP%"=="1" goto CRIACAO
+if "%OP%"=="2" goto SANITIZACAO
+if "%OP%"=="3" goto PUBLICACAO
+if "%OP%"=="4" goto DISTRIBUICAO
+if /i "%OP%"=="s" goto SAIR
 
-echo ================================
-echo  FASE 4 - DISTRIBUICAO
-echo ================================
-echo   6 - Copiar arquivos inteligente
-echo   7 - Sync Wordbank + JSONs (zip)
-echo   8 - Sync Audios para ZIP
-echo.
-
-echo  Digite o numero da opcao
-echo  ou digite "s" para sair
-echo.
-set /p OPCAO=Escolha: 
-
-if /i "%OPCAO%"=="s" goto SAIR
-
-REM 
-if "%OPCAO%"=="12" goto OP12
-if "%OPCAO%"=="11" goto OP11
-if "%OPCAO%"=="10" goto OP10
-if "%OPCAO%"=="9"  goto OP9
-if "%OPCAO%"=="8"  goto OP8
-if "%OPCAO%"=="7"  goto OP7
-if "%OPCAO%"=="6"  goto OP6
-if "%OPCAO%"=="5"  goto OP5
-if "%OPCAO%"=="4"  goto OP4
-if "%OPCAO%"=="3"  goto OP3
-if "%OPCAO%"=="2"  goto OP2
-if "%OPCAO%"=="1"  goto OP1
-
-echo.
-echo Opcao invalida.
-pause
 goto MENU
+
+
+:: ==================================================
+:: ABA 1 - CRIACAO
+:: ==================================================
+:CRIACAO
+cls
+echo ==================================================
+echo        ABA - CRIACAO DE CONTEUDO
+echo ==================================================
+echo.
+echo  1 - Consolidar BaseTerms (Preparar novos conteudos)
+echo  2 - Criar Videos (Leandrinho)
+echo  3 - Mover arquivos para Sanitizacao
+echo.
+echo  v - Voltar
+echo.
+set /p OP=Escolha: 
+
+if "%OP%"=="1" goto OP12
+if "%OP%"=="2" goto OP11
+if "%OP%"=="3" goto OP5
+if /i "%OP%"=="v" goto MENU
+
+goto CRIACAO
+
+
+:: ==================================================
+:: ABA 2 - SANITIZACAO
+:: ==================================================
+:SANITIZACAO
+cls
+echo ==================================================
+echo        ABA - SANITIZACAO (PRE-YOUTUBE)
+echo ==================================================
+echo.
+echo  1 - Listar Videos na pasta de sanitizacao
+echo  2 - Sincronizar JSONs faltantes
+echo  3 - Limpar filmes processados
+echo  4 - Corrigir JSON (tag)
+echo  5 - Ajustar contrato YouTube (Groq)
+echo.
+echo  v - Voltar
+echo.
+set /p OP=Escolha: 
+
+if "%OP%"=="1" goto OP9
+if "%OP%"=="2" goto OP3
+if "%OP%"=="3" goto OP4
+if "%OP%"=="4" goto OP10
+if "%OP%"=="5" goto OP1
+if /i "%OP%"=="v" goto MENU
+
+goto SANITIZACAO
+
+
+:: ==================================================
+:: ABA 3 - PUBLICACAO
+:: ==================================================
+:PUBLICACAO
+cls
+echo ==================================================
+echo        ABA - PUBLICACAO (YOUTUBE)
+echo ==================================================
+echo.
+echo  1 - Upload para YouTube
+echo.
+echo  v - Voltar
+echo.
+set /p OP=Escolha: 
+
+if "%OP%"=="1" goto OP2
+if /i "%OP%"=="v" goto MENU
+
+goto PUBLICACAO
+
+
+:: ==================================================
+:: ABA 4 - DISTRIBUICAO
+:: ==================================================
+:DISTRIBUICAO
+cls
+echo ==================================================
+echo        ABA - DISTRIBUICAO / CONSUMO
+echo ==================================================
+echo.
+echo  1 - Copiar arquivos inteligente
+echo  2 - Sync Wordbank + JSONs (zip)
+echo  3 - Sync Audios para ZIP
+echo.
+echo  v - Voltar
+echo.
+set /p OP=Escolha: 
+
+if "%OP%"=="1" goto OP6
+if "%OP%"=="2" goto OP7
+if "%OP%"=="3" goto OP8
+if /i "%OP%"=="v" goto MENU
+
+goto DISTRIBUICAO
+
+
+:: ==================================================
+:: EXECUCOES ORIGINAIS (INALTERADAS)
+:: ==================================================
 
 :OP1
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\4GroqIA"
 python groq_MakeVideo.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
 pause
-goto MENU
+goto SANITIZACAO
 
 :OP2
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload"
 python EnableToYoutubeUpload.py
 pause
-goto MENU
+goto PUBLICACAO
 
 :OP3
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\4GroqIA"
 python sync_missing_jsons.py
 pause
-goto MENU
+goto SANITIZACAO
 
 :OP4
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\4GroqIA"
 python cleanup_movies_processed.py
 pause
-goto MENU
+goto SANITIZACAO
 
 :OP5
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric"
 python run_move_files_mappings.py
 pause
-goto MENU
+goto CRIACAO
 
 :OP6
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric"
 python run_copy_files_smart.py
 pause
-goto MENU
+goto DISTRIBUICAO
 
 :OP7
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\0-TransfereArquivos"
 python sync_wordbank_and_jsons.py
 pause
-goto MENU
+goto DISTRIBUICAO
 
 :OP8
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\0-TransfereArquivos"
 python sync_audios_to_zip.py
 pause
-goto MENU
+goto DISTRIBUICAO
 
 :OP9
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric"
 python list_videos_directory.py
 pause
-goto MENU
+goto SANITIZACAO
 
 :OP10
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric"
 python fix_video_json_tags.py
 pause
-goto MENU
+goto SANITIZACAO
 
 :OP11
 cd /d "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
 python run_batch.py
 pause
-goto MENU
+goto CRIACAO
 
 :OP12
 cd /d "C:\dev\scripts\ScriptsUteis\Python\EKF_EnglishKnowledgeFramework"
 python consolidate_base_terms.py
 pause
-goto MENU
+goto CRIACAO
 
 
 :SAIR
