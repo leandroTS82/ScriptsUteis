@@ -21,8 +21,17 @@ MIN_DURATION_SECONDS = 120  # duração mínima em segundos
 DESTINATION_REPO = (
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
     r"\LTS SP Site - Documentos de estudo de inglês"
-    r"\EKF_EnglishKnowledgeFramework_REPO"
+    r"\EKF_EnglishKnowledgeFramework_REPO\LongVideos_ProbalyFails"
 )
+
+# 🔹 NOVO PATH INLINE
+BASETERMS_OUTPUT_PATH = (
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
+    r"\LTS SP Site - Documentos de estudo de inglês"
+    r"\EKF_EnglishKnowledgeFramework_REPO\BaseTerms"
+)
+
+PENDING_JSON_FILE = os.path.join(BASETERMS_OUTPUT_PATH, "pending_from_long_videos.json")
 
 HISTORY_FILE = os.path.join(DESTINATION_REPO, "history_generated.json")
 
@@ -40,10 +49,6 @@ def print_header():
 
 
 def get_video_duration(file_path):
-    """
-    Usa ffprobe para obter duração do vídeo.
-    Requer ffmpeg instalado no sistema.
-    """
     try:
         cmd = [
             "ffprobe",
@@ -54,7 +59,7 @@ def get_video_duration(file_path):
         ]
         result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         return float(result.stdout.strip())
-    except Exception as e:
+    except:
         print(f"⚠ Erro ao obter duração: {file_path}")
         return 0
 
@@ -73,6 +78,15 @@ def save_history(data):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def save_pending_terms(terms):
+    os.makedirs(BASETERMS_OUTPUT_PATH, exist_ok=True)
+
+    data = {"pending": terms}
+
+    with open(PENDING_JSON_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
 # ============================================================
 # PROCESSAMENTO
 # ============================================================
@@ -85,6 +99,7 @@ def process():
     original_count = len(history_data)
 
     removed_terms = []
+    pending_terms = []  # 🔥 NOVO
     moved_files = 0
 
     for source in SOURCE_PATHS:
@@ -128,6 +143,10 @@ def process():
 
             moved_files += 1
 
+            # 🔥 NOVO: preparar termo sem underscore
+            clean_term = base_name.replace("_", " ")
+            pending_terms.append(clean_term)
+
             # Remove do history
             new_history = []
             for entry in history_data:
@@ -141,6 +160,12 @@ def process():
     # Salva history atualizado
     save_history(history_data)
 
+    # 🔥 NOVO: gerar JSON com termos pendentes
+    if pending_terms:
+        save_pending_terms(pending_terms)
+        print(f"\n📝 JSON de pendentes gerado em:")
+        print(f"   {PENDING_JSON_FILE}")
+
     # ============================================================
     # RELATÓRIO FINAL
     # ============================================================
@@ -151,6 +176,7 @@ def process():
 
     print(f"\n📦 Arquivos movidos: {moved_files}")
     print(f"🗑 Termos removidos do history: {len(removed_terms)}")
+    print(f"📝 Novos termos pendentes: {len(pending_terms)}")
     print(f"📊 Histórico antes: {original_count}")
     print(f"📊 Histórico depois: {len(history_data)}")
 
