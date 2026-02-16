@@ -69,6 +69,7 @@ echo  3 - Limpar filmes processados
 echo  4 - Corrigir JSON (tag)
 echo  5 - Ajustar contrato YouTube (Groq)
 echo  6 - Mover videos longos + limpar history
+echo  7 - Excluir videos manualmente + gerar pending
 echo.
 echo  v - Voltar
 echo.
@@ -80,6 +81,7 @@ if "%OP%"=="3" goto OP4
 if "%OP%"=="4" goto OP10
 if "%OP%"=="5" goto OP1
 if "%OP%"=="6" goto OP13
+if "%OP%"=="7" goto OP14
 if /i "%OP%"=="v" goto MENU
 
 goto SANITIZACAO
@@ -210,6 +212,12 @@ goto CRIACAO
 :OP13
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric"
 python move_long_videos_and_clean_history.py
+pause
+goto SANITIZACAO
+
+:OP14
+cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric"
+python delete_selected_videos_and_generate_pending.py
 pause
 goto SANITIZACAO
 
