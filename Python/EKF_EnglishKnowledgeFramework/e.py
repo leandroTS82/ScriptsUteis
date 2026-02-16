@@ -77,12 +77,9 @@ Input concept or sentence:
 "{term}"
 
 Return ONLY valid JSON.
-DO NOT duplicate JSON keys.
+DO NOT repeat fields.
 DO NOT change field names.
 DO NOT add extra text.
-
-If possible, generate a phrasal verb that is semantically related to "{term}".
-If no natural phrasal verb applies, generate one related to the main verb inside "{term}".
 
 {{
   "corrected_sentence": "...",
@@ -104,90 +101,19 @@ If no natural phrasal verb applies, generate one related to the main verb inside
   "grammar_focus": "...",
 
   "timeline": {{
-    "present_simple_positive": "...",
-    "present_simple_negative": "...",
-    "present_simple_question": "...",
-
-    "present_continuous_positive": "...",
-    "present_continuous_negative": "...",
-    "present_continuous_question": "...",
-
-    "present_perfect_positive": "...",
-    "present_perfect_negative": "...",
-    "present_perfect_question": "...",
-
-    "present_perfect_continuous_positive": "...",
-    "present_perfect_continuous_negative": "...",
-    "present_perfect_continuous_question": "...",
-
-    "past_simple_positive": "...",
-    "past_simple_negative": "...",
-    "past_simple_question": "...",
-
-    "past_continuous_positive": "...",
-    "past_continuous_negative": "...",
-    "past_continuous_question": "...",
-
-    "past_perfect_positive": "...",
-    "past_perfect_negative": "...",
-    "past_perfect_question": "...",
-
-    "future_will_positive": "...",
-    "future_will_negative": "...",
-    "future_will_question": "...",
-
-    "future_going_to_positive": "...",
-    "future_going_to_negative": "...",
-    "future_going_to_question": "...",
-
-    "future_continuous_positive": "...",
-    "future_continuous_negative": "...",
-    "future_continuous_question": "...",
-
-    "future_perfect_positive": "...",
-    "future_perfect_negative": "...",
-    "future_perfect_question": "...",
-
-    "modal_can_positive": "...",
-    "modal_can_negative": "...",
-    "modal_can_question": "...",
-
-    "modal_should_positive": "...",
-    "modal_should_negative": "...",
-    "modal_should_question": "...",
-
-    "modal_must_positive": "...",
-    "modal_must_negative": "...",
-    "modal_must_question": "...",
-
-    "conditional_zero": "...",
-    "conditional_first": "...",
-    "conditional_second": "...",
-    "conditional_third": "...",
-
-    "passive_present": "...",
-    "passive_past": "...",
-    "passive_present_perfect": "...",
-    "passive_future": "..."
+    "present_positive": "...",
+    "present_negative": "...",
+    "past_positive": "...",
+    "past_negative": "...",
+    "future_positive": "...",
+    "future_negative": "...",
+    "question_positive": "...",
+    "question_negative": "..."
   }},
 
-  "phrasal_verbs": [
-    {{
-      "base": "main verb extracted from '{term}'",
-      "phrasal": "...",
-      "meaning_pt": "...",
-      "meaning_en": "...",
-      "example_positive": "...",
-      "example_negative": "...",
-      "example_question": "...",
-      "separable": true
-    }}
-  ],
-
-  "learning_tip_pt": "Use o phrasal verb em pelo menos 3 frases diferentes hoje para fixar no seu inglês ativo."
+  "learning_tip_pt": "Dica curta em português para melhorar o inglês ativo"
 }}
 """
-
 
 # =====================================================================
 # PREVIEW RENDER — FORMATO FIXO
