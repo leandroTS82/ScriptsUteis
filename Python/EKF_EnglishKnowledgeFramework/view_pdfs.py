@@ -485,7 +485,7 @@ def generate_global_summary(sections):
         - Include level progression (A1 → B1 if applicable)
 
         Structure it like a mini study material page.
-
+        return with HTML marks H1,H2,H3,p,b,ul,li,style etc
         CONTENT:
         {consolidated_text}
         """
