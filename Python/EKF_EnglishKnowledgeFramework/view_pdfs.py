@@ -14,6 +14,7 @@ from PyPDF2 import PdfReader
 from itertools import cycle
 import random
 import requests
+import markdown
 
 # ==========================================================
 # CONFIG
@@ -453,7 +454,6 @@ def generate_global_summary(sections):
 
     cache = load_summary_cache()
 
-    # Consolidar conteúdo real já extraído
     consolidated_text = ""
 
     for sec in sections:
@@ -470,54 +470,75 @@ def generate_global_summary(sections):
         return cache[content_hash]
 
     enriched_prompt = f"""
-        You are an yonger, modern advanced English educator.
+    You are a modern English educator.
 
-        Based on the following real extracted study material,
-        generate a coherent, structured learning summary.
+    Generate a structured study overview in MARKDOWN format.
 
-        The summary MUST:
+    Rules:
+    - Use proper markdown headings (##, ###)
+    - Use bullet points
+    - Use tables when helpful
+    - No code blocks
+    - No technical API errors
+    - No JSON
 
-        - Be logically organized
-        - Be didactic
-        - Include EN + PT explanation
-        - Include example sentences, similar expressions, usages, phrasal verbs (when applicable), common expressions, and others.
-        - Include grammar insight, tips.
-        - Include level progression (A1 → B1 if applicable)
-
-        Structure it like a mini study material page.
-        return with HTML marks H1,H2,H3,p,b,ul,li,style etc
-        CONTENT:
-        {consolidated_text}
-        """
+    CONTENT:
+    {consolidated_text}
+    """
 
     print("🧠 Generating structured study summary via Groq...")
 
     result = call_groq_summary(enriched_prompt)
 
     if result:
+
+        # 🔒 Remove possible API error leaks
+        forbidden_terms = [
+            "invalid request",
+            "error",
+            "404",
+            "bad request",
+            "api key",
+            "http",
+            "stacktrace"
+        ]
+
+        lower_result = result.lower()
+        if any(term in lower_result for term in forbidden_terms):
+            print("⚠ Groq returned contaminated content. Ignoring.")
+            return """
+            <div class='alert alert-warning'>
+                AI summary temporarily unavailable.
+            </div>
+            """
+
         cache[content_hash] = result
         save_summary_cache(cache)
         return result
 
-    return "Summary unavailable."
+    return """
+    <div class='alert alert-warning'>
+        AI summary unavailable.
+    </div>
+    """
 
 
 
 def generate_html(sections):
 
-    summary_text = generate_global_summary(sections)
+    summary_markdown = generate_global_summary(sections)
 
-    toggle_script = """
-        <script>
-        function toggleContent(id){
-            var el = document.getElementById(id);
-            if(el.style.display === "none"){
-                el.style.display = "block";
-            } else {
-                el.style.display = "none";
-            }
-        }
-        </script>
+    summary_html = markdown.markdown(
+        summary_markdown,
+        extensions=["tables", "fenced_code"]
+    )
+
+    # Fallback seguro
+    if not summary_html or summary_html.strip() == "":
+        summary_html = """
+        <div class='alert alert-warning'>
+            Summary unavailable.
+        </div>
         """
 
     html_sections = ""
@@ -533,91 +554,193 @@ def generate_html(sections):
 
             image_block = ""
             if item.get("illustration"):
-                image_block = (
-                    f'<img src="_web_images/{item["illustration"]}" '
-                    'class="img-fluid rounded mb-2" '
-                    'style="height:200px;object-fit:cover;width:100%;">'
-                )
-
-            cards += f"""
-                <div class="col-md-4 pdf-card" data-search="{search_data}">
-                <div class="card shadow-sm border-0 h-100">
-                <div class="card-body d-flex flex-column">
-                {image_block}
-                <div class="fw-bold mb-1">{item["display"]}</div>
-                <div class="small text-muted mb-3">{item["size"]} KB · {item["modified"]}</div>
-                <a class="btn btn-primary btn-sm mt-auto" href="{url}" target="_blank">📖 Abrir PDF</a>
-                </div>
-                </div>
-                </div>
+                image_block = f"""
+                <img src="_web_images/{item['illustration']}"
+                     class="img-fluid rounded mb-3"
+                     style="height:200px;object-fit:cover;width:100%;">
                 """
 
-        html_sections += f"""
-            <section class="mb-5">
-            <h4 style="cursor:pointer;" onclick="toggleContent('{sec["slug"]}')">
-            📁 {sec["title"]} ({len(sec["items"])})
-            </h4>
-            <div id="{sec["slug"]}" style="display:none;">
-            <div class="row g-3">
-            {cards}
+            cards += f"""
+            <div class="col-md-4 pdf-card mb-4" data-search="{search_data}">
+                <div class="card shadow-sm border-0 h-100 hover-card">
+                    <div class="card-body d-flex flex-column">
+                        {image_block}
+                        <div class="fw-bold mb-2">{item["display"]}</div>
+                        <div class="small text-muted mb-3">
+                            {item["size"]} KB · {item["modified"]}
+                        </div>
+                        <a class="btn btn-primary btn-sm mt-auto"
+                           href="{url}" target="_blank">
+                           📖 Open PDF
+                        </a>
+                    </div>
+                </div>
             </div>
-            </div>
-            </section>
             """
 
-    summary_block = f"""
-        <div class="card shadow-lg border-0 mb-5">
-        <div class="card-body">
-        <h4>📘 AI Study Overview</h4>
-        <button class="btn btn-sm btn-outline-secondary mb-3"
-        onclick="toggleContent('summaryContent')">Toggle Summary</button>
-        <div id="summaryContent" style="white-space:pre-line;line-height:1.7;">
-        {summary_text}
-        </div>
-        </div>
-        </div>
+        html_sections += f"""
+        <section class="mb-5">
+            <h4 class="section-title"
+                onclick="toggleSection('{sec['slug']}')">
+                📁 {sec["title"]} ({len(sec["items"])})
+            </h4>
+
+            <div id="{sec['slug']}" class="section-content" style="display:none;">
+                <div class="row">
+                    {cards}
+                </div>
+            </div>
+        </section>
         """
 
     html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
+    <!DOCTYPE html>
+    <html>
+    <head>
         <meta charset="UTF-8">
         <title>EKF Study Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        </head>
-        <body class="bg-light">
 
-        <div class="container py-5">
+        <style>
+        
+            #summaryContent h2 {{
+                margin-top: 15px;
+                font-size: 1.5rem;
+            }}
+
+            #summaryContent h3 {{
+                margin-top: 12px;
+                font-size: 1.2rem;
+            }}
+
+            #summaryContent table {{
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }}
+
+            #summaryContent th, #summaryContent td {{
+                border: 1px solid #ddd;
+                padding: 8px;
+            }}
+
+            #summaryContent th {{
+                background-color: #f8f9fa;
+            }}
+
+            #summaryContent ul {{
+                margin-left: 20px;
+            }}
+
+            #summaryContent p {{
+                line-height: 1.6;
+            }}
+            body {{
+                background: #f5f7fa;
+            }}
+
+            .hover-card {{
+                transition: 0.3s ease;
+            }}
+
+            .hover-card:hover {{
+                transform: translateY(-4px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }}
+
+            .section-title {{
+                cursor:pointer;
+                font-weight:600;
+                transition: 0.2s ease;
+            }}
+
+            .section-title:hover {{
+                color:#0d6efd;
+            }}
+
+            .summary-container {{
+                display:none;
+                margin-top:20px;
+                animation: fadeIn 0.3s ease-in-out;
+            }}
+
+            @keyframes fadeIn {{
+                from {{opacity:0; transform: translateY(-5px);}}
+                to {{opacity:1; transform: translateY(0);}}
+            }}
+        </style>
+    </head>
+
+    <body>
+
+    <div class="container py-5">
 
         <h2 class="mb-4">📚 English Knowledge Framework</h2>
 
-        {summary_block}
+        <div class="card shadow-lg border-0 mb-5">
+            <div class="card-body">
 
-        <input id="searchInput" class="form-control mb-4" placeholder="Search PDFs...">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">📘 AI Study Overview</h4>
+                    <button class="btn btn-outline-primary btn-sm"
+                            onclick="toggleSummary()">
+                        Toggle Summary
+                    </button>
+                </div>
+
+                <div id="summaryContainer" class="summary-container">
+                    <hr>
+                    {summary_html}
+                </div>
+
+            </div>
+        </div>
+
+        <input id="searchInput"
+               class="form-control mb-4"
+               placeholder="Search PDFs...">
 
         {html_sections}
 
-        </div>
+    </div>
 
-        {toggle_script}
+    <script>
+        function toggleSection(id){{
+            var el = document.getElementById(id);
+            if(el.style.display === "none"){{
+                el.style.display = "block";
+            }} else {{
+                el.style.display = "none";
+            }}
+        }}
 
-        <script>
-        document.getElementById("searchInput").addEventListener("keyup", function() {{
-            let value = this.value.toLowerCase();
-            document.querySelectorAll(".pdf-card").forEach(function(card) {{
-                let text = card.getAttribute("data-search");
-                card.style.display = text.includes(value) ? "block" : "none";
-            }});
+        function toggleSummary(){{
+            var el = document.getElementById("summaryContainer");
+            if(el.style.display === "none"){{
+                el.style.display = "block";
+            }} else {{
+                el.style.display = "none";
+            }}
+        }}
+
+        document.getElementById("searchInput")
+            .addEventListener("keyup", function() {{
+                let value = this.value.toLowerCase();
+                document.querySelectorAll(".pdf-card")
+                    .forEach(function(card) {{
+                        let text = card.getAttribute("data-search");
+                        card.style.display = text.includes(value) ? "block" : "none";
+                }});
         }});
-        </script>
+    </script>
 
-        </body>
-        </html>
-        """
+    </body>
+    </html>
+    """
 
     with open(INDEX_HTML, "w", encoding="utf-8") as f:
         f.write(html)
+
 
 
 

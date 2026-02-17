@@ -24,7 +24,9 @@ BOLD = "\033[1m"
 REQUIRED_PACKAGES = [
     "requests",
     "reportlab",
-    "PyPDF2"
+    "PyPDF2",
+    "markdown",
+    "markdown2"
 ]
 
 # ==========================================================
