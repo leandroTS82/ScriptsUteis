@@ -5,6 +5,7 @@ import shutil
 import threading
 import re
 import sys
+import hashlib
 import webbrowser
 import json
 from http.server import SimpleHTTPRequestHandler
@@ -24,23 +25,29 @@ from Services.image_generation_service import ImageGenerationService
 
 BASE_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\View_PDF"
 
+WEB_PDFS_DIR = os.path.join(BASE_DIR, "_web_pdfs")
+WEB_IMAGES_DIR = os.path.join(BASE_DIR, "_web_images")
+CACHE_FILE = os.path.join(BASE_DIR, "pdf_index_cache.json")
 CONTEXT_CACHE_FILE = os.path.join(BASE_DIR, "image_context_cache.json")
-MAX_IMAGES_PER_RUN = 5
-
 SUMMARY_CACHE_FILE = os.path.join(BASE_DIR, "summary_ai_cache.json")
-SUMMARY_MAX_CHARS = 6000
+INDEX_HTML = os.path.join(BASE_DIR, "index.html")
+
+MAX_IMAGES_PER_RUN = 5
+SUMMARY_MAX_CHARS = 8000
 
 # ==========================================================
 # GROQ MULTI-KEY CONFIG (PADRÃO EKF)
 # ==========================================================
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if BASE_DIR not in sys.path:
-    sys.path.insert(0, BASE_DIR)
-
+GROQ_BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if GROQ_BASE not in sys.path:
+    sys.path.insert(0, GROQ_BASE)
 from groq_keys_loader import GROQ_KEYS
-
+# ================================================================================
+# CONFIG - GROQ MULTI KEYS (ROTATION / RANDOM)
+# ================================================================================
 _groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
+
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
@@ -58,37 +65,85 @@ INDEX_HTML = os.path.join(BASE_DIR, "index.html")
 CACHE_FILE = os.path.join(BASE_DIR, "pdf_index_cache.json")
 
 
-def call_groq_summary(prompt_text, max_retries=3):
+# ==========================================================
+# GROQ KEY HANDLING (SUPPORTS {"name": "...", "key": "..."} )
+# ==========================================================
 
-    for attempt in range(max_retries):
+def get_next_groq_key():
+    """
+    Supports:
+    - list[str]
+    - list[{"key": "..."}]
+    - list[{"name": "...", "key": "..."}]
+    """
 
-        api_key = next(_groq_key_cycle)
+    for _ in range(len(GROQ_KEYS)):
+        candidate = next(_groq_key_cycle)
+
+        # If dict
+        if isinstance(candidate, dict):
+            key = candidate.get("key", "").strip()
+        else:
+            key = str(candidate).strip()
+
+        if key.startswith("gsk_"):
+            return key
+
+    raise RuntimeError("❌ No valid GROQ key found.")
+
+
+def call_groq_summary(prompt_text):
+
+    last_error = None
+
+    for _ in range(len(GROQ_KEYS)):
+
+        api_key = get_next_groq_key()
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+
+        payload = {
+            "model": GROQ_MODEL,
+            "messages": [
+                {"role": "user", "content": prompt_text}
+            ],
+            "temperature": 0.7,
+            "max_tokens": 1200
+        }
 
         try:
             response = requests.post(
                 GROQ_URL,
-                headers={
-                    "Authorization": f"Bearer {api_key}",
-                    "Content-Type": "application/json"
-                },
-                json={
-                    "model": GROQ_MODEL,
-                    "messages": [
-                        {"role": "user", "content": prompt_text}
-                    ],
-                    "temperature": 0.8
-                },
-                timeout=60
+                headers=headers,
+                json=payload,
+                timeout=30
             )
 
-            if response.status_code == 200:
-                return response.json()["choices"][0]["message"]["content"]
+            if response.status_code == 429:
+                last_error = "Rate limit"
+                continue
 
-        except Exception as e:
-            print("⚠ Groq erro:", e)
+            response.raise_for_status()
 
+            data = response.json()
+
+            if "choices" not in data:
+                continue
+
+            content = data["choices"][0]["message"]["content"]
+
+            if content and len(content.strip()) > 20:
+                return content.strip()
+
+        except requests.RequestException as e:
+            last_error = str(e)
+            continue
+
+    print(f"❌ All GROQ keys failed. Last error: {last_error}")
     return None
-
 
 
 # ==========================================================
@@ -238,8 +293,12 @@ def consolidate_recent_terms(sections, limit=MAX_IMAGES_PER_RUN):
 
 def generate_images_for_recent_terms(recent_terms):
 
+    os.makedirs(WEB_IMAGES_DIR, exist_ok=True)
+
     context_cache = load_context_cache()
     generated = {}
+
+    generated_count = 0
 
     for term in recent_terms:
 
@@ -247,12 +306,23 @@ def generate_images_for_recent_terms(recent_terms):
         filename = slug + ".jpg"
         output_path = os.path.join(WEB_IMAGES_DIR, filename)
 
-        # 🔹 Se já existe no cache global → reaproveita
-        if term in context_cache and os.path.exists(output_path):
+        # Se já existe → apenas reutiliza
+        if os.path.exists(output_path):
             generated[term] = filename
+            context_cache[term] = filename
             continue
 
-        prompt = f"Create a clean modern educational illustration representing the expression '{term}'. Minimalistic, vibrant, expressive."
+        # Limite de geração por execução
+        if generated_count >= MAX_IMAGES_PER_RUN:
+            continue
+
+        prompt = f"""
+        Create a modern educational illustration (with black people in the style spider-verse) representing:
+        "{term}"
+
+        Clean layout, minimalistic, academic style,
+        vector art, high clarity.
+        """
 
         try:
             image_service.generate(
@@ -263,13 +333,14 @@ def generate_images_for_recent_terms(recent_terms):
 
             context_cache[term] = filename
             generated[term] = filename
+            generated_count += 1
 
         except Exception as e:
             print("⚠ Erro imagem:", e)
 
     save_context_cache(context_cache)
-
     return generated
+
 
 # ==========================================================
 # SCAN SECTIONS
@@ -362,20 +433,17 @@ def scan_sections():
 
 def prepare_web_files(sections):
 
-    if os.path.exists(WEB_PDFS_DIR):
-        shutil.rmtree(WEB_PDFS_DIR, ignore_errors=True)
-
     os.makedirs(WEB_PDFS_DIR, exist_ok=True)
+    os.makedirs(WEB_IMAGES_DIR, exist_ok=True)
 
     for sec in sections:
         sec_dir = os.path.join(WEB_PDFS_DIR, sec["slug"])
         os.makedirs(sec_dir, exist_ok=True)
 
         for item in sec["items"]:
-            try:
-                shutil.copy2(item["full_path"], os.path.join(sec_dir, item["file"]))
-            except:
-                pass
+            dest = os.path.join(sec_dir, item["file"])
+            if not os.path.exists(dest):
+                shutil.copy2(item["full_path"], dest)
 
 # ==========================================================
 # HTML GENERATION
@@ -385,79 +453,73 @@ def generate_global_summary(sections):
 
     cache = load_summary_cache()
 
-    # 🔹 Consolidação com limite controlado
-    all_text = ""
+    # Consolidar conteúdo real já extraído
+    consolidated_text = ""
 
     for sec in sections:
         for item in sec["items"]:
             if item.get("content"):
-                all_text += item["content"][:800] + " "
-            if len(all_text) > SUMMARY_MAX_CHARS:
+                consolidated_text += item["content"][:500] + "\n\n"
+
+            if len(consolidated_text) > SUMMARY_MAX_CHARS:
                 break
 
-    content_hash = str(hash(all_text))
+    content_hash = hashlib.md5(consolidated_text.encode()).hexdigest()
 
-    # 🔹 Se já existe no cache → retorna
     if content_hash in cache:
         return cache[content_hash]
 
-    # 🔹 Variação didática aleatória
-    modes = [
-        "Emphasize grammar structures.",
-        "Emphasize real-life conversational usage.",
-        "Emphasize phrasal verbs and idioms.",
-        "Emphasize vocabulary expansion.",
-        "Emphasize study strategy and progression.",
-        "Emphasize B1 to C1 development."
-    ]
-
-    tone_variations = [
-        "Be structured and analytical.",
-        "Be motivational and didactic.",
-        "Be concise but deep.",
-        "Be visually structured with spacing."
-    ]
-
-    random_mode = random.choice(modes)
-    random_tone = random.choice(tone_variations)
-
     enriched_prompt = f"""
-You are an advanced English mentor helping a Brazilian student.
+        You are an yonger, modern advanced English educator.
 
-{random_mode}
-{random_tone}
+        Based on the following real extracted study material,
+        generate a coherent, structured learning summary.
 
-Generate a rich structured summary with:
+        The summary MUST:
 
-1) Main topics (bullet points)
-2) Key expressions (EN)
-3) Explanation in Portuguese (PT)
-4) Practical learning insights
-5) Suggested study focus
+        - Be logically organized
+        - Be didactic
+        - Include EN + PT explanation
+        - Include example sentences, similar expressions, usages, phrasal verbs (when applicable), common expressions, and others.
+        - Include grammar insight, tips.
+        - Include level progression (A1 → B1 if applicable)
 
-Make it didactic, structured, visually readable.
+        Structure it like a mini study material page.
 
-CONTENT:
-{all_text}
-"""
+        CONTENT:
+        {consolidated_text}
+        """
 
-    print("🧠 Gerando resumo didático via Groq...")
+    print("🧠 Generating structured study summary via Groq...")
 
-    enriched_summary = call_groq_summary(enriched_prompt)
+    result = call_groq_summary(enriched_prompt)
 
-    if enriched_summary:
-        cache[content_hash] = enriched_summary
+    if result:
+        cache[content_hash] = result
         save_summary_cache(cache)
-        return enriched_summary
+        return result
 
-    # fallback simples
-    terms = extract_terms_from_text(all_text, max_terms=20)
-    return ", ".join(terms)
+    return "Summary unavailable."
+
 
 
 def generate_html(sections):
 
     summary_text = generate_global_summary(sections)
+
+    toggle_script = """
+        <script>
+        function toggleContent(id){
+            var el = document.getElementById(id);
+            if(el.style.display === "none"){
+                el.style.display = "block";
+            } else {
+                el.style.display = "none";
+            }
+        }
+        </script>
+        """
+
     html_sections = ""
 
     for sec in sections:
@@ -470,94 +532,93 @@ def generate_html(sections):
             search_data = (item["display"] + " " + item["content"]).lower().replace('"', "'")
 
             image_block = ""
-
             if item.get("illustration"):
                 image_block = (
-                    '<img src="_web_images/' + item["illustration"] + '" '
+                    f'<img src="_web_images/{item["illustration"]}" '
                     'class="img-fluid rounded mb-2" '
-                    'style="height:180px;object-fit:cover;width:100%;">'
+                    'style="height:200px;object-fit:cover;width:100%;">'
                 )
 
-            cards += (
-                '<div class="col-12 col-md-6 col-lg-4 pdf-card" '
-                'data-search="' + search_data + '">'
-                '<div class="card shadow-sm border-0 h-100">'
-                '<div class="card-body d-flex flex-column">'
-                + image_block +
-                '<div class="fw-bold mb-1 text-truncate">' + item["display"] + '</div>'
-                '<div class="small text-muted mb-3">'
-                + str(item["size"]) + ' KB · ' + item["modified"] +
-                '</div>'
-                '<a class="btn btn-primary btn-sm mt-auto" '
-                'href="' + url + '" target="_blank">'
-                '📖 Abrir PDF'
-                '</a>'
-                '</div>'
-                '</div>'
-                '</div>'
-            )
+            cards += f"""
+                <div class="col-md-4 pdf-card" data-search="{search_data}">
+                <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex flex-column">
+                {image_block}
+                <div class="fw-bold mb-1">{item["display"]}</div>
+                <div class="small text-muted mb-3">{item["size"]} KB · {item["modified"]}</div>
+                <a class="btn btn-primary btn-sm mt-auto" href="{url}" target="_blank">📖 Abrir PDF</a>
+                </div>
+                </div>
+                </div>
+                """
 
-        html_sections += (
-            '<section class="mb-4">'
-            '<div class="d-flex justify-content-between align-items-center mb-2">'
-            '<h5 class="m-0 toggle-header" style="cursor:pointer;">'
-            '📁 ' + sec["title"] +
-            '</h5>'
-            '<span class="badge bg-primary">'
-            + str(len(sec["items"])) +
-            '</span>'
-            '</div>'
-            '<div class="row g-3 section-content" style="display:none;">'
-            + cards +
-            '</div>'
-            '</section>'
-        )
+        html_sections += f"""
+            <section class="mb-5">
+            <h4 style="cursor:pointer;" onclick="toggleContent('{sec["slug"]}')">
+            📁 {sec["title"]} ({len(sec["items"])})
+            </h4>
+            <div id="{sec["slug"]}" style="display:none;">
+            <div class="row g-3">
+            {cards}
+            </div>
+            </div>
+            </section>
+            """
 
-    html = (
-        '<!DOCTYPE html>'
-        '<html>'
-        '<head>'
-        '<meta charset="UTF-8">'
-        '<title>PDF Viewer</title>'
-        '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">'
-        '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>'
-        '</head>'
-        '<body class="bg-light">'
-        '<div class="container py-4">'
-        '<h3 class="mb-2">📚 Seus PDFs</h3>'
-        '<div class="card shadow-sm border-0 mb-4">'
-        '<div class="card-body">'
-        '<div class="d-flex justify-content-between align-items-center mb-2">'
-        '<h6 class="mb-0">📊 Resumo Inteligente</h6>'
-        '<span class="badge bg-secondary">AI Enhanced</span>'
-        '</div>'
-        '<div style="white-space:pre-line;font-size:14px;line-height:1.6;">'
-        + summary_text +
-        '</div>'
-        '</div>'
-        '</div>'
-        '<input id="searchInput" class="form-control mb-3" placeholder="Buscar por nome ou conteúdo...">'
-        + html_sections +
-        '</div>'
-        '<script>'
-        '$("#searchInput").on("keyup", function() {'
-        'let value = $(this).val().toLowerCase();'
-        '$(".pdf-card").each(function() {'
-        'let text = $(this).data("search");'
-        '$(this).toggle(text.includes(value));'
-        '});'
-        '});'
-        '$(".toggle-header").on("click", function() {'
-        'let section = $(this).closest("section").find(".section-content");'
-        'section.toggle();'
-        '});'
-        '</script>'
-        '</body>'
-        '</html>'
-    )
+    summary_block = f"""
+        <div class="card shadow-lg border-0 mb-5">
+        <div class="card-body">
+        <h4>📘 AI Study Overview</h4>
+        <button class="btn btn-sm btn-outline-secondary mb-3"
+        onclick="toggleContent('summaryContent')">Toggle Summary</button>
+        <div id="summaryContent" style="white-space:pre-line;line-height:1.7;">
+        {summary_text}
+        </div>
+        </div>
+        </div>
+        """
+
+    html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <title>EKF Study Dashboard</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        </head>
+        <body class="bg-light">
+
+        <div class="container py-5">
+
+        <h2 class="mb-4">📚 English Knowledge Framework</h2>
+
+        {summary_block}
+
+        <input id="searchInput" class="form-control mb-4" placeholder="Search PDFs...">
+
+        {html_sections}
+
+        </div>
+
+        {toggle_script}
+
+        <script>
+        document.getElementById("searchInput").addEventListener("keyup", function() {{
+            let value = this.value.toLowerCase();
+            document.querySelectorAll(".pdf-card").forEach(function(card) {{
+                let text = card.getAttribute("data-search");
+                card.style.display = text.includes(value) ? "block" : "none";
+            }});
+        }});
+        </script>
+
+        </body>
+        </html>
+        """
 
     with open(INDEX_HTML, "w", encoding="utf-8") as f:
         f.write(html)
+
 
 
 # ==========================================================
