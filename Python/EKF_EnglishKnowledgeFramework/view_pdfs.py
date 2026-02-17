@@ -10,6 +10,9 @@ import json
 from http.server import SimpleHTTPRequestHandler
 from socketserver import ThreadingTCPServer
 from PyPDF2 import PdfReader
+from itertools import cycle
+import random
+import requests
 
 # ==========================================================
 # CONFIG
@@ -24,6 +27,24 @@ BASE_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS
 CONTEXT_CACHE_FILE = os.path.join(BASE_DIR, "image_context_cache.json")
 MAX_IMAGES_PER_RUN = 5
 
+SUMMARY_CACHE_FILE = os.path.join(BASE_DIR, "summary_ai_cache.json")
+SUMMARY_MAX_CHARS = 6000
+
+# ==========================================================
+# GROQ MULTI-KEY CONFIG (PADRÃO EKF)
+# ==========================================================
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+from groq_keys_loader import GROQ_KEYS
+
+_groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
+
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL = "openai/gpt-oss-20b"
+
 PDF_PATHS = [
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\Handouts\pdf",
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\BaseTerms",
@@ -35,6 +56,40 @@ WEB_PDFS_DIR = os.path.join(BASE_DIR, "_web_pdfs")
 WEB_IMAGES_DIR = os.path.join(BASE_DIR, "_web_images")
 INDEX_HTML = os.path.join(BASE_DIR, "index.html")
 CACHE_FILE = os.path.join(BASE_DIR, "pdf_index_cache.json")
+
+
+def call_groq_summary(prompt_text, max_retries=3):
+
+    for attempt in range(max_retries):
+
+        api_key = next(_groq_key_cycle)
+
+        try:
+            response = requests.post(
+                GROQ_URL,
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": GROQ_MODEL,
+                    "messages": [
+                        {"role": "user", "content": prompt_text}
+                    ],
+                    "temperature": 0.8
+                },
+                timeout=60
+            )
+
+            if response.status_code == 200:
+                return response.json()["choices"][0]["message"]["content"]
+
+        except Exception as e:
+            print("⚠ Groq erro:", e)
+
+    return None
+
+
 
 # ==========================================================
 # CACHE
@@ -60,6 +115,17 @@ def load_context_cache():
 def save_context_cache(data):
     os.makedirs(os.path.dirname(CONTEXT_CACHE_FILE), exist_ok=True)
     with open(CONTEXT_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+def load_summary_cache():
+    if os.path.exists(SUMMARY_CACHE_FILE):
+        with open(SUMMARY_CACHE_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+def save_summary_cache(data):
+    os.makedirs(os.path.dirname(SUMMARY_CACHE_FILE), exist_ok=True)
+    with open(SUMMARY_CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
@@ -315,17 +381,79 @@ def prepare_web_files(sections):
 # HTML GENERATION
 # ==========================================================
 
-def generate_global_summary(sections, limit=20):
+def generate_global_summary(sections):
 
+    cache = load_summary_cache()
+
+    # 🔹 Consolidação com limite controlado
     all_text = ""
 
     for sec in sections:
         for item in sec["items"]:
-            all_text += item["content"] + " "
+            if item.get("content"):
+                all_text += item["content"][:800] + " "
+            if len(all_text) > SUMMARY_MAX_CHARS:
+                break
 
-    terms = extract_terms_from_text(all_text, max_terms=limit)
+    content_hash = str(hash(all_text))
 
+    # 🔹 Se já existe no cache → retorna
+    if content_hash in cache:
+        return cache[content_hash]
+
+    # 🔹 Variação didática aleatória
+    modes = [
+        "Emphasize grammar structures.",
+        "Emphasize real-life conversational usage.",
+        "Emphasize phrasal verbs and idioms.",
+        "Emphasize vocabulary expansion.",
+        "Emphasize study strategy and progression.",
+        "Emphasize B1 to C1 development."
+    ]
+
+    tone_variations = [
+        "Be structured and analytical.",
+        "Be motivational and didactic.",
+        "Be concise but deep.",
+        "Be visually structured with spacing."
+    ]
+
+    random_mode = random.choice(modes)
+    random_tone = random.choice(tone_variations)
+
+    enriched_prompt = f"""
+You are an advanced English mentor helping a Brazilian student.
+
+{random_mode}
+{random_tone}
+
+Generate a rich structured summary with:
+
+1) Main topics (bullet points)
+2) Key expressions (EN)
+3) Explanation in Portuguese (PT)
+4) Practical learning insights
+5) Suggested study focus
+
+Make it didactic, structured, visually readable.
+
+CONTENT:
+{all_text}
+"""
+
+    print("🧠 Gerando resumo didático via Groq...")
+
+    enriched_summary = call_groq_summary(enriched_prompt)
+
+    if enriched_summary:
+        cache[content_hash] = enriched_summary
+        save_summary_cache(cache)
+        return enriched_summary
+
+    # fallback simples
+    terms = extract_terms_from_text(all_text, max_terms=20)
     return ", ".join(terms)
+
 
 def generate_html(sections):
 
@@ -397,9 +525,17 @@ def generate_html(sections):
         '<body class="bg-light">'
         '<div class="container py-4">'
         '<h3 class="mb-2">📚 Seus PDFs</h3>'
-        '<p class="text-muted small mb-4">'
-        'Resumo de termos recentes: ' + summary_text +
-        '</p>'
+        '<div class="card shadow-sm border-0 mb-4">'
+        '<div class="card-body">'
+        '<div class="d-flex justify-content-between align-items-center mb-2">'
+        '<h6 class="mb-0">📊 Resumo Inteligente</h6>'
+        '<span class="badge bg-secondary">AI Enhanced</span>'
+        '</div>'
+        '<div style="white-space:pre-line;font-size:14px;line-height:1.6;">'
+        + summary_text +
+        '</div>'
+        '</div>'
+        '</div>'
         '<input id="searchInput" class="form-control mb-3" placeholder="Buscar por nome ou conteúdo...">'
         + html_sections +
         '</div>'
