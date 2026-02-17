@@ -46,16 +46,16 @@ import sys
 USE_INTERNAL_CONFIG = True
 
 VIDEO_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
-VIDEO_NAME = "2026-02-04_09-26-07.mp4"
+VIDEO_NAME = "2026-02-17_10-37-18.mp4"
 
 # 🔹 Nome lógico global do vídeo
-GLOBAL_VIDEO_NAME = "Vini sobre hrs"
+GLOBAL_VIDEO_NAME = "MyMistake"
 
 SEGMENTS = [
     {
-        "start": "04:30",
-        "end": "04:57",
-        "name": "Next meeting"
+        "start": "00:06",
+        "end": "02:18",
+        "name": "MyMistake"
     }
 ]
 

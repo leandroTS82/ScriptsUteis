@@ -4,6 +4,7 @@ import socket
 import shutil
 import threading
 import webbrowser
+import json
 from http.server import SimpleHTTPRequestHandler
 from socketserver import ThreadingTCPServer
 from PyPDF2 import PdfReader
@@ -12,8 +13,8 @@ from PyPDF2 import PdfReader
 # CONFIG
 # ==========================================================
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO"
+
 PDF_PATHS = [
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\Handouts\pdf",
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\BaseTerms",
@@ -23,7 +24,21 @@ PDF_PATHS = [
 
 WEB_PDFS_DIR = os.path.join(BASE_DIR, "_web_pdfs")
 INDEX_HTML = os.path.join(BASE_DIR, "index.html")
+CACHE_FILE = os.path.join(BASE_DIR, "pdf_index_cache.json")
 
+# ==========================================================
+# CACHE
+# ==========================================================
+
+def load_cache():
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+def save_cache(cache):
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2)
 
 # ==========================================================
 # HELPERS
@@ -32,17 +47,14 @@ INDEX_HTML = os.path.join(BASE_DIR, "index.html")
 def slugify(text):
     return "".join(c.lower() if c.isalnum() else "_" for c in text)
 
-
 def format_display_name(filename):
     name = filename.replace(".pdf", "")
     if len(name) > 13 and name[:12].isdigit() and name[12] == "_":
         name = name[13:]
     return name.replace("_", " ").title()
 
-
 def folder_title(path):
     return os.path.basename(os.path.normpath(path)) or path
-
 
 def get_free_port():
     s = socket.socket()
@@ -50,7 +62,6 @@ def get_free_port():
     port = s.getsockname()[1]
     s.close()
     return port
-
 
 def get_local_ip():
     try:
@@ -62,56 +73,83 @@ def get_local_ip():
     except:
         return "127.0.0.1"
 
-
 # ==========================================================
-# EXTRAIR TEXTO PDF (para busca interna)
+# EXTRAÇÃO PDF
 # ==========================================================
 
 def extract_pdf_text(path):
     try:
         reader = PdfReader(path)
         text = ""
-        for page in reader.pages[:3]:  # limite para performance
+        for page in reader.pages[:3]:
             text += page.extract_text() or ""
         return text.lower()
     except:
         return ""
 
-
 # ==========================================================
-# SCAN SECTIONS
+# SCAN COM CACHE INTELIGENTE
 # ==========================================================
 
 def scan_sections():
+
+    cache = load_cache()
+    updated_cache = {}
     sections = []
 
+    print("📦 Carregando cache...")
+
     for path in PDF_PATHS:
+
         title = folder_title(path)
         slug = slugify(title)
         items = []
 
         if os.path.exists(path):
+
             files = [f for f in os.listdir(path) if f.lower().endswith(".pdf")]
 
-            # MAIS RECENTE PRIMEIRO
             files.sort(
                 key=lambda f: os.path.getmtime(os.path.join(path, f)),
                 reverse=True
             )
 
             for pdf in files:
+
                 full = os.path.join(path, pdf)
+                mtime = os.path.getmtime(full)
+                size = os.path.getsize(full)
+
+                cache_key = full
+
+                if cache_key in cache:
+                    cached = cache[cache_key]
+
+                    if cached["mtime"] == mtime and cached["size"] == size:
+                        content = cached["content"]
+                    else:
+                        print("🔄 Atualizando:", pdf)
+                        content = extract_pdf_text(full)
+                else:
+                    print("🆕 Novo:", pdf)
+                    content = extract_pdf_text(full)
+
+                updated_cache[cache_key] = {
+                    "mtime": mtime,
+                    "size": size,
+                    "content": content
+                }
 
                 items.append({
                     "file": pdf,
                     "full_path": full,
                     "display": format_display_name(pdf),
-                    "size": os.path.getsize(full) // 1024,
+                    "size": size // 1024,
                     "modified": time.strftime(
                         "%d/%m/%Y %H:%M",
-                        time.localtime(os.path.getmtime(full))
+                        time.localtime(mtime)
                     ),
-                    "content": extract_pdf_text(full)
+                    "content": content
                 })
 
         sections.append({
@@ -120,14 +158,16 @@ def scan_sections():
             "items": items
         })
 
-    return sections
+    save_cache(updated_cache)
 
+    return sections
 
 # ==========================================================
 # PREP WEB FILES
 # ==========================================================
 
 def prepare_web_files(sections):
+
     if os.path.exists(WEB_PDFS_DIR):
         shutil.rmtree(WEB_PDFS_DIR, ignore_errors=True)
 
@@ -143,9 +183,8 @@ def prepare_web_files(sections):
             except:
                 pass
 
-
 # ==========================================================
-# HTML GENERATION
+# HTML GENERATION (SEM F-STRING)
 # ==========================================================
 
 def generate_html(sections):
@@ -157,19 +196,21 @@ def generate_html(sections):
         cards = ""
 
         for item in sec["items"]:
-            url = f"_web_pdfs/{sec['slug']}/{item['file']}"
 
-            cards += f"""
+            url = "_web_pdfs/" + sec["slug"] + "/" + item["file"]
+            search_data = (item["display"] + " " + item["content"]).lower().replace('"', "'")
+
+            cards += """
             <div class="col-12 col-md-6 col-lg-4 pdf-card"
-                 data-search="{(item['display'] + ' ' + item['content']).lower()}">
+                 data-search=\"""" + search_data + """\">
               <div class="card shadow-sm border-0 h-100">
                 <div class="card-body d-flex flex-column">
-                  <div class="fw-bold mb-1 text-truncate">{item['display']}</div>
+                  <div class="fw-bold mb-1 text-truncate">""" + item["display"] + """</div>
                   <div class="small text-muted mb-3">
-                    {item['size']} KB · {item['modified']}
+                    """ + str(item["size"]) + """ KB · """ + item["modified"] + """
                   </div>
                   <a class="btn btn-primary btn-sm mt-auto"
-                     href="{url}"
+                     href=\"""" + url + """\"
                      target="_blank">
                      📖 Abrir PDF
                   </a>
@@ -178,108 +219,60 @@ def generate_html(sections):
             </div>
             """
 
-        html_sections += f"""
+        html_sections += """
         <section class="mb-4">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="m-0 toggle-header" style="cursor:pointer;">
-              📁 {sec['title']} <span class="toggle-icon">➕</span>
+              📁 """ + sec["title"] + """
             </h5>
-            <span class="badge bg-primary">{len(sec['items'])}</span>
+            <span class="badge bg-primary">""" + str(len(sec["items"])) + """</span>
           </div>
-
-          <div class="row g-3 section-content hidden-section">
-            {cards}
+          <div class="row g-3 section-content" style="display:none;">
+            """ + cards + """
           </div>
         </section>
         """
 
-    html = f"""
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>📚 PDF Viewer</title>
+    html = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <title>PDF Viewer</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        </head>
+        <body class="bg-light">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <div class="container py-4">
+        <h3 class="mb-4">📚 Seus PDFs</h3>
 
-<style>
-body {{
-    background: linear-gradient(120deg, #f4f6f9, #eef2f7);
-}}
+        <input id="searchInput" class="form-control mb-3" placeholder="Buscar por nome ou conteúdo...">
 
-.hidden-section {{
-    display:none;
-}}
+        """ + html_sections + """
 
-.text-truncate {{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}}
-</style>
-</head>
+        </div>
 
-<body>
+        <script>
 
-<div class="container py-4">
+        $("#searchInput").on("keyup", function() {
+            let value = $(this).val().toLowerCase();
+            $(".pdf-card").each(function() {
+                let text = $(this).data("search");
+                $(this).toggle(text.includes(value));
+            });
+        });
 
-<h3 class="mb-4">📚 Seus PDFs</h3>
+        $(".toggle-header").on("click", function() {
+            let section = $(this).closest("section").find(".section-content");
+            section.toggle();
+        });
 
-<input id="searchInput"
-       class="form-control mb-4"
-       placeholder="🔎 Buscar por nome ou conteúdo...">
+        </script>
 
-<div id="resultCounter" class="small text-muted mb-3"></div>
-
-{html_sections}
-
-</div>
-
-<script>
-
-$(function(){{
-
-  function updateCounter() {{
-      let visible = $(".pdf-card:visible").length;
-      $("#resultCounter").text(visible + " resultado(s) encontrados");
-  }}
-
-  updateCounter();
-
-  // 🔎 SEARCH
-  $("#searchInput").on("keyup", function(){{
-      let value = $(this).val().toLowerCase();
-
-      $(".pdf-card").each(function(){{
-          let text = $(this).data("search");
-          $(this).toggle(text.includes(value));
-      }});
-
-      updateCounter();
-  }});
-
-  // 📁 TOGGLE SECTION
-  $(".toggle-header").on("click", function(){{
-      let section = $(this).closest("section").find(".section-content");
-      let icon = $(this).find(".toggle-icon");
-
-      section.toggleClass("hidden-section");
-
-      if(section.hasClass("hidden-section")) {{
-          icon.text("➕");
-      }} else {{
-          icon.text("➖");
-      }}
-  }});
-
-}});
-</script>
-
-</body>
-</html>
-"""
+        </body>
+        </html>
+        """
 
     with open(INDEX_HTML, "w", encoding="utf-8") as f:
         f.write(html)
@@ -301,12 +294,12 @@ def start_server(port):
     with ThreadingTCPServer(("0.0.0.0", port), Handler) as httpd:
         httpd.serve_forever()
 
-
 # ==========================================================
 # MAIN
 # ==========================================================
 
 def main():
+
     print("🔎 Escaneando PDFs...")
     sections = scan_sections()
 
@@ -319,27 +312,22 @@ def main():
     port = get_free_port()
     ip = get_local_ip()
 
-    server_thread = threading.Thread(
+    threading.Thread(
         target=start_server,
         args=(port,),
         daemon=True
-    )
-    server_thread.start()
+    ).start()
 
     time.sleep(1)
 
-    url = f"http://{ip}:{port}/index.html"
+    url = "http://{}:{}/index.html".format(ip, port)
 
     print("\n🌐 Interface pronta!")
     print("👉 Acesse:", url)
 
-    try:
-        webbrowser.open(url)
-    except:
-        pass
+    webbrowser.open(url)
 
     input("\nPressione ENTER para encerrar...")
-
 
 if __name__ == "__main__":
     main()
