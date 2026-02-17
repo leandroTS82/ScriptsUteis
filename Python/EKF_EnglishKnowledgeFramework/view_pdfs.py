@@ -36,9 +36,16 @@ def load_cache():
             return json.load(f)
     return {}
 
-def save_cache(cache):
+def save_cache(data):
+    CACHE_DIR = os.path.dirname(CACHE_FILE)
+    if not os.path.exists(CACHE_DIR):
+        print("📁 Criando diretório de cache...")
+        os.makedirs(CACHE_DIR)
+    # Garante que a pasta exista
+    os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
+
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(cache, f, indent=2)
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 # ==========================================================
 # HELPERS
@@ -152,11 +159,14 @@ def scan_sections():
                     "content": content
                 })
 
-        sections.append({
-            "title": title,
-            "slug": slug,
-            "items": items
-        })
+        # 🔥 AQUI ESTÁ A CORREÇÃO
+        # Só adiciona seção se tiver PDFs
+        if items:
+            sections.append({
+                "title": title,
+                "slug": slug,
+                "items": items
+            })
 
     save_cache(updated_cache)
 
