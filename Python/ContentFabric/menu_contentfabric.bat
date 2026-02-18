@@ -42,14 +42,14 @@ echo  1 - Consolidar BaseTerms (Preparar novos conteudos)
 echo  2 - Criar Videos (Leandrinho)
 echo  3 - Mover arquivos para Sanitizacao
 echo.
-echo  v - Voltar
+echo  '0' - Voltar
 echo.
 set /p OP=Escolha: 
 
 if "%OP%"=="1" goto OP12
 if "%OP%"=="2" goto OP11
 if "%OP%"=="3" goto OP5
-if /i "%OP%"=="v" goto MENU
+if /i "%OP%"=="0" goto MENU
 
 goto CRIACAO
 
@@ -71,7 +71,7 @@ echo  5 - Ajustar contrato YouTube (Groq)
 echo  6 - Mover videos longos + limpar history
 echo  7 - Excluir videos manualmente + gerar pending
 echo.
-echo  v - Voltar
+echo  '0' - Voltar
 echo.
 set /p OP=Escolha: 
 
@@ -82,7 +82,7 @@ if "%OP%"=="4" goto OP10
 if "%OP%"=="5" goto OP1
 if "%OP%"=="6" goto OP13
 if "%OP%"=="7" goto OP14
-if /i "%OP%"=="v" goto MENU
+if /i "%OP%"=="0" goto MENU
 
 goto SANITIZACAO
 
@@ -98,12 +98,12 @@ echo ==================================================
 echo.
 echo  1 - Upload para YouTube
 echo.
-echo  v - Voltar
+echo  '0' - Voltar
 echo.
 set /p OP=Escolha: 
 
 if "%OP%"=="1" goto OP2
-if /i "%OP%"=="v" goto MENU
+if /i "%OP%"=="0" goto MENU
 
 goto PUBLICACAO
 
@@ -121,14 +121,14 @@ echo  1 - Copiar arquivos inteligente
 echo  2 - Sync Wordbank + JSONs (zip)
 echo  3 - Sync Audios para ZIP
 echo.
-echo  v - Voltar
+echo  '0' - Voltar
 echo.
 set /p OP=Escolha: 
 
 if "%OP%"=="1" goto OP6
 if "%OP%"=="2" goto OP7
 if "%OP%"=="3" goto OP8
-if /i "%OP%"=="v" goto MENU
+if /i "%OP%"=="0" goto MENU
 
 goto DISTRIBUICAO
 

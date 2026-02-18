@@ -74,6 +74,8 @@ def load_history():
 
 
 def save_history(data):
+    os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
+
     with open(HISTORY_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
