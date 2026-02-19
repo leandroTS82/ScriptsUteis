@@ -128,7 +128,8 @@ timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 print("Compactando wordbank...")
 
 wordbank_zip = os.path.join(
-    TRANSFER_PATH, f"wordbank_{timestamp}.zip"
+    #TRANSFER_PATH, f"wordbank_{timestamp}.zip"
+    TRANSFER_PATH, f"wordbank.zip"
 )
 
 # --- Geração do metadata.json ---
@@ -175,7 +176,8 @@ else:
     print("Compactando Json_files...")
 
     json_zip = os.path.join(
-        TRANSFER_PATH, f"json_files_{timestamp}.zip"
+        #TRANSFER_PATH, f"json_files_{timestamp}.zip"
+        TRANSFER_PATH, f"json_files.zip"
     )
 
     json_count = zip_directory(DESTINATION_PATH, json_zip)
