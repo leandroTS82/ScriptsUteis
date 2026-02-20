@@ -14,7 +14,6 @@ from PyPDF2 import PdfReader
 from itertools import cycle
 import random
 import requests
-import markdown
 
 # ==========================================================
 # CONFIG
@@ -22,36 +21,16 @@ import markdown
 
 sys.path.append(r"C:\dev\scripts\ScriptsUteis\Python\EKF_EnglishKnowledgeFramework")
 from Services.image_generation_service import ImageGenerationService
-
-
+DEFAULT_IMAGE = "english.jpg"
 BASE_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\View_PDF"
 
 WEB_PDFS_DIR = os.path.join(BASE_DIR, "_web_pdfs")
 WEB_IMAGES_DIR = os.path.join(BASE_DIR, "_web_images")
 CACHE_FILE = os.path.join(BASE_DIR, "pdf_index_cache.json")
 CONTEXT_CACHE_FILE = os.path.join(BASE_DIR, "image_context_cache.json")
-SUMMARY_CACHE_FILE = os.path.join(BASE_DIR, "summary_ai_cache.json")
 INDEX_HTML = os.path.join(BASE_DIR, "index.html")
 
 MAX_IMAGES_PER_RUN = 5
-SUMMARY_MAX_CHARS = 8000
-
-# ==========================================================
-# GROQ MULTI-KEY CONFIG (PADRÃO EKF)
-# ==========================================================
-
-GROQ_BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if GROQ_BASE not in sys.path:
-    sys.path.insert(0, GROQ_BASE)
-from groq_keys_loader import GROQ_KEYS
-# ================================================================================
-# CONFIG - GROQ MULTI KEYS (ROTATION / RANDOM)
-# ================================================================================
-_groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
-
-
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "openai/gpt-oss-20b"
 
 PDF_PATHS = [
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\Handouts\pdf",
@@ -60,92 +39,16 @@ PDF_PATHS = [
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EnglishReview\stories_compilation"
 ]
 
-WEB_PDFS_DIR = os.path.join(BASE_DIR, "_web_pdfs")
-WEB_IMAGES_DIR = os.path.join(BASE_DIR, "_web_images")
-INDEX_HTML = os.path.join(BASE_DIR, "index.html")
-CACHE_FILE = os.path.join(BASE_DIR, "pdf_index_cache.json")
-
-
 # ==========================================================
-# GROQ KEY HANDLING (SUPPORTS {"name": "...", "key": "..."} )
+# IMAGE SERVICE
 # ==========================================================
 
-def get_next_groq_key():
-    """
-    Supports:
-    - list[str]
-    - list[{"key": "..."}]
-    - list[{"name": "...", "key": "..."}]
-    """
+API_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\google-gemini-key.txt"
 
-    for _ in range(len(GROQ_KEYS)):
-        candidate = next(_groq_key_cycle)
+def load_api_key():
+    return open(API_KEY_PATH).read().strip()
 
-        # If dict
-        if isinstance(candidate, dict):
-            key = candidate.get("key", "").strip()
-        else:
-            key = str(candidate).strip()
-
-        if key.startswith("gsk_"):
-            return key
-
-    raise RuntimeError("❌ No valid GROQ key found.")
-
-
-def call_groq_summary(prompt_text):
-
-    last_error = None
-
-    for _ in range(len(GROQ_KEYS)):
-
-        api_key = get_next_groq_key()
-
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json"
-        }
-
-        payload = {
-            "model": GROQ_MODEL,
-            "messages": [
-                {"role": "user", "content": prompt_text}
-            ],
-            "temperature": 0.7,
-            "max_tokens": 1200
-        }
-
-        try:
-            response = requests.post(
-                GROQ_URL,
-                headers=headers,
-                json=payload,
-                timeout=30
-            )
-
-            if response.status_code == 429:
-                last_error = "Rate limit"
-                continue
-
-            response.raise_for_status()
-
-            data = response.json()
-
-            if "choices" not in data:
-                continue
-
-            content = data["choices"][0]["message"]["content"]
-
-            if content and len(content.strip()) > 20:
-                return content.strip()
-
-        except requests.RequestException as e:
-            last_error = str(e)
-            continue
-
-    print(f"❌ All GROQ keys failed. Last error: {last_error}")
-    return None
-
+image_service = ImageGenerationService(load_api_key())
 
 # ==========================================================
 # CACHE
@@ -161,7 +64,7 @@ def save_cache(data):
     os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
-        
+
 def load_context_cache():
     if os.path.exists(CONTEXT_CACHE_FILE):
         with open(CONTEXT_CACHE_FILE, "r", encoding="utf-8") as f:
@@ -172,18 +75,6 @@ def save_context_cache(data):
     os.makedirs(os.path.dirname(CONTEXT_CACHE_FILE), exist_ok=True)
     with open(CONTEXT_CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
-
-def load_summary_cache():
-    if os.path.exists(SUMMARY_CACHE_FILE):
-        with open(SUMMARY_CACHE_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-def save_summary_cache(data):
-    os.makedirs(os.path.dirname(SUMMARY_CACHE_FILE), exist_ok=True)
-    with open(SUMMARY_CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-
 
 # ==========================================================
 # HELPERS
@@ -252,15 +143,8 @@ def extract_terms_from_text(text, max_terms=1):
     return results[:max_terms]
 
 # ==========================================================
-# IMAGE GENERATION (COM CACHE)
+# IMAGE GENERATION
 # ==========================================================
-
-def safe_parse_date(date_str):
-    try:
-        return time.mktime(time.strptime(date_str, "%d/%m/%Y %H:%M"))
-    except:
-        return 0
-
 
 def consolidate_recent_terms(sections, limit=MAX_IMAGES_PER_RUN):
 
@@ -270,9 +154,8 @@ def consolidate_recent_terms(sections, limit=MAX_IMAGES_PER_RUN):
         for item in sec["items"]:
             all_items.append(item)
 
-    # Ordena por data mais recente
     all_items.sort(
-        key=lambda x: safe_parse_date(x["modified"]),
+        key=lambda x: time.mktime(time.strptime(x["modified"], "%d/%m/%Y %H:%M")),
         reverse=True
     )
 
@@ -307,18 +190,15 @@ def generate_images_for_recent_terms(recent_terms):
         filename = slug + ".jpg"
         output_path = os.path.join(WEB_IMAGES_DIR, filename)
 
-        # Se já existe → apenas reutiliza
         if os.path.exists(output_path):
             generated[term] = filename
-            context_cache[term] = filename
             continue
 
-        # Limite de geração por execução
         if generated_count >= MAX_IMAGES_PER_RUN:
             continue
 
         prompt = f"""
-        Create a modern educational illustration (with black people in the style spider-verse) representing:
+        Create a modern educational illustration representing:
         "{term}"
 
         Clean layout, minimalistic, academic style,
@@ -332,26 +212,17 @@ def generate_images_for_recent_terms(recent_terms):
                 mode="landscape"
             )
 
-            context_cache[term] = filename
             generated[term] = filename
             generated_count += 1
 
         except Exception as e:
             print("⚠ Erro imagem:", e)
 
-    save_context_cache(context_cache)
     return generated
 
-
 # ==========================================================
-# SCAN SECTIONS
+# SCAN
 # ==========================================================
-API_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\google-gemini-key.txt"
-
-def load_api_key():
-    return open(API_KEY_PATH).read().strip()
-
-image_service = ImageGenerationService(load_api_key())
 
 def scan_sections():
 
@@ -425,7 +296,6 @@ def scan_sections():
             })
 
     save_cache(updated_cache)
-
     return sections
 
 # ==========================================================
@@ -447,99 +317,12 @@ def prepare_web_files(sections):
                 shutil.copy2(item["full_path"], dest)
 
 # ==========================================================
-# HTML GENERATION
+# HTML (SEM AI STUDY OVERVIEW)
 # ==========================================================
-
-def generate_global_summary(sections):
-
-    cache = load_summary_cache()
-
-    consolidated_text = ""
-
-    for sec in sections:
-        for item in sec["items"]:
-            if item.get("content"):
-                consolidated_text += item["content"][:500] + "\n\n"
-
-            if len(consolidated_text) > SUMMARY_MAX_CHARS:
-                break
-
-    content_hash = hashlib.md5(consolidated_text.encode()).hexdigest()
-
-    if content_hash in cache:
-        return cache[content_hash]
-
-    enriched_prompt = f"""
-    You are a modern English educator.
-
-    Generate a structured study overview in MARKDOWN format.
-
-    Rules:
-    - Use proper markdown headings (##, ###)
-    - Use bullet points
-    - Use tables when helpful
-    - No code blocks
-    - No technical API errors
-    - No JSON
-
-    CONTENT:
-    {consolidated_text}
-    """
-
-    print("🧠 Generating structured study summary via Groq...")
-
-    result = call_groq_summary(enriched_prompt)
-
-    if result:
-
-        # 🔒 Remove possible API error leaks
-        forbidden_terms = [
-            "invalid request",
-            "error",
-            "404",
-            "bad request",
-            "api key",
-            "http",
-            "stacktrace"
-        ]
-
-        lower_result = result.lower()
-        if any(term in lower_result for term in forbidden_terms):
-            print("⚠ Groq returned contaminated content. Ignoring.")
-            return """
-            <div class='alert alert-warning'>
-                AI summary temporarily unavailable.
-            </div>
-            """
-
-        cache[content_hash] = result
-        save_summary_cache(cache)
-        return result
-
-    return """
-    <div class='alert alert-warning'>
-        AI summary unavailable.
-    </div>
-    """
-
-
 
 def generate_html(sections):
 
-    summary_markdown = generate_global_summary(sections)
-
-    summary_html = markdown.markdown(
-        summary_markdown,
-        extensions=["tables", "fenced_code"]
-    )
-
-    # Fallback seguro
-    if not summary_html or summary_html.strip() == "":
-        summary_html = """
-        <div class='alert alert-warning'>
-            Summary unavailable.
-        </div>
-        """
+    DEFAULT_IMAGE = "english.jpg"
 
     html_sections = ""
 
@@ -552,13 +335,25 @@ def generate_html(sections):
             url = "_web_pdfs/" + sec["slug"] + "/" + item["file"]
             search_data = (item["display"] + " " + item["content"]).lower().replace('"', "'")
 
-            image_block = ""
-            if item.get("illustration"):
-                image_block = f"""
-                <img src="_web_images/{item['illustration']}"
+            # ==============================
+            # REGRA DE IMAGEM COM FALLBACK
+            # ==============================
+
+            image_file = item.get("illustration")
+
+            # Se não existir ou arquivo físico não encontrado → usa padrão
+            if not image_file or not os.path.exists(os.path.join(WEB_IMAGES_DIR, image_file)):
+                image_file = DEFAULT_IMAGE
+
+            image_block = f"""
+                <img src="_web_images/{image_file}"
                      class="img-fluid rounded mb-3"
                      style="height:200px;object-fit:cover;width:100%;">
-                """
+            """
+
+            # ==============================
+            # CARD
+            # ==============================
 
             cards += f"""
             <div class="col-md-4 pdf-card mb-4" data-search="{search_data}">
@@ -593,6 +388,10 @@ def generate_html(sections):
         </section>
         """
 
+    # ==============================
+    # HTML FINAL
+    # ==============================
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -602,39 +401,6 @@ def generate_html(sections):
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
         <style>
-        
-            #summaryContent h2 {{
-                margin-top: 15px;
-                font-size: 1.5rem;
-            }}
-
-            #summaryContent h3 {{
-                margin-top: 12px;
-                font-size: 1.2rem;
-            }}
-
-            #summaryContent table {{
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 10px;
-            }}
-
-            #summaryContent th, #summaryContent td {{
-                border: 1px solid #ddd;
-                padding: 8px;
-            }}
-
-            #summaryContent th {{
-                background-color: #f8f9fa;
-            }}
-
-            #summaryContent ul {{
-                margin-left: 20px;
-            }}
-
-            #summaryContent p {{
-                line-height: 1.6;
-            }}
             body {{
                 background: #f5f7fa;
             }}
@@ -657,17 +423,6 @@ def generate_html(sections):
             .section-title:hover {{
                 color:#0d6efd;
             }}
-
-            .summary-container {{
-                display:none;
-                margin-top:20px;
-                animation: fadeIn 0.3s ease-in-out;
-            }}
-
-            @keyframes fadeIn {{
-                from {{opacity:0; transform: translateY(-5px);}}
-                to {{opacity:1; transform: translateY(0);}}
-            }}
         </style>
     </head>
 
@@ -676,25 +431,6 @@ def generate_html(sections):
     <div class="container py-5">
 
         <h2 class="mb-4">📚 English Knowledge Framework</h2>
-
-        <div class="card shadow-lg border-0 mb-5">
-            <div class="card-body">
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">📘 AI Study Overview</h4>
-                    <button class="btn btn-outline-primary btn-sm"
-                            onclick="toggleSummary()">
-                        Toggle Summary
-                    </button>
-                </div>
-
-                <div id="summaryContainer" class="summary-container">
-                    <hr>
-                    {summary_html}
-                </div>
-
-            </div>
-        </div>
 
         <input id="searchInput"
                class="form-control mb-4"
@@ -707,15 +443,6 @@ def generate_html(sections):
     <script>
         function toggleSection(id){{
             var el = document.getElementById(id);
-            if(el.style.display === "none"){{
-                el.style.display = "block";
-            }} else {{
-                el.style.display = "none";
-            }}
-        }}
-
-        function toggleSummary(){{
-            var el = document.getElementById("summaryContainer");
             if(el.style.display === "none"){{
                 el.style.display = "block";
             }} else {{
@@ -740,9 +467,6 @@ def generate_html(sections):
 
     with open(INDEX_HTML, "w", encoding="utf-8") as f:
         f.write(html)
-
-
-
 
 # ==========================================================
 # SERVER
@@ -769,20 +493,15 @@ def main():
     print("🔎 Escaneando PDFs...")
     sections = scan_sections()
     
-    print("🧠 Consolidando termos recentes...")
+    print("🎨 Gerando imagens...")
     recent_terms = consolidate_recent_terms(sections)
-
-    print("🎨 Gerando imagens apenas para 5 termos mais recentes...")
     generated_map = generate_images_for_recent_terms(recent_terms)
 
-    # Associar imagens aos itens
     for sec in sections:
         for item in sec["items"]:
             term = item.get("illustration")
             if term and term in generated_map:
                 item["illustration"] = generated_map[term]
-            else:
-                item["illustration"] = None
 
     print("📦 Preparando arquivos web...")
     prepare_web_files(sections)
@@ -801,7 +520,7 @@ def main():
 
     time.sleep(1)
 
-    url = "http://{}:{}/index.html".format(ip, port)
+    url = f"http://{ip}:{port}/index.html"
 
     print("\n🌐 Interface pronta!")
     print("👉 Acesse:", url)

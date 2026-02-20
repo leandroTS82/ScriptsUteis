@@ -20,9 +20,9 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-02-19_09-22-15_slicedFiles\2026-02-19_09-22-15.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\Vídeos baixados\Speak English With Tiffani\Condence.mp4"
 
-GLOBAL_VIDEO_NAME = "AllsetraMeeting"
+GLOBAL_VIDEO_NAME = "Condence"
 
 # 🔹 NOVA FLAG
 # False → {nome_do_arquivo}_slicedFiles
@@ -32,22 +32,38 @@ USE_SHARED_00_SLICED_FOLDER = False
 SEGMENTS = [
     {
         "start": "00:00",
-        "end": "00:30",
-        "name": "01_TranslationFocus"
+        "end": "01:50",
+        "name": "01_Introducao_A_Gaiola_do_Ingles"
     },
     {
-        "start": "01:23",
-        "end": "02:03",
-        "name": "02_Coffee"
-    },{
-        "start": "02:04",
-        "end": "02:48",
-        "name": "03_RevisetBrazil"
+        "start": "01:50",
+        "end": "07:13",
+        "name": "02_Aplicacao_1_Parar_de_Ensaiar"
     },
     {
-        "start": "02:49",
-        "end": "09:54",
-        "name": "04_RestAboutTasks"
+        "start": "07:13",
+        "end": "13:47",
+        "name": "03_Aplicacao_2_Permissao_Para_o_Aproximado"
+    },
+    {
+        "start": "13:47",
+        "end": "20:24",
+        "name": "04_Aplicacao_3_Falar_Antes_de_Estar_Pronto"
+    },
+    {
+        "start": "20:24",
+        "end": "28:20",
+        "name": "05_Aplicacao_4_Nao_Traduzir_sua_Personalidade"
+    },
+    {
+        "start": "28:20",
+        "end": "34:57",
+        "name": "06_Aplicacao_5_Aceitar_a_Imperfeicao"
+    },
+    {
+        "start": "34:57",
+        "end": "42:08",
+        "name": "07_Story_Time_Licao_de_Vida"
     }
 ]
 
