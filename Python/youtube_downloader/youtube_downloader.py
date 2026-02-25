@@ -23,25 +23,17 @@ FALLBACK_SUB_LANG = "pt"
 # UTILS – TEMPO
 # ======================================================
 def parse_time_input(value: str) -> int:
-    """
-    Aceita:
-      - segundos: 120
-      - MM:SS    : 02:00
-      - HH:MM:SS : 01:02:03
-    Retorna segundos (int)
-    """
     value = value.strip()
 
-    # apenas segundos
     if value.isdigit():
         return int(value)
 
     parts = value.split(":")
-    if len(parts) == 2:       # MM:SS
+    if len(parts) == 2:
         m, s = parts
         return int(m) * 60 + int(s)
 
-    if len(parts) == 3:       # HH:MM:SS
+    if len(parts) == 3:
         h, m, s = parts
         return int(h) * 3600 + int(m) * 60 + int(s)
 
@@ -207,7 +199,13 @@ def download_youtube(
 # MAIN
 # ======================================================
 if __name__ == "__main__":
-    url = input("Informe a URL do YouTube: ").strip()
+
+    print("\nModo de operação:")
+    print("1 - Download único")
+    print("2 - Download em lote (arquivo .txt)")
+
+    mode = input("Escolha (1/2): ").strip()
+
     output_dir = choose_output_dir()
 
     partition = input("Deseja particionar o vídeo? (s/n): ").strip().lower() == "s"
@@ -227,12 +225,53 @@ if __name__ == "__main__":
 
     download_subs = input("Deseja baixar a legenda? (s/n): ").strip().lower() == "s"
 
-    download_youtube(
-        url=url,
-        output_dir=output_dir,
-        partition=partition,
-        t_ini=t_ini,
-        t_end=t_end,
-        custom_name=custom_name,
-        download_subs=download_subs
-    )
+    # ==========================================
+    # DOWNLOAD ÚNICO
+    # ==========================================
+    if mode == "1":
+        url = input("Informe a URL do YouTube: ").strip()
+
+        download_youtube(
+            url=url,
+            output_dir=output_dir,
+            partition=partition,
+            t_ini=t_ini,
+            t_end=t_end,
+            custom_name=custom_name,
+            download_subs=download_subs
+        )
+
+    # ==========================================
+    # DOWNLOAD EM LOTE
+    # ==========================================
+    elif mode == "2":
+        txt_path = Path(input("Informe o caminho do arquivo .txt: ").strip())
+
+        if not txt_path.exists():
+            sys.exit("❌ Arquivo não encontrado")
+
+        urls = [
+            line.strip()
+            for line in txt_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+
+        print(f"\n🔹 {len(urls)} vídeos encontrados.\n")
+
+        for i, url in enumerate(urls, 1):
+            print(f"▶ [{i}/{len(urls)}] Baixando: {url}")
+            try:
+                download_youtube(
+                    url=url,
+                    output_dir=output_dir,
+                    partition=partition,
+                    t_ini=t_ini,
+                    t_end=t_end,
+                    custom_name=None,  # evita conflito de nomes no lote
+                    download_subs=download_subs
+                )
+            except Exception as e:
+                print(f"⚠ Erro ao baixar: {e}")
+
+    else:
+        sys.exit("❌ Opção inválida")

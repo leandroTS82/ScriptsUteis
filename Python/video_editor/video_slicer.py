@@ -20,9 +20,9 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\Vídeos baixados\Speak English With Tiffani\Condence.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\Vídeos baixados\Tyrese Gibson With T.D. Jakes\Tyrese_TDJakes.mp4"
 
-GLOBAL_VIDEO_NAME = "Condence"
+GLOBAL_VIDEO_NAME = "Tyrese"
 
 # 🔹 NOVA FLAG
 # False → {nome_do_arquivo}_slicedFiles
@@ -30,41 +30,241 @@ GLOBAL_VIDEO_NAME = "Condence"
 USE_SHARED_00_SLICED_FOLDER = False
 
 SEGMENTS = [
-    {
-        "start": "00:00",
-        "end": "01:50",
-        "name": "01_Introducao_A_Gaiola_do_Ingles"
-    },
-    {
-        "start": "01:50",
-        "end": "07:13",
-        "name": "02_Aplicacao_1_Parar_de_Ensaiar"
-    },
-    {
-        "start": "07:13",
-        "end": "13:47",
-        "name": "03_Aplicacao_2_Permissao_Para_o_Aproximado"
-    },
-    {
-        "start": "13:47",
-        "end": "20:24",
-        "name": "04_Aplicacao_3_Falar_Antes_de_Estar_Pronto"
-    },
-    {
-        "start": "20:24",
-        "end": "28:20",
-        "name": "05_Aplicacao_4_Nao_Traduzir_sua_Personalidade"
-    },
-    {
-        "start": "28:20",
-        "end": "34:57",
-        "name": "06_Aplicacao_5_Aceitar_a_Imperfeicao"
-    },
-    {
-        "start": "34:57",
-        "end": "42:08",
-        "name": "07_Story_Time_Licao_de_Vida"
-    }
+{
+"start": "00:00",
+"end": "01:24",
+"name": "01_IntroductionAndAccolades"
+},
+{
+"start": "01:25",
+"end": "02:37",
+"name": "02_RecreatingYourself"
+},
+{
+"start": "02:38",
+"end": "04:05",
+"name": "03_ConceptOfBlindFaith"
+},
+{
+"start": "04:06",
+"end": "05:15",
+"name": "04_ConnectingPastAndPresent"
+},
+{
+"start": "05:16",
+"end": "06:15",
+"name": "05_SurvivalIdentities"
+},
+{
+"start": "06:16",
+"end": "07:55",
+"name": "06_TheBlackOctopusMetaphor"
+},
+{
+"start": "07:56",
+"end": "09:36",
+"name": "07_IndividualIdentityCrisis"
+},
+{
+"start": "09:37",
+"end": "10:49",
+"name": "08_HealthySelfishness"
+},
+{
+"start": "10:50",
+"end": "12:41",
+"name": "09_ParentalBlueprintsAndGrief"
+},
+{
+"start": "12:42",
+"end": "14:21",
+"name": "10_ForgivenessAndProtection"
+},
+{
+"start": "14:22",
+"end": "15:53",
+"name": "11_DistortedViewsOfLove"
+},
+{
+"start": "15:54",
+"end": "17:30",
+"name": "12_TrappedByFirstImpressions"
+},
+{
+"start": "17:31",
+"end": "19:12",
+"name": "13_TheOrphanRealization"
+},
+{
+"start": "19:13",
+"end": "20:40",
+"name": "14_HumorInTragedy"
+},
+{
+"start": "20:41",
+"end": "21:25",
+"name": "15_TherapeuticInternalDialogue"
+},
+{
+"start": "21:26",
+"end": "22:43",
+"name": "16_SurvivorsRemorseAndImpact"
+},
+{
+"start": "22:44",
+"end": "24:15",
+"name": "17_TransparencyInSuccess"
+},
+{
+"start": "24:16",
+"end": "25:57",
+"name": "18_TreasuresInDarkness"
+},
+{
+"start": "25:58",
+"end": "27:50",
+"name": "19_SurrogateParentsAndRegard"
+},
+{
+"start": "27:51",
+"end": "29:13",
+"name": "20_LeatherAndLacePartnership"
+},
+{
+"start": "29:14",
+"end": "30:42",
+"name": "21_MixingBaggageAndTrauma"
+},
+{
+"start": "30:43",
+"end": "32:16",
+"name": "22_SpiritualKnowingInRelationships"
+},
+{
+"start": "32:17",
+"end": "33:33",
+"name": "23_BreakingTheHellCycle"
+},
+{
+"start": "33:34",
+"end": "34:47",
+"name": "24_TheLanguageOfTherapy"
+},
+{
+"start": "34:48",
+"end": "36:10",
+"name": "25_MutualHonorAndAttention"
+},
+{
+"start": "36:11",
+"end": "37:51",
+"name": "26_CreativeIdealismVsSteadiness"
+},
+{
+"start": "37:52",
+"end": "39:33",
+"name": "27_AppreciationForTransparency"
+},
+{
+"start": "39:34",
+"end": "41:15",
+"name": "28_MaterialismVsLegacy"
+},
+{
+"start": "41:16",
+"end": "42:58",
+"name": "29_MuchWithLittle"
+},
+{
+"start": "42:59",
+"end": "44:08",
+"name": "30_AuthenticSelfPerception"
+},
+{
+"start": "44:09",
+"end": "45:44",
+"name": "31_ProtectingChildrenDuringDivorce"
+},
+{
+"start": "45:45",
+"end": "47:30",
+"name": "32_DaughtersChangePerspective"
+},
+{
+"start": "47:31",
+"end": "49:18",
+"name": "33_LegalFinancialTrauma"
+},
+{
+"start": "49:19",
+"end": "50:50",
+"name": "34_ComfortInMisunderstanding"
+},
+{
+"start": "50:51",
+"end": "52:27",
+"name": "35_IntentionalSocialCircles"
+},
+{
+"start": "52:28",
+"end": "54:13",
+"name": "36_AssignmentOverLife"
+},
+{
+"start": "54:14",
+"end": "56:08",
+"name": "37_TraumaBondingAndBaggage"
+},
+{
+"start": "56:09",
+"end": "57:41",
+"name": "38_MarryingTheScaffolding"
+},
+{
+"start": "57:42",
+"end": "59:43",
+"name": "39_SeasonsAndChecklists"
+},
+{
+"start": "59:44",
+"end": "61:30",
+"name": "40_LegacyOfTeddyPendergrass"
+},
+{
+"start": "61:31",
+"end": "63:00",
+"name": "41_DeteriorationAndPerspective"
+},
+{
+"start": "63:01",
+"end": "64:51",
+"name": "42_SocialCircleInfluence"
+},
+{
+"start": "64:52",
+"end": "66:13",
+"name": "43_MentalHealthFragility"
+},
+{
+"start": "66:14",
+"end": "67:54",
+"name": "44_TheSlingshotAnalogy"
+},
+{
+"start": "67:55",
+"end": "69:30",
+"name": "45_DefiningSuccessAsImpact"
+},
+{
+"start": "69:31",
+"end": "71:01",
+"name": "46_PrisonReformAndTrades"
+},
+{
+"start": "71:02",
+"end": "73:43",
+"name": "47_ClosingBlessingAndConclusion"
+}
 ]
 
 FFMPEG_BIN = "ffmpeg"
