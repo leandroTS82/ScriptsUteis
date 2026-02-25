@@ -14,6 +14,8 @@ CONFIG_FILE = Path("./output_dirs.json")
 NODE_PATH = r"C:\Program Files\nodejs\node.exe"
 
 FORMAT = "bv*[protocol!=m3u8][ext=mp4]+ba[ext=m4a]/b[ext=mp4]/b"
+MAX_QUALITY_FORMAT = "bestvideo+bestaudio/best"
+
 MERGE_FORMAT = "mp4"
 
 PRIMARY_SUB_LANG = "en"
@@ -157,17 +159,19 @@ def download_youtube(
     t_ini: int | None,
     t_end: int | None,
     custom_name: str | None,
-    download_subs: bool
+    download_subs: bool,
+    max_quality: bool
 ):
     output_template = "%(title).200s.%(ext)s"
     if custom_name:
         output_template = f"{custom_name}.%(ext)s"
 
+    selected_format = MAX_QUALITY_FORMAT if max_quality else FORMAT
+
     command = [
         sys.executable, "-m", "yt_dlp",
         "--js-runtimes", f"node:{NODE_PATH}",
-        "--extractor-args", "youtube:player_client=android",
-        "-f", FORMAT,
+        "-f", selected_format,
         "--merge-output-format", MERGE_FORMAT,
         "--ignore-errors",
         "--no-playlist",
@@ -225,6 +229,8 @@ if __name__ == "__main__":
 
     download_subs = input("Deseja baixar a legenda? (s/n): ").strip().lower() == "s"
 
+    max_quality = input("Qualidade máxima absoluta? (s/n): ").strip().lower() == "s"
+
     # ==========================================
     # DOWNLOAD ÚNICO
     # ==========================================
@@ -238,7 +244,8 @@ if __name__ == "__main__":
             t_ini=t_ini,
             t_end=t_end,
             custom_name=custom_name,
-            download_subs=download_subs
+            download_subs=download_subs,
+            max_quality=max_quality
         )
 
     # ==========================================
@@ -267,8 +274,9 @@ if __name__ == "__main__":
                     partition=partition,
                     t_ini=t_ini,
                     t_end=t_end,
-                    custom_name=None,  # evita conflito de nomes no lote
-                    download_subs=download_subs
+                    custom_name=None,
+                    download_subs=download_subs,
+                    max_quality=max_quality
                 )
             except Exception as e:
                 print(f"⚠ Erro ao baixar: {e}")
