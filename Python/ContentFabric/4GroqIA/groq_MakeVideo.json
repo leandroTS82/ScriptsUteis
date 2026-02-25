@@ -1,16 +1,16 @@
 {
-  "api_key_file": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\GroqKeys.json",
+  "api_key_file": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\FilesHelper\\secret_tokens_keys\\GroqKeys.json",
   "system_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\systemPrompt.json",
   "base_prompt_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\makevideoLabelPrompt.json",
-  "Gemini_api_key_file":"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt",
+  "Gemini_api_key_file":"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt",
 
   "friendly_playlists_file": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\4GroqIA\\friendly_playlist_names.json",
 
   "input_json_dir": "",
   "videos_dir": "",
-  "output_dir": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\TestMovie",
+  "output_dir": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\TestMovie",
 
-  "processed_json_dir": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\movies_processed",
+  "processed_json_dir": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed",
 
   "model": "openai/gpt-oss-20b",
   "temperature": 0.2,

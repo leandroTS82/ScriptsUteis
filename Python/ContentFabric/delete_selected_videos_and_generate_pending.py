@@ -11,13 +11,11 @@ from datetime import datetime
 # ============================================================
 
 SOURCE_PATHS = [
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
 ]
 
 OUTPUT_FOLDER = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - Documentos de estudo de inglês"
-    r"\EKF_EnglishKnowledgeFramework_REPO\TermsReadyToBeCreated"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\TermsReadyToBeCreated"
 )
 
 VIDEO_EXTENSIONS = (".mp4", ".mov", ".mkv", ".avi")

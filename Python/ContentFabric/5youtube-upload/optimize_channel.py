@@ -24,9 +24,9 @@ MAX_VIDEOS = 50  # Quantos vídeos processar por vez (para poupar cota)
 GROQ_MODEL = "openai/gpt-oss-20b" # Ou "llama3-70b-8192" se preferir
 
 # Arquivos de Auth (Mesmos do seu script de upload)
-TOKEN_PATH = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\youtube_token.json"
-CLIENT_SECRET_FILE = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\youtube_token.json"
-GROQ_API_KEY_FILE = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
+TOKEN_PATH = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\FilesHelper\\secret_tokens_keys\\youtube_token.json"
+CLIENT_SECRET_FILE = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\FilesHelper\\secret_tokens_keys\\youtube_token.json"
+GROQ_API_KEY_FILE = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
 
 # Prompts do Sistema (Reutilizando sua lógica vencedora)
 SYSTEM_PROMPT = {

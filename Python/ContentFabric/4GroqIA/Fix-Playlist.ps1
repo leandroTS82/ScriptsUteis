@@ -19,7 +19,7 @@
 
 
 # 🎯 PASTA FIXA DOS JSONS
-$FolderPath = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
+$FolderPath = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\Videos"
 
 Write-Host " Lendo JSONs da pasta fixa: $FolderPath" -ForegroundColor Cyan
 

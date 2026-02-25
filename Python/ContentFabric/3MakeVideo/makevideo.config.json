@@ -19,7 +19,7 @@
     },
 
     "TEMP_DIR": "./temp",
-    "OUTPUT_DIR": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\ContentCreated\\20251202",
+    "OUTPUT_DIR": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\GOOGLE_TTS\\ContentCreated\\20251202",
     "BACKGROUND_IMAGE": "./default_Image.png",
     "GOOGLE_TTS_CREDENTIALS": "./google-tts.json",
     "BACKGROUND_MUSIC": ""

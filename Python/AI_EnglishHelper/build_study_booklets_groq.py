@@ -22,7 +22,7 @@ from reportlab.lib import colors
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
-GROQ_KEYS_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\GroqKeys.json"
+GROQ_KEYS_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\GroqKeys.json"
 
 GROQ_KEYS_FALLBACK = [
     {"name": "lts@gmail.com", "key": "gsk_r***"},
@@ -37,7 +37,7 @@ GROQ_KEYS_FALLBACK = [
 # GEMINI CONFIG (IMAGES)
 # =============================================================================
 
-GEMINI_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\google-gemini-key.txt"
+GEMINI_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\google-gemini-key.txt"
 
 GEMINI_IMAGE_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
 
@@ -119,7 +119,7 @@ def generate_gemini_image(theme, output_path):
 # =============================================================================
 
 INPUT_JSON_DIR = r"C:\dev\scripts\ScriptsUteis\Python\extract_reading_practice\pdf_json_dump"
-OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FinalStudyBooklets_groq"
+OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FinalStudyBooklets_groq"
 
 AUTHOR = "Leandro teixeira da silva"
 PROMPTS = json.load(open("./build_study_booklets_groq_prompts.json", encoding="utf-8"))

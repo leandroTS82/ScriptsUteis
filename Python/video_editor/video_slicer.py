@@ -20,7 +20,7 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\Vídeos baixados\Tyrese Gibson With T.D. Jakes\Tyrese_TDJakes.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\Vídeos baixados\Tyrese Gibson With T.D. Jakes\Tyrese_TDJakes.mp4"
 
 GLOBAL_VIDEO_NAME = "Tyrese"
 

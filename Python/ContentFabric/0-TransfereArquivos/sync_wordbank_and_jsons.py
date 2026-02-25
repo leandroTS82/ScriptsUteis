@@ -12,10 +12,10 @@ from datetime import datetime
 # ------------------------------------------------------------
 # PATHS BASE
 # ------------------------------------------------------------
-WORDBANK_PATH = r"C:\Users\leand\Desktop\wordbank"
+WORDBANK_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies"
 
 BASE_LTS_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base"
 )
 
 DESTINATION_PATH = os.path.join(
@@ -30,12 +30,12 @@ TRANSFER_PATH = os.path.join(
 # SOURCES
 # ------------------------------------------------------------
 SOURCES = [
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\movies_processed",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Youtube_Upload_Faulty_File",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory\subtitles",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\movies_processed",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Uploaded",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Youtube_Upload_Faulty_File",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories\NewHistory\subtitles",
 ]
 
 ALLOWED_EXTENSIONS = {".json", ".srt"}
@@ -57,15 +57,33 @@ def zip_directory(source_dir: str, zip_path: str):
     source_dir = os.path.abspath(source_dir)
     base_len = len(source_dir.rstrip(os.sep)) + 1
     count = 0
+    skipped = 0
 
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
         for root, _, files in os.walk(source_dir):
             for file in files:
-                full_path = os.path.join(root, file)
-                arcname = full_path[base_len:]
-                zf.write(full_path, arcname)
-                count += 1
 
+                # 🔹 Ignora arquivos ocultos / temporários
+                if file.startswith(".") or file.startswith("~"):
+                    skipped += 1
+                    continue
+
+                full_path = os.path.join(root, file)
+
+                try:
+                    arcname = full_path[base_len:]
+                    zf.write(full_path, arcname)
+                    count += 1
+
+                except PermissionError:
+                    print(f"⚠️ Ignorado (sem permissão): {full_path}")
+                    skipped += 1
+
+                except Exception as e:
+                    print(f"⚠️ Erro ao zipar {full_path}: {e}")
+                    skipped += 1
+
+    print(f"Arquivos ignorados no ZIP: {skipped}")
     return count
 
 

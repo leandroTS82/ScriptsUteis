@@ -54,7 +54,7 @@ FONT = "Arial-Bold"
 BACKGROUND_IMAGE = "Teacher_Leandrinho.png"
 
 TEMP_DIR = "./temp"
-OUTPUT_DIR = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\WordBank"
+OUTPUT_DIR = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\GOOGLE_TTS\\WordBank"
 TEXT_BG_COLOR = (0, 0, 0)
 TEXT_BG_OPACITY = 0.55
 BLUR_AMOUNT = 18

@@ -52,7 +52,7 @@ import os
 # CONFIGURAÇÃO DO PATH DO JSON
 # ============================================================
 
-GROQ_KEYS_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\GroqKeys.json"
+GROQ_KEYS_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\GroqKeys.json"
 
 # ============================================================
 # FALLBACK INLINE (SEGURANÇA / COMPATIBILIDADE)

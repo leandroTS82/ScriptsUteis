@@ -5,14 +5,14 @@ chcp 65001 >nul
 set PIPELINE_DIR=C:\dev\scripts\ScriptsUteis\Python\ContentFabric\Pipeline_MakeMovies
 set RUNTIME_DIR=%PIPELINE_DIR%\_runtime
 
-set READY_PATH=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\ReadyToBeCreated
+set READY_PATH=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\ReadyToBeCreated
 set AI_HELPER_DIR=C:\dev\scripts\ScriptsUteis\Python\AI_EnglishHelper
 
 set CREATE_LATER=%AI_HELPER_DIR%\CreateLater.json
 set TEMP_BACKUP=%RUNTIME_DIR%\temp_CreateLater.json
 set LOCK_FILE=%RUNTIME_DIR%\pipeline.lock
 
-set LOG_ROOT=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\pipeline_upload_videos_Logs
+set LOG_ROOT=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\pipeline_upload_videos_Logs
 set RUN_ID=%1
 set LOG_DIR=%LOG_ROOT%\%RUN_ID%
 set LOG_FILE=%LOG_DIR%\pipeline.log

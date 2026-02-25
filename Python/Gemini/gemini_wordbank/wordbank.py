@@ -22,7 +22,7 @@ import google.generativeai as genai
 # ================================================================================
 # CONFIG
 # ================================================================================
-KEY_PATH = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt"
+KEY_PATH = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\FilesHelper\\secret_tokens_keys\\google-gemini-key.txt"
 OUTPUT_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\1GroqIA_WordBank\2ContentToCreate"
 MODEL = "gemini-2.0-flash"
 

@@ -13,7 +13,7 @@ RUNTIME_DIR = PIPELINE_DIR / "_runtime"
 RUNTIME_DIR.mkdir(exist_ok=True)
 
 READY_PATH = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\ReadyToBeCreated"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\ReadyToBeCreated"
 )
 
 AI_HELPER_PATH = Path(
@@ -24,7 +24,7 @@ CREATE_LATER_FILE = AI_HELPER_PATH / "CreateLater.json"
 LOCK_FILE = RUNTIME_DIR / "pipeline.lock"
 
 LOG_ROOT = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\pipeline_upload_videos_Logs"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\pipeline_upload_videos_Logs"
 )
 
 RUN_ID = sys.argv[1] if len(sys.argv) > 1 else datetime.now().strftime("%Y%m%d%H%M")

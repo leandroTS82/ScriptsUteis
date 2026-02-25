@@ -6,9 +6,7 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
 GROQ_KEYS_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - Documentos de estudo de inglês"
-    r"\FilesHelper\secret_tokens_keys\GroqKeys.json"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\GroqKeys.json"
 )
 
 with open(GROQ_KEYS_PATH, "r", encoding="utf-8") as f:

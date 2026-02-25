@@ -14,10 +14,10 @@ from datetime import datetime
 # PATHS
 # ------------------------------------------------------------
 
-AUDIO_SOURCE_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - EnglishAudioLessons"
+AUDIO_SOURCE_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Audios"
 
 DESTINATION_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\TransferenciaFiles"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\TransferenciaFiles"
 )
 
 MOVED_PATH = os.path.join(AUDIO_SOURCE_PATH, "moved")

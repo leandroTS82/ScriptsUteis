@@ -3,7 +3,7 @@
 # =====================================================
 $ReportsDir = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\reports"
 $PythonScript = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\upload_youtube.py"
-$VideosDir = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
+$VideosDir = "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
 
 Write-Host ""
 Write-Host "====================================================="

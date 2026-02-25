@@ -139,7 +139,7 @@ goto DISTRIBUICAO
 
 :OP1
 cd /d "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\4GroqIA"
-python groq_MakeVideo.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+python groq_MakeVideo.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos"
 pause
 goto SANITIZACAO
 

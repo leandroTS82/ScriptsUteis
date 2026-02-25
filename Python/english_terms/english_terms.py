@@ -10,7 +10,7 @@ from langdetect import detect, LangDetectException
 # =========================================================
 
 ROOT_PATHS: List[str] = [
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos"
 ]
 
 OUTPUT_FILE = "./english_terms.json"

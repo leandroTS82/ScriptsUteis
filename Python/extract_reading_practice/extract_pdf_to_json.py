@@ -17,7 +17,7 @@ from pathlib import Path
 # CONFIGURAÇÃO (mantendo seu path)
 # =========================================================
 
-PDF_ROOT_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EnglishReview"
+PDF_ROOT_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\EnglishReview"
 OUTPUT_DIR = "./pdf_json_dump"
 
 # =========================================================

@@ -8,7 +8,7 @@ from datetime import datetime
 # ==========================================================
 
 # PATH INLINE (PADRÃO)
-DEFAULT_SCAN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
+DEFAULT_SCAN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
 
 OUTPUT_DIR = "./reportTxt"
 REPORT_PREFIX = "duplicate_filenames_report"

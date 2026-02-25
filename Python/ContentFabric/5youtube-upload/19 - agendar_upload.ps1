@@ -29,4 +29,4 @@ if ($seconds -gt 0) {
 $startTime = (Get-Date).ToString("HH:mm:ss")
 Write-Host "`nIniciando upload às $startTime..."
 
-python upload_youtube.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"
+python upload_youtube.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos"

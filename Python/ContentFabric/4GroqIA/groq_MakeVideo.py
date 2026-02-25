@@ -24,7 +24,7 @@ Exemplos:
 python groq_MakeVideo.py "C:\\Content"
 python groq_MakeVideo.py "C:\\Content" --playlist "Inglês para Viagem"
 python groq_MakeVideo.py "C:\\Content" --sleep-between 30
-python groq_MakeVideo.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - VideosGeradosPorScript\\Videos"
+python groq_MakeVideo.py "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\Videos"
 """
 
 import os

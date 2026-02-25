@@ -13,7 +13,7 @@ set RUNTIME_DIR=%PIPELINE_DIR%\_runtime
 set SCRIPT_READY=%PIPELINE_DIR%\GetReadyToBeCreated.py
 set SCRIPT_PIPELINE=%PIPELINE_DIR%\pipeline_MakeVideoGemin_MoveFiles.bat
 
-set LOG_ROOT=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\pipeline_upload_videos_Logs
+set LOG_ROOT=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\pipeline_upload_videos_Logs
 
 for /f %%i in ('powershell -NoProfile -Command "Get-Date -Format yyyyMMddHHmm"') do set RUN_ID=%%i
 set LOG_DIR=%LOG_ROOT%\%RUN_ID%

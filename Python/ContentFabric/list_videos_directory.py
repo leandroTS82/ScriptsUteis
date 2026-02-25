@@ -10,8 +10,7 @@
 from pathlib import Path
 
 VIDEOS_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - VideosGeradosPorScript\Videos"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos"
 )
 
 def main():

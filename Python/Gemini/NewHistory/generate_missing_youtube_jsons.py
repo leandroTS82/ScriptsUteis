@@ -25,13 +25,11 @@ from utils.youtube_json_generator import generate_youtube_json
 # ==================================================
 
 BASE_VIDEO_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories\NewHistory"
 )
 
 SUBTITLES_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory\subtitles"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories\NewHistory\subtitles"
 )
 
 HISTORY_STATE_PATH = "history/history_state.json"

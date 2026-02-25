@@ -39,7 +39,7 @@ SCRIPT1 = r"C:\\dev\\scripts\\ScriptsUteis\\Python\\MakeVideo\\BatchMakeVideos.p
 
 # 2 - Groq_MakeVideo
 SCRIPT2 = r"C:\\dev\\scripts\\ScriptsUteis\\Python\\GroqIA\\groq_MakeVideo.py"
-OUTPUT_GROQ = r"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Audios para estudar inglês\\VideosGeradosPorScript\\GOOGLE_TTS\\WordBank"
+OUTPUT_GROQ = r"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\GOOGLE_TTS\\WordBank"
 
 # 3 - YouTube upload
 SCRIPT3 = r"C:\\dev\\scripts\\ScriptsUteis\\Python\\youtube-upload\\upload_youtube.py"

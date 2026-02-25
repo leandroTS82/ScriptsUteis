@@ -1,6 +1,6 @@
 import json, os
 
-path = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos\flavored_antacid.json"
+path = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos\flavored_antacid.json"
 
 print("EXISTE? ", os.path.exists(path))
 

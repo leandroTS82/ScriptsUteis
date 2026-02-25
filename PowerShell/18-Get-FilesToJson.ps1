@@ -1,4 +1,4 @@
-# .\18-Get-FilesToJson.ps1 -DirectoryPath "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Audios para estudar inglês"
+# .\18-Get-FilesToJson.ps1 -DirectoryPath "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Audios"
 param (
     [Parameter(Mandatory = $true)]
     [string]$DirectoryPath

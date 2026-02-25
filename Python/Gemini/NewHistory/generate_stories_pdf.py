@@ -26,13 +26,11 @@ INPUT_JSON_PATH = (
 )
 
 IMAGES_DIR = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - VideosGeradosPorScript\Images"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Images"
 )
 
 OUTPUT_PDF_DIR = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - Documentos de estudo de inglês\EnglishReview\stories_compilation"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\EnglishReview\stories_compilation"
 )
 
 CONTROL_JSON_PATH = os.path.join(OUTPUT_PDF_DIR, "processed_stories.json")

@@ -18,20 +18,20 @@ VIDEO_EXTENSIONS = {".mp4", ".mkv", ".avi", ".mov", ".wmv"}
 SRT_EXTENSIONS = {".srt"}
 
 VIDEO_PATHS = [
-    Path(r"C:\Users\leand\Desktop\wordbank")
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies")
 ]
 
 HISTORY_VIDEO_PATHS = [
-    Path(r"C:\Users\leand\Desktop\wordbank\Histories")
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies\Histories")
 ]
 
 TERMS_PATHS = [
-    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\movies_processed"),
-    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory\subtitles"),
-    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded"),
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\movies_processed"),
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories\NewHistory\subtitles"),
+    Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Uploaded"),
 ]
 
-PLAYLIST_OUTPUT_PATH = Path(r"C:\Users\leand\Desktop\wordbank\01-smart_playlists")
+PLAYLIST_OUTPUT_PATH = Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies\01-smart_playlists")
 
 # ======================================================
 # GROQ CONFIG (APENAS SE USE_GROQ = True)
@@ -46,7 +46,7 @@ if BASE_DIR not in sys.path:
 # RANDOM PLAYLIST CONFIG (ISOLADO)
 # ======================================================
 
-RANDOM_STATS_JSON = Path(r"C:\Users\leand\Desktop\wordbank\01-smart_playlists\random_playlist_stats.json")
+RANDOM_STATS_JSON = Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies\01-smart_playlists\random_playlist_stats.json")
 RANDOM_PERCENT_USED = 0.30   # 30% itens já usados
 RANDOM_PERCENT_NEW  = 0.70   # 70% itens novos
 

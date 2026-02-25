@@ -68,11 +68,11 @@ INPUT_JSON = Path(
 )
 
 AUDIO_OUTPUT_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - EnglishAudioLessons"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Audios"
 )
 
 JSON_OUTPUT_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - EnglishAudioLessons\Json"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Audios\Json"
 )
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"

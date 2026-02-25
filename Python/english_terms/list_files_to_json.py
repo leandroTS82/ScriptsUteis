@@ -10,7 +10,7 @@ import sys
 # Exemplo:
 #   python list_files_to_json.py "C:\meu\diretorio"
 
-TARGET_PATH = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\leand\Desktop\wordbank"
+TARGET_PATH = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies"
 OUTPUT_JSON = "./terms_From_Movies.json"
 
 # ============================================================

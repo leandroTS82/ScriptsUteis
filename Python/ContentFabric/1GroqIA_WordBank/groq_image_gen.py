@@ -12,7 +12,7 @@ import base64
 import requests
 
 API_URL_CHAT = "https://api.groq.com/openai/v1/chat/completions"
-API_KEY_FILE = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
+API_KEY_FILE = "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\FilesHelper\\secret_tokens_keys\\groq_api_key.txt"
 
 TRANSLATOR_PROMPT = "./ImageGen_translator_prompt.json"
 

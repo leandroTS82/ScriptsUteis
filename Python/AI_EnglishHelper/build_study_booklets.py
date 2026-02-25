@@ -17,7 +17,7 @@ from reportlab.lib import colors
 # =============================================================================
 
 INPUT_JSON_DIR = r"C:\dev\scripts\ScriptsUteis\Python\extract_reading_practice\pdf_json_dump"
-OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FinalStudyBooklets"
+OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FinalStudyBooklets"
 
 AUTHOR = "Leandro teixeira da silva"
 

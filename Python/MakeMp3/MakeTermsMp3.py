@@ -91,8 +91,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 INPUT_JSON = os.path.join(BASE_DIR, "./CreateLater/2512191115_terms_part_17.json")
 OUTPUT_DIR = os.path.join(BASE_DIR, "terms_audio")
 
-GEMINI_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\google-gemini-key.txt"
-CLOUD_TTS_CREDENTIALS = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\google-tts.json"
+GEMINI_KEY_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\google-gemini-key.txt"
+CLOUD_TTS_CREDENTIALS = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\google-tts.json"
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = CLOUD_TTS_CREDENTIALS
 

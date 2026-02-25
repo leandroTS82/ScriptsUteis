@@ -14,32 +14,32 @@ PATH_MAPPINGS = [
     {
         # Vídeos
         "source": Path(r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\videos"),
-        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos"),
+        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos"),
     },
     {
         # Áudio
         "source": Path(r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\audio"),
-        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Audios para estudar inglês"),
+        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Audios"),
     },
     {
         # Imagens
         "source": Path(r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\images"),
-        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Images"),
+        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Images"),
     },
     {
         # Áudio história
         "source": Path(r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeHistorieMovie\outputs\audio"),
-        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Audios para estudar inglês\Histories"),
+        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Audios\Histories"),
     },
     {
         # Imagens história
         "source": Path(r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeHistorieMovie\outputs\images"),
-        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Images"),
+        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Images"),
     },
     {
         # Vídeos história
         "source": Path(r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeHistorieMovie\outputs\videos"),
-        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories"),
+        "destination": Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories"),
     },
 ]
 

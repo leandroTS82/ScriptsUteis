@@ -9,7 +9,7 @@ from generate_thumbnail import generate_thumbnail
 # ==================================================
 
 GROQ_API_KEY = open(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\FilesHelper\secret_tokens_keys\groq_api_key.txt",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\groq_api_key.txt",
     "r",
     encoding="utf-8"
 ).read().strip()

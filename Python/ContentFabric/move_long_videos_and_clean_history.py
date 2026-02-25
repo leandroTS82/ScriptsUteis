@@ -13,22 +13,18 @@ from datetime import datetime
 # ============================================================
 
 SOURCE_PATHS = [
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
 ]
 
 MIN_DURATION_SECONDS = 120  # duração mínima em segundos
 
 DESTINATION_REPO = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - Documentos de estudo de inglês"
-    r"\EKF_EnglishKnowledgeFramework_REPO\LongVideos_ProbalyFails"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\LongVideos_ProbalyFails"
 )
 
 # 🔹 NOVO PATH INLINE
 BASETERMS_OUTPUT_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\LTS SP Site - Documentos de estudo de inglês"
-    r"\EKF_EnglishKnowledgeFramework_REPO\BaseTerms"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\BaseTerms"
 )
 
 PENDING_JSON_FILE = os.path.join(BASETERMS_OUTPUT_PATH, "pending_from_long_videos.json")

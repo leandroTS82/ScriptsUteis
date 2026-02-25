@@ -10,15 +10,15 @@ from pathlib import Path
 FFMPEG_PATH = r"C:\ffmpeg\bin\ffmpeg.exe"
 
 VOICE_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\NewAudios_Gemini"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\NewAudios_Gemini"
 )
 
 MUSIC_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\NewAudios_Gemini\FundoMusical"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\NewAudios_Gemini\FundoMusical"
 )
 
 OUTPUT_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\NewAudios_Gemini\voz_com_fundo"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\NewAudios_Gemini\voz_com_fundo"
 )
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

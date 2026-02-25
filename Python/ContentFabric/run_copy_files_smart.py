@@ -36,33 +36,33 @@ PATH_MAPPINGS = [
     # WORD BANK
     # =========================
     {
-        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\VideosSemJson",
-        "destination": r"C:\Users\leand\Desktop\wordbank",
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\VideosSemJson",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
         "extensions": ["mp4"],
     },
     {
-        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Youtube_Upload_Faulty_File",
-        "destination": r"C:\Users\leand\Desktop\wordbank",
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Youtube_Upload_Faulty_File",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
         "extensions": ["mp4"],
     },
     {
-        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Videos",
-        "destination": r"C:\Users\leand\Desktop\wordbank",
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
         "extensions": ["mp4"],
     },
     {
-        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Uploaded",
-        "destination": r"C:\Users\leand\Desktop\wordbank",
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Uploaded",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
         "extensions": ["mp4"],
     },
     {
-        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\EnableToYoutubeUpload",
-        "destination": r"C:\Users\leand\Desktop\wordbank",
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
         "extensions": ["mp4"],
     },
     {
         "source": r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\videos",
-        "destination": r"C:\Users\leand\Desktop\wordbank",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
         "extensions": ["mp4"],
     },
 
@@ -70,18 +70,18 @@ PATH_MAPPINGS = [
     # HISTORIES
     # =========================
     {
-        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories",
-        "destination": r"C:\Users\leand\Desktop\wordbank\Histories",
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies\Histories",
         "extensions": ["mp4"],
     },
     {
         "source": r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeHistorieMovie\outputs\videos",
-        "destination": r"C:\Users\leand\Desktop\wordbank\Histories",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies\Histories",
         "extensions": ["mp4"],
     },
     {
-        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - VideosGeradosPorScript\Histories\NewHistory",
-        "destination": r"C:\Users\leand\Desktop\wordbank\Histories",
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories\NewHistory",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies\Histories",
         "extensions": ["mp4"],
     },
 

@@ -37,8 +37,8 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 # =====================================================================================
 
 INPUT_JSON_PATH = "./TranscriptResults.json"
-JSON_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês/json"
-PDF_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês/EnglishReview"
+JSON_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base/json"
+PDF_OUTPUT_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base/EnglishReview"
 
 os.makedirs(JSON_OUTPUT_DIR, exist_ok=True)
 os.makedirs(PDF_OUTPUT_DIR, exist_ok=True)
