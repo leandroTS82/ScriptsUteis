@@ -1,10 +1,10 @@
-# allsetra-admin-portal-backend
-# allsetra-platform-backend"
+# C:\Dev\AllSetra\allsetra-admin-portal-backend
+# C:\Dev\AllSetra\allsetra-platform-backend
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\EKF_EnglishKnowledgeFramework"
-$outputFile = ".\files\EKF_EnglishKnowledgeFramework.txt"
+$rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
+$outputFile = ".\files\allsetra-platform-backend.txt"
 
-$selectedFiles = @("w.py", "w_context.py", "MyAnki.py", "groq_keys_loader.py") 
+$selectedFiles = @() 
 $onlyFolders = @()
 
 # Descricao do conteudo do arquivo de saída
