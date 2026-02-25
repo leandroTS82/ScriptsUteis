@@ -5,8 +5,8 @@ import subprocess
 import sys
 from datetime import datetime
 
-BATCH_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\TermsReadyToBeCreated"
-HISTORY_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\history_generated.json"
+BATCH_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\TermsReadyToBeCreated"
+HISTORY_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\history_generated.json"
 # ============================================================
 # PATHS DE DESTINO PARA VERIFICAR REDUNDÂNCIA
 # ============================================================

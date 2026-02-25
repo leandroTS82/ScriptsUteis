@@ -22,7 +22,7 @@ import requests
 sys.path.append(r"C:\dev\scripts\ScriptsUteis\Python\EKF_EnglishKnowledgeFramework")
 from Services.image_generation_service import ImageGenerationService
 DEFAULT_IMAGE = "english.jpg"
-BASE_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\View_PDF"
+BASE_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Books\View_PDF"
 
 WEB_PDFS_DIR = os.path.join(BASE_DIR, "_web_pdfs")
 WEB_IMAGES_DIR = os.path.join(BASE_DIR, "_web_images")
@@ -33,8 +33,8 @@ INDEX_HTML = os.path.join(BASE_DIR, "index.html")
 MAX_IMAGES_PER_RUN = 5
 
 PDF_PATHS = [
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\Handouts\pdf",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\BaseTerms",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Books\Handouts\pdf",
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Books\BaseTerms",
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EnglishReview",
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EnglishReview\stories_compilation"
 ]

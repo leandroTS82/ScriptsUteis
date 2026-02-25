@@ -43,10 +43,10 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 
 current_date = datetime.now().strftime('%Y%m%d')
 
-CREATE_LATER = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\LTS SP Site - Documentos de estudo de inglês\\EKF_EnglishKnowledgeFramework_REPO\\BaseTerms\\BaseTerms_{current_date}.json"
-FULL_RESULTS = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\TranscriptResults.json"
+CREATE_LATER = f"C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Base\\BaseTerms\\BaseTerms_{current_date}.json"
+FULL_RESULTS = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Books\TranscriptResults.json"
 
-BASE_TERMS_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos de estudo de inglês\EKF_EnglishKnowledgeFramework_REPO\BaseTerms"
+BASE_TERMS_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\BaseTerms"
 
 LEVELS = {
     "A1": {"enabled": True, "size": "short"},
