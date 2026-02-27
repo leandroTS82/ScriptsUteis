@@ -20,9 +20,9 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-02-26_Quality issues, evolution & next steps\260226_slicedFiles\L.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - VideosBaixados\Steven Furtick\02-How Do I Handle This\How Do I Handle This.mp4"
 
-GLOBAL_VIDEO_NAME = "AllS._Prob_nextSteps"
+GLOBAL_VIDEO_NAME = "SF"
 
 # 🔹 NOVA FLAG
 # False → {nome_do_arquivo}_slicedFiles
@@ -30,17 +30,56 @@ GLOBAL_VIDEO_NAME = "AllS._Prob_nextSteps"
 USE_SHARED_00_SLICED_FOLDER = False
 
 SEGMENTS = [
-{
-"start": "00:00",
-"end": "01:19",
-"name": "01"
-},
-{
-"start": "01:20",
-"end": "01:40",
-"name": "02"
-}
-
+    {
+        "start": "00:00",
+        "end": "00:46",
+        "name": "01_ThePowerOfWhatIf"
+    },
+    {
+        "start": "00:47",
+        "end": "01:54",
+        "name": "02_ProjectingPastIntoPotential"
+    },
+    {
+        "start": "01:55",
+        "end": "02:53",
+        "name": "03_SymbolismOfTheStaff"
+    },
+    {
+        "start": "02:54",
+        "end": "04:26",
+        "name": "04_WhatYouHaveIsWhatYouNeed"
+    },
+    {
+        "start": "04:27",
+        "end": "05:42",
+        "name": "05_InformationVsTransformation"
+    },
+    {
+        "start": "05:43",
+        "end": "07:07",
+        "name": "06_HowToHandleResources"
+    },
+    {
+        "start": "07:08",
+        "end": "08:58",
+        "name": "07_PerspectiveOnBusyness"
+    },
+    {
+        "start": "08:59",
+        "end": "10:39",
+        "name": "08_HandlingStressAndWeight"
+    },
+    {
+        "start": "10:40",
+        "end": "12:12",
+        "name": "09_StrangeWaysOfHandling"
+    },
+    {
+        "start": "12:13",
+        "end": "13:09",
+        "name": "10_VictoryThroughTheCross"
+    }
 ]
 
 FFMPEG_BIN = "ffmpeg"

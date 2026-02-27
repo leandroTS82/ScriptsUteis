@@ -11,7 +11,7 @@ REM CONFIGURAÇÕES GERAIS
 REM ==========================================================
 
 REM Pasta onde as playlists inteligentes são geradas
-set PLAYLIST_FOLDER=C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies\01-smart_playlists
+set PLAYLIST_FOLDER=C:\Playlists\01-smart_playlists
 
 REM Caminho do script Smart Playlist
 set SMART_PLAYLIST_SCRIPT=C:\dev\scripts\ScriptsUteis\Python\video_playlist_player\build_smart_playlist.py
