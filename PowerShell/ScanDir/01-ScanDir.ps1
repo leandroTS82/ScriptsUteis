@@ -1,5 +1,6 @@
 # C:\Dev\AllSetra\allsetra-admin-portal-backend
 # C:\Dev\AllSetra\allsetra-platform-backend
+# C:\Dev\AllSetra\allsetra-customer-portal-backend
 
 $rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
 $outputFile = ".\files\allsetra-platform-backend.txt"
