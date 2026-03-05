@@ -2,25 +2,25 @@
 // CONFIGURAÇÕES
 // ================================
 const CONFIGS = [
-    {
-        day: "16",
-        month: "02",
-        year: "2026",
-        period: "morning",
-        description: `
-Full validation of post-deploy flows: Theft Report creation, Zoho integration, Event Hub and Service Bus processing, status transitions, and correct email delivery with configured delay.
-Document upload testing in DEV (via console), confirming proper behavior after adjustments.
-Analysis of BE unavailability incident in DEV, including review of logs.
-        `
-    }
+{
+    day: "27",
+    month: "02",
+    year: "2026",
+    period: "afternoon",
+    description: `
+Continuation of backend evolution for the Theft Report domain in the Allsetra Platform BE, including refinements in data modeling and adjustments to commands and handlers to support updated business rules.
+Review and improvements in the integration flow responsible for synchronizing Theft Report information and related documents with Zoho CRM.
+Additional structural adjustments and validations to ensure data consistency and preparation of the codebase for subsequent integration tests and feature continuation.
+    `
+}
 ];
 
 // ================================
 // REGRAS DE HORÁRIO
 // ================================
 const PERIOD_RULES = {
-    morning: { start: "09:00", end: "12:00" },
-    afternoon: { start: "13:00", end: "18:00" },
+    morning: { start: "06:00", end: "12:00" },
+    afternoon: { start: "13:00", end: "15:00" },
     full: { start: "09:00", end: "18:00" }
 };
 
