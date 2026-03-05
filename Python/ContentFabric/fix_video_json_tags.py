@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 
 VIDEOS_DIR = Path(
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos"
 )
 
 def normalize_tags(tag_string: str) -> list[str]:
