@@ -20,9 +20,9 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - VideosBaixados\Steven Furtick\02-How Do I Handle This\How Do I Handle This.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-03-04_09-20-20.mp4"
 
-GLOBAL_VIDEO_NAME = "SF"
+GLOBAL_VIDEO_NAME = ""
 
 # 🔹 NOVA FLAG
 # False → {nome_do_arquivo}_slicedFiles
@@ -30,56 +30,23 @@ GLOBAL_VIDEO_NAME = "SF"
 USE_SHARED_00_SLICED_FOLDER = False
 
 SEGMENTS = [
-    {
-        "start": "00:00",
-        "end": "00:46",
-        "name": "01_ThePowerOfWhatIf"
-    },
-    {
-        "start": "00:47",
-        "end": "01:54",
-        "name": "02_ProjectingPastIntoPotential"
-    },
-    {
-        "start": "01:55",
-        "end": "02:53",
-        "name": "03_SymbolismOfTheStaff"
-    },
-    {
-        "start": "02:54",
-        "end": "04:26",
-        "name": "04_WhatYouHaveIsWhatYouNeed"
-    },
-    {
-        "start": "04:27",
-        "end": "05:42",
-        "name": "05_InformationVsTransformation"
-    },
-    {
-        "start": "05:43",
-        "end": "07:07",
-        "name": "06_HowToHandleResources"
-    },
-    {
-        "start": "07:08",
-        "end": "08:58",
-        "name": "07_PerspectiveOnBusyness"
-    },
-    {
-        "start": "08:59",
-        "end": "10:39",
-        "name": "08_HandlingStressAndWeight"
-    },
-    {
-        "start": "10:40",
-        "end": "12:12",
-        "name": "09_StrangeWaysOfHandling"
-    },
-    {
-        "start": "12:13",
-        "end": "13:09",
-        "name": "10_VictoryThroughTheCross"
-    }
+    {"start": "00:00", "end": "01:30", "name": "01"},
+    {"start": "01:30", "end": "03:00", "name": "02"},
+    {"start": "03:00", "end": "04:30", "name": "03"},
+    {"start": "04:30", "end": "06:00", "name": "04"},
+    {"start": "06:00", "end": "07:30", "name": "05"},
+    {"start": "07:30", "end": "09:00", "name": "06"},
+    {"start": "09:00", "end": "10:30", "name": "07"},
+    {"start": "10:30", "end": "12:00", "name": "08"},
+    {"start": "12:00", "end": "13:30", "name": "09"},
+    {"start": "13:30", "end": "15:00", "name": "10"},
+    {"start": "15:00", "end": "16:30", "name": "11"},
+    {"start": "16:30", "end": "18:00", "name": "12"},
+    {"start": "18:00", "end": "19:30", "name": "13"},
+    {"start": "19:30", "end": "21:00", "name": "14"},
+    {"start": "21:00", "end": "22:30", "name": "15"},
+    {"start": "22:30", "end": "24:00", "name": "16"},
+    {"start": "24:00", "end": "25:38", "name": "17"}
 ]
 
 FFMPEG_BIN = "ffmpeg"
