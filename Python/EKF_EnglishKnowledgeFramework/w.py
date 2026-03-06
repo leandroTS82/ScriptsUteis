@@ -57,6 +57,8 @@ LEVELS = {
     "C2": {"enabled": False, "size": "long"}
 }
 
+RUN_BUILD_DOC_PY = False  # Set to True to automatically run doc.py after processing
+
 # ================================================================================
 # HELPERS
 # ================================================================================
@@ -301,6 +303,9 @@ def save_create_later(item: str):
 
 
 def save_transcript_result(palavra, definicao, exemplos):
+    if RUN_BUILD_DOC_PY == False:
+        print("⚠️  RUN_BUILD_DOC_PY está ativado. O resultado não será salvo para evitar conflitos com doc.py.")
+        return
     entry = {
         "palavra_chave": palavra,
         "definicao_pt": definicao,
@@ -396,17 +401,18 @@ def main():
         ).strip()
 
         if proximo.lower() == "s":
-            gerar_pdf = input("\nDeseja gerar o PDF? (S/N): ").strip().lower()
-            if gerar_pdf == "s":
-                raw = "./last_groq_raw.txt"
-                if os.path.exists(raw):
-                    try:
-                        os.remove(raw)
-                    except Exception:
-                        pass
-                    
-                print("📄 Gerando PDF via doc.py...")
-                os.system("python ./doc.py")
+            if RUN_BUILD_DOC_PY:
+                gerar_pdf = input("\nDeseja gerar o PDF? (S/N): ").strip().lower()
+                if gerar_pdf == "s":
+                    raw = "./last_groq_raw.txt"
+                    if os.path.exists(raw):
+                        try:
+                            os.remove(raw)
+                        except Exception:
+                            pass
+                        
+                    print("📄 Gerando PDF via doc.py...")
+                    os.system("python ./doc.py")
 
             print("\nEncerrando o programa.")
             break
