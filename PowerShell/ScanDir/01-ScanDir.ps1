@@ -2,10 +2,10 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\Dev\AllSetra\allsetra-platform-backend"
-$outputFile = ".\files\allsetra-platform-backend.txt"
+$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\Gemini\MakeVideoGemini"
+$outputFile = ".\files\MakeVideoGemini.txt"
 
-$selectedFiles = @() 
+$selectedFiles = @()
 $onlyFolders = @()
 
 # Descricao do conteudo do arquivo de saída
@@ -15,13 +15,13 @@ $outputDescription = @"
 # Exclusões por nome/pasta
 $exceptions = @(
     "node_modules", "bin", ".idea", ".github", "Properties", "obj", ".git", ".vs",
-    "dist", "Migrations", "Class1.cs", "certificates", "Resources", "Usings.cs", "data"
+    "dist", "Migrations", "Class1.cs", "certificates", "Resources", "Usings.cs"
 )
 
 # Extensões a ignorar
 $exceptionsExtensions = @(
     ".png", ".jpg", ".jpeg", ".gif", ".ico", ".exe", ".dll", ".pdb", ".zip", ".rar", ".7z",
-    ".db", ".mdf", ".ldf", ".pdf", ".mp4", ".http", ".user", ".csproj", ".sln"
+    ".db", ".mdf", ".ldf", ".pdf", ".mp4", ".http", ".user"
 )
 
 $showFiles = $true
