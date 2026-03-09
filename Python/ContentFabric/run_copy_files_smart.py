@@ -153,7 +153,18 @@ def main():
 
         for file in files:
             total_found += 1
-            dest_file = dest / file.name
+
+            filename = file.name
+
+            # ==================================================
+            # NORMALIZAÇÃO ESPECÍFICA PARA LEANDRINHO MOVIES
+            # ==================================================
+            if "LeandrinhoMovies" in str(dest):
+                if filename.lower().startswith("uploaded_"):
+                    filename = filename[len("uploaded_"):]
+
+            dest_file = dest / filename
+                    
 
             if dest_file.exists():
                 print(f"⏭️  Ignorado (já existe): {file.name}")
