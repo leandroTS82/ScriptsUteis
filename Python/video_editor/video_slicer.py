@@ -20,7 +20,7 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-03-04_09-20-20.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - VideosBaixados\HowToWinFriends\HowToWinFriends.mp4"
 
 GLOBAL_VIDEO_NAME = ""
 
@@ -30,23 +30,24 @@ GLOBAL_VIDEO_NAME = ""
 USE_SHARED_00_SLICED_FOLDER = False
 
 SEGMENTS = [
-    {"start": "00:00", "end": "01:30", "name": "01"},
-    {"start": "01:30", "end": "03:00", "name": "02"},
-    {"start": "03:00", "end": "04:30", "name": "03"},
-    {"start": "04:30", "end": "06:00", "name": "04"},
-    {"start": "06:00", "end": "07:30", "name": "05"},
-    {"start": "07:30", "end": "09:00", "name": "06"},
-    {"start": "09:00", "end": "10:30", "name": "07"},
-    {"start": "10:30", "end": "12:00", "name": "08"},
-    {"start": "12:00", "end": "13:30", "name": "09"},
-    {"start": "13:30", "end": "15:00", "name": "10"},
-    {"start": "15:00", "end": "16:30", "name": "11"},
-    {"start": "16:30", "end": "18:00", "name": "12"},
-    {"start": "18:00", "end": "19:30", "name": "13"},
-    {"start": "19:30", "end": "21:00", "name": "14"},
-    {"start": "21:00", "end": "22:30", "name": "15"},
-    {"start": "22:30", "end": "24:00", "name": "16"},
-    {"start": "24:00", "end": "25:38", "name": "17"}
+    {"start": "00:00", "end": "04:31", "name": "01_Preface_And_Revision"},
+    {"start": "04:32", "end": "20:45", "name": "02_How_This_Book_Was_Written"},
+    {"start": "20:46", "end": "30:50", "name": "03_Nine_Suggestions_For_Study"},
+    {"start": "30:51", "end": "01:01:39", "name": "04_Part1_Fundamental_Techniques"},
+    {"start": "01:01:40", "end": "01:31:49", "name": "05_Part1_Ch1_Don’t_Criticize"},
+    {"start": "01:31:50", "end": "02:05:20", "name": "06_Part1_Ch2_Appreciation_Secret"},
+    {"start": "02:05:21", "end": "02:45:10", "name": "07_Part1_Ch3_Arouse_An_Eager_Want"},
+    {"start": "02:45:11", "end": "03:15:40", "name": "08_Part2_Ways_To_Make_People_Like_You"},
+    {"start": "03:15:41", "end": "03:45:00", "name": "09_Part2_Ch1_Be_Genuinely_Interested"},
+    {"start": "03:45:01", "end": "04:10:25", "name": "10_Part2_Ch2_The_Power_Of_A_Smile"},
+    {"start": "04:10:26", "end": "04:40:15", "name": "11_Part2_Ch3_Remembering_Names"},
+    {"start": "04:40:16", "end": "05:15:50", "name": "12_Part2_Ch4_Be_A_Good_Listener"},
+    {"start": "05:15:51", "end": "06:05:30", "name": "13_Part3_Win_People_To_Your_Way_Of_Thinking"},
+    {"start": "06:05:31", "end": "06:45:20", "name": "14_Part3_Ch1_Avoid_Arguments"},
+    {"start": "06:45:21", "end": "07:30:10", "name": "15_Part4_Be_A_Leader_Change_People"},
+    {"start": "07:30:11", "end": "08:15:00", "name": "16_Part4_Ch1_How_To_Criticize_And_Not_Be_Hated"},
+    {"start": "08:15:01", "end": "08:43:15", "name": "17_Part6_Seven_Rules_For_Happy_Home"},
+    {"start": "08:43:16", "end": "08:47:37", "name": "18_Epilogue_Marriage_Questionnaire"}
 ]
 
 FFMPEG_BIN = "ffmpeg"
@@ -95,12 +96,17 @@ def run_ffmpeg(input_video: str, start: float, duration: float, output_file: str
         "-c", "copy",
         output_file
     ]
+
+    print("FFMPEG CMD:", " ".join(cmd))
+
     subprocess.run(
         cmd,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.STDOUT,
         check=True
     )
+
+    # 🔎 Verificação de segurança
+    if not os.path.exists(output_file):
+        raise RuntimeError(f"FFmpeg não gerou o arquivo esperado: {output_file}")
 
 # ============================================================
 # MAIN
@@ -122,14 +128,12 @@ def main():
     base_name = os.path.splitext(os.path.basename(video_file))[0]
 
     # ========================================================
-    # REGRA DA PASTA (ATUALIZADA)
+    # REGRA DA PASTA
     # ========================================================
 
     if USE_SHARED_00_SLICED_FOLDER:
-        # Gera diretamente no próprio diretório do vídeo
         output_dir = base_dir
     else:
-        # Gera na pasta {nome_do_arquivo}_slicedFiles
         output_dir = os.path.join(base_dir, f"{base_name}_slicedFiles")
         os.makedirs(output_dir, exist_ok=True)
 
@@ -168,8 +172,15 @@ def main():
     print("==================================================\n")
 
     for i, (start, end, label) in enumerate(intervals, 1):
+
+        # 🔹 Evita underscore inicial se GLOBAL_VIDEO_NAME estiver vazio
+        if GLOBAL_VIDEO_NAME:
+            prefix = f"{GLOBAL_VIDEO_NAME}_"
+        else:
+            prefix = ""
+
         output_name = (
-            f"{GLOBAL_VIDEO_NAME}_{label}_"
+            f"{prefix}{label}_"
             f"{int(start//60):02d}m{int(start%60):02d}s"
             f"_to_{int(end//60):02d}m{int(end%60):02d}s.mp4"
         )
