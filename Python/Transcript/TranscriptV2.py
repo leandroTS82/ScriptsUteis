@@ -10,7 +10,7 @@ r"""
 =====================================================================
 
 python transcriptV2.py "C:\\MeusVideos"
-python transcriptV2.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
+python transcriptV2.py "C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Classes and meetings\MySelfTraining"
 python transcriptV2.py "C:\Users\leand\Desktop\R-260123"
 """
 

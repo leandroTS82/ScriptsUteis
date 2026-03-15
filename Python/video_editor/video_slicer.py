@@ -20,7 +20,7 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - VideosBaixados\HowToWinFriends\HowToWinFriends.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-03-15_01-25-25.mp4"
 
 GLOBAL_VIDEO_NAME = ""
 
@@ -30,24 +30,7 @@ GLOBAL_VIDEO_NAME = ""
 USE_SHARED_00_SLICED_FOLDER = False
 
 SEGMENTS = [
-    {"start": "00:00", "end": "04:31", "name": "01_Preface_And_Revision"},
-    {"start": "04:32", "end": "20:45", "name": "02_How_This_Book_Was_Written"},
-    {"start": "20:46", "end": "30:50", "name": "03_Nine_Suggestions_For_Study"},
-    {"start": "30:51", "end": "01:01:39", "name": "04_Part1_Fundamental_Techniques"},
-    {"start": "01:01:40", "end": "01:31:49", "name": "05_Part1_Ch1_Don’t_Criticize"},
-    {"start": "01:31:50", "end": "02:05:20", "name": "06_Part1_Ch2_Appreciation_Secret"},
-    {"start": "02:05:21", "end": "02:45:10", "name": "07_Part1_Ch3_Arouse_An_Eager_Want"},
-    {"start": "02:45:11", "end": "03:15:40", "name": "08_Part2_Ways_To_Make_People_Like_You"},
-    {"start": "03:15:41", "end": "03:45:00", "name": "09_Part2_Ch1_Be_Genuinely_Interested"},
-    {"start": "03:45:01", "end": "04:10:25", "name": "10_Part2_Ch2_The_Power_Of_A_Smile"},
-    {"start": "04:10:26", "end": "04:40:15", "name": "11_Part2_Ch3_Remembering_Names"},
-    {"start": "04:40:16", "end": "05:15:50", "name": "12_Part2_Ch4_Be_A_Good_Listener"},
-    {"start": "05:15:51", "end": "06:05:30", "name": "13_Part3_Win_People_To_Your_Way_Of_Thinking"},
-    {"start": "06:05:31", "end": "06:45:20", "name": "14_Part3_Ch1_Avoid_Arguments"},
-    {"start": "06:45:21", "end": "07:30:10", "name": "15_Part4_Be_A_Leader_Change_People"},
-    {"start": "07:30:11", "end": "08:15:00", "name": "16_Part4_Ch1_How_To_Criticize_And_Not_Be_Hated"},
-    {"start": "08:15:01", "end": "08:43:15", "name": "17_Part6_Seven_Rules_For_Happy_Home"},
-    {"start": "08:43:16", "end": "08:47:37", "name": "18_Epilogue_Marriage_Questionnaire"}
+    {"start": "00:01", "end": "05:42", "name": "01"}
 ]
 
 FFMPEG_BIN = "ffmpeg"
