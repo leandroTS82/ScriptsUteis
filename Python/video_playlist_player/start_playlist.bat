@@ -73,11 +73,11 @@ set USE_RANDOM_SUBSET=true
 set REUSE_LAST_SUBSET=false
 set SUBSET_RESET_DAILY=false
 set SUBSET_FIXED_SIZE=true
-set SUBSET_MAX=10
+set SUBSET_MAX=30
 
 REM ======================= CONTROLE DE TEMPO ============================
 set ENABLE_MAX_PLAYTIME=true
-set MAX_TOTAL_PLAYTIME_MINUTES=15
+set MAX_TOTAL_PLAYTIME_MINUTES=35
 
 REM ======================= FLAGS DE EXECUÇÃO ============================
 set SHUFFLE=true

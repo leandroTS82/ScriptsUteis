@@ -26,7 +26,7 @@ import math
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-03-24_11-04-11.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-03-18_10-04-52.mp4"
 
 GLOBAL_VIDEO_NAME = ""
 
@@ -43,7 +43,7 @@ USE_SHARED_00_SLICED_FOLDER = False
 #         10 → partes de 10 minutos
 # ============================================================
 
-SLICE_DURATION_MINUTES = 3
+SLICE_DURATION_MINUTES = 5
 
 # ============================================================
 # SEGMENTS MANUAL (usado apenas se SLICE_DURATION_MINUTES = 0)
@@ -277,6 +277,25 @@ def main():
         else:
             os.remove(temp_output_path)
             print("    ✖ Não mapeado removido")
+
+    # ========================================================
+    # FULL: copia o vídeo inteiro (00:00 até 1s antes do fim)
+    # ========================================================
+
+    full_output_name = f"FULL_{os.path.basename(video_file)}"
+    full_output_path = os.path.join(output_dir, full_output_name)
+    full_duration = max(video_duration - 1, 1)
+
+    print(f"\n[FULL] Gerando cópia completa: {full_output_name}")
+    run_ffmpeg(video_file, 0, full_duration, full_output_path)
+    print(f"    ✔ FULL salvo em: {full_output_path}")
+
+    # ========================================================
+    # Remove o vídeo original
+    # ========================================================
+
+    os.remove(video_file)
+    print(f"\n    🗑 Original removido: {video_file}")
 
     print("\nProcesso finalizado com sucesso.")
     print("Apenas os trechos mapeados foram mantidos.")
