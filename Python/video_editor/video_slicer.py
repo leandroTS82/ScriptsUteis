@@ -7,12 +7,18 @@
    - Aceita MM:SS ou HH:MM:SS
    - Apenas os mapeados são mantidos
    - Não mapeados são excluídos
+
+ NOVO: SLICE_DURATION_MINUTES
+   - Quando preenchido (> 0), sobrepõe o SEGMENTS manual
+   - Divide o vídeo automaticamente em partes iguais
+   - Ex: SLICE_DURATION_MINUTES = 5 → partes de 5 minutos
 ============================================================
 """
 
 import os
 import subprocess
 import sys
+import math
 
 # ============================================================
 # CONFIGURAÇÃO INLINE
@@ -20,14 +26,28 @@ import sys
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-03-20_10-04-38.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-03-24_11-04-11.mp4"
 
 GLOBAL_VIDEO_NAME = ""
 
-# 🔹 NOVA FLAG
-# False → {nome_do_arquivo}_slicedFiles
-# True  → 00slicedFiles (pasta compartilhada)
+# 🔹 False → {nome_do_arquivo}_slicedFiles
+#    True  → 00slicedFiles (pasta compartilhada)
 USE_SHARED_00_SLICED_FOLDER = False
+
+# ============================================================
+# 🔸 NOVO: SLICE_DURATION_MINUTES
+#   - 0 ou None → usa o SEGMENTS manual abaixo
+#   - Qualquer valor > 0 → divide o vídeo em partes iguais
+#     com esse número de minutos cada
+#     Ex: 5  → partes de 5 minutos
+#         10 → partes de 10 minutos
+# ============================================================
+
+SLICE_DURATION_MINUTES = 3
+
+# ============================================================
+# SEGMENTS MANUAL (usado apenas se SLICE_DURATION_MINUTES = 0)
+# ============================================================
 
 SEGMENTS = [
     {"start": "00:00:00", "end": "00:05:00", "name": "01"},
@@ -133,9 +153,28 @@ def run_ffmpeg(input_video: str, start: float, duration: float, output_file: str
         check=True
     )
 
-    # 🔎 Verificação de segurança
     if not os.path.exists(output_file):
         raise RuntimeError(f"FFmpeg não gerou o arquivo esperado: {output_file}")
+
+
+def generate_auto_segments(video_duration: float, slice_minutes: float) -> list:
+    """
+    Gera segmentos automaticamente com base na duração do vídeo
+    e no tempo de cada parte em minutos.
+    A última parte recebe o restante do vídeo (pode ser menor).
+    """
+    slice_seconds = slice_minutes * 60
+    total_parts = math.ceil(video_duration / slice_seconds)
+
+    segments = []
+    for i in range(total_parts):
+        start = i * slice_seconds
+        end = min(start + slice_seconds, video_duration)
+        name = f"{i + 1:02d}"
+        segments.append((start, end, name))
+
+    return segments
+
 
 # ============================================================
 # MAIN
@@ -167,42 +206,54 @@ def main():
         os.makedirs(output_dir, exist_ok=True)
 
     # ========================================================
+    # MODO: AUTO vs MANUAL
+    # ========================================================
 
-    segments_seconds = [
-        (
-            parse_time_to_seconds(s["start"]),
-            parse_time_to_seconds(s["end"]),
-            s["name"]
-        )
-        for s in SEGMENTS
-    ]
+    if SLICE_DURATION_MINUTES and SLICE_DURATION_MINUTES > 0:
+        # 🔸 MODO AUTOMÁTICO: gera segmentos pela duração informada
+        print(f"\n[MODO AUTO] Dividindo em partes de {SLICE_DURATION_MINUTES} minuto(s)...")
+        intervals = generate_auto_segments(video_duration, SLICE_DURATION_MINUTES)
 
-    segments_seconds.sort(key=lambda x: x[0])
+    else:
+        # 🔹 MODO MANUAL: usa o SEGMENTS definido acima
+        print("\n[MODO MANUAL] Usando SEGMENTS configurado...")
 
-    intervals = []
-    cursor = 0
+        segments_seconds = [
+            (
+                parse_time_to_seconds(s["start"]),
+                parse_time_to_seconds(s["end"]),
+                s["name"]
+            )
+            for s in SEGMENTS
+        ]
 
-    for start, end, name in segments_seconds:
-        if start > cursor:
-            intervals.append((cursor, start, "nao_mapeado"))
+        segments_seconds.sort(key=lambda x: x[0])
 
-        intervals.append((start, end, name))
-        cursor = end
+        intervals = []
+        cursor = 0
 
-    if cursor < video_duration:
-        intervals.append((cursor, video_duration, "nao_mapeado"))
+        for start, end, name in segments_seconds:
+            if start > cursor:
+                intervals.append((cursor, start, "nao_mapeado"))
+            intervals.append((start, end, name))
+            cursor = end
+
+        if cursor < video_duration:
+            intervals.append((cursor, video_duration, "nao_mapeado"))
+
+    # ========================================================
 
     print("\n==================================================")
     print(" VIDEO SLICER (MAPPED ONLY)")
     print("==================================================")
     print(f"Arquivo origem.: {video_file}")
     print(f"Duração........: {video_duration:.2f}s")
+    print(f"Partes.........: {len(intervals)}")
     print(f"Pasta destino..: {output_dir}")
     print("==================================================\n")
 
     for i, (start, end, label) in enumerate(intervals, 1):
 
-        # 🔹 Evita underscore inicial se GLOBAL_VIDEO_NAME estiver vazio
         if GLOBAL_VIDEO_NAME:
             prefix = f"{GLOBAL_VIDEO_NAME}_"
         else:
