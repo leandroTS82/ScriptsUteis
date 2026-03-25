@@ -2,10 +2,12 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\Gemini\MakeVideoGemini"
-$outputFile = ".\files\MakeVideoGemini.txt"
+$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\AICodeReview"
+$outputFile = ".\files\AICodeReview.txt"
 
 $selectedFiles = @()
+# partes relacionadas à integração com o Zoho CRM
+#$selectedFiles = @("ZohoWebhookController.cs","UpdateStepsFromZohoCommandHandler.cs","UpdateStepsFromTheftReportToZohoCommandHandle.cs","UpdateTheftReportOnZohoCommandHandler.cs","ZohoCrmIntegration.cs","ZohoRecordBuilder.cs","TheftReportZohoRequest.cs","TheftDocumentZohoItem.cs","TheftReportDocument.cs","AddDocumentOnZohoCommandHandler.cs")
 $onlyFolders = @()
 
 # Descricao do conteudo do arquivo de saída
