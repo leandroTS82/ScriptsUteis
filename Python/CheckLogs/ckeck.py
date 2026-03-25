@@ -1,23 +1,24 @@
-from xmlrpc import client
-
-import random
-from itertools import cycle
 import subprocess
-from groq import Groq
 import os
 import sys
+import random
+from itertools import cycle
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
+# =========================
+# PATH FIX (IMPORT SHARED)
+# =========================
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
+
 from groq_keys_loader import GROQ_KEYS
-groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
+from groq import Groq
 
-def get_next_groq_client():
-    key_obj = next(groq_key_cycle)
-    return Groq(api_key=key_obj["key"])
-
+# =========================
+# CONFIG
+# =========================
 NAMESPACE = "my-theft"
 DEPLOYMENTS = [
     "allsetraplatform-be-eventhandlers",
@@ -25,55 +26,71 @@ DEPLOYMENTS = [
     "allsetraplatform-be-servicebushandlers",
 ]
 
-# ============================
-# Contexto do código-fonte real
-# Injete os arquivos críticos aqui
-# ============================
-CODE_CONTEXT = """
-## Arquivo crítico: AddDocumentOnZohoCommandHandler.cs
-[cole o conteúdo aqui]
+MAX_RETRIES_PER_KEY = 2
+MAX_WORKERS = min(len(GROQ_KEYS), 5)
 
-## Arquivo crítico: ZohoCrmIntegration.SyncTheftDocumentSubformIdsAsync
-[cole o conteúdo aqui]
-
-## Arquivo crítico: ZohoRecordBuilder.BuildWrapper
-[cole o conteúdo aqui]
-"""
-
-SYSTEM_PROMPT = """
-Você é um arquiteto sênior especializado em sistemas distribuídos .NET.
-
-## Contexto do sistema
-- Pipeline: EventHub → ServiceBus → Azure Function Handler → Zoho CRM
-- Stack: C# .NET, EF Core, Azure Service Bus, Zoho CRM SDK
-- Problemas conhecidos:
-  - ZohoSubformId não sendo persistido no banco após sync com Zoho
-  - Documentos duplicados sendo criados no Zoho (idempotency failure)
-  - EF Core tracking conflicts: "cannot be tracked because another instance with the same key is already being tracked"
-  - AutoCompleteMessages possivelmente interferindo no retry do Service Bus
-  - Comportamento diferente entre LOCAL e DEV
-
-## Código-fonte dos arquivos críticos
-""" + CODE_CONTEXT + """
-
-## Regras de análise
-- Sempre correlacione logs entre os 3 deployments pelo CorrelationId/TraceId quando presente
-- Foque em causas raiz, não em sintomas
-- Seja específico: mencione nomes de classes, métodos e linhas quando possível
-- Não dê conselhos genéricos de EF Core — analise o código real fornecido
-"""
+# =========================
+# KEY ROTATION
+# =========================
+groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
 
 
+def get_next_client():
+    key = next(groq_key_cycle)
+    return Groq(api_key=key["key"]), key["name"]
+
+
+# =========================
+# LOAD CONTEXT FILES
+# =========================
+def load_context():
+    context_dir = os.path.join(os.path.dirname(__file__), "context")
+    if not os.path.exists(context_dir):
+        return ""
+
+    content = ""
+    for file in os.listdir(context_dir):
+        path = os.path.join(context_dir, file)
+        if os.path.isfile(path):
+            with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                content += f"\n\n## FILE: {file}\n{f.read()[:10000]}"
+    return content
+
+
+# =========================
+# LOAD PROMPTS
+# =========================
+def load_prompt():
+    prompt_path = os.path.join(os.path.dirname(__file__), "prompts", "system.txt")
+    if os.path.exists(prompt_path):
+        with open(prompt_path, "r", encoding="utf-8") as f:
+            return f.read()
+
+    return "You are a senior distributed systems architect."
+
+
+CODE_CONTEXT = load_context()
+SYSTEM_PROMPT = load_prompt() + "\n\n" + CODE_CONTEXT
+
+
+# =========================
+# LOG FETCH
+# =========================
 def get_logs(deployment: str, tail: int = 500) -> str:
     result = subprocess.run(
         ["kubectl", "logs", f"deployment/{deployment}", "-n", NAMESPACE, f"--tail={tail}"],
-        capture_output=True, text=True, encoding="utf-8", errors="ignore"
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="ignore",
     )
     return result.stdout
 
 
+# =========================
+# CHUNKING
+# =========================
 def chunk_logs(text: str, chunk_size: int = 20000, overlap: int = 500):
-    """Divide logs em chunks com overlap para não perder contexto entre partes."""
     chunks = []
     start = 0
     while start < len(text):
@@ -83,80 +100,119 @@ def chunk_logs(text: str, chunk_size: int = 20000, overlap: int = 500):
     return chunks
 
 
-def analyze_chunk(logs_by_deployment: dict, chunk_index: int, total_chunks: int) -> str:
+# =========================
+# AI CALL WITH FAILOVER
+# =========================
+def call_groq_with_retry(messages):
+    tried_keys = set()
+
+    for _ in range(len(GROQ_KEYS)):
+        client, key_name = get_next_client()
+
+        if key_name in tried_keys:
+            continue
+
+        tried_keys.add(key_name)
+
+        for attempt in range(MAX_RETRIES_PER_KEY):
+            try:
+                response = client.chat.completions.create(
+                    model="llama-3.3-70b-versatile",
+                    messages=messages,
+                    max_tokens=4000,
+                    temperature=0.1,
+                )
+                return response.choices[0].message.content
+
+            except Exception as e:
+                print(f"[WARN] Key {key_name} failed (attempt {attempt+1}): {str(e)}")
+
+    return "[ERROR] All keys failed."
+
+
+# =========================
+# ANALYZE SINGLE CHUNK
+# =========================
+def analyze_chunk(chunk_text, index, total):
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {
+            "role": "user",
+            "content": f"""
+Analyze logs (part {index+1}/{total})
+
+### Required:
+- Errors
+- Idempotency issues
+- Persistence failures
+- Cross-deployment correlation
+- Root cause ranked
+- Concrete fixes with code diff
+
+LOGS:
+{chunk_text}
+""",
+        },
+    ]
+
+    return call_groq_with_retry(messages)
+
+
+# =========================
+# PARALLEL ANALYSIS
+# =========================
+def analyze_all_chunks(all_logs):
     combined = ""
-    for dep, log in logs_by_deployment.items():
+    for dep, log in all_logs.items():
         combined += f"\n\n=== {dep} ===\n{log}"
 
-    client = get_next_groq_client()
+    chunks = chunk_logs(combined)
+    total = len(chunks)
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",  # modelo válido no Groq
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": f"""
-Analise os logs abaixo (parte {chunk_index + 1} de {total_chunks}).
+    results = [None] * total
 
-## Seções obrigatórias
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {
+            executor.submit(analyze_chunk, chunk, i, total): i
+            for i, chunk in enumerate(chunks)
+        }
 
-### 1. Erros e Exceções
-- Liste todos os erros, com timestamp e deployment de origem
-- Destaque EF Core tracking conflicts
-- Destaque falhas de persistência
+        for future in as_completed(futures):
+            index = futures[future]
+            results[index] = future.result()
 
-### 2. Análise de Idempotência
-- O mesmo documento está sendo processado múltiplas vezes?
-- ZohoSubformId está sendo retornado pelo Zoho mas não salvo?
-- Há CREATE onde deveria haver UPDATE?
-
-### 3. Análise de Persistência
-- SaveChanges está sendo chamado após atualizar ZohoSubformId?
-- Entidades estão sendo carregadas com AsNoTracking onde não deveriam?
-
-### 4. Correlação entre Deployments
-- Há mensagens aparecendo em múltiplos deployments indicando reprocessamento?
-- Service Bus está fazendo retry após falha sem AutoComplete?
-
-### 5. Hipótese de Causa Raiz
-Rankeadas por probabilidade — seja específico com classe e método.
-
-### 6. Correções Concretas
-Mostre o diff do código a corrigir, não apenas descrição.
-
-## Logs:
-{combined[:25000]}
-"""}
-        ],
-        max_tokens=4000,
-        temperature=0.1  # baixa temperatura para análise técnica
-    )
-    return response.choices[0].message.content
+    return "\n\n".join(results)
 
 
-# ============================
-# Execução principal
-# ============================
-timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+# =========================
+# MAIN
+# =========================
+def main():
+    timestamp = datetime.now().strftime("%y%m%d%H%M")
+    output_dir = os.path.join("files", f"{timestamp}_result")
+    os.makedirs(output_dir, exist_ok=True)
 
-all_logs = {dep: get_logs(dep) for dep in DEPLOYMENTS}
+    print("🔄 Collecting logs...")
 
-# Salva logs brutos por deployment
-for dep, logs in all_logs.items():
-    with open(f"logs_{dep}_{timestamp}.txt", "w", encoding="utf-8") as f:
-        f.write(logs)
+    all_logs = {dep: get_logs(dep) for dep in DEPLOYMENTS}
 
-# Análise combinada
-analysis = analyze_chunk(all_logs, 0, 1)
+    # Save raw logs
+    for dep, logs in all_logs.items():
+        with open(os.path.join(output_dir, f"logs_{dep}.txt"), "w", encoding="utf-8") as f:
+            f.write(logs)
 
-md_filename = f"analysis_{timestamp}.md"
-with open(md_filename, "w", encoding="utf-8") as f:
-    f.write(f"# Análise de Logs — {timestamp}\n\n")
-    for dep in DEPLOYMENTS:
-        f.write(f"## Deployment: {dep}\n")
-        f.write(f"Linhas capturadas: {len(all_logs[dep].splitlines())}\n\n")
-    f.write("---\n\n")
-    f.write(analysis)
+    print("🧠 Analyzing logs with AI (multi-key + parallel)...")
 
-print(f"\n✅ Análise salva em: {md_filename}")
-for dep in DEPLOYMENTS:
-    print(f"✅ Log bruto: logs_{dep}_{timestamp}.txt")
+    analysis = analyze_all_chunks(all_logs)
+
+    md_path = os.path.join(output_dir, "analysis.md")
+
+    with open(md_path, "w", encoding="utf-8") as f:
+        f.write(f"# Log Analysis\nGenerated: {timestamp}\n\n")
+        f.write(analysis)
+
+    print(f"\n✅ Output folder: {output_dir}")
+
+
+if __name__ == "__main__":
+    main()
