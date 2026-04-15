@@ -22,14 +22,15 @@ from tempfile import NamedTemporaryFile
 # CONFIGURAÇÃO
 # ============================================================
 
-VIDEO_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas"
+VIDEO_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-04-02_09-32-48.mp4"
 
 VIDEO_ARRAY_NAME = [
-    "2026-01-30_13-38-11.mp4",
-    "2026-01-30_13-48-48.mp4"
+    "01_00m00s_to_04m49s.mp4",
+    "2026-04-01_20-05-21.mp4",
+    "2026-04-01_20-07-31.mp4"
 ]
 
-OUTPUT_NAME = "SendEmailDemonstration.mp4"
+OUTPUT_NAME = "86c8vx6r6_StatusObjectRecovered.mp4"
 
 FFMPEG_BIN = "ffmpeg"
 

@@ -7,6 +7,7 @@ import sys
 import random
 from itertools import cycle
 import re
+import subprocess
 
 # ======================================================
 # CONFIGURAÇÕES INLINE
@@ -16,7 +17,7 @@ USE_GROQ = True
 
 VIDEO_EXTENSIONS = {".mp4", ".mkv", ".avi", ".mov", ".wmv"}
 SRT_EXTENSIONS = {".srt"}
-
+DATE_SCRIPT_PATH = r"C:\dev\scripts\ScriptsUteis\Python\video_playlist_player\date_m3u.py"
 VIDEO_PATHS = [
     Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies")
 ]
@@ -504,74 +505,29 @@ def main():
             custom_name = f"{today}_{custom_name}"
 
     log("\nOpções:")
-    log("1 - Data específica")
-    log("2 - Intervalo de datas")
+    log("1 - Playlist por data")
     log("3 - Termo ou sentido")
     log("4 - Playlist aleatória")
 
-    option = input("Escolha (1/2/3/4): ").strip()
+    option = input("Escolha (1/3/4): ").strip()
     selected = []
     mode = None
 
-    # ==================================================
-    # OPÇÃO 1 — DATA ESPECÍFICA
-    # ==================================================
+# ==================================================
+# OPÇÃO 1 — DATA (EXECUTA SCRIPT EXTERNO)
+# ==================================================
     if option == "1":
-        d = ask_date("Informe a data")
-        mode = "data"
-        if RANDOM_STATS_JSON.exists():
-            with open(RANDOM_STATS_JSON, "r", encoding="utf-8") as f:
-                data = json.load(f)
+        log("\n📅 Executando módulo de playlist por data...\n")
 
-            metadata_dates = {
-                item["name"].lower(): datetime.fromisoformat(
-                    item.get("modified_at") or item.get("created_at")
-                ).date()
-                for item in data.get("files", [])
-                if "name" in item and ("modified_at" in item or "created_at" in item)
-            }
+        try:
+            subprocess.run(
+                ["python", DATE_SCRIPT_PATH],
+                check=True
+            )
+        except Exception as ex:
+            log(f"❌ Erro ao executar script de data: {ex}")
 
-            selected = [
-                v for v in videos
-                if v.name.lower() in metadata_dates
-                and metadata_dates[v.name.lower()] == d.date()
-            ]
-        else:
-            selected = [
-                v for v in videos
-                if get_modified_datetime(v).date() == d.date()
-            ]
-
-
-    # ==================================================
-    # OPÇÃO 2 — INTERVALO
-    # ==================================================
-    elif option == "2":
-        d1 = ask_date("Data inicial")
-        d2 = ask_date("Data final")
-        mode = "periodo"
-        if RANDOM_STATS_JSON.exists():
-            with open(RANDOM_STATS_JSON, "r", encoding="utf-8") as f:
-                data = json.load(f)
-
-            metadata_dates = {
-                item["name"].lower(): datetime.fromisoformat(
-                    item.get("modified_at") or item.get("created_at")
-                )
-                for item in data.get("files", [])
-                if "name" in item and ("modified_at" in item or "created_at" in item)
-            }
-
-            selected = [
-                v for v in videos
-                if v.name.lower() in metadata_dates
-                and d1 <= metadata_dates[v.name.lower()] <= d2
-            ]
-        else:
-            selected = [
-                v for v in videos
-                if d1 <= get_modified_datetime(v) <= d2
-            ]
+        return
 
     # ==================================================
     # OPÇÃO 3 — TERMO (COM INTELIGÊNCIA EXTRA + MULTI-TERM)
