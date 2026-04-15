@@ -11,7 +11,7 @@ import re
 
 BASE_VIDEO_DIR = Path(r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies")
 METADATA_PATH = BASE_VIDEO_DIR / "metadata.json"
-OUTPUT_ROOT = Path(r"C:\Users\leand\Desktop\01-smart_playlists")
+OUTPUT_ROOT = Path(r"C:\Playlists\01-smart_playlists")
 
 VIDEO_EXTENSIONS = {".mp4", ".mkv", ".avi", ".mov", ".wmv"}
 
