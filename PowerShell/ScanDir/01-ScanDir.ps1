@@ -2,13 +2,12 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\AICodeReview"
-$outputFile = ".\files\AICodeReview.txt"
+$rootDirectory = "C:\Dev\AllSetra\allsetra-customer-portal-backend"
+$outputFile = ".\files\allsetra-customer-portal-backend.txt"
 
 $selectedFiles = @()
-# partes relacionadas à integração com o Zoho CRM
-#$selectedFiles = @("ZohoWebhookController.cs","UpdateStepsFromZohoCommandHandler.cs","UpdateStepsFromTheftReportToZohoCommandHandle.cs","UpdateTheftReportOnZohoCommandHandler.cs","ZohoCrmIntegration.cs","ZohoRecordBuilder.cs","TheftReportZohoRequest.cs","TheftDocumentZohoItem.cs","TheftReportDocument.cs","AddDocumentOnZohoCommandHandler.cs")
-$onlyFolders = @()
+
+$onlyFolders = @("tests")
 
 # Descricao do conteudo do arquivo de saída
 $outputDescription = @"
