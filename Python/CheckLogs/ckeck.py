@@ -3,7 +3,7 @@ from groq import Groq
 import os
 from datetime import datetime
 
-client = Groq(api_key="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")
+client = Groq(api_key="gsk_****************************")
 
 NAMESPACE = "my-theft"
 DEPLOYMENTS = [
