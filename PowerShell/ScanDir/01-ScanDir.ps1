@@ -2,12 +2,12 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\Dev\AllSetra\allsetra-customer-portal-backend"
-$outputFile = ".\files\allsetra-customer-portal-backend.txt"
+$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\Gemini"
+$outputFile = ".\files\Gemini.txt"
 
 $selectedFiles = @()
 
-$onlyFolders = @("tests")
+$onlyFolders = @()
 
 # Descricao do conteudo do arquivo de saída
 $outputDescription = @"
