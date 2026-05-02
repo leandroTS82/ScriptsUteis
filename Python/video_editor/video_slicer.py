@@ -26,7 +26,7 @@ import math
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-04-14_09-41-56.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-04-30_08-26-54.mp4"
 
 GLOBAL_VIDEO_NAME = ""
 
@@ -43,60 +43,15 @@ USE_SHARED_00_SLICED_FOLDER = False
 #         10 → partes de 10 minutos
 # ============================================================
 
-SLICE_DURATION_MINUTES = 5
+SLICE_DURATION_MINUTES = 5  # Defina o tempo de cada parte em minutos (0 para usar SEGMENTS manual)
 
 # ============================================================
 # SEGMENTS MANUAL (usado apenas se SLICE_DURATION_MINUTES = 0)
 # ============================================================
 
 SEGMENTS = [
-    {"start": "00:00:00", "end": "00:05:00", "name": "01"},
-    {"start": "00:05:01", "end": "00:10:00", "name": "02"},
-    {"start": "00:10:01", "end": "00:15:00", "name": "03"},
-    {"start": "00:15:01", "end": "00:20:00", "name": "04"},
-    {"start": "00:20:01", "end": "00:25:00", "name": "05"},
-    {"start": "00:25:01", "end": "00:30:00", "name": "06"},
-    {"start": "00:30:01", "end": "00:35:00", "name": "07"},
-    {"start": "00:35:01", "end": "00:39:00", "name": "08"},
-    {"start": "00:40:01", "end": "00:45:00", "name": "09"},
-    {"start": "00:45:01", "end": "00:50:00", "name": "10"},
-    {"start": "00:50:01", "end": "00:55:00", "name": "11"},
-    {"start": "00:55:01", "end": "01:00:00", "name": "12"},
-    {"start": "01:00:01", "end": "01:05:00", "name": "13"},
-    {"start": "01:05:01", "end": "01:10:00", "name": "14"},
-    {"start": "01:10:01", "end": "01:15:00", "name": "15"},
-    {"start": "01:15:01", "end": "01:20:00", "name": "16"},
-    {"start": "01:20:01", "end": "01:25:00", "name": "17"},
-    {"start": "01:25:01", "end": "01:30:00", "name": "18"},
-    {"start": "01:30:01", "end": "01:35:00", "name": "19"},
-    {"start": "01:35:01", "end": "01:40:00", "name": "20"},
-    {"start": "01:40:01", "end": "01:45:00", "name": "21"},
-    {"start": "01:45:01", "end": "01:50:00", "name": "22"},
-    {"start": "01:50:01", "end": "01:55:00", "name": "23"},
-    {"start": "01:55:01", "end": "02:00:00", "name": "24"},
-    {"start": "02:00:01", "end": "02:05:00", "name": "25"},
-    {"start": "02:05:01", "end": "02:10:00", "name": "26"},
-    {"start": "02:10:01", "end": "02:15:00", "name": "27"},
-    {"start": "02:15:01", "end": "02:20:00", "name": "28"},
-    {"start": "02:20:01", "end": "02:25:00", "name": "29"},
-    {"start": "02:25:01", "end": "02:30:00", "name": "30"},
-    {"start": "02:30:01", "end": "02:35:00", "name": "31"},
-    {"start": "02:35:01", "end": "02:40:00", "name": "32"},
-    {"start": "02:40:01", "end": "02:45:00", "name": "33"},
-    {"start": "02:45:01", "end": "02:50:00", "name": "34"},
-    {"start": "02:50:01", "end": "02:55:00", "name": "35"},
-    {"start": "02:55:01", "end": "03:00:00", "name": "36"},
-    {"start": "03:00:01", "end": "03:05:00", "name": "37"},
-    {"start": "03:05:01", "end": "03:10:00", "name": "38"},
-    {"start": "03:10:01", "end": "03:15:00", "name": "39"},
-    {"start": "03:15:01", "end": "03:20:00", "name": "40"},
-    {"start": "03:20:01", "end": "03:25:00", "name": "41"},
-    {"start": "03:25:01", "end": "03:30:00", "name": "42"},
-    {"start": "03:30:01", "end": "03:35:00", "name": "43"},
-    {"start": "03:35:01", "end": "03:40:00", "name": "44"},
-    {"start": "03:40:01", "end": "03:45:00", "name": "45"},
-    {"start": "03:45:01", "end": "03:50:00", "name": "46"},
-    {"start": "03:50:01", "end": "03:55:00", "name": "47"}
+    {"start": "00:00:20", "end": "00:01:24", "name": "01"}
+    
 ]
 
 FFMPEG_BIN = "ffmpeg"

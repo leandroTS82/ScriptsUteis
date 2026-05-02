@@ -2,8 +2,8 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\AICodeReview"
-$outputFile = ".\files\AICodeReview.txt"
+$rootDirectory = "C:\dev\MyVehicleApi"
+$outputFile = ".\files\MyVehicleApi.txt"
 
 $selectedFiles = @()
 # partes relacionadas à integração com o Zoho CRM
