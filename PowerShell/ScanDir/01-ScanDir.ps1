@@ -2,10 +2,10 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\Gemini"
-$outputFile = ".\files\Gemini.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
+$outputFile = ".\files\MakeVideoGemini.txt"
 
-$selectedFiles = @()
+$selectedFiles = @("generate_audio_edge.py", "generate_image_zero_cost.py", "generate_script_groq.py", "main.py")
 
 $onlyFolders = @()
 

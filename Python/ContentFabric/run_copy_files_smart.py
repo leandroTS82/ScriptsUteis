@@ -61,6 +61,11 @@ PATH_MAPPINGS = [
         "extensions": ["mp4"],
     },
     {
+        "source": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload_edgeTesteTemp",
+        "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
+        "extensions": ["mp4"],
+    },
+    {
         "source": r"C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini\outputs\videos",
         "destination": r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies",
         "extensions": ["mp4"],
