@@ -10,6 +10,7 @@
 # - en-US-AndrewNeural     → Jovem, energético (RECOMENDADO)
 # - en-US-GuyNeural        → Mais neutro
 # - en-US-EricNeural       → Mais sério/profissional
+# -
 #
 # 🇧🇷 PORTUGUÊS:
 # - pt-BR-AntonioNeural    → Natural, equilibrado (RECOMENDADO)

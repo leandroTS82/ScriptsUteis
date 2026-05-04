@@ -22,7 +22,7 @@ except ImportError:
 # ------------------------------------------------------------------
 
 VOICE_CONFIG = {
-    "en": "en-US-EricNeural",
+    "en": "en-US-GuyNeural",
     # Alternativas EN: "en-US-GuyNeural", "en-US-ChristopherNeural", "en-US-EricNeural"
     "pt": "pt-BR-AntonioNeural",
     # Alternativas PT: "pt-BR-FabioNeural"
