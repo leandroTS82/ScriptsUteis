@@ -165,37 +165,43 @@ RULES FOR EACH FIELD:
 
 "introducao":
 - Write ONLY in Brazilian Portuguese
-- NEVER use ANY English words
-- Do NOT include the target word in English
-- Must be light, fun and curiosity-driven
-- Should introduce what will be learned, not explain deeply
+- NEVER use English words
+- NEVER use the target word or phrase in English
+- Must be a presentation of what is coming, not a translation
+- Must be light, young, fun and curiosity-driven
+- Vary the opening naturally; do NOT always start with the same phrase
+- Do NOT always use "E aí, galera", intead of that, use variation of impact phrases.
 - Max 3 sentences
 
 WORD_BANK items:
 1. lang=en → the word/phrase itself: "{word}"
-2. lang=pt → explain the meaning in natural fluent Brazilian Portuguese. Be clear and didactic. Use examples in PT if helpful. Never translate the EN sentences literally.
-3. lang=en → simple A1 sentence using "{word}"
-4. lang=en → short A2 sentence using "{word}"
-5. lang=en → B1/B2 sentence using "{word}", max 80 characters
-6. lang=pt → closing message in Leandrinho YouTuber style: motivate the student, give grammar/usage tips about "{word}", suggest how to practice. End with energy! Use expressions like "Keep it up!", "Bora praticar!", "Arrasou!". Max 4 sentences.
+2. lang=pt → Give a translation and explain the meaning in natural fluent Brazilian Portuguese. Be clear and didactic. Use examples in PT if helpful. Never translate the EN sentences literally.
+3. lang=en → simple A1 real sentence using "{word}"
+4. lang=en → short A2 real sentence using "{word}"
+5. lang=en → B1/B2 real sentence using "{word}", max 80 characters
+6. lang=pt → closing message in Brazilian Portuguese only. It must motivate the student, give a simple usage tip, and encourage practice. NEVER use English words, NEVER use the target word or phrase in English. Give a sumary and say good bye, Keep it young, dynamic and natural. Max 4 sentences.
 
 QUALITY EXAMPLES to match the tone:
 
-introducao example:
-"E aí, galera! Hoje a gente vai descobrir uma expressão super útil do dia a dia. Já pensou em como falar isso de forma natural? Fica comigo que você vai curtir!"
+introducao examples:
+"E ai galera Leandrinho aqui, Hoje tem uma dica rápida que parece pequena, mas muda muito a forma de falar. Fica comigo que isso vai deixar suas frases bem mais naturais!"
+"Salve pessoal! Leandrinho na área! Bora aprender um detalhe simples que aparece direto em conversas reais? Presta atenção porque isso ajuda muito na fluência!"
+"E ai alunos atentos! Olha só essa dica esperta: em poucos segundos você vai entender uma estrutura muito comum no dia a dia."
 
 lang=pt explanation example:
-"'A couple of changes' significa 'algumas pequenas mudanças'. 'A couple' pode ser dois, mas é muito usado de forma informal para um número pequeno."
+"Essa estrutura é usada para confirmar uma ideia ou deixar a frase mais natural. É parecida com expressões como 'né?', 'certo?' ou 'combinado?'."
 
 lang=pt closing example:
-"É isso aí, team! Lembrem-se que 'a couple of' serve pra tudo: 'a couple of minutes', 'a couple of friends'. Criem suas frases agora e pratiquem todo dia! Keep it up!"
+"Muito bem! Agora repita as frases com calma e tente criar uma situação sua. Quanto mais você pratica, mais natural fica. Bora praticar!"
 
 STRICT RULES:
 - Output ONLY valid JSON — absolutely no text outside the JSON object
 - PT fields: natural Brazilian Portuguese only — never literal translations
 - EN fields: natural English only — never Portuguese words
 - The JSON structure MUST match exactly as defined
-- "introducao" MUST NOT contain any English word
+- "introducao" MUST NOT contain English words,, must start with a saldation like a young Brazilian Youttuber.
+- The last WORD_BANK item with lang=pt MUST NOT contain English words
+- "introducao" and the final lang=pt item MUST NOT contain the target word or phrase in English
 - If any rule is broken, regenerate internally before answering
 - Known vocabulary terms must appear ONLY inside EN sentence fields"""
 
