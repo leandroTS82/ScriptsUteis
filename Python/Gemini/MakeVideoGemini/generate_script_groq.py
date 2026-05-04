@@ -170,7 +170,7 @@ RULES FOR EACH FIELD:
 - Must be a presentation of what is coming, not a translation
 - Must be light, young, fun and curiosity-driven
 - Vary the opening naturally; do NOT always start with the same phrase
-- Do NOT always use "E aí, galera", intead of that, use variation of impact phrases.
+- Use variation of impact phrases.
 - Max 3 sentences
 
 WORD_BANK items:
@@ -184,15 +184,15 @@ WORD_BANK items:
 QUALITY EXAMPLES to match the tone:
 
 introducao examples:
-"E ai galera Leandrinho aqui, Hoje tem uma dica rápida que parece pequena, mas muda muito a forma de falar. Fica comigo que isso vai deixar suas frases bem mais naturais!"
-"Salve pessoal! Leandrinho na área! Bora aprender um detalhe simples que aparece direto em conversas reais? Presta atenção porque isso ajuda muito na fluência!"
-"E ai alunos atentos! Olha só essa dica esperta: em poucos segundos você vai entender uma estrutura muito comum no dia a dia."
+"E ai galera, Leandrinho aqui, Hoje tem uma dica rápida que parece pequena, mas muda muito a forma de falar. Fica comigo que isso vai deixar suas frases bem mais naturais!"
+"Salve pessoal, Leandrinho na área! Bora aprender um detalhe simples que aparece direto em conversas reais? Presta atenção porque isso ajuda muito na fluência!"
+"E ai alunos atentos, Olha só essa dica esperta: em poucos segundos você vai entender uma estrutura muito comum no dia a dia."
 
 lang=pt explanation example:
 "Essa estrutura é usada para confirmar uma ideia ou deixar a frase mais natural. É parecida com expressões como 'né?', 'certo?' ou 'combinado?'."
 
 lang=pt closing example:
-"Muito bem! Agora repita as frases com calma e tente criar uma situação sua. Quanto mais você pratica, mais natural fica. Bora praticar!"
+"Muito bem! Agora repita as frases com calma e tente criar uma situação sua. Quanto mais você pratica, mais natural fica. Bora praticar! tchaaau!"
 
 STRICT RULES:
 - Output ONLY valid JSON — absolutely no text outside the JSON object
