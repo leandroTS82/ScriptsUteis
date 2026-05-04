@@ -1,0 +1,614 @@
+{
+    "started_at": "2026-05-04T18:16:00.801927",
+    "playlist_id": "PLzVI0b1epy9-4p7u_t81HsKVhylxbrsRg",
+    "playlist_name": "PLzVI0b1epy9-4p7u_t81HsKVhylxbrsRg",
+    "created_playlist": false,
+    "added": [
+        {
+            "video_id": "tDplydHsntc",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTRwN3VfdDgxSHNLVmh5bHhicnNSZy4yODlGNEE0NkRGMEEzMEQy"
+        },
+        {
+            "video_id": "3c_cJnRQUGs",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTRwN3VfdDgxSHNLVmh5bHhicnNSZy4wMTcyMDhGQUE4NTIzM0Y5"
+        }
+    ],
+    "skipped_duplicates": [
+        "vxWE1Z68oKc"
+    ],
+    "errors": [
+        {
+            "video_id": "rvPimdptgSg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "RDWPjL0--zw",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "y_90IcyhfS4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "ZXomoMdNAhI",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "DJnIt8t6HQ4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "ZC8Jp5_EpCY",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "bV2ESHay5X8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "_VmQw8vXcCc",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "mT4a61r3tsg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "SVIAJvXzWrc",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "wFBKwu-Xvuc",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "EBEuUR5Mm_A",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "rLsHfRoWyz4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "ydU-oqj4Ib4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "wE5gZE8LsYU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "6s7C1eBAw5I",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "kbl5FmDsESk",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "5QzJYgV7X4U",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "dV9_fruKroA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "SXts65hPv2s",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Ie2wl4VecCA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "jBChmGhziUE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "jBChmGhziUE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "F84SldQjDUE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "UP-F8LLX8GU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "oQ9Qyu0eRvo",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "DMPZp0pRJUQ",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "TugB7Cl4yI0",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "rb--8qcwpTQ",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "IvwtZuGAO8w",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "wUYhoHlrF9U",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "9vXdMRmH5QQ",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "danAhCb2Z-Q",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "rXDS1JCpvqA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "QdGR8A1x62Q",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "fiup8wyFjZM",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "kF0ZvqRYWdE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Ca7oNdRMSn8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "FiZKQN7-KUo",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "uwpNDtvyYa8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "kJFj8vsSuDc",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "qq2RA95vaMA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "dr0Mv_CRn7s",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "hQZ35TTYZ6Q",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "hQZ35TTYZ6Q",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "dDne1jMV7MU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "SjnECD_Pd3Y",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "hZcLi2Gcdk8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "YYfG8dCPVcg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Q63GJZ1GMgo",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "guGpRCVelOE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "51a9NxyGl0Q",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "38mzf_HdT08",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "NG6kbG5Ws5E",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "z6vbMHxdjCk",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "YIeWxlxYNz4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "imLtl9VSceI",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "AvFWIt4uzns",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "B9TqwQy0sBk",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "jQgZQpS-S24",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "BcOUvO11Vv8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "vw3nUik0ryw",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "A57LcIFnC8I",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "0FvZTb-G0sA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "AEFqCD91cCw",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "auzVTDzP1kA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "kRCQjBTk9hE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "kRCQjBTk9hE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "VROerlSV9S8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "EFG4NsKbAmk",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "3b53iBoT3ko",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "ZuN6LVIHAaU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "ZuN6LVIHAaU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Hvsy2dCUfRU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "gm8OkMxuvTU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "tmiwbF91rM0",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "tlXGeD8YVuo",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Tmqv_VuexRg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "6c06yNjUk-8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "HvutXOSwsu4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "0AucObRfPEk",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "HuMrj2MPeSs",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "h-VvAJCpBSc",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "KeCkLWfGO_Y",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "TNdSQ9Ck160",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "V_H_jrWhDEA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "KUtGIKtdTSE",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Eul8oCbBbuU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Gvp-WI8DgkU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "kTB9c7JPHxI",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "5nBYKfZH5t8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "xII7lJccGHA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "OxeDOoXkbbY",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "wt5nNesUMA0",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "7efbbDYDqq4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "nNM2O94rfqQ",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "6y6cMUW_Vns",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Xp28W9iqSAU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "gVcOV-l6DZo",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "OVZa1opgkkg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "kGPf5OYB660",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "P1Bfa-nNyCI",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "4e7CdISTZog",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "T9KC_2jFofU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "l1UAQgxNM14",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "lrQhAiuoioI",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "68lxGpJ03gQ",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "vlW5yg20dT8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "RnT7nCFd4AA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "xLAW9dHaZ5I",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "TScT0tcjED8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "zDz_bwfhQH4",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "S_6_Q7ItE6I",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "3lON4SzE5LA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "jelCVJ9Szss",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "EFQVgI9gGoA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "xmemuJ-4qSA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "lC8SIkx-fnU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "eKEWODbUAU0",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "KyXHM9olUOU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "RR6qJhzSaGc",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "rRbc-4sRW38",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "-4yHLpKGSFI",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "mmoSYrLIgQ0",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "_XWTJmOINbk",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "_tF3GJh08V8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "HBz-De26w0I",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "rqolC3VBAN8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "yac8P9eFssg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "qARLn7mhxSk",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "vZdePJ88c44",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "HS5Htho6i08",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "_y-GTF-Ps88",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "IMJnAqpdkAA",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "nuR3DhCjDug",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "MdwSQAZm0_M",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "W6nXFxXlsXI",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "eoDuif4m4bw",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "-vFLRJ4SZv8",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "09Ap2FEhc1c",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "BAeeg43jwjg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "GSAro-3qx4E",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Cv3xFEQ3kNU",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "K7GZcG1W_Yg",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "V_qv797cFZY",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "Xei9EiIgoag",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "vBsjQkWgN0c",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        },
+        {
+            "video_id": "uOTWvvaol18",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        }
+    ],
+    "finished_at": "2026-05-04T18:16:16.413925"
+}
