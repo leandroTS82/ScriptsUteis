@@ -175,7 +175,7 @@ RULES FOR EACH FIELD:
 
 WORD_BANK items:
 1. lang=en → the word/phrase itself: "{word}"
-2. lang=pt → Give a translation and explain the meaning in natural fluent Brazilian Portuguese. Be clear and didactic. Use examples in PT if helpful. Never translate the EN sentences literally.
+2. lang=pt → Must first give a translation and next give an clear explanation of the meaning in natural fluent Brazilian Portuguese with some usage situation. Be clear and didactic. Use examples in PT if helpful.
 3. lang=en → simple A1 real sentence using "{word}"
 4. lang=en → short A2 real sentence using "{word}"
 5. lang=en → B1/B2 real sentence using "{word}", max 80 characters

@@ -40,7 +40,7 @@ BILINGUAL_MODE = True
 
 RATE_CONFIG = {
     "en": "-10%",
-    "pt": "+0%",
+    "pt": "+10%",
 }
 
 PITCH_CONFIG = {
@@ -155,11 +155,11 @@ def _split_emotional_pt_text(text: str) -> list[tuple[str, int]]:
         final_text = f"{sentence}{punctuation}"
 
         if punctuation == "?":
-            pause = 550
-        elif punctuation == "!":
-            pause = 420
-        else:
             pause = 350
+        elif punctuation == "!":
+            pause = 220
+        else:
+            pause = 150
 
         result.append((final_text, pause))
 

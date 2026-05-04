@@ -209,7 +209,7 @@ img_path = f"outputs/images/{SAFE_NAME}.png"
 
 if USE_ZERO_COST_IMAGE:
     print("🖼️  Modo ZERO COST: usando imagem fixa.")
-    generate_image_zero_cost(img_path, FIXED_IMAGE_PATH, mode="landscape")
+    generate_image_zero_cost(img_path, mode="landscape")
 else:
     print("🧠 Gerando imagem via IA Gemini...")
     generate_image(RAW_WORD, img_path, mode="landscape")
