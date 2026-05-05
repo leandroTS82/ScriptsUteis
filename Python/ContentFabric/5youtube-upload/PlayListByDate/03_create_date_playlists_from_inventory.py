@@ -574,6 +574,26 @@ def execute_plan(youtube, plan):
 
     return report
 
+def prompt_manual_playlist_creation(plan):
+    print("")
+    choice = input("Deseja criar playlists manualmente? (s/n): ").strip().lower()
+
+    if choice != "s":
+        return
+
+    print("")
+    print("=== PLAYLISTS A SEREM CRIADAS ===")
+
+    for idx, playlist in enumerate(plan["playlists"], start=1):
+        print(f"{idx}. {playlist['playlist_title']}")
+        print(f"   Data: {playlist['upload_date_br']}")
+        print(f"   Duração: {playlist['total_duration_label']}")
+        print(f"   Vídeos: {playlist['total_videos']}")
+        print("")
+
+    print("Crie as playlists manualmente no YouTube.")
+    input("Pressione ENTER para continuar...")
+
 # ======================================================
 # MAIN
 # ======================================================
@@ -584,9 +604,11 @@ def main():
         inventory = json.load(f)
 
     print("Gerando plano de playlists...")
-    plan = build_plan(inventory)
 
+    plan = build_plan(inventory)
     save_json(PLAN_OUTPUT, plan)
+
+    prompt_manual_playlist_creation(plan)
 
     print(f"Plano gerado: {PLAN_OUTPUT}")
     print(f"Playlists a processar: {plan['total_playlists_to_process']}")

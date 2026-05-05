@@ -26,7 +26,7 @@ import math
 
 USE_INTERNAL_CONFIG = True
 
-VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\LTS SP Site - Documentos\Documentos pessoais\Leandro CV\Entrevistas Testes\(Evertec) - 2026-04-13_16-04-26.mp4"
+VIDEO_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\Communication site - ReunioesGravadas\2026-05-05_08-31-06.mp4"
 
 GLOBAL_VIDEO_NAME = ""
 
@@ -43,7 +43,7 @@ USE_SHARED_00_SLICED_FOLDER = False
 #         10 → partes de 10 minutos
 # ============================================================
 
-SLICE_DURATION_MINUTES = 0  # Defina o tempo de cada parte em minutos (0 para usar SEGMENTS manual)
+SLICE_DURATION_MINUTES = 5  # Defina o tempo de cada parte em minutos (0 para usar SEGMENTS manual)
 
 # ============================================================
 # SEGMENTS MANUAL (usado apenas se SLICE_DURATION_MINUTES = 0)
