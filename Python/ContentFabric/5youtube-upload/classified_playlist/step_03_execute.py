@@ -112,7 +112,7 @@ def _create_playlist(youtube, name: str, intention: str) -> str:
 
     playlist_id = resp["id"]
     print(f"  ✅ Playlist criada: '{name}' → {playlist_id}")
-    time.sleep(5)  # aguarda propagação da API
+    time.sleep(5)
     return playlist_id
 
 
@@ -122,21 +122,10 @@ def _resolve_playlist(
     playlist_name: str,
     intention: str,
 ) -> tuple[str, bool]:
-    """
-    Retorna (playlist_id, foi_criada).
-
-    Lógica:
-      1. Se playlist_id_override começa com 'PL' → usa diretamente
-      2. Busca por nome nos playlists existentes
-      3. Se não encontrar → cria com o nome gerado
-    """
-
-    # ── 1. ID explícito ────────────────────────────────────────────────────────
     if playlist_id_override and playlist_id_override.startswith("PL"):
         print(f"  🆔 Usando ID de playlist fornecido: {playlist_id_override}")
         return playlist_id_override, False
 
-    # ── 2. Busca por nome ──────────────────────────────────────────────────────
     print(f"\n  🔍 Buscando playlist existente: '{playlist_name}'...")
     existing = _get_all_playlists(youtube)
     key = playlist_name.lower()
@@ -146,7 +135,6 @@ def _resolve_playlist(
         print(f"  ✅ Playlist encontrada: '{playlist_name}' → {pid}")
         return pid, False
 
-    # ── 3. Criar ───────────────────────────────────────────────────────────────
     print(f"  📝 Playlist não encontrada. Criando: '{playlist_name}'...")
     pid = _create_playlist(youtube, playlist_name, intention)
     return pid, True
@@ -195,44 +183,41 @@ def _add_video(youtube, playlist_id: str, video_id: str) -> str:
     return resp.get("id", "")
 
 
-# ── ENTRY-POINT ───────────────────────────────────────────────────────────────
+# ── ENTRY-POINT (função) ──────────────────────────────────────────────────────
 
 def run(
-    classification_file: str,
-    playlist_name_override: str  = "",
+    classification_file   : str,
+    playlist_name_override: str        = "",
     playlist_id_override  : str | None = None,
-    output_dir            : str  = "./output",
+    output_dir            : str        = "./output",
 ) -> dict:
-    """
-    Executa a inserção dos vídeos classificados na playlist do YouTube.
 
-    Args:
-        classification_file:    caminho para youtube_playlist_classification.json
-        playlist_name_override: nome final da playlist (já resolvido pelo step 02)
-        playlist_id_override:   ID da playlist (se o usuário informou direto)
-        output_dir:             onde salvar o relatório
-
-    Returns:
-        dict com relatório de execução
-    """
     os.makedirs(output_dir, exist_ok=True)
 
     with open(classification_file, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    intention    = data.get("intention", "")
+    intention     = data.get("intention", "")
     playlist_name = playlist_name_override or data.get("target_playlist", "Auto Playlist")
     videos        = data.get("videos", [])
 
-    print(f"\n  🎬 Vídeos a inserir: {len(videos)}")
-    print(f"  🎯 Intenção       : {intention}")
-    print(f"  📋 Playlist alvo  : {playlist_name}")
+    # deduplica pelo youtube_video_id (Groq às vezes repete)
+    seen, unique = set(), []
+    for v in videos:
+        vid = v.get("youtube_video_id")
+        if vid and vid.lower() not in ("none", "") and vid not in seen:
+            seen.add(vid)
+            unique.append(v)
+    videos = unique
 
-    # ── autenticar ────────────────────────────────────────────────────────────
+    print(f"\n  🎬 Vídeos a inserir (únicos): {len(videos)}")
+    print(f"  🎯 Intenção                 : {intention}")
+    print(f"  📋 Playlist alvo            : {playlist_name}")
+
     print("\n  🔐 Autenticando na YouTube API...")
     youtube = _get_authenticated_service()
+    print("  ✅ Autenticado.")
 
-    # ── resolver playlist ─────────────────────────────────────────────────────
     try:
         playlist_id, created = _resolve_playlist(
             youtube,
@@ -246,11 +231,15 @@ def run(
             raise
         raise
 
-    # ── vídeos já existentes (pular duplicatas) ────────────────────────────────
-    existing_ids: set[str] = set() if created else _get_existing_video_ids(youtube, playlist_id)
-    print(f"\n  🔎 Vídeos já na playlist: {len(existing_ids)}")
+    # quando o ID foi passado direto ou a playlist acabou de ser criada,
+    # pula o prefetch para economizar cota
+    skip_prefetch = created or bool(playlist_id_override and playlist_id_override.startswith("PL"))
+    existing_ids: set[str] = set()
+    if not skip_prefetch:
+        print("  🔎 Carregando vídeos já existentes na playlist...")
+        existing_ids = _get_existing_video_ids(youtube, playlist_id)
+    print(f"  🔎 Vídeos pré-carregados da playlist: {len(existing_ids)}")
 
-    # ── relatório ─────────────────────────────────────────────────────────────
     report = {
         "started_at"        : datetime.now().isoformat(),
         "intention"         : intention,
@@ -263,35 +252,44 @@ def run(
         "errors"            : [],
     }
 
-    # ── inserção ──────────────────────────────────────────────────────────────
-    for video in videos:
+    print(f"\n  ── Iniciando inserção de {len(videos)} vídeos ──")
+
+    for idx, video in enumerate(videos, 1):
         video_id = video.get("youtube_video_id")
         title    = video.get("youtube_title", "")
 
-        if not video_id:
+        if not video_id or video_id.lower() in ("none", ""):
+            print(f"  ⚠️  [{idx:03}] ID inválido, pulando.")
             continue
 
         if video_id in existing_ids:
             report["skipped_duplicates"].append(video_id)
-            print(f"  ⏭️  Já existe: {video_id} — {title[:60]}")
+            print(f"  ⏭️  [{idx:03}] Já existe : {video_id} — {title[:55]}")
             continue
 
         try:
             item_id = _add_video(youtube, playlist_id, video_id)
             existing_ids.add(video_id)
             report["added"].append({"video_id": video_id, "playlist_item_id": item_id})
-            print(f"  ✅ Adicionado: {video_id} — {title[:60]}")
+            print(f"  ✅ [{idx:03}] Adicionado: {video_id} — {title[:55]}")
 
         except HttpError as ex:
             err_msg = str(ex)
-            report["errors"].append({"video_id": video_id, "error": err_msg})
-            print(f"  ❌ Erro: {video_id} — {err_msg[:80]}")
+
+            if "videoAlreadyInPlaylist" in err_msg or "duplicate" in err_msg.lower():
+                report["skipped_duplicates"].append(video_id)
+                existing_ids.add(video_id)
+                print(f"  ⏭️  [{idx:03}] Já existe : {video_id} — {title[:55]}")
+                continue
 
             if "quota" in err_msg.lower():
-                print("  ⛔ Quota excedida. Interrompendo.")
+                print(f"  ⛔ Quota excedida no vídeo {idx}. Interrompendo.")
+                report["errors"].append({"video_id": video_id, "error": err_msg})
                 break
 
-    # ── finalizar relatório ───────────────────────────────────────────────────
+            report["errors"].append({"video_id": video_id, "error": err_msg})
+            print(f"  ❌ [{idx:03}] Erro      : {video_id} — {err_msg[:70]}")
+
     report["finished_at"] = datetime.now().isoformat()
 
     report_file = os.path.join(
@@ -302,7 +300,6 @@ def run(
     with open(report_file, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=4, ensure_ascii=False)
 
-    # ── resumo ────────────────────────────────────────────────────────────────
     print(f"\n  ─────────────────────────────────────────")
     print(f"  Adicionados  : {len(report['added'])}")
     print(f"  Duplicatas   : {len(report['skipped_duplicates'])}")
@@ -310,3 +307,54 @@ def run(
     print(f"  Relatório    : {report_file}")
 
     return report
+
+
+# ── EXECUÇÃO DIRETA ───────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    """
+    Uso direto (sem main.py):
+
+      # usando ID da playlist:
+      python step_03_execute.py --playlist-id PLzVI0b1epy9-4p7u_t81HsKVhylxbrsRg
+
+      # usando nome da playlist:
+      python step_03_execute.py --playlist-name "Past Simple"
+
+      # tudo customizado:
+      python step_03_execute.py \
+        --classification .\output\youtube_playlist_classification.json \
+        --playlist-id PLzVI0b1epy9-4p7u_t81HsKVhylxbrsRg \
+        --output-dir .\output
+    """
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Insere vídeos classificados em uma playlist do YouTube.")
+    parser.add_argument(
+        "--classification",
+        default=r".\output\youtube_playlist_classification.json",
+        help="Caminho para youtube_playlist_classification.json",
+    )
+    parser.add_argument(
+        "--playlist-id",
+        default="",
+        help="ID direto da playlist (ex: PLzVI0b1epy9-...)",
+    )
+    parser.add_argument(
+        "--playlist-name",
+        default="",
+        help="Nome da playlist (busca ou cria se não existir)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=r".\output",
+        help="Diretório para salvar o relatório de execução",
+    )
+    args = parser.parse_args()
+
+    run(
+        classification_file   = args.classification,
+        playlist_id_override  = args.playlist_id or None,
+        playlist_name_override= args.playlist_name,
+        output_dir            = args.output_dir,
+    )

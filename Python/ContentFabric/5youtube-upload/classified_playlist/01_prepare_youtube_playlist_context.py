@@ -12,7 +12,7 @@ UPLOAD_METADATA_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE S
 
 MOVIES_PROCESSED_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\movies_processed"
 
-OUTPUT_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\output"
+OUTPUT_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist\output"
 
 OUTPUT_FILE = os.path.join(
     OUTPUT_DIR,

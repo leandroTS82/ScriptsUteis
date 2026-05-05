@@ -2,7 +2,7 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\Dev\GitLTS\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist"
 $outputFile = ".\files\classified_playlist.txt"
 
 $selectedFiles = @()
@@ -16,7 +16,7 @@ $outputDescription = @"
 # Exclusões por nome/pasta
 $exceptions = @(
     "node_modules", "bin", ".idea", ".github", "Properties", "obj", ".git", ".vs",
-    "dist", "Migrations", "Class1.cs", "certificates", "Resources", "Usings.cs"
+    "dist", "Migrations", "Class1.cs", "certificates", "Resources", "Usings.cs",, "__pycache__",, "02_classify_youtube_videos_for_playlist.py", "03_execute_classified_playlist.py"
 )
 
 # Extensões a ignorar

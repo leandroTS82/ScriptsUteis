@@ -1,0 +1,17 @@
+{
+    "started_at": "2026-05-04T21:53:11.890530",
+    "intention": "Past Simple",
+    "playlist_id": "PLzVI0b1epy9-4p7u_t81HsKVhylxbrsRg",
+    "playlist_name": "Past Simple",
+    "created_playlist": false,
+    "dry_run": false,
+    "added": [],
+    "skipped_duplicates": [],
+    "errors": [
+        {
+            "video_id": "vxWE1Z68oKc",
+            "error": "<HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&alt=json returned \"The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.\". Details: \"[{'message': 'The request cannot be completed because you have exceeded your <a href=\"/youtube/v3/getting-started#quota\">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]\">"
+        }
+    ],
+    "finished_at": "2026-05-04T21:53:16.502191"
+}
