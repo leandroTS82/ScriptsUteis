@@ -143,8 +143,20 @@ def main():
 
     # ── STEP 0 — exportar inventário ─────────────────────────────────────────
 
-    header("STEP 0 — Atualizando inventário do YouTube")
-    run_export()
+# ── decisão sobre inventário ───────────────────────────────────────────────
+
+    update_inventory = ask(
+        "\n🔄 Deseja atualizar o inventário do YouTube agora? (s/n): "
+    ).lower()
+
+    use_existing_inventory = update_inventory == "n"    
+    
+    header("STEP 0 — Inventário do YouTube")
+
+    if use_existing_inventory:
+        print("  ⏭️  Usando inventário existente (sem chamada à API).")
+    else:
+        run_export()
 
     # ── STEP 1 — preparar contexto ───────────────────────────────────────────
 

@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-05-04T21:53:11.405903",
+    "generated_at": "2026-05-04T23:25:50.305182",
     "intention": "Past Simple",
     "target_playlist": "Past Simple",
     "total_candidates": 1479,
@@ -9,7 +9,7 @@
             "youtube_video_id": "vxWE1Z68oKc",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense 'began', which is directly related to the Past Simple grammar theme.",
+            "reason": "The video is about the past tense of the verb 'to begin', which is 'began', directly relating to the Past Simple intention.",
             "matched_signal": "titleTheme"
         },
         {
@@ -44,91 +44,91 @@
             "youtube_video_id": "ZC8Jp5_EpCY",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past simple tense of the verb 'to perform'.",
-            "matched_signal": "titleTheme"
-        },
-        {
-            "youtube_video_id": "DJnIt8t6HQ4",
-            "include": true,
-            "confidence": 0.92,
-            "reason": "The video is about the past simple tense of the verb 'to get'.",
+            "reason": "The video is about the past simple tense of the verb 'perform'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "bV2ESHay5X8",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description theme clearly relate to the past simple tense.",
+            "reason": "The video title and description clearly relate to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "mT4a61r3tsg",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video title and description clearly relate to past simple tense",
+            "reason": "Video title and description theme clearly relate to past simple tense",
+            "matched_signal": "titleTheme"
+        },
+        {
+            "youtube_video_id": "wFBKwu-Xvuc",
+            "include": true,
+            "confidence": 0.95,
+            "reason": "Video title and description theme clearly relate to past simple tense",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "ydU-oqj4Ib4",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video is about mastering past intentions in English with 'I was going to'",
+            "reason": "The video is about mastering past intentions in English with 'I was going to'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "wE5gZE8LsYU",
             "include": true,
             "confidence": 0.95,
-            "reason": "Video is about mastering the past with 'was' in English",
+            "reason": "The video is about mastering the past with 'was' in English.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "rLsHfRoWyz4",
             "include": true,
             "confidence": 0.9,
-            "reason": "Video is about past week vs last week in English",
+            "reason": "The video is about past week vs. last week, which relates to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "6s7C1eBAw5I",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of the verb 'to freeze'.",
+            "reason": "The video is about the past tense of the verb 'to freeze', which is 'froze'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "5QzJYgV7X4U",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of the verb 'to hear'.",
+            "reason": "The video is about the past tense of the verb 'to hear', which is 'heard'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "dV9_fruKroA",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video is about the past simple of 'to sell'",
+            "reason": "The video is about the past simple of 'to sell', which is directly related to the Past Simple intention.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "SXts65hPv2s",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video is about the past simple of 'to fall'",
-            "matched_signal": "titleTheme"
-        },
-        {
-            "youtube_video_id": "Ie2wl4VecCA",
-            "include": true,
-            "confidence": 0.92,
-            "reason": "Video is about the past simple of 'to bleed'",
+            "reason": "The video is about the past simple of 'to fall', which is directly related to the Past Simple intention.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "jBChmGhziUE",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video is about the past participle 'seen' used in past simple constructions",
+            "reason": "The video is about the past participle 'seen', which is related to the Past Simple intention.",
+            "matched_signal": "titleTheme"
+        },
+        {
+            "youtube_video_id": "Ie2wl4VecCA",
+            "include": true,
+            "confidence": 0.92,
+            "reason": "The video is about the past simple of 'to bleed', which is directly related to the Past Simple intention.",
             "matched_signal": "titleTheme"
         },
         {
@@ -142,91 +142,91 @@
             "youtube_video_id": "oQ9Qyu0eRvo",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of 'hide', which is 'hid', directly relating to the Past Simple intention.",
+            "reason": "The video is about the past tense of 'hide', which is 'hid', directly relating to the Past Simple grammar theme.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "DMPZp0pRJUQ",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of 'ring', which is 'rang', directly relating to the Past Simple intention.",
+            "reason": "The video is about the past tense of 'ring', which is 'rang', directly relating to the Past Simple grammar theme.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "TugB7Cl4yI0",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of 'lean', which is 'leant', directly relating to the Past Simple intention.",
+            "reason": "The video is about the past tense of 'lean', which is 'leant', directly relating to the Past Simple grammar theme.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "UP-F8LLX8GU",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of 'wake', which is 'awoke', directly relating to the Past Simple intention.",
+            "reason": "The video is about the past tense of 'wake', which is 'awoke', directly relating to the Past Simple grammar theme.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "rb--8qcwpTQ",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video clearly explains a past simple sentence.",
-            "matched_signal": "titleTheme"
-        },
-        {
-            "youtube_video_id": "9vXdMRmH5QQ",
-            "include": true,
-            "confidence": 0.92,
-            "reason": "The titleTheme 'tore' is the past tense of 'to tear', which relates to the Past Simple intention.",
+            "reason": "The video is about a past action, receiving children on Christmas, which relates to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "rXDS1JCpvqA",
             "include": true,
-            "confidence": 0.95,
-            "reason": "The titleTheme 'forbade' is the past simple of 'forbid', directly relating to the Past Simple intention.",
-            "matched_signal": "titleTheme"
-        },
-        {
-            "youtube_video_id": "fiup8wyFjZM",
-            "include": true,
-            "confidence": 0.9,
-            "reason": "Although the titleTheme 'swore' is not exactly 'wore', it is a past tense verb form, and the descriptionTheme provides context on using 'swore' in the past tense, relating to the Past Simple intention.",
-            "matched_signal": "titleTheme"
-        },
-        {
-            "youtube_video_id": "kF0ZvqRYWdE",
-            "include": true,
             "confidence": 0.92,
-            "reason": "The titleTheme 'slid' is the past tense of 'to slide', which relates to the Past Simple intention.",
+            "reason": "The video is about the past simple tense of the verb 'forbid'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "QdGR8A1x62Q",
             "include": true,
-            "confidence": 0.95,
-            "reason": "The titleTheme 'were' is a past tense verb form of 'to be', directly relating to the Past Simple intention.",
+            "confidence": 0.9,
+            "reason": "The video is about mastering the past simple tense of the verb 'to be'.",
+            "matched_signal": "titleTheme"
+        },
+        {
+            "youtube_video_id": "fiup8wyFjZM",
+            "include": true,
+            "confidence": 0.88,
+            "reason": "The video is about the past tense of the verb 'swear', which is related to the past simple tense.",
+            "matched_signal": "titleTheme"
+        },
+        {
+            "youtube_video_id": "kF0ZvqRYWdE",
+            "include": true,
+            "confidence": 0.85,
+            "reason": "The video is about the past simple tense of the verb 'to slide'.",
+            "matched_signal": "titleTheme"
+        },
+        {
+            "youtube_video_id": "9vXdMRmH5QQ",
+            "include": true,
+            "confidence": 0.8,
+            "reason": "The video is about the past simple tense of the verb 'to tear'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "Ca7oNdRMSn8",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of the verb 'to feel', which is 'felt'.",
+            "reason": "The video is about the past tense of 'to feel', which is 'felt', directly relating to the Past Simple grammar theme.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "FiZKQN7-KUo",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of the verb 'to teach', which is 'taught'.",
+            "reason": "The video is about the past tense of 'to teach', which is 'taught', directly relating to the Past Simple grammar theme.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "uwpNDtvyYa8",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of the verb 'to say', which is 'said'.",
+            "reason": "The video is about the past tense of 'to say', which is 'said', directly relating to the Past Simple grammar theme.",
             "matched_signal": "titleTheme"
         },
         {
@@ -240,13 +240,13 @@
             "youtube_video_id": "qq2RA95vaMA",
             "include": true,
             "confidence": 0.9,
-            "reason": "The video is about the past simple and participle 'built', which is related to the past simple tense.",
+            "reason": "The video is about the past simple of 'to build', which is 'built'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "dr0Mv_CRn7s",
             "include": true,
-            "confidence": 0.9,
+            "confidence": 0.88,
             "reason": "The video is about the past simple of 'to lend', which is 'lent'.",
             "matched_signal": "titleTheme"
         },
@@ -261,14 +261,14 @@
             "youtube_video_id": "hQZ35TTYZ6Q",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past simple of the verb 'to stand'.",
+            "reason": "The video teaches the past simple form of the verb 'to stand'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "SjnECD_Pd3Y",
             "include": true,
             "confidence": 0.95,
-            "reason": "The video is about the past tense of the verb 'to win'.",
+            "reason": "The video teaches the past simple form of the verb 'to win'.",
             "matched_signal": "titleTheme"
         },
         {
@@ -286,59 +286,52 @@
             "matched_signal": "titleTheme"
         },
         {
-            "youtube_video_id": "guGpRCVelOE",
-            "include": true,
-            "confidence": 0.88,
-            "reason": "The video is about the phrase 'worked longer', which is in the past simple tense.",
-            "matched_signal": "titleTheme"
-        },
-        {
             "youtube_video_id": "51a9NxyGl0Q",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description theme directly relate to the past simple tense.",
+            "reason": "The video title and description clearly relate to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "38mzf_HdT08",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past simple tense 'I had been talking'.",
+            "reason": "Video clearly explains the past simple tense with 'I had been talking'",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "NG6kbG5Ws5E",
             "include": true,
             "confidence": 0.9,
-            "reason": "The video explains the passive past 'was done', which is related to the past simple tense.",
+            "reason": "Video explains the passive past simple tense with 'was done'",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "z6vbMHxdjCk",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description clearly relate to the past simple tense with 'I sent a message'.",
+            "reason": "The video title and description clearly relate to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "imLtl9VSceI",
             "include": true,
             "confidence": 0.9,
-            "reason": "The video title and description relate to the past simple tense with 'He was raised in a house'.",
+            "reason": "The video title and description clearly relate to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "AvFWIt4uzns",
             "include": true,
             "confidence": 0.88,
-            "reason": "The video title and description relate to the past simple tense with 'I meant'.",
+            "reason": "The video title and description clearly relate to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "BcOUvO11Vv8",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title theme 'That was' directly relates to the past simple tense.",
+            "reason": "The video title theme 'That was' is directly related to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
@@ -352,21 +345,21 @@
             "youtube_video_id": "auzVTDzP1kA",
             "include": true,
             "confidence": 0.95,
-            "reason": "The video is about the 'did' verb, which is directly related to the past simple tense.",
+            "reason": "The video is directly related to the Past Simple tense, focusing on the verb 'did' for questions and negations.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "VROerlSV9S8",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video clearly teaches the Past Simple tense with 'was paid'.",
+            "reason": "The video is about the Past Simple tense 'was paid'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "kRCQjBTk9hE",
             "include": true,
             "confidence": 0.9,
-            "reason": "The video explains the phrase 'I had an interview without warning', which is in the Past Simple tense.",
+            "reason": "The video is about the Past Simple tense 'I had an interview without warning'.",
             "matched_signal": "titleTheme"
         },
         {
@@ -380,35 +373,28 @@
             "youtube_video_id": "gm8OkMxuvTU",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video title and description clearly relate to past simple tense",
+            "reason": "Video title and description theme clearly relate to past simple tense",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "tmiwbF91rM0",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description theme directly relate to the past simple tense.",
+            "reason": "The video is about the past simple tense 'Have you ever taught?'",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "HvutXOSwsu4",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past simple tense 'You had said that'",
-            "matched_signal": "titleTheme"
-        },
-        {
-            "youtube_video_id": "6c06yNjUk-8",
-            "include": true,
-            "confidence": 0.85,
-            "reason": "The video is about the word 'then' which is often used in past simple sentences",
+            "reason": "The video is about 'You had said that', which is a past simple sentence structure.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "nTjVjueOZU4",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the phrase 'So Would I', which is related to the past simple tense.",
+            "reason": "The video title and description theme match the past simple intention.",
             "matched_signal": "titleTheme"
         },
         {
@@ -422,84 +408,84 @@
             "youtube_video_id": "V_H_jrWhDEA",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video title and description theme match 'Past Simple' intention with 'I dared' as a clear past simple example",
+            "reason": "The video title and description theme clearly relate to the past simple tense with 'I dared' being the past form of 'to dare'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "Gvp-WI8DgkU",
             "include": true,
-            "confidence": 0.92,
-            "reason": "The video clearly explains a grammar concept related to the past simple tense.",
+            "confidence": 0.8,
+            "reason": "The video title and description theme relate to the past simple tense through the phrase 'I will resume the', which implies a past action.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "y-yyJaV_IKM",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video title and description clearly relate to the 'after' concept, which is a part of the Past Simple tense",
+            "reason": "The video is about the word 'after' which is related to the past simple tense",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "kTB9c7JPHxI",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video clearly explains the past simple tense of 'ring'",
+            "reason": "The video clearly explains the past simple tense of the verb 'ring'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "5nBYKfZH5t8",
             "include": true,
             "confidence": 0.95,
-            "reason": "Video directly teaches the usage of 'redid' in English, which is the past simple of 'to redo'",
+            "reason": "The video is about the verb 'redid', which is in the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "xII7lJccGHA",
             "include": true,
             "confidence": 0.9,
-            "reason": "Video focuses on the past simple tense with 'I was able to do... yesterday'",
+            "reason": "The video teaches the phrase 'I was able to do... yesterday', which is in the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "OxeDOoXkbbY",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past tense of 'yawn', which is 'yawned', directly relating to the Past Simple intention.",
+            "reason": "The video is about the past tense of 'yawn', which is 'yawned', directly related to Past Simple.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "7efbbDYDqq4",
             "include": true,
             "confidence": 0.95,
-            "reason": "The video is about 'He Didn't Know' in English, which is a clear example of the Past Simple tense.",
+            "reason": "The video is about 'He Didn't Know' in English, which is a sentence in the Past Simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "gVcOV-l6DZo",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past simple tense 'Was there'",
+            "reason": "The video is about the grammar 'Was there' which is in the past simple tense",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "OVZa1opgkkg",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description clearly relate to the past simple tense.",
+            "reason": "Video clearly teaches the use of the past simple tense with the phrase 'Last Friday, I worked on...'",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "P1Bfa-nNyCI",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about 'used to flood', which is related to the past simple tense.",
+            "reason": "The video is about 'used to flood', which is related to the past simple tense",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "Niw9cVbx0sQ",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description theme clearly relate to the past simple tense, as it teaches how to ask 'When are you going to update?' in English.",
+            "reason": "The video title and description theme clearly relate to the past simple tense, specifically the question 'When are you going to update?'",
             "matched_signal": "titleTheme"
         },
         {
@@ -512,64 +498,78 @@
         {
             "youtube_video_id": "vlW5yg20dT8",
             "include": true,
-            "confidence": 0.92,
-            "reason": "The video is about 'I was thinking', which is in the past simple tense.",
+            "confidence": 0.8,
+            "reason": "The video is about the expression 'I was thinking' which is in the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "xLAW9dHaZ5I",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description theme directly relate to the past simple tense.",
+            "reason": "The video title and description theme clearly relate to the past simple tense.",
+            "matched_signal": "titleTheme"
+        },
+        {
+            "youtube_video_id": "RnT7nCFd4AA",
+            "include": true,
+            "confidence": 0.9,
+            "reason": "The video title and description theme clearly relate to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "zDz_bwfhQH4",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video clearly relates to the past simple tense, as indicated by 'would' in the titleTheme and descriptionTheme.",
+            "reason": "The video is about 'so that no one would fall', which relates to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "jelCVJ9Szss",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video is about the past simple tense 'I received'.",
+            "reason": "The video is about the past simple tense of the verb 'to receive'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "EFQVgI9gGoA",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video is about mastering the Past Simple tense, specifically the verb 'made'.",
+            "reason": "Video is about mastering the Past Simple tense",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "lC8SIkx-fnU",
             "include": true,
             "confidence": 0.92,
-            "reason": "The titleTheme 'I wish I had known earlier' directly relates to the past simple tense.",
+            "reason": "The video title and description theme clearly relate to the past simple tense with the phrase 'I wish I had known earlier'.",
             "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "eKEWODbUAU0",
             "include": true,
             "confidence": 0.9,
-            "reason": "The titleTheme 'I was going to do' clearly relates to past intentions, which is a part of the past simple tense.",
+            "reason": "The video title and description theme clearly relate to the past simple tense with the phrase 'I was going to do'.",
             "matched_signal": "titleTheme"
         },
         {
-            "youtube_video_id": "4YkoC32ZgWY",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "titleTheme and descriptionTheme are null",
-            "matched_signal": "null"
+            "youtube_video_id": "8QhhpTmkAIw",
+            "include": true,
+            "confidence": 0.8,
+            "reason": "The phrase 'Do something completely' can be related to the past simple tense when describing completed actions.",
+            "matched_signal": "titleTheme"
+        },
+        {
+            "youtube_video_id": "KyXHM9olUOU",
+            "include": true,
+            "confidence": 0.9,
+            "reason": "The word 'Hired' is often used in the past simple tense to describe a completed action of being employed.",
+            "matched_signal": "titleTheme"
         },
         {
             "youtube_video_id": "RR6qJhzSaGc",
             "include": true,
             "confidence": 0.92,
-            "reason": "The video title and description theme directly relate to the past simple tense.",
+            "reason": "The video title and description theme clearly relate to the past simple tense.",
             "matched_signal": "titleTheme"
         },
         {
@@ -587,17 +587,17 @@
             "matched_signal": "titleTheme"
         },
         {
-            "youtube_video_id": "_tF3GJh08V8",
+            "youtube_video_id": "mmoSYrLIgQ0",
             "include": true,
             "confidence": 0.9,
-            "reason": "Video title and description relate to the past simple tense of 'to lead'",
+            "reason": "Video title and description relate to the past simple tense of 'to get out of bed'",
             "matched_signal": "titleTheme"
         },
         {
-            "youtube_video_id": "mmoSYrLIgQ0",
+            "youtube_video_id": "_tF3GJh08V8",
             "include": true,
-            "confidence": 0.92,
-            "reason": "Video title and description clearly relate to the past simple tense of 'to get out of bed'",
+            "confidence": 0.88,
+            "reason": "Video title and description relate to the past simple tense of 'to lead'",
             "matched_signal": "titleTheme"
         },
         {
@@ -608,17 +608,17 @@
             "matched_signal": "youtube_title"
         },
         {
-            "youtube_video_id": "yOaM2BmyoFw",
+            "youtube_video_id": "2IQXkRSQm34",
             "include": true,
             "confidence": 0.7,
-            "reason": "Mastering 'failure' in English could relate to past simple",
+            "reason": "How to Use 'For a While' Like a Native relates to past simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "ew0TknmVkX8",
             "include": true,
-            "confidence": 0.6,
-            "reason": "How to Use 'Ends Up' in English might relate to past simple",
+            "confidence": 0.7,
+            "reason": "How to Use 'Ends Up' in English relates to past simple",
             "matched_signal": "youtube_title"
         },
         {
@@ -632,35 +632,28 @@
             "youtube_video_id": "W6nXFxXlsXI",
             "include": true,
             "confidence": 0.92,
-            "reason": "youtube_title contains 'that was' which is related to Past Simple",
+            "reason": "youtube title contains 'that was' which is related to past simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "eoDuif4m4bw",
             "include": true,
             "confidence": 0.9,
-            "reason": "youtube_title contains 'Past Tense' which is related to Past Simple",
+            "reason": "youtube title contains 'Past Tense' which is related to past simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "-vFLRJ4SZv8",
             "include": true,
             "confidence": 0.8,
-            "reason": "youtube title mentions 'knew' which is related to Past Simple",
+            "reason": "Video title mentions 'passado de to know', which relates to past simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "tL5iZp5d9lY",
             "include": true,
             "confidence": 0.8,
-            "reason": "Video title mentions 'Going To', which is related to the past simple tense",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "GSAro-3qx4E",
-            "include": true,
-            "confidence": 0.8,
-            "reason": "youtube title contains past tense 'worked'",
+            "reason": "youtube title mentions 'Going To', which is related to past simple through the future perfect simple tense",
             "matched_signal": "youtube_title"
         },
         {
@@ -672,6 +665,83 @@
         },
         {
             "youtube_video_id": "ljzmB0q116c",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "TupMu2jo5WQ",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "n_k60oTgW-4",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "SuDQg03PuMg",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "tdepwkVm8iA",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "m2HfPJ0Qd1o",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "9hdze7OYXRI",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "Sr30MBXWyj8",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "qi1BpbCdIxU",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "_PTt9hGjZ74",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "b6j3vXP8BLs",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "No clear relation to Past Simple",
+            "matched_signal": "youtube_title"
+        },
+        {
+            "youtube_video_id": "RRrYFkgKodY",
             "include": false,
             "confidence": 0.0,
             "reason": "No clear relation to Past Simple",
@@ -762,87 +832,10 @@
             "matched_signal": "youtube_title"
         },
         {
-            "youtube_video_id": "TupMu2jo5WQ",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "n_k60oTgW-4",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "SuDQg03PuMg",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "tdepwkVm8iA",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "m2HfPJ0Qd1o",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "9hdze7OYXRI",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "Sr30MBXWyj8",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "qi1BpbCdIxU",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "_PTt9hGjZ74",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "b6j3vXP8BLs",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "RRrYFkgKodY",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No clear relation to Past Simple",
-            "matched_signal": "youtube_title"
-        },
-        {
             "youtube_video_id": "V_qv797cFZY",
             "include": true,
             "confidence": 0.92,
-            "reason": "Video title mentions the past tense of 'blow' (blew)",
+            "reason": "Video title mentions the past tense of 'blow'",
             "matched_signal": "youtube_title"
         },
         {
@@ -1031,186 +1024,172 @@
             "youtube_video_id": "lEck85zlhA4",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "APNTHRPmGaI",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "_4TrGfyrvjE",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "ZHxaYeGzS5I",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "lJvj2vmXjys",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "71PcaLpmqZ4",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "LTT6ZEoOxNE",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "Ci1T1LGZVkQ",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "SlpVAvYXyDI",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "ZE5aHRvn6Uo",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "wtrfTwzXXKc",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "wjBxilqscXc",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "s7DX8rydsYI",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "VW7UAM_Y8JE",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "7_d0BQeUKhA",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "47Jki-zJMmE",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "kfOXDZTABLM",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "Ntb9PZ-9uUM",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "QBw-uLmk6jQ",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "vmgvkXsDpnk",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "uOTWvvaol18",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "vsUFdwYvQG4",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "75oXSfetEhE",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
+            "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
             "youtube_video_id": "5plLL2Ng9IA",
             "include": false,
             "confidence": 0.0,
-            "reason": "No relevant theme found",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "dmue5oRQHMg",
-            "include": false,
-            "confidence": 0.0,
-            "reason": "No relevant theme found",
-            "matched_signal": "youtube_title"
-        },
-        {
-            "youtube_video_id": "cr6x7OtSTHk",
-            "include": false,
-            "confidence": 0.0,
             "reason": "no clear relation to Past Simple",
             "matched_signal": "youtube_title"
         },
         {
-            "youtube_video_id": "Eb-VwXkpoKw",
+            "youtube_video_id": "dmue5oRQHMg",
             "include": false,
             "confidence": 0.0,
             "reason": "no clear relation to Past Simple",
@@ -1220,15 +1199,29 @@
             "youtube_video_id": "gTmtj9LL7bQ",
             "include": false,
             "confidence": 0.0,
-            "reason": "no clear relation to Past Simple",
-            "matched_signal": "youtube_title"
+            "reason": "no relevant theme found",
+            "matched_signal": "none"
+        },
+        {
+            "youtube_video_id": "Eb-VwXkpoKw",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "no relevant theme found",
+            "matched_signal": "none"
         },
         {
             "youtube_video_id": "xGLFW8_EHCE",
             "include": false,
             "confidence": 0.0,
-            "reason": "no clear relation to Past Simple",
-            "matched_signal": "youtube_title"
+            "reason": "no relevant theme found",
+            "matched_signal": "none"
+        },
+        {
+            "youtube_video_id": "cr6x7OtSTHk",
+            "include": false,
+            "confidence": 0.0,
+            "reason": "no relevant theme found",
+            "matched_signal": "none"
         }
     ],
     "videos": [
@@ -1318,23 +1311,6 @@
             "theme_found": true
         },
         {
-            "youtube_video_id": "DJnIt8t6HQ4",
-            "youtube_title": "E aí, galera! Teacher Leandrinho na área! | Mastering 'Got' in English",
-            "youtube_description": "E aí, galera! Teacher Leandrinho na área! Hoje vamos desvendar um verbo que tá em todo lugar: 'got'!\n\n🔹 O que é 'got' e como usar no passado e presente.\n🔹 Diferença entre 'got' e 'have got'.\n🔹 Exemplos práticos com frases do dia a dia.\n\nAssista, curta, compartilhe e ative o sininho para mais dicas de inglês! 📚\n\nVocabulario: got, have got, I got, I have got, I got it, etc.",
-            "youtube_uploaded_at": "2026-04-29T11:02:20Z",
-            "duration": "PT53S",
-            "has_playlist": false,
-            "playlists": [],
-            "metadata_json_file": "uploaded_got.json",
-            "metadata_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\EnableToYoutubeUpload\\uploaded_got.json",
-            "base_file_name": "got",
-            "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\got.json",
-            "titleTheme": "got",
-            "descriptionTheme": "'Got' é o passado de 'get'. Significa 'conseguiu', 'pegou', 'entendeu'. Também usamos com 'have' para dizer 'ter', tipo 'I have got' = 'Eu tenho'.",
-            "match_found": true,
-            "theme_found": true
-        },
-        {
             "youtube_video_id": "ZC8Jp5_EpCY",
             "youtube_title": "Você vai se surpreender! Learn the word 'performed' in English",
             "youtube_description": "Você vai se surpreender com o poder de uma palavra! \n\nO que você vai aprender:\n- Como usar \"performed\" no passado simples\n- Exemplos práticos em frases\n- Dicas para lembrar a diferença entre \"perform\" e \"performed\"\n\nAssista agora, curta, compartilhe e inscreva-se para mais dicas de inglês!\n\nVocabulário:\n- performed: realizado, executado, apresentado\n- perform: realizar, executar",
@@ -1382,6 +1358,23 @@
             "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\i_worked_on_a_payments_platform.json",
             "titleTheme": "I worked on a payments platform",
             "descriptionTheme": "Significa 'Eu trabalhei em uma plataforma de pagamentos'. Pense em sistemas como PayPal, PicPay, Stripe... que processam pagamentos.",
+            "match_found": true,
+            "theme_found": true
+        },
+        {
+            "youtube_video_id": "wFBKwu-Xvuc",
+            "youtube_title": "Você NÃO Vai Acreditar! | Master 'but I'm sure it was' in English",
+            "youtube_description": "E aí, galera da fluência! Teacher Leandrinho aqui! Hoje vamos dominar a expressão \"but I'm sure it was\".\n\nO que você vai aprender:\n• Como usar a frase em diferentes contextos\n• Dicas para lembrar e praticar\n• Exemplos práticos\n\nAssista agora, curta, compartilhe e inscreva-se para mais dicas de inglês!\n\nVocabulário:\n- but I'm sure it was – mas eu tenho certeza que foi\n- it – isso / ele / ela / eles\n- sure – certo / seguro\n- was – era / foi",
+            "youtube_uploaded_at": "2026-04-23T14:48:27Z",
+            "duration": "PT1M15S",
+            "has_playlist": false,
+            "playlists": [],
+            "metadata_json_file": "uploaded_but_im_sure_it_was.json",
+            "metadata_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\EnableToYoutubeUpload\\uploaded_but_im_sure_it_was.json",
+            "base_file_name": "but_im_sure_it_was",
+            "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\but_im_sure_it_was.json",
+            "titleTheme": "but I'm sure it was",
+            "descriptionTheme": "Significa 'mas eu tenho certeza que foi' ou 'que era'. Usamos para contradizer algo ou afirmar uma memória sobre o passado.",
             "match_found": true,
             "theme_found": true
         },
@@ -2194,34 +2187,6 @@
             "theme_found": true
         },
         {
-            "youtube_video_id": "guGpRCVelOE",
-            "youtube_title": "E aí, galera! 'Worked longer' em inglês: O segredo para arrasar no trabalho!",
-            "youtube_description": "🚀 E aí, galera! Já se perguntou como dizer 'worked longer' em inglês e impressionar no trabalho? Neste vídeo, Teacher Leandrinho mostra tudo que você precisa saber!\n\n📌 O que você vai aprender:\n- Como usar 'worked longer' no Simple Past\n- Exemplos práticos no contexto de trabalho e estudos\n- Dicas para trocar 'work' por outros verbos (studied, chatted, etc.)\n\n📚 Vocabulário chave:\n- worked longer\n- worked\n- longer\n- trabalhou por mais tempo\n- trabalhou mais\n\n👉 Call to action: Curta, compartilhe e se inscreva para mais dicas de inglês! 🔔\n\n🎧 Playlist: BusinessWork – Aprimore seu inglês profissional.",
-            "youtube_uploaded_at": "2026-03-25T22:42:36Z",
-            "duration": "PT1M14S",
-            "has_playlist": true,
-            "playlists": [
-                {
-                    "playlist_id": "PLzVI0b1epy98eOHY7HBaccCv82pM39Yey",
-                    "playlist_title": "10 Minutos de Vocabulário em inglês (5)",
-                    "position": 6
-                },
-                {
-                    "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
-                    "playlist_title": "Word Bank - ALL",
-                    "position": 206
-                }
-            ],
-            "metadata_json_file": "uploaded_worked_longer.json",
-            "metadata_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\EnableToYoutubeUpload\\uploaded_worked_longer.json",
-            "base_file_name": "worked_longer",
-            "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\worked_longer.json",
-            "titleTheme": "worked longer",
-            "descriptionTheme": "'Worked longer' significa 'trabalhou por mais tempo' ou 'trabalhou mais'. Usamos para dizer que alguém dedicou mais horas a uma tarefa ou emprego.",
-            "match_found": true,
-            "theme_found": true
-        },
-        {
             "youtube_video_id": "51a9NxyGl0Q",
             "youtube_title": "Você já ouviu isso? I Met the Deadline – Aprenda a usar essa frase em inglês!",
             "youtube_description": "🚀 **Você já ouviu isso?**\n\nNeste vídeo, o Teacher Leandrinho mostra como usar a frase **\"I met the deadline\"** no contexto de trabalho e estudos.\n\n🔹 **O que você vai aprender**\n- Como dizer que cumpriu um prazo em inglês\n- Diferença entre *met* e *miss* o deadline\n- Exemplos práticos em situações reais\n\n📢 **Não esqueça de se inscrever, curtir e ativar o sininho** para não perder nenhuma dica!\n\n🗣️ **Vocabulário**\n- deadline – prazo\n- met – cumpriu (passado de meet)\n- miss – perder\n- project – projeto\n- office – escritório\n- stage – palco\n- papers – papéis\n\n👉 **Assista agora e melhore seu inglês profissional!**",
@@ -2666,34 +2631,6 @@
             "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\have_you_ever_taught.json",
             "titleTheme": "Have you ever taught",
             "descriptionTheme": "'Have you ever taught?' significa 'Você já ensinou?' ou 'Você alguma vez já deu aula?'. Usamos para perguntar sobre a experiência de alguém com o ensino.",
-            "match_found": true,
-            "theme_found": true
-        },
-        {
-            "youtube_video_id": "6c06yNjUk-8",
-            "youtube_title": "Não Perca! Descubra o Segredo do 'Then' em Inglês! | Master 'Then' in English",
-            "youtube_description": "E aí, galera! Teacher Leandrinho na área! Hoje vamos desvendar o 'then'!\n\n🔹 O que você vai aprender:\n- Como usar 'then' para indicar sequência\n- Diferença entre 'then' e 'so'\n- Exemplos práticos em frases\n\n🔹 Call to action:\nAssista, curta, compartilhe e inscreva-se para mais dicas de inglês!\n\n🔹 Vocabulário:\n- then\n- so\n- sequence\n- reason\n- rest\n- work\n- tired\n- sleep\n\nEste vídeo faz parte da playlist 'Grammar'.",
-            "youtube_uploaded_at": "2026-02-27T15:49:03Z",
-            "duration": "PT59S",
-            "has_playlist": true,
-            "playlists": [
-                {
-                    "playlist_id": "PLzVI0b1epy98oSYA2eMwmopFSHQwt1yug",
-                    "playlist_title": "30 Minutos de Vocabulário em inglês (9)",
-                    "position": 14
-                },
-                {
-                    "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
-                    "playlist_title": "Word Bank - ALL",
-                    "position": 464
-                }
-            ],
-            "metadata_json_file": "uploaded_and_then.json",
-            "metadata_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\EnableToYoutubeUpload\\uploaded_and_then.json",
-            "base_file_name": "and_then",
-            "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\and_then.json",
-            "titleTheme": "and then",
-            "descriptionTheme": "Significa 'e então' ou 'e depois'. Usamos para conectar ações em uma sequência, mostrando o que aconteceu depois.",
             "match_found": true,
             "theme_found": true
         },
@@ -3174,6 +3111,34 @@
             "theme_found": true
         },
         {
+            "youtube_video_id": "RnT7nCFd4AA",
+            "youtube_title": "Você NÃO Vai Acreditar Como Falar 'I traveled a lot during the school holidays' em Inglês!",
+            "youtube_description": "E aí, galera! Leandrinho na área! Bora destravar a frase \"I traveled a lot during the school holidays\"! \n\nO que você vai aprender:\n- Como usar \"traveled\" no passado simples\n- Estrutura da frase em inglês\n- Dicas de pronúncia e entonação\n- Como aplicar em outras situações de viagem\n\nChamada para ação: Inscreva-se, ative o sininho e compartilhe com os amigos! \n\nVocabulário:\n- traveled – viajar (passado)\n- school holidays – férias escolares\n- I – eu (pronome)\n- a lot – muito (quantificador)\n- during – durante\n- the – o/a (artigo definido)\n\nConfira mais vídeos na playlist \"Travel\".",
+            "youtube_uploaded_at": "2026-01-22T23:35:11Z",
+            "duration": "PT1M3S",
+            "has_playlist": true,
+            "playlists": [
+                {
+                    "playlist_id": "PLzVI0b1epy99DZ8PHAOXA-jqiqvBwsog2",
+                    "playlist_title": "Word Bank - 30 words part 11",
+                    "position": 12
+                },
+                {
+                    "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                    "playlist_title": "Word Bank - ALL",
+                    "position": 801
+                }
+            ],
+            "metadata_json_file": "uploaded_i_traveled_a_lot_during_the_school_holidays.json",
+            "metadata_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\EnableToYoutubeUpload\\uploaded_i_traveled_a_lot_during_the_school_holidays.json",
+            "base_file_name": "i_traveled_a_lot_during_the_school_holidays",
+            "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\i_traveled_a_lot_during_the_school_holidays.json",
+            "titleTheme": "I traveled a lot during the school holidays",
+            "descriptionTheme": "Eu viajei muito durante as férias escolares.",
+            "match_found": true,
+            "theme_found": true
+        },
+        {
             "youtube_video_id": "xLAW9dHaZ5I",
             "youtube_title": "Você não vai acreditar no que essa frase significa! | It was a busy year Explained",
             "youtube_description": "E aí, galera! Teacher Leandrinho na área! 🚀 Hoje vamos desvendar a frase 'It was a busy year'. Sabe quando a correria foi tanta que você nem viu o tempo passar? É isso! Bora praticar juntos!\n\n- O que você vai aprender: Como usar 'It was a busy year' no contexto de um ano cheio de atividades, variações com 'day' e 'week', e como transformar a frase em algo mais leve como 'a piece of cake'.\n- Por que isso importa: Dominar essa expressão ajuda a descrever experiências passadas de forma natural e confiante.\n- Dica de prática: Troque 'year' por 'day' ou 'week' e crie suas próprias frases.\n- Call to action: Curta, compartilhe e inscreva-se para mais dicas de inglês! 🔔\n\nVocabulário chave:\n- It was a busy year\n- busy\n- year\n- day\n- week\n- piece of cake\n- time\n- activities\n- commitments\n\nCheck out our ChunksOfEnglish playlist for more phrases like this!",
@@ -3342,6 +3307,62 @@
             "theme_found": true
         },
         {
+            "youtube_video_id": "KyXHM9olUOU",
+            "youtube_title": "Você Já Foi Contratado? Master 'Hired' in English Now!",
+            "youtube_description": "E aí, galera! Teacher Leandrinho na área! Hoje vamos destravar uma palavra SUPER útil que você vai usar muito: 'hired'!\n\n🔹 O que significa 'hired' e como usá-lo.\n🔹 Exemplos práticos em frases.\n🔹 Como usar a estrutura 'to be + hired'.\n🔹 Dicas para lembrar e praticar.\n\nSe curtiu, deixe seu like, compartilhe e se inscreva para mais dicas de inglês! Comente abaixo se já foi contratado ou se quer aprender mais.\n\nVocabulário:\n- hired: contratado(a).\n- hired for: contratado(a) para.\n- She was hired: Ela foi contratada.\n\n🔗 Playlist: JobInterview",
+            "youtube_uploaded_at": "2026-01-09T01:10:35Z",
+            "duration": "PT1M7S",
+            "has_playlist": true,
+            "playlists": [
+                {
+                    "playlist_id": "PLzVI0b1epy98pU9OWJ9tgu31oieOI_LuI",
+                    "playlist_title": "Word Bank - 30 words part 7",
+                    "position": 10
+                },
+                {
+                    "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                    "playlist_title": "Word Bank - ALL",
+                    "position": 929
+                }
+            ],
+            "metadata_json_file": "uploaded_hired.json",
+            "metadata_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\EnableToYoutubeUpload\\uploaded_hired.json",
+            "base_file_name": "hired",
+            "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\hired.json",
+            "titleTheme": "hired",
+            "descriptionTheme": "Significa contratado ou contratada. É o que acontece quando uma empresa te dá um emprego.",
+            "match_found": true,
+            "theme_found": true
+        },
+        {
+            "youtube_video_id": "8QhhpTmkAIw",
+            "youtube_title": "Você vai se surpreender! Do something completely – Master this phrase now!",
+            "youtube_description": "E aí, galera! Teacher Leandrinho na área! Hoje o tema é 'Do something completely'.\n\nO que você vai aprender:\n• Significado da expressão e uso em contexto\n• Como usar em frases do dia a dia\n• Dicas de pronúncia e prática\n\nNão esqueça de curtir, comentar e se inscrever!\n\nVocabulário chave:\n- Do something completely\n- completely (advérbio)\n- phrase\n- meaning\n- practice\n\nConfira nosso playlist: ExpressionsIdioms",
+            "youtube_uploaded_at": "2026-01-08T00:51:20Z",
+            "duration": "PT1M",
+            "has_playlist": true,
+            "playlists": [
+                {
+                    "playlist_id": "PLzVI0b1epy98pU9OWJ9tgu31oieOI_LuI",
+                    "playlist_title": "Word Bank - 30 words part 7",
+                    "position": 23
+                },
+                {
+                    "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                    "playlist_title": "Word Bank - ALL",
+                    "position": 942
+                }
+            ],
+            "metadata_json_file": "uploaded_do_something_completely.json",
+            "metadata_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\EnableToYoutubeUpload\\uploaded_do_something_completely.json",
+            "base_file_name": "do_something_completely",
+            "processed_json_path": "C:\\Users\\leand\\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\\EKF - English Knowledge Framework - Videos\\movies_processed\\do_something_completely.json",
+            "titleTheme": "Do something completely",
+            "descriptionTheme": "Significa fazer algo por inteiro, totalmente. É como zerar uma tarefa ou mudar algo da água pro vinho.",
+            "match_found": true,
+            "theme_found": true
+        },
+        {
             "youtube_video_id": "RR6qJhzSaGc",
             "youtube_title": "Você vai se surpreender! | It was very windy yesterday",
             "youtube_description": "E aí, future bilingue! Teacher aqui! Sabe aquele dia que o vento tá tão forte que até o guarda-chuva vira ao contrário? Pois é! Hoje vamos aprender a descrever exatamente essa situação em inglês com a frase 'It was very windy yesterday'. Preparado pra turbinar seu vocabulário? Let's go!\n\nWhat you'll learn:\n- How to use 'It was very windy yesterday' in context\n- Common examples and variations\n- Tips to remember the phrase\n\nIf you enjoyed this lesson, hit the like button, subscribe, and share with your friends!\n\nVocabulary list:\n- It was very windy yesterday\n- windy\n- storm\n- debris\n- jacket\n- trail\n- unsafe",
@@ -3482,22 +3503,22 @@
             "theme_found": true
         },
         {
-            "youtube_video_id": "yOaM2BmyoFw",
-            "youtube_title": "Você vai se surpreender com essa palavra! | Mastering 'failure' in English",
-            "youtube_description": "Você vai se surpreender com essa palavra! \n\n- Entenda o significado e uso de \"failure\" no inglês cotidiano.\n- Aprenda a usar \"failure\" em diferentes contextos.\n- Pratique com exemplos reais.\n\nAssista agora, curta, compartilhe e inscreva-se para mais dicas de inglês! \n\nVocabulário: failure, failure, failure",
-            "youtube_uploaded_at": "2025-12-31T21:11:51Z",
-            "duration": "PT1M17S",
+            "youtube_video_id": "2IQXkRSQm34",
+            "youtube_title": "Você Não Vai Acreditar! | How to Use 'For a While' Like a Native",
+            "youtube_description": "Você não vai acreditar no truque que vai mudar seu inglês! \n\n🔹 Entenda o significado de \"for a while\" em diferentes contextos\n🔹 Aprenda exemplos práticos e situações do dia a dia\n🔹 Descubra dicas para usar a expressão de forma natural\n\n👉 Assine, curta, compartilhe e ative o sininho para mais conteúdo!\n\n📚 Vocabulário:\n- for a while\n- temporary\n- relax\n- delay\n- call\n- seat\n- pause\n- period\n- short\n- long\n\n🎧 Playlist: ExpressionsIdioms",
+            "youtube_uploaded_at": "2025-12-31T21:12:06Z",
+            "duration": "PT1M",
             "has_playlist": true,
             "playlists": [
                 {
                     "playlist_id": "PLzVI0b1epy9-1qcFy_2GFR9SdTGZu2Ca-",
                     "playlist_title": "Word Bank - 30 words part 5",
-                    "position": 27
+                    "position": 25
                 },
                 {
                     "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
                     "playlist_title": "Word Bank - ALL",
-                    "position": 1006
+                    "position": 1004
                 }
             ],
             "metadata_json_file": null,
@@ -3666,34 +3687,6 @@
                     "playlist_id": "PLzVI0b1epy9_yI7rbuRFLWk33PhDemzOF",
                     "playlist_title": "Gramática Essencial do Inglês",
                     "position": 10
-                }
-            ],
-            "metadata_json_file": null,
-            "metadata_json_path": null,
-            "base_file_name": null,
-            "processed_json_path": null,
-            "titleTheme": null,
-            "descriptionTheme": null,
-            "match_found": false,
-            "theme_found": false
-        },
-        {
-            "youtube_video_id": "GSAro-3qx4E",
-            "youtube_title": "Você vai se surpreender com essa frase em inglês! | I worked on the mapping of the",
-            "youtube_description": "E aí, galera! Teacher aqui, pronto pra mais uma dica de inglês que vai turbinar seu vocabulário! \n\nWhat you'll learn:\n- Como usar a expressão \"I worked on the mapping of the\" em contextos profissionais.\n- Exemplos práticos em projetos de mapeamento de cidades, fluxos de trabalho e jornadas de clientes.\n- Dicas de pronúncia e uso em conversas de negócios.\n\nCall to action:\n👉 Curta, compartilhe e inscreva-se para mais dicas de inglês!\n\nVocabulary list:\n- mapping (mapeamento)\n- workflow (fluxo de trabalho)\n- customer journey (jornada do cliente)\n- project (projeto)\n- professional (profissional)\n- data analyst (analista de dados)\n- city park (parque da cidade)\n- company (empresa)\n- key touchpoints (pontos-chave)",
-            "youtube_uploaded_at": "2025-12-13T16:44:54Z",
-            "duration": "PT1M21S",
-            "has_playlist": true,
-            "playlists": [
-                {
-                    "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
-                    "playlist_title": "Word Bank - ALL",
-                    "position": 1127
-                },
-                {
-                    "playlist_id": "PLzVI0b1epy9921P5DJGtMC0xshpemXhaY",
-                    "playlist_title": "Inglês para Trabalho e Negócios",
-                    "position": 1
                 }
             ],
             "metadata_json_file": null,

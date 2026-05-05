@@ -12,109 +12,57 @@ import os
 import json
 import time
 from datetime import datetime
-
-from googleapiclient.discovery import build
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+from youtube_auth import get_youtube_client
 from googleapiclient.errors import HttpError
 
+
 # ── CONFIG ────────────────────────────────────────────────────────────────────
-
-TOKEN_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\EKF - English Knowledge Framework - Base"
-    r"\FilesHelper\secret_tokens_keys\youtube_token.json"
-)
-
-CLIENT_SECRET_FILE = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\EKF - English Knowledge Framework - Base"
-    r"\FilesHelper\secret_tokens_keys\youtube-upload-desktop.json"
-)
-
-SCOPES = ["https://www.googleapis.com/auth/youtube"]
-
 PLAYLIST_PRIVACY_STATUS = "public"
 SLEEP_SECONDS           = 1.5   # pausa entre inserções para respeitar rate limit
 DRY_RUN                 = False  # True = simula sem chamar API de escrita
-
-# ── AUTH ──────────────────────────────────────────────────────────────────────
-
-def _get_authenticated_service():
-    creds = None
-
-    if os.path.exists(TOKEN_PATH):
-        with open(TOKEN_PATH, "r", encoding="utf-8") as f:
-            creds = Credentials.from_authorized_user_info(json.load(f), SCOPES)
-
-    if not creds or not creds.valid:
-        if creds and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow  = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
-            creds = flow.run_local_server(port=8080)
-
-        with open(TOKEN_PATH, "w", encoding="utf-8") as f:
-            f.write(creds.to_json())
-
-    return build("youtube", "v3", credentials=creds)
+inventory_file = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist\output\youtube_uploaded_inventory.json"
 
 
-# ── YOUTUBE HELPERS ───────────────────────────────────────────────────────────
+def _get_all_playlists_from_inventory(inventory_file: str) -> dict:
+    """
+    Retorna playlists a partir do inventory local.
 
-def _get_all_playlists(youtube) -> dict:
-    """Retorna dict: title.lower() → {playlist_id, playlist_title}"""
-    playlists  = {}
-    page_token = None
+    Formato:
+    title.lower() → {playlist_id, playlist_title}
+    """
 
-    while True:
-        resp = youtube.playlists().list(
-            part="snippet",
-            mine=True,
-            maxResults=50,
-            pageToken=page_token,
-        ).execute()
+    with open(inventory_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-        for item in resp.get("items", []):
-            title = item["snippet"]["title"]
-            playlists[title.lower()] = {
-                "playlist_id"   : item["id"],
-                "playlist_title": title,
-            }
+    playlists_map = {}
 
-        page_token = resp.get("nextPageToken")
-        if not page_token:
-            break
+    for video in data.get("videos", []):
+        for pl in video.get("playlists", []):
+            title = pl.get("playlist_title")
+            pid = pl.get("playlist_id")
 
-    return playlists
+            if title and pid:
+                playlists_map[title.lower()] = {
+                    "playlist_id": pid,
+                    "playlist_title": title
+                }
 
+    return playlists_map
 
 def _create_playlist(youtube, name: str, intention: str) -> str:
-    if DRY_RUN:
-        fake_id = f"DRY_RUN_{name.replace(' ', '_')}"
-        print(f"  [DRY RUN] Criaria playlist: '{name}' → {fake_id}")
-        return fake_id
-
     resp = youtube.playlists().insert(
         part="snippet,status",
         body={
             "snippet": {
-                "title"      : name,
-                "description": (
-                    f"Playlist automática criada pelo pipeline classified_playlist.\n"
-                    f"Intenção: {intention}"
-                ),
+                "title": name,
+                "description": f"Playlist automática - Intenção: {intention}"
             },
-            "status": {"privacyStatus": PLAYLIST_PRIVACY_STATUS},
-        },
+            "status": {"privacyStatus": PLAYLIST_PRIVACY_STATUS}
+        }
     ).execute()
 
-    playlist_id = resp["id"]
-    print(f"  ✅ Playlist criada: '{name}' → {playlist_id}")
-    time.sleep(5)
-    return playlist_id
-
+    time.sleep(3)
+    return resp["id"]
 
 def _resolve_playlist(
     youtube,
@@ -127,7 +75,9 @@ def _resolve_playlist(
         return playlist_id_override, False
 
     print(f"\n  🔍 Buscando playlist existente: '{playlist_name}'...")
-    existing = _get_all_playlists(youtube)
+    
+    existing = _get_all_playlists_from_inventory(inventory_file)
+    
     key = playlist_name.lower()
 
     if key in existing:
@@ -203,19 +153,32 @@ def run(
 
     # deduplica pelo youtube_video_id (Groq às vezes repete)
     seen, unique = set(), []
+
     for v in videos:
         vid = v.get("youtube_video_id")
         if vid and vid.lower() not in ("none", "") and vid not in seen:
             seen.add(vid)
             unique.append(v)
-    videos = unique
+
+    progress_file = os.path.join(output_dir, "playlist_progress.json")
+    processed_ids = set()
+
+    if os.path.exists(progress_file):
+        with open(progress_file, "r", encoding="utf-8") as f:
+            processed_ids = set(json.load(f))
+
+    # filtra apenas os que ainda não foram processados
+    videos = [
+        v for v in unique
+        if v["youtube_video_id"] not in processed_ids
+    ]
 
     print(f"\n  🎬 Vídeos a inserir (únicos): {len(videos)}")
     print(f"  🎯 Intenção                 : {intention}")
     print(f"  📋 Playlist alvo            : {playlist_name}")
 
     print("\n  🔐 Autenticando na YouTube API...")
-    youtube = _get_authenticated_service()
+    youtube = get_youtube_client()
     print("  ✅ Autenticado.")
 
     try:
@@ -271,6 +234,10 @@ def run(
             item_id = _add_video(youtube, playlist_id, video_id)
             existing_ids.add(video_id)
             report["added"].append({"video_id": video_id, "playlist_item_id": item_id})
+            processed_ids.add(video_id)
+
+            with open(progress_file, "w", encoding="utf-8") as f:
+                json.dump(list(processed_ids), f)
             print(f"  ✅ [{idx:03}] Adicionado: {video_id} — {title[:55]}")
 
         except HttpError as ex:
