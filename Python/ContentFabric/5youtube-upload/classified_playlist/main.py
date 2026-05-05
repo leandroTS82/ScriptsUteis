@@ -24,7 +24,7 @@ import step_03_execute  as step03
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
 # Script que exporta o inventário atualizado do YouTube
-EXPORT_SCRIPT = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\export_youtube_uploaded_inventory.py"
+EXPORT_SCRIPT = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared\00_export_youtube_uploaded_inventory.py"
 
 # Script original de preparação de contexto
 PREPARE_SCRIPT = os.path.join(BASE_DIR, "01_prepare_youtube_playlist_context.py")

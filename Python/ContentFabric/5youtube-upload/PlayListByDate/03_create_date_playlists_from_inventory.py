@@ -355,6 +355,11 @@ def build_plan(inventory):
         if not video_id:
             continue
 
+        duration_seconds = parse_iso8601_duration(video.get("duration"))
+
+        if duration_seconds > 120:
+            continue
+
         date_key = get_upload_date_key(video)
         groups[date_key].append(video)
 
