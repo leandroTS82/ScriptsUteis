@@ -1,0 +1,18 @@
+{
+    "started_at": "2026-05-05T08:22:05.576356",
+    "finished_at": "2026-05-05T08:22:21.291498",
+    "dry_run": false,
+    "created_playlists": [],
+    "used_existing_playlists": [],
+    "added_to_date_playlists": [],
+    "skipped_date_playlist_duplicates": [],
+    "added_to_word_bank_all": [],
+    "skipped_word_bank_all_duplicates": [],
+    "errors": [
+        {
+            "playlist_title": "Word Bank - 04-05-2026 - 7 min",
+            "error": "<HttpError 429 when requesting https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2Cstatus&alt=json returned \"Resource has been exhausted (e.g. check quota).\". Details: \"[{'domain': 'youtube.api.v3.PlaylistInsertResponse.Error', 'reason': 'RATE_LIMIT_EXCEEDED'}]\">"
+        }
+    ],
+    "stopped_reason": "YouTube rate limit/quota reached"
+}

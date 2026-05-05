@@ -20,7 +20,7 @@ from googleapiclient.errors import HttpError
 PLAYLIST_PRIVACY_STATUS = "public"
 SLEEP_SECONDS           = 1.5   # pausa entre inserções para respeitar rate limit
 DRY_RUN                 = False  # True = simula sem chamar API de escrita
-inventory_file = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist\output\youtube_uploaded_inventory.json"
+inventory_file = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared\youtube_uploaded_inventory.json"
 
 
 def _get_all_playlists_from_inventory(inventory_file: str) -> dict:

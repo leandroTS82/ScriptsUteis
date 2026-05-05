@@ -15,25 +15,15 @@ import os
 import json
 from datetime import datetime
 
-from googleapiclient.discovery import build
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+from youtube_auth import get_youtube_client
 
 # ======================================================
 # PATHS - mesmos padrões do upload_youtube.py
 # ======================================================
 
-DEFAULT_VIDEO_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
+DEFAULT_VIDEO_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
 
-OUTPUT_DIR = r".\output"
-
-TOKEN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube_token.json"
-CLIENT_SECRET_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube-upload-desktop.json"
-
-SCOPES = [
-    "https://www.googleapis.com/auth/youtube"
-]
+OUTPUT_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -42,34 +32,6 @@ OUTPUT_FILE = os.path.join(
     f"youtube_uploaded_inventory.json"
 )
 
-# ======================================================
-# AUTH - mesmo comportamento do upload_youtube.py
-# ======================================================
-
-def get_authenticated_service():
-    creds = None
-
-    if os.path.exists(TOKEN_PATH):
-        with open(TOKEN_PATH, "r", encoding="utf-8") as f:
-            creds = Credentials.from_authorized_user_info(
-                json.load(f),
-                SCOPES
-            )
-
-    if not creds or not creds.valid:
-        if creds and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                CLIENT_SECRET_FILE,
-                SCOPES
-            )
-            creds = flow.run_local_server(port=8080)
-
-        with open(TOKEN_PATH, "w", encoding="utf-8") as f:
-            f.write(creds.to_json())
-
-    return build("youtube", "v3", credentials=creds)
 
 # ======================================================
 # LOCAL FILE MAP
@@ -278,7 +240,7 @@ def find_local_uploaded_file(title, uploaded_by_title):
 
 def main():
     print("Autenticando no YouTube...")
-    youtube = get_authenticated_service()
+    youtube = get_youtube_client()
 
     print("Lendo arquivos locais uploaded_*.mp4 / uploaded_*.json...")
     uploaded_by_title, uploaded_by_base = build_uploaded_file_map(DEFAULT_VIDEO_DIRECTORY)

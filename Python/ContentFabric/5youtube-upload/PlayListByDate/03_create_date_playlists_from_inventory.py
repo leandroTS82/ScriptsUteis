@@ -20,20 +20,26 @@ import os
 import json
 import re
 import time
+import sys
 from datetime import datetime
 from collections import defaultdict
 
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+
+CURRENT_DIR = os.path.dirname(__file__)
+SHARED_DIR = os.path.abspath(os.path.join(CURRENT_DIR, "..", "00_Shared"))
+
+if SHARED_DIR not in sys.path:
+    sys.path.append(SHARED_DIR)
+from youtube_auth import get_youtube_client
 
 # ======================================================
 # CONFIG
 # ======================================================
 
-INPUT_JSON = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\output\youtube_uploaded_inventory.json"
+INPUT_JSON = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared\youtube_uploaded_inventory.json"
 
 OUTPUT_DIR = r".\output"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -50,12 +56,6 @@ REPORT_OUTPUT = os.path.join(
     f"youtube_playlist_execution_report_{RUN_ID}.json"
 )
 
-TOKEN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube_token.json"
-CLIENT_SECRET_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube-upload-desktop.json"
-
-SCOPES = [
-    "https://www.googleapis.com/auth/youtube"
-]
 
 WORD_BANK_ALL_PLAYLIST_ID = "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo"
 WORD_BANK_ALL_PLAYLIST_TITLE = "Word Bank - ALL"
@@ -77,31 +77,7 @@ SLEEP_AFTER_PLAYLIST_CREATE_SECONDS = 5
 # Retry para erros temporários.
 MAX_RETRIES = 4
 
-# ======================================================
-# AUTH
-# ======================================================
 
-def get_authenticated_service():
-    creds = None
-
-    if os.path.exists(TOKEN_PATH):
-        with open(TOKEN_PATH, "r", encoding="utf-8") as f:
-            creds = Credentials.from_authorized_user_info(json.load(f), SCOPES)
-
-    if not creds or not creds.valid:
-        if creds and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                CLIENT_SECRET_FILE,
-                SCOPES
-            )
-            creds = flow.run_local_server(port=8080)
-
-        with open(TOKEN_PATH, "w", encoding="utf-8") as f:
-            f.write(creds.to_json())
-
-    return build("youtube", "v3", credentials=creds)
 
 # ======================================================
 # HTTP / RETRY
@@ -617,7 +593,7 @@ def main():
         return
 
     print("Autenticando no YouTube...")
-    youtube = get_authenticated_service()
+    youtube = get_youtube_client()
 
     print("Executando plano...")
     report = execute_plan(youtube, plan)

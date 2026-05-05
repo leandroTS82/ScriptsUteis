@@ -23,7 +23,7 @@ from youtube_auth import get_youtube_client
 
 DEFAULT_VIDEO_DIRECTORY = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
 
-OUTPUT_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist\output"
+OUTPUT_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 

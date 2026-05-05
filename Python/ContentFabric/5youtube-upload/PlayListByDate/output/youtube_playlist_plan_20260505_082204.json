@@ -1,0 +1,1502 @@
+{
+    "generated_at": "2026-05-05T08:22:05.285028",
+    "source_json": "C:\\dev\\scripts\\ScriptsUteis\\Python\\ContentFabric\\5youtube-upload\\00_Shared\\youtube_uploaded_inventory.json",
+    "dry_run": false,
+    "max_playlists_per_run": 5,
+    "rule": "Only videos with has_playlist=false are grouped by youtube_uploaded_at date.",
+    "word_bank_all_playlist": {
+        "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+        "playlist_title": "Word Bank - ALL"
+    },
+    "total_playlists_to_process": 17,
+    "total_videos_to_process": 154,
+    "playlists": [
+        {
+            "upload_date": "2026-05-04",
+            "upload_date_br": "04-05-2026",
+            "playlist_title": "Word Bank - 04-05-2026 - 7 min",
+            "privacy_status": "public",
+            "total_videos": 7,
+            "total_duration_seconds": 437,
+            "total_duration_label": "7min 17s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "m8glPobWwsk",
+                    "title": "E aí, galera! Master the word 'Legit' in English and Speak Like a Native!",
+                    "youtube_uploaded_at": "2026-05-04T20:01:50Z",
+                    "duration": "PT53S",
+                    "duration_seconds": 53,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "K3ZbqUPqZV8",
+                    "title": "Não dá? Descubra como usar 'While it is not possible... I will'! | English Mastery",
+                    "youtube_uploaded_at": "2026-05-04T20:01:42Z",
+                    "duration": "PT1M1S",
+                    "duration_seconds": 61,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "RTMExLrtHeQ",
+                    "title": "Não Vai Acreditar! | Shall Explained",
+                    "youtube_uploaded_at": "2026-05-04T20:01:38Z",
+                    "duration": "PT59S",
+                    "duration_seconds": 59,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "1YkYWXp7PLI",
+                    "title": "Fala, minha galera! Master 'Practice with them' in English!",
+                    "youtube_uploaded_at": "2026-05-04T20:01:18Z",
+                    "duration": "PT1M2S",
+                    "duration_seconds": 62,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Wff1Rsu_a5w",
+                    "title": "E aí, galera! Diligence: Domine a palavra que vai turbinar seu inglês!",
+                    "youtube_uploaded_at": "2026-05-04T20:01:09Z",
+                    "duration": "PT1M25S",
+                    "duration_seconds": 85,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Px79e3iFbxk",
+                    "title": "Você Não Vai Acreditar Como Eu Esclareci Dúvidas com Você! | I Cleared Up Some Doubts With You",
+                    "youtube_uploaded_at": "2026-05-04T20:00:54Z",
+                    "duration": "PT1M",
+                    "duration_seconds": 60,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "ObIRKwxbWzU",
+                    "title": "Você NÃO Vai Acreditar Como Usar 'Beyond the Email' em Inglês!",
+                    "youtube_uploaded_at": "2026-05-04T20:00:51Z",
+                    "duration": "PT57S",
+                    "duration_seconds": 57,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-28",
+            "upload_date_br": "28-04-2026",
+            "playlist_title": "Word Bank - 28-04-2026 - 3 min",
+            "privacy_status": "public",
+            "total_videos": 3,
+            "total_duration_seconds": 200,
+            "total_duration_label": "3min 20s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "VHmnqUvZy4E",
+                    "title": "Você Não Vai Acreditar! Everything is already OK – O Segredo da Paz Interior",
+                    "youtube_uploaded_at": "2026-04-28T15:42:57Z",
+                    "duration": "PT1M13S",
+                    "duration_seconds": 73,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "_KPOVLgqG8o",
+                    "title": "Não perca! My lawyer reached a good agreement explicado em 5 minutos",
+                    "youtube_uploaded_at": "2026-04-28T15:42:52Z",
+                    "duration": "PT48S",
+                    "duration_seconds": 48,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "GxRRT3IayH8",
+                    "title": "Você vai se surpreender! Get Used to It - Domine essa expressão!",
+                    "youtube_uploaded_at": "2026-04-28T15:42:17Z",
+                    "duration": "PT1M19S",
+                    "duration_seconds": 79,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-27",
+            "upload_date_br": "27-04-2026",
+            "playlist_title": "Word Bank - 27-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 663,
+            "total_duration_label": "11min 03s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "44A8BcpKwys",
+                    "title": "Você NÃO vai acreditar no que 'set' pode fazer! | Unlock the Power of 'Set' in English",
+                    "youtube_uploaded_at": "2026-04-27T15:32:44Z",
+                    "duration": "PT1M7S",
+                    "duration_seconds": 67,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "RD-XPL3VVZQ",
+                    "title": "Você Não Vai Acreditar! | Master the Perfect Chain in English Fast!",
+                    "youtube_uploaded_at": "2026-04-27T15:32:16Z",
+                    "duration": "PT1M15S",
+                    "duration_seconds": 75,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "baGO2Dk5jSU",
+                    "title": "E aí, galera! Teacher Leandrinho na área! | Gave Birth to the Entrepreneur",
+                    "youtube_uploaded_at": "2026-04-27T15:32:15Z",
+                    "duration": "PT1M26S",
+                    "duration_seconds": 86,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "YKcK_fmZnWM",
+                    "title": "Desbloqueie seu inglês agora! Mastering 'When ... is' in English",
+                    "youtube_uploaded_at": "2026-04-27T15:32:13Z",
+                    "duration": "PT49S",
+                    "duration_seconds": 49,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "mpav4fNX84U",
+                    "title": "E aí, galera! Master 'as an agreement' in English!",
+                    "youtube_uploaded_at": "2026-04-27T15:32:05Z",
+                    "duration": "PT1M4S",
+                    "duration_seconds": 64,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "c0jOlDmBtC4",
+                    "title": "Você vai se surpreender com essa palavra em inglês! – to borrow",
+                    "youtube_uploaded_at": "2026-04-27T15:31:57Z",
+                    "duration": "PT1M20S",
+                    "duration_seconds": 80,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Wf-JWM-EKAs",
+                    "title": "Você NÃO Vai Acreditar Como Usar 'Borrow' em Inglês! | Master Borrowing in English",
+                    "youtube_uploaded_at": "2026-04-27T15:31:54Z",
+                    "duration": "PT50S",
+                    "duration_seconds": 50,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "uHR2kdSrKXw",
+                    "title": "Não perca! 'There's no escape' explicado em 60 segundos!",
+                    "youtube_uploaded_at": "2026-04-27T15:31:51Z",
+                    "duration": "PT55S",
+                    "duration_seconds": 55,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "-MjL4_V79f4",
+                    "title": "Você vai se surpreender com essa expressão em inglês! Wind Me Up",
+                    "youtube_uploaded_at": "2026-04-27T15:31:38Z",
+                    "duration": "PT1M17S",
+                    "duration_seconds": 77,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "JCqp2-tWXkY",
+                    "title": "Você NÃO Vai Acreditar Como Um Recruiter Pode Mudar Seu Futuro! | Recruiter Explained",
+                    "youtube_uploaded_at": "2026-04-27T15:31:34Z",
+                    "duration": "PT1M",
+                    "duration_seconds": 60,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-26",
+            "upload_date_br": "26-04-2026",
+            "playlist_title": "Word Bank - 26-04-2026 - 10 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 618,
+            "total_duration_label": "10min 18s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "AlZWz-FQBFo",
+                    "title": "Você vai se surpreender! Master 'From Behind' in 5 Minutes",
+                    "youtube_uploaded_at": "2026-04-26T15:21:19Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "DzEriQWs7mI",
+                    "title": "Explode sua velocidade com 'burst speed'! Mastering Burst Speed in English",
+                    "youtube_uploaded_at": "2026-04-26T15:21:16Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "bb_JcmfBIb4",
+                    "title": "Você NÃO Vai Acreditar! | Yeah, I have already applied",
+                    "youtube_uploaded_at": "2026-04-26T15:21:13Z",
+                    "duration": "PT56S",
+                    "duration_seconds": 56,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "kl5mduntV1M",
+                    "title": "E aí, galera! Teacher Leandrinho na área! Master 'Anything else?' in English",
+                    "youtube_uploaded_at": "2026-04-26T15:21:09Z",
+                    "duration": "PT46S",
+                    "duration_seconds": 46,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "5JuIA2m1e8Y",
+                    "title": "E aí, galera! Leandrinho na área! Never Mind: Master This Common English Phrase",
+                    "youtube_uploaded_at": "2026-04-26T15:21:02Z",
+                    "duration": "PT58S",
+                    "duration_seconds": 58,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "bV2ESHay5X8",
+                    "title": "Quer dominar 'I went back to the'? | Master the phrase in English",
+                    "youtube_uploaded_at": "2026-04-26T15:20:59Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "tnNtrPVGh1s",
+                    "title": "Não vai acreditar! | Much More Work Explained",
+                    "youtube_uploaded_at": "2026-04-26T15:20:48Z",
+                    "duration": "PT59S",
+                    "duration_seconds": 59,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "3aAT3XzG7Z4",
+                    "title": "VOCÊ NÃO VAI ACREDITAR! | I guess I would, if…",
+                    "youtube_uploaded_at": "2026-04-26T15:20:44Z",
+                    "duration": "PT1M11S",
+                    "duration_seconds": 71,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "4dTzLOP1PNI",
+                    "title": "E aí, alunos! Descubra a frase MÁGICA que salva sua conversa em inglês - 'Could you say that again?'",
+                    "youtube_uploaded_at": "2026-04-26T15:20:43Z",
+                    "duration": "PT58S",
+                    "duration_seconds": 58,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "O5-JYcjqFzM",
+                    "title": "Você NÃO Vai Acreditar Como Usar 'So Far' em Inglês! | So Far Explained",
+                    "youtube_uploaded_at": "2026-04-26T15:20:40Z",
+                    "duration": "PT1M13S",
+                    "duration_seconds": 73,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-25",
+            "upload_date_br": "25-04-2026",
+            "playlist_title": "Word Bank - 25-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 638,
+            "total_duration_label": "10min 38s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "m9yEtISnKXw",
+                    "title": "Surpreenda-se! I was wondering whether: a expressão que vai mudar seu inglês",
+                    "youtube_uploaded_at": "2026-04-25T15:10:51Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "feEGBTqm9zg",
+                    "title": "Você Já Usou 'Are you at least'? Master This English Phrase Now!",
+                    "youtube_uploaded_at": "2026-04-25T15:10:28Z",
+                    "duration": "PT53S",
+                    "duration_seconds": 53,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "R5sATq71IlY",
+                    "title": "Fala, galera! Master 'Shall we' in English!",
+                    "youtube_uploaded_at": "2026-04-25T15:10:22Z",
+                    "duration": "PT1M3S",
+                    "duration_seconds": 63,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "_VmQw8vXcCc",
+                    "title": "E aí, galera! Descubra como usar 'announced' em inglês em 60 segundos!",
+                    "youtube_uploaded_at": "2026-04-25T15:10:22Z",
+                    "duration": "PT1M12S",
+                    "duration_seconds": 72,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Iy0k0EhJt30",
+                    "title": "E aí, galera! Descubra a diferença: I Got To Do vs I Have To Do",
+                    "youtube_uploaded_at": "2026-04-25T15:10:09Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "IIawBldJj3Q",
+                    "title": "E aí, alunos! Unlock the Power of 'make sure that' in English!",
+                    "youtube_uploaded_at": "2026-04-25T15:10:05Z",
+                    "duration": "PT59S",
+                    "duration_seconds": 59,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "E8_Y5EdQGu8",
+                    "title": "Você vai se surpreender! | I Spent the Day at",
+                    "youtube_uploaded_at": "2026-04-25T15:10:04Z",
+                    "duration": "PT1M1S",
+                    "duration_seconds": 61,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "IgwqrgTqMIE",
+                    "title": "Não perca! Hang Tight - Master the Phrase",
+                    "youtube_uploaded_at": "2026-04-25T15:09:55Z",
+                    "duration": "PT1M16S",
+                    "duration_seconds": 76,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "LrX9W_B_tR4",
+                    "title": "E aí, galera! Domine 'I will make' em 5 Minutos!",
+                    "youtube_uploaded_at": "2026-04-25T15:09:48Z",
+                    "duration": "PT56S",
+                    "duration_seconds": 56,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "ZtR4CDBvD5M",
+                    "title": "🚀 Você Não Vai Acreditar! | It Might Be That The",
+                    "youtube_uploaded_at": "2026-04-25T15:09:48Z",
+                    "duration": "PT1M7S",
+                    "duration_seconds": 67,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-24",
+            "upload_date_br": "24-04-2026",
+            "playlist_title": "Word Bank - 24-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 663,
+            "total_duration_label": "11min 03s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "mT4a61r3tsg",
+                    "title": "Você Já Trabalhou em uma Plataforma de Pagamentos? | I Worked on a Payments Platform",
+                    "youtube_uploaded_at": "2026-04-24T14:59:24Z",
+                    "duration": "PT1M3S",
+                    "duration_seconds": 63,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "XDaIGpiHpU4",
+                    "title": "E aí, galera! Master 'I'm going to send a thank-you message' in 5 Minutes!",
+                    "youtube_uploaded_at": "2026-04-24T14:59:18Z",
+                    "duration": "PT1M17S",
+                    "duration_seconds": 77,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "m26glmPFj6Q",
+                    "title": "Você Vai Se Surpreender! Rehearse for Accuracy Explained",
+                    "youtube_uploaded_at": "2026-04-24T14:59:16Z",
+                    "duration": "PT57S",
+                    "duration_seconds": 57,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Qb7tSAm_hzA",
+                    "title": "Você Vai Se Surpreender! It Concerns the – Domine a Expressão em Inglês!",
+                    "youtube_uploaded_at": "2026-04-24T14:59:13Z",
+                    "duration": "PT1M4S",
+                    "duration_seconds": 64,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "SVIAJvXzWrc",
+                    "title": "Você NÃO Vai Acreditar Como Usar 'Made Up' em Inglês! | Master English Fast",
+                    "youtube_uploaded_at": "2026-04-24T14:59:07Z",
+                    "duration": "PT1M40S",
+                    "duration_seconds": 100,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "gZx6r8yruFY",
+                    "title": "Você vai se surpreender com essa palavra! | Shipment in English for Business",
+                    "youtube_uploaded_at": "2026-04-24T14:59:02Z",
+                    "duration": "PT53S",
+                    "duration_seconds": 53,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "9xFL6w6wl5w",
+                    "title": "E aí, galera! Domine 'Let's say' em Inglês – Quick & Easy!",
+                    "youtube_uploaded_at": "2026-04-24T14:59:01Z",
+                    "duration": "PT54S",
+                    "duration_seconds": 54,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "J7Ef0mZcIys",
+                    "title": "Você NÃO Vai Acreditar Como 'There' Pode Mudar Seu Inglês!",
+                    "youtube_uploaded_at": "2026-04-24T14:58:56Z",
+                    "duration": "PT1M7S",
+                    "duration_seconds": 67,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "sK1EcvLU0b4",
+                    "title": "E aí, meu povo! Master the word 'trashed' in English!",
+                    "youtube_uploaded_at": "2026-04-24T14:58:54Z",
+                    "duration": "PT1M12S",
+                    "duration_seconds": 72,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "5AeECwO3Lbk",
+                    "title": "Quer turbinar seu inglês? | Give Her a Heads Up",
+                    "youtube_uploaded_at": "2026-04-24T14:58:50Z",
+                    "duration": "PT56S",
+                    "duration_seconds": 56,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-23",
+            "upload_date_br": "23-04-2026",
+            "playlist_title": "Word Bank - 23-04-2026 - 10 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 629,
+            "total_duration_label": "10min 29s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "Lsk2KhV6OkM",
+                    "title": "Você Já Sentiu Isso? | Annoying Issue Explained!",
+                    "youtube_uploaded_at": "2026-04-23T14:48:50Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "E1Q1uWARa6I",
+                    "title": "Você NÃO Vai Acreditar Como Usar 'and tell them' em 5 Minutos!",
+                    "youtube_uploaded_at": "2026-04-23T14:48:39Z",
+                    "duration": "PT49S",
+                    "duration_seconds": 49,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "mI4pGTAIm_g",
+                    "title": "Você Vai Ficar Surpreso! | Suit Yourself Explained",
+                    "youtube_uploaded_at": "2026-04-23T14:48:36Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "k3Ti4CSJRUE",
+                    "title": "Você NÃO Vai Acreditar: 'to get to know you' Vai Revolucionar Seu Inglês!",
+                    "youtube_uploaded_at": "2026-04-23T14:48:35Z",
+                    "duration": "PT1M",
+                    "duration_seconds": 60,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "UbUjUNsPhQQ",
+                    "title": "E aí, galera! Master 'rely' in 60 Seconds – English Made Easy!",
+                    "youtube_uploaded_at": "2026-04-23T14:48:30Z",
+                    "duration": "PT56S",
+                    "duration_seconds": 56,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "OBOvgLa4LFc",
+                    "title": "Você Não Vai Acreditar! | Without Showing Off, Everything Is Given by God – Master This Phrase Now!",
+                    "youtube_uploaded_at": "2026-04-23T14:48:29Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "wFBKwu-Xvuc",
+                    "title": "Você NÃO Vai Acreditar! | Master 'but I'm sure it was' in English",
+                    "youtube_uploaded_at": "2026-04-23T14:48:27Z",
+                    "duration": "PT1M15S",
+                    "duration_seconds": 75,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "KNQtC7tJdME",
+                    "title": "E aí, galera! Já ouviu essa frase que vai salvar seu dia? It is already okay!",
+                    "youtube_uploaded_at": "2026-04-23T14:48:23Z",
+                    "duration": "PT1M2S",
+                    "duration_seconds": 62,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "pbtkvswaMGE",
+                    "title": "Você já ouviu 'What does bean mean'? Descubra o que isso realmente significa!",
+                    "youtube_uploaded_at": "2026-04-23T14:48:03Z",
+                    "duration": "PT1M14S",
+                    "duration_seconds": 74,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "xCF696Ga_m0",
+                    "title": "Você vai se surpreender! And that works out – Domine essa expressão agora!",
+                    "youtube_uploaded_at": "2026-04-23T14:47:58Z",
+                    "duration": "PT58S",
+                    "duration_seconds": 58,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-22",
+            "upload_date_br": "22-04-2026",
+            "playlist_title": "Word Bank - 22-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 666,
+            "total_duration_label": "11min 06s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "ik_fxWVx8-w",
+                    "title": "E aí, galera! Teacher Leandrinho na área! Mastering 'lower' in English",
+                    "youtube_uploaded_at": "2026-04-22T14:38:06Z",
+                    "duration": "PT1M17S",
+                    "duration_seconds": 77,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "lSn-mHR7Kls",
+                    "title": "Você NÃO Vai Acreditar no Segredo do 'My Purpose'! | Unlock Your Life Purpose in English",
+                    "youtube_uploaded_at": "2026-04-22T14:37:54Z",
+                    "duration": "PT54S",
+                    "duration_seconds": 54,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "uA1WdKVQUwU",
+                    "title": "VOCÊ JÁ CONSEGUE? | Master 'I Can Already' in 5 Minutes!",
+                    "youtube_uploaded_at": "2026-04-22T14:37:52Z",
+                    "duration": "PT59S",
+                    "duration_seconds": 59,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "EBEuUR5Mm_A",
+                    "title": "Você não vai acreditar! | Master 'Crept' in English",
+                    "youtube_uploaded_at": "2026-04-22T14:37:44Z",
+                    "duration": "PT1M8S",
+                    "duration_seconds": 68,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "vgRApK_CFGA",
+                    "title": "Descubra o segredo do 'I have had'! Mastering Present Perfect",
+                    "youtube_uploaded_at": "2026-04-22T14:37:34Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "5ozV1PZtF50",
+                    "title": "E aí, galera! Lazy Loading Explained: Boost Your Tech Vocabulary!",
+                    "youtube_uploaded_at": "2026-04-22T14:37:28Z",
+                    "duration": "PT54S",
+                    "duration_seconds": 54,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "wcQc8UIhKUw",
+                    "title": "Você vai se surpreender! We can win thanks to our competitive advantage – Aprenda agora!",
+                    "youtube_uploaded_at": "2026-04-22T14:37:26Z",
+                    "duration": "PT1M27S",
+                    "duration_seconds": 87,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "TAD4G-7nhHA",
+                    "title": "Você vai perder o verão sem saber usar 'summer'? | Master the Word 'Summer' Now!",
+                    "youtube_uploaded_at": "2026-04-22T14:37:19Z",
+                    "duration": "PT1M13S",
+                    "duration_seconds": 73,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "q5B5FbYZ4Z8",
+                    "title": "Vai além? Descubra 'goes beyond' e domine o inglês!",
+                    "youtube_uploaded_at": "2026-04-22T14:37:16Z",
+                    "duration": "PT55S",
+                    "duration_seconds": 55,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "snVYbkyEBQ8",
+                    "title": "Você NÃO Vai Acreditar! It might be ... for us – Aprenda Agora!",
+                    "youtube_uploaded_at": "2026-04-22T14:37:09Z",
+                    "duration": "PT1M14S",
+                    "duration_seconds": 74,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-21",
+            "upload_date_br": "21-04-2026",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 673,
+            "total_duration_label": "11min 13s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "2ioM_6oxhHc",
+                    "title": "Você vai se surpreender com essa palavra! | Tasty in English",
+                    "youtube_uploaded_at": "2026-04-21T14:27:34Z",
+                    "duration": "PT1M17S",
+                    "duration_seconds": 77,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "aQN26rmN3Ok",
+                    "title": "Você está pronto para ousar? Master 'I dare to do' in English!",
+                    "youtube_uploaded_at": "2026-04-21T14:27:13Z",
+                    "duration": "PT58S",
+                    "duration_seconds": 58,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "JK26xL0EVjE",
+                    "title": "E aí, galera! Dead-Letter Queues: O que é e por que você precisa saber!",
+                    "youtube_uploaded_at": "2026-04-21T14:27:03Z",
+                    "duration": "PT56S",
+                    "duration_seconds": 56,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Fst_6bH5vMY",
+                    "title": "E aí, galera! Domine 'It increases my chances to' e conquiste o inglês!",
+                    "youtube_uploaded_at": "2026-04-21T14:27:02Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "rLsHfRoWyz4",
+                    "title": "Você não vai acreditar! | Past week vs. last week Explained",
+                    "youtube_uploaded_at": "2026-04-21T14:26:59Z",
+                    "duration": "PT1M22S",
+                    "duration_seconds": 82,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "tkKlEJTfz-M",
+                    "title": "E aí, galera! Descubra o Segredo da Palavra 'Promise' em Inglês",
+                    "youtube_uploaded_at": "2026-04-21T14:26:57Z",
+                    "duration": "PT1M4S",
+                    "duration_seconds": 64,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "mfzWtljV7zM",
+                    "title": "Você NÃO Vai Acreditar! Mastering Everyday English Expressions",
+                    "youtube_uploaded_at": "2026-04-21T14:26:54Z",
+                    "duration": "PT1M3S",
+                    "duration_seconds": 63,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "asaJqRIqfRM",
+                    "title": "Não vai acreditar no que acontece! | It usually happens",
+                    "youtube_uploaded_at": "2026-04-21T14:26:49Z",
+                    "duration": "PT1M14S",
+                    "duration_seconds": 74,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "qWjBWDB8kAg",
+                    "title": "E aí, galera! Teacher Leandrinho na área! 😙 Show Me That Apology: Master the Phrase in English",
+                    "youtube_uploaded_at": "2026-04-21T14:26:44Z",
+                    "duration": "PT1M3S",
+                    "duration_seconds": 63,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "JRj9Nul-Yh4",
+                    "title": "E aí, galera! Descubra como 'find themselves' pode mudar sua vida em inglês!",
+                    "youtube_uploaded_at": "2026-04-21T14:26:34Z",
+                    "duration": "PT1M11S",
+                    "duration_seconds": 71,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-20",
+            "upload_date_br": "20-04-2026",
+            "playlist_title": "Word Bank - 20-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 654,
+            "total_duration_label": "10min 54s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "O_BkIrneDNA",
+                    "title": "Aumente seu inglês com um truque poderoso! | I do, for sure",
+                    "youtube_uploaded_at": "2026-04-20T14:18:39Z",
+                    "duration": "PT1M1S",
+                    "duration_seconds": 61,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "2-6x2RTN-MY",
+                    "title": "E aí, galera! Descubra o Segredo de 'to capture the attention of' em Inglês!",
+                    "youtube_uploaded_at": "2026-04-20T14:16:32Z",
+                    "duration": "PT1M11S",
+                    "duration_seconds": 71,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "ydU-oqj4Ib4",
+                    "title": "Você Já Usou 'I WAS GOING TO'? | Mastering Past Intentions in English",
+                    "youtube_uploaded_at": "2026-04-20T14:16:23Z",
+                    "duration": "PT1M11S",
+                    "duration_seconds": 71,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "yzJL_jjpab0",
+                    "title": "E aí, galera! Descubra o Segredo da 'Reliability' em Inglês!",
+                    "youtube_uploaded_at": "2026-04-20T14:16:12Z",
+                    "duration": "PT1M4S",
+                    "duration_seconds": 64,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "aPD5noWQQqs",
+                    "title": "Você NÃO Vai Acreditar no Segredo do 'Raise'! | English Vocabulary Boost",
+                    "youtube_uploaded_at": "2026-04-20T14:16:07Z",
+                    "duration": "PT1M7S",
+                    "duration_seconds": 67,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "wE5gZE8LsYU",
+                    "title": "E aí, galera! Master the Past with 'was' in English!",
+                    "youtube_uploaded_at": "2026-04-20T14:16:07Z",
+                    "duration": "PT58S",
+                    "duration_seconds": 58,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "npsqpNS6E6o",
+                    "title": "Você não vai acreditar! Competitive Advantage Explained",
+                    "youtube_uploaded_at": "2026-04-20T14:16:03Z",
+                    "duration": "PT1M2S",
+                    "duration_seconds": 62,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "PSKDOLBz_zw",
+                    "title": "E aí, galera! Master the Verb 'Put' in English – Você Vai Se Surpreender!",
+                    "youtube_uploaded_at": "2026-04-20T14:15:53Z",
+                    "duration": "PT57S",
+                    "duration_seconds": 57,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "CkYmKew6lcg",
+                    "title": "E aí, galera! 'Led to the meaning' Explained in 5 Minutes!",
+                    "youtube_uploaded_at": "2026-04-20T14:15:48Z",
+                    "duration": "PT1M11S",
+                    "duration_seconds": 71,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "HL-UhTCJ0og",
+                    "title": "Você NÃO Vai Acreditar! | Times of God's Blessings Explained",
+                    "youtube_uploaded_at": "2026-04-20T14:15:44Z",
+                    "duration": "PT1M12S",
+                    "duration_seconds": 72,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-19",
+            "upload_date_br": "19-04-2026",
+            "playlist_title": "Word Bank - 19-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 689,
+            "total_duration_label": "11min 29s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "-xvvTWXRdQQ",
+                    "title": "E aí, galera! Descubra o segredo de 'laid' em inglês",
+                    "youtube_uploaded_at": "2026-04-19T14:05:41Z",
+                    "duration": "PT1M4S",
+                    "duration_seconds": 64,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "DYyWCnJFM3Q",
+                    "title": "Atenção, Brasileiros! Domine 'Something is Lacking' em 5 Minutos!",
+                    "youtube_uploaded_at": "2026-04-19T14:05:41Z",
+                    "duration": "PT1M",
+                    "duration_seconds": 60,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "afLAVz3lTv0",
+                    "title": "Fala, galera! Descubra Como 'Today I Woke Up to the Rooster Crowing' Vai Turbinar Seu Inglês!",
+                    "youtube_uploaded_at": "2026-04-19T14:05:40Z",
+                    "duration": "PT1M29S",
+                    "duration_seconds": 89,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "9P4JCMYE_TY",
+                    "title": "E aí, galera! Master 'Travel' in English – The Ultimate Guide!",
+                    "youtube_uploaded_at": "2026-04-19T14:05:36Z",
+                    "duration": "PT1M11S",
+                    "duration_seconds": 71,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "zyZ-9LisYM0",
+                    "title": "Você não vai acreditar! | 'Yeah, I've already done it on staging' Explained!",
+                    "youtube_uploaded_at": "2026-04-19T14:05:34Z",
+                    "duration": "PT51S",
+                    "duration_seconds": 51,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "GYcW-Nu3mQ4",
+                    "title": "E aí, galera! Teacher Leandrinho na área! Descubra o Segredo de 'Top It Off' em Inglês!",
+                    "youtube_uploaded_at": "2026-04-19T14:05:25Z",
+                    "duration": "PT1M8S",
+                    "duration_seconds": 68,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "MLl4SXqPmMo",
+                    "title": "E aí, galera! Teacher Leandrinho na área! 🚀 I am a good fit for this role",
+                    "youtube_uploaded_at": "2026-04-19T14:05:21Z",
+                    "duration": "PT1M13S",
+                    "duration_seconds": 73,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "bCwMskThDm4",
+                    "title": "Não Perca! Aprenda 'Start Working on It' em Inglês em 5 Minutos!",
+                    "youtube_uploaded_at": "2026-04-19T14:05:16Z",
+                    "duration": "PT1M9S",
+                    "duration_seconds": 69,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "8bNuggqcwlw",
+                    "title": "E aí, galera! Descubra a frase que vai salvar sua comunicação em inglês! Let Me Rephrase That",
+                    "youtube_uploaded_at": "2026-04-19T14:05:09Z",
+                    "duration": "PT1M14S",
+                    "duration_seconds": 74,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "vM8ckpSBA6g",
+                    "title": "🚨 Você NÃO Vai Acreditar Como 'Could you repair it?' Pode Salvar Seu Dia! | English Phrase Mastery",
+                    "youtube_uploaded_at": "2026-04-19T14:04:59Z",
+                    "duration": "PT1M10S",
+                    "duration_seconds": 70,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-18",
+            "upload_date_br": "18-04-2026",
+            "playlist_title": "Word Bank - 18-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 672,
+            "total_duration_label": "11min 12s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "6s7C1eBAw5I",
+                    "title": "E aí, galera! Teacher Leandrinho na área! 'Froze' Explained in English",
+                    "youtube_uploaded_at": "2026-04-18T13:55:07Z",
+                    "duration": "PT1M2S",
+                    "duration_seconds": 62,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "DjGy8Lcj3_I",
+                    "title": "E aí, galera! Aprenda 'pier' em 60 segundos!",
+                    "youtube_uploaded_at": "2026-04-18T13:54:51Z",
+                    "duration": "PT1M2S",
+                    "duration_seconds": 62,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "ieNBz8kzPHk",
+                    "title": "Não fique preso! | I don't want to feel caged by the handouts",
+                    "youtube_uploaded_at": "2026-04-18T13:54:50Z",
+                    "duration": "PT1M10S",
+                    "duration_seconds": 70,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "kbl5FmDsESk",
+                    "title": "E aí, galera! Master 'a number of days ago' in English!",
+                    "youtube_uploaded_at": "2026-04-18T13:54:47Z",
+                    "duration": "PT1M9S",
+                    "duration_seconds": 69,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "X10Z0GeAKRo",
+                    "title": "⚡️ E aí, galera! Descubra o segredo de 'I am in need' em inglês!",
+                    "youtube_uploaded_at": "2026-04-18T13:54:42Z",
+                    "duration": "PT59S",
+                    "duration_seconds": 59,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "hYbSTjblgdo",
+                    "title": "Você NÃO Vai Acreditar Como 'I'm willing to work with him' Pode Transformar Seu Inglês!",
+                    "youtube_uploaded_at": "2026-04-18T13:54:37Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "5QzJYgV7X4U",
+                    "title": "E aí, galera! Master 'heard' in English Fast!",
+                    "youtube_uploaded_at": "2026-04-18T13:54:35Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "hJtXKCKG2pY",
+                    "title": "E aí, galera! Domine 'Since I was a kid' e fale inglês como um nativo!",
+                    "youtube_uploaded_at": "2026-04-18T13:54:31Z",
+                    "duration": "PT1M18S",
+                    "duration_seconds": 78,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "ljQ0lDioTWE",
+                    "title": "E aí, galera! Mastering the Phrase 'for the ones'",
+                    "youtube_uploaded_at": "2026-04-18T13:54:31Z",
+                    "duration": "PT1M",
+                    "duration_seconds": 60,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "u1sTMdmBCJU",
+                    "title": "Você Não Vai Acreditar Como Usar 'Otherwise' em Inglês! | Learn 'Otherwise' Fast",
+                    "youtube_uploaded_at": "2026-04-18T13:54:25Z",
+                    "duration": "PT1M20S",
+                    "duration_seconds": 80,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-17",
+            "upload_date_br": "17-04-2026",
+            "playlist_title": "Word Bank - 17-04-2026 - 11 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 662,
+            "total_duration_label": "11min 02s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "y5QOYeqQY64",
+                    "title": "Você não vai acreditar! | 'In Dev' Explained in English",
+                    "youtube_uploaded_at": "2026-04-17T13:44:06Z",
+                    "duration": "PT1M12S",
+                    "duration_seconds": 72,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "eYOSevNv5-w",
+                    "title": "Atenção, Brasileiros! In Brazil we usually drink a lot of coffee – Domine essa frase agora!",
+                    "youtube_uploaded_at": "2026-04-17T13:44:05Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "LORMqMAv1tA",
+                    "title": "Você vai se surpreender com 'across hundreds of'! Mastering the Phrase 'Across Hundreds of'",
+                    "youtube_uploaded_at": "2026-04-17T13:44:01Z",
+                    "duration": "PT1M13S",
+                    "duration_seconds": 73,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "ULgJodyjvZE",
+                    "title": "Não Vai Cair no Tédio! Learn How to Use 'Bore' Like a Pro!",
+                    "youtube_uploaded_at": "2026-04-17T13:43:58Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "IePmIkPC5B4",
+                    "title": "VOCÊ NÃO VAI ACREDITAR! | Master 'Right After' in English",
+                    "youtube_uploaded_at": "2026-04-17T13:43:52Z",
+                    "duration": "PT1M7S",
+                    "duration_seconds": 67,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "IwG7VghQ-l8",
+                    "title": "Você Não Vai Acreditar! The Meat Is Sizzling on the Grill – Aprenda Inglês Agora!",
+                    "youtube_uploaded_at": "2026-04-17T13:43:45Z",
+                    "duration": "PT1M3S",
+                    "duration_seconds": 63,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "2JYK2-YmFdA",
+                    "title": "Você não vai acreditar! The Hardest Thing to Do Explained",
+                    "youtube_uploaded_at": "2026-04-17T13:43:41Z",
+                    "duration": "PT1M7S",
+                    "duration_seconds": 67,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Kb5rnYAab50",
+                    "title": "Você Não Vai Acreditar Como Usar 'Role' em Inglês! Mastering Role Play in English",
+                    "youtube_uploaded_at": "2026-04-17T13:43:35Z",
+                    "duration": "PT1M4S",
+                    "duration_seconds": 64,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "2Y9g6U0BMDQ",
+                    "title": "Quer falar como nativo? Master 'So do I' em Inglês!",
+                    "youtube_uploaded_at": "2026-04-17T13:43:33Z",
+                    "duration": "PT1M12S",
+                    "duration_seconds": 72,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "4TY_vohEEro",
+                    "title": "Não perca! Descubra o que 'pain' significa em inglês!",
+                    "youtube_uploaded_at": "2026-04-17T13:43:25Z",
+                    "duration": "PT53S",
+                    "duration_seconds": 53,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-04-05",
+            "upload_date_br": "05-04-2026",
+            "playlist_title": "Word Bank - 05-04-2026 - 10 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 611,
+            "total_duration_label": "10min 11s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "YjkbfzEzCZw",
+                    "title": "E aí, galera! Descubra o Segredo de 'Almost Finished' em Inglês!",
+                    "youtube_uploaded_at": "2026-04-05T11:33:44Z",
+                    "duration": "PT1M9S",
+                    "duration_seconds": 69,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Ji0Y6lJ2pmo",
+                    "title": "Você Vai Se Surpreender! Learn the Power of 'Bright' in English!",
+                    "youtube_uploaded_at": "2026-04-05T11:33:42Z",
+                    "duration": "PT50S",
+                    "duration_seconds": 50,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "QdGR8A1x62Q",
+                    "title": "Descubra o segredo do 'WERE'! Mastering 'Were' in English",
+                    "youtube_uploaded_at": "2026-04-05T11:33:38Z",
+                    "duration": "PT1M3S",
+                    "duration_seconds": 63,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "fiup8wyFjZM",
+                    "title": "Você NÃO Vai Acreditar Como Usar 'Wore' em Inglês! | Learn the Past Tense of Wear",
+                    "youtube_uploaded_at": "2026-04-05T11:33:35Z",
+                    "duration": "PT1M1S",
+                    "duration_seconds": 61,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "kF0ZvqRYWdE",
+                    "title": "Você não vai acreditar! Slid: The Secret to Mastering English in 60 Seconds!",
+                    "youtube_uploaded_at": "2026-04-05T11:33:26Z",
+                    "duration": "PT1M8S",
+                    "duration_seconds": 68,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "NnzHPfe79co",
+                    "title": "Não Desanime! Descubra Como Usar 'a bit discouraged' em Inglês Agora!",
+                    "youtube_uploaded_at": "2026-04-05T11:33:23Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "gnF1W_f-75Q",
+                    "title": "E aí, galera! Descubra o Segredo do 'Fit' em Inglês",
+                    "youtube_uploaded_at": "2026-04-05T11:33:14Z",
+                    "duration": "PT59S",
+                    "duration_seconds": 59,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "uVKHwyG0vMg",
+                    "title": "Você NÃO Vai Acreditar Como 'To Go To A Place' Vai Transformar Seu Inglês!",
+                    "youtube_uploaded_at": "2026-04-05T11:33:13Z",
+                    "duration": "PT52S",
+                    "duration_seconds": 52,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "VCeh5IkrLB0",
+                    "title": "🚀 Você Vai Se Surpreender! | Burst Later Explained in English",
+                    "youtube_uploaded_at": "2026-04-05T11:33:11Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "ViYGksB2eDo",
+                    "title": "Você NÃO Vai Acreditar! | Pharmaceutical Secrets Revealed",
+                    "youtube_uploaded_at": "2026-04-05T11:33:08Z",
+                    "duration": "PT58S",
+                    "duration_seconds": 58,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2026-02-13",
+            "upload_date_br": "13-02-2026",
+            "playlist_title": "Word Bank - 13-02-2026 - 10 min",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 614,
+            "total_duration_label": "10min 14s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "xn6iF0BZuGU",
+                    "title": "Você NÃO vai acreditar no poder do 'little river' na sua fluência!",
+                    "youtube_uploaded_at": "2026-02-13T13:18:24Z",
+                    "duration": "PT51S",
+                    "duration_seconds": 51,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "QQQEAmaBf5o",
+                    "title": "E aí, galera! Descubra a palavra 'unpredictable' – Unpredictable Explained",
+                    "youtube_uploaded_at": "2026-02-13T13:18:19Z",
+                    "duration": "PT1M2S",
+                    "duration_seconds": 62,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "UpDK_vDRGs8",
+                    "title": "Você Não Vai Acreditar! Let's Break Down This Phrase Like a Pro!",
+                    "youtube_uploaded_at": "2026-02-13T13:18:08Z",
+                    "duration": "PT54S",
+                    "duration_seconds": 54,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "fOSf_l4Sdys",
+                    "title": "E aí, galera! Domine 'day by day' e fale inglês como um nativo!",
+                    "youtube_uploaded_at": "2026-02-13T13:18:06Z",
+                    "duration": "PT1M4S",
+                    "duration_seconds": 64,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "jO_lS1wHN4U",
+                    "title": "E aí, galera da fluência! Descubra a palavra 'worthless' – Worthless Explained",
+                    "youtube_uploaded_at": "2026-02-13T13:18:05Z",
+                    "duration": "PT1M8S",
+                    "duration_seconds": 68,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "j-LC110JxNw",
+                    "title": "E aí, galera! Teacher Leandrinho na área! Clarify Any Doubts",
+                    "youtube_uploaded_at": "2026-02-13T13:18:01Z",
+                    "duration": "PT1M6S",
+                    "duration_seconds": 66,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "D6-yB7J-4jI",
+                    "title": "Não pare agora! | Worthless to Stop Explained",
+                    "youtube_uploaded_at": "2026-02-13T13:17:57Z",
+                    "duration": "PT1M10S",
+                    "duration_seconds": 70,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "LZrJYDkjz-Q",
+                    "title": "E aí, galera! Descubra o Segredo de 'I'm Loyal' e Arrase no Inglês!",
+                    "youtube_uploaded_at": "2026-02-13T13:17:50Z",
+                    "duration": "PT1M5S",
+                    "duration_seconds": 65,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "t2km8bMk4LI",
+                    "title": "E aí, galera da fluência! Descubra o Segredo de 'the same behavior' e Fale como Nativo!",
+                    "youtube_uploaded_at": "2026-02-13T13:17:45Z",
+                    "duration": "PT58S",
+                    "duration_seconds": 58,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "kFcgBR5H4pY",
+                    "title": "Você NÃO Vai Acreditar! | Appear: The Secret to Fluency",
+                    "youtube_uploaded_at": "2026-02-13T13:17:39Z",
+                    "duration": "PT56S",
+                    "duration_seconds": 56,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2025-11-20",
+            "upload_date_br": "20-11-2025",
+            "playlist_title": "Word Bank - 20-11-2025 - 21 min",
+            "privacy_status": "public",
+            "total_videos": 4,
+            "total_duration_seconds": 1279,
+            "total_duration_label": "21min 19s",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "s7DX8rydsYI",
+                    "title": "Domine o Inglês em 5 Minutos! English Mastery",
+                    "youtube_uploaded_at": "2025-11-20T16:00:09Z",
+                    "duration": "PT5M40S",
+                    "duration_seconds": 340,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "VW7UAM_Y8JE",
+                    "title": "Aprenda Inglês rápido! Master English in 30 Minutes",
+                    "youtube_uploaded_at": "2025-11-20T16:00:00Z",
+                    "duration": "PT5M40S",
+                    "duration_seconds": 340,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "7_d0BQeUKhA",
+                    "title": "Domine o Inglês: English Mastery in Minutes",
+                    "youtube_uploaded_at": "2025-11-20T15:59:52Z",
+                    "duration": "PT5M40S",
+                    "duration_seconds": 340,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "47Jki-zJMmE",
+                    "title": "Lesson 5 Power-Up | Full Review - English Listening Practice for Beginners",
+                    "youtube_uploaded_at": "2025-11-20T15:59:01Z",
+                    "duration": "PT4M19S",
+                    "duration_seconds": 259,
+                    "uploaded_file_name": null
+                }
+            ]
+        },
+        {
+            "upload_date": "2025-11-13",
+            "upload_date_br": "13-11-2025",
+            "playlist_title": "Word Bank - 13-11-2025 - 1h15",
+            "privacy_status": "public",
+            "total_videos": 10,
+            "total_duration_seconds": 4520,
+            "total_duration_label": "1h 15min",
+            "also_add_to": {
+                "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+                "playlist_title": "Word Bank - ALL"
+            },
+            "videos": [
+                {
+                    "video_id": "vmgvkXsDpnk",
+                    "title": "Você Já Tentou? Everyday English Secrets Revealed!",
+                    "youtube_uploaded_at": "2025-11-13T13:04:57Z",
+                    "duration": "PT7M8S",
+                    "duration_seconds": 428,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "uOTWvvaol18",
+                    "title": "Treino Conversação | It’s Been a While to Sold - English Listening Practice",
+                    "youtube_uploaded_at": "2025-11-13T12:44:49Z",
+                    "duration": "PT11M56S",
+                    "duration_seconds": 716,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "vsUFdwYvQG4",
+                    "title": "Aprenda Inglês em 5 Min! | What Do You Mean to Last But Not Least",
+                    "youtube_uploaded_at": "2025-11-13T12:43:32Z",
+                    "duration": "PT5M3S",
+                    "duration_seconds": 303,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "75oXSfetEhE",
+                    "title": "Aprenda Expressões! | Hang Out & Every Now and Again – English Listening Mastery",
+                    "youtube_uploaded_at": "2025-11-13T12:41:53Z",
+                    "duration": "PT6M25S",
+                    "duration_seconds": 385,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "5plLL2Ng9IA",
+                    "title": "Treino Vocabulário | Bridge to Plate - English Listening Practice",
+                    "youtube_uploaded_at": "2025-11-13T12:36:26Z",
+                    "duration": "PT10M40S",
+                    "duration_seconds": 640,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "dmue5oRQHMg",
+                    "title": "Aprenda Inglês: From Dog to A Few Songs!",
+                    "youtube_uploaded_at": "2025-11-13T11:52:27Z",
+                    "duration": "PT9M26S",
+                    "duration_seconds": 566,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "gTmtj9LL7bQ",
+                    "title": "Treino Vocabulário | Have a Brief Break to Pickled - English Listening Practice",
+                    "youtube_uploaded_at": "2025-11-13T11:48:32Z",
+                    "duration": "PT9M7S",
+                    "duration_seconds": 547,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "Eb-VwXkpoKw",
+                    "title": "Aprenda Inglês Rápido! | Indulge to Nice to Meet You",
+                    "youtube_uploaded_at": "2025-11-13T11:46:08Z",
+                    "duration": "PT4M52S",
+                    "duration_seconds": 292,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "xGLFW8_EHCE",
+                    "title": "Treino Vocabulário | We Agreed to Go for a Walk - English Listening Practice",
+                    "youtube_uploaded_at": "2025-11-13T11:44:21Z",
+                    "duration": "PT4M51S",
+                    "duration_seconds": 291,
+                    "uploaded_file_name": null
+                },
+                {
+                    "video_id": "cr6x7OtSTHk",
+                    "title": "Aprenda o Verbo To Be em 10 Minutos | English Basics",
+                    "youtube_uploaded_at": "2025-11-13T11:08:22Z",
+                    "duration": "PT5M52S",
+                    "duration_seconds": 352,
+                    "uploaded_file_name": null
+                }
+            ]
+        }
+    ]
+}

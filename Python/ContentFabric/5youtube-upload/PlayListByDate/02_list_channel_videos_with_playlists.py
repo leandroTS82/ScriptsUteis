@@ -8,20 +8,8 @@ import os
 import json
 from datetime import datetime
 
-from googleapiclient.discovery import build
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
+from youtube_auth import get_youtube_client
 
-# ======================================================
-# AUTH CONFIG
-# ======================================================
-
-SCOPES = [
-    "https://www.googleapis.com/auth/youtube"
-]
-TOKEN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube_token.json"
-CLIENT_SECRET_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube-upload-desktop.json"
 
 # ======================================================
 # OUTPUT
@@ -35,43 +23,6 @@ OUTPUT_FILE = os.path.join(
     f"youtube_videos_{datetime.now():%Y%m%d_%H%M%S}.json"
 )
 
-# ======================================================
-# AUTH (ROBUSTO – À PROVA DE INVALID_SCOPE)
-# ======================================================
-
-def get_authenticated_service():
-    creds = None
-
-    if os.path.exists(TOKEN_PATH):
-        try:
-            with open(TOKEN_PATH, "r", encoding="utf-8") as f:
-                creds = Credentials.from_authorized_user_info(
-                    json.load(f),
-                    SCOPES
-                )
-        except Exception:
-            creds = None
-
-    if not creds or not creds.valid:
-        try:
-            if creds and creds.refresh_token:
-                creds.refresh(Request())
-            else:
-                raise Exception("Forcing reauth")
-        except Exception:
-            if os.path.exists(TOKEN_PATH):
-                os.remove(TOKEN_PATH)
-
-            flow = InstalledAppFlow.from_client_secrets_file(
-                CLIENT_SECRET_FILE,
-                SCOPES
-            )
-            creds = flow.run_local_server(port=8080)
-
-            with open(TOKEN_PATH, "w", encoding="utf-8") as f:
-                f.write(creds.to_json())
-
-    return build("youtube", "v3", credentials=creds)
 
 # ======================================================
 # HELPERS
@@ -158,7 +109,7 @@ def build_video_playlist_map(youtube, playlists):
 # ======================================================
 
 def main():
-    youtube = get_authenticated_service()
+    youtube = get_youtube_client()
 
     print(" Obtendo playlist de uploads do canal...")
     uploads_playlist_id = get_uploads_playlist_id(youtube)

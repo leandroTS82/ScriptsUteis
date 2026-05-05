@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./Python/ContentFabric/5youtube-upload/00_Shared"
+    ]
+}

@@ -37,18 +37,19 @@ os.makedirs(FAULTY_DIR, exist_ok=True)
 THUMBNAIL_GENERATOR_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\ThumbnailGenerator"
 sys.path.append(THUMBNAIL_GENERATOR_DIR)
 
-from generate_thumbnail import generate_thumbnail
-
 # ======================================================
 # YOUTUBE IMPORTS
 # ======================================================
+CURRENT_DIR = os.path.dirname(__file__)
+SHARED_DIR = os.path.abspath(os.path.join(CURRENT_DIR, "00_Shared"))
+
+if SHARED_DIR not in sys.path:
+    sys.path.append(SHARED_DIR)
 
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from googleapiclient.errors import HttpError
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-
+from youtube_auth import get_youtube_client
 # ======================================================
 # GROQ
 # ======================================================
@@ -61,16 +62,6 @@ GROQ_API_KEY = open(
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
-# ======================================================
-# YOUTUBE AUTH
-# ======================================================
-
-SCOPES = [
-    "https://www.googleapis.com/auth/youtube"
-]
-
-TOKEN_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube_token.json"
-CLIENT_SECRET_FILE = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\youtube-upload-desktop.json"
 
 # ======================================================
 # CORES
@@ -122,39 +113,13 @@ def move_to_faulty(video_path, json_path):
     shutil.move(video_path, os.path.join(FAULTY_DIR, os.path.basename(video_path)))
     shutil.move(json_path, os.path.join(FAULTY_DIR, os.path.basename(json_path)))
 
-# ======================================================
-# AUTH
-# ======================================================
-
-def get_authenticated_service():
-    from google.oauth2.credentials import Credentials
-    creds = None
-
-    if os.path.exists(TOKEN_PATH):
-        creds = Credentials.from_authorized_user_info(
-            json.load(open(TOKEN_PATH)), SCOPES
-        )
-
-    if not creds or not creds.valid:
-        if creds and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                CLIENT_SECRET_FILE, SCOPES
-            )
-            creds = flow.run_local_server(port=8080)
-
-        with open(TOKEN_PATH, "w") as f:
-            f.write(creds.to_json())
-
-    return build("youtube", "v3", credentials=creds)
 
 # ======================================================
 # UPLOAD
 # ======================================================
 
 def upload_video(metadata, video_path):
-    youtube = get_authenticated_service()
+    youtube = get_youtube_client()
     media = MediaFileUpload(video_path, resumable=True)
 
     try:

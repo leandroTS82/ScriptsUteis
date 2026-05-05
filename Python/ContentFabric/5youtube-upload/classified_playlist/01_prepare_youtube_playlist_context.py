@@ -6,7 +6,7 @@ from datetime import datetime
 # CONFIG
 # ============================================================
 
-YOUTUBE_INVENTORY_JSON = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist\output\youtube_uploaded_inventory.json"
+YOUTUBE_INVENTORY_JSON = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared\youtube_uploaded_inventory.json"
 
 UPLOAD_METADATA_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
 
