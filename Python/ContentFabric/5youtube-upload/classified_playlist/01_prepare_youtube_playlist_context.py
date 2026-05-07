@@ -1,18 +1,17 @@
 import os
 import json
 from datetime import datetime
+import config
 
 # ============================================================
 # CONFIG
 # ============================================================
 
-YOUTUBE_INVENTORY_JSON = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared\youtube_uploaded_inventory.json"
+YOUTUBE_INVENTORY_JSON = config.YOUTUBE_INVENTORY_JSON
+UPLOAD_METADATA_DIR = config.UPLOAD_METADATA_DIR
+MOVIES_PROCESSED_DIR = config.MOVIES_PROCESSED_DIR
 
-UPLOAD_METADATA_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload"
-
-MOVIES_PROCESSED_DIR = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\movies_processed"
-
-OUTPUT_DIR = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist\output"
+OUTPUT_DIR = config.OUTPUT_DIR
 
 OUTPUT_FILE = os.path.join(
     OUTPUT_DIR,

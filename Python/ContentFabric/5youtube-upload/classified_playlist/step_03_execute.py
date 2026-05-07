@@ -9,18 +9,25 @@ Responsabilidades:
 """
 
 import os
+import sys
 import json
 import time
 from datetime import datetime
+
+import config
+
+if config.SHARED_DIR not in sys.path:
+    sys.path.insert(0, config.SHARED_DIR)
+
 from youtube_auth import get_youtube_client
 from googleapiclient.errors import HttpError
 
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
-PLAYLIST_PRIVACY_STATUS = "public"
-SLEEP_SECONDS           = 1.5   # pausa entre inserções para respeitar rate limit
-DRY_RUN                 = False  # True = simula sem chamar API de escrita
-inventory_file = r"C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\00_Shared\youtube_uploaded_inventory.json"
+PLAYLIST_PRIVACY_STATUS = config.PLAYLIST_PRIVACY_STATUS
+SLEEP_SECONDS           = config.SLEEP_SECONDS   # pausa entre inserções para respeitar rate limit
+DRY_RUN                 = config.DRY_RUN  # True = simula sem chamar API de escrita
+inventory_file = config.YOUTUBE_INVENTORY_JSON
 
 
 def _get_all_playlists_from_inventory(inventory_file: str) -> dict:

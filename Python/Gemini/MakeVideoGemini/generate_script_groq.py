@@ -18,7 +18,6 @@ if _GROQ_LOADER_DIR not in sys.path:
 
 from groq import Groq
 from groq_keys_loader import GROQ_KEYS
-from utils.known_terms_loader import load_known_terms
 
 
 # ------------------------------------------------------------------
@@ -35,7 +34,7 @@ TIMEOUT_SECONDS = 30
 
 PERSONA = (
     "Leandrinho, professor brasileiro animado, didático, moderno, "
-    "estilo YouTuber, focado em repetição, clareza e motivação. "
+    "estilo criador de conteúdo jovem, focado em repetição, clareza e motivação. "
     "Sempre fala com energia alta, usa linguagem jovem e natural do Brasil, "
     "com variação de abertura, sem repetir sempre a mesma frase. "
     "Explica de forma simples, envolvente e prática, incentivando o aluno a repetir e praticar."
@@ -70,7 +69,7 @@ def _call_groq(messages: list, label: str = "") -> str:
             response = client.chat.completions.create(
                 model=GROQ_MODEL,
                 messages=messages,
-                temperature=0.2,   # um pouco mais criativo para o estilo YouTuber
+                temperature=0.7,   # um pouco mais criativo para o estilo YouTuber
                 timeout=TIMEOUT_SECONDS,
             )
             return response.choices[0].message.content.strip()
@@ -89,123 +88,132 @@ def generate_lesson_json(word: str) -> dict:
     """
     Gera o JSON da aula com a persona do Leandrinho usando Groq.
     Contrato de retorno idêntico ao generate_script.py.
-    """
-
-    # -------------------------------------------------
-    # 1) Carrega termos já estudados
-    # -------------------------------------------------
-    known_terms = load_known_terms(
-        target_word=word,
-        percentage=0.8,
-        max_terms=60,
-        verbose=True
-    )
-
-    known_terms_block = ""
-    if known_terms:
-        known_terms_block = (
-            "\nKnown English vocabulary to PRIORITIZE in ENGLISH example sentences:\n"
-            + ", ".join(known_terms)
-            + "\n\nRules for known vocabulary:\n"
-            "- At least 70% of ENGLISH example sentences MUST reuse these terms naturally\n"
-            "- Max 150 characters per English example sentence\n"
-            "- NEVER use known terms inside Portuguese text fields\n"
-        )
+    """   
 
     # -------------------------------------------------
     # 2) System prompt — define a persona
     # -------------------------------------------------
     system_prompt = f"""You are {PERSONA}
 
-Your job is to create engaging English vocabulary lessons for Brazilian students.
-Your tone is ALWAYS energetic, fun, motivating — like a young Brazilian YouTuber teacher.
-You speak Portuguese naturally and fluently when writing PT fields.
-You write clear, natural English when writing EN fields.
-You NEVER mix languages inside the same text field.
-You output ONLY valid JSON — no markdown, no backticks, no explanations outside the JSON."""
+    Your job is to create engaging English vocabulary lessons for Brazilian students.
+    Your tone is ALWAYS energetic, fun, motivating — like a young Brazilian YouTuber teacher.
+    You speak Portuguese naturally and fluently when writing PT fields.
+    You write clear, natural English when writing EN fields.
+    You NEVER mix languages inside the same text field.
+    You output ONLY valid JSON — no markdown, no backticks, no explanations outside the JSON."""
 
     # -------------------------------------------------
     # 3) User prompt — estrutura + exemplos de qualidade
     # -------------------------------------------------
     prompt = f"""Generate a vocabulary lesson JSON for the word or phrase: "{word}"
 
-{known_terms_block}
+    You MUST follow EXACTLY this JSON structure.
+    DO NOT:
+    - add fields
+    - remove fields
+    - rename fields
+    - change structure
 
-You MUST follow EXACTLY this JSON structure.
-DO NOT:
-- add fields
-- remove fields
-- rename fields
-- change structure
+    The output MUST be a single valid JSON object.
 
-The output MUST be a single valid JSON object.
+    NO explanations
+    NO comments
+    NO markdown
+    NO text outside JSON
 
-NO explanations
-NO comments
-NO markdown
-NO text outside JSON
-
-{{
-  "repeat_each": {{ "pt": 1, "en": 2 }},
-  "introducao": "...",
-  "nome_arquivos": "{word}",
-  "WORD_BANK": [
-    [
-      {{ "lang": "en", "text": "{word}", "pause": 1000 }},
-      {{ "lang": "pt", "text": "...", "pause": 500 }},
-      {{ "lang": "en", "text": "...", "pause": 1000 }},
-      {{ "lang": "en", "text": "...", "pause": 1000 }},
-      {{ "lang": "en", "text": "...", "pause": 1500 }},
-      {{ "lang": "pt", "text": "..." }}
+    {{
+    "repeat_each": {{ "pt": 1, "en": 2 }},
+    "introducao": "...",
+    "nome_arquivos": "{word}",
+    "WORD_BANK": [
+        [
+        {{ "lang": "en", "text": "{word}", "pause": 1000 }},
+        {{ "lang": "pt", "text": "...", "pause": 500 }},
+        {{ "lang": "en", "text": "...", "pause": 1000 }},
+        {{ "lang": "en", "text": "...", "pause": 1000 }},
+        {{ "lang": "en", "text": "...", "pause": 1500 }},
+        {{ "lang": "pt", "text": "..." }}
+        ]
     ]
-  ]
-}}
+    }}
 
-RULES FOR EACH FIELD:
+    RULES FOR EACH FIELD:
 
-"introducao":
-- Write ONLY in Brazilian Portuguese
-- NEVER use English words
-- NEVER use the target word or phrase in English
-- Must be a presentation of what is coming, not a translation
-- Must be light, young, fun and curiosity-driven
-- Vary the opening naturally; do NOT always start with the same phrase
-- Use variation of impact phrases.
-- Max 3 sentences
+    "introducao":
+    - Write ONLY in Brazilian Portuguese
+    - NEVER use English words
+    - NEVER use the target word or phrase in English
+    - Must be a presentation of what is coming, not a translation
+    - Must be light, young, fun and curiosity-driven
+    - Vary the opening naturally; do NOT always start with the same phrase
+    - Use variation of impact phrases.
+    - Max 3 sentences
 
-WORD_BANK items:
-1. lang=en → the word/phrase itself: "{word}"
-2. lang=pt → Must first give a translation and next give an clear explanation of the meaning in natural fluent Brazilian Portuguese with some usage situation. Be clear and didactic. Use examples in PT if helpful.
-3. lang=en → simple A1 real sentence using "{word}"
-4. lang=en → short A2 real sentence using "{word}"
-5. lang=en → B1/B2 real sentence using "{word}", max 80 characters
-6. lang=pt → closing message in Brazilian Portuguese only. It must motivate the student, give a simple usage tip, and encourage practice. NEVER use English words, NEVER use the target word or phrase in English. Give a sumary and say good bye, Keep it young, dynamic and natural. Max 4 sentences.
+    WORD_BANK items:
+    1. lang=en → the word/phrase itself: "{word}"
+    2. lang=pt → MUST follow this exact structure:
+    - Start with: "Significa ..." followed by a clear and correct translation in Brazilian Portuguese
+    - Then give a natural, simple explanation in Brazilian Portuguese explaining how and when the expression is used
+    - Include at least one short usage context or situation in Portuguese
+    - The explanation must be clear, didactic and sound like a real teacher speaking naturally
+    - Do NOT use English words or the target expression in English
+    - The translation must be the first sentence
+    - The explanation must be the second sentence
+    - Keep it concise (max 2–3 sentences total)
+    3. lang=en → simple A1 real sentence using "{word}"
+    4. lang=en → short A2 real sentence using "{word}"
+    5. lang=en → B1/B2 real sentence using "{word}", max 80 characters
+    6. lang=pt → closing message in strict Brazilian Portuguese only. Briefly summarize the Portuguese meaning again in a natural way, motivate the student, give one simple usage tip, and say goodbye. NEVER use English words, English expressions, or the target word/phrase in English. Keep it young, dynamic, didactic and natural. Max 4 sentences.
 
-QUALITY EXAMPLES to match the tone:
+    QUALITY EXAMPLES to match the tone:
 
-introducao examples:
-"E ai galera, Leandrinho aqui, Hoje tem uma dica rápida que parece pequena, mas muda muito a forma de falar. Fica comigo que isso vai deixar suas frases bem mais naturais!"
-"Salve pessoal, Leandrinho na área! Bora aprender um detalhe simples que aparece direto em conversas reais? Presta atenção porque isso ajuda muito na fluência!"
-"E ai alunos atentos, Olha só essa dica esperta: em poucos segundos você vai entender uma estrutura muito comum no dia a dia."
+    introducao examples (style reference only — DO NOT copy):
+    - "E ai galera, Leandrinho aqui! Hoje tem uma dica rápida que muda muito a forma de falar. Fica comigo!"
+    - "Salve! Bora destravar um detalhe que aparece direto no inglês do dia a dia?"
+    - "Olha só essa dica: em poucos segundos você vai entender algo que muita gente usa sem perceber."
 
-lang=pt explanation example:
-"Essa estrutura é usada para confirmar uma ideia ou deixar a frase mais natural. É parecida com expressões como 'né?', 'certo?' ou 'combinado?'."
+    Rules:
+    - DO NOT reuse these sentences
+    - Vary tone, rhythm and structure
+    - Avoid always starting with the same expression
 
-lang=pt closing example:
-"Muito bem! Agora repita as frases com calma e tente criar uma situação sua. Quanto mais você pratica, mais natural fica. Bora praticar! tchaaau!"
+    lang=pt explanation examples (style reference only):
+    - "Quer dizer ..., e é usada pra ..., tipo ..., ... ou ..."
+    - "É uma forma de dizer ... de um jeito mais natural, como no português quando falamos ..."
+    - "Usamos isso quando queremos ..., por exemplo ..."
 
-STRICT RULES:
-- Output ONLY valid JSON — absolutely no text outside the JSON object
-- PT fields: natural Brazilian Portuguese only — never literal translations
-- EN fields: natural English only — never Portuguese words
-- The JSON structure MUST match exactly as defined
-- "introducao" MUST NOT contain English words,, must start with a saldation like a young Brazilian Youttuber.
-- The last WORD_BANK item with lang=pt MUST NOT contain English words
-- "introducao" and the final lang=pt item MUST NOT contain the target word or phrase in English
-- If any rule is broken, regenerate internally before answering
-- Known vocabulary terms must appear ONLY inside EN sentence fields"""
+    Rules:
+    - Be clear and natural
+    - Avoid robotic or dictionary-like explanations
+    - Sound like you are explaining to a real student
 
+    lang=pt closing rules:
+    - Sound natural, spontaneous and human
+    - Vary the structure every time
+    - Avoid fixed patterns like "Agora repita com calma"
+    - Keep it short, motivating and fluid
+    - Encourage practice in a natural way
+    - End like a friendly Brazilian teacher creating a short online lesson
 
+    Examples of good closings (DO NOT copy):
+    - "Boa! Agora tenta usar isso no seu dia a dia que vai ficar muito mais natural."
+    - "Mandou bem! Testa isso em uma frase sua e você já começa a sentir a diferença."
+    - "Perfeito, agora manda ver e tenta usar isso em situações reais."
+
+    STRICT RULES:
+    - Output ONLY valid JSON — absolutely no text outside the JSON object
+    - PT fields: natural Brazilian Portuguese only — never literal translations
+    - EN fields: natural English only — never Portuguese words
+    - EN examples must be realistic, useful, and something a native speaker would actually say
+    - Do NOT create weird, forced, random, or unnatural sentences
+    - The target word or phrase MUST appear naturally in all 3 EN example sentences
+    - The JSON structure MUST match exactly as defined
+    - "introducao" MUST NOT contain English words
+    - "introducao" must start with a natural greeting like a young Brazilian YouTuber
+    - The last WORD_BANK item with lang=pt MUST NOT contain English words
+    - "introducao" and the final lang=pt item MUST NOT contain the target word or phrase in English
+    - If any rule is broken, regenerate internally before answering
+    """
 
     messages = [
         {"role": "system", "content": system_prompt},
@@ -269,18 +277,7 @@ STRICT RULES:
     for group in lesson.get("WORD_BANK", []):
         for item in group:
             if "pause" not in item:
-                item["pause"] = 500 if item.get("lang") == "pt" else 1000
-
-    # -------------------------------------------------
-    # 7) Metadata de controle
-    # -------------------------------------------------
-    lesson["_known_terms_context"] = {
-        "source":     "english_terms.json",
-        "percentage": 0.8,
-        "max_terms":  60,
-        "terms_used": known_terms,
-        "engine":     f"groq/{GROQ_MODEL}",
-    }
+                item["pause"] = 500 if item.get("lang") == "pt" else 1000    
 
     print(f"✅ [Script/Groq] JSON gerado com persona Leandrinho.\n")
     return lesson

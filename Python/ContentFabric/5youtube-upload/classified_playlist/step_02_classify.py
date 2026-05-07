@@ -15,6 +15,7 @@ import re
 import random
 from datetime import datetime
 from itertools import cycle
+import config
 
 # ── Groq loader ───────────────────────────────────────────────────────────────
 GROQ_LOADER_DIR = r"C:\dev\scripts\ScriptsUteis\Python"
@@ -37,10 +38,10 @@ from groq import Groq  # pip install groq
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
-GROQ_MODEL      = "llama-3.3-70b-versatile"
-MAX_RETRIES     = 3
-TIMEOUT_SECONDS = 60
-BATCH_SIZE      = 25
+GROQ_MODEL      = config.GROQ_MODEL
+MAX_RETRIES     = config.MAX_RETRIES
+TIMEOUT_SECONDS = config.TIMEOUT_SECONDS
+BATCH_SIZE      = config.BATCH_SIZE
 
 # ── Groq key rotation ─────────────────────────────────────────────────────────
 
@@ -140,57 +141,82 @@ Return ONLY this JSON object:
 
 # ── 2. Classificação em batch ─────────────────────────────────────────────────
 
-def _build_classification_prompt(videos: list[dict], intention: str, playlist_name: str) -> str:
+def _build_classification_prompt(videos, intention, playlist_name):
     compact = [
         {
-            "youtube_video_id"  : v.get("youtube_video_id"),
-            "youtube_title"     : v.get("youtube_title"),
-            "titleTheme"        : v.get("titleTheme"),
-            "descriptionTheme"  : v.get("descriptionTheme"),
+            "youtube_video_id": v.get("youtube_video_id"),
+            "youtube_title": v.get("youtube_title"),
+            "youtube_description": v.get("youtube_description"),
+            "titleTheme": v.get("titleTheme"),
+            "descriptionTheme": v.get("descriptionTheme"),
+            "tags": v.get("tags", []),
+            "playlists": v.get("playlists", []),
         }
         for v in videos
     ]
 
     return f"""
-You are a strict YouTube video classifier for an English learning channel.
+You are classifying existing YouTube videos from an English learning channel.
 
-Your task is to decide which videos should be added to the following playlist.
+User intention:
+"{intention}"
 
-Playlist name: "{playlist_name}"
-User intention: "{intention}"
+The intention can be:
+- a grammar rule, e.g. Past Continuous, Present Perfect, modal verbs
+- a semantic topic, e.g. family, work, health, faith, technology
+- a learning goal, e.g. phrases for meetings, restaurant English, emotional vocabulary
 
-Classification rules:
-- Use "titleTheme" and "descriptionTheme" as the PRIMARY signals.
-  These fields contain the actual vocabulary/grammar theme of the video.
-- If "titleTheme" is missing or null, fall back to "youtube_title".
-- "descriptionTheme" provides extra context — use it to confirm relevance.
-- Set include=true ONLY when the video clearly and directly relates to the intention.
-- Be conservative: when in doubt, exclude.
-- Confidence must be between 0.0 and 1.0.
+Tasks:
+1. Refine the user's intention into a clear playlist concept.
+2. Generate a concise YouTube playlist title in English.
+3. Classify each video.
 
-Return ONLY a valid JSON array. No markdown. No explanation outside the JSON.
+Primary signals:
+- titleTheme
+- descriptionTheme
+- youtube_title
+- youtube_description
+- tags
 
-Expected format:
-[
-  {{
-    "youtube_video_id": "...",
-    "include": true,
-    "confidence": 0.92,
-    "reason": "one-line justification",
-    "matched_signal": "titleTheme | descriptionTheme | youtube_title"
-  }}
-]
+Rules:
+- Include only videos clearly related to the intention.
+- Be conservative.
+- Do not include weak or indirect matches.
+- Prefer semantic relevance over exact keyword matching.
+- Confidence must be from 0.0 to 1.0.
 
-Videos to classify:
+Target playlist name:
+"{playlist_name}"
+Do not generate a different playlist name.
+Use this exact playlist_name in the JSON response.
+
+Return ONLY valid JSON:
+
+{{
+  "refined_intention": "...",
+  "playlist_name": "...",
+  "playlist_description": "...",
+  "videos": [
+    {{
+      "youtube_video_id": "...",
+      "include": true,
+      "confidence": 0.92,
+      "reason": "...",
+      "matched_signals": ["titleTheme", "youtube_description"]
+    }}
+  ]
+}}
+
+Videos:
 {json.dumps(compact, ensure_ascii=False)}
 """
 
 
-def _classify_batch(videos: list[dict], intention: str, playlist_name: str) -> list[dict]:
+def _classify_batch(videos: list[dict], intention: str, playlist_name: str) -> dict:
     messages = [
         {
             "role": "system",
-            "content": "You return only valid JSON arrays. You are strict and conservative.",
+            "content": "You return only valid JSON objects. You are strict and conservative.",
         },
         {
             "role": "user",
@@ -198,11 +224,11 @@ def _classify_batch(videos: list[dict], intention: str, playlist_name: str) -> l
         },
     ]
 
-    raw       = _call_groq(messages, label="classify")
-    json_text = _extract_json_array(raw)
+    raw = _call_groq(messages, label="classify")
+    json_text = _extract_json_object(raw)
 
     if not json_text:
-        raise ValueError(f"Groq não retornou JSON array:\n{raw}")
+        raise ValueError(f"Groq não retornou JSON object:\n{raw}")
 
     return json.loads(json_text)
 
@@ -266,8 +292,11 @@ def run(
         print(f"\n  ── Batch {batch_num}/{total_batches} ({len(batch)} vídeos) ──")
 
         try:
-            results = _classify_batch(batch, intention, playlist_name)
+            batch_result = _classify_batch(batch, intention, playlist_name)
+            results = batch_result.get("videos", [])
+
             all_results.extend(results)
+
             included = sum(1 for r in results if r.get("include"))
             print(f"     Incluídos neste batch: {included}/{len(batch)}")
         except Exception as ex:
