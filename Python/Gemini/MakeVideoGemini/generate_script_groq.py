@@ -80,6 +80,22 @@ def _call_groq(messages: list, label: str = "") -> str:
     raise RuntimeError(f"[generate_script_groq] Todas as tentativas falharam. Último erro: {last_error}")
 
 
+def _validate_en_examples_max_length(lesson: dict, max_chars: int = 85):
+    for group_index, group in enumerate(lesson.get("WORD_BANK", [])):
+        for item_index in [2, 3, 4]:  # os 3 exemplos em inglês
+            try:
+                item = group[item_index]
+            except IndexError:
+                continue
+
+            text = item.get("text", "")
+            if item.get("lang") == "en" and len(text) > max_chars:
+                raise ValueError(
+                    f"Exemplo EN excedeu {max_chars} caracteres "
+                    f"(grupo {group_index}, item {item_index}): "
+                    f"{len(text)} chars -> {text}"
+                )
+
 # ------------------------------------------------------------------
 # FUNÇÃO PRINCIPAL
 # ------------------------------------------------------------------
@@ -160,9 +176,9 @@ def generate_lesson_json(word: str) -> dict:
     - The translation must be the first sentence
     - The explanation must be the second sentence
     - Keep it concise (max 2–3 sentences total)
-    3. lang=en → simple A1 real sentence using "{word}"
-    4. lang=en → short A2 real sentence using "{word}"
-    5. lang=en → B1/B2 real sentence using "{word}", max 80 characters
+    3. lang=en → simple and useful A1 real sentence using "{word}", max 85 characters
+    4. lang=en → Simple and useful A2 real sentence using "{word}", max 85 characters
+    5. lang=en → Simple and useful B1/B2 real sentence using "{word}", max 85 characters
     6. lang=pt → closing message in strict Brazilian Portuguese only. Briefly summarize the Portuguese meaning again in a natural way, motivate the student, give one simple usage tip, and say goodbye. NEVER use English words, English expressions, or the target word/phrase in English. Keep it young, dynamic, didactic and natural. Max 4 sentences.
 
     QUALITY EXAMPLES to match the tone:
@@ -213,6 +229,7 @@ def generate_lesson_json(word: str) -> dict:
     - The last WORD_BANK item with lang=pt MUST NOT contain English words
     - "introducao" and the final lang=pt item MUST NOT contain the target word or phrase in English
     - If any rule is broken, regenerate internally before answering
+    - EACH English example sentence MUST have at most 85 characters, including spaces and punctuation.
     """
 
     messages = [
@@ -278,6 +295,11 @@ def generate_lesson_json(word: str) -> dict:
         for item in group:
             if "pause" not in item:
                 item["pause"] = 500 if item.get("lang") == "pt" else 1000    
+
+    # -------------------------------------------------
+    # 7) Valida limite de caracteres dos exemplos EN
+    # -------------------------------------------------
+    _validate_en_examples_max_length(lesson, max_chars=85)
 
     print(f"✅ [Script/Groq] JSON gerado com persona Leandrinho.\n")
     return lesson
