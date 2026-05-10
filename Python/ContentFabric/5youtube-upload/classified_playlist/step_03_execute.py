@@ -29,6 +29,9 @@ SLEEP_SECONDS           = config.SLEEP_SECONDS   # pausa entre inserções para 
 DRY_RUN                 = config.DRY_RUN  # True = simula sem chamar API de escrita
 inventory_file = config.YOUTUBE_INVENTORY_JSON
 
+MAX_VIDEO_DURATION_SECONDS = config.MAX_VIDEO_DURATION_SECONDS
+MAX_ITEMS_PER_PLAYLIST = config.MAX_ITEMS_PER_PLAYLIST
+
 
 def _get_all_playlists_from_inventory(inventory_file: str) -> dict:
     """
@@ -179,90 +182,182 @@ def run(
         v for v in unique
         if v["youtube_video_id"] not in processed_ids
     ]
+    
+    def _parse_duration_to_seconds(duration_str: str) -> int | None:
+        """
+        Converte duração ISO8601 (PT1M30S) para segundos.
+        """
+        if not duration_str:
+            return None
+
+        import re
+
+        pattern = re.compile(
+            r"PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?"
+        )
+        match = pattern.match(duration_str)
+
+        if not match:
+            return None
+
+        h, m, s = match.groups()
+        return (
+            int(h or 0) * 3600 +
+            int(m or 0) * 60 +
+            int(s or 0)
+        )
+
+
+    filtered_videos = []
+    skipped_duration = []
+
+    for v in videos:
+        duration_str = v.get("duration")
+        seconds = _parse_duration_to_seconds(duration_str)
+
+        if seconds and seconds > MAX_VIDEO_DURATION_SECONDS:
+            skipped_duration.append({
+                "video_id": v.get("youtube_video_id"),
+                "duration": duration_str
+            })
+            continue
+
+        filtered_videos.append(v)
+
+    videos = filtered_videos
 
     print(f"\n  🎬 Vídeos a inserir (únicos): {len(videos)}")
     print(f"  🎯 Intenção                 : {intention}")
     print(f"  📋 Playlist alvo            : {playlist_name}")
+    # ── SPLIT EM PARTES ───────────────────────────────────────
 
+    def chunk_list(lst, size):
+        for i in range(0, len(lst), size):
+            yield lst[i:i + size]
+
+    video_chunks = list(chunk_list(videos, MAX_ITEMS_PER_PLAYLIST))
+
+    print(f"\n  📦 Total de partes: {len(video_chunks)}")
+
+    # ── AUTH ─────────────────────────────────────────────────
     print("\n  🔐 Autenticando na YouTube API...")
     youtube = get_youtube_client()
     print("  ✅ Autenticado.")
 
-    try:
-        playlist_id, created = _resolve_playlist(
-            youtube,
-            playlist_id_override=playlist_id_override,
-            playlist_name=playlist_name,
-            intention=intention,
-        )
-    except HttpError as ex:
-        if "quota" in str(ex).lower():
-            print("  ❌ Quota da YouTube API excedida. Tente novamente amanhã.")
-            raise
-        raise
-
-    # quando o ID foi passado direto ou a playlist acabou de ser criada,
-    # pula o prefetch para economizar cota
-    skip_prefetch = created or bool(playlist_id_override and playlist_id_override.startswith("PL"))
-    existing_ids: set[str] = set()
-    if not skip_prefetch:
-        print("  🔎 Carregando vídeos já existentes na playlist...")
-        existing_ids = _get_existing_video_ids(youtube, playlist_id)
-    print(f"  🔎 Vídeos pré-carregados da playlist: {len(existing_ids)}")
-
     report = {
         "started_at"        : datetime.now().isoformat(),
         "intention"         : intention,
-        "playlist_id"       : playlist_id,
-        "playlist_name"     : playlist_name,
-        "created_playlist"  : created,
+        "playlist_name_base": playlist_name,
+        "playlist_parts"    : len(video_chunks),
         "dry_run"           : DRY_RUN,
         "added"             : [],
         "skipped_duplicates": [],
+        "skipped_duration"  : skipped_duration,
         "errors"            : [],
     }
 
-    print(f"\n  ── Iniciando inserção de {len(videos)} vídeos ──")
+    print(f"\n  ── Iniciando inserção de {len(videos)} vídeos em {len(video_chunks)} parte(s) ──")
 
-    for idx, video in enumerate(videos, 1):
-        video_id = video.get("youtube_video_id")
-        title    = video.get("youtube_title", "")
+    for part_index, chunk in enumerate(video_chunks, 1):
 
-        if not video_id or video_id.lower() in ("none", ""):
-            print(f"  ⚠️  [{idx:03}] ID inválido, pulando.")
-            continue
+        part_playlist_name = (
+            f"{playlist_name} - Part {part_index}"
+            if len(video_chunks) > 1
+            else playlist_name
+        )
 
-        if video_id in existing_ids:
-            report["skipped_duplicates"].append(video_id)
-            print(f"  ⏭️  [{idx:03}] Já existe : {video_id} — {title[:55]}")
-            continue
+        print(f"\n  📂 Processando playlist: {part_playlist_name}")
 
         try:
-            item_id = _add_video(youtube, playlist_id, video_id)
-            existing_ids.add(video_id)
-            report["added"].append({"video_id": video_id, "playlist_item_id": item_id})
-            processed_ids.add(video_id)
-
-            with open(progress_file, "w", encoding="utf-8") as f:
-                json.dump(list(processed_ids), f)
-            print(f"  ✅ [{idx:03}] Adicionado: {video_id} — {title[:55]}")
-
+            playlist_id, created = _resolve_playlist(
+                youtube,
+                playlist_id_override=playlist_id_override if part_index == 1 else None,
+                playlist_name=part_playlist_name,
+                intention=intention,
+            )
         except HttpError as ex:
-            err_msg = str(ex)
+            if "quota" in str(ex).lower():
+                print("  ❌ Quota da YouTube API excedida. Interrompendo.")
+                report["errors"].append({
+                    "playlist": part_playlist_name,
+                    "error": str(ex)
+                })
+                break
+            raise
 
-            if "videoAlreadyInPlaylist" in err_msg or "duplicate" in err_msg.lower():
-                report["skipped_duplicates"].append(video_id)
-                existing_ids.add(video_id)
-                print(f"  ⏭️  [{idx:03}] Já existe : {video_id} — {title[:55]}")
+        # quando o ID foi passado direto ou a playlist acabou de ser criada,
+        # pula o prefetch para economizar cota
+        skip_prefetch = created or bool(
+            playlist_id_override and playlist_id_override.startswith("PL") and part_index == 1
+        )
+
+        existing_ids: set[str] = set()
+
+        if not skip_prefetch:
+            print("  🔎 Carregando vídeos já existentes na playlist...")
+            existing_ids = _get_existing_video_ids(youtube, playlist_id)
+
+        print(f"  🔎 Vídeos pré-carregados da playlist: {len(existing_ids)}")
+
+        for idx, video in enumerate(chunk, 1):
+            video_id = video.get("youtube_video_id")
+            title    = video.get("youtube_title", "")
+
+            if not video_id or video_id.lower() in ("none", ""):
+                print(f"  ⚠️  [{part_index}.{idx:03}] ID inválido, pulando.")
                 continue
 
-            if "quota" in err_msg.lower():
-                print(f"  ⛔ Quota excedida no vídeo {idx}. Interrompendo.")
-                report["errors"].append({"video_id": video_id, "error": err_msg})
-                break
+            if video_id in existing_ids:
+                report["skipped_duplicates"].append({
+                    "video_id": video_id,
+                    "playlist": part_playlist_name
+                })
+                print(f"  ⏭️  [{part_index}.{idx:03}] Já existe : {video_id} — {title[:55]}")
+                continue
 
-            report["errors"].append({"video_id": video_id, "error": err_msg})
-            print(f"  ❌ [{idx:03}] Erro      : {video_id} — {err_msg[:70]}")
+            try:
+                item_id = _add_video(youtube, playlist_id, video_id)
+                existing_ids.add(video_id)
+                report["added"].append({
+                    "video_id": video_id,
+                    "playlist_item_id": item_id,
+                    "playlist_id": playlist_id,
+                    "playlist_name": part_playlist_name,
+                    "part": part_index
+                })
+                processed_ids.add(video_id)
+
+                with open(progress_file, "w", encoding="utf-8") as f:
+                    json.dump(list(processed_ids), f)
+                print(f"  ✅ [{part_index}.{idx:03}] Adicionado: {video_id} — {title[:55]}")
+
+            except HttpError as ex:
+                err_msg = str(ex)
+
+                if "videoAlreadyInPlaylist" in err_msg or "duplicate" in err_msg.lower():
+                    report["skipped_duplicates"].append({
+                        "video_id": video_id,
+                        "playlist": part_playlist_name
+                    })
+                    existing_ids.add(video_id)
+                    print(f"  ⏭️  [{part_index}.{idx:03}] Já existe : {video_id} — {title[:55]}")
+                    continue
+
+                if "quota" in err_msg.lower():
+                    print(f"  ⛔ Quota excedida no vídeo {part_index}.{idx}. Interrompendo.")
+                    report["errors"].append({
+                        "video_id": video_id,
+                        "playlist": part_playlist_name,
+                        "error": err_msg
+                    })
+                    break
+
+                report["errors"].append({
+                    "video_id": video_id,
+                    "playlist": part_playlist_name,
+                    "error": err_msg
+                })
+                print(f"  ❌ [{part_index}.{idx:03}] Erro      : {video_id} — {err_msg[:70]}")
 
     report["finished_at"] = datetime.now().isoformat()
 
@@ -277,6 +372,7 @@ def run(
     print(f"\n  ─────────────────────────────────────────")
     print(f"  Adicionados  : {len(report['added'])}")
     print(f"  Duplicatas   : {len(report['skipped_duplicates'])}")
+    print(f"  Pulados > duração: {len(report['skipped_duration'])}")
     print(f"  Erros        : {len(report['errors'])}")
     print(f"  Relatório    : {report_file}")
 

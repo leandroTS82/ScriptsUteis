@@ -80,20 +80,231 @@ def _call_groq(messages: list, label: str = "") -> str:
     raise RuntimeError(f"[generate_script_groq] Todas as tentativas falharam. Último erro: {last_error}")
 
 
-def _validate_en_examples_max_length(lesson: dict, max_chars: int = 85):
+def _normalize_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text.strip().lower())
+
+def _target_keywords(target: str) -> list[str]:
+    """
+    Extrai palavras relevantes do target para validação semântica leve.
+    """
+
+    stopwords = {
+        "the", "a", "an",
+        "he", "she", "it",
+        "they", "we", "i", "you",
+        "to", "of", "in", "on", "at",
+        "is", "are", "am",
+        "my", "your", "his", "her",
+        "our", "their"
+    }
+
+    words = re.findall(r"\w+", target.lower())
+
+    filtered = [
+        w for w in words
+        if w not in stopwords and len(w) > 2
+    ]
+
+    return filtered
+
+
+def _semantic_validation_fallback(
+    validation_type: str,
+    target: str,
+    sentence: str,
+    error_message: str
+) -> bool:
+    """
+    Usa Groq como fallback inteligente quando validações locais falham.
+    """
+
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "You are a strict but realistic English teacher validator.\n"
+                "Your job is to determine if the sentence is still pedagogically valid "
+                "even if a local validation failed.\n\n"
+
+                "ACCEPT if:\n"
+                "- the sentence naturally teaches the target\n"
+                "- the sentence sounds natural\n"
+                "- the target meaning/context is preserved\n"
+                "- small wording variations still teach correctly\n\n"
+
+                "REJECT if:\n"
+                "- the sentence is nonsense\n"
+                "- the target meaning is missing\n"
+                "- the sentence is broken English\n"
+                "- the sentence is only the target repeated\n"
+                "- the sentence is unrelated\n\n"
+
+                "Reply ONLY with:\n"
+                "VALID\n"
+                "or\n"
+                "INVALID"
+            )
+        },
+        {
+            "role": "user",
+            "content": (
+                f"Validation type: {validation_type}\n"
+                f"Target: {target}\n"
+                f"Sentence: {sentence}\n"
+                f"Local validation error: {error_message}"
+            )
+        }
+    ]
+
+    try:
+
+        result = _call_groq(messages, label="semantic-fallback")
+
+        result = result.strip().upper()
+
+        if result.startswith("VALID"):
+            print(
+                f"   ⚠️ Validação local ignorada via fallback semântico "
+                f"({validation_type})"
+            )
+            return True
+
+        return False
+
+    except Exception as e:
+        print(f"   ⚠️ Erro no fallback semântico: {e}")
+        return False
+
+def _validate_en_examples(
+    lesson: dict,
+    target: str,
+    min_chars: int = 25,
+    max_chars: int = 85
+):
+    """
+    Validação robusta com fallback semântico via Groq.
+    Nunca falha por pequenas variações naturais.
+    """
+
+    target_norm = _normalize_text(target)
+    keywords = _target_keywords(target)
+
     for group_index, group in enumerate(lesson.get("WORD_BANK", [])):
-        for item_index in [2, 3, 4]:  # os 3 exemplos em inglês
+
+        for item_index in [2, 3, 4]:
+
             try:
                 item = group[item_index]
             except IndexError:
                 continue
 
+            if item.get("lang") != "en":
+                continue
+
             text = item.get("text", "")
-            if item.get("lang") == "en" and len(text) > max_chars:
-                raise ValueError(
-                    f"Exemplo EN excedeu {max_chars} caracteres "
-                    f"(grupo {group_index}, item {item_index}): "
-                    f"{len(text)} chars -> {text}"
+            text_norm = _normalize_text(text)
+
+            # -------------------------------------------------
+            # helper interno
+            # -------------------------------------------------
+
+            def _try_semantic(validation_type: str, error_message: str):
+
+                semantic_ok = _semantic_validation_fallback(
+                    validation_type=validation_type,
+                    target=target,
+                    sentence=text,
+                    error_message=error_message
+                )
+
+                if semantic_ok:
+                    return
+
+                raise ValueError(error_message)
+
+            # -------------------------------------------------
+            # tamanho máximo
+            # -------------------------------------------------
+
+            if len(text) > max_chars:
+
+                _try_semantic(
+                    "MAX_CHARS",
+                    (
+                        f"Exemplo EN excedeu {max_chars} caracteres "
+                        f"(grupo {group_index}, item {item_index}): "
+                        f"{len(text)} chars -> {text}"
+                    )
+                )
+
+            # -------------------------------------------------
+            # tamanho mínimo
+            # -------------------------------------------------
+
+            if len(text) < min_chars:
+
+                _try_semantic(
+                    "MIN_CHARS",
+                    (
+                        f"Exemplo EN muito curto "
+                        f"(grupo {group_index}, item {item_index}): "
+                        f"{len(text)} chars -> {text}"
+                    )
+                )
+
+            # -------------------------------------------------
+            # apenas target puro
+            # -------------------------------------------------
+
+            if text_norm == target_norm:
+
+                _try_semantic(
+                    "ONLY_TARGET",
+                    (
+                        f"Exemplo EN inválido: somente o target "
+                        f"(grupo {group_index}, item {item_index}): "
+                        f"{text}"
+                    )
+                )
+
+            # -------------------------------------------------
+            # validação semântica leve
+            # -------------------------------------------------
+
+            matches = sum(
+                1 for kw in keywords
+                if kw in text_norm
+            )
+
+            required_matches = max(1, len(keywords) - 1)
+
+            if matches < required_matches:
+
+                _try_semantic(
+                    "KEYWORD_MATCH",
+                    (
+                        f"Exemplo EN não contém keywords suficientes "
+                        f"para '{target}' "
+                        f"(grupo {group_index}, item {item_index}): "
+                        f"{text}"
+                    )
+                )
+
+            # -------------------------------------------------
+            # repetição artificial
+            # -------------------------------------------------
+
+            repeated_target = f"{target_norm} {target_norm}"
+
+            if repeated_target in text_norm:
+
+                _try_semantic(
+                    "REPETITION",
+                    (
+                        f"Exemplo EN artificial/repetitivo "
+                        f"(grupo {group_index}, item {item_index}): "
+                        f"{text}"
+                    )
                 )
 
 # ------------------------------------------------------------------
@@ -176,9 +387,9 @@ def generate_lesson_json(word: str) -> dict:
     - The translation must be the first sentence
     - The explanation must be the second sentence
     - Keep it concise (max 2–3 sentences total)
-    3. lang=en → simple and useful A1 real sentence using "{word}", max 85 characters
-    4. lang=en → Simple and useful A2 real sentence using "{word}", max 85 characters
-    5. lang=en → Simple and useful B1/B2 real sentence using "{word}", max 85 characters
+    3. lang=en → simple and useful A1 real sentence using "{word}", between 25 and 85 characters
+    4. lang=en → simple and useful A2 real sentence using "{word}", between 25 and 85 characters
+    5. lang=en → simple and useful B1/B2 real sentence using "{word}", between 25 and 85 characters
     6. lang=pt → closing message in strict Brazilian Portuguese only. Briefly summarize the Portuguese meaning again in a natural way, motivate the student, give one simple usage tip, and say goodbye. NEVER use English words, English expressions, or the target word/phrase in English. Keep it young, dynamic, didactic and natural. Max 4 sentences.
 
     QUALITY EXAMPLES to match the tone:
@@ -224,6 +435,11 @@ def generate_lesson_json(word: str) -> dict:
     - Do NOT create weird, forced, random, or unnatural sentences
     - The target word or phrase MUST appear naturally in all 3 EN example sentences
     - The JSON structure MUST match exactly as defined
+    - EACH English example sentence MUST contain the exact target word or phrase: "{word}"
+    - The target word or phrase can appear at the beginning, middle, or end of the sentence
+    - English examples MUST NOT be random or generic; each sentence must clearly teach the target word or phrase in context
+    - English examples MUST NOT be only the target word or phrase
+    - EACH English example sentence MUST have at least 25 characters and at most 85 characters, including spaces and punctuation
     - "introducao" MUST NOT contain English words
     - "introducao" must start with a natural greeting like a young Brazilian YouTuber
     - The last WORD_BANK item with lang=pt MUST NOT contain English words
@@ -299,7 +515,7 @@ def generate_lesson_json(word: str) -> dict:
     # -------------------------------------------------
     # 7) Valida limite de caracteres dos exemplos EN
     # -------------------------------------------------
-    _validate_en_examples_max_length(lesson, max_chars=85)
+    _validate_en_examples(lesson, target=word, min_chars=25, max_chars=85)
 
     print(f"✅ [Script/Groq] JSON gerado com persona Leandrinho.\n")
     return lesson

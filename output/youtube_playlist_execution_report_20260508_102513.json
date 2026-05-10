@@ -1,0 +1,660 @@
+{
+    "started_at": "2026-05-08T10:25:22.485000",
+    "finished_at": "2026-05-08T10:28:49.596977",
+    "dry_run": false,
+    "created_playlists": [
+        {
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "playlist_id": "PLzVI0b1epy9_Oq30euFDjmLkUx4rNIn3m",
+            "playlist_title": "Word Bank - 26-04-2026 - 1 min"
+        },
+        {
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        }
+    ],
+    "used_existing_playlists": [],
+    "added_to_date_playlists": [
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC41NkI0NEY2RDEwNTU3Q0M2",
+            "video_id": "WzCLY1QAwME",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "Você Já Escutou 'Fault-Tolerant'? Learn the Tech Word That Will Boost Your English!",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC4yODlGNEE0NkRGMEEzMEQy",
+            "video_id": "7CBp79706W0",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "E aí, future bilingue! Master 'going through' like a pro!",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC4wMTcyMDhGQUE4NTIzM0Y5",
+            "video_id": "z7AlVuXoxmA",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "Você Já Se Sentiu Irritado? | 'Gets on My Nerves' Explained",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC41MjE1MkI0OTQ2QzJGNzNG",
+            "video_id": "u0UTMg3s0Zc",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "Você Vai Se Surpreender! The Concept of Faith That Binds Explained",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC4wOTA3OTZBNzVEMTUzOTMy",
+            "video_id": "xrYihjLmSoU",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "Você vai se surpreender! Highest Strength Explained in 5 Minutes",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC4xMkVGQjNCMUM1N0RFNEUx",
+            "video_id": "5ZiTNxoyMi8",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "Você já se sentiu sem energia? Learn 'Charging myself' in English!",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC41MzJCQjBCNDIyRkJDN0VD",
+            "video_id": "KYOVzSqUMAc",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "Você Não Vai Acreditar! | Warm: The Secret to Mastering English!",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC5DQUNERDQ2NkIzRUQxNTY1",
+            "video_id": "4QJQXE4sBGA",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "E aí, meus alunos! Descubra como 'I made some adjustments to the' pode mudar seu inglês!",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC45NDk1REZENzhEMzU5MDQz",
+            "video_id": "vxZa6w7ytFg",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "Você vai se surpreender! | Run: The Hidden Power of One Word",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OGtlT1RWb0YtLXJjTFNEUE8wVHBNNC5GNjNDRDREMDQxOThCMDQ2",
+            "video_id": "AXnFhnNwdfc",
+            "playlist_id": "PLzVI0b1epy98keOTVoF--rcLSDPO0TpM4",
+            "title": "E aí, galera! Discover the Secret of 'rose' in English: Past Tense & Flower!",
+            "playlist_title": "Word Bank - 08-05-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X09xMzBldUZEam1Ma1V4NHJOSW4zbS41NkI0NEY2RDEwNTU3Q0M2",
+            "video_id": "4dTzLOP1PNI",
+            "playlist_id": "PLzVI0b1epy9_Oq30euFDjmLkUx4rNIn3m",
+            "title": "E aí, alunos! Descubra a frase MÁGICA que salva sua conversa em inglês - 'Could you say that again?'",
+            "playlist_title": "Word Bank - 26-04-2026 - 1 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy41NkI0NEY2RDEwNTU3Q0M2",
+            "video_id": "2ioM_6oxhHc",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "Você vai se surpreender com essa palavra! | Tasty in English",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy4yODlGNEE0NkRGMEEzMEQy",
+            "video_id": "aQN26rmN3Ok",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "Você está pronto para ousar? Master 'I dare to do' in English!",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy4wMTcyMDhGQUE4NTIzM0Y5",
+            "video_id": "JK26xL0EVjE",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "E aí, galera! Dead-Letter Queues: O que é e por que você precisa saber!",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy41MjE1MkI0OTQ2QzJGNzNG",
+            "video_id": "Fst_6bH5vMY",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "E aí, galera! Domine 'It increases my chances to' e conquiste o inglês!",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy4wOTA3OTZBNzVEMTUzOTMy",
+            "video_id": "rLsHfRoWyz4",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "Você não vai acreditar! | Past week vs. last week Explained",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy4xMkVGQjNCMUM1N0RFNEUx",
+            "video_id": "tkKlEJTfz-M",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "E aí, galera! Descubra o Segredo da Palavra 'Promise' em Inglês",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy41MzJCQjBCNDIyRkJDN0VD",
+            "video_id": "mfzWtljV7zM",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "Você NÃO Vai Acreditar! Mastering Everyday English Expressions",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy5DQUNERDQ2NkIzRUQxNTY1",
+            "video_id": "asaJqRIqfRM",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "Não vai acreditar no que acontece! | It usually happens",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy45NDk1REZENzhEMzU5MDQz",
+            "video_id": "qWjBWDB8kAg",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "E aí, galera! Teacher Leandrinho na área! 😙 Show Me That Apology: Master the Phrase in English",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5X0tyU1BnaGhBMjZhWk5zazhSMGlfNy5GNjNDRDREMDQxOThCMDQ2",
+            "video_id": "JRj9Nul-Yh4",
+            "playlist_id": "PLzVI0b1epy9_KrSPghhA26aZNsk8R0i_7",
+            "title": "E aí, galera! Descubra como 'find themselves' pode mudar sua vida em inglês!",
+            "playlist_title": "Word Bank - 21-04-2026 - 11 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC41NkI0NEY2RDEwNTU3Q0M2",
+            "video_id": "O_BkIrneDNA",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "Aumente seu inglês com um truque poderoso! | I do, for sure",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC4yODlGNEE0NkRGMEEzMEQy",
+            "video_id": "2-6x2RTN-MY",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "E aí, galera! Descubra o Segredo de 'to capture the attention of' em Inglês!",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC4wMTcyMDhGQUE4NTIzM0Y5",
+            "video_id": "ydU-oqj4Ib4",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "Você Já Usou 'I WAS GOING TO'? | Mastering Past Intentions in English",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC41MjE1MkI0OTQ2QzJGNzNG",
+            "video_id": "yzJL_jjpab0",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "E aí, galera! Descubra o Segredo da 'Reliability' em Inglês!",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC4wOTA3OTZBNzVEMTUzOTMy",
+            "video_id": "aPD5noWQQqs",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "Você NÃO Vai Acreditar no Segredo do 'Raise'! | English Vocabulary Boost",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC4xMkVGQjNCMUM1N0RFNEUx",
+            "video_id": "wE5gZE8LsYU",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "E aí, galera! Master the Past with 'was' in English!",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC41MzJCQjBCNDIyRkJDN0VD",
+            "video_id": "npsqpNS6E6o",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "Você não vai acreditar! Competitive Advantage Explained",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC5DQUNERDQ2NkIzRUQxNTY1",
+            "video_id": "CkYmKew6lcg",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "E aí, galera! 'Led to the meaning' Explained in 5 Minutes!",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LXIwSEN6RGl0VDUtV3Z1ZzBRTzNDWC45NDk1REZENzhEMzU5MDQz",
+            "video_id": "HL-UhTCJ0og",
+            "playlist_id": "PLzVI0b1epy9-r0HCzDitT5-Wvug0QO3CX",
+            "title": "Você NÃO Vai Acreditar! | Times of God's Blessings Explained",
+            "playlist_title": "Word Bank - 20-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi41NkI0NEY2RDEwNTU3Q0M2",
+            "video_id": "-xvvTWXRdQQ",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "E aí, galera! Descubra o segredo de 'laid' em inglês",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi4yODlGNEE0NkRGMEEzMEQy",
+            "video_id": "DYyWCnJFM3Q",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "Atenção, Brasileiros! Domine 'Something is Lacking' em 5 Minutos!",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi4wMTcyMDhGQUE4NTIzM0Y5",
+            "video_id": "afLAVz3lTv0",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "Fala, galera! Descubra Como 'Today I Woke Up to the Rooster Crowing' Vai Turbinar Seu Inglês!",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi41MjE1MkI0OTQ2QzJGNzNG",
+            "video_id": "9P4JCMYE_TY",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "E aí, galera! Master 'Travel' in English – The Ultimate Guide!",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi4wOTA3OTZBNzVEMTUzOTMy",
+            "video_id": "zyZ-9LisYM0",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "Você não vai acreditar! | 'Yeah, I've already done it on staging' Explained!",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi4xMkVGQjNCMUM1N0RFNEUx",
+            "video_id": "MLl4SXqPmMo",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "E aí, galera! Teacher Leandrinho na área! 🚀 I am a good fit for this role",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi41MzJCQjBCNDIyRkJDN0VD",
+            "video_id": "bCwMskThDm4",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "Não Perca! Aprenda 'Start Working on It' em Inglês em 5 Minutos!",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi5DQUNERDQ2NkIzRUQxNTY1",
+            "video_id": "8bNuggqcwlw",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "E aí, galera! Descubra a frase que vai salvar sua comunicação em inglês! Let Me Rephrase That",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5LTh3M3ZsMDBUSDdueEJ0SEFTaTVnbi45NDk1REZENzhEMzU5MDQz",
+            "video_id": "vM8ckpSBA6g",
+            "playlist_id": "PLzVI0b1epy9-8w3vl00TH7nxBtHASi5gn",
+            "title": "🚨 Você NÃO Vai Acreditar Como 'Could you repair it?' Pode Salvar Seu Dia! | English Phrase Mastery",
+            "playlist_title": "Word Bank - 19-04-2026 - 10 min"
+        }
+    ],
+    "skipped_date_playlist_duplicates": [],
+    "added_to_word_bank_all": [
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby40NzhBNzYxMUE3NkJGRTA5",
+            "video_id": "WzCLY1QAwME",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você Já Escutou 'Fault-Tolerant'? Learn the Tech Word That Will Boost Your English!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5EMDk3NkYyMTM0MUIxN0ZG",
+            "video_id": "7CBp79706W0",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, future bilingue! Master 'going through' like a pro!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4yMUQxMDI2OEVFMUJDQzBF",
+            "video_id": "z7AlVuXoxmA",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você Já Se Sentiu Irritado? | 'Gets on My Nerves' Explained",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4wNUNCQzdGRUFGNjdDMTg3",
+            "video_id": "u0UTMg3s0Zc",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você Vai Se Surpreender! The Concept of Faith That Binds Explained",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4yQUIyMERDQzgzQkE0NTVG",
+            "video_id": "xrYihjLmSoU",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você vai se surpreender! Highest Strength Explained in 5 Minutes",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby45QjI3NkI0NzZGNTk2Qjc5",
+            "video_id": "5ZiTNxoyMi8",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você já se sentiu sem energia? Learn 'Charging myself' in English!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby41QzgzQTNDMjYxMzc1MTgy",
+            "video_id": "KYOVzSqUMAc",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você Não Vai Acreditar! | Warm: The Secret to Mastering English!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby41RjUwNjAwRUMzRDdFNTI4",
+            "video_id": "4QJQXE4sBGA",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, meus alunos! Descubra como 'I made some adjustments to the' pode mudar seu inglês!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4wNEZGRThGNjc4MjJEM0FD",
+            "video_id": "vxZa6w7ytFg",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você vai se surpreender! | Run: The Hidden Power of One Word",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby42MDFFQkM3NTlGNTI2MDcz",
+            "video_id": "AXnFhnNwdfc",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Discover the Secret of 'rose' in English: Past Tense & Flower!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5GREE0Q0U5OUU2QzREMkZD",
+            "video_id": "4dTzLOP1PNI",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, alunos! Descubra a frase MÁGICA que salva sua conversa em inglês - 'Could you say that again?'",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby43RDU5MEE3QTZGRDM5MjVC",
+            "video_id": "2ioM_6oxhHc",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você vai se surpreender com essa palavra! | Tasty in English",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby43NENFRjc0RkJFMjNCMEM1",
+            "video_id": "aQN26rmN3Ok",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você está pronto para ousar? Master 'I dare to do' in English!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby40QUZFQjIwMTYwQTBENERD",
+            "video_id": "JK26xL0EVjE",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Dead-Letter Queues: O que é e por que você precisa saber!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4wNDgxRUU2MUJGNENGOTcy",
+            "video_id": "Fst_6bH5vMY",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Domine 'It increases my chances to' e conquiste o inglês!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4yNzk5QTRFMkY4MEU1NDRE",
+            "video_id": "rLsHfRoWyz4",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você não vai acreditar! | Past week vs. last week Explained",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5DRTBBMDkxNzYwRUFEQzZC",
+            "video_id": "tkKlEJTfz-M",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Descubra o Segredo da Palavra 'Promise' em Inglês",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4yNDFEQ0FGQ0Q3RjE3RDk5",
+            "video_id": "mfzWtljV7zM",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você NÃO Vai Acreditar! Mastering Everyday English Expressions",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5CNjBCOEQzREMzM0VDOTA3",
+            "video_id": "asaJqRIqfRM",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Não vai acreditar no que acontece! | It usually happens",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5GNzk2RjIwRUFGNDAzM0FF",
+            "video_id": "qWjBWDB8kAg",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Teacher Leandrinho na área! 😙 Show Me That Apology: Master the Phrase in English",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5FOEQ3MEM5RTQ1NzNFOUU0",
+            "video_id": "JRj9Nul-Yh4",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Descubra como 'find themselves' pode mudar sua vida em inglês!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby41NUFGQjNFODAwREU2NTEy",
+            "video_id": "O_BkIrneDNA",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Aumente seu inglês com um truque poderoso! | I do, for sure",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4zRkQ3MTEwRkZGNDdBQzE1",
+            "video_id": "2-6x2RTN-MY",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Descubra o Segredo de 'to capture the attention of' em Inglês!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5BQTAzOUY4NTQ3NkYwOTcz",
+            "video_id": "ydU-oqj4Ib4",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você Já Usou 'I WAS GOING TO'? | Mastering Past Intentions in English",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4xMkE2NjJBOEIzQzQyMDA2",
+            "video_id": "yzJL_jjpab0",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Descubra o Segredo da 'Reliability' em Inglês!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5FMkQ1ODRCQjBCNTBDOUMz",
+            "video_id": "aPD5noWQQqs",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você NÃO Vai Acreditar no Segredo do 'Raise'! | English Vocabulary Boost",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby45NTFGOTI3QTY0RkMxOTND",
+            "video_id": "wE5gZE8LsYU",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Master the Past with 'was' in English!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby41QkVBMDkwNjQ1NDA1QTFB",
+            "video_id": "npsqpNS6E6o",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você não vai acreditar! Competitive Advantage Explained",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5DNDVERURBNzM0ODMzMEQw",
+            "video_id": "CkYmKew6lcg",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! 'Led to the meaning' Explained in 5 Minutes!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5BNjk1Q0ZGMjhFMDVEOTM3",
+            "video_id": "HL-UhTCJ0og",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você NÃO Vai Acreditar! | Times of God's Blessings Explained",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5EODIxMUM1RTNBRUQ3OEU5",
+            "video_id": "-xvvTWXRdQQ",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Descubra o segredo de 'laid' em inglês",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby41M0UxQUUxQzU1MzIxOTA4",
+            "video_id": "DYyWCnJFM3Q",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Atenção, Brasileiros! Domine 'Something is Lacking' em 5 Minutos!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby42NDA4NjY1NTQ0MUU2RTZD",
+            "video_id": "afLAVz3lTv0",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Fala, galera! Descubra Como 'Today I Woke Up to the Rooster Crowing' Vai Turbinar Seu Inglês!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby4yOUM4RkE2MDQ5QkIwMTAx",
+            "video_id": "9P4JCMYE_TY",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Master 'Travel' in English – The Ultimate Guide!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby42NDVCQTU1MEQ2OUMwOUU2",
+            "video_id": "zyZ-9LisYM0",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Você não vai acreditar! | 'Yeah, I've already done it on staging' Explained!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5COURCOTUwMzQyMEIyMjMz",
+            "video_id": "MLl4SXqPmMo",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Teacher Leandrinho na área! 🚀 I am a good fit for this role",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5FNEM2MTVCMkYyMjU2NTE2",
+            "video_id": "bCwMskThDm4",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "Não Perca! Aprenda 'Start Working on It' em Inglês em 5 Minutos!",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby41QkVCQUZDRTQ5QzI0MDlF",
+            "video_id": "8bNuggqcwlw",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "E aí, galera! Descubra a frase que vai salvar sua comunicação em inglês! Let Me Rephrase That",
+            "playlist_title": "Word Bank - ALL"
+        },
+        {
+            "status": "added",
+            "playlist_item_id": "UEx6VkkwYjFlcHk5OHkydmZDcGtWWHFySzg0ZFY5UnJKby5CRDM5Rjg3MjBENUFEODFC",
+            "video_id": "vM8ckpSBA6g",
+            "playlist_id": "PLzVI0b1epy98y2vfCpkVXqrK84dV9RrJo",
+            "title": "🚨 Você NÃO Vai Acreditar Como 'Could you repair it?' Pode Salvar Seu Dia! | English Phrase Mastery",
+            "playlist_title": "Word Bank - ALL"
+        }
+    ],
+    "skipped_word_bank_all_duplicates": [],
+    "errors": [],
+    "stopped_reason": "MAX_PLAYLISTS_PER_RUN reached: 5"
+}

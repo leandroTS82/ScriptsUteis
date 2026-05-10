@@ -40,3 +40,9 @@ TIMEOUT_SECONDS = 60
 PLAYLIST_PRIVACY_STATUS = "public"
 DRY_RUN = False
 SLEEP_SECONDS = 1.5
+
+# Máximo de duração permitido (em segundos)
+MAX_VIDEO_DURATION_SECONDS = 120  # 2 minutos
+
+# Máximo de itens por playlist
+MAX_ITEMS_PER_PLAYLIST = 40

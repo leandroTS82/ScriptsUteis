@@ -2,8 +2,8 @@
 # C:\Dev\AllSetra\allsetra-platform-backend
 # C:\Dev\AllSetra\allsetra-customer-portal-backend
 
-$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\ContentFabric\5youtube-upload\classified_playlist"
-$outputFile = ".\files\classified_playlist.txt"
+$rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
+$outputFile = ".\files\MakeVideoGemini.txt"
 
 $selectedFiles = @()
 
