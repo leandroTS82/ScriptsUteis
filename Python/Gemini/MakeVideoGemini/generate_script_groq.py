@@ -2,7 +2,12 @@
 # generate_script_groq.py
 # Versão ZERO CUSTO de generate_script.py usando Groq.
 # Persona: Leandrinho — professor animado estilo YouTuber.
-# Contrato de retorno IDÊNTICO ao generate_script.py.
+# Otimizado para:
+# - Edge TTS Multilingual
+# - Spoken language
+# - Creator style
+# - JSON resiliente
+# - Naturalidade
 # ============================================================
 
 import os
@@ -13,6 +18,7 @@ import random
 from itertools import cycle
 
 _GROQ_LOADER_DIR = r"C:\dev\scripts\ScriptsUteis\Python"
+
 if _GROQ_LOADER_DIR not in sys.path:
     sys.path.insert(0, _GROQ_LOADER_DIR)
 
@@ -21,30 +27,37 @@ from groq_keys_loader import GROQ_KEYS
 
 
 # ------------------------------------------------------------------
-# CONFIGURAÇÃO
+# CONFIG
 # ------------------------------------------------------------------
 
-GROQ_MODEL      = "llama-3.3-70b-versatile"
-MAX_RETRIES     = 3
+GROQ_MODEL = "llama-3.3-70b-versatile"
+
+MAX_RETRIES = 3
 TIMEOUT_SECONDS = 30
 
+TEMPERATURE = 1.0
+
+
 # ------------------------------------------------------------------
-# PERSONA DO LEANDRINHO
+# PERSONA
 # ------------------------------------------------------------------
 
 PERSONA = (
-    "Leandrinho, professor brasileiro animado, didático, moderno, "
-    "estilo criador de conteúdo jovem, focado em repetição, clareza e motivação. "
-    "Sempre fala com energia alta, usa linguagem jovem e natural do Brasil, "
-    "com variação de abertura, sem repetir sempre a mesma frase. "
-    "Explica de forma simples, envolvente e prática, incentivando o aluno a repetir e praticar."
+    "Leandrinho, charismatic Brazilian English teacher and content creator. "
+    "Energetic, natural, spontaneous and engaging. "
+    "Speaks like a real modern YouTube/TikTok creator. "
+    "Uses conversational Brazilian Portuguese naturally mixed with simple English expressions. "
+    "Teaches in a spoken and human way, never sounding robotic or academic. "
+    "Always sounds motivating, casual and natural when read aloud by TTS."
 )
 
+
 # ------------------------------------------------------------------
-# ROTAÇÃO DE KEYS
+# KEY ROTATION
 # ------------------------------------------------------------------
 
 _groq_key_cycle = cycle(random.sample(GROQ_KEYS, len(GROQ_KEYS)))
+
 
 def _get_client():
     key_info = next(_groq_key_cycle)
@@ -56,37 +69,62 @@ def _get_client():
 # ------------------------------------------------------------------
 
 def _extract_json(text: str) -> str | None:
+
     match = re.search(r"\{.*\}", text, re.DOTALL)
+
     return match.group(0) if match else None
 
 
 def _call_groq(messages: list, label: str = "") -> str:
+
     last_error = None
+
     for attempt in range(1, MAX_RETRIES + 1):
+
         client, key_name = _get_client()
+
         try:
-            print(f"   [Groq{' ' + label if label else ''}] tentativa {attempt} · key: {key_name}")
+
+            print(
+                f"   [Groq{' ' + label if label else ''}] "
+                f"tentativa {attempt} · key: {key_name}"
+            )
+
             response = client.chat.completions.create(
                 model=GROQ_MODEL,
                 messages=messages,
-                temperature=0.7,   # um pouco mais criativo para o estilo YouTuber
+                temperature=TEMPERATURE,
                 timeout=TIMEOUT_SECONDS,
             )
-            return response.choices[0].message.content.strip()
-        except Exception as e:
-            last_error = e
-            print(f"   ⚠️  [Groq] Falha na tentativa {attempt}: {e}")
 
-    raise RuntimeError(f"[generate_script_groq] Todas as tentativas falharam. Último erro: {last_error}")
+            return response.choices[0].message.content.strip()
+
+        except Exception as e:
+
+            last_error = e
+
+            print(
+                f"   ⚠️ [Groq] Falha na tentativa "
+                f"{attempt}: {e}"
+            )
+
+    raise RuntimeError(
+        f"[generate_script_groq] "
+        f"Todas as tentativas falharam.\n"
+        f"Último erro: {last_error}"
+    )
 
 
 def _normalize_text(text: str) -> str:
-    return re.sub(r"\s+", " ", text.strip().lower())
+
+    return re.sub(
+        r"\s+",
+        " ",
+        text.strip().lower()
+    )
+
 
 def _target_keywords(target: str) -> list[str]:
-    """
-    Extrai palavras relevantes do target para validação semântica leve.
-    """
 
     stopwords = {
         "the", "a", "an",
@@ -98,15 +136,20 @@ def _target_keywords(target: str) -> list[str]:
         "our", "their"
     }
 
-    words = re.findall(r"\w+", target.lower())
+    words = re.findall(
+        r"\w+",
+        target.lower()
+    )
 
-    filtered = [
+    return [
         w for w in words
         if w not in stopwords and len(w) > 2
     ]
 
-    return filtered
 
+# ------------------------------------------------------------------
+# SEMANTIC VALIDATION FALLBACK
+# ------------------------------------------------------------------
 
 def _semantic_validation_fallback(
     validation_type: str,
@@ -114,30 +157,25 @@ def _semantic_validation_fallback(
     sentence: str,
     error_message: str
 ) -> bool:
-    """
-    Usa Groq como fallback inteligente quando validações locais falham.
-    """
 
     messages = [
         {
             "role": "system",
             "content": (
-                "You are a strict but realistic English teacher validator.\n"
-                "Your job is to determine if the sentence is still pedagogically valid "
-                "even if a local validation failed.\n\n"
+                "You are a strict but realistic English teacher validator.\n\n"
 
                 "ACCEPT if:\n"
-                "- the sentence naturally teaches the target\n"
                 "- the sentence sounds natural\n"
+                "- the sentence teaches the target naturally\n"
                 "- the target meaning/context is preserved\n"
-                "- small wording variations still teach correctly\n\n"
+                "- the sentence is useful for students\n\n"
 
                 "REJECT if:\n"
-                "- the sentence is nonsense\n"
-                "- the target meaning is missing\n"
-                "- the sentence is broken English\n"
-                "- the sentence is only the target repeated\n"
-                "- the sentence is unrelated\n\n"
+                "- broken English\n"
+                "- nonsense\n"
+                "- unrelated sentence\n"
+                "- only repetition of target\n"
+                "- unnatural robotic sentence\n\n"
 
                 "Reply ONLY with:\n"
                 "VALID\n"
@@ -158,22 +196,36 @@ def _semantic_validation_fallback(
 
     try:
 
-        result = _call_groq(messages, label="semantic-fallback")
+        result = _call_groq(
+            messages,
+            label="semantic-fallback"
+        )
 
         result = result.strip().upper()
 
         if result.startswith("VALID"):
+
             print(
-                f"   ⚠️ Validação local ignorada via fallback semântico "
-                f"({validation_type})"
+                f"   ⚠️ Validação local ignorada "
+                f"via fallback semântico ({validation_type})"
             )
+
             return True
 
         return False
 
     except Exception as e:
-        print(f"   ⚠️ Erro no fallback semântico: {e}")
+
+        print(
+            f"   ⚠️ Erro no fallback semântico: {e}"
+        )
+
         return False
+
+
+# ------------------------------------------------------------------
+# VALIDATE EN EXAMPLES
+# ------------------------------------------------------------------
 
 def _validate_en_examples(
     lesson: dict,
@@ -181,20 +233,20 @@ def _validate_en_examples(
     min_chars: int = 25,
     max_chars: int = 85
 ):
-    """
-    Validação robusta com fallback semântico via Groq.
-    Nunca falha por pequenas variações naturais.
-    """
 
     target_norm = _normalize_text(target)
+
     keywords = _target_keywords(target)
 
-    for group_index, group in enumerate(lesson.get("WORD_BANK", [])):
+    for group_index, group in enumerate(
+        lesson.get("WORD_BANK", [])
+    ):
 
         for item_index in [2, 3, 4]:
 
             try:
                 item = group[item_index]
+
             except IndexError:
                 continue
 
@@ -202,13 +254,17 @@ def _validate_en_examples(
                 continue
 
             text = item.get("text", "")
+
             text_norm = _normalize_text(text)
 
             # -------------------------------------------------
-            # helper interno
+            # helper
             # -------------------------------------------------
 
-            def _try_semantic(validation_type: str, error_message: str):
+            def _try_semantic(
+                validation_type: str,
+                error_message: str
+            ):
 
                 semantic_ok = _semantic_validation_fallback(
                     validation_type=validation_type,
@@ -223,7 +279,7 @@ def _validate_en_examples(
                 raise ValueError(error_message)
 
             # -------------------------------------------------
-            # tamanho máximo
+            # max chars
             # -------------------------------------------------
 
             if len(text) > max_chars:
@@ -231,14 +287,13 @@ def _validate_en_examples(
                 _try_semantic(
                     "MAX_CHARS",
                     (
-                        f"Exemplo EN excedeu {max_chars} caracteres "
-                        f"(grupo {group_index}, item {item_index}): "
-                        f"{len(text)} chars -> {text}"
+                        f"Exemplo EN excedeu "
+                        f"{max_chars} caracteres: {text}"
                     )
                 )
 
             # -------------------------------------------------
-            # tamanho mínimo
+            # min chars
             # -------------------------------------------------
 
             if len(text) < min_chars:
@@ -246,14 +301,12 @@ def _validate_en_examples(
                 _try_semantic(
                     "MIN_CHARS",
                     (
-                        f"Exemplo EN muito curto "
-                        f"(grupo {group_index}, item {item_index}): "
-                        f"{len(text)} chars -> {text}"
+                        f"Exemplo EN curto demais: {text}"
                     )
                 )
 
             # -------------------------------------------------
-            # apenas target puro
+            # only target
             # -------------------------------------------------
 
             if text_norm == target_norm:
@@ -261,14 +314,12 @@ def _validate_en_examples(
                 _try_semantic(
                     "ONLY_TARGET",
                     (
-                        f"Exemplo EN inválido: somente o target "
-                        f"(grupo {group_index}, item {item_index}): "
-                        f"{text}"
+                        f"Exemplo contém apenas target: {text}"
                     )
                 )
 
             # -------------------------------------------------
-            # validação semântica leve
+            # keyword validation
             # -------------------------------------------------
 
             matches = sum(
@@ -276,246 +327,333 @@ def _validate_en_examples(
                 if kw in text_norm
             )
 
-            required_matches = max(1, len(keywords) - 1)
+            required_matches = max(
+                1,
+                len(keywords) - 1
+            )
 
             if matches < required_matches:
 
                 _try_semantic(
                     "KEYWORD_MATCH",
                     (
-                        f"Exemplo EN não contém keywords suficientes "
-                        f"para '{target}' "
-                        f"(grupo {group_index}, item {item_index}): "
-                        f"{text}"
+                        f"Keywords insuficientes: {text}"
                     )
                 )
 
             # -------------------------------------------------
-            # repetição artificial
+            # artificial repetition
             # -------------------------------------------------
 
-            repeated_target = f"{target_norm} {target_norm}"
+            repeated_target = (
+                f"{target_norm} {target_norm}"
+            )
 
             if repeated_target in text_norm:
 
                 _try_semantic(
                     "REPETITION",
                     (
-                        f"Exemplo EN artificial/repetitivo "
-                        f"(grupo {group_index}, item {item_index}): "
-                        f"{text}"
+                        f"Exemplo repetitivo/artificial: {text}"
                     )
                 )
 
+
 # ------------------------------------------------------------------
-# FUNÇÃO PRINCIPAL
+# MAIN
 # ------------------------------------------------------------------
 
 def generate_lesson_json(word: str) -> dict:
-    """
-    Gera o JSON da aula com a persona do Leandrinho usando Groq.
-    Contrato de retorno idêntico ao generate_script.py.
-    """   
 
-    # -------------------------------------------------
-    # 2) System prompt — define a persona
-    # -------------------------------------------------
-    system_prompt = f"""You are {PERSONA}
+    system_prompt = f"""
+You are {PERSONA}
 
-    Your job is to create engaging English vocabulary lessons for Brazilian students.
-    Your tone is ALWAYS energetic, fun, motivating — like a young Brazilian YouTuber teacher.
-    You speak Portuguese naturally and fluently when writing PT fields.
-    You write clear, natural English when writing EN fields.
-    You NEVER mix languages inside the same text field.
-    You output ONLY valid JSON — no markdown, no backticks, no explanations outside the JSON."""
+You are PERFORMING as a charismatic Brazilian English teacher and creator.
 
-    # -------------------------------------------------
-    # 3) User prompt — estrutura + exemplos de qualidade
-    # -------------------------------------------------
-    prompt = f"""Generate a vocabulary lesson JSON for the word or phrase: "{word}"
+You are NOT writing educational material.
+You are speaking naturally like a real creator recording a short lesson.
 
-    You MUST follow EXACTLY this JSON structure.
-    DO NOT:
-    - add fields
-    - remove fields
-    - rename fields
-    - change structure
+Your text must feel:
+- alive
+- spontaneous
+- spoken
+- energetic
+- natural
+- engaging
+- human
 
-    The output MUST be a single valid JSON object.
+The student should feel like they are watching a real short-form English lesson.
 
-    NO explanations
-    NO comments
-    NO markdown
-    NO text outside JSON
+Output ONLY valid JSON.
+No markdown.
+No explanations.
+No text outside JSON.
+"""
 
-    {{
-    "repeat_each": {{ "pt": 1, "en": 2 }},
-    "introducao": "...",
-    "nome_arquivos": "{word}",
-    "WORD_BANK": [
-        [
-        {{ "lang": "en", "text": "{word}", "pause": 1000 }},
-        {{ "lang": "pt", "text": "...", "pause": 500 }},
-        {{ "lang": "en", "text": "...", "pause": 1000 }},
-        {{ "lang": "en", "text": "...", "pause": 1000 }},
-        {{ "lang": "en", "text": "...", "pause": 1500 }},
-        {{ "lang": "pt", "text": "..." }}
-        ]
+    prompt = f"""
+Generate a vocabulary lesson JSON for:
+
+"{word}"
+
+You MUST follow EXACTLY this structure:
+
+{{
+  "repeat_each": {{ "pt": 1, "en": 2 }},
+  "introducao": "...",
+  "nome_arquivos": "{word}",
+  "WORD_BANK": [
+    [
+      {{ "lang": "en", "text": "{word}", "pause": 1000 }},
+      {{ "lang": "pt", "text": "...", "pause": 500 }},
+      {{ "lang": "en", "text": "...", "pause": 1000 }},
+      {{ "lang": "en", "text": "...", "pause": 1000 }},
+      {{ "lang": "en", "text": "...", "pause": 1500 }},
+      {{ "lang": "pt", "text": "..." }}
     ]
-    }}
+  ]
+}}
 
-    RULES FOR EACH FIELD:
+STYLE REFERENCE:
+- modern YouTube English teachers
+- TikTok educational creators
+- spoken language
+- short-form engaging videos
+- charismatic Brazilian creators
 
-    "introducao":
-    - Write ONLY in Brazilian Portuguese
-    - NEVER use English words
-    - NEVER use the target word or phrase in English
-    - Must be a presentation of what is coming, not a translation
-    - Must be light, young, fun and curiosity-driven
-    - Vary the opening naturally; do NOT always start with the same phrase
-    - Use variation of impact phrases.
-    - Max 3 sentences
+GLOBAL STYLE:
+- Write as if this will be SPOKEN OUT LOUD
+- Prioritize spoken rhythm over formal writing
+- Sound good for multilingual TTS
+- Keep the pacing fast and engaging
+- Use conversational Brazilian Portuguese
+- Use natural spoken English
+- The teacher may naturally mix PT-BR and EN expressions
+- Avoid academic tone
+- Avoid textbook explanations
+- Avoid robotic phrasing
+- Avoid sounding cringe or exaggerated
+- Keep charisma natural
+- Prefer short and medium spoken sentences
+- Emojis are allowed occasionally, but use them sparingly
 
-    WORD_BANK items:
-    1. lang=en → the word/phrase itself: "{word}"
-    2. lang=pt → MUST follow this exact structure:
-    - Start with: "Significa ..." followed by a clear and correct translation in Brazilian Portuguese
-    - Then give a natural, simple explanation in Brazilian Portuguese explaining how and when the expression is used
-    - Include at least one short usage context or situation in Portuguese
-    - The explanation must be clear, didactic and sound like a real teacher speaking naturally
-    - Do NOT use English words or the target expression in English
-    - The translation must be the first sentence
-    - The explanation must be the second sentence
-    - Keep it concise (max 2–3 sentences total)
-    3. lang=en → simple and useful A1 real sentence using "{word}", between 25 and 85 characters
-    4. lang=en → simple and useful A2 real sentence using "{word}", between 25 and 85 characters
-    5. lang=en → simple and useful B1/B2 real sentence using "{word}", between 25 and 85 characters
-    6. lang=pt → closing message in strict Brazilian Portuguese only. Briefly summarize the Portuguese meaning again in a natural way, motivate the student, give one simple usage tip, and say goodbye. NEVER use English words, English expressions, or the target word/phrase in English. Keep it young, dynamic, didactic and natural. Max 4 sentences.
+INTRODUCAO:
+- Must sound like a real Brazilian YouTube creator opening a lesson
+- Must feel spontaneous and spoken
+- Greeting should vary naturally every time
+- Should create curiosity immediately
+- Should feel like a YouTube Shorts hook
+- Should explain WHY the expression is useful
+- Should make the student want to continue
+- May naturally include the English expression
+- The intro should often begin with:
+  - a relatable situation
+  - a curiosity hook
+  - a common English-learning frustration
+  - a real-life scenario
 
-    QUALITY EXAMPLES to match the tone:
+Examples of opening STYLE ONLY:
+- "Fala, galera!"
+- "E aí, pessoal!"
+- "Salve, time!"
+- "Hey guys!"
+- "Se liga nessa!"
+- "Teacher Leandrinho na área!"
 
-    introducao examples (style reference only — DO NOT copy):
-    - "E ai galera, Leandrinho aqui! Hoje tem uma dica rápida que muda muito a forma de falar. Fica comigo!"
-    - "Salve! Bora destravar um detalhe que aparece direto no inglês do dia a dia?"
-    - "Olha só essa dica: em poucos segundos você vai entender algo que muita gente usa sem perceber."
+DO NOT copy examples.
 
-    Rules:
-    - DO NOT reuse these sentences
-    - Vary tone, rhythm and structure
-    - Avoid always starting with the same expression
+WORD_BANK:
 
-    lang=pt explanation examples (style reference only):
-    - "Quer dizer ..., e é usada pra ..., tipo ..., ... ou ..."
-    - "É uma forma de dizer ... de um jeito mais natural, como no português quando falamos ..."
-    - "Usamos isso quando queremos ..., por exemplo ..."
+1. lang=en
+- ONLY the target word/expression
 
-    Rules:
-    - Be clear and natural
-    - Avoid robotic or dictionary-like explanations
-    - Sound like you are explaining to a real student
+2. lang=pt explanation
+- Explain naturally like a real teacher speaking
+- Start by explaining the meaning naturally
+- Then explain how natives use it
+- Sound conversational and spontaneous
+- May naturally include the English expression
+- Should sound great for multilingual TTS
+- Avoid dictionary definitions
+- Avoid grammar-heavy explanations
 
-    lang=pt closing rules:
-    - Sound natural, spontaneous and human
-    - Vary the structure every time
-    - Avoid fixed patterns like "Agora repita com calma"
-    - Keep it short, motivating and fluid
-    - Encourage practice in a natural way
-    - End like a friendly Brazilian teacher creating a short online lesson
+3. lang=en
+- A1 sentence
+- Natural and realistic
+- 25 to 85 chars
 
-    Examples of good closings (DO NOT copy):
-    - "Boa! Agora tenta usar isso no seu dia a dia que vai ficar muito mais natural."
-    - "Mandou bem! Testa isso em uma frase sua e você já começa a sentir a diferença."
-    - "Perfeito, agora manda ver e tenta usar isso em situações reais."
+4. lang=en
+- A2 sentence
+- Natural and realistic
+- 25 to 85 chars
 
-    STRICT RULES:
-    - Output ONLY valid JSON — absolutely no text outside the JSON object
-    - PT fields: natural Brazilian Portuguese only — never literal translations
-    - EN fields: natural English only — never Portuguese words
-    - EN examples must be realistic, useful, and something a native speaker would actually say
-    - Do NOT create weird, forced, random, or unnatural sentences
-    - The target word or phrase MUST appear naturally in all 3 EN example sentences
-    - The JSON structure MUST match exactly as defined
-    - EACH English example sentence MUST contain the exact target word or phrase: "{word}"
-    - The target word or phrase can appear at the beginning, middle, or end of the sentence
-    - English examples MUST NOT be random or generic; each sentence must clearly teach the target word or phrase in context
-    - English examples MUST NOT be only the target word or phrase
-    - EACH English example sentence MUST have at least 25 characters and at most 85 characters, including spaces and punctuation
-    - "introducao" MUST NOT contain English words
-    - "introducao" must start with a natural greeting like a young Brazilian YouTuber
-    - The last WORD_BANK item with lang=pt MUST NOT contain English words
-    - "introducao" and the final lang=pt item MUST NOT contain the target word or phrase in English
-    - If any rule is broken, regenerate internally before answering
-    - EACH English example sentence MUST have at most 85 characters, including spaces and punctuation.
-    """
+5. lang=en
+- B1/B2 sentence
+- Natural and realistic
+- 25 to 85 chars
+
+6. lang=pt closing
+- Must sound like a real teacher ending naturally
+- Must feel motivating and spontaneous
+- Encourage practice naturally
+- May mix short EN expressions naturally
+- Avoid repetitive patterns
+- Should feel human and conversational
+
+STRICT RULES:
+- Output ONLY valid JSON
+- No markdown
+- No comments
+- No explanations outside JSON
+- JSON structure MUST match exactly
+- PT text must be natural Brazilian Portuguese
+- EN text must be natural English
+- English examples must sound like real native speech
+- Avoid weird or forced examples
+- ALL English examples MUST contain:
+  "{word}"
+- Examples MUST naturally teach the target
+- Examples MUST NOT be generic
+- Examples MUST NOT contain Portuguese
+- Examples MUST NOT be only the target
+- Each EN example:
+  - minimum 25 chars
+  - maximum 85 chars
+"""
 
     messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user",   "content": prompt},
+        {
+            "role": "system",
+            "content": system_prompt
+        },
+        {
+            "role": "user",
+            "content": prompt
+        }
     ]
 
     # -------------------------------------------------
-    # 4) Chamada principal
+    # generate
     # -------------------------------------------------
-    raw = _call_groq(messages, label="generate")
+
+    raw = _call_groq(
+        messages,
+        label="generate"
+    )
+
     json_text = _extract_json(raw)
 
     # -------------------------------------------------
-    # 5) Fallback de correção
+    # fix missing json
     # -------------------------------------------------
-    if not json_text:
-        print("   ⚠️  JSON não encontrado — tentando autocorreção...")
-        fix_messages = [
-            {"role": "system", "content": "You are a JSON repair assistant. Return ONLY valid JSON, nothing else."},
-            {"role": "user",   "content": f"Fix this and return ONLY valid JSON, no backticks:\n\n{raw}"}
-        ]
-        raw_fix   = _call_groq(fix_messages, label="fix")
-        json_text = _extract_json(raw_fix)
 
     if not json_text:
-        raise ValueError(
-            f"[generate_script_groq] Não foi possível extrair JSON para '{word}'.\n"
-            f"Última resposta:\n{raw}"
+
+        print(
+            "   ⚠️ JSON não encontrado. "
+            "Tentando corrigir..."
         )
-
-    try:
-        lesson = json.loads(json_text)
-
-    except json.JSONDecodeError as e:
-        print("⚠️ JSON inválido, tentando corrigir...")
 
         fix_messages = [
             {
                 "role": "system",
-                "content": "You are a strict JSON fixer. Fix syntax only. Return ONLY valid JSON."
+                "content": (
+                    "You are a JSON repair assistant. "
+                    "Return ONLY valid JSON."
+                )
             },
             {
                 "role": "user",
-                "content": f"Fix this JSON:\n\n{json_text}"
+                "content": (
+                    f"Fix this and return ONLY valid JSON:\n\n{raw}"
+                )
             }
         ]
 
-        raw_fix = _call_groq(fix_messages, label="fix-json")
+        raw_fix = _call_groq(
+            fix_messages,
+            label="fix"
+        )
+
+        json_text = _extract_json(raw_fix)
+
+    if not json_text:
+
+        raise ValueError(
+            f"Não foi possível extrair JSON.\n\n{raw}"
+        )
+
+    # -------------------------------------------------
+    # parse json
+    # -------------------------------------------------
+
+    try:
+
+        lesson = json.loads(json_text)
+
+    except json.JSONDecodeError:
+
+        print(
+            "⚠️ JSON inválido. Tentando corrigir..."
+        )
+
+        fix_messages = [
+            {
+                "role": "system",
+                "content": (
+                    "Fix ONLY the JSON syntax. "
+                    "Return ONLY valid JSON."
+                )
+            },
+            {
+                "role": "user",
+                "content": json_text
+            }
+        ]
+
+        raw_fix = _call_groq(
+            fix_messages,
+            label="fix-json"
+        )
+
         fixed_json = _extract_json(raw_fix)
 
         if not fixed_json:
-            print("❌ Falha ao corrigir JSON:")
-            print(json_text)
-            raise e
+
+            raise ValueError(
+                "Falha ao corrigir JSON."
+            )
 
         lesson = json.loads(fixed_json)
 
     # -------------------------------------------------
-    # 6) Garante que pause existe nos itens PT sem pause
+    # ensure pause
     # -------------------------------------------------
+
     for group in lesson.get("WORD_BANK", []):
+
         for item in group:
+
             if "pause" not in item:
-                item["pause"] = 500 if item.get("lang") == "pt" else 1000    
+
+                item["pause"] = (
+                    500
+                    if item.get("lang") == "pt"
+                    else 1000
+                )
 
     # -------------------------------------------------
-    # 7) Valida limite de caracteres dos exemplos EN
+    # validate examples
     # -------------------------------------------------
-    _validate_en_examples(lesson, target=word, min_chars=25, max_chars=85)
 
-    print(f"✅ [Script/Groq] JSON gerado com persona Leandrinho.\n")
+    _validate_en_examples(
+        lesson,
+        target=word,
+        min_chars=25,
+        max_chars=85
+    )
+
+    print(
+        "✅ [Script/Groq] JSON gerado com sucesso.\n"
+    )
+
     return lesson

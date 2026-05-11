@@ -5,7 +5,7 @@
 $rootDirectory = "C:\dev\scripts\ScriptsUteis\Python\Gemini\MakeVideoGemini"
 $outputFile = ".\files\MakeVideoGemini.txt"
 
-$selectedFiles = @()
+$selectedFiles = @("generate_audio_edge.py", "multilingual_tts_enricher_groq.py", "generate_script_groq.py", "generate_image_zero_cost.py")
 
 $onlyFolders = @()
 

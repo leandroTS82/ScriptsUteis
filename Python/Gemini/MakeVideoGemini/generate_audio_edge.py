@@ -1,323 +1,586 @@
+
 # ============================================================
 # generate_audio_edge.py
-# Geração de áudio via Microsoft Edge TTS (edge-tts).
+#
+# Edge TTS Multilingual AI Voice Engine
+#
+# Objetivo:
+# - PT pronunciado como PT
+# - EN pronunciado como EN
+# - mesma voz Brian
+# - creator style
+# - listening practice
+# - emotional rendering
+# - AI-directed pacing
+#
 # ============================================================
 
 import os
-import asyncio
 import io
-import re
+import sys
+import asyncio
+
 from pydub import AudioSegment
 
 try:
     import edge_tts
+
 except ImportError:
     raise ImportError(
-        "[generate_audio_edge] Instale a dependência: pip install edge-tts"
+        "Instale: pip install edge-tts"
     )
 
 
-# ------------------------------------------------------------------
-# CONFIGURAÇÃO DE VOZES
-# ------------------------------------------------------------------
+# ============================================================
+# IMPORT ENRICHER
+# ============================================================
 
-VOICE_CONFIG = {
-    "en": "en-US-BrianMultilingualNeural",
-    "pt": "en-US-BrianMultilingualNeural",
-}
+CURRENT_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
 
-BILINGUAL_MODE = True
+if CURRENT_DIR not in sys.path:
+    sys.path.insert(0, CURRENT_DIR)
 
-# Controle de emoção
-USE_EMOTIONAL_PT_TEXT = True
-
-
-# ------------------------------------------------------------------
-# VELOCIDADE E TOM
-# ------------------------------------------------------------------
-
-RATE_CONFIG = {
-    "en": "-25%",
-    "pt": "+0%",  # corrigido
-}
-
-PITCH_CONFIG = {
-    "en": "+3Hz",
-    "pt": "+0Hz",
-}
+from multilingual_tts_enricher_groq import (
+    enrich_text
+)
 
 
-# ------------------------------------------------------------------
+# ============================================================
+# CONFIG
+# ============================================================
+
+VOICE = "en-US-BrianMultilingualNeural"
+
+
+# ============================================================
 # HELPERS
-# ------------------------------------------------------------------
-
-def _get_voice(lang: str) -> str:
-    effective = lang if BILINGUAL_MODE else "en"
-    return VOICE_CONFIG.get(effective, VOICE_CONFIG["en"])
-
-
-def _get_rate(lang: str) -> str:
-    effective = lang if BILINGUAL_MODE else "en"
-    return RATE_CONFIG.get(effective, RATE_CONFIG["en"])
-
-
-def _get_pitch(lang: str) -> str:
-    effective = lang if BILINGUAL_MODE else "en"
-    return PITCH_CONFIG.get(effective, PITCH_CONFIG["en"])
-
+# ============================================================
 
 def _clean_text(text: str) -> str:
-    text = text.replace("—", ",").replace("–", ",")
-    text = "".join(c for c in text if c.isprintable())
 
-    # NÃO remover ! e ?
-    text = text.strip(" ,;:-")
+    text = text.replace("—", ",")
 
-    if text and text[-1] not in ".!?,":
-        text += "."
-    return text.strip()
+    text = text.replace("–", ",")
 
-
-# ------------------------------------------------------------------
-# TTS
-# ------------------------------------------------------------------
-
-async def _synthesize_async(text: str, voice: str, rate: str, pitch: str) -> bytes:
-    communicate = edge_tts.Communicate(
-        text=text,
-        voice=voice,
-        rate=rate,
-        pitch=pitch,
+    text = "".join(
+        c for c in text
+        if c.isprintable()
     )
 
-    buf = io.BytesIO()
-    async for chunk in communicate.stream():
-        if chunk["type"] == "audio":
-            buf.write(chunk["data"])
+    text = text.strip()
 
-    buf.seek(0)
-    data = buf.read()
+    if text and text[-1] not in ".!?":
+        text += "."
+
+    return text
+
+
+def _pause(ms: int):
+
+    return AudioSegment.silent(
+        duration=ms
+    )
+
+
+# ============================================================
+# VOICE PARAMS
+# ============================================================
+
+def _resolve_voice_params(
+    lang: str,
+    energy: str,
+    style: str
+):
+
+    # --------------------------------------------------------
+    # ENGLISH
+    # --------------------------------------------------------
+
+    if lang == "en":
+
+        return {
+
+            "rate": "-25%",
+
+            "pitch": "+0Hz"
+        }
+
+    # --------------------------------------------------------
+    # INTRO
+    # --------------------------------------------------------
+
+    if style == "intro":
+
+        if energy == "high":
+
+            return {
+
+                "rate": "+10%",
+
+                "pitch": "+3Hz"
+            }
+
+        if energy == "medium":
+
+            return {
+
+                "rate": "+5%",
+
+                "pitch": "+1Hz"
+            }
+
+    # --------------------------------------------------------
+    # CLOSING
+    # --------------------------------------------------------
+
+    if style == "closing":
+
+        return {
+
+            "rate": "+6%",
+
+            "pitch": "+1Hz"
+        }
+
+    # --------------------------------------------------------
+    # ENERGY
+    # --------------------------------------------------------
+
+    if energy == "high":
+
+        return {
+
+            "rate": "+5%",
+
+            "pitch": "+2Hz"
+        }
+
+    if energy == "low":
+
+        return {
+
+            "rate": "-8%",
+
+            "pitch": "-1Hz"
+        }
+
+    return {
+
+        "rate": "-4%",
+
+        "pitch": "+0Hz"
+    }
+
+
+# ============================================================
+# SYNTHESIS
+# ============================================================
+
+async def _synthesize_async(
+    text: str,
+    rate: str,
+    pitch: str
+) -> bytes:
+
+    communicate = edge_tts.Communicate(
+
+        text=text,
+
+        voice=VOICE,
+
+        rate=rate,
+
+        pitch=pitch
+    )
+
+    buffer = io.BytesIO()
+
+    async for chunk in communicate.stream():
+
+        if chunk["type"] == "audio":
+
+            buffer.write(chunk["data"])
+
+    buffer.seek(0)
+
+    data = buffer.read()
 
     if not data:
-        raise edge_tts.exceptions.NoAudioReceived(
-            f"Nenhum áudio recebido: '{text[:60]}'"
+
+        raise RuntimeError(
+            "Nenhum áudio recebido."
         )
 
     return data
 
 
-def _synthesize_segment(
-    text: str,
-    lang: str,
-    rate_override: str | None = None,
-    pitch_override: str | None = None
-) -> AudioSegment | None:
+# ============================================================
+# BUILD SEGMENTS
+# ============================================================
 
-    voice = _get_voice(lang)
-    rate  = rate_override or _get_rate(lang)
-    pitch = pitch_override or _get_pitch(lang)
-    text  = _clean_text(text)
-
-    if not text:
-        return None
-
-    for attempt, (r, p) in enumerate([
-        (rate, pitch),
-        (rate, "+0Hz"),   # mantém emoção no retry
-        ("+0%", "+0Hz"),
-    ], start=1):
-        try:
-            mp3_bytes = asyncio.run(_synthesize_async(text, voice, r, p))
-            return AudioSegment.from_file(io.BytesIO(mp3_bytes), format="mp3")
-
-        except Exception as e:
-            print(f"⚠️ tentativa {attempt} falhou ({e})")
-
-    return None
-
-
-def _pause_segment(ms: int) -> AudioSegment:
-    return AudioSegment.silent(duration=ms)
-
-
-# ------------------------------------------------------------------
-# EMOÇÃO
-# ------------------------------------------------------------------
-
-def _split_emotional_pt_text(text: str) -> list[dict]:
-    text = _clean_text(text)
-
-    parts = re.split(r"([.!?])", text)
-    result = []
-
-    for i in range(0, len(parts), 2):
-        sentence = parts[i].strip()
-        punctuation = parts[i + 1] if i + 1 < len(parts) else "."
-
-        if not sentence:
-            continue
-
-        final_text = f"{sentence}{punctuation}"
-
-        pause = 120
-        rate = "+5%"
-        pitch = "+0Hz"
-
-        if punctuation == "!":
-            pause = 180
-            rate = "+12%"
-            pitch = "+6Hz"
-
-        elif punctuation == "?":
-            pause = 220
-            rate = "+3%"
-            pitch = "+5Hz"
-
-        # regex melhorado
-        lower = sentence.lower()
-        if re.search(r"\b(bora|vamos|arrasando|excelente|muito bem|continue|praticando|galera)\b", lower):
-            rate = "+12%"
-            pitch = "+7Hz"
-            pause = max(pause, 200)
-
-        result.append({
-            "text": final_text,
-            "pause_ms": pause,
-            "rate": rate,
-            "pitch": pitch
-        })
-
-    return result
-
-
-# ------------------------------------------------------------------
-# SEGMENTOS
-# ------------------------------------------------------------------
-
-def _build_segments(lesson_json: dict) -> list:
-    repeat_en = lesson_json["repeat_each"]["en"]
-    repeat_pt = lesson_json["repeat_each"]["pt"]
+def _build_segments(
+    lesson_json: dict
+):
 
     segments = []
 
-    intro = lesson_json.get("introducao", "").strip()
-    intro_lang = lesson_json.get("intro_lang", "pt")
+    repeat_en = lesson_json["repeat_each"]["en"]
+
+    repeat_pt = lesson_json["repeat_each"]["pt"]
+
+    # ========================================================
+    # INTRO
+    # ========================================================
+
+    intro = lesson_json.get(
+        "introducao",
+        ""
+    ).strip()
 
     if intro:
-        if USE_EMOTIONAL_PT_TEXT and intro_lang == "pt":
-            for part in _split_emotional_pt_text(intro):
-                segments.append({
-                    "text": part["text"],
-                    "lang": "pt",
-                    "pause_ms": part["pause_ms"],
-                    "rate": part["rate"],
-                    "pitch": part["pitch"]
-                })
-        else:
+
+        intro_parts = enrich_text(
+            intro
+        )
+
+        for part in intro_parts:
+
+            voice = _resolve_voice_params(
+
+                lang=part["lang"],
+
+                energy=part["energy"],
+
+                style="intro"
+            )
+
             segments.append({
-                "text": intro,
-                "lang": intro_lang,
-                "pause_ms": 700
+
+                "text": part["text"],
+
+                "lang": part["lang"],
+
+                "rate": voice["rate"],
+
+                "pitch": voice["pitch"],
+
+                "pause_ms": part["pause_ms"]
             })
 
-        segments.append({"text": "", "lang": intro_lang, "pause_ms": 700})
+        segments.append({
+
+            "text": "",
+
+            "pause_ms": 700
+        })
+
+    # ========================================================
+    # WORD BANK
+    # ========================================================
 
     for group in lesson_json["WORD_BANK"]:
+
         for index, item in enumerate(group):
+
             text = item["text"].strip()
-            lang = item.get("lang", "en")
-            pause_ms = item.get("pause", 1000)
-            repeat = repeat_en if lang == "en" else repeat_pt
 
-            is_final_pt = lang == "pt" and index == len(group) - 1
+            lang = item.get(
+                "lang",
+                "en"
+            )
 
-            if is_final_pt:
-                if USE_EMOTIONAL_PT_TEXT:
-                    for part in _split_emotional_pt_text(text):
-                        segments.append({
-                            "text": part["text"],
-                            "lang": "pt",
-                            "pause_ms": part["pause_ms"],
-                            "rate": part["rate"],
-                            "pitch": part["pitch"]
-                        })
-                else:
+            pause_ms = item.get(
+                "pause",
+                1000
+            )
+
+            repeat = (
+                repeat_en
+                if lang == "en"
+                else repeat_pt
+            )
+
+            is_last_pt = (
+                lang == "pt"
+                and index == len(group) - 1
+            )
+
+            # ------------------------------------------------
+            # ENGLISH
+            # ------------------------------------------------
+
+            if lang == "en":
+
+                for _ in range(repeat):
+
+                    voice = _resolve_voice_params(
+
+                        lang="en",
+
+                        energy="medium",
+
+                        style="english"
+                    )
+
                     segments.append({
+
                         "text": text,
-                        "lang": "pt",
-                        "pause_ms": pause_ms
+
+                        "lang": "en",
+
+                        "rate": voice["rate"],
+
+                        "pitch": voice["pitch"],
+
+                        "pause_ms": 120
                     })
 
-                segments.append({"text": "", "lang": "pt", "pause_ms": pause_ms})
-                continue
-
-            for _ in range(repeat):
                 segments.append({
-                    "text": text,
-                    "lang": lang,
-                    "pause_ms": 0
+
+                    "text": "",
+
+                    "pause_ms": pause_ms
                 })
 
-            segments.append({"text": "", "lang": lang, "pause_ms": pause_ms})
+                continue
+
+            # ------------------------------------------------
+            # PT ENRICHED
+            # ------------------------------------------------
+
+            enriched = enrich_text(
+                text
+            )
+
+            for _ in range(repeat):
+
+                for part in enriched:
+
+                    style = (
+                        "closing"
+                        if is_last_pt
+                        else part["style"]
+                    )
+
+                    voice = _resolve_voice_params(
+
+                        lang=part["lang"],
+
+                        energy=part["energy"],
+
+                        style=style
+                    )
+
+                    segments.append({
+
+                        "text": part["text"],
+
+                        "lang": part["lang"],
+
+                        "rate": voice["rate"],
+
+                        "pitch": voice["pitch"],
+
+                        "pause_ms": part["pause_ms"]
+                    })
+
+            segments.append({
+
+                "text": "",
+
+                "pause_ms": pause_ms
+            })
 
     return segments
 
 
-# ------------------------------------------------------------------
-# MAIN
-# ------------------------------------------------------------------
+# ============================================================
+# RENDER
+# ============================================================
 
-def generate_audio_edge(lesson_json: dict, output_path: str) -> str:
-    print("🎤 Edge TTS")
+async def _render_segments_async(
+    segments
+):
 
-    segments = _build_segments(lesson_json)
-    combined = AudioSegment.silent(duration=300)
+    combined = _pause(300)
 
     for seg in segments:
-        text = seg["text"]
-        lang = seg["lang"]
-        pause = seg["pause_ms"]
+
+        text = seg.get(
+            "text",
+            ""
+        )
+
+        pause_ms = seg.get(
+            "pause_ms",
+            0
+        )
 
         if text:
-            audio = _synthesize_segment(
-                text,
-                lang,
-                rate_override=seg.get("rate"),
-                pitch_override=seg.get("pitch")
+
+            audio_bytes = None
+
+            for attempt in range(1, 4):
+
+                try:
+
+                    audio_bytes = await _synthesize_async(
+
+                        text=text,
+
+                        rate=seg["rate"],
+
+                        pitch=seg["pitch"]
+                    )
+
+                    break
+
+                except Exception as e:
+
+                    print(
+                        f"⚠️ tentativa "
+                        f"{attempt} falhou: {e}"
+                    )
+
+            if audio_bytes:
+
+                audio = AudioSegment.from_file(
+
+                    io.BytesIO(audio_bytes),
+
+                    format="mp3"
+                )
+
+                combined += audio
+
+            else:
+
+                combined += _pause(900)
+
+        if pause_ms:
+
+            combined += _pause(
+                pause_ms
             )
 
-            if audio:
-                combined += audio
-            else:
-                combined += _pause_segment(800)
+    return combined
 
-        if pause:
-            combined += _pause_segment(pause)
 
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    combined.export(output_path, format="wav")
+# ============================================================
+# MAIN
+# ============================================================
+
+def generate_audio_edge(
+    lesson_json: dict,
+    output_path: str
+) -> str:
+
+    print(
+        "🎤 Edge TTS Multilingual"
+    )
+
+    segments = _build_segments(
+        lesson_json
+    )
+
+    combined = asyncio.run(
+        _render_segments_async(
+            segments
+        )
+    )
+
+    os.makedirs(
+        os.path.dirname(output_path),
+        exist_ok=True
+    )
+
+    combined.export(
+        output_path,
+        format="wav"
+    )
 
     print("✔ áudio gerado")
+
     return output_path
 
 
-# ------------------------------------------------------------------
-# TESTE
-# ------------------------------------------------------------------
+# ============================================================
+# TEST
+# ============================================================
 
 if __name__ == "__main__":
+
     lesson = {
-        "repeat_each": {"pt": 1, "en": 2},
-        "introducao": "Fala pessoal! Hoje vamos aprender uma palavra nova!",
-        "intro_lang": "pt",
+
+        "repeat_each": {
+            "pt": 1,
+            "en": 2
+        },
+
+        "introducao": (
+            "Fala galera! "
+            "Hoje você vai aprender "
+            "what's your name. "
+            "Essa expressão aparece muito!"
+        ),
+
         "WORD_BANK": [
+
             [
-                {"lang": "en", "text": "resilient"},
-                {"lang": "pt", "text": "Resiliente, que se recupera facilmente."},
-                {"lang": "en", "text": "She is very resilient after hard times."},
-                {"lang": "pt", "text": "Muito bem! Continue praticando! Voce esta arrasando!"}
+
+                {
+                    "lang": "en",
+                    "text": "what's your name"
+                },
+
+                {
+                    "lang": "pt",
+                    "text": (
+                        "What's your name "
+                        "significa qual é o seu nome. "
+                        "Nativo usa isso direto!"
+                    )
+                },
+
+                {
+                    "lang": "en",
+                    "text": (
+                        "Hi! What's your name?"
+                    )
+                },
+
+                {
+                    "lang": "en",
+                    "text": (
+                        "I forgot what's your name."
+                    )
+                },
+
+                {
+                    "lang": "en",
+                    "text": (
+                        "Can you tell me "
+                        "what's your name again?"
+                    )
+                },
+
+                {
+                    "lang": "pt",
+                    "text": (
+                        "Boa pessoal! "
+                        "Agora tenta usar "
+                        "what's your name "
+                        "em situações reais. "
+                        "See you!"
+                    )
+                }
             ]
         ]
     }
 
-    generate_audio_edge(lesson, "outputs/audio/test.wav")
+    generate_audio_edge(
+        lesson,
+        "outputs/audio/test.wav"
+    )
