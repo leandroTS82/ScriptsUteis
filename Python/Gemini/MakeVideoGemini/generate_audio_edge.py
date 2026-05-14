@@ -555,10 +555,7 @@ if __name__ == "__main__":
         },
 
         "introducao": (
-            "Fala galera! "
-            "Hoje você vai aprender "
-            "what's your name. "
-            "Essa expressão aparece muito!"
+            "Fala galera! Hoje você vai aprender what's your name. Essa expressão aparece muito!"
         ),
 
         "WORD_BANK": [
@@ -573,9 +570,7 @@ if __name__ == "__main__":
                 {
                     "lang": "pt",
                     "text": (
-                        "What's your name "
-                        "significa qual é o seu nome. "
-                        "Nativo usa isso direto!"
+                        "What's your name significa qual é o seu nome. Nativo usa isso direto!"
                     )
                 },
 

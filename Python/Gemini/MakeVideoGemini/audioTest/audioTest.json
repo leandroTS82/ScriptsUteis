@@ -1,0 +1,48 @@
+{
+  "repeat_each": {
+    "pt": 1,
+    "en": 2
+  },
+  "introducao": "E aí, galera! Teacher Leandrinho na área! Hoje vamos destravar uma expressão super útil pra quando a aula tá quase no fim, mas ainda tem dúvida: 'a couple more questions'. Bora lá!",
+  "nome_arquivos": "a_couple_more_questions",
+  "WORD_BANK": [
+    [
+      {
+        "lang": "en",
+        "text": "a couple more questions",
+        "pause": 1000
+      },
+      {
+        "lang": "pt",
+        "text": "'A couple more questions' significa 'mais umas duas perguntas' ou 'mais algumas poucas perguntas'. É perfeito pra dizer que você tem só mais 2 ou 3 dúvidas."
+      },
+      {
+        "lang": "en",
+        "text": "Teacher, I have a couple more questions.",
+        "pause": 1000
+      },
+      {
+        "lang": "en",
+        "text": "Can I ask a couple more questions before we go?",
+        "pause": 1000
+      },
+      {
+        "lang": "en",
+        "text": "I'll need a few more minutes for a couple more questions.",
+        "pause": 1500
+      },
+      {
+        "lang": "pt",
+        "text": "É isso, team! Usem 'a couple more' pra tudo: 'a couple more minutes', 'a couple more ideas'... A estrutura é a mesma! Pratiquem muito! See ya!"
+      }
+    ]
+  ],
+  "_known_terms_context": {
+    "source": "english_terms.json",
+    "percentage": 0.7,
+    "max_terms": 25,
+    "terms_used": [
+      "a few more"
+    ]
+  }
+}
