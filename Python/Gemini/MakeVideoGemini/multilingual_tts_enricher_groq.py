@@ -84,7 +84,10 @@ def _call_groq(messages, label=""):
     raise RuntimeError(last_error)
 
 
-def enrich_text(text: str):
+def enrich_text(
+    text: str,
+    context: str = "general"
+):
 
     messages = [
 
@@ -107,6 +110,15 @@ You must:
 - detect emotional intensity
 - detect pacing
 - detect creator-style energy
+
+IMPORTANT PACING RULES:
+- Avoid unnecessary segmentation
+- Avoid splitting greetings unnaturally
+- "Olá pessoal", "Fala galera", "E aí pessoal" should usually stay together
+- Keep energetic creator speech fluid
+- Avoid robotic pauses
+- Prefer natural spoken chunks
+- Segments should sound natural when synthesized separately
 
 Output format:
 
@@ -137,6 +149,15 @@ IMPORTANT:
 - NEVER translate
 - NEVER summarize
 - ONLY segment + annotate
+
+Current context:
+- intro
+- teaching
+- closing
+
+Current segment context:
+""" + context + """
+
 """
         },
 
@@ -154,8 +175,21 @@ IMPORTANT:
     raw = raw.replace("```json", "")
     raw = raw.replace("```", "")
     raw = raw.strip()
+    
+    segments = json.loads(raw)
 
-    return json.loads(raw)
+    for seg in segments:
+
+        if seg["pause_ms"] < 120:
+            seg["pause_ms"] = 120
+
+        if (
+            seg["style"] == "intro"
+            and seg["pause_ms"] > 220
+        ):
+            seg["pause_ms"] = 160
+
+    return segments
 
 
 if __name__ == "__main__":

@@ -51,7 +51,9 @@ from multilingual_tts_enricher_groq import (
 # CONFIG
 # ============================================================
 
-VOICE = "en-US-BrianMultilingualNeural"
+VOICE_EN = "en-US-BrianMultilingualNeural"
+
+VOICE_PT = "pt-BR-AntonioNeural"
 
 
 # ============================================================
@@ -180,20 +182,48 @@ def _resolve_voice_params(
 
 async def _synthesize_async(
     text: str,
+    lang: str,
     rate: str,
     pitch: str
 ) -> bytes:
 
-    communicate = edge_tts.Communicate(
-
-        text=text,
-
-        voice=VOICE,
-
-        rate=rate,
-
-        pitch=pitch
+    voice_name = (
+        VOICE_EN
+        if lang == "en"
+        else VOICE_PT
     )
+    
+    fallback_voice = (
+        "en-US-BrianMultilingualNeural"
+        if lang == "en"
+        else "pt-BR-AntonioNeural"
+    )
+    
+    try:
+
+        communicate = edge_tts.Communicate(
+
+            text=text,
+
+            voice=voice_name,
+
+            rate=rate,
+
+            pitch=pitch
+        )
+
+    except Exception:
+
+        communicate = edge_tts.Communicate(
+
+            text=text,
+
+            voice=fallback_voice,
+
+            rate=rate,
+
+            pitch=pitch
+        )
 
     buffer = io.BytesIO()
 
@@ -350,19 +380,22 @@ def _build_segments(
             # PT ENRICHED
             # ------------------------------------------------
 
+            context = (
+                "closing"
+                if is_last_pt
+                else "teaching"
+            )
+
             enriched = enrich_text(
-                text
+                text,
+                context=context
             )
 
             for _ in range(repeat):
 
                 for part in enriched:
 
-                    style = (
-                        "closing"
-                        if is_last_pt
-                        else part["style"]
-                    )
+                    style = part["style"]
 
                     voice = _resolve_voice_params(
 
@@ -429,6 +462,8 @@ async def _render_segments_async(
                     audio_bytes = await _synthesize_async(
 
                         text=text,
+
+                        lang=seg["lang"],
 
                         rate=seg["rate"],
 
