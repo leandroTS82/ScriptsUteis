@@ -1,23 +1,37 @@
 # ============================================================
 # sync_wordbank_and_jsons.py
-# INCREMENTAL ZIP + METADATA MANIFEST
+#
+# OBJETIVOS
+# ------------------------------------------------------------
+# 1. Gerar WORDBANK.ZIP apenas com vídeos NOVOS
+# 2. Incluir metadata COMPLETO (novo + antigo)
+# 3. Gerar JSON_FILES.ZIP apenas com JSONs NOVOS
+# 4. Atualizar old_metadata.json automaticamente
+# 5. Compatibilidade com metadata antigo
+# 6. Não gerar ZIP vazio
 # ============================================================
 
 import os
-import zipfile
-import shutil
 import json
+import shutil
+import zipfile
 import hashlib
 
 from datetime import datetime
 
-# ------------------------------------------------------------
+
+# ============================================================
 # PATHS BASE
-# ------------------------------------------------------------
-WORDBANK_PATH = r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - LeandrinhoMovies"
+# ============================================================
+
+WORDBANK_PATH = (
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
+    r"\EKF - English Knowledge Framework - LeandrinhoMovies"
+)
 
 BASE_LTS_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
+    r"\EKF - English Knowledge Framework - Base"
 )
 
 DESTINATION_PATH = os.path.join(
@@ -31,469 +45,593 @@ TRANSFER_PATH = os.path.join(
     "TransferenciaFiles"
 )
 
-MANIFESTS_PATH = os.path.join(
+OLD_METADATA_PATH = os.path.join(
     TRANSFER_PATH,
-    "manifests"
+    "old_metadata.json"
 )
 
-# ------------------------------------------------------------
+NEW_METADATA_PATH = os.path.join(
+    TRANSFER_PATH,
+    "metadata.json"
+)
+
+WORDBANK_ZIP_PATH = os.path.join(
+    TRANSFER_PATH,
+    "wordbank.zip"
+)
+
+JSON_ZIP_PATH = os.path.join(
+    TRANSFER_PATH,
+    "json_files.zip"
+)
+
+
+# ============================================================
 # SOURCES
-# ------------------------------------------------------------
+# ============================================================
+
 SOURCES = [
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\movies_processed",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Uploaded",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Videos",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\EnableToYoutubeUpload",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Youtube_Upload_Faulty_File",
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\Histories\NewHistory\subtitles",
+
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\series_processed",
+
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Videos\youtube_processed",
 ]
 
-# ------------------------------------------------------------
-# CONFIG
-# ------------------------------------------------------------
-ALLOWED_EXTENSIONS = {
-    ".json",
-    ".srt"
-}
 
-TRACKED_EXTENSIONS = {
-    ".mp4",
-    ".json",
-    ".srt"
-}
-
-VIDEO_EXTENSIONS = {
-    ".mp4"
-}
-
-IGNORED_FILES = {
-    "desktop.ini",
-    ".ds_store"
-}
-
-# ------------------------------------------------------------
-# PREPARACAO
-# ------------------------------------------------------------
-if not os.path.exists(WORDBANK_PATH):
-    raise RuntimeError(
-        f"Pasta wordbank não encontrada: {WORDBANK_PATH}"
-    )
-
-os.makedirs(DESTINATION_PATH, exist_ok=True)
-os.makedirs(TRANSFER_PATH, exist_ok=True)
-os.makedirs(MANIFESTS_PATH, exist_ok=True)
-
-# ------------------------------------------------------------
+# ============================================================
 # HELPERS
-# ------------------------------------------------------------
-def normalize_path(path: str) -> str:
-    return path.replace("\\", "/")
+# ============================================================
 
+def ensure_dirs():
 
-def has_files(path: str) -> bool:
-    return any(
-        os.path.isfile(os.path.join(path, f))
-        for f in os.listdir(path)
+    os.makedirs(
+        TRANSFER_PATH,
+        exist_ok=True
     )
 
 
-def load_manifest(path: str) -> dict:
-    if not os.path.exists(path):
+def sha1_file(path):
+
+    sha1 = hashlib.sha1()
+
+    with open(path, "rb") as f:
+
+        while True:
+
+            chunk = f.read(1024 * 1024)
+
+            if not chunk:
+                break
+
+            sha1.update(chunk)
+
+    return sha1.hexdigest()
+
+
+def build_fingerprint(path):
+
+    stat = os.stat(path)
+
+    return (
+        f"{stat.st_size}_"
+        f"{int(stat.st_mtime)}"
+    )
+
+
+# ============================================================
+# LOAD OLD METADATA
+# ============================================================
+
+def load_old_metadata():
+
+    if not os.path.exists(
+        OLD_METADATA_PATH
+    ):
+
         return {
             "generated_at": None,
-            "pipeline_version": "1.0",
+            "pipeline_version": "2.0",
             "files": {}
         }
 
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+    with open(
+        OLD_METADATA_PATH,
+        "r",
+        encoding="utf-8"
+    ) as f:
+
+        data = json.load(f)
+
+    files = data.get("files")
+
+    # ========================================================
+    # MIGRACAO AUTOMATICA
+    # formato antigo -> novo
+    # ========================================================
+    if isinstance(files, list):
+
+        migrated = {}
+
+        for item in files:
+
+            name = item.get("name")
+
+            if not name:
+                continue
+
+            migrated[name] = {
+                "path": name,
+                "name": name,
+                "size": 0,
+                "created_at": item.get("created_at"),
+                "modified_at": item.get("modified_at"),
+
+                # fingerprint fake inicial
+                "fingerprint": (
+                    item.get("modified_at", "")
+                )
+            }
+
+        return {
+            "generated_at": datetime.now().isoformat(),
+            "pipeline_version": "2.0",
+            "files": migrated
+        }
+
+    # ========================================================
+    # FORMATO NOVO
+    # ========================================================
+    return data
 
 
-def save_manifest(path: str, manifest: dict):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(
-            manifest,
-            f,
-            indent=2,
-            ensure_ascii=False
-        )
+# ============================================================
+# BUILD CURRENT METADATA
+# ============================================================
 
-
-def file_hash(path: str) -> str:
-    sha = hashlib.sha256()
-
-    with open(path, "rb") as f:
-        while chunk := f.read(8192):
-            sha.update(chunk)
-
-    return sha.hexdigest()
-
-
-# ------------------------------------------------------------
-# METADATA
-# ------------------------------------------------------------
-def build_file_metadata(
-    full_path: str,
-    relative_path: str
-) -> dict:
-
-    stat = os.stat(full_path)
-
-    extension = (
-        os.path.splitext(full_path)[1]
-        .lower()
-    )
+def build_current_metadata():
 
     metadata = {
-        "path": normalize_path(relative_path),
-        "name": os.path.basename(full_path),
-        "extension": extension,
-        "size": stat.st_size,
-        "created_at": datetime.fromtimestamp(
-            stat.st_ctime
-        ).isoformat(),
-        "modified_at": datetime.fromtimestamp(
-            stat.st_mtime
-        ).isoformat(),
+        "generated_at": datetime.now().isoformat(),
+        "pipeline_version": "2.0",
+        "files": {}
     }
 
-    # --------------------------------------------------------
-    # SHA256 SOMENTE PARA ARQUIVOS PEQUENOS
-    # --------------------------------------------------------
-    if extension in {".json", ".srt"}:
-        metadata["hash"] = file_hash(full_path)
+    for source in SOURCES:
 
-    else:
-        # fingerprint leve para mp4
-        metadata["fingerprint"] = (
-            f"{stat.st_size}_{int(stat.st_mtime)}"
-        )
+        if not os.path.exists(source):
+            continue
+
+        for root, _, files in os.walk(source):
+
+            for file in files:
+
+                if not file.lower().endswith(".mp4"):
+                    continue
+
+                full_path = os.path.join(
+                    root,
+                    file
+                )
+
+                relative_path = os.path.relpath(
+                    full_path,
+                    source
+                )
+
+                stat = os.stat(full_path)
+
+                metadata["files"][relative_path] = {
+                    "path": full_path,
+                    "name": file,
+                    "size": stat.st_size,
+                    "created_at": datetime.fromtimestamp(
+                        stat.st_ctime
+                    ).isoformat(),
+
+                    "modified_at": datetime.fromtimestamp(
+                        stat.st_mtime
+                    ).isoformat(),
+
+                    "fingerprint": build_fingerprint(
+                        full_path
+                    )
+                }
 
     return metadata
 
 
-# ------------------------------------------------------------
-# DETECTAR ALTERACOES
-# ------------------------------------------------------------
-def collect_changed_files(
-    source_dir: str,
-    manifest_path: str
+# ============================================================
+# GET NEW VIDEOS
+# ============================================================
+
+def get_new_videos(
+    current_metadata,
+    old_metadata
 ):
 
-    old_manifest = load_manifest(manifest_path)
+    current_files = current_metadata["files"]
+    old_files = old_metadata["files"]
 
-    old_files = old_manifest.get("files", {})
+    new_files = []
 
-    new_manifest = {
-        "generated_at": datetime.now().isoformat(),
-        "pipeline_version": "1.0",
-        "files": {}
-    }
+    for relative_path, info in current_files.items():
 
-    changed_files = []
+        old_info = old_files.get(
+            relative_path
+        )
 
-    for root, _, files in os.walk(source_dir):
+        # arquivo novo
+        if not old_info:
 
-        for file in files:
+            new_files.append(info)
+            continue
 
-            if file.lower() in IGNORED_FILES:
-                continue
+        # alterado
+        if (
+            old_info.get("fingerprint")
+            != info.get("fingerprint")
+        ):
 
-            if file.startswith(".") or file.startswith("~"):
-                continue
+            new_files.append(info)
 
-            full_path = os.path.join(root, file)
-
-            extension = (
-                os.path.splitext(file)[1]
-                .lower()
-            )
-
-            if extension not in TRACKED_EXTENSIONS:
-                continue
-
-            relative_path = normalize_path(
-                os.path.relpath(
-                    full_path,
-                    source_dir
-                )
-            )
-
-            metadata = build_file_metadata(
-                full_path,
-                relative_path
-            )
-
-            new_manifest["files"][relative_path] = metadata
-
-            old_metadata = old_files.get(relative_path)
-
-            if old_metadata != metadata:
-                changed_files.append(
-                    (full_path, relative_path)
-                )
-
-    return (
-        changed_files,
-        new_manifest
-    )
+    return new_files
 
 
-# ------------------------------------------------------------
-# ZIP DELTA
-# ------------------------------------------------------------
-def zip_delta_files(
-    changed_files,
-    source_dir: str,
-    zip_path: str,
-    manifest: dict
+# ============================================================
+# BUILD WORDBANK ZIP
+# ============================================================
+
+def build_wordbank_zip(
+    new_videos,
+    current_metadata
 ):
 
-    count = 0
+    if not new_videos:
+
+        print(
+            "Nenhum vídeo novo encontrado."
+        )
+
+        if os.path.exists(
+            WORDBANK_ZIP_PATH
+        ):
+
+            os.remove(
+                WORDBANK_ZIP_PATH
+            )
+
+        return
 
     with zipfile.ZipFile(
-        zip_path,
+        WORDBANK_ZIP_PATH,
         "w",
-        zipfile.ZIP_DEFLATED,
-        compresslevel=9
-    ) as zf:
+        zipfile.ZIP_DEFLATED
+    ) as zipf:
 
-        # ----------------------------------------------------
-        # ARQUIVOS ALTERADOS
-        # ----------------------------------------------------
-        for full_path, relative_path in changed_files:
+        # ====================================================
+        # VIDEOS NOVOS
+        # ====================================================
 
-            try:
-                zf.write(
-                    full_path,
-                    relative_path
-                )
+        for video in new_videos:
 
-                count += 1
+            video_path = video["path"]
 
-            except PermissionError:
-                print(
-                    f"⚠️ Sem permissão: {full_path}"
-                )
-
-            except Exception as e:
-                print(
-                    f"⚠️ Erro ao zipar {full_path}: {e}"
-                )
-
-        # ----------------------------------------------------
-        # METADATA
-        # ----------------------------------------------------
-        zf.writestr(
-            "metadata.json",
-            json.dumps(
-                manifest,
-                indent=2,
-                ensure_ascii=False
+            arcname = os.path.basename(
+                video_path
             )
+
+            print(
+                f"[VIDEO NOVO] {arcname}"
+            )
+
+            zipf.write(
+                video_path,
+                arcname
+            )
+
+        # ====================================================
+        # METADATA COMPLETO
+        # ====================================================
+
+        temp_metadata_path = os.path.join(
+            TRANSFER_PATH,
+            "__temp_metadata.json"
         )
 
-    return count
+        with open(
+            temp_metadata_path,
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                current_metadata,
+                f,
+                ensure_ascii=False,
+                indent=2
+            )
+
+        zipf.write(
+            temp_metadata_path,
+            "metadata.json"
+        )
+
+        os.remove(
+            temp_metadata_path
+        )
+
+    print(
+        f"\nwordbank.zip criado:"
+        f"\n{WORDBANK_ZIP_PATH}"
+    )
 
 
-# ------------------------------------------------------------
-# COPY SMART
-# ------------------------------------------------------------
-def copy_smart(source: str, destination: str):
+# ============================================================
+# GET NEW JSON FILES
+# ============================================================
 
-    copied = 0
-    skipped = 0
+def get_json_files():
 
-    for root, _, files in os.walk(source):
+    json_files = []
+
+    if not os.path.exists(
+        DESTINATION_PATH
+    ):
+
+        return json_files
+
+    for root, _, files in os.walk(
+        DESTINATION_PATH
+    ):
 
         for file in files:
 
-            extension = (
-                os.path.splitext(file)[1]
-                .lower()
+            if not file.lower().endswith(
+                ".json"
+            ):
+                continue
+
+            full_path = os.path.join(
+                root,
+                file
             )
 
-            if extension not in ALLOWED_EXTENSIONS:
-                continue
+            json_files.append(full_path)
 
-            src = os.path.join(root, file)
-            dst = os.path.join(destination, file)
-
-            if os.path.exists(dst):
-                skipped += 1
-                continue
-
-            shutil.copy2(src, dst)
-            copied += 1
-
-    return copied, skipped
+    return json_files
 
 
-# ============================================================
-# EXECUCAO
-# ============================================================
-print("===================================================")
-print("SYNC WORD BANK")
-print("===================================================")
+def load_json_history():
 
-timestamp = datetime.now().strftime(
-    "%Y%m%d_%H%M%S"
-)
-
-# ------------------------------------------------------------
-# MANIFEST PATHS
-# ------------------------------------------------------------
-wordbank_manifest_path = os.path.join(
-    MANIFESTS_PATH,
-    "wordbank_manifest.json"
-)
-
-json_manifest_path = os.path.join(
-    MANIFESTS_PATH,
-    "json_files_manifest.json"
-)
-
-# ============================================================
-# 1) WORDBANK DELTA ZIP
-# ============================================================
-print("\n[1/3] Verificando alterações do wordbank...")
-
-(
-    changed_wordbank_files,
-    new_wordbank_manifest
-) = collect_changed_files(
-    WORDBANK_PATH,
-    wordbank_manifest_path
-)
-
-if changed_wordbank_files:
-
-    wordbank_zip = os.path.join(
+    path = os.path.join(
         TRANSFER_PATH,
-        "wordbank_delta.zip"
+        "json_history.json"
+    )
+
+    if not os.path.exists(path):
+        return {}
+
+    with open(
+        path,
+        "r",
+        encoding="utf-8"
+    ) as f:
+
+        return json.load(f)
+
+
+def save_json_history(history):
+
+    path = os.path.join(
+        TRANSFER_PATH,
+        "json_history.json"
+    )
+
+    with open(
+        path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        json.dump(
+            history,
+            f,
+            ensure_ascii=False,
+            indent=2
+        )
+
+
+def get_new_jsons():
+
+    history = load_json_history()
+
+    current = {}
+
+    new_files = []
+
+    for file_path in get_json_files():
+
+        fingerprint = build_fingerprint(
+            file_path
+        )
+
+        current[file_path] = fingerprint
+
+        old_fingerprint = history.get(
+            file_path
+        )
+
+        if old_fingerprint != fingerprint:
+
+            new_files.append(file_path)
+
+    save_json_history(current)
+
+    return new_files
+
+
+# ============================================================
+# BUILD JSON ZIP
+# ============================================================
+
+def build_json_zip():
+
+    new_jsons = get_new_jsons()
+
+    if not new_jsons:
+
+        print(
+            "\nNenhum JSON novo encontrado."
+        )
+
+        if os.path.exists(
+            JSON_ZIP_PATH
+        ):
+
+            os.remove(
+                JSON_ZIP_PATH
+            )
+
+        return
+
+    with zipfile.ZipFile(
+        JSON_ZIP_PATH,
+        "w",
+        zipfile.ZIP_DEFLATED
+    ) as zipf:
+
+        for file_path in new_jsons:
+
+            arcname = os.path.relpath(
+                file_path,
+                DESTINATION_PATH
+            )
+
+            print(
+                f"[JSON NOVO] {arcname}"
+            )
+
+            zipf.write(
+                file_path,
+                arcname
+            )
+
+    print(
+        f"\njson_files.zip criado:"
+        f"\n{JSON_ZIP_PATH}"
+    )
+
+
+# ============================================================
+# SAVE METADATA
+# ============================================================
+
+def save_metadata(metadata):
+
+    with open(
+        OLD_METADATA_PATH,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        json.dump(
+            metadata,
+            f,
+            ensure_ascii=False,
+            indent=2
+        )
+
+    with open(
+        NEW_METADATA_PATH,
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        json.dump(
+            metadata,
+            f,
+            ensure_ascii=False,
+            indent=2
+        )
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+def main():
+
+    print(
+        "\n=================================================="
     )
 
     print(
-        f"Arquivos alterados: "
-        f"{len(changed_wordbank_files)}"
-    )
-
-    wordbank_count = zip_delta_files(
-        changed_wordbank_files,
-        WORDBANK_PATH,
-        wordbank_zip,
-        new_wordbank_manifest
-    )
-
-    save_manifest(
-        wordbank_manifest_path,
-        new_wordbank_manifest
+        "SYNC WORDBANK + JSON FILES"
     )
 
     print(
-        f"ZIP incremental criado "
-        f"com {wordbank_count} arquivos"
+        "==================================================\n"
     )
 
-    print(f"Local: {wordbank_zip}")
+    ensure_dirs()
 
-else:
-    print(
-        "Nenhuma alteração detectada no wordbank."
+    # ========================================================
+    # LOAD
+    # ========================================================
+
+    old_metadata = load_old_metadata()
+
+    current_metadata = (
+        build_current_metadata()
     )
 
-# ============================================================
-# 2) COPY SMART
-# ============================================================
-print("\n[2/3] Copiando arquivos para Json_files...")
+    # ========================================================
+    # VIDEOS
+    # ========================================================
 
-total_copied = 0
-total_skipped = 0
-
-for source in SOURCES:
-
-    if not os.path.exists(source):
-
-        print(
-            f"Fonte não encontrada. "
-            f"Pulando: {source}"
-        )
-
-        continue
-
-    copied, skipped = copy_smart(
-        source,
-        DESTINATION_PATH
+    new_videos = get_new_videos(
+        current_metadata,
+        old_metadata
     )
-
-    total_copied += copied
-    total_skipped += skipped
-
-print(f"Copiados : {total_copied}")
-print(f"Ignorados: {total_skipped}")
-
-# ============================================================
-# 3) JSON FILES DELTA ZIP
-# ============================================================
-print("\n[3/3] Verificando alterações em Json_files...")
-
-if not has_files(DESTINATION_PATH):
 
     print(
-        "Json_files vazio. "
-        "ZIP não será gerado."
+        f"Vídeos novos:"
+        f" {len(new_videos)}"
     )
 
-else:
-
-    (
-        changed_json_files,
-        new_json_manifest
-    ) = collect_changed_files(
-        DESTINATION_PATH,
-        json_manifest_path
+    build_wordbank_zip(
+        new_videos,
+        current_metadata
     )
 
-    if changed_json_files:
+    # ========================================================
+    # JSONS
+    # ========================================================
 
-        json_zip = os.path.join(
-            TRANSFER_PATH,
-            "json_files_delta.zip"
-        )
+    build_json_zip()
 
-        print(
-            f"Arquivos alterados: "
-            f"{len(changed_json_files)}"
-        )
+    # ========================================================
+    # SAVE METADATA
+    # ========================================================
 
-        json_count = zip_delta_files(
-            changed_json_files,
-            DESTINATION_PATH,
-            json_zip,
-            new_json_manifest
-        )
+    save_metadata(
+        current_metadata
+    )
 
-        save_manifest(
-            json_manifest_path,
-            new_json_manifest
-        )
+    print(
+        "\nMetadata atualizado com sucesso."
+    )
 
-        print(
-            f"ZIP incremental criado "
-            f"com {json_count} arquivos"
-        )
+    print(
+        "\nProcesso finalizado."
+    )
 
-        print(f"Local: {json_zip}")
-
-    else:
-        print(
-            "Nenhuma alteração detectada "
-            "em Json_files."
-        )
 
 # ============================================================
-# FINAL
+# EXECUTION
 # ============================================================
-print("\n===================================================")
-print("PROCESSO CONCLUIDO COM SUCESSO")
-print("===================================================")
+
+if __name__ == "__main__":
+
+    main()
